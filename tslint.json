@@ -1,0 +1,21 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-plugin-prettier"],
+  "linterOptions": {
+    "exclude": ["build/**", "dist/**", "public/**", "node_modules/**"]
+  },
+  "rules": {
+    "prettier": true,
+    "object-literal-sort-keys": false,
+    "radix": false,
+    "variable-name": false,
+    "curly": false,
+    "no-console": false,
+    "no-empty-interface": false,
+    "ban-types": false,
+    "max-classes-per-file": [true, 5],
+    "no-var-requires": false,
+    "member-ordering": false,
+    "no-shadowed-variable": false
+  }
+}

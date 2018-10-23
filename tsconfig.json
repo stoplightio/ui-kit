@@ -1,0 +1,27 @@
+{
+  "include": ["src/**/*", "./storybook/center-decorator.tsx"],
+  "exclude": ["node_modules", "build", "scripts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es6",
+    "target": "ES5",
+    "lib": ["es2015", "es2016", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+  }
+}

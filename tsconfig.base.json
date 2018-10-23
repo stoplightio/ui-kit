@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "strict": true,
+    "pretty": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es6",
+    "lib": ["es6", "es7", "dom"],
+    "outDir": "lib",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": false,
+    "typeRoots": ["node_modules/@types", "reflect-metadata"],
+    "declaration": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "emitDecoratorMetadata": true
+  }
+}
