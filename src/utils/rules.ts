@@ -265,6 +265,32 @@ export const textColor = style({
   key: 'colors',
 });
 
+export const decoration = props => {
+  const val = props.decoration;
+  if (!val) return null;
+
+  // support passing in two decorations like ['underline', 'strike-through']
+  const style = n =>
+    n && {
+      textDecoration: Array.isArray(n) ? n.join(' ') : n,
+      textDecorationStyle: 'solid',
+    };
+
+  return style(val);
+};
+
+export const decorationColor = style({
+  prop: 'decorationColor',
+  cssProperty: 'textDecorationColor',
+  key: 'colors',
+});
+
+// TODO customizae to use lodash from more more options like snakecase
+export const casing = style({
+  prop: 'casing',
+  cssProperty: 'textTransform',
+});
+
 /**
  * NOT USED
  */

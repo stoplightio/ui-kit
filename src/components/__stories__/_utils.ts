@@ -135,5 +135,6 @@ export const Decoration = [
   'inherit',
 ];
 
+export const Casing = ['none', 'capitalize', 'uppercase', 'lowercase', 'initial', 'inherit'];
 export const LineHeight = [undefined, 'reset', 'none', 'tight', 'normal', 'loose'];
 export const LetterSpacing = [undefined, 'tight', 'normal', 'wide'];
