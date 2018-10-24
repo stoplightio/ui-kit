@@ -5,6 +5,7 @@ export type LetterSpacing = 'tight' | 'normal' | 'wide';
 export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 export type BoxShadow = 'sm' | 'md' | 'lg';
+export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
 export type Space =
   | 'none'
   | 'xs'
@@ -65,6 +66,10 @@ export interface ILayout {
   shadow: { [key in BoxShadow]?: string };
 
   space: { [key in Space]?: number | string }; // px
+
+  height?: { [key in BoxDimension]?: number | string };
+
+  width?: { [key in BoxDimension]?: number | string };
 }
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
