@@ -1,20 +1,14 @@
-export const LineHeight = [undefined, 'reset', 'none', 'tight', 'normal', 'loose'];
-export const LetterSpacing = [undefined, 'tight', 'normal', 'wide'];
+/**
+ * BOX
+ */
+
 export const BorderRadius = [undefined, 'none', 'sm', 'md', 'lg', 'xl', 'full'];
 export const BorderWidth = [undefined, 'none', 'xs', 'sm', 'md', 'lg'];
 export const BoxShadow = [undefined, 'sm', 'md', 'lg'];
 export const TextAlign = [undefined, 'left', 'right', 'center', 'justify', 'initial', 'inherit'];
 export const OverFlow = [undefined, 'visible', 'hidden', 'scroll', 'auto', 'initial', 'inherit'];
 export const PositionOpts = [undefined, 'static', 'relative', 'fixed', 'absolute', 'sticky'];
-export const Decoration = [
-  undefined,
-  'none',
-  'underline',
-  'overline',
-  'line-through',
-  'initial',
-  'inherit',
-];
+
 export const FontSize = [
   undefined,
   'xs',
@@ -93,3 +87,53 @@ export const Display = [
   'initial',
   'inherit',
 ];
+
+/**
+ * FLEX
+ */
+export const AlignItems = [
+  undefined,
+  'stretch',
+  'center',
+  'flex-start',
+  'flex-end',
+  'baseline',
+  'initial',
+  'inherit',
+];
+export const JustifyContent = [
+  undefined,
+  'flex-start',
+  'flex-end',
+  'center',
+  'space-between',
+  'space-around',
+  'initial',
+  'inherit',
+];
+
+export const FlexDirection = [
+  'row',
+  'row-reverse',
+  'column',
+  'column-reverse',
+  'initial',
+  'inherit',
+];
+export const FlexWrap = ['nowrap', 'wrap', 'wrap-reverse', 'initial', 'inherit'];
+
+/**
+ * TEXT
+ */
+export const Decoration = [
+  undefined,
+  'none',
+  'underline',
+  'overline',
+  'line-through',
+  'initial',
+  'inherit',
+];
+
+export const LineHeight = [undefined, 'reset', 'none', 'tight', 'normal', 'loose'];
+export const LetterSpacing = [undefined, 'tight', 'normal', 'wide'];
