@@ -1,10 +1,8 @@
-import * as React from 'react';
 import { listStylePosition, listStyleType, styled } from '../utils';
 
 import { ITextProps, Text } from './Text';
 
 export interface IListProps extends ITextProps {
-  ordered?: boolean;
   listPosition?: 'inside' | 'outside' | 'initial' | 'inherit';
   itemType?:
     | 'circle'
@@ -32,8 +30,8 @@ export interface IListProps extends ITextProps {
     | 'inherit';
 }
 
-export const List = styled<IListProps>(({ ordered, itemType, listPosition, ...textProps }) => (
-  <Text {...textProps} as={ordered ? 'ol' : 'ul'} />
-))(listStylePosition, listStyleType);
+export const List = styled<IListProps, 'ul'>(Text as any)(listStylePosition, listStyleType);
 
-List.defaultProps = {};
+List.defaultProps = {
+  as: 'ul',
+};

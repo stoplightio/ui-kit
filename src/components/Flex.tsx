@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { alignItems, flexDirection, flexWrap, justifyContent } from '../utils';
 
 import { styled } from '../utils';
@@ -18,9 +17,7 @@ export interface IFlexProps extends IBoxProps {
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | 'initial' | 'inherit'; // flexWrap
 }
 
-export const Flex = styled<IFlexProps>(({ items, justify, direction, wrap, ...boxProps }) => (
-  <Box {...boxProps} />
-))(
+export const Flex = styled<IFlexProps, 'div'>(Box as any)(
   {
     // @ts-ignore
     display: 'flex',

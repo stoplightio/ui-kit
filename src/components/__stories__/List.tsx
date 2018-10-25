@@ -32,7 +32,6 @@ storiesOf('components/List', module)
   .add('with defaults', () => (
     <List
       // specific to List
-      ordered={boolean('ordered', false, 'List')}
       itemType={select('itemType', ListStyleType, undefined, 'List')}
       listPosition={select('listPosition', ListStylePosition, undefined, 'List')}
       // specific to text
@@ -46,7 +45,7 @@ storiesOf('components/List', module)
       fg={text('fg', 'valid-color', 'Box')}
       bg={text('bg', 'valid-color', 'Box')}
       text={select('text', FontSize, undefined, 'Box')}
-      align={select('align', TextAlign, 'center', 'Box')}
+      align={select('align', TextAlign, undefined, 'Box')}
       weight={select('weight', FontWeight, undefined, 'Box')}
       m={select('m', FullSpace, undefined, 'Box')}
       mt={select('mt', FullSpace, undefined, 'Box')}
@@ -55,7 +54,7 @@ storiesOf('components/List', module)
       ml={select('ml', FullSpace, undefined, 'Box')}
       mx={select('mx', FullSpace, undefined, 'Box')}
       my={select('my', FullSpace, undefined, 'Box')}
-      p={select('p', FullSpace, undefined, 'Box')}
+      p={select('p', FullSpace, 'md', 'Box')}
       pt={select('pt', FullSpace, undefined, 'Box')}
       pr={select('pr', FullSpace, undefined, 'Box')}
       pb={select('pb', FullSpace, undefined, 'Box')}

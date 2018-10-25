@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { LetterSpacing, LineHeight } from '../types';
 import {
   casing,
@@ -24,11 +23,14 @@ export interface ITextProps extends IBoxProps {
   italic?: boolean;
 }
 
-export const Text = styled<ITextProps>(
-  ({ tracking, leading, casing, decoration, decorationColor, italic, ...boxProps }) => (
-    <Box {...boxProps} />
-  )
-)(casing, decoration, decorationColor, fontStyle, lineHeight, letterSpacing);
+export const Text = styled<ITextProps, 'p'>(Box as any)(
+  casing,
+  decoration,
+  decorationColor,
+  fontStyle,
+  lineHeight,
+  letterSpacing
+);
 
 Text.defaultProps = {
   as: 'p',

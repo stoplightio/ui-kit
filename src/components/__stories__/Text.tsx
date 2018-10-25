@@ -56,13 +56,13 @@ storiesOf('components/Text', module)
       pl={select('pl', FullSpace, undefined, 'Box')}
       px={select('px', FullSpace, undefined, 'Box')}
       py={select('py', FullSpace, undefined, 'Box')}
-      height={text('height', '30%', 'Box')}
+      height={text('height', 'valid-height', 'Box')}
       maxHeight={text('maxHeight', 'valid-maxHeight', 'Box')}
       minHeight={text('minHeight', 'valid-minHeight', 'Box')}
-      width={text('width', '30%', 'Box')}
+      width={text('width', 'valid-width', 'Box')}
       maxWidth={text('maxWidth', 'valid-maxWidth', 'Box')}
       minWidth={text('minWidth', 'valid-minWidth', 'Box')}
-      border={select('border', BorderWidth, 'xs', 'Box')}
+      border={select('border', BorderWidth, undefined, 'Box')}
       borderTop={select('borderTop', BorderWidth, undefined, 'Box')}
       borderLeft={select('borderLeft', BorderWidth, undefined, 'Box')}
       borderRight={select('borderRight', BorderWidth, undefined, 'Box')}

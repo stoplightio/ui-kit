@@ -30,7 +30,7 @@ storiesOf('components/Heading', module)
   .add('with defaults', () => (
     <Heading
       // specific to heading
-      as={select('as', ['undefined,h1', 'h2', 'h3', 'h4', 'h5', 'h6'], undefined, 'Heading')}
+      as={select('as', [undefined, 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'], undefined, 'Heading')}
       // specific to text
       tracking={select('tracking', LetterSpacing, undefined, 'Text')}
       leading={select('leading', LineHeight, undefined, 'Text')}
@@ -58,13 +58,13 @@ storiesOf('components/Heading', module)
       pl={select('pl', FullSpace, undefined, 'Box')}
       px={select('px', FullSpace, undefined, 'Box')}
       py={select('py', FullSpace, undefined, 'Box')}
-      height={text('height', '30%', 'Box')}
+      height={text('height', 'valid-height', 'Box')}
       maxHeight={text('maxHeight', 'valid-maxHeight', 'Box')}
       minHeight={text('minHeight', 'valid-minHeight', 'Box')}
       width={text('width', '30%', 'Box')}
       maxWidth={text('maxWidth', 'valid-maxWidth', 'Box')}
       minWidth={text('minWidth', 'valid-minWidth', 'Box')}
-      border={select('border', BorderWidth, 'xs', 'Box')}
+      border={select('border', BorderWidth, undefined, 'Box')}
       borderTop={select('borderTop', BorderWidth, undefined, 'Box')}
       borderLeft={select('borderLeft', BorderWidth, undefined, 'Box')}
       borderRight={select('borderRight', BorderWidth, undefined, 'Box')}
