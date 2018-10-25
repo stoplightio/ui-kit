@@ -121,9 +121,9 @@ export interface IBoxProps {
 }
 
 export const Box = styled<IBoxProps, 'div'>('div')(
-  bgColor,
-  borderColor,
   borderRadius,
+  borderColor,
+  bgColor,
   borders,
   bottom,
   boxShadow,

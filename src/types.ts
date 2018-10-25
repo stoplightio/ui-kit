@@ -49,7 +49,7 @@ export interface IThemeInterface<
 }
 
 export interface ISectionTheme<TComponents extends Components = Components> {
-  colors?: IColors;
+  colors?: Partial<IColors>;
 
   components?: { [component in TComponents]?: Partial<IColors> };
 }
