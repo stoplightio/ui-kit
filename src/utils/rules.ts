@@ -2,8 +2,67 @@ import { get, merge } from 'lodash';
 import { compose, is, num, px, style } from 'styled-system';
 
 /**
+ * MISC
+ */
+
+const propThemeMap = {
+  borderColor: 'border',
+  fg: 'fg',
+  bg: 'bg',
+};
+
+export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: string }) => {
+  const css = cssProperty || prop;
+
+  // create a cache to check and break circular references
+  const fn = (props, cache: any[] = []) => {
+    let val = props[prop];
+
+    if (!val || typeof val !== 'string') return null;
+
+    // if the value is in cache we have a circular reference
+    if (cache.find(i => i && i === val)) {
+      return null;
+    }
+    cache.push(val);
+
+    // is pointing to another location in the theme
+    if (val.startsWith('@')) {
+      val = val.replace('@', '');
+      val = val.split('.');
+
+      // check in components first, then check in colors
+      val = get(props.theme, ['components', ...val]) || get(props.theme, ['colors', ...val]);
+
+      // default to global
+      if (!val) {
+        val = get(props.theme, ['colors', propThemeMap[prop]]);
+      }
+
+      // if the value is another pointer recurse again
+      if (val && val.startsWith('@')) {
+        return fn({ ...props, [prop]: val }, cache);
+      }
+    }
+
+    return val
+      ? {
+          [css]: val,
+        }
+      : null;
+  };
+
+  return fn;
+};
+
+/**
  * Box
  */
+
+export const bgColor = styleColor({
+  prop: 'bg',
+  cssProperty: 'backgroundColor',
+});
 
 export const borderRadius = style({
   prop: 'radius',
@@ -42,6 +101,7 @@ export const zIndex = style({
 });
 
 const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
+
 export const border = style({
   prop: 'border',
   key: 'base.border',
@@ -70,6 +130,10 @@ export const borderLeft = style({
   prop: 'borderLeft',
   key: 'base.border',
   transformValue: getBorder,
+});
+
+export const borderColor = styleColor({
+  prop: 'borderColor',
 });
 
 export const borders = compose(
@@ -259,10 +323,9 @@ export const textAlign = style({
   cssProperty: 'textAlign',
 });
 
-export const textColor = style({
+export const textColor = styleColor({
   prop: 'fg',
   cssProperty: 'color',
-  key: 'colors',
 });
 
 export const decoration = props => {
@@ -279,10 +342,9 @@ export const decoration = props => {
   return style(val);
 };
 
-export const decorationColor = style({
+export const decorationColor = styleColor({
   prop: 'decorationColor',
   cssProperty: 'textDecorationColor',
-  key: 'colors',
 });
 
 // TODO customizae to use lodash from more more options like snakecase
@@ -350,16 +412,4 @@ export const listStylePosition = style({
 // textStyle,
 // verticalAlign,
 
-export {
-  bgColor,
-  borderColor,
-  bottom,
-  css,
-  display,
-  flex,
-  left,
-  opacity,
-  position,
-  right,
-  top,
-} from 'styled-system';
+export { bottom, css, display, flex, left, opacity, position, right, top } from 'styled-system';

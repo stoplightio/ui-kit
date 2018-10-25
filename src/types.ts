@@ -32,8 +32,11 @@ export type FullSpace =
   | '-5xl'
   | '-6xl';
 
-export interface IThemeInterface<TSections = '', TComponents = ''>
-  extends ISectionTheme<TComponents> {
+export interface IThemeInterface<
+  TSections extends string = '',
+  // extend Components and set as a default so user can add additional components if desired
+  TComponents extends Components = Components
+> extends ISectionTheme<TComponents> {
   base: ILayout;
 
   // Extended from ISectionTheme these will be globals used throughout the app
@@ -42,12 +45,13 @@ export interface IThemeInterface<TSections = '', TComponents = ''>
 
   // uses generics so you can pass in sections TSections = header | footer | sidebar... (this allows different typings for platform and hubs)
   // sections are used to colorize the bg/fg/border of the section as well as override nested component colors
-  sections?: { [section in keyof TSections]: ISectionTheme<TComponents> };
+  sections?: { [section in TSections]: ISectionTheme<TComponents> };
 }
-export interface ISectionTheme<TComponents = ''> {
+
+export interface ISectionTheme<TComponents extends Components = Components> {
   colors?: IColors;
 
-  components?: { [component in keyof TComponents]: Partial<IColors> };
+  components?: { [component in TComponents]?: Partial<IColors> };
 }
 
 export interface ILayout {
@@ -80,3 +84,6 @@ export interface IColors {
 
   [color: string]: string | Partial<IColors>;
 }
+
+// components created in this repo
+export type Components = 'button';
