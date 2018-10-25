@@ -292,6 +292,20 @@ export const casing = style({
 });
 
 /**
+ * LIST
+ */
+
+export const listStyleType = style({
+  prop: 'itemType',
+  cssProperty: 'listStyleType',
+});
+
+export const listStylePosition = style({
+  prop: 'listPosition',
+  cssProperty: 'listStylePosition',
+});
+
+/**
  * NOT USED
  */
 

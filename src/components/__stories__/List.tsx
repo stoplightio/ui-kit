@@ -6,7 +6,7 @@ import { storiesOf } from '@storybook/react';
 // @ts-ignore
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { Heading } from '../Heading';
+import { List } from '../List';
 
 import {
   BorderRadius,
@@ -20,17 +20,21 @@ import {
   FullSpace,
   LetterSpacing,
   LineHeight,
+  ListStylePosition,
+  ListStyleType,
   OverFlow,
   PositionOpts,
   TextAlign,
 } from './_utils';
 
-storiesOf('components/Heading', module)
+storiesOf('components/List', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Heading
-      // specific to heading
-      as={select('as', ['undefined,h1', 'h2', 'h3', 'h4', 'h5', 'h6'], undefined, 'Heading')}
+    <List
+      // specific to List
+      ordered={boolean('ordered', false, 'List')}
+      itemType={select('itemType', ListStyleType, undefined, 'List')}
+      listPosition={select('listPosition', ListStylePosition, undefined, 'List')}
       // specific to text
       tracking={select('tracking', LetterSpacing, undefined, 'Text')}
       leading={select('leading', LineHeight, undefined, 'Text')}
@@ -42,7 +46,7 @@ storiesOf('components/Heading', module)
       fg={text('fg', 'valid-color', 'Box')}
       bg={text('bg', 'valid-color', 'Box')}
       text={select('text', FontSize, undefined, 'Box')}
-      align={select('align', TextAlign, undefined, 'Box')}
+      align={select('align', TextAlign, 'center', 'Box')}
       weight={select('weight', FontWeight, undefined, 'Box')}
       m={select('m', FullSpace, undefined, 'Box')}
       mt={select('mt', FullSpace, undefined, 'Box')}
@@ -84,6 +88,9 @@ storiesOf('components/Heading', module)
       right={number('right', undefined, 'Box')}
       z={number('z', undefined, 'Box')}
     >
-      Some Text in a H* tag
-    </Heading>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </List>
   ));

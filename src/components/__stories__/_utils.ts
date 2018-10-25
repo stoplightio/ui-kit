@@ -138,3 +138,35 @@ export const Decoration = [
 export const Casing = ['none', 'capitalize', 'uppercase', 'lowercase', 'initial', 'inherit'];
 export const LineHeight = [undefined, 'reset', 'none', 'tight', 'normal', 'loose'];
 export const LetterSpacing = [undefined, 'tight', 'normal', 'wide'];
+
+/**
+ * LIST
+ */
+
+export const ListStylePosition = [undefined, 'inside', 'outside', 'initial', 'inherit'];
+export const ListStyleType = [
+  undefined,
+  'circle',
+  'disc',
+  'square',
+  'armenian',
+  'cjk-ideographic',
+  'decimal',
+  'decimal-leading-zero',
+  'georgian',
+  'hebrew',
+  'hiragana',
+  'hiragana-iroha',
+  'katakana',
+  'katakana-iroha',
+  'lower-alpha',
+  'lower-greek',
+  'lower-latin',
+  'lower-roman',
+  'upper-alpha',
+  'upper-greek',
+  'upper-latin',
+  'upper-roman',
+  'none',
+  'inherit',
+];
