@@ -3,9 +3,11 @@ import { ISectionTheme } from 'src/types';
 // add whatever prepackaged colors we might want to include here
 export const colors = {
   colors: {
-    fg: 'grey',
+    fg: 'black',
     bg: 'white',
-    border: 'grey',
+    border: 'black',
+
+    transparent: 'transparent',
   },
 };
 
@@ -13,9 +15,9 @@ export const colors = {
 export const components: ISectionTheme = {
   components: {
     button: {
-      fg: '@bg',
-      bg: '@fg',
-      border: 'transparent',
+      fg: 'white',
+      bg: 'grey',
+      border: '#/colors/transparent',
     },
   },
 };

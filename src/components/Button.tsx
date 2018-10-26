@@ -48,7 +48,7 @@ Button.defaultProps = {
 
   // reference colors by path in theme
   // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: '@button.fg',
-  bg: '@button.bg',
-  borderColor: '@button.border',
+  fg: 'button.fg',
+  bg: 'button.bg',
+  borderColor: 'button.border',
 };

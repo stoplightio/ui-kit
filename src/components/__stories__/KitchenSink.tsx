@@ -13,9 +13,9 @@ import { ThemeSection } from '../ThemeSection';
 storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
   <Flex width={2 / 3} direction="column" shadow="medium" radius="md" css={{ overflow: 'hidden' }}>
     <ThemeSection section="header">
-      <Flex bg="@bg" borderBottom="xs" borderColor="@border" text="md">
+      <Flex bg="bg" borderBottom="xs" borderColor="border" text="md">
         <Flex>
-          <Heading as="h4" text="lg" py="md" pl="md" fg="@fg">
+          <Heading as="h4" text="lg" py="md" pl="md" fg="fg">
             My Project
           </Heading>
         </Flex>
@@ -28,14 +28,14 @@ storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
 
     <Flex>
       <ThemeSection section="sidebar">
-        <Box width={200} bg="@bg" fg="@fg" p="xl" borderRight="xs" borderColor="@border">
+        <Box width={200} bg="bg" fg="fg" p="xl" borderRight="xs" borderColor="border">
           <Text>One</Text>
           <Text mt="xs">Two</Text>
         </Box>
       </ThemeSection>
 
       <ThemeSection section="main">
-        <Box p="lg" bg="@bg" fg="@fg" flex="1 1 auto">
+        <Box p="lg" bg="bg" fg="fg" flex="1 1 auto">
           <Heading>Intro</Heading>
           <Text mt="sm">Yada yada, some text!</Text>
           <Button mt="lg">A Button</Button>
@@ -44,9 +44,9 @@ storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
     </Flex>
 
     <ThemeSection section="footer">
-      <Flex bg="@bg" borderTop="xs" borderColor="@border" text="sm" weight="medium">
+      <Flex bg="bg" borderTop="xs" borderColor="border" text="sm" weight="medium">
         <Flex>
-          <Box px="md" py="sm" fg="@error">
+          <Box px="md" py="sm" fg="error">
             3 Errors
           </Box>
         </Flex>

@@ -24,25 +24,33 @@ export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: 
     if (cache.find(i => i && i === val)) {
       return null;
     }
+
     cache.push(val);
 
     // is pointing to another location in the theme
-    if (val.startsWith('@')) {
-      val = val.replace('@', '');
-      val = val.split('.');
+    if (val.startsWith('#/')) {
+      val = val.replace('#/', '');
+      val = val.split('/');
 
-      // check in components first, then check in colors
+      val = get(props.theme, val);
+    } else {
+      // is taken from a prop
+      if (typeof val === 'string') {
+        val = val.split('.');
+      }
+
+      // check components first
       val = get(props.theme, ['components', ...val]) || get(props.theme, ['colors', ...val]);
+    }
 
-      // default to global
-      if (!val) {
-        val = get(props.theme, ['colors', propThemeMap[prop]]);
-      }
+    // default to global for that prop
+    if (!val) {
+      val = get(props.theme, ['colors', propThemeMap[prop]]);
+    }
 
-      // if the value is another pointer recurse again
-      if (val && val.startsWith('@')) {
-        return fn({ ...props, [prop]: val }, cache);
-      }
+    // if the value is another pointer recurse again
+    if (val && val.startsWith('#/')) {
+      return fn({ ...props, [prop]: val }, cache);
     }
 
     return val
