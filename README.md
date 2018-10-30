@@ -16,13 +16,13 @@ yarn storybook
 
 ## API Reference
 
-- [Theme](./docs/theme)
+- [Theme](./docs/theme.md)
   - [base](./docs/theme-base.md)
-  - [components](./docs/theme-components)
-  - [sections](./docs/theme-section)
-- Components(./docs/components)
-  - [Creating a component](./docs/components#create-a-Component)
-  - [Extending a styled component](./docs/components#extending-a-component)
+  - [components](./docs/theme-components.md)
+  - [sections](./docs/theme-section.md)
+- [Components](./docs/components.md)
+  - [Creating a component](./docs/components.md#create-a-component)
+  - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
     - Box
     - Flex
