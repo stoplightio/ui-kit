@@ -31,10 +31,6 @@ yarn storybook
     - List
     - Button
 
-## Versioning
-
-We plan to use [Semantic Versioning](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/stoplightio/ui-kit/tags).
-
 ## Helpful Links
 
 - Styled Components

@@ -8,6 +8,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import { Button } from '../Button';
 
+import { ThemeSection } from '../ThemeSection';
 import {
   BorderRadius,
   BorderWidth,
