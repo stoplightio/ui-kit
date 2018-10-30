@@ -1,6 +1,5 @@
 {
   "include": ["src/**/*", "./storybook/center-decorator.tsx"],
-  "exclude": ["node_modules", "build", "scripts"],
   "compilerOptions": {
     "baseUrl": ".",
     "module": "es6",
@@ -22,6 +21,6 @@
     "pretty": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   }
 }
