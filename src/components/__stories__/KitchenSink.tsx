@@ -1,14 +1,16 @@
-import * as React from 'react';
-
 import { storiesOf } from '@storybook/react';
+import * as React from 'react';
 
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Heading } from '../Heading';
 import { Text } from '../Text';
-
 import { ThemeSection } from '../ThemeSection';
+
+export const boxKnobs = (tabName = 'Box') => {
+  return {};
+};
 
 storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
   <Flex
