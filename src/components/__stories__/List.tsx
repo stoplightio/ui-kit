@@ -1,13 +1,9 @@
-import * as React from 'react';
-
+import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-
-// @ts-ignore
-import { withKnobs } from '@storybook/addon-knobs';
+import * as React from 'react';
 
 import { List } from '../List';
-
 import {
   BorderRadius,
   BorderWidth,
@@ -27,13 +23,18 @@ import {
   TextAlign,
 } from './_utils';
 
+export const listKnobs = (tabName = 'List') => {
+  return {
+    itemType: select('itemType', ListStyleType, undefined, tabName),
+    listPosition: select('listPosition', ListStylePosition, undefined, tabName),
+  };
+};
+
 storiesOf('components/List', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <List
-      // specific to List
-      itemType={select('itemType', ListStyleType, undefined, 'List')}
-      listPosition={select('listPosition', ListStylePosition, undefined, 'List')}
+      {...listKnobs()}
       // specific to text
       tracking={select('tracking', LetterSpacing, undefined, 'Text')}
       leading={select('leading', LineHeight, undefined, 'Text')}

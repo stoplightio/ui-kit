@@ -12,7 +12,7 @@ const propThemeMap = {
 };
 
 export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: string }) => {
-  const css = cssProperty || prop;
+  const resolvedProp = cssProperty || prop;
 
   // create a cache to check and break circular references
   const fn = (props, cache: any[] = []) => {
@@ -55,7 +55,7 @@ export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: 
 
     return val
       ? {
-          [css]: val,
+          [resolvedProp]: val,
         }
       : null;
   };
@@ -248,11 +248,11 @@ export const space = props => {
   return keys
     .map(key => {
       const value = props[key];
-      const properties = getProperties(key);
+      const innerProperties = getProperties(key);
 
-      const style = n =>
+      const innerStyle = n =>
         is(n)
-          ? properties.reduce(
+          ? innerProperties.reduce(
               (a, prop) => ({
                 ...a,
                 [prop]: getStyle(n),
@@ -261,7 +261,7 @@ export const space = props => {
             )
           : null;
 
-      return style(value);
+      return innerStyle(value);
     })
     .reduce(merge, {});
 };
@@ -341,13 +341,13 @@ export const decoration = props => {
   if (!val) return null;
 
   // support passing in two decorations like ['underline', 'strike-through']
-  const style = n =>
+  const innerStyle = n =>
     n && {
       textDecoration: Array.isArray(n) ? n.join(' ') : n,
       textDecorationStyle: 'solid',
     };
 
-  return style(val);
+  return innerStyle(val);
 };
 
 export const decorationColor = styleColor({
@@ -420,4 +420,6 @@ export const listStylePosition = style({
 // textStyle,
 // verticalAlign,
 
-export { bottom, css, display, flex, left, opacity, position, right, top } from 'styled-system';
+export const css = props => props.css;
+
+export { bottom, display, flex, left, opacity, position, right, top } from 'styled-system';

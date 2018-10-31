@@ -1,5 +1,4 @@
 const path = require('path');
-const postcssConfig = require('../postcss.config.js');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
@@ -9,9 +8,6 @@ module.exports = (baseConfig, env, defaultConfig) => {
 
   const srcDir = path.resolve(process.cwd(), 'src');
   const decoratorPath = path.resolve(process.cwd(), '.storybook');
-
-  // Override the postcss plugins to use ours
-  defaultConfig.module.rules[2].use[2].options.plugins = postcssConfig.plugins;
 
   // Add typescript loader
   defaultConfig.module.rules.push({

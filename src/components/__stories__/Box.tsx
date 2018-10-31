@@ -1,13 +1,9 @@
-import * as React from 'react';
-
+import { withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-
-// @ts-ignore
-import { withKnobs } from '@storybook/addon-knobs';
+import * as React from 'react';
 
 import { Box } from '../Box';
-
 import {
   BorderRadius,
   BorderWidth,
@@ -21,55 +17,55 @@ import {
   TextAlign,
 } from './_utils';
 
+export const boxKnobs = (tabName = 'Box') => {
+  return {
+    fg: text('fg', 'valid-color', tabName),
+    bg: text('bg', 'valid-color', tabName),
+    text: select('text', FontSize, undefined, tabName),
+    align: select('align', TextAlign, undefined, tabName),
+    weight: select('weight', FontWeight, undefined, tabName),
+    m: select('m', FullSpace, undefined, tabName),
+    mt: select('mt', FullSpace, undefined, tabName),
+    mr: select('mr', FullSpace, undefined, tabName),
+    mb: select('mb', FullSpace, undefined, tabName),
+    ml: select('ml', FullSpace, undefined, tabName),
+    mx: select('mx', FullSpace, undefined, tabName),
+    my: select('my', FullSpace, undefined, tabName),
+    p: select('p', FullSpace, undefined, tabName),
+    pt: select('pt', FullSpace, undefined, tabName),
+    pr: select('pr', FullSpace, undefined, tabName),
+    pb: select('pb', FullSpace, undefined, tabName),
+    pl: select('pl', FullSpace, undefined, tabName),
+    px: select('px', FullSpace, undefined, tabName),
+    py: select('py', FullSpace, undefined, tabName),
+    height: text('height', 'valid-height', tabName),
+    maxHeight: text('maxHeight', 'valid-maxHeight', tabName),
+    minHeight: text('minHeight', 'valid-minHeight', tabName),
+    width: text('width', 'valid-width', tabName),
+    maxWidth: text('maxWidth', 'valid-maxWidth', tabName),
+    minWidth: text('minWidth', 'valid-minWidth', tabName),
+    border: select('border', BorderWidth, undefined, tabName),
+    borderTop: select('borderTop', BorderWidth, undefined, tabName),
+    borderLeft: select('borderLeft', BorderWidth, undefined, tabName),
+    borderRight: select('borderRight', BorderWidth, undefined, tabName),
+    borderBottom: select('borderBottom', BorderWidth, undefined, tabName),
+    borderColor: text('borderColor', 'valid-color', tabName),
+    radius: select('radius', BorderRadius, undefined, tabName),
+    shadow: select('shadow', BoxShadow, undefined, tabName),
+    opacity: number('opacity', 1, tabName),
+    display: select('display', Display, undefined, tabName),
+    overflow: select('overflow', OverFlow, undefined, tabName),
+    overflowX: select('overflowX', OverFlow, undefined, tabName),
+    overflowY: select('overflowY', OverFlow, undefined, tabName),
+    postion: select('position', PositionOpts, undefined, tabName),
+    top: number('top', undefined, tabName),
+    bottom: number('bottom', undefined, tabName),
+    left: number('left', undefined, tabName),
+    right: number('right', undefined, tabName),
+    z: number('z', undefined, tabName),
+  };
+};
+
 storiesOf('components/Box', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => (
-    <Box
-      fg={text('fg', 'valid-color')}
-      bg={text('bg', 'valid-color')}
-      text={select('text', FontSize)}
-      align={select('align', TextAlign)}
-      weight={select('weight', FontWeight)}
-      m={select('m', FullSpace)}
-      mt={select('mt', FullSpace)}
-      mr={select('mr', FullSpace)}
-      mb={select('mb', FullSpace)}
-      ml={select('ml', FullSpace)}
-      mx={select('mx', FullSpace)}
-      my={select('my', FullSpace)}
-      p={select('p', FullSpace)}
-      pt={select('pt', FullSpace)}
-      pr={select('pr', FullSpace)}
-      pb={select('pb', FullSpace)}
-      pl={select('pl', FullSpace)}
-      px={select('px', FullSpace)}
-      py={select('py', FullSpace)}
-      height={text('height', 'valid-height')}
-      maxHeight={text('maxHeight', 'valid-maxHeight')}
-      minHeight={text('minHeight', 'valid-minHeight')}
-      width={text('width', 'valid-width')}
-      maxWidth={text('maxWidth', 'valid-maxWidth')}
-      minWidth={text('minWidth', 'valid-minWidth')}
-      border={select('border', BorderWidth)}
-      borderTop={select('borderTop', BorderWidth)}
-      borderLeft={select('borderLeft', BorderWidth)}
-      borderRight={select('borderRight', BorderWidth)}
-      borderBottom={select('borderBottom', BorderWidth)}
-      borderColor={text('borderColor', 'valid-color')}
-      radius={select('radius', BorderRadius)}
-      shadow={select('shadow', BoxShadow)}
-      opacity={number('opacity', 1)}
-      display={select('display', Display)}
-      overflow={select('overflow', OverFlow)}
-      overflowX={select('overflowX', OverFlow)}
-      overflowY={select('overflowY', OverFlow)}
-      postion={select('position', PositionOpts)}
-      top={number('top', undefined)}
-      bottom={number('bottom', undefined)}
-      left={number('left', undefined)}
-      right={number('right', undefined)}
-      z={number('z', undefined)}
-    >
-      Box with child.
-    </Box>
-  ));
+  .add('with defaults', () => <Box {...boxKnobs()}>Box with child.</Box>);

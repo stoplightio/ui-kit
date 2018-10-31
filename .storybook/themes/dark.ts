@@ -4,6 +4,8 @@ type TSections = 'header' | 'sidebar' | 'main' | 'footer';
 
 export const dark: Partial<IThemeInterface<TSections>> = {
   colors: {
+    fg: 'white',
+    bg: '#111',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
@@ -11,7 +13,7 @@ export const dark: Partial<IThemeInterface<TSections>> = {
 
   components: {
     button: {
-      bg: 'rgb(160, 159, 165)',
+      bg: 'rgb(255, 255, 255, 0.25)',
       fg: 'white',
       border: 'rgb(160, 159, 165)',
     },
