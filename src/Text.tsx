@@ -1,15 +1,6 @@
-import { LetterSpacing, LineHeight } from '../types';
-import {
-  casing,
-  decoration,
-  decorationColor,
-  fontStyle,
-  letterSpacing,
-  lineHeight,
-  styled,
-} from '../utils';
-
 import { Box, IBoxProps } from './Box';
+import { LetterSpacing, LineHeight } from './types';
+import { casing, decoration, decorationColor, fontStyle, letterSpacing, lineHeight, styled } from './utils';
 
 type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
 

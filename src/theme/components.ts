@@ -1,4 +1,4 @@
-import { ISectionTheme } from 'src/types';
+import { ISectionTheme } from '../types';
 
 // add whatever prepackaged colors we might want to include here
 export const colors = {

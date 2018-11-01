@@ -1,6 +1,5 @@
-import { styled } from '../utils';
-
 import { ITextProps, Text } from './Text';
+import { styled } from './utils';
 
 export interface IHeadingProps extends ITextProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

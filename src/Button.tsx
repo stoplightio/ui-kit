@@ -1,5 +1,5 @@
-import { styled } from '../utils';
 import { ITextProps, Text } from './Text';
+import { styled } from './utils';
 
 export interface IButtonProps extends ITextProps {}
 
@@ -23,6 +23,7 @@ export const Button = styled<IButtonProps, 'button'>(Text as any)(
     },
   },
   // disabled style
+  // @ts-ignore FIXME
   props =>
     props.disabled && {
       cursor: 'not-allowed',
