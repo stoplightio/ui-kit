@@ -23,7 +23,7 @@
     "setup": "yarn",
     "prebuild": "rimraf dist",
     "build": "tsc -p ./tsconfig.build.json && ts-node scripts/post-build-preparation",
-    "build.docs": "build-storybook -c .storybook -o docs-storybook",
+    "build.docs": "build-storybook -c .storybook -o docs-auto",
     "test": "jest",
     "test.watch": "jest --watch",
     "test.prod": "yarn lint && yarn test --coverage --no-cache",

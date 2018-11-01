@@ -18,7 +18,7 @@ const repository = (parsedUrl.host || '') + (parsedUrl.path || '');
 const ghToken = process.env.GH_TOKEN;
 
 echo('Deploying docs.');
-cd('docs-storybook');
+cd('docs-auto');
 touch('.nojekyll');
 exec('git init');
 exec('git add .');
