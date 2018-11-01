@@ -26,17 +26,9 @@ import {
   top,
   width,
   zIndex,
-} from '../utils';
+} from './utils';
 
-import {
-  BorderRadius,
-  BorderWidth,
-  BoxDimension,
-  BoxShadow,
-  FontSize,
-  FontWeight,
-  FullSpace,
-} from '../types';
+import { BorderRadius, BorderWidth, BoxDimension, BoxShadow, FontSize, FontWeight, FullSpace } from './types';
 
 export interface IBoxProps {
   className?: string;

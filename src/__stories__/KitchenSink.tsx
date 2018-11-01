@@ -13,14 +13,7 @@ export const boxKnobs = (tabName = 'Box') => {
 };
 
 storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
-  <Flex
-    width={2 / 3}
-    direction="column"
-    shadow="medium"
-    radius="md"
-    border="xs"
-    css={{ overflow: 'hidden' }}
-  >
+  <Flex width={2 / 3} direction="column" shadow="medium" radius="md" border="xs" css={{ overflow: 'hidden' }}>
     <ThemeSection section="header">
       <Flex bg="bg" borderBottom="xs" borderColor="border" text="md">
         <Flex>
