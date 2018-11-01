@@ -1,5 +1,9 @@
+// @ts-ignore
 import { withKnobs } from '@storybook/addon-knobs';
+
+// @ts-ignore
 import { number, select, text } from '@storybook/addon-knobs/react';
+
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 

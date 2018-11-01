@@ -9,29 +9,8 @@ export const TextAlign = [undefined, 'left', 'right', 'center', 'justify', 'init
 export const OverFlow = [undefined, 'visible', 'hidden', 'scroll', 'auto', 'initial', 'inherit'];
 export const PositionOpts = [undefined, 'static', 'relative', 'fixed', 'absolute', 'sticky'];
 
-export const FontSize = [
-  undefined,
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
-  '4xl',
-  '5xl',
-  '6xl',
-];
-export const FontWeight = [
-  undefined,
-  'thin',
-  'light',
-  'normal',
-  'medium',
-  'semibold',
-  'bold',
-  'extrabold',
-];
+export const FontSize = [undefined, 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'];
+export const FontWeight = [undefined, 'thin', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold'];
 
 export const FullSpace = [
   undefined,
@@ -91,16 +70,7 @@ export const Display = [
 /**
  * FLEX
  */
-export const AlignItems = [
-  undefined,
-  'stretch',
-  'center',
-  'flex-start',
-  'flex-end',
-  'baseline',
-  'initial',
-  'inherit',
-];
+export const AlignItems = [undefined, 'stretch', 'center', 'flex-start', 'flex-end', 'baseline', 'initial', 'inherit'];
 export const JustifyContent = [
   undefined,
   'flex-start',
@@ -112,28 +82,13 @@ export const JustifyContent = [
   'inherit',
 ];
 
-export const FlexDirection = [
-  'row',
-  'row-reverse',
-  'column',
-  'column-reverse',
-  'initial',
-  'inherit',
-];
+export const FlexDirection = ['row', 'row-reverse', 'column', 'column-reverse', 'initial', 'inherit'];
 export const FlexWrap = ['nowrap', 'wrap', 'wrap-reverse', 'initial', 'inherit'];
 
 /**
  * TEXT
  */
-export const Decoration = [
-  undefined,
-  'none',
-  'underline',
-  'overline',
-  'line-through',
-  'initial',
-  'inherit',
-];
+export const Decoration = [undefined, 'none', 'underline', 'overline', 'line-through', 'initial', 'inherit'];
 
 export const Casing = ['none', 'capitalize', 'uppercase', 'lowercase', 'initial', 'inherit'];
 export const LineHeight = [undefined, 'reset', 'none', 'tight', 'normal', 'loose'];

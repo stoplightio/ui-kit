@@ -1,4 +1,6 @@
 import { get, merge } from 'lodash';
+
+// @ts-ignore
 import { compose, is, num, px, style } from 'styled-system';
 
 /**
@@ -15,7 +17,8 @@ export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: 
   const resolvedProp = cssProperty || prop;
 
   // create a cache to check and break circular references
-  const fn = (props, cache: any[] = []) => {
+  // @ts-ignore FIXME
+  const fn = (props: any, cache: any[] = []) => {
     let val = props[prop];
 
     if (!val || typeof val !== 'string') return null;
@@ -108,6 +111,7 @@ export const zIndex = style({
   cssProperty: 'zIndex',
 });
 
+// @ts-ignore FIXME
 const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
 
 export const border = style({
@@ -152,6 +156,7 @@ export const borders = compose(
   borderLeft
 );
 
+// @ts-ignore FIXME
 const percentagePx = n => (!num(n) || n > 1 ? px(n) : n * 100 + '%');
 
 export const height = style({
@@ -211,6 +216,7 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
+// @ts-ignore FIXME
 const getProperties = key => {
   const [a, b] = key.split('');
   const property = properties[a];
@@ -218,6 +224,7 @@ const getProperties = key => {
   return Array.isArray(direction) ? direction.map(dir => property + dir) : [property + direction];
 };
 
+// @ts-ignore FIXME
 const getSpaceValue = scale => propVal => {
   let val = propVal;
   let isNegative;
@@ -236,6 +243,7 @@ const getSpaceValue = scale => propVal => {
   return (isNegative ? '-' : '') + px(val);
 };
 
+// @ts-ignore FIXME
 export const space = props => {
   // test for spacing props, so m* and p*
   const keys = Object.keys(props).filter(key => /^[mp][trblxy]?$/.test(key));
@@ -250,6 +258,7 @@ export const space = props => {
       const value = props[key];
       const innerProperties = getProperties(key);
 
+      // @ts-ignore FIXME
       const innerStyle = n =>
         is(n)
           ? innerProperties.reduce(
@@ -336,11 +345,13 @@ export const textColor = styleColor({
   cssProperty: 'color',
 });
 
+// @ts-ignore FIXME
 export const decoration = props => {
   const val = props.decoration;
   if (!val) return null;
 
   // support passing in two decorations like ['underline', 'strike-through']
+  // @ts-ignore FIXME
   const innerStyle = n =>
     n && {
       textDecoration: Array.isArray(n) ? n.join(' ') : n,
@@ -420,6 +431,7 @@ export const listStylePosition = style({
 // textStyle,
 // verticalAlign,
 
+// @ts-ignore FIXME
 export const css = props => props.css;
 
 export { bottom, display, flex, left, opacity, position, right, top } from 'styled-system';

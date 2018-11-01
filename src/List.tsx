@@ -1,6 +1,5 @@
-import { listStylePosition, listStyleType, styled } from '../utils';
-
 import { ITextProps, Text } from './Text';
+import { listStylePosition, listStyleType, styled } from './utils';
 
 export interface IListProps extends ITextProps {
   listPosition?: 'inside' | 'outside' | 'initial' | 'inherit';

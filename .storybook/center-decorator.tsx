@@ -1,7 +1,7 @@
 const React = require('react');
 const { merge } = require('lodash');
 
-const { Flex } = require('../src/components/Flex');
+const { Flex } = require('../src/Flex');
 const { baseTheme } = require('../src/theme');
 const { ThemeProvider } = require('../src/utils');
 

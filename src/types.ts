@@ -6,31 +6,9 @@ export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 export type BoxShadow = 'sm' | 'md' | 'lg';
 export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
-export type Space =
-  | 'none'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | '6xl';
+export type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
-export type FullSpace =
-  | Space
-  | '-xs'
-  | '-sm'
-  | '-md'
-  | '-lg'
-  | '-xl'
-  | '-2xl'
-  | '-3xl'
-  | '-4xl'
-  | '-5xl'
-  | '-6xl';
+export type FullSpace = Space | '-xs' | '-sm' | '-md' | '-lg' | '-xl' | '-2xl' | '-3xl' | '-4xl' | '-5xl' | '-6xl';
 
 export interface IThemeInterface<
   TSections extends string = '',

@@ -51,7 +51,7 @@ export const base: ILayout = {
   radius: {
     none: '0px',
     sm: 1,
-    md: 2,
+    md: 3,
     lg: 4,
     xl: 6,
     full: 9999,
