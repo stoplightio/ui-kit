@@ -4,6 +4,9 @@
 
 Stoplight ui-kit is a shared component library that contains basic components built using styled-components. All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
 
+- Explore the components: [TSDoc](https://stoplightio.github.io/ui-kit/)
+- View the changelog: [Releases](https://github.com/stoplightio/ui-kit/releases)
+
 ### Installation
 
 ```bash
