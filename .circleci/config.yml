@@ -28,7 +28,8 @@ jobs:
     steps:
       - checkout
       - run: yarn setup
-      - run: yarn chromatic
+      # don't fail ci checks for now on visual issues - they'll just be surfaced for review in PRs
+      - run: yarn chromatic || true
 
   release:
     docker:
