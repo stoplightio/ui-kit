@@ -1,7 +1,9 @@
 import * as React from 'react';
+// @ts-ignore
 import AutosizeInput from 'react-input-autosize';
-import { styled } from '../utils';
+
 import { ITextProps, Text } from './Text';
+import { styled } from './utils';
 
 export interface IInputProps extends ITextProps {
   type?: string;
@@ -9,42 +11,28 @@ export interface IInputProps extends ITextProps {
   as?: any;
 }
 
-const InputStyled = styled<IInputProps>(
-  ({ autosize, className, ...rest }) =>
-    autosize ? <AutosizeInput inputClassName={className} {...rest} /> : <input {...rest} />
-).attrs({
-  type: ({ type }: IInputProps) => type || 'text',
-  as: ({ autosize }: IInputProps) => (autosize ? AutosizeInput : 'input'),
+const StyledAutosizeInput = ({ autosize, className, ...rest }: IInputProps) => (
+  <AutosizeInput inputClassName={className} {...rest} />
+);
+
+export const Input = styled<IInputProps>(Text as any).attrs({
+  as: ({ autosize }: IInputProps) => (autosize ? StyledAutosizeInput : 'input'),
 })(
   {
     // @ts-ignore
-    input: {
-      border: '0 none',
-      padding: 0,
-      cursor: 'text',
-      opacity: 0.85,
-      display: 'block',
-
-      ':focus': {
-        outline: 'none',
-        opacity: 1,
-      },
-    },
-
     ':focus': {
       outline: 'none',
       opacity: 1,
     },
   },
   // disabled style
+  // @ts-ignore
   props =>
     props.disabled && {
       cursor: 'not-allowed',
       opacity: 0.6,
     }
 );
-
-export const Input = InputStyled.withComponent(Text);
 
 Input.defaultProps = {
   display: 'block',

@@ -118,6 +118,7 @@
     "@babel/core": "7.1.x",
     "@commitlint/cli": "7.x.x",
     "@commitlint/config-conventional": "7.x.x",
+    "@sambego/storybook-state": "1.x.x",
     "@semantic-release/commit-analyzer": "6.x.x",
     "@semantic-release/git": "7.x.x",
     "@semantic-release/github": "5.x.x",
