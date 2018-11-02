@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { pick } from 'lodash';
+import * as React from 'react';
 
 import * as icons from '@fortawesome/pro-solid-svg-icons';
 
@@ -19,12 +19,7 @@ export const iconKnobs = (tabName = 'Icon') => {
     spin: boolean('spin', false, 'Icon'),
     pulse: boolean('pulse', false, 'Icon'),
     flip: select('flip', [undefined, 'horizontal', 'vertical', 'both'], undefined, 'Icon'),
-    rotation: select(
-      'rotation',
-      { undefined: 'undefined', '90': 90, '180': '180', '270': 270 },
-      'undefined',
-      'Icon'
-    ),
+    rotation: select('rotation', { undefined: 'undefined', '90': 90, '180': '180', '270': 270 }, 'undefined', 'Icon'),
   };
 };
 

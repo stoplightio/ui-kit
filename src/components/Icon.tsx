@@ -89,14 +89,7 @@ export const Icon = styled<IconProps>((props: IconProps) => {
   const { icon, spin, pulse, flip, rotation, className } = props;
 
   return (
-    <FontAwesomeIcon
-      className={className}
-      icon={icon}
-      spin={spin}
-      pulse={pulse}
-      flip={flip}
-      rotation={rotation}
-    />
+    <FontAwesomeIcon className={className} icon={icon} spin={spin} pulse={pulse} flip={flip} rotation={rotation} />
   );
 })(
   borderRadius,
