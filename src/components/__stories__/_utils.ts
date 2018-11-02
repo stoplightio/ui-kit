@@ -170,3 +170,21 @@ export const ListStyleType = [
   'none',
   'inherit',
 ];
+
+/**
+ * INPUT
+ */
+
+export const InlineInputType = [
+  'text',
+  'date',
+  'datetime-local',
+  'email',
+  'number',
+  'password',
+  'search',
+  'time',
+  'url',
+];
+
+export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];

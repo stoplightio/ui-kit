@@ -1,16 +1,26 @@
+import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import { styled } from '../utils';
+import { ITextProps, Text } from './Text';
 
-export interface IInputProps {
+export interface IInputProps extends ITextProps {
   type?: string;
+  autosize?: boolean;
+  as?: any;
 }
 
-export const Input = styled<IInputProps, 'div'>(AutosizeInput).attrs({
+const InputStyled = styled<IInputProps>(
+  ({ autosize, className, ...rest }) =>
+    autosize ? <AutosizeInput inputClassName={className} {...rest} /> : <input {...rest} />
+).attrs({
   type: ({ type }: IInputProps) => type || 'text',
+  as: ({ autosize }: IInputProps) => (autosize ? AutosizeInput : 'input'),
 })(
   {
     // @ts-ignore
     input: {
+      border: '0 none',
+      padding: 0,
       cursor: 'text',
       opacity: 0.85,
       display: 'block',
@@ -20,7 +30,11 @@ export const Input = styled<IInputProps, 'div'>(AutosizeInput).attrs({
         opacity: 1,
       },
     },
-    as: 'input',
+
+    ':focus': {
+      outline: 'none',
+      opacity: 1,
+    },
   },
   // disabled style
   props =>
@@ -29,6 +43,8 @@ export const Input = styled<IInputProps, 'div'>(AutosizeInput).attrs({
       opacity: 0.6,
     }
 );
+
+export const Input = InputStyled.withComponent(Text);
 
 Input.defaultProps = {
   display: 'block',
