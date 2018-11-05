@@ -1,5 +1,4 @@
 import * as React from 'react';
-// @ts-ignore
 import AutosizeInput from 'react-input-autosize';
 
 import { ITextProps, Text } from './Text';

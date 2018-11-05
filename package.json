@@ -133,6 +133,7 @@
     "@types/node": "10.x.x",
     "@types/react": "16.x.x",
     "@types/react-dom": "16.0.x",
+    "@types/react-input-autosize": "2.0.x",
     "@types/storybook__addon-actions": "3.4.x",
     "@types/storybook__react": "3.0.x",
     "@types/styled-components": "4.0.x",
