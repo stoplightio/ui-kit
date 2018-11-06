@@ -23,9 +23,10 @@ import {
 
 export const boxKnobs = (tabName = 'Box') => {
   return {
-    fg: text('fg', 'valid-color', tabName),
-    bg: text('bg', 'valid-color', tabName),
+    fg: text('fg', undefined, tabName),
+    bg: text('bg', undefined, tabName),
     text: select('text', FontSize, undefined, tabName),
+    borderColor: text('borderColor', undefined, tabName),
     align: select('align', TextAlign, undefined, tabName),
     weight: select('weight', FontWeight, undefined, tabName),
     m: select('m', FullSpace, undefined, tabName),
@@ -53,7 +54,6 @@ export const boxKnobs = (tabName = 'Box') => {
     borderLeft: select('borderLeft', BorderWidth, undefined, tabName),
     borderRight: select('borderRight', BorderWidth, undefined, tabName),
     borderBottom: select('borderBottom', BorderWidth, undefined, tabName),
-    borderColor: text('borderColor', 'valid-color', tabName),
     radius: select('radius', BorderRadius, undefined, tabName),
     shadow: select('shadow', BoxShadow, undefined, tabName),
     opacity: number('opacity', 1, tabName),

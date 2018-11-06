@@ -83,7 +83,5 @@ storiesOf('components/Icon', module)
         'right',
         'z',
       ])}
-    >
-      Some Text in a P tag
-    </Icon>
+    />
   ));
