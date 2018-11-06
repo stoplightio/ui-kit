@@ -1,10 +1,10 @@
 # Theme Base
 
-The `base` section of the theme object contains predefined values used by different component props so that when styling, you can stay can stay within these contraints and and have clean consistent usage.
+The `base` section of the theme object contains predefined values used by different component props so that when styling, you can stay within these constraints and and have clean consistent usage.
 
 The current base theme is
 
-```jsx
+```js
 // values taken from tailwind.config in @stoplight/core
 // https://github.com/stoplightio/core/blob/master/tailwind.config.js
 export const base: ILayout = {
