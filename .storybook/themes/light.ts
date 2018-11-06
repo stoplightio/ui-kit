@@ -4,8 +4,10 @@ type TSections = 'header' | 'sidebar' | 'main' | 'footer';
 
 export const light: Partial<IThemeInterface<TSections>> = {
   colors: {
+    fg: 'black',
+    bg: 'white',
     lightest: '#f9f9f9',
-    lighter: 'rgb(233, 239, 244)',
+    lighter: 'rgba(255, 255, 255, 0.2)',
     error: 'red',
   },
 
