@@ -110,6 +110,7 @@
     "react": "16.x.x"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "0.1.3",
     "react-input-autosize": "2.2.x",
     "styled-components": "4.0.3",
     "styled-system": "3.1.x"
@@ -118,6 +119,10 @@
     "@babel/core": "7.1.x",
     "@commitlint/cli": "7.x.x",
     "@commitlint/config-conventional": "7.x.x",
+    "@fortawesome/fontawesome-svg-core": "1.2.4",
+    "@fortawesome/free-brands-svg-icons": "5.3.x",
+    "@fortawesome/free-regular-svg-icons": "5.3.x",
+    "@fortawesome/free-solid-svg-icons": "5.3.x",
     "@sambego/storybook-state": "1.x.x",
     "@semantic-release/commit-analyzer": "6.x.x",
     "@semantic-release/git": "7.x.x",
@@ -135,6 +140,7 @@
     "@types/react-dom": "16.0.x",
     "@types/react-input-autosize": "2.0.x",
     "@types/storybook__addon-actions": "3.4.x",
+    "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "3.0.x",
     "@types/styled-components": "4.0.x",
     "@types/styled-system": "3.0.x",

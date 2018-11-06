@@ -5,6 +5,7 @@ import { Box } from '../Box';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Heading } from '../Heading';
+import { Icon } from '../Icon';
 import { Text } from '../Text';
 import { ThemeSection } from '../ThemeSection';
 
@@ -23,7 +24,9 @@ storiesOf('Complex/KitchenSink', module).add('kitchen sync', () => (
         </Flex>
         <Flex flex="1 1 auto" />
         <Flex items="center" pr="md">
-          <Button>Release</Button>
+          <Button>
+            <Icon icon="rocket" /> Release
+          </Button>
         </Flex>
       </Flex>
     </ThemeSection>
