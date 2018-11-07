@@ -12,6 +12,6 @@ export const Heading = styled<IHeadingProps, 'h1'>(Text as any)(
 
 Heading.defaultProps = {
   as: 'h2',
-  m: 0,
+  m: 'none',
   weight: 'bold',
 };

@@ -34,10 +34,6 @@ export const Input = styled<IInputProps>(Text as any).attrs({
 );
 
 Input.defaultProps = {
-  display: 'block',
-  weight: 'semibold',
-  align: 'left',
-  m: 'none',
   px: 'md',
   py: 'sm',
   border: 'xs',

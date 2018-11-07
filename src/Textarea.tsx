@@ -20,7 +20,6 @@ export const Textarea = styled<ITextareaProps>(Text as any).attrs({
       opacity: 1,
     },
   },
-  // disabled style
   // @ts-ignore
   props =>
     props.disabled && {
@@ -35,10 +34,6 @@ export const Textarea = styled<ITextareaProps>(Text as any).attrs({
 );
 
 Textarea.defaultProps = {
-  display: 'block',
-  weight: 'semibold',
-  align: 'left',
-  m: 'none',
   px: 'md',
   py: 'sm',
   border: 'xs',

@@ -41,7 +41,6 @@ Button.defaultProps = {
   decoration: 'none',
   weight: 'semibold',
   align: 'center',
-  m: 'none',
   px: 'md',
   py: 'sm',
   border: 'xs',
