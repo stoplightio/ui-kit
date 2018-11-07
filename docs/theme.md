@@ -12,9 +12,9 @@ The theme object is broken down into four major properties:
 
 - **sections**: defines color theming options for a section, this would get defined by the user, depending on the project, and gets merged over colors and components. Think of this as a theming override. Example is if you wanted a different styled button in both the header and the footer. See [Theming Sections](./theme-section.md) for more details
 
-note thate the only one of these properties that should every be changed by an end user is the sections property. It can be used to override colors and components, but those should never be altered directly.
+note that the only one of these properties that should every be changed by an end user is the sections property. It can be used to override colors and components, but those should never be altered directly.
 
-## Interfances
+## Interfaces
 
 #### Theme
 
