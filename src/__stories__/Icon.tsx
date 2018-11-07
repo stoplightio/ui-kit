@@ -1,34 +1,39 @@
-import * as brandIcons from '@fortawesome/free-brands-svg-icons';
-import * as regularIcons from '@fortawesome/free-regular-svg-icons';
-import * as solidIcons from '@fortawesome/free-solid-svg-icons';
+import * as _brandIcons from '@fortawesome/free-brands-svg-icons';
+import * as _regularIcons from '@fortawesome/free-regular-svg-icons';
+import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { map, pick } from 'lodash';
 import * as React from 'react';
 
-import { Icon } from '../Icon';
+import { Icon, IconLibrary, IIcon } from '../Icon';
 import { boxKnobs } from './Box';
 
-export const iconKnobs = () => {
-  const prefix = select('prefix', ['fas', 'fab', 'far'], 'fas', 'Icon');
+const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;
+const { far, prefix: regularPrefix, ...regularIcons } = _regularIcons;
+const { fas, prefix: solidPrefix, ...solidIcons } = _solidIcons;
 
-  let icons: any = solidIcons;
+IconLibrary.add(fab, far, fas);
+
+export const iconKnobs = () => {
+  const prefix = select('prefix', [brandPrefix, regularPrefix, solidPrefix], solidPrefix, 'Icon');
+
+  let icons: IIcon[] | ReadonlyArray<any>;
   switch (prefix) {
     case 'fab':
-      icons = brandIcons;
+      icons = map(brandIcons, icon => icon.iconName).filter(Boolean);
       break;
     case 'far':
-      icons = regularIcons;
+      icons = map(regularIcons, icon => icon.iconName).filter(Boolean);
       break;
     case 'fas':
     default:
-      icons = solidIcons;
+      icons = map(solidIcons, icon => icon.iconName).filter(Boolean);
       break;
   }
 
-  const iconNames = map(icons, 'iconName').filter(Boolean);
-  const iconName = select('icon', iconNames, iconNames.shift(), 'Icon');
+  const iconName: IIcon = select('icon', icons, icons[0], 'Icon');
   const flip = select('flip', ['', 'horizontal', 'vertical', 'both'], '', 'Icon') || undefined;
   const rotation = Number(select('rotation', ['0', '90', '180', '270'], '0', 'Icon')) || undefined;
 

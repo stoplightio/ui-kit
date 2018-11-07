@@ -5,13 +5,6 @@ const { withOptions } = require('@storybook/addon-options');
 
 const CenterDecorator = require('./center-decorator');
 
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-
-library.add(fab, far, fas);
-
 withOptions({
   addonPanelInRight: true,
   goFullScreen: false,

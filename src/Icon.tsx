@@ -1,4 +1,4 @@
-import { FlipProp, IconName, IconPrefix, RotateProp } from '@fortawesome/fontawesome-svg-core';
+import { FlipProp, IconName, IconPrefix, library, RotateProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
@@ -23,9 +23,11 @@ import {
   zIndex,
 } from './utils';
 
-export interface IconProps {
+export type IIcon = IconName | [IconPrefix, IconName];
+
+export interface IIconProps {
   className?: string;
-  icon: IconName | [IconPrefix, IconName];
+  icon: IIcon;
   spin?: boolean;
   pulse?: boolean;
   flip?: FlipProp;
@@ -73,7 +75,9 @@ export interface IconProps {
   z?: number;
 }
 
-export const Icon = styled<IconProps>((props: IconProps) => {
+export const IconLibrary = library;
+
+export const Icon = styled<IIconProps>((props: IIconProps) => {
   const { icon, spin, pulse, flip, rotation, className } = props;
 
   return (
