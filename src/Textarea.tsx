@@ -26,6 +26,11 @@ export const Textarea = styled<ITextareaProps>(Text as any).attrs({
     props.disabled && {
       cursor: 'not-allowed',
       opacity: 0.6,
+    },
+  // @ts-ignore
+  props =>
+    props.autosize && {
+      resize: 'none',
     }
 );
 
