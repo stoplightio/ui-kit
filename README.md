@@ -66,3 +66,24 @@ Run the storybook server to explore components:
 ```bash
 yarn storybook
 ```
+
+### Linking to another package
+```bash
+# install dependencies
+yarn setup
+
+# create a dist build
+yarn build
+
+# change to the dist directory
+cd dist
+
+# setup the yarn link
+yarn link
+
+# change to your other package
+cd ../another/package
+
+# link ui-kit
+yarn link "@stoplight/ui-kit"
+```
