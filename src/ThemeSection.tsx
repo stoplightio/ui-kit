@@ -13,7 +13,7 @@ interface IThemeSectionProps {
   children?: any;
 }
 
-export class ThemeSection extends React.Component<IThemeSectionProps, {}> {
+export class ThemeSection extends React.Component<IThemeSectionProps> {
   private computedTheme() {
     const { section, theme: propsTheme } = this.props;
 
@@ -22,6 +22,8 @@ export class ThemeSection extends React.Component<IThemeSectionProps, {}> {
   }
 
   public render() {
+    // FIXME: weird ts error here
+    // @ts-ignore
     return <ThemeProvider theme={this.computedTheme()}>{this.props.children}</ThemeProvider>;
   }
 }

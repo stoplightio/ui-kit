@@ -1,9 +1,9 @@
-import 'storybook-chromatic';
+import { withInfo } from '@storybook/addon-info';
+import { withOptions } from '@storybook/addon-options';
+import { addDecorator, configure } from '@storybook/react';
 
-const { configure, addDecorator } = require('@storybook/react');
-const { withOptions } = require('@storybook/addon-options');
-
-const CenterDecorator = require('./center-decorator');
+import * as themes from '../src/storybook-addon/themes';
+import { withThemes } from '../src/storybook-addon/withThemes';
 
 withOptions({
   addonPanelInRight: true,
@@ -15,13 +15,28 @@ withOptions({
   url: 'https://github.com/stoplightio/ui-kit',
 });
 
-addDecorator(CenterDecorator);
+addDecorator(
+  withInfo({
+    header: false,
+    inline: true,
+    source: false, // not that helpful?
+    styles: {
+      infoBody: {
+        backgroundColor: 'white',
+        margin: '50px 0 0 0',
+        padding: '0 25px 25px 25px',
+        lineHeight: '2',
+        width: 800,
+        fontSize: 12,
+      },
+    },
+  })
+);
 
-// automatically import all files ending in *stories*
-const reqs = [require.context('../src/__stories__', true, /\.*/)];
+addDecorator(withThemes(themes));
+
 function loadStories() {
-  reqs.forEach(req => {
-    req.keys().forEach(filename => req(filename));
-  });
+  require('../stories');
 }
+
 configure(loadStories, module);

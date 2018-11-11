@@ -1,8 +1,4 @@
-import { IThemeInterface } from '../../src/types';
-
-type TSections = 'header' | 'sidebar' | 'main' | 'footer';
-
-export const light: Partial<IThemeInterface<TSections>> = {
+export const light = {
   colors: {
     fg: 'black',
     bg: 'white',

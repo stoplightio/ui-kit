@@ -1,11 +1,7 @@
-import { IThemeInterface } from '../../src/types';
-
-type TSections = 'header' | 'sidebar' | 'main' | 'footer';
-
-export const dark: Partial<IThemeInterface<TSections>> = {
+export const dark = {
   colors: {
     fg: 'white',
-    bg: '#111',
+    bg: '#222',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
