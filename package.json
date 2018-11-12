@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "Foundational React components for the Stoplight ecosystem.",
   "keywords": [
-    "react"
+    "react",
+    "ui",
+    "ui-components"
   ],
   "main": "dist/index.js",
   "sideEffects": false,
