@@ -146,3 +146,15 @@ export const InlineInputType = [
 ];
 
 export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];
+
+export const PopupPosition = [
+  undefined,
+  'left-top',
+  'top',
+  'right-top',
+  'right',
+  'right-bottom',
+  'bottom',
+  'left-bottom',
+  'left',
+];
