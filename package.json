@@ -130,6 +130,7 @@
     "@semantic-release/github": "5.x.x",
     "@semantic-release/npm": "5.x.x",
     "@semantic-release/release-notes-generator": "7.x.x",
+    "@storybook/addon-actions": "4.0.4",
     "@storybook/addon-knobs": "4.0.4",
     "@storybook/addon-options": "4.0.4",
     "@storybook/addons": "4.0.4",

@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
@@ -14,4 +15,4 @@ export const checkboxKnobs = (tabName = 'Checkbox') => {
 
 storiesOf('components/Checkbox', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <Checkbox {...checkboxKnobs()} {...boxKnobs()} />);
+  .add('with defaults', () => <Checkbox {...checkboxKnobs()} {...boxKnobs()} onChange={action('onChange')} />);
