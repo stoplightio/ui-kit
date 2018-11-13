@@ -1,19 +1,19 @@
 import { themeGet } from 'styled-system';
 import { Box, IBoxProps } from './Box';
 import { IThemeInterface } from './types';
-import { position, styled } from './utils';
+import { styled } from './utils';
 
 export interface IPopupProps extends IBoxProps {
   show: boolean;
   tip: boolean;
-  position: 'left-top' | 'top' | 'right-top' | 'right' | 'right-bottom' | 'bottom' | 'left-bottom' | 'left';
+  placement: 'left-top' | 'top' | 'right-top' | 'right' | 'right-bottom' | 'bottom' | 'left-bottom' | 'left';
   theme: IThemeInterface;
   offset: number;
 }
 
 const getFGColor = themeGet('colors.fg', '#000');
 
-const styles = {
+const placements = {
   'left-top': {
     bottom: '100%',
     right: '100%',
@@ -60,7 +60,7 @@ export const Popup = styled<IPopupProps, 'Box'>(Box as any)(
     position: 'absolute',
     boxShadow: `0 0 4px ${getFGColor(props)}`,
     width: 'auto',
-    ...styles[props.position],
+    ...placements[props.placement],
   }),
   (props: IPopupProps) =>
     !props.show && {

@@ -1,12 +1,14 @@
+import * as React from 'react';
+
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { PopupPosition } from './_utils';
+
+import { PopupPlacements } from './_utils';
 import { boxKnobs } from './Box';
 import { Popup } from '../src/Popup';
 
-storiesOf('components/Popup', module)
+storiesOf('Popup', module)
   .addDecorator(withKnobs)
   .addDecorator(story => (
     <div
@@ -24,8 +26,14 @@ storiesOf('components/Popup', module)
   .add('with defaults', () => (
     <Popup
       show={boolean('show', true, 'Popup')}
-      offset={number('offset', 0, { min: 0, max: Infinity }, 'Popup')}
-      position={select('position', PopupPosition, undefined, 'Popup')}
+      offset={number(
+        'offset',
+        0,
+        // @ts-ignore
+        { min: 0, max: Infinity },
+        'Popup'
+      )}
+      placement={select('placement', PopupPlacements, '', 'Popup')}
       {...boxKnobs()}
     >
       Some Popup content
