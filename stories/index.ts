@@ -3,6 +3,7 @@ import './Button';
 import './Flex';
 import './Heading';
 import './Icon';
+import './Image';
 import './Input';
 import './KitchenSink';
 import './List';
