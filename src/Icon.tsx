@@ -66,7 +66,7 @@ export interface IIconProps {
 
   opacity?: number;
 
-  postion?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
+  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
   top?: number;
   bottom?: number;
   left?: number;

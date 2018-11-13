@@ -60,7 +60,7 @@ export const boxKnobs = (tabName = 'Box'): any => {
       overflow: select('overflow', OverFlow, '', tabName),
       overflowX: select('overflowX', OverFlow, '', tabName),
       overflowY: select('overflowY', OverFlow, '', tabName),
-      postion: select('position', PositionOpts, '', tabName),
+      position: select('position', PositionOpts, '', tabName),
       top: number('top', 0, {}, tabName),
       bottom: number('bottom', 0, {}, tabName),
       left: number('left', 0, {}, tabName),

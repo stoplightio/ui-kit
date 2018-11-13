@@ -19,5 +19,17 @@ export const components: ISectionTheme = {
       bg: 'grey',
       border: '#/colors/transparent',
     },
+
+    toggle: {
+      fg: 'white',
+      bg: 'darkgrey',
+      border: 'transparent',
+
+      checked: {
+        fg: 'white',
+        bg: 'mediumseagreen',
+        border: 'transparent',
+      },
+    },
   },
 };

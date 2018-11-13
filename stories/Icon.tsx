@@ -83,7 +83,7 @@ storiesOf('Icon', module)
           'borderColor',
           'radius',
           'opacity',
-          'postion',
+          'position',
           'top',
           'bottom',
           'left',
