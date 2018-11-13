@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { height, opacity, styled, width } from './utils';
+
+import { borderRadius, height, opacity, styled, width } from './utils';
+
+import { BorderRadius } from './types';
 
 export interface IImageProps {
   src: string;
   label?: string;
-  circular?: boolean;
-  rounded?: boolean;
+  radius?: BorderRadius;
   hidden?: boolean;
   opacity?: number;
   responsive?: boolean;
@@ -25,13 +27,10 @@ export const Image = styled<IImageProps, 'img'>(PlainImage as any)(
     display: 'inline',
   },
 
+  borderRadius,
   opacity,
   width,
   height,
-
-  ({ rounded, circular }: IImageProps) => ({
-    borderRadius: rounded ? '25%' : circular ? '100%' : '0',
-  }),
 
   ({ hidden }: IImageProps) =>
     hidden && {

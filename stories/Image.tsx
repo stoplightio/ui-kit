@@ -1,18 +1,18 @@
 import * as React from 'react';
 
 import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
-import { boolean, number, text } from '@storybook/addon-knobs/react';
+import { boolean, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Image } from '../src/Image';
+import { BorderRadius } from './_utils';
 
 export const imageKnobs = (tabName = 'Image'): any => {
   return {
-    circular: boolean('circular', false, tabName),
+    radius: select('radius', BorderRadius, '', tabName),
     height: text('height', '', tabName),
     hidden: boolean('hidden', false, tabName),
     responsive: boolean('responsive', true, tabName),
-    rounded: boolean('rounded', false, tabName),
     opacity: number(
       'opacity',
       1,
