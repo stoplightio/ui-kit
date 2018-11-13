@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import * as ReactDOM from 'react-dom';
 
 export interface IPortalProps {
-  children: JSX.Element;
+  children: JSX.Element | string | number;
   className?: string;
 }
 
