@@ -27,7 +27,7 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - run: yarn setup
+      - run: yarn
       # don't fail ci checks for now on visual issues - they'll just be surfaced for review in PRs
       - run: yarn chromatic || true
 
@@ -36,7 +36,7 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - run: yarn setup
+      - run: yarn
       - run: yarn build
       - run: yarn build.docs
       - run: yarn release
