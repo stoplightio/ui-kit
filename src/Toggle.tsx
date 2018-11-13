@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { Box } from './Box';
+import { Flex } from './Flex';
+import { Icon } from './Icon';
 import { Input } from './Input';
 import { styled } from './utils';
 
@@ -13,42 +15,6 @@ export interface IToggleProps {
   height?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
-
-const Knob = styled<any, 'span'>('span')(
-  {
-    // @ts-ignore
-    display: 'block',
-    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' color='%23FFF'%3E%3Ccircle cx='7' cy='7' r='5' fill='currentColor'/%3E%3C/svg%3E")`,
-    margin: 0,
-    padding: 0,
-    transition:
-      'box-shadow .1s ease-in-out,background-color .15s ease-in-out,background-position .15s ease-in-out,color .25s ease-in-out',
-    borderRadius: '100px',
-    boxSizing: 'border-box',
-    backgroundColor: 'darkgrey',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '0 0',
-    backgroundSize: 'contain',
-    cursor: 'pointer',
-  },
-  // @ts-ignore
-  ({ width, height }) => ({
-    width: width || '40px',
-    height: height || '20px',
-  }),
-  // @ts-ignore
-  ({ checked }) =>
-    checked && {
-      backgroundPosition: '100% 0',
-      backgroundColor: 'mediumseagreen',
-    },
-  // @ts-ignore
-  ({ disabled }) =>
-    disabled && {
-      cursor: 'not-allowed',
-      opacity: 0.6,
-    }
-);
 
 export const Toggle = styled<IToggleProps>((props: IToggleProps) => {
   const { id, className, checked, width, height, disabled, onChange } = props;
@@ -65,7 +31,32 @@ export const Toggle = styled<IToggleProps>((props: IToggleProps) => {
           position="absolute"
           css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
         />
-        <Knob checked={checked} width={width} height={height} disabled={disabled} />
+        <Flex
+          as="span"
+          display="block"
+          m="none"
+          p="none"
+          radius="100px"
+          bg={checked ? 'toggle.checked.bg' : 'toggle.bg'}
+          cursor={disabled ? 'not-allowed' : 'pointer'}
+          width={width || '40px'}
+          height={height || '20px'}
+          opacity={disabled ? 0.6 : 1}
+          items="center"
+          css={{
+            fontSize: '14px',
+            transition: 'background-color .15s ease-in-out',
+          }}
+        >
+          <Icon
+            icon="circle"
+            fg={checked ? 'toggle.checked.fg' : 'toggle.fg'}
+            css={{
+              paddingLeft: checked ? '22px' : '4px',
+              transition: 'padding .15s ease-in-out, color .25s ease-in-out',
+            }}
+          />
+        </Flex>
       </Box>
     </span>
   );
