@@ -22,16 +22,16 @@ export const imageKnobs = (tabName = 'Image'): any => {
       } as NumberOptions,
       tabName
     ),
-    src: text('src', 'https://s3.amazonaws.com/totem_production/assets/logos/10719/original/logo_light_bg.png?1501094221', tabName),
+    src: text(
+      'src',
+      'https://s3.amazonaws.com/totem_production/assets/logos/10719/original/logo_light_bg.png?1501094221',
+      tabName
+    ),
     width: text('width', '', tabName),
   };
 };
 
 storiesOf('Image', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => (
-    <div style={{ width: '300px' }}>{storyFn()}</div>
-  ))
-  .add('with defaults', () => (
-    <Image {...imageKnobs()} />
-  ));
+  .addDecorator(storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>)
+  .add('with defaults', () => <Image {...imageKnobs()} />);
