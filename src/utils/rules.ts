@@ -88,6 +88,10 @@ export const boxShadow = style({
   key: 'base.shadow',
 });
 
+export const cursor = style({
+  prop: 'cursor',
+});
+
 const overflowX = style({
   prop: 'overflowX',
 });
