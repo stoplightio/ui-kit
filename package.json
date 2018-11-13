@@ -54,7 +54,7 @@
     "lodash": "4.x.x",
     "react-input-autosize": "2.2.x",
     "react-textarea-autosize": "7.1.0-1",
-    "styled-components": "4.1.0",
+    "styled-components": "4.0.x",
     "styled-system": "3.1.x"
   },
   "devDependencies": {
@@ -62,7 +62,7 @@
     "@fortawesome/free-regular-svg-icons": "5.5.x",
     "@fortawesome/free-solid-svg-icons": "5.5.x",
     "@sambego/storybook-state": "1.x.x",
-    "@stoplight/scripts": "1.1.x",
+    "@stoplight/scripts": "1.1.2",
     "@types/react": "16.x.x",
     "@types/react-dom": "16.x.x",
     "react": "16.x.x",
@@ -91,5 +91,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "release": {
+    "extends": "@stoplight/scripts/release"
   }
 }
