@@ -4,15 +4,15 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { Checkbox } from '../Checkbox';
-import { boxKnobs } from './Box';
+import { Checkbox } from '../src/Checkbox';
 
 export const checkboxKnobs = (tabName = 'Checkbox') => {
   return {
+    checked: boolean('checked', false, tabName),
     disabled: boolean('disabled', false, tabName),
   };
 };
 
-storiesOf('components/Checkbox', module)
+storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <Checkbox {...checkboxKnobs()} {...boxKnobs()} onChange={action('onChange')} />);
+  .add('with defaults', () => <Checkbox {...checkboxKnobs()} onChange={action('onChange')} />);
