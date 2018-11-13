@@ -6,6 +6,7 @@ import {
   bottom,
   boxShadow,
   css,
+  cursor,
   display,
   flex,
   fontSize,
@@ -69,7 +70,31 @@ export interface IBoxProps {
   borderRight?: BorderWidth;
   borderBottom?: BorderWidth;
   borderColor?: string;
-  radius?: BorderRadius;
+  radius?: BorderRadius | string;
+
+  cursor?:
+    | 'auto'
+    | 'default'
+    | 'none'
+    | 'context-menu'
+    | 'help'
+    | 'pointer'
+    | 'progress'
+    | 'wait'
+    | 'cell'
+    | 'crosshair'
+    | 'text'
+    | 'vertical-text'
+    | 'alias'
+    | 'copy'
+    | 'move'
+    | 'no-drop'
+    | 'not-allowed'
+    | 'all-scroll'
+    | 'zoom-in'
+    | 'zoom-out'
+    | 'grab'
+    | 'grabbing';
 
   display?:
     | 'inline'
@@ -103,7 +128,7 @@ export interface IBoxProps {
   overflowX?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
   overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
 
-  postion?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
+  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
   top?: number;
   bottom?: number;
   left?: number;
@@ -120,6 +145,7 @@ export const Box = styled<IBoxProps, 'div'>('div')(
   bottom,
   boxShadow,
   css,
+  cursor,
   display,
   flex,
   fontSize,

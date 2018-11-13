@@ -1,5 +1,6 @@
 import './Box';
 import './Button';
+import './Checkbox';
 import './Flex';
 import './Heading';
 import './Icon';
@@ -9,3 +10,4 @@ import './KitchenSink';
 import './List';
 import './Text';
 import './Textarea';
+import './Toggle';
