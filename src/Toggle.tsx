@@ -1,4 +1,7 @@
 import * as React from 'react';
+
+import { Box } from './Box';
+import { Input } from './Input';
 import { styled } from './utils';
 
 export interface IToggleProps {
@@ -10,17 +13,6 @@ export interface IToggleProps {
   height?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
-
-const Label = styled<any, 'label'>('label')({
-  // @ts-ignore
-  display: 'inline-block',
-  input: {
-    margin: 0,
-  },
-  'input[type="checkbox"]:focus + span': {
-    boxShadow: '0 0 0 3px rgba(48, 142, 218, 0.25)',
-  },
-});
 
 const Knob = styled<any, 'span'>('span')(
   {
@@ -63,20 +55,18 @@ export const Toggle = styled<IToggleProps>((props: IToggleProps) => {
 
   return (
     <span className={className}>
-      <Label>
-        <input
+      <Box display="inline-block">
+        <Input
           type="checkbox"
           id={id}
           checked={checked}
           disabled={disabled}
           onChange={onChange}
-          style={{
-            position: 'absolute',
-            clip: 'rect(1px, 1px, 1px, 1px)',
-          }}
+          position="absolute"
+          css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
         />
         <Knob checked={checked} width={width} height={height} disabled={disabled} />
-      </Label>
+      </Box>
     </span>
   );
 })``;
