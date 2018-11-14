@@ -7,11 +7,13 @@ export interface IPortalProps {
 }
 
 export class Portal extends PureComponent<IPortalProps> {
-  private readonly el!: HTMLDivElement;
-  private readonly root = document.body;
+  private readonly el?: HTMLDivElement;
+  private readonly root = typeof document === 'object' ? document.body : null;
 
   constructor(props: IPortalProps) {
     super(props);
+
+    if (typeof document === 'undefined' || typeof document.createElement !== 'function') return;
 
     this.el = document.createElement('div');
 
@@ -21,14 +23,22 @@ export class Portal extends PureComponent<IPortalProps> {
   }
 
   public componentDidMount() {
-    this.root.appendChild(this.el);
+    if (this.el !== undefined && this.root !== null) {
+      this.root.appendChild(this.el);
+    }
   }
 
   public componentWillUnmount() {
-    this.root.removeChild(this.el);
+    if (this.el !== undefined && this.root !== null) {
+      this.root.removeChild(this.el);
+    }
   }
 
   public render() {
+    if (this.el === undefined) {
+      return null;
+    }
+
     return ReactDOM.createPortal(this.props.children, this.el);
   }
 }

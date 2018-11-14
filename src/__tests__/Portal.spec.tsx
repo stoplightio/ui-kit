@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import * as React from 'react';
-import 'jest-enzyme';
 import { shallow } from 'enzyme';
+import 'jest-enzyme';
+import * as React from 'react';
 import { Portal } from '../Portal';
 
 describe('Portal', () => {
@@ -53,5 +53,43 @@ describe('Portal', () => {
     shallow(<Portal className={className}>test</Portal>);
 
     expect(setClassNameSpy).toHaveBeenCalledWith(className);
+  });
+
+  describe('lives in non-browser environment', () => {
+    let createElementDescriptor: PropertyDescriptor;
+
+    beforeEach(() => {
+      createElementDescriptor = Reflect.getOwnPropertyDescriptor(
+        Document.prototype,
+        'createElement'
+      ) as PropertyDescriptor;
+      // @ts-ignore
+      Document.prototype.createElement = undefined;
+    });
+
+    afterEach(() => {
+      Object.defineProperty(Document.prototype, 'createElement', createElementDescriptor);
+    });
+
+    it('mounts correctly', () => {
+      expect(() => shallow(<Portal>test</Portal>)).not.toThrow();
+    });
+
+    it('unmounts correctly', () => {
+      const wrapper = shallow(<Portal>test</Portal>);
+      expect(() => wrapper.unmount()).not.toThrow();
+    });
+
+    it('has undefined el', () => {
+      const wrapper = shallow(<Portal>test</Portal>);
+
+      expect(wrapper.instance()).toHaveProperty('el', undefined);
+    });
+
+    it('does not render anything', () => {
+      const wrapper = shallow(<Portal>test</Portal>);
+
+      expect(wrapper.html()).toBeNull();
+    });
   });
 });
