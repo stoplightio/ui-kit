@@ -8,6 +8,7 @@ import { CodeEditor } from '../src/';
 
 export const codeEditorKnobs = (tabName = 'CodeEditor') => {
   return {
+    language: text('language', 'js', tabName),
     initialCode: text('initialCode', '', tabName),
     style: object('style', { fontSize: '12px' }, tabName),
   };
@@ -15,6 +16,4 @@ export const codeEditorKnobs = (tabName = 'CodeEditor') => {
 
 storiesOf('CodeEditor', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => (
-    <CodeEditor {...codeEditorKnobs()} onCodeChange={action('onCodeChange')} />
-  ));
+  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onCodeChange={action('onCodeChange')} />);

@@ -1,5 +1,5 @@
 import { highlight, languages } from 'prismjs';
-import 'prismjs/components/prism-javascript';
+import 'prismjs/components/';
 import * as React from 'react';
 import Editor from 'react-simple-code-editor';
 import { createGlobalStyle } from 'styled-components';
@@ -93,6 +93,7 @@ const CodeEditorStyle = createGlobalStyle`
 
 export interface ICodeEditorProps {
   initialCode?: string;
+  language: string;
   onCodeChange: (code: string) => any;
   style?: object;
 }
@@ -117,8 +118,8 @@ export class CodeEditor extends React.PureComponent<ICodeEditorProps, ICodeEdito
 
   public render() {
     const {
-      props: { style },
-      state: { code }
+      props: { language, style },
+      state: { code },
     } = this;
 
     return (
@@ -127,7 +128,7 @@ export class CodeEditor extends React.PureComponent<ICodeEditorProps, ICodeEdito
         <Editor
           value={code}
           onValueChange={this.handleCodeChange}
-          highlight={(currentCode: string) => highlight(currentCode, languages.js)}
+          highlight={(currentCode: string) => highlight(currentCode, languages[language])}
           padding={10}
           style={style}
         />
