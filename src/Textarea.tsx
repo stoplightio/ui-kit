@@ -1,3 +1,4 @@
+import * as React from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
 import { ITextProps, Text } from './Text';
@@ -7,12 +8,42 @@ export interface ITextareaProps extends ITextProps {
   autosize?: boolean;
   minRows?: number;
   maxRows?: number;
-  as?: any;
+
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-export const Textarea = styled<ITextareaProps>(Text as any).attrs({
-  as: ({ autosize }: ITextareaProps) => (autosize ? AutosizeTextarea : 'textarea'),
-})(
+export interface ITextareaState {
+  value?: string;
+}
+
+export class BasicTextArea extends React.Component<ITextareaProps, ITextareaState> {
+  constructor(props: ITextareaProps) {
+    super(props);
+    this.state = { value: this.props.value };
+  }
+
+  private onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setState({ value: event.target.value });
+
+    if (this.props.onChange) {
+      this.props.onChange(event.target.value);
+    }
+  };
+
+  public render() {
+    const { autosize, minRows, maxRows, ...rest } = this.props;
+    const value = (this.props.hasOwnProperty('value') ? this.props.value : this.state.value) || '';
+
+    if (autosize) {
+      return <AutosizeTextarea {...rest} minRows={minRows} maxRows={maxRows} value={value} onChange={this.onChange} />;
+    }
+
+    return React.createElement('textarea', { ...rest, value, onChange: this.onChange });
+  }
+}
+
+export const Textarea = styled<ITextareaProps>(Text as any)(
   {
     // @ts-ignore
     ':focus': {
@@ -34,6 +65,7 @@ export const Textarea = styled<ITextareaProps>(Text as any).attrs({
 );
 
 Textarea.defaultProps = {
+  as: BasicTextArea,
   px: 'md',
   py: 'sm',
   border: 'xs',
