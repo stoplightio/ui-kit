@@ -7,16 +7,41 @@ import { styled } from './utils';
 export interface IInputProps extends ITextProps {
   type?: string;
   autosize?: boolean;
-  as?: any;
+  value?: string | number;
+  onChange?: (value: string | number) => void;
 }
 
-const StyledAutosizeInput = ({ autosize, className, ...rest }: IInputProps) => (
-  <AutosizeInput inputClassName={className} {...rest} />
-);
+export interface IInputState {
+  value?: string | number;
+}
 
-export const Input = styled<IInputProps>(Text as any).attrs({
-  as: ({ autosize }: IInputProps) => (autosize ? StyledAutosizeInput : 'input'),
-})(
+export class BasicInput extends React.Component<IInputProps, IInputState> {
+  constructor(props: IInputProps) {
+    super(props);
+    this.state = { value: this.props.value };
+  }
+
+  private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ value: event.target.value });
+
+    if (this.props.onChange) {
+      this.props.onChange(event.target.value);
+    }
+  };
+
+  public render() {
+    const { autosize, className, ...rest } = this.props;
+    const value = (this.props.hasOwnProperty('value') ? this.props.value : this.state.value) || '';
+
+    if (autosize) {
+      return <AutosizeInput inputClassName={className} {...rest} value={value} onChange={this.onChange} />;
+    }
+
+    return React.createElement('input', { className, ...rest, value, onChange: this.onChange });
+  }
+}
+
+export const Input = styled<IInputProps, 'input'>(Text as any)(
   {
     // @ts-ignore
     ':focus': {
@@ -34,6 +59,7 @@ export const Input = styled<IInputProps>(Text as any).attrs({
 );
 
 Input.defaultProps = {
+  as: BasicInput,
   px: 'md',
   py: 'sm',
   border: 'xs',

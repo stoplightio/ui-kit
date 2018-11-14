@@ -38,6 +38,7 @@ export const autosizeInputKnobs = (tabName = 'Input'): any => {
 
 storiesOf('Input', module)
   .addDecorator(withKnobs)
+  .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} />)
   .addDecorator(StateDecorator(store))
   .add('with defaults', () => (
     <Input
@@ -45,7 +46,7 @@ storiesOf('Input', module)
       {...textKnobs()}
       {...boxKnobs()}
       value={store.get('value')}
-      onChange={(e: any) => store.set({ value: e.target.value })}
+      onChange={(value: any) => store.set({ value })}
     />
   ))
   .add('autosize', () => (
@@ -55,6 +56,6 @@ storiesOf('Input', module)
       {...boxKnobs()}
       autosize
       value={store.get('value')}
-      onChange={(e: any) => store.set({ value: e.target.value })}
+      onChange={(value: any) => store.set({ value })}
     />
   ));
