@@ -11,6 +11,8 @@ export * from './Flex';
 export * from './Heading';
 export * from './Icon';
 export * from './List';
+export * from './Popup';
+export * from './Portal';
 export * from './Menu';
 export * from './Table';
 export * from './Text';
