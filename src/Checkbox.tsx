@@ -7,27 +7,46 @@ import { Input } from './Input';
 import { styled } from './utils';
 
 export interface ICheckboxProps {
-  checked?: boolean;
-  disabled?: boolean;
   id?: string;
   className?: string;
+  checked?: boolean;
+  disabled?: boolean;
   width?: string;
   height?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: (checked: boolean) => void;
 }
 
-export const Checkbox = styled<ICheckboxProps>((props: ICheckboxProps) => {
-  const { id, className, checked, width, height, disabled, onChange } = props;
+export interface ICheckboxState {
+  checked?: boolean;
+}
 
-  return (
-    <span className={className}>
-      <Box display="inline-block">
+export class BasicCheckbox extends React.Component<ICheckboxProps, ICheckboxState> {
+  constructor(props: ICheckboxProps) {
+    super(props);
+    this.state = { checked: this.props.checked };
+  }
+
+  private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ checked: event.target.checked });
+
+    if (this.props.onChange) {
+      this.props.onChange(event.target.checked);
+    }
+  };
+
+  public render() {
+    const { checked: stateChecked } = this.state;
+    const { id, className, width, height, disabled, checked: propsChecked } = this.props;
+
+    const checked = this.props.hasOwnProperty('checked') ? propsChecked : stateChecked;
+
+    return (
+      <Box as="label" display="inline-block" id={id} className={className}>
         <Input
           type="checkbox"
-          id={id}
-          checked={checked}
+          checked={checked || false}
           disabled={disabled}
-          onChange={onChange}
+          onChange={this.onChange}
           position="absolute"
           css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
         />
@@ -52,6 +71,8 @@ export const Checkbox = styled<ICheckboxProps>((props: ICheckboxProps) => {
           {checked && <Icon icon="check" fg="toggle.checked.fg" />}
         </Flex>
       </Box>
-    </span>
-  );
-})``;
+    );
+  }
+}
+
+export const Checkbox = styled<ICheckboxProps>(BasicCheckbox as any)``;
