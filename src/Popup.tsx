@@ -151,9 +151,11 @@ export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
       this.repaint();
     }
 
-    this._resizeHandler = debounce(this.repaint, 50) as EventListener;
+    if (typeof window !== 'undefined') {
+      this._resizeHandler = debounce(this.repaint, 50) as EventListener;
 
-    window.addEventListener('resize', this._resizeHandler);
+      window.addEventListener('resize', this._resizeHandler);
+    }
   }
 
   public componentWillUnmount() {
