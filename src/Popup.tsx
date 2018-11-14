@@ -41,7 +41,7 @@ export interface IPopupPosition {
   show?: boolean; // controlled or debugging
 }
 
-export interface IPopup extends IPopupPosition {
+export interface IPopupProps extends IPopupPosition {
   hideDelay: number; // how long popup will show for after user mouses out
   renderTrigger: PopupTriggerRenderer;
   renderContent: PopupContentRenderer;
@@ -64,7 +64,7 @@ export interface IPopupState {
   style?: any;
 }
 
-interface IPopupDefaultProps {
+export interface IPopupDefaultProps {
   padding: 15;
   hideDelay: 200;
   posX: 'left';
@@ -72,7 +72,7 @@ interface IPopupDefaultProps {
 }
 
 // TODO: allow specifying target container (so that can optionally scroll with content)
-export class Popup extends React.PureComponent<IPopup, IPopupState> {
+export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
   public static defaultProps: IPopupDefaultProps = {
     padding: 15,
     hideDelay: 200,
@@ -162,7 +162,7 @@ export class Popup extends React.PureComponent<IPopup, IPopupState> {
     }
   }
 
-  public componentDidUpdate(prevProps: IPopup) {
+  public componentDidUpdate(prevProps: IPopupProps) {
     if ((this.isVisible || this._controlled) && (!this.state.style || this.propsChanged(prevProps))) {
       this.repaint();
 
