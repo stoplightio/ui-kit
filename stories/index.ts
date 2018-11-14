@@ -1,6 +1,7 @@
 import './Box';
 import './Button';
 import './Checkbox';
+import './CodeEditor';
 import './Flex';
 import './Heading';
 import './Icon';

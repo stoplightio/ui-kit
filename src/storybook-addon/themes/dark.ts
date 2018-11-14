@@ -20,6 +20,23 @@ export const dark = {
       fg: 'white',
       border: 'rgb(160, 159, 165)',
     },
+
+    codeEditor: {
+      bg: '#222',
+      border: 'transparent',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#c2cbd0',
+        punctuation: '#c3c9cc',
+        keyword: '#FFFFC7',
+        function: '#f44336',
+        variable: '#FFFFC7',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
+    },
   },
 
   sections: {

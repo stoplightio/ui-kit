@@ -39,5 +39,23 @@ export const components: ISectionTheme = {
         border: 'transparent',
       },
     },
+
+    codeEditor: {
+      bg: 'white',
+      fg: 'grey',
+      border: 'grey',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#90a4ae',
+        punctuation: '#9e9e9e',
+        keyword: '#3f51b5',
+        function: '#f44336',
+        variable: '#ff9800',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
+    },
   },
 };

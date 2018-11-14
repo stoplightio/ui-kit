@@ -5,6 +5,7 @@
 
 export * from './Box';
 export * from './Button';
+export * from './CodeEditor';
 export * from './Flex';
 export * from './Heading';
 export * from './Icon';
