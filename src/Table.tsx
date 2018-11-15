@@ -22,7 +22,7 @@ const TableView = ({ className, children }: ITableViewProps) => (
   </table>
 );
 
-const getBoxShadowTheme = themeGet('base.shadow.lg', '0 0 5px 1px #000');
+const getBoxShadowTheme = themeGet('shadows.lg', '0 0 5px #000');
 const boxShadow = (props: ITableCellProps | ITableProps) =>
   `box-shadow: ${props.isSelection ? getBoxShadowTheme(props) : ''}`;
 

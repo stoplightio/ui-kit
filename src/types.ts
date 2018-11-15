@@ -4,7 +4,7 @@ export type LineHeight = 'reset' | 'none' | 'tight' | 'normal' | 'loose';
 export type LetterSpacing = 'tight' | 'normal' | 'wide';
 export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
-export type BoxShadow = 'sm' | 'md' | 'lg';
+export type BoxShadow = keyof IShadows;
 export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
 export type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
@@ -28,6 +28,7 @@ export interface IThemeInterface<
 
 export interface ISectionTheme<TComponents extends Components = Components> {
   colors?: Partial<IColors>;
+  shadows?: Partial<IShadows>;
 
   components?: { [component in TComponents]?: Partial<IColors> };
 }
@@ -45,8 +46,6 @@ export interface ILayout {
 
   border: { [key in BorderWidth]?: number | string }; // px
 
-  shadow: { [key in BoxShadow]?: string };
-
   space: { [key in Space]?: number | string }; // px
 
   height?: { [key in BoxDimension]?: number | string };
@@ -61,6 +60,14 @@ export interface IColors {
   border: string;
 
   [color: string]: string | Partial<IColors>;
+}
+
+export interface IShadows {
+  sm: string;
+  md: string;
+  lg: string;
+
+  [color: string]: string | Partial<IShadows>;
 }
 
 // components created in this repo
