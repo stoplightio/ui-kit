@@ -1,17 +1,26 @@
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
+import { ThemeConsumer } from 'styled-components';
 import { Portal } from '../Portal';
 
 describe('Portal', () => {
   let appendChildSpy: jest.SpyInstance;
   let removeChildSpy: jest.SpyInstance;
   let setClassNameSpy: jest.SpyInstance;
+  let theme: any;
 
   beforeEach(() => {
     setClassNameSpy = jest.spyOn(HTMLDivElement.prototype, 'className', 'set');
     appendChildSpy = jest.spyOn(document.body, 'appendChild');
     removeChildSpy = jest.spyOn(document.body, 'removeChild');
+    theme = {
+      color: 'test',
+    };
+
+    (ThemeConsumer as any).mockImplementationOnce(({ children }: { children: Function }) => {
+      return children(theme);
+    });
   });
 
   afterEach(() => {
@@ -28,7 +37,7 @@ describe('Portal', () => {
     expect(appendChildSpy).toHaveBeenCalledWith(node);
   });
 
-  it('removes the previously appended div to unmount', () => {
+  it('removes the previously appended div on unmount', () => {
     const wrapper = shallow(<Portal>test</Portal>);
     // @ts-ignore;
     const { el } = wrapper.instance();
@@ -39,10 +48,23 @@ describe('Portal', () => {
   });
 
   it('renders children', () => {
-    const children = <div>some children</div>;
-    const wrapper = shallow(<Portal>{children}</Portal>);
+    const content = 'some text';
+    const children = <div>{content}</div>;
+    // shallow cannot traverse Portals, therefore we need to use deep mounting
+    const wrapper = mount(<Portal>{children}</Portal>);
 
-    expect(wrapper).toContainReact(children);
+    expect(wrapper).toHaveText(content);
+    wrapper.unmount(); // let's clean up
+  });
+
+  it('passes theme to children', () => {
+    const wrapper = mount(
+      <Portal>
+        <div />
+      </Portal>
+    );
+    expect(wrapper.find('div')).toHaveProp('theme', theme);
+    wrapper.unmount();
   });
 
   it('attaches className when given', () => {

@@ -2,17 +2,32 @@
  * @jest-environment jsdom
  */
 import { shallow } from 'enzyme';
-import { debounce } from 'lodash';
 import 'jest-enzyme';
 import * as React from 'react';
-import { Popup, Portal } from '../';
+import { mount } from 'enzyme';
 
 describe('Popup', () => {
   let props: any;
   let addEventListenerSpy: jest.SpyInstance;
   let removeEventListenerSpy: jest.SpyInstance;
+  let Popup: any;
+  let debounce: any;
+  let theme: { color: string };
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    theme = {
+      color: '#fff',
+    };
+
+    jest.mock('../Portal', () => ({
+      Portal: function Portal({ children }: { children: Function }) {
+        return children(theme);
+      },
+    }));
+
+    ({ Popup } = await import('../'));
+    ({ debounce } = await import('lodash'));
+
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
 
@@ -23,17 +38,19 @@ describe('Popup', () => {
   });
 
   afterEach(() => {
+    jest.resetModules();
+    jest.unmock('../Portal');
     addEventListenerSpy.mockRestore();
     removeEventListenerSpy.mockRestore();
   });
 
   it('always calls renderTrigger on render with attributes and some internal methods', () => {
-    const renderContentSpy = jest.spyOn(props, 'renderTrigger');
-    const wrapper = shallow(<Popup {...props} />);
+    const renderTriggerSpy = jest.spyOn(props, 'renderTrigger');
+    const wrapper = mount(<Popup {...props} />);
     // @ts-ignore
     const { showPopup, hidePopup } = wrapper.instance();
 
-    expect(renderContentSpy).toHaveBeenCalledWith(
+    expect(renderTriggerSpy).toHaveBeenCalledWith(
       {
         onMouseEnter: expect.any(Function),
         onMouseLeave: expect.any(Function),
@@ -46,13 +63,16 @@ describe('Popup', () => {
         isVisible: false,
       }
     );
+
+    wrapper.unmount();
   });
 
   it('does not call renderContent by default', () => {
     const renderTriggerSpy = jest.spyOn(props, 'renderContent');
-    shallow(<Popup {...props} />);
+    const wrapper = mount(<Popup {...props} />);
 
     expect(renderTriggerSpy).not.toHaveBeenCalledWith();
+    wrapper.unmount();
   });
 
   it('attaches debounced paint resize handler', () => {
@@ -89,10 +109,10 @@ describe('Popup', () => {
     });
 
     it('calls renderTrigger and passes proper isVisible', () => {
-      const renderContentSpy = jest.spyOn(props, 'renderTrigger');
+      const renderTriggerSpy = jest.spyOn(props, 'renderTrigger');
       shallow(<Popup {...props} />);
 
-      expect(renderContentSpy).toHaveBeenCalledWith(
+      expect(renderTriggerSpy).toHaveBeenCalledWith(
         expect.any(Object),
         expect.objectContaining({
           isVisible: true,
@@ -101,19 +121,19 @@ describe('Popup', () => {
     });
 
     it('renders Portal', () => {
-      const wrapper = shallow(<Popup {...props} />);
+      const wrapper = mount(<Popup {...props} />);
 
-      expect(wrapper.find(Portal)).toExist();
+      expect(wrapper.find('Portal')).toExist();
     });
 
     it('calls on renderContent and passes some internal methods', () => {
       const renderContentSpy = jest.spyOn(props, 'renderContent');
-      const wrapper = shallow(<Popup {...props} />);
+      const wrapper = mount(<Popup {...props} />);
       // @ts-ignore
       const { showPopup, hidePopup } = wrapper.instance();
 
       expect(renderContentSpy).toHaveBeenCalledWith(
-        {},
+        { theme },
         {
           showPopup,
           hidePopup,
@@ -121,6 +141,8 @@ describe('Popup', () => {
           isOver: false,
         }
       );
+
+      wrapper.unmount();
     });
 
     it('repaints the popup when props change', () => {

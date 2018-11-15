@@ -2,11 +2,12 @@ import * as React from 'react';
 import { debounce } from 'lodash';
 
 import { Portal } from './Portal';
+import { IThemeInterface } from './types';
 
 export type PopupTriggerRenderer = (
   attributes: {
-    onMouseEnter: (e: MouseEvent) => void;
-    onMouseLeave: (e: MouseEvent) => void;
+    onMouseEnter: (e: React.MouseEvent<MouseEvent>) => void;
+    onMouseLeave: (e: React.MouseEvent<MouseEvent>) => void;
     ref: (el: any) => void;
   },
   props: {
@@ -126,20 +127,22 @@ export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
         )}
         {this.isVisible && (
           <Portal>
-            <div
-              onMouseEnter={() => this.handleMouseEnter('_isOverContent')}
-              onMouseLeave={e => this.handleMouseLeave(e, '_isOverContent', '_isOverTrigger')}
-              ref={el => (this._content = el || undefined)}
-              style={style}
-            >
-              {renderContent(
-                {},
-                {
-                  ...funcs,
-                  isOver: this._isOverContent,
-                }
-              )}
-            </div>
+            {(theme: IThemeInterface) => (
+              <div
+                onMouseEnter={() => this.handleMouseEnter('_isOverContent')}
+                onMouseLeave={e => this.handleMouseLeave(e, '_isOverContent', '_isOverTrigger')}
+                ref={el => (this._content = el || undefined)}
+                style={style}
+              >
+                {renderContent(
+                  { theme },
+                  {
+                    ...funcs,
+                    isOver: this._isOverContent,
+                  }
+                )}
+              </div>
+            )}
           </Portal>
         )}
       </>

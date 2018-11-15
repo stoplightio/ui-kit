@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 import * as React from 'react';
 
-import { Box, Popup } from '../src/';
+import { Box, IThemeInterface, Popup } from '../src/';
 
 export const popupKnobs = (tabName = 'Popup'): any => {
   return omitBy(
@@ -56,11 +56,11 @@ storiesOf('Popup', module)
             </div>
           );
         }}
-        renderContent={(attributes: object) => {
+        renderContent={({ theme }: { theme: IThemeInterface }) => {
+          const color = theme.colors !== undefined ? theme.colors.fg : '#000';
+
           return (
-            <Box shadow="md" {...attributes}>
-              {text('content', 'here is the popup content')}
-            </Box>
+            <div style={{ color, boxShadow: `0 0 5px ${color}` }}>{text('content', 'here is the popup content')}</div>
           );
         }}
       />
@@ -72,19 +72,21 @@ storiesOf('Popup', module)
         {...popupKnobs()}
         renderTrigger={(attributes: object) => {
           return (
-            <div className={'bg-grey-lighter'} {...attributes}>
+            <Box {...attributes}>
               With Large Content
-            </div>
+            </Box>
           );
         }}
-        renderContent={(attributes: object) => {
+        renderContent={({ theme }: { theme: IThemeInterface }) => {
+          const color = theme.colors !== undefined ? theme.colors.fg : '#000';
+
           const elems = [];
           for (let i = 0; i < 100; i++) {
             elems.push(<li key={i}>item {i}</li>);
           }
 
           return (
-            <div className="bg-white rounded shadow py-3 px-6" {...attributes}>
+            <div style={{ color, boxShadow: `0 0 5px ${color}` }}>
               <ul>{elems}</ul>
             </div>
           );
