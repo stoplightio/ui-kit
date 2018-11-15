@@ -1,3 +1,4 @@
+import noop = require('lodash/noop');
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/';
 import * as React from 'react';
@@ -92,47 +93,32 @@ const CodeEditorStyle = createGlobalStyle`
 `;
 
 export interface ICodeEditorProps {
-  initialCode?: string;
+  code?: string;
   language: string;
-  onCodeChange: (code: string) => any;
+  onCodeChange?: (code: string) => any;
   style?: object;
 }
 
-export interface ICodeEditorState {
-  code: string;
-}
+export const CodeEditor = (props: ICodeEditorProps) => {
+  const { language, onCodeChange = noop, style } = props;
 
-export class CodeEditor extends React.PureComponent<ICodeEditorProps, ICodeEditorState> {
-  constructor(props: ICodeEditorProps) {
-    super(props);
+  const [code, setCode] = React.useState(props.code || '');
 
-    this.state = {
-      code: props.initialCode || '',
-    };
-  }
-
-  private handleCodeChange = (code: string) => {
-    this.setState({ code });
-    this.props.onCodeChange(code);
+  const handleCodeChange = (newCode: string) => {
+    setCode(newCode);
+    onCodeChange(newCode);
   };
 
-  public render() {
-    const {
-      props: { language, style },
-      state: { code },
-    } = this;
-
-    return (
-      <div className="ui-kit-code-editor">
-        <CodeEditorStyle />
-        <Editor
-          value={code}
-          onValueChange={this.handleCodeChange}
-          highlight={(currentCode: string) => highlight(currentCode, languages[language])}
-          padding={10}
-          style={style}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="ui-kit-code-editor">
+      <CodeEditorStyle />
+      <Editor
+        value={code}
+        onValueChange={handleCodeChange}
+        highlight={(currentCode: string) => highlight(currentCode, languages[language])}
+        padding={10}
+        style={style}
+      />
+    </div>
+  );
+};
