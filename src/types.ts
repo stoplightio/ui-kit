@@ -64,4 +64,4 @@ export interface IColors {
 }
 
 // components created in this repo
-export type Components = 'button' | 'checkbox' | 'toggle';
+export type Components = 'button' | 'checkbox' | 'toggle' | 'contextMenu';

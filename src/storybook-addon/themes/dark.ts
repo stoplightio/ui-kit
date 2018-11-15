@@ -13,6 +13,16 @@ export const dark = {
       fg: 'white',
       border: 'rgb(160, 159, 165)',
     },
+
+    contextMenu: {
+      bg: 'black',
+      borderColor: 'rgba(255, 255, 255, 0.5)',
+
+      hover: {
+        bg: 'dodgerblue',
+        color: 'white',
+      },
+    },
   },
 
   sections: {
