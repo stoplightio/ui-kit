@@ -8,6 +8,7 @@ import './Image';
 import './Input';
 import './KitchenSink';
 import './List';
+import './Menu';
 import './Text';
 import './Textarea';
 import './Toggle';
