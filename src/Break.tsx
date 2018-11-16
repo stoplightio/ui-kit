@@ -12,11 +12,11 @@ export interface IBreakProps extends IBoxProps {
   thickness?: number;
 }
 
-export const Break = styled<IBreakProps>(Box as any).attrs({
-  as: 'hr',
+export const Break = styled<IBreakProps, 'hr'>(Box as any).attrs({
   borderStyle: 'solid',
 })(thickness);
 
 Break.defaultProps = {
+  as: 'hr',
   thickness: 1,
 };

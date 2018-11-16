@@ -18,4 +18,4 @@ export const breakKnobs = (tabName = 'Break'): any => {
 
 storiesOf('Break', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <Break {...breakKnobs()} />)
+  .add('with defaults', () => <Break {...breakKnobs()} />);
