@@ -95,26 +95,26 @@ const CodeEditorStyle = createGlobalStyle`
 export interface ICodeEditorProps {
   code?: string;
   language: string;
-  onCodeChange?: (code: string) => any;
+  onChange?: (code: string) => any;
   style?: object;
 }
 
 export const CodeEditor = (props: ICodeEditorProps) => {
-  const { language, onCodeChange = noop, style } = props;
+  const { language, onChange = noop, style } = props;
 
-  const [code, setCode] = React.useState(props.code || '');
+  const [value, setValue] = React.useState(props.code || '');
 
-  const handleCodeChange = (newCode: string) => {
-    setCode(newCode);
-    onCodeChange(newCode);
+  const handleChange = (newValue: string) => {
+    setValue(newValue);
+    onChange(newValue);
   };
 
   return (
     <div className="ui-kit-code-editor">
       <CodeEditorStyle />
       <Editor
-        value={code}
-        onValueChange={handleCodeChange}
+        value={value}
+        onValueChange={handleChange}
         highlight={(currentCode: string) => highlight(currentCode, languages[language])}
         padding={10}
         style={style}

@@ -6,7 +6,7 @@ import { text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeEditor } from '../src/';
+import { CodeEditor } from '../src/CodeEditor';
 
 const store = new Store({
   code: 'stoplight.uiKit();',
@@ -21,8 +21,8 @@ export const codeEditorKnobs = (tabName = 'CodeEditor') => {
 
 storiesOf('CodeEditor', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onCodeChange={action('onCodeChange')} />)
+  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />)
   .addDecorator(StateDecorator(store))
   .add('with store', () => (
-    <CodeEditor {...codeEditorKnobs()} code={store.get('code')} onCodeChange={(code: string) => store.set({ code })} />
+    <CodeEditor {...codeEditorKnobs()} code={store.get('code')} onChange={(code: string) => store.set({ code })} />
   ));
