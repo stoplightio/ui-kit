@@ -152,6 +152,10 @@ export const borderColor = styleColor({
   prop: 'borderColor',
 });
 
+export const borderStyle = style({
+  prop: 'borderStyle',
+});
+
 export const borders = compose(
   border,
   borderTop,
