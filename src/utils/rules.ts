@@ -1,7 +1,7 @@
-import { get, merge } from 'lodash';
+import { concat, get, join, merge } from 'lodash';
 
 // @ts-ignore
-import { compose, is, num, px, style } from 'styled-system';
+import { compose, is, num, px } from 'styled-system';
 
 /**
  * MISC
@@ -13,13 +13,14 @@ const propThemeMap = {
   bg: 'bg',
 };
 
+// TODO FIX
 export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: string }) => {
   const resolvedProp = cssProperty || prop;
 
   // create a cache to check and break circular references
   // @ts-ignore FIXME
   const fn = (props: any, cache: any[] = []) => {
-    let val = props[prop];
+    let val = props[prop] || '';
 
     if (!val || typeof val !== 'string') return null;
 
@@ -38,21 +39,25 @@ export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: 
       val = get(props.theme, val);
     } else {
       // is taken from a prop
-      if (typeof val === 'string') {
-        val = val.split('.');
-      }
+      if (val.startsWith('@')) {
+        if (typeof val === 'string') {
+          val = val.slice(1).split('.');
+        }
 
-      // check components first
-      val = get(props.theme, ['components', ...val]) || get(props.theme, ['colors', ...val]);
+        // check components first
+        val = get(props.theme, ['components', ...val]) || get(props.theme, ['colors', ...val]);
+      }
     }
 
-    // default to global for that prop
+    // FIXME default to global for that prop
     if (!val) {
       val = get(props.theme, ['colors', propThemeMap[prop]]);
     }
 
+    if (typeof val !== 'string') return null;
+
     // if the value is another pointer recurse again
-    if (val && val.startsWith('#/')) {
+    if (val.startsWith('#/')) {
       return fn({ ...props, [prop]: val }, cache);
     }
 
@@ -63,6 +68,42 @@ export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: 
       : null;
   };
 
+  return fn;
+};
+
+export const style = ({
+  prop,
+  cssProperty,
+  key,
+  transformValue,
+}: {
+  prop: string;
+  cssProperty?: string;
+  key?: string;
+  transformValue?: Function;
+  // TODO FIXME
+}): TemplateStringsArray => {
+  const cssName = cssProperty || prop;
+  const fn = (props: any) => {
+    let val = props[prop];
+    if (!is(val)) return null;
+
+    if (val.startsWith('@')) {
+      val = get(props.theme, join(concat(key, val.slice(1)), '.'));
+    }
+
+    if (transformValue) {
+      val = transformValue(val);
+    }
+
+    return is(val)
+      ? {
+          [cssName]: val,
+        }
+      : null;
+  };
+
+  // @ts-ignore FIXME
   return fn;
 };
 
@@ -105,6 +146,7 @@ const overflowDefault = style({
 });
 
 export const overflow = compose(
+  // @ts-ignore FIXME
   overflowX,
   overflowY,
   overflowDefault
@@ -153,6 +195,7 @@ export const borderColor = styleColor({
 });
 
 export const borders = compose(
+  // @ts-ignore FIXME
   border,
   borderTop,
   borderRight,
@@ -165,37 +208,37 @@ const percentagePx = n => (!num(n) || n > 1 ? px(n) : n * 100 + '%');
 
 export const height = style({
   prop: 'height',
-  key: 'config.height',
+  key: 'base.height',
   transformValue: percentagePx,
 });
 
 export const maxHeight = style({
   prop: 'maxHeight',
-  key: 'config.height',
+  key: 'base.height',
   transformValue: percentagePx,
 });
 
 export const minHeight = style({
   prop: 'minHeight',
-  key: 'config.height',
+  key: 'base.height',
   transformValue: px,
 });
 
 export const width = style({
   prop: 'width',
-  key: 'config.width',
+  key: 'base.width',
   transformValue: percentagePx,
 });
 
 export const maxWidth = style({
   prop: 'maxWidth',
-  key: 'config.width',
+  key: 'base.width',
   transformValue: percentagePx,
 });
 
 export const minWidth = style({
   prop: 'minWidth',
-  key: 'config.width',
+  key: 'base.width',
   transformValue: px,
 });
 
@@ -240,7 +283,7 @@ const getSpaceValue = scale => propVal => {
     }
 
     // check the theme config for a value, or just use the prop
-    val = scale[val] || val;
+    val = val.startsWith('@') ? scale[val.slice(1)] : val || val;
   }
 
   // if was negative string/add the '-' back
@@ -310,7 +353,7 @@ export const flexWrap = style({
 export const fontStyle = style({
   prop: 'italic',
   cssProperty: 'fontStyle',
-  transformValue: n => (n ? 'italic' : 'normal'),
+  transformValue: (n: boolean) => (n ? 'italic' : 'normal'),
 });
 
 export const fontSize = style({
@@ -330,7 +373,7 @@ export const letterSpacing = style({
   prop: 'tracking',
   cssProperty: 'letterSpacing',
   key: 'base.tracking',
-  transformValue: n => (num(n) ? n + 'em' : n),
+  transformValue: (n: string | number) => (num(n) ? n + 'em' : n),
 });
 
 export const lineHeight = style({

@@ -34,12 +34,12 @@ export const Checkbox = styled<ICheckboxProps>((props: ICheckboxProps) => {
         <Flex
           as="span"
           display="block"
-          m="none"
-          p="none"
-          radius="md"
+          m="@none"
+          p="@none"
+          radius="@md"
           items="center"
           justify="center"
-          bg={checked ? 'toggle.checked.bg' : 'toggle.bg'}
+          bg={checked ? '@toggle.checked.bg' : '@toggle.bg'}
           cursor={disabled ? 'not-allowed' : 'pointer'}
           width={width || '20px'}
           height={height || '20px'}
@@ -49,7 +49,7 @@ export const Checkbox = styled<ICheckboxProps>((props: ICheckboxProps) => {
             transition: 'background-color .15s ease-in-out',
           }}
         >
-          {checked && <Icon icon="check" fg="toggle.checked.fg" />}
+          {checked && <Icon icon="check" fg="@toggle.checked.fg" />}
         </Flex>
       </Box>
     </span>

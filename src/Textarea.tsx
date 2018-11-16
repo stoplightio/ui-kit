@@ -34,14 +34,14 @@ export const Textarea = styled<ITextareaProps>(Text as any).attrs({
 );
 
 Textarea.defaultProps = {
-  px: 'md',
-  py: 'sm',
-  border: 'xs',
-  radius: 'md',
+  px: '@md',
+  py: '@sm',
+  border: '@xs',
+  radius: '@md',
 
   // reference colors by path in theme
   // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: 'textarea.fg',
-  bg: 'textarea.bg',
-  borderColor: 'textarea.border',
+  fg: '@textarea.fg',
+  bg: '@textarea.bg',
+  borderColor: '@textarea.border',
 };

@@ -51,8 +51,8 @@ class ThemeContainer extends React.Component<any, any> {
     return (
       <ThemeProvider theme={theme}>
         <Flex
-          fg="fg"
-          bg="bg"
+          fg="@fg"
+          bg="@bg"
           items="center"
           justify="center"
           position="absolute"

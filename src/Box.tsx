@@ -29,48 +29,58 @@ import {
   zIndex,
 } from './utils';
 
-import { BorderRadius, BorderWidth, BoxDimension, BoxShadow, FontSize, FontWeight, FullSpace } from './types';
+import {
+  IBorderRadius,
+  IBorderWidth,
+  IBoxDimension,
+  IBoxShadow,
+  IFontSize,
+  IFontWeight,
+  IFullSpace,
+  ValueOf,
+} from './types';
 
 export interface IBoxProps {
   className?: string;
   css?: Object; // a valid javascript style object
+  as?: any; // TODO type string || jsx element
 
   fg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
   bg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
 
-  text?: FontSize;
+  text?: ValueOf<IFontSize>;
   align?: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'; // textAlign
-  weight?: FontWeight;
+  weight?: ValueOf<IFontWeight>;
 
-  m?: FullSpace;
-  mt?: FullSpace;
-  mr?: FullSpace;
-  mb?: FullSpace;
-  ml?: FullSpace;
-  mx?: FullSpace;
-  my?: FullSpace;
-  p?: FullSpace;
-  pt?: FullSpace;
-  pr?: FullSpace;
-  pb?: FullSpace;
-  pl?: FullSpace;
-  px?: FullSpace;
-  py?: FullSpace;
+  m?: ValueOf<IFullSpace>;
+  mt?: ValueOf<IFullSpace>;
+  mr?: ValueOf<IFullSpace>;
+  mb?: ValueOf<IFullSpace>;
+  ml?: ValueOf<IFullSpace>;
+  mx?: ValueOf<IFullSpace>;
+  my?: ValueOf<IFullSpace>;
+  p?: ValueOf<IFullSpace>;
+  pt?: ValueOf<IFullSpace>;
+  pr?: ValueOf<IFullSpace>;
+  pb?: ValueOf<IFullSpace>;
+  pl?: ValueOf<IFullSpace>;
+  px?: ValueOf<IFullSpace>;
+  py?: ValueOf<IFullSpace>;
 
-  height?: BoxDimension | string | number;
-  maxHeight?: BoxDimension | string | number;
-  minHeight?: BoxDimension | string | number;
-  width?: BoxDimension | string | number;
-  maxWidth?: BoxDimension | string | number;
-  minWidth?: BoxDimension | string | number;
+  height?: ValueOf<IBoxDimension> | string | number;
+  maxHeight?: ValueOf<IBoxDimension> | string | number;
+  minHeight?: ValueOf<IBoxDimension> | string | number;
+  width?: ValueOf<IBoxDimension> | string | number;
+  maxWidth?: ValueOf<IBoxDimension> | string | number;
+  minWidth?: ValueOf<IBoxDimension> | string | number;
 
-  border?: BorderWidth;
-  borderTop?: BorderWidth;
-  borderLeft?: BorderWidth;
-  borderRight?: BorderWidth;
-  borderBottom?: BorderWidth;
+  border?: ValueOf<IBorderWidth>;
+  borderTop?: ValueOf<IBorderWidth>;
+  borderLeft?: ValueOf<IBorderWidth>;
+  borderRight?: ValueOf<IBorderWidth>;
+  borderBottom?: ValueOf<IBorderWidth>;
   borderColor?: string;
-  radius?: BorderRadius | string;
+  radius?: ValueOf<IBorderRadius> | string;
 
   cursor?:
     | 'auto'
@@ -121,7 +131,7 @@ export interface IBoxProps {
     | 'initial'
     | 'inherit';
   flex?: string | number;
-  shadow?: BoxShadow;
+  shadow?: ValueOf<IBoxShadow>;
   opacity?: number;
 
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';

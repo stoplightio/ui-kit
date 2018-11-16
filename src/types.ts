@@ -1,14 +1,99 @@
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
-export type FontWeight = 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
-export type LineHeight = 'reset' | 'none' | 'tight' | 'normal' | 'loose';
-export type LetterSpacing = 'tight' | 'normal' | 'wide';
-export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
-export type BoxShadow = 'sm' | 'md' | 'lg';
-export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
-export type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+export type ValueOf<T> = T[keyof T];
 
-export type FullSpace = Space | '-xs' | '-sm' | '-md' | '-lg' | '-xl' | '-2xl' | '-3xl' | '-4xl' | '-5xl' | '-6xl';
+export interface IFontSize {
+  xs: '@xs';
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+  xl: '@xl';
+  '2xl': '@2xl';
+  '3xl': '@3xl';
+  '4xl': '@4xl';
+  '5xl': '@5xl';
+  '6xl': '@6xl';
+}
+
+export interface IFontWeight {
+  thin: '@thin';
+  light: '@light';
+  normal: '@normal';
+  medium: '@medium';
+  semibold: '@semibold';
+  bold: '@bold';
+  extrabold: '@extrabold';
+}
+
+export interface ILineHeight {
+  reset: '@reset';
+  none: '@none';
+  tight: '@tight';
+  normal: '@normal';
+  loose: '@loose';
+}
+
+export interface ILetterSpacing {
+  tight: '@tight';
+  normal: '@normal';
+  wide: '@wide';
+}
+
+export interface IBorderRadius {
+  none: '@none';
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+  xl: '@xl';
+  full: '@full';
+}
+
+export interface IBorderWidth {
+  none: '@none';
+  xs: '@xs';
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+}
+
+export interface IBoxShadow {
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+}
+
+export interface IBoxDimension {
+  auto: '@auto';
+  none: '@none';
+  px: '@px';
+  full: '@full';
+  screen: '@screen';
+}
+
+export interface ISpace {
+  none: '@none';
+  xs: '@xs';
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+  xl: '@xl';
+  '2xl': '@2xl';
+  '3xl': '@3xl';
+  '4xl': '@4xl';
+  '5xl': '@5xl';
+  '6xl': '@6xl';
+}
+
+export interface IFullSpace extends ISpace {
+  '-xs': '-@xs';
+  '-sm': '-@sm';
+  '-md': '-@md';
+  '-lg': '-@lg';
+  '-xl': '-@xl';
+  '-2xl': '-@2xl';
+  '-3xl': '-@3xl';
+  '-4xl': '-@4xl';
+  '-5xl': '-@5xl';
+  '-6xl': '-@6xl';
+}
 
 export interface IThemeInterface<
   TSections extends string = '',
@@ -33,28 +118,29 @@ export interface ISectionTheme<TComponents extends Components = Components> {
 }
 
 export interface ILayout {
-  textSize: { [key in FontSize]?: number | string }; // px
+  textSize: { [key in keyof IFontSize]?: number | string }; // px
 
-  weight: { [key in FontWeight]?: number };
+  weight: { [key in keyof IFontWeight]?: number };
 
-  leading: { [key in LineHeight]?: number };
+  leading: { [key in keyof ILineHeight]?: number };
 
-  tracking: { [key in LetterSpacing]?: number }; // ems
+  tracking: { [key in keyof ILetterSpacing]?: number }; // ems
 
-  radius: { [key in BorderRadius]?: number | string }; // px
+  radius: { [key in keyof IBorderRadius]?: number | string }; // px
 
-  border: { [key in BorderWidth]?: number | string }; // px
+  border: { [key in keyof IBorderWidth]?: number | string }; // px
 
-  shadow: { [key in BoxShadow]?: string };
+  shadow: { [key in keyof IBoxShadow]?: string };
 
-  space: { [key in Space]?: number | string }; // px
+  space: { [key in keyof ISpace]?: number | string }; // px
 
-  height?: { [key in BoxDimension]?: number | string };
+  height?: { [key in keyof IBoxDimension]?: number | string };
 
-  width?: { [key in BoxDimension]?: number | string };
+  width?: { [key in keyof IBoxDimension]?: number | string };
 }
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
+
 export interface IColors {
   fg: string;
   bg: string;
@@ -64,4 +150,4 @@ export interface IColors {
 }
 
 // components created in this repo
-export type Components = 'button' | 'checkbox' | 'toggle';
+export type Components = 'button' | 'checkbox' | 'input' | 'textarea' | 'toggle';

@@ -34,14 +34,14 @@ export const Input = styled<IInputProps>(Text as any).attrs({
 );
 
 Input.defaultProps = {
-  px: 'md',
-  py: 'sm',
-  border: 'xs',
-  radius: 'md',
+  px: '@md',
+  py: '@sm',
+  border: '@xs',
+  radius: '@md',
 
   // reference colors by path in theme
   // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: 'input.fg',
-  bg: 'input.bg',
-  borderColor: 'input.border',
+  fg: '@input.fg',
+  bg: '@input.bg',
+  borderColor: '@input.border',
 };

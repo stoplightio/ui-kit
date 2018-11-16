@@ -2,7 +2,8 @@ import { FlipProp, IconName, IconPrefix, library, RotateProp } from '@fortawesom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-import { BorderRadius, BorderWidth, FontSize, FullSpace } from './types';
+import { IBorderRadius, IBorderWidth, IFontSize, IFullSpace, ValueOf } from './types';
+
 import {
   bgColor,
   borderColor,
@@ -39,30 +40,30 @@ export interface IIconProps {
   fg?: string;
   bg?: string;
 
-  text?: FontSize;
+  text?: ValueOf<IFontSize>;
 
-  m?: FullSpace;
-  mt?: FullSpace;
-  mr?: FullSpace;
-  mb?: FullSpace;
-  ml?: FullSpace;
-  mx?: FullSpace;
-  my?: FullSpace;
-  p?: FullSpace;
-  pt?: FullSpace;
-  pr?: FullSpace;
-  pb?: FullSpace;
-  pl?: FullSpace;
-  px?: FullSpace;
-  py?: FullSpace;
+  m?: ValueOf<IFullSpace>;
+  mt?: ValueOf<IFullSpace>;
+  mr?: ValueOf<IFullSpace>;
+  mb?: ValueOf<IFullSpace>;
+  ml?: ValueOf<IFullSpace>;
+  mx?: ValueOf<IFullSpace>;
+  my?: ValueOf<IFullSpace>;
+  p?: ValueOf<IFullSpace>;
+  pt?: ValueOf<IFullSpace>;
+  pr?: ValueOf<IFullSpace>;
+  pb?: ValueOf<IFullSpace>;
+  pl?: ValueOf<IFullSpace>;
+  px?: ValueOf<IFullSpace>;
+  py?: ValueOf<IFullSpace>;
 
-  border?: BorderWidth;
-  borderTop?: BorderWidth;
-  borderLeft?: BorderWidth;
-  borderRight?: BorderWidth;
-  borderBottom?: BorderWidth;
+  border?: ValueOf<IBorderWidth>;
+  borderTop?: ValueOf<IBorderWidth>;
+  borderLeft?: ValueOf<IBorderWidth>;
+  borderRight?: ValueOf<IBorderWidth>;
+  borderBottom?: ValueOf<IBorderWidth>;
   borderColor?: string;
-  radius?: BorderRadius;
+  radius?: ValueOf<IBorderRadius>;
 
   opacity?: number;
 
