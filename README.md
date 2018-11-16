@@ -29,6 +29,7 @@ TODO
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
     - Box
+    - Code Editor
     - Flex
     - Text
     - Heading
