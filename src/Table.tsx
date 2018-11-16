@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { themeGet } from 'styled-system';
-import { minWidth, styled } from './utils';
+import { Box, IBoxProps } from './Box';
+import { styled } from './utils';
 
-interface ITableProps {
+interface ITableProps extends IBoxProps {
   children: any;
   isSelection?: boolean;
 }
@@ -24,31 +25,47 @@ const TableView = ({ className, children }: ITableViewProps) => (
 
 const getBoxShadowTheme = themeGet('shadows.lg', '0 0 5px #000');
 const boxShadow = (props: ITableCellProps | ITableProps) =>
-  `box-shadow: ${props.isSelection ? getBoxShadowTheme(props) : ''}`;
+  props.isSelection && {
+    boxShadow: getBoxShadowTheme(props),
+  };
 
-export const Table = styled<ITableProps, 'table'>(TableView as any)`
-  border: none;
-  border-collapse: collapse;
-  border-top: 1px solid ${themeGet('colors.border', '#000')};
-  ${boxShadow};
-`;
+export const Table = styled<ITableProps, 'table'>(Box as any).attrs({
+  as: () => TableView,
+  border: 'none',
+  borderTop: 'sm',
+  borderColor: 'colors.border',
+  css: {
+    'border-collapse': 'collapse',
+  },
+})(
+  // @ts-ignore
+  boxShadow
+);
 
-export const TableRow = styled<ITableProps, 'tr'>('tr')`
-  border: none;
-  border-bottom: 1px solid ${themeGet('colors.border', '#000')};
-  border-right: 1px solid ${themeGet('colors.border', '#000')};
-`;
+export const TableRow = styled<ITableProps, 'tr'>(Box as any).attrs({
+  as: 'tr',
+  border: 'none',
+  borderBottom: 'sm',
+  borderRight: 'sm',
+  borderColor: 'colors.border',
+})``;
 
-export const TableHeadCell = styled<ITableCellProps, 'th'>('th')`
-  border: none;
-  border-left: 1px solid ${themeGet('colors.border', '#000')};
-  ${boxShadow};
-  ${minWidth};
-`;
+export const TableHeadCell = styled<ITableCellProps, 'th'>(Box as any).attrs({
+  as: 'td',
+  border: 'none',
+  borderLeft: 'sm',
+  borderColor: 'colors.border',
+})(
+  // @ts-ignore
+  boxShadow
+);
 
-export const TableCell = styled<ITableCellProps, 'td'>('td')`
-  border: none;
-  border-left: 1px solid ${themeGet('colors.border', '#000')};
-  ${boxShadow};
-  ${minWidth};
-`;
+export const TableCell = styled<ITableCellProps, 'td'>(Box as any).attrs({
+  as: 'td',
+  border: 'none',
+  borderLeft: 'sm',
+  borderColor: 'colors.border',
+})(
+  // @ts-ignore
+  boxShadow
+);
