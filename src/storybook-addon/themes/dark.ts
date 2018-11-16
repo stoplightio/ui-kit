@@ -5,6 +5,8 @@ export const dark = {
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
+    success: '#4caf50',
+    warning: '#ff9800',
   },
 
   components: {
