@@ -54,9 +54,9 @@
     "@types/styled-components": "4.0.x",
     "@types/styled-system": "3.0.x",
     "lodash": "4.x.x",
-    "prismjs": "^1.15.0",
+    "prismjs": "1.15.x",
     "react-input-autosize": "2.2.x",
-    "react-simple-code-editor": "^0.7.1",
+    "react-simple-code-editor": "0.7.x",
     "react-textarea-autosize": "7.1.0-1",
     "styled-components": "4.0.x",
     "styled-system": "3.1.x"
