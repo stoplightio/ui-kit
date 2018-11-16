@@ -5,8 +5,8 @@ import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Box } from '../src/Box';
-import { Flex } from '../src/Flex';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { AlignItems, FlexDirection, FlexWrap, JustifyContent } from './_utils';
 import { boxKnobs } from './Box';
 
@@ -26,13 +26,13 @@ storiesOf('Flex', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Flex {...flexKnobs()} {...boxKnobs()}>
-      <Box flex={1} border="xs">
+      <Box flex={1} border="@xs">
         Flex 1
       </Box>
-      <Box flex={1} border="xs">
+      <Box flex={1} border="@xs">
         Flex 1
       </Box>
-      <Box flex={2} border="xs">
+      <Box flex={2} border="@xs">
         Flex 2
       </Box>
     </Flex>

@@ -4,7 +4,7 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { Checkbox } from '../src/Checkbox';
+import { Checkbox } from '../Checkbox';
 
 export const checkboxKnobs = (tabName = 'Checkbox') => {
   return {

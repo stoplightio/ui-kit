@@ -5,7 +5,7 @@ import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { List } from '../src/List';
+import { List } from '../List';
 import { ListStylePosition, ListStyleType } from './_utils';
 import { boxKnobs } from './Box';
 import { textKnobs } from './Text';

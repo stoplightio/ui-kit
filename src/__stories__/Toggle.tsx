@@ -4,7 +4,7 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { Toggle } from '../src/Toggle';
+import { Toggle } from '../Toggle';
 
 export const toggleKnobs = (tabName = 'Toggle') => {
   return {
