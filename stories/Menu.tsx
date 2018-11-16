@@ -10,21 +10,21 @@ storiesOf('Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Menu>
-      <MenuItem onClick={action('onClick')} text={<span>First menu entry</span>} />
-      <MenuItem onClick={action('onClick')} text={<span>Second menu entry</span>} />
+      <MenuItem onClick={action('onClick')} title={<span>First menu entry</span>} />
+      <MenuItem onClick={action('onClick')} title={<span>Second menu entry</span>} />
     </Menu>
   ))
   .add('with padding', () => (
     <Menu padding="50px">
-      <MenuItem onClick={action('onClick')} text={<span>First menu entry</span>} />
-      <MenuItem padding=" 0 0 0 50px" onClick={action('onClick')} text={<span>Second menu entry</span>} />
-      <MenuItem onClick={action('onClick')} text={<span>Third menu entry</span>} />
+      <MenuItem onClick={action('onClick')} title={<span>First menu entry</span>} />
+      <MenuItem padding=" 0 0 0 50px" onClick={action('onClick')} title={<span>Second menu entry</span>} />
+      <MenuItem onClick={action('onClick')} title={<span>Third menu entry</span>} />
     </Menu>
   ))
   .add('with icons', () => (
     <Menu>
-      <MenuItem onClick={action('onClick')} icon="marker" text={<span>First menu entry</span>} />
-      <MenuItem onClick={action('onClick')} icon="image" text={<span>Second menu entry</span>} />
+      <MenuItem onClick={action('onClick')} icon="marker" title={<span>First menu entry</span>} />
+      <MenuItem onClick={action('onClick')} icon="image" title={<span>Second menu entry</span>} />
     </Menu>
   ))
   .add('with icons only', () => (
@@ -37,7 +37,7 @@ storiesOf('Menu', module)
   ))
   .add('with subtext', () => (
     <Menu>
-      <MenuItem icon="home" subText={<h6 style={{ margin: 0 }}>test</h6>} text="start page" />
-      <MenuItem icon="home" subText={<h6 style={{ margin: 0 }}>check it out</h6>} text="News" />
+      <MenuItem icon="home" subTitle={<h6 style={{ margin: 0 }}>test</h6>} title="start page" />
+      <MenuItem icon="home" subTitle={<h6 style={{ margin: 0 }}>check it out</h6>} title="News" />
     </Menu>
   ));

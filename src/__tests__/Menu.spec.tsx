@@ -17,9 +17,7 @@ describe('Menu', () => {
 
 describe('MenuItem', () => {
   it('renders proper Icon', () => {
-    const theme = {
-      base: { space: {} },
-    } as IThemeInterface;
+    const theme = { base: {} } as IThemeInterface;
 
     const wrapper = mount(
       <ThemeProvider theme={theme}>
@@ -42,25 +40,25 @@ describe('MenuItem', () => {
     expect(onClick).toHaveBeenCalledWith(event);
   });
 
-  it('renders proper text', () => {
+  it('renders proper title', () => {
     const text = <h4>menu entry</h4>;
-    const wrapper = mount(<MenuItem text={text} />);
+    const wrapper = mount(<MenuItem title={text} />);
 
     expect(wrapper).toContainReact(text);
     wrapper.unmount();
   });
 
-  it('renders subtext', () => {
+  it('renders subTitle', () => {
     const subText = <h4>sub text</h4>;
-    const wrapper = mount(<MenuItem text="text" subText={subText} />);
+    const wrapper = mount(<MenuItem title="text" subTitle={subText} />);
 
     expect(wrapper).toContainReact(subText);
     wrapper.unmount();
   });
 
-  it('does not render subtext only if is missing', () => {
+  it('does not render subTitle only if title is missing', () => {
     const subText = <h4>test</h4>;
-    const wrapper = mount(<MenuItem subText={subText} />);
+    const wrapper = mount(<MenuItem subTitle={subText} />);
 
     expect(wrapper).not.toContainReact(subText);
     wrapper.unmount();

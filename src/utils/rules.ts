@@ -240,7 +240,7 @@ const getSpaceValue = scale => propVal => {
     }
 
     // check the theme config for a value, or just use the prop
-    val = scale[val] || val;
+    val = scale !== undefined ? scale[val] : val;
   }
 
   // if was negative string/add the '-' back

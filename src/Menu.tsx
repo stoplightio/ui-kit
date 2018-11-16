@@ -1,54 +1,51 @@
 import * as React from 'react';
 
 import noop = require('lodash/noop');
+import { Box, IBoxProps } from './Box';
 import { Icon, IIcon } from './Icon';
-import { List } from './List';
+import { IListProps, List } from './List';
 import { styled } from './utils';
 
-export interface IMenuProps {
-  className?: string;
+export interface IMenuProps extends IListProps {
   children: any;
-  padding?: string;
 }
 
-export interface IMenuItemProps {
+export interface IMenuItemProps extends IBoxProps {
   className?: string;
   children?: any;
   icon?: IIcon;
-  text?: any;
-  padding?: string;
-  subText?: any;
+  title?: any;
+  subTitle?: any;
   onClick?: (event: React.MouseEvent) => any;
 }
 
-export const Menu = styled<IMenuProps>(({ className, children }: IMenuProps) => {
-  return (
-    <List className={className} itemType="none">
-      {children}
-    </List>
-  );
-})`
-  padding: ${({ padding }: IMenuItemProps) => (padding ? padding : '0')};
-`;
+export const Menu = styled<IMenuProps>(List as any).attrs({
+  itemType: 'none',
+  margin: '0',
+})``;
 
-export const MenuItem = styled<IMenuItemProps>((props: IMenuItemProps) => {
-  const { className, icon, subText, text, onClick = noop } = props;
+const MenuItemView = (props: IMenuItemProps) => {
+  const { className, icon, title, subTitle, onClick = noop } = props;
 
   return (
     <li className={className} onClick={onClick}>
       {icon && <Icon icon={icon} pr="xl" />}
-      {text && (
+      {title && (
         <span>
-          {text}
-          {subText}
+          {title}
+          {subTitle}
         </span>
       )}
     </li>
   );
-})`
-  align-items: center;
-  display: flex;
-  cursor: pointer;
-  padding: ${({ padding }: IMenuItemProps) => (padding ? padding : '0.75rem 0')}
-  font-size: 14px;
-`;
+};
+
+export const MenuItem = styled<IMenuItemProps, 'li'>(Box as any).attrs({
+  as: () => MenuItemView,
+  display: 'flex',
+  cursor: 'pointer',
+  alignItems: 'center',
+  pt: 'md',
+  pb: 'md',
+  fontSize: 'sm',
+})``;
