@@ -12,6 +12,7 @@ export interface IThemeInterface<
 
   // Extended from ISectionTheme these will be globals used throughout the app
   // colors?: ...
+  // shadows?: ...
   // components?: ...
 
   // uses generics so you can pass in sections TSections = header | footer | sidebar... (this allows different typings for platform and hubs)
@@ -21,6 +22,7 @@ export interface IThemeInterface<
 
 export interface ISectionTheme<TComponents extends Components = Components> {
   colors?: Partial<IColors>;
+  shadows?: Partial<IShadows>;
 
   components?: { [component in TComponents]?: Partial<IColors> };
 }
@@ -37,8 +39,6 @@ export interface IBase {
   radius: { [key in keyof IBorderRadius]?: number | string }; // px
 
   border: { [key in keyof IBorderWidth]?: number | string }; // px
-
-  shadow: { [key in keyof IBoxShadow]?: string };
 
   space: { [key in keyof ISpace]?: number | string }; // px
 
@@ -106,12 +106,6 @@ export interface IBorderWidth {
   lg: '@lg';
 }
 
-export interface IBoxShadow {
-  sm: '@sm';
-  md: '@md';
-  lg: '@lg';
-}
-
 export interface IBoxDimension {
   auto: '@auto';
   none: '@none';
@@ -146,6 +140,7 @@ export interface IFullSpace extends ISpace {
   '-5xl': '-@5xl';
   '-6xl': '-@6xl';
 }
+export type BoxShadow = keyof IShadows;
 
 /**
  * MISC
@@ -158,4 +153,12 @@ export interface IColors {
   border: string;
 
   [color: string]: string | Partial<IColors>;
+}
+
+export interface IShadows {
+  sm: string;
+  md: string;
+  lg: string;
+
+  [color: string]: string | Partial<IShadows>;
 }

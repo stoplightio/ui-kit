@@ -31,11 +31,11 @@ import {
   IBorderRadius,
   IBorderWidth,
   IBoxDimension,
-  IBoxShadow,
   ICSSProps,
   IFontSize,
   IFontWeight,
   IFullSpace,
+  IShadows,
   ValueOf,
 } from './types';
 
@@ -85,7 +85,7 @@ export interface IBoxProps {
 
   display?: ICSSProps['display'];
   flex?: ICSSProps['flex'];
-  shadow?: ValueOf<IBoxShadow>;
+  shadow?: IShadows;
   opacity?: ICSSProps['opacity'];
 
   overflow?: ICSSProps['overflow'];
