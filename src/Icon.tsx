@@ -2,7 +2,7 @@ import { FlipProp, IconName, IconPrefix, library, RotateProp } from '@fortawesom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-import { IBorderRadius, IBorderWidth, IFontSize, IFullSpace, ValueOf } from './types';
+import { IBorderRadius, IBorderWidth, ICSSProps, IFontSize, IFullSpace, ValueOf } from './types';
 
 import {
   bgColor,
@@ -55,23 +55,23 @@ export interface IIconProps {
   px?: ValueOf<IFullSpace>;
   py?: ValueOf<IFullSpace>;
 
-  border?: ValueOf<IBorderWidth>;
-  borderTop?: ValueOf<IBorderWidth>;
-  borderLeft?: ValueOf<IBorderWidth>;
-  borderRight?: ValueOf<IBorderWidth>;
-  borderBottom?: ValueOf<IBorderWidth>;
+  border?: ValueOf<IBorderWidth> | number;
+  borderTop?: ValueOf<IBorderWidth> | number;
+  borderLeft?: ValueOf<IBorderWidth> | number;
+  borderRight?: ValueOf<IBorderWidth> | number;
+  borderBottom?: ValueOf<IBorderWidth> | number;
   borderColor?: string;
-  radius?: ValueOf<IBorderRadius>;
+  radius?: ValueOf<IBorderRadius> | number;
 
-  opacity?: number;
+  opacity?: ICSSProps['opacity'];
 
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  position?: ICSSProps['position'];
+  top?: string | number;
+  bottom?: string | number;
+  left?: string | number;
+  right?: string | number;
 
-  z?: number;
+  z?: ICSSProps['z'];
 }
 
 export const IconLibrary = library;

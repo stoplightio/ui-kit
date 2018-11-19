@@ -1,8 +1,8 @@
-import { ILayout } from '../types';
+import { IBase } from '../types';
 
 // values taken from tailwind.config in @stoplight/core
 // https://github.com/stoplightio/core/blob/master/tailwind.config.js
-export const base: ILayout = {
+export const base: IBase = {
   textSize: {
     xs: 9,
     sm: 11,

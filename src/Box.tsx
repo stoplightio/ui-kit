@@ -32,6 +32,7 @@ import {
   IBorderWidth,
   IBoxDimension,
   IBoxShadow,
+  ICSSProps,
   IFontSize,
   IFontWeight,
   IFullSpace,
@@ -47,23 +48,23 @@ export interface IBoxProps {
   bg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
 
   text?: ValueOf<IFontSize>;
-  align?: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'; // textAlign
-  weight?: ValueOf<IFontWeight>;
+  align?: ICSSProps['textAlign']; // textAlign
+  weight?: ValueOf<IFontWeight> | ICSSProps['fontWeight'];
 
-  m?: ValueOf<IFullSpace>;
-  mt?: ValueOf<IFullSpace>;
-  mr?: ValueOf<IFullSpace>;
-  mb?: ValueOf<IFullSpace>;
-  ml?: ValueOf<IFullSpace>;
-  mx?: ValueOf<IFullSpace>;
-  my?: ValueOf<IFullSpace>;
-  p?: ValueOf<IFullSpace>;
-  pt?: ValueOf<IFullSpace>;
-  pr?: ValueOf<IFullSpace>;
-  pb?: ValueOf<IFullSpace>;
-  pl?: ValueOf<IFullSpace>;
-  px?: ValueOf<IFullSpace>;
-  py?: ValueOf<IFullSpace>;
+  m?: ValueOf<IFullSpace> | number;
+  mt?: ValueOf<IFullSpace> | number;
+  mr?: ValueOf<IFullSpace> | number;
+  mb?: ValueOf<IFullSpace> | number;
+  ml?: ValueOf<IFullSpace> | number;
+  mx?: ValueOf<IFullSpace> | number;
+  my?: ValueOf<IFullSpace> | number;
+  p?: ValueOf<IFullSpace> | number;
+  pt?: ValueOf<IFullSpace> | number;
+  pr?: ValueOf<IFullSpace> | number;
+  pb?: ValueOf<IFullSpace> | number;
+  pl?: ValueOf<IFullSpace> | number;
+  px?: ValueOf<IFullSpace> | number;
+  py?: ValueOf<IFullSpace> | number;
 
   height?: ValueOf<IBoxDimension> | string | number;
   maxHeight?: ValueOf<IBoxDimension> | string | number;
@@ -72,77 +73,32 @@ export interface IBoxProps {
   maxWidth?: ValueOf<IBoxDimension> | string | number;
   minWidth?: ValueOf<IBoxDimension> | string | number;
 
-  border?: ValueOf<IBorderWidth>;
-  borderTop?: ValueOf<IBorderWidth>;
-  borderLeft?: ValueOf<IBorderWidth>;
-  borderRight?: ValueOf<IBorderWidth>;
-  borderBottom?: ValueOf<IBorderWidth>;
+  border?: ValueOf<IBorderWidth> | number;
+  borderTop?: ValueOf<IBorderWidth> | number;
+  borderLeft?: ValueOf<IBorderWidth> | number;
+  borderRight?: ValueOf<IBorderWidth> | number;
+  borderBottom?: ValueOf<IBorderWidth> | number;
   borderColor?: string;
-  radius?: ValueOf<IBorderRadius> | string;
+  radius?: ValueOf<IBorderRadius> | number;
 
-  cursor?:
-    | 'auto'
-    | 'default'
-    | 'none'
-    | 'context-menu'
-    | 'help'
-    | 'pointer'
-    | 'progress'
-    | 'wait'
-    | 'cell'
-    | 'crosshair'
-    | 'text'
-    | 'vertical-text'
-    | 'alias'
-    | 'copy'
-    | 'move'
-    | 'no-drop'
-    | 'not-allowed'
-    | 'all-scroll'
-    | 'zoom-in'
-    | 'zoom-out'
-    | 'grab'
-    | 'grabbing';
+  cursor?: ICSSProps['cursor'];
 
-  display?:
-    | 'inline'
-    | 'block'
-    | 'contents'
-    | 'flex'
-    | 'grid'
-    | 'inline-block'
-    | 'inline-flex'
-    | 'inline-grid'
-    | 'inline-table'
-    | 'list-item'
-    | 'run-in'
-    | 'table'
-    | 'table-caption'
-    | 'table-column-group'
-    | 'table-header-group'
-    | 'table-footer-group'
-    | 'table-row-group'
-    | 'table-cell'
-    | 'table-column'
-    | 'table-row'
-    | 'none'
-    | 'initial'
-    | 'inherit';
-  flex?: string | number;
+  display?: ICSSProps['display'];
+  flex?: ICSSProps['flex'];
   shadow?: ValueOf<IBoxShadow>;
-  opacity?: number;
+  opacity?: ICSSProps['opacity'];
 
-  overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowX?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
+  overflow?: ICSSProps['overflow'];
+  overflowX?: ICSSProps['overflow'];
+  overflowY?: ICSSProps['overflow'];
 
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  position?: ICSSProps['position'];
+  top?: string | number;
+  bottom?: string | number;
+  left?: string | number;
+  right?: string | number;
 
-  z?: number;
+  z?: ICSSProps['z'];
 }
 
 export const Box = styled<IBoxProps, 'div'>('div')(

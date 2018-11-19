@@ -1,15 +1,13 @@
 import { Box, IBoxProps } from './Box';
-import { ILetterSpacing, ILineHeight, ValueOf } from './types';
+import { ICSSProps, ILetterSpacing, ILineHeight, ValueOf } from './types';
 import { casing, decoration, decorationColor, fontStyle, letterSpacing, lineHeight, styled } from './utils';
 
-type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
-
 export interface ITextProps extends IBoxProps {
-  tracking?: ValueOf<ILetterSpacing>;
-  leading?: ValueOf<ILineHeight>;
+  tracking?: ValueOf<ILetterSpacing> | ICSSProps['letterSpacing'];
+  leading?: ValueOf<ILineHeight> | ICSSProps['lineHeight'];
   // TODO customizae to use lodash from more more options like snakecase
-  casing?: 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial' | 'inherit';
-  decoration?: TextDecoration | TextDecoration[];
+  casing?: ICSSProps['textTransform'];
+  decoration?: ICSSProps['textDecoration'] | Array<ICSSProps['textDecoration']>;
   decorationColor?: string;
   italic?: boolean;
 }

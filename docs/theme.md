@@ -20,7 +20,7 @@ note that the only one of these properties that should every be changed by an en
 
 ```typescript
 IThemeInterface<TSections extends string = ''> extends ISectionTheme<TComponents> {
-  base: ILayout;
+  base: IBase;
 
   /*
    Extended from ISectionTheme these will be globals used throughout the app
@@ -70,20 +70,9 @@ export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 export type BoxShadow = 'sm' | 'md' | 'lg';
 export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
-export type Space =
-  | 'none'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | '6xl';
+export type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
-export interface ILayout {
+export interface IBase {
   textSize: { [key in FontSize]?: number | string }; // px
 
   weight: { [key in FontWeight]?: number };

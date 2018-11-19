@@ -2,14 +2,14 @@ import * as React from 'react';
 
 import { borderRadius, height, opacity, styled, width } from './utils';
 
-import { IBorderRadius, ValueOf } from './types';
+import { IBorderRadius, ICSSProps, ValueOf } from './types';
 
 export interface IImageProps {
   src: string;
   label?: string;
-  radius?: ValueOf<IBorderRadius>;
+  radius?: ValueOf<IBorderRadius> | number;
   hidden?: boolean;
-  opacity?: number;
+  opacity?: ICSSProps['opacity'];
   responsive?: boolean;
   height?: string;
   width?: string;
