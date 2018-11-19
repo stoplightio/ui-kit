@@ -60,6 +60,7 @@ export const light = {
   },
 
   scrollbars: {
+    thumb: 'black',
     thumbRadius: '5px',
   },
 };
