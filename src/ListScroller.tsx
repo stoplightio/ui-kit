@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List, ListRowProps, ListRowRenderer } from 'react-virtualized';
+import { Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
 
 import { Box, IBoxProps } from './Box';
 
@@ -10,13 +10,14 @@ export interface IListScrollerItemProps {
   key: string;
   index: number;
   value: any;
+  style: React.CSSProperties;
 }
 
 export interface IListScrollerProps extends IBoxProps {
   className?: string;
-  listHeight: number | (() => number);
+  listHeight: number;
   listWidth: number;
-  rowHeight: number;
+  rowHeight: number | ((params: Index) => number);
   scrollToIndex?: number;
   list: any[];
   renderRow: ({ key, index, value }: IListScrollerItemProps) => JSX.Element;
@@ -25,12 +26,12 @@ export interface IListScrollerProps extends IBoxProps {
 const ListView = (props: IListScrollerProps) => {
   const { className, list, listWidth, listHeight, rowHeight, scrollToIndex, renderRow } = props;
 
-  const rowRenderer = ({ key, index }: ListRowProps) => renderRow({ key, index, value: list[index] });
+  const rowRenderer = ({ key, index, style }: ListRowProps) => renderRow({ key, index, value: list[index], style });
 
   return (
     <List
       className={className}
-      height={typeof listHeight === 'function' ? listHeight() : listHeight}
+      height={listHeight}
       rowHeight={rowHeight}
       rowCount={list.length}
       scrollToIndex={scrollToIndex}

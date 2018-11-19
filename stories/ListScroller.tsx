@@ -21,8 +21,19 @@ storiesOf('ListScroller', module)
   .add('with defaults', () => (
     <ListScroller
       {...listScrollerKnobs()}
-      renderRow={({ value, key }: IListScrollerItemProps) => (
-        <Box key={key} as="div">
+      renderRow={({ value, key, style }: IListScrollerItemProps) => (
+        <Box key={key} as="div" {...style as object}>
+          {value}
+        </Box>
+      )}
+    />
+  ))
+  .add('with random height', () => (
+    <ListScroller
+      {...listScrollerKnobs()}
+      rowHeight={({ index }) => 20 + index * 20}
+      renderRow={({ value, key, style }: IListScrollerItemProps) => (
+        <Box key={key} as="div" {...style as object}>
           {value}
         </Box>
       )}
