@@ -2,11 +2,18 @@ export const dark = {
   colors: {
     fg: 'white',
     bg: '#222',
+    border: '#f9f9f9',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
     success: '#4caf50',
     warning: '#ff9800',
+  },
+
+  shadows: {
+    sm: '0 0 2px rgba(255, 255, 255, .6)',
+    md: '0 0 5px rgba(255, 255, 25, .5)',
+    lg: '0 0 8px 2px rgba(255, 255, 255, .8)',
   },
 
   components: {
