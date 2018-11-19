@@ -36,6 +36,7 @@ TODO
     - Button
     - Portal
     - Menu
+    - Table
 
 ## Helpful Links
 

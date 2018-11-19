@@ -9,6 +9,7 @@ import './Input';
 import './KitchenSink';
 import './List';
 import './Menu';
+import './Table';
 import './Text';
 import './Textarea';
 import './Toggle';

@@ -63,7 +63,7 @@
     "@fortawesome/free-regular-svg-icons": "5.5.x",
     "@fortawesome/free-solid-svg-icons": "5.5.x",
     "@sambego/storybook-state": "1.x.x",
-    "@stoplight/scripts": "1.1.2",
+    "@stoplight/scripts": "1.2.3",
     "@types/react": "16.x.x",
     "@types/react-dom": "16.x.x",
     "enzyme": "^3.7.0",
