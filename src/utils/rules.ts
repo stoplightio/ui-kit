@@ -116,13 +116,6 @@ export const bgColor = styleColor({
   cssProperty: 'backgroundColor',
 });
 
-export const borderRadius = style({
-  prop: 'radius',
-  cssProperty: 'borderRadius',
-  key: 'base.radius',
-  transformValue: px,
-});
-
 export const boxShadow = style({
   prop: 'shadow',
   cssProperty: 'boxShadow',
@@ -147,9 +140,9 @@ const overflowDefault = style({
 
 export const overflow = compose(
   // @ts-ignore FIXME
+  overflowDefault,
   overflowX,
-  overflowY,
-  overflowDefault
+  overflowY
 );
 
 export const zIndex = style({
@@ -190,17 +183,27 @@ export const borderLeft = style({
   transformValue: getBorder,
 });
 
+export const borderRadius = style({
+  prop: 'radius',
+  cssProperty: 'borderRadius',
+  key: 'base.radius',
+  transformValue: px,
+});
+
 export const borderColor = styleColor({
   prop: 'borderColor',
 });
 
+// use compose to ensure proper css order
 export const borders = compose(
   // @ts-ignore FIXME
   border,
   borderTop,
   borderRight,
   borderBottom,
-  borderLeft
+  borderLeft,
+  borderColor,
+  borderRadius
 );
 
 // @ts-ignore FIXME
@@ -293,11 +296,17 @@ const getSpaceValue = scale => propVal => {
 // @ts-ignore FIXME
 export const space = props => {
   // test for spacing props, so m* and p*
-  const keys = Object.keys(props).filter(key => /^[mp][trblxy]?$/.test(key));
   // get space configuration from theme
   const scale = get(props.theme, 'base.space');
   // function to convert propVal -> cssVal
   const getStyle = getSpaceValue(scale);
+
+  // to ensure proper order
+  const keys = [
+    ...Object.keys(props).filter(key => /^[mp]$/.test(key)),
+    ...Object.keys(props).filter(key => /^[mp][xy]$/.test(key)),
+    ...Object.keys(props).filter(key => /^[mp][trbl]$/.test(key)),
+  ];
 
   // return all style functions for every direction
   return keys

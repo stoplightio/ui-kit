@@ -6,8 +6,6 @@ import { IBorderRadius, IBorderWidth, IFontSize, IFullSpace, ValueOf } from './t
 
 import {
   bgColor,
-  borderColor,
-  borderRadius,
   borders,
   bottom,
   css,
@@ -85,20 +83,23 @@ export const Icon = styled<IIconProps>((props: IIconProps) => {
     <FontAwesomeIcon className={className} icon={icon} spin={spin} pulse={pulse} flip={flip} rotation={rotation} />
   );
 })(
-  borderRadius,
-  borderColor,
+  // @ts-ignore
   bgColor,
-  borders,
-  bottom,
-  css,
-  fontSize,
-  left,
-  opacity,
-  position,
-  right,
-  space,
-  textAlign,
   textColor,
+  borders,
+
+  space,
+  fontSize,
+  textAlign,
+
+  position,
   top,
-  zIndex
+  right,
+  bottom,
+  left,
+
+  opacity,
+  zIndex,
+
+  css
 );

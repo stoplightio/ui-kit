@@ -1,7 +1,5 @@
 import {
   bgColor,
-  borderColor,
-  borderRadius,
   borders,
   bottom,
   boxShadow,
@@ -148,31 +146,35 @@ export interface IBoxProps {
 }
 
 export const Box = styled<IBoxProps, 'div'>('div')(
-  borderRadius,
-  borderColor,
+  // Order matters
+  // @ts-ignore
   bgColor,
+  textColor,
   borders,
-  bottom,
   boxShadow,
-  css,
-  cursor,
-  display,
-  flex,
+
   fontSize,
   fontWeight,
-  height,
+  textAlign,
+
+  space,
+  display,
+  flex,
+  cursor,
+  opacity,
+  zIndex,
+
+  position,
+  top,
+  right,
+  bottom,
   left,
+
+  height,
+  width,
   maxHeight,
   maxWidth,
   minHeight,
   minWidth,
-  opacity,
-  position,
-  right,
-  space,
-  textAlign,
-  textColor,
-  top,
-  width,
-  zIndex
+  css
 );
