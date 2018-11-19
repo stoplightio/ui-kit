@@ -1,32 +1,73 @@
 import * as React from 'react';
-import { ContextMenu as ReactContextMenu, MenuItem as ReactMenuItem } from 'react-contextmenu';
+import {
+  ContextMenu as ReactContextMenu,
+  ContextMenuTrigger as ReactContextMenuTrigger,
+  MenuItem as ReactMenuItem,
+} from 'react-contextmenu';
 
 import { Box, IBoxProps } from './Box';
+import { Break } from './Break';
 import { ITextProps, Text } from './Text';
 import { styled } from './utils';
 
 // TODO: expose SubMenu component
 
-interface IContextMenuProps extends IBoxProps {
+/**
+ * CONTEXT MENU
+ */
+
+interface IContextMenuProps extends IMenuProps {
   id: string;
-  data?: any;
+
+  renderTrigger: (props?: IContextMenuProps) => JSX.Element | string;
+}
+
+export const ContextMenu = (props: IContextMenuProps) => {
+  const { id, menuItems = [], renderTrigger, hideOnLeave, onHide, onShow } = props;
+
+  return (
+    <React.Fragment>
+      <ReactContextMenuTrigger id={id}>{renderTrigger && renderTrigger()}</ReactContextMenuTrigger>
+
+      <Menu
+        id={id}
+        menuItems={menuItems}
+        onHide={onHide}
+        onShow={onShow}
+        // onMouseLeave={onMouseLeave}
+        hideOnLeave={hideOnLeave}
+      />
+    </React.Fragment>
+  );
+};
+
+/**
+ * MENU
+ */
+
+interface IMenuProps extends IBoxProps {
+  id: string;
+  className?: string;
+
+  menuItems?: IMenuItemProps[];
   hideOnLeave?: boolean;
   onHide?: (event: any) => void;
-  onMouseLeave?: (event: React.MouseEvent<HTMLElement>, data: Object, target: HTMLElement) => void;
+  onMouseLeave?: (event: React.MouseEvent<HTMLElement>, data: Object, target: HTMLElement) => void | Function;
   onShow?: (event: any) => void;
 }
 
-interface IMenuItemProps extends ITextProps {
-  attributes?: React.HTMLAttributes<HTMLDivElement>;
-  data?: Object;
-  disabled?: boolean;
-  divider?: boolean;
-  preventClose?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement>, data: Object, target: HTMLElement) => void;
-}
+export const Menu = styled<IMenuProps, 'div'>(Box as any).attrs({
+  as: () => (props: IMenuProps) => {
+    const { menuItems = [], ...rest } = props;
 
-export const ContextMenu = styled<IContextMenuProps, 'div'>(Box as any).attrs({
-  as: () => ReactContextMenu,
+    return (
+      <ReactContextMenu {...rest}>
+        {menuItems.map((item: IMenuItemProps) => {
+          return <MenuItem {...item} {...item.attributes} />;
+        })}
+      </ReactContextMenu>
+    );
+  },
   cursor: 'default',
   css: {
     ':focus': {
@@ -35,22 +76,50 @@ export const ContextMenu = styled<IContextMenuProps, 'div'>(Box as any).attrs({
   },
 })``;
 
-ContextMenu.defaultProps = {
-  bg: 'contextMenu.bg',
+Menu.defaultProps = {
   radius: 'md',
   border: 'xs',
-  borderColor: 'contextMenu.borderColor',
+  fg: 'contextMenu.fg',
+  bg: 'contextMenu.bg',
+  borderColor: 'contextMenu.border',
 };
 
+/**
+ * MENUITEM
+ */
+
+interface IMenuItemProps extends ITextProps {
+  className?: string;
+  data?: Object;
+  title?: string;
+  divider?: boolean;
+  disabled?: boolean;
+  preventClose?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement>, data: Object, target: HTMLElement) => void;
+
+  attributes?: ITextProps;
+}
+
 export const MenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs({
-  as: () => ({ className, ...rest }: IMenuItemProps) => (
-    <ReactMenuItem
-      attributes={{
-        className,
-      }}
-      {...rest}
-    />
-  ),
+  as: () => (props: IMenuItemProps) => {
+    const { className, title, divider, disabled, onClick, preventClose } = props;
+
+    return (
+      <ReactMenuItem
+        attributes={{
+          className,
+        }}
+        preventClose={preventClose}
+        disabled={disabled}
+        onClick={onClick}
+      >
+        {title && <Text>{title}</Text>}
+        {divider && <Break thickness={0} />}
+      </ReactMenuItem>
+    );
+  },
+  px: 'lg',
+  py: 'md',
   css: {
     ':hover': {
       background: 'dodgerblue',
@@ -60,19 +129,25 @@ export const MenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs({
       outline: '0 none',
     },
   },
-  borderBottom: ({ divider }: IMenuItemProps) => (divider ? 'xs' : 'none'),
-  borderColor: ({ divider, borderColor }: IMenuItemProps) => (divider && borderColor) || 'contextMenu.borderColor',
 })(
+  // @ts-ignore
+  ({ onClick }: IMenuItemProps) =>
+    onClick && {
+      cursor: 'pointer',
+    },
   // @ts-ignore
   ({ divider }: IMenuItemProps) =>
     divider && {
-      height: 0,
-      margin: '3px 0',
-      padding: 0,
+      ':hover': {
+        background: 'inherit',
+        color: 'inherit',
+      },
     },
+  // @ts-ignore
   ({ disabled }: IMenuItemProps) =>
     disabled && {
       opacity: 0.6,
+      cursor: 'not-allowed',
 
       ':hover': {
         background: 'inherit',
@@ -80,10 +155,3 @@ export const MenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs({
       },
     }
 );
-
-MenuItem.defaultProps = {
-  px: 'lg',
-  py: 'md',
-};
-
-export { ContextMenuTrigger } from 'react-contextmenu';
