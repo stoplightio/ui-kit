@@ -20,6 +20,7 @@ export const checkboxKnobs = (tabName = 'Checkbox') => {
 storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Checkbox id="1" {...checkboxKnobs()} />)
+  .add('controlled set', () => <Checkbox {...checkboxKnobs()} checked={true} />)
   .addDecorator(StateDecorator(store))
   .add('controlled', () => (
     <Checkbox
@@ -30,5 +31,4 @@ storiesOf('Checkbox', module)
         store.set({ checked });
       }}
     />
-  ))
-  .add('controlled set', () => <Checkbox {...checkboxKnobs()} checked={true} />);
+  ));

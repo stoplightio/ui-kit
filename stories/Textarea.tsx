@@ -57,6 +57,7 @@ storiesOf('Textarea', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Textarea {...textareaKnobs()} {...textKnobs()} {...boxKnobs()} />)
   .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} {...textKnobs()} {...boxKnobs()} autosize />)
+  .add('controlled set', () => <Textarea {...textareaKnobs()} {...textKnobs()} {...boxKnobs()} value="not-editable" />)
   .addDecorator(StateDecorator(store))
   .add('controlled', () => (
     <Textarea
@@ -66,7 +67,4 @@ storiesOf('Textarea', module)
       value={store.get('value')}
       onChange={(value: any) => store.set({ value })}
     />
-  ))
-  .add('controlled set', () => (
-    <Textarea {...textareaKnobs()} {...textKnobs()} {...boxKnobs()} value="Should not be update-able" />
   ));

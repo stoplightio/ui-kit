@@ -42,6 +42,7 @@ storiesOf('Input', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} />)
   .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} {...boxKnobs()} autosize />)
+  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} value="not editable" />)
   .addDecorator(StateDecorator(store))
   .add('controlled store', () => (
     <Input
@@ -51,5 +52,4 @@ storiesOf('Input', module)
       value={store.get('value')}
       onChange={(value: any) => store.set({ value })}
     />
-  ))
-  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} value="someText" />);
+  ));
