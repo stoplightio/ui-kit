@@ -116,7 +116,7 @@ export const zIndex = style({
 });
 
 // @ts-ignore FIXME
-const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
+export const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
 
 export const border = style({
   prop: 'border',

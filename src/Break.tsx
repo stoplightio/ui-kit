@@ -1,22 +1,22 @@
 import { style } from 'styled-system';
 import { Box, IBoxProps } from './Box';
-import { styled } from './utils';
+import { getBorder, styled } from './utils';
 
 export const thickness = style({
   prop: 'thickness',
-  cssProperty: 'border-width',
-  transformValue: (value: number | string) => `${value}px`,
+  cssProperty: 'borderTop',
+  transformValue: getBorder,
 });
 
 export interface IBreakProps extends IBoxProps {
   thickness?: number;
 }
 
-export const Break = styled<IBreakProps, 'hr'>(Box as any).attrs({
-  borderStyle: 'solid',
-})(thickness);
+export const Break = styled<IBreakProps, 'hr'>(Box as any)(thickness);
 
 Break.defaultProps = {
   as: 'hr',
   thickness: 1,
+  m: 'none',
+  borderColor: 'break.border',
 };
