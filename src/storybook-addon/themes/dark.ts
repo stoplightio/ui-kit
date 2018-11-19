@@ -98,6 +98,6 @@ export const dark = {
 
   scrollbars: {
     thumb: '#f9f9f9',
-    borderRadius: '5px',
+    thumbRadius: '5px',
   },
 };
