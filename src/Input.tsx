@@ -1,3 +1,4 @@
+import noop = require('lodash/noop');
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 
@@ -8,38 +9,38 @@ export interface IInputProps extends ITextProps {
   type?: string;
   autosize?: boolean;
   value?: string | number;
-  onChange?: (value: string | number) => void;
+  onChange?: (value?: string | number) => void;
 }
 
 export interface IInputState {
   value?: string | number;
 }
 
-export class BasicInput extends React.Component<IInputProps, IInputState> {
-  constructor(props: IInputProps) {
-    super(props);
-    this.state = { value: this.props.value };
-  }
+export const BasicInput = (props: IInputProps) => {
+  const { autosize, className, onChange = noop, ...rest } = props;
 
-  private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ value: event.target.value });
+  const [value, setValue] = React.useState(props.value || '');
+  const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-    if (this.props.onChange) {
-      this.props.onChange(event.target.value);
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    onChange(event.target.value);
   };
 
-  public render() {
-    const { autosize, className, ...rest } = this.props;
-    const value = (this.props.hasOwnProperty('value') ? this.props.value : this.state.value) || '';
-
-    if (autosize) {
-      return <AutosizeInput inputClassName={className} {...rest} value={value} onChange={this.onChange} />;
-    }
-
-    return React.createElement('input', { className, ...rest, value, onChange: this.onChange });
+  if (autosize) {
+    return (
+      <AutosizeInput
+        inputClassName={className}
+        placeholderIsMinWidth={true}
+        {...rest}
+        value={internalValue}
+        onChange={handleChange}
+      />
+    );
   }
-}
+
+  return React.createElement('input', { className, ...rest, value: internalValue, onChange: handleChange });
+};
 
 export const Input = styled<IInputProps, 'input'>(Text as any)(
   {

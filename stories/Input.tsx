@@ -3,7 +3,7 @@ import * as React from 'react';
 // @ts-ignore
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
-import { boolean, select } from '@storybook/addon-knobs/react';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
@@ -21,6 +21,7 @@ export const inputKnobs = (tabName = 'Input'): any => {
     {
       disabled: boolean('disabled', false, tabName),
       type: select('type', InlineInputType, 'text', tabName),
+      placeholder: text('placeholder', 'placeholder', tabName),
     },
     val => !val
   );
@@ -31,6 +32,7 @@ export const autosizeInputKnobs = (tabName = 'Input'): any => {
     {
       disabled: boolean('disabled', false, tabName),
       type: select('type', AutosizeInputType, 'text', tabName),
+      placeholder: text('placeholder', 'placeholder', tabName),
     },
     val => !val
   );
@@ -39,8 +41,9 @@ export const autosizeInputKnobs = (tabName = 'Input'): any => {
 storiesOf('Input', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} />)
+  .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} {...boxKnobs()} autosize />)
   .addDecorator(StateDecorator(store))
-  .add('with defaults', () => (
+  .add('controlled store', () => (
     <Input
       {...inputKnobs()}
       {...textKnobs()}
@@ -49,13 +52,4 @@ storiesOf('Input', module)
       onChange={(value: any) => store.set({ value })}
     />
   ))
-  .add('autosize', () => (
-    <Input
-      {...autosizeInputKnobs()}
-      {...textKnobs()}
-      {...boxKnobs()}
-      autosize
-      value={store.get('value')}
-      onChange={(value: any) => store.set({ value })}
-    />
-  ));
+  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} value="someText" />);
