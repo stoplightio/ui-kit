@@ -14,6 +14,7 @@ export interface IListScrollerItemProps {
 }
 
 export interface IListScrollerProps extends IBoxProps {
+  as?: () => any;
   className?: string;
   listHeight: number;
   listWidth: number;
