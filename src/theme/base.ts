@@ -57,13 +57,6 @@ export const base: ILayout = {
     full: 9999,
   },
 
-  // TODO is this really a config or can this change like with colors
-  shadow: {
-    sm: '0 0 2px rgba(0, 0, 0, .6)',
-    md: '0 0 5px rgba(0, 0, 0, .5)',
-    lg: '0 0 8px rgba(0, 0, 0, .4)',
-  },
-
   space: {
     none: '0px',
     xs: 2,

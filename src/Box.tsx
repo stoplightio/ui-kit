@@ -31,10 +31,10 @@ import {
   IBorderRadius,
   IBorderWidth,
   IBoxDimension,
-  IBoxShadow,
   IFontSize,
   IFontWeight,
   IFullSpace,
+  IShadows,
   ValueOf,
 } from './types';
 
@@ -129,7 +129,7 @@ export interface IBoxProps {
     | 'initial'
     | 'inherit';
   flex?: string | number;
-  shadow?: ValueOf<IBoxShadow>;
+  shadow?: IShadows;
   opacity?: number;
 
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';

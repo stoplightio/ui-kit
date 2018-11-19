@@ -54,12 +54,6 @@ export interface IBorderWidth {
   lg: '@lg';
 }
 
-export interface IBoxShadow {
-  sm: '@sm';
-  md: '@md';
-  lg: '@lg';
-}
-
 export interface IBoxDimension {
   auto: '@auto';
   none: '@none';
@@ -94,6 +88,7 @@ export interface IFullSpace extends ISpace {
   '-5xl': '-@5xl';
   '-6xl': '-@6xl';
 }
+export type BoxShadow = keyof IShadows;
 
 export interface IThemeInterface<
   TSections extends string = '',
@@ -113,6 +108,7 @@ export interface IThemeInterface<
 
 export interface ISectionTheme<TComponents extends Components = Components> {
   colors?: Partial<IColors>;
+  shadows?: Partial<IShadows>;
 
   components?: { [component in TComponents]?: Partial<IColors> };
 }
@@ -130,8 +126,6 @@ export interface ILayout {
 
   border: { [key in keyof IBorderWidth]?: number | string }; // px
 
-  shadow: { [key in keyof IBoxShadow]?: string };
-
   space: { [key in keyof ISpace]?: number | string }; // px
 
   height?: { [key in keyof IBoxDimension]?: number | string };
@@ -147,6 +141,14 @@ export interface IColors {
   border: string;
 
   [color: string]: string | Partial<IColors>;
+}
+
+export interface IShadows {
+  sm: string;
+  md: string;
+  lg: string;
+
+  [color: string]: string | Partial<IShadows>;
 }
 
 // components created in this repo

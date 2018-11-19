@@ -119,7 +119,7 @@ export const bgColor = styleColor({
 export const boxShadow = style({
   prop: 'shadow',
   cssProperty: 'boxShadow',
-  key: 'base.shadow',
+  key: 'shadows',
 });
 
 export const cursor = style({
