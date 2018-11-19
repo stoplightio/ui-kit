@@ -1,3 +1,4 @@
+import noop = require('lodash/noop');
 import * as React from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
@@ -13,35 +14,25 @@ export interface ITextareaProps extends ITextProps {
   onChange?: (value: string) => void;
 }
 
-export interface ITextareaState {
-  value?: string;
-}
+export const BasicTextArea = (props: ITextareaProps) => {
+  const { autosize, minRows, maxRows, onChange = noop, ...rest } = props;
 
-export class BasicTextArea extends React.Component<ITextareaProps, ITextareaState> {
-  constructor(props: ITextareaProps) {
-    super(props);
-    this.state = { value: this.props.value };
-  }
+  const [value, setValue] = React.useState(props.value || '');
+  const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-  private onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ value: event.target.value });
-
-    if (this.props.onChange) {
-      this.props.onChange(event.target.value);
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+    onChange(event.target.value);
   };
 
-  public render() {
-    const { autosize, minRows, maxRows, ...rest } = this.props;
-    const value = (this.props.hasOwnProperty('value') ? this.props.value : this.state.value) || '';
-
-    if (autosize) {
-      return <AutosizeTextarea {...rest} minRows={minRows} maxRows={maxRows} value={value} onChange={this.onChange} />;
-    }
-
-    return React.createElement('textarea', { ...rest, value, onChange: this.onChange });
+  if (autosize) {
+    return (
+      <AutosizeTextarea {...rest} minRows={minRows} maxRows={maxRows} value={internalValue} onChange={handleChange} />
+    );
   }
-}
+
+  return React.createElement('textarea', { ...rest, value: internalValue, onChange: handleChange });
+};
 
 export const Textarea = styled<ITextareaProps>(Text as any)(
   {

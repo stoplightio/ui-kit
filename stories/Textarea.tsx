@@ -56,8 +56,9 @@ export const textareaAutosizeKnobs = (tabName = 'Textarea'): any => {
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Textarea {...textareaKnobs()} {...textKnobs()} {...boxKnobs()} />)
+  .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} {...textKnobs()} {...boxKnobs()} autosize />)
   .addDecorator(StateDecorator(store))
-  .add('with defaults', () => (
+  .add('controlled', () => (
     <Textarea
       {...textareaKnobs()}
       {...textKnobs()}
@@ -66,13 +67,6 @@ storiesOf('Textarea', module)
       onChange={(value: any) => store.set({ value })}
     />
   ))
-  .add('autosize', () => (
-    <Textarea
-      {...textareaAutosizeKnobs()}
-      {...textKnobs()}
-      {...boxKnobs()}
-      autosize
-      value={store.get('value')}
-      onChange={(value: any) => store.set({ value })}
-    />
+  .add('controlled set', () => (
+    <Textarea {...textareaKnobs()} {...textKnobs()} {...boxKnobs()} value="Should not be update-able" />
   ));
