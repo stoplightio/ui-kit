@@ -88,4 +88,9 @@ export const base: ILayout = {
     full: '100%',
     screen: '100vw',
   },
+
+  scrollbars: {
+    thumb: '#000',
+    thumbRadius: '5px',
+  },
 };

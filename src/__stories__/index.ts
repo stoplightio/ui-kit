@@ -12,6 +12,7 @@ import './Image';
 import './Input';
 import './KitchenSink';
 import './List';
+import './ListScroller';
 import './Menu';
 import './Table';
 import './Text';
