@@ -4,6 +4,7 @@
  */
 
 export * from './Box';
+export * from './Break';
 export * from './Button';
 export * from './ContextMenu';
 export * from './Flex';
