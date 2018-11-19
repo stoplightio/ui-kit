@@ -36,6 +36,7 @@ TODO
     - List
     - Portal
     - Text
+    - Table
 
 ## Helpful Links
 

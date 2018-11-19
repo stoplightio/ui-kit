@@ -85,7 +85,7 @@ export const borderRadius = style({
 export const boxShadow = style({
   prop: 'shadow',
   cssProperty: 'boxShadow',
-  key: 'base.shadow',
+  key: 'shadows',
 });
 
 export const cursor = style({

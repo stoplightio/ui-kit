@@ -10,6 +10,7 @@ export * from './Flex';
 export * from './Heading';
 export * from './Icon';
 export * from './List';
+export * from './Table';
 export * from './Text';
 export * from './ThemeSection';
 export * from './types';
