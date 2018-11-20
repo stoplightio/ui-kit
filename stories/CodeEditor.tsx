@@ -12,7 +12,7 @@ const store = new Store({
   value: 'stoplight.uiKit();',
 });
 
-export const codeEditorKnobs = (tabName = 'CodeEditor') => {
+export const codeEditorKnobs = (tabName = 'Code Editor') => {
   return {
     language: text('language', 'js', tabName),
     style: object('style', { fontSize: '12px' }, tabName),
@@ -22,7 +22,7 @@ export const codeEditorKnobs = (tabName = 'CodeEditor') => {
 storiesOf('CodeEditor', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <CodeEditor {...codeEditorKnobs()} defaultValue="test();" onChange={action('onChange')} />
+    <CodeEditor {...codeEditorKnobs()} value="const defaultValue = stoplight.io();" onChange={action('onChange')} />
   ))
   .addDecorator(StateDecorator(store))
   .add('with store', () => (

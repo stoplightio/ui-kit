@@ -25,7 +25,7 @@ export const dark = {
 
     codeEditor: {
       bg: '#222',
-      border: 'transparent',
+      border: '#f9f9f9',
 
       syntax: {
         primary: '#e91e63',
