@@ -11,6 +11,10 @@ import { ITextProps, Text } from './Text';
 import { styled } from './utils';
 
 // TODO: expose SubMenu component
+// TODO: allow custom renderMenu
+// TODO: allow custom renderMenuItem?
+// TODO: add icon support to menu items
+// TODO: Context Menu should probably leverage/use MENU
 
 /**
  * CONTEXT MENU

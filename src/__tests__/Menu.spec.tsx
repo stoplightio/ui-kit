@@ -4,20 +4,29 @@
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { Icon, IThemeInterface, Menu, MenuItem } from '../';
+
+import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
+
+import { Icon, IconLibrary, IThemeInterface, Menu, MenuItem } from '../index';
 import { ThemeProvider } from '../utils';
 
 describe('Menu', () => {
-  it('renders children', () => {
+  it('renders items', () => {
     const children = <span>test</span>;
 
-    expect(shallow(<Menu>{children}</Menu>)).toContainReact(children);
+    const wrapper = shallow(<Menu menuItems={[{ title: children }, { title: 'second elem' }]} />);
+
+    expect(wrapper.children().length).toBe(2);
   });
 });
 
 describe('MenuItem', () => {
+  // TODO fixme fails because we need to register the icons
   it('renders proper Icon', () => {
     const theme = { base: {} } as IThemeInterface;
+    const { fas } = _solidIcons;
+
+    IconLibrary.add(fas);
 
     const wrapper = mount(
       <ThemeProvider theme={theme}>
@@ -50,17 +59,17 @@ describe('MenuItem', () => {
 
   it('renders subTitle', () => {
     const subText = <h4>sub text</h4>;
-    const wrapper = mount(<MenuItem title="text" subTitle={subText} />);
+    const wrapper = mount(<MenuItem title="text" subtitle={subText} />);
 
     expect(wrapper).toContainReact(subText);
     wrapper.unmount();
   });
 
-  it('does not render subTitle only if title is missing', () => {
+  it('does render subTitle only if title is missing', () => {
     const subText = <h4>test</h4>;
-    const wrapper = mount(<MenuItem subTitle={subText} />);
+    const wrapper = mount(<MenuItem subtitle={subText} />);
 
-    expect(wrapper).not.toContainReact(subText);
+    expect(wrapper).toContainReact(subText);
     wrapper.unmount();
   });
 });
