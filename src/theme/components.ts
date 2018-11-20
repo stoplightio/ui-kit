@@ -39,5 +39,16 @@ export const components: ISectionTheme = {
         border: 'transparent',
       },
     },
+
+    contextMenu: {
+      bg: 'white',
+      border: 'xs',
+      borderColor: 'lightgrey',
+
+      hover: {
+        bg: 'dodgerblue',
+        color: 'white',
+      },
+    },
   },
 };
