@@ -57,5 +57,16 @@ export const components: ISectionTheme = {
         regex: '#ff9800',
       },
     },
+
+    contextMenu: {
+      bg: 'white',
+      border: 'xs',
+      borderColor: 'lightgrey',
+
+      hover: {
+        bg: 'dodgerblue',
+        color: 'white',
+      },
+    },
   },
 };

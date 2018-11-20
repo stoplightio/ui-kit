@@ -29,13 +29,14 @@ TODO
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
     - Box
+    - Break
+    - Button
     - Code Editor
     - Flex
-    - Text
     - Heading
     - List
-    - Button
     - Portal
+    - Text
     - Table
 
 ## Helpful Links

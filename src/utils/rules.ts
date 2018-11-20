@@ -116,7 +116,7 @@ export const zIndex = style({
 });
 
 // @ts-ignore FIXME
-const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
+export const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
 
 export const border = style({
   prop: 'border',
@@ -150,6 +150,10 @@ export const borderLeft = style({
 
 export const borderColor = styleColor({
   prop: 'borderColor',
+});
+
+export const borderStyle = style({
+  prop: 'borderStyle',
 });
 
 export const borders = compose(

@@ -6,6 +6,8 @@ export const dark = {
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
+    success: '#4caf50',
+    warning: '#ff9800',
   },
 
   shadows: {
@@ -35,6 +37,16 @@ export const dark = {
         variable: '#FFFFC7',
         operator: '#795548',
         regex: '#ff9800',
+      },
+    },
+
+    contextMenu: {
+      bg: 'black',
+      borderColor: 'rgba(255, 255, 255, 0.5)',
+
+      hover: {
+        bg: 'dodgerblue',
+        color: 'white',
       },
     },
   },
