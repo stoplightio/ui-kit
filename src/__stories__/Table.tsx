@@ -3,7 +3,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Table, TableCell, TableHeadCell, TableRow } from '../src/';
+import { Table, TableCell, TableHeadCell, TableRow } from '../Table';
 
 storiesOf('Table', module)
   .addDecorator(withKnobs)
