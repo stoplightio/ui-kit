@@ -23,7 +23,7 @@ interface IContextMenuProps extends IMenuProps {
 }
 
 export const ContextMenu = (props: IContextMenuProps) => {
-  const { id, menuItems = [], renderTrigger, hideOnLeave, onHide, onShow } = props;
+  const { id, menuItems = [], renderTrigger, onMouseLeave, hideOnLeave, onHide, onShow } = props;
 
   return (
     <React.Fragment>
@@ -34,7 +34,7 @@ export const ContextMenu = (props: IContextMenuProps) => {
         menuItems={menuItems}
         onHide={onHide}
         onShow={onShow}
-        // onMouseLeave={onMouseLeave}
+        onMouseLeave={onMouseLeave}
         hideOnLeave={hideOnLeave}
       />
     </React.Fragment>
@@ -52,7 +52,7 @@ interface IMenuProps extends IBoxProps {
   menuItems?: IMenuItemProps[];
   hideOnLeave?: boolean;
   onHide?: (event: any) => void;
-  onMouseLeave?: (event: React.MouseEvent<HTMLElement>, data: Object, target: HTMLElement) => void | Function;
+  onMouseLeave?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onShow?: (event: any) => void;
 }
 
