@@ -27,6 +27,7 @@ describe('CodeEditor', () => {
 
     wrapper.find(Editor).prop('onValueChange')(newCode);
     expect(onChange).toHaveBeenCalledWith(newCode);
+    wrapper.unmount();
   });
 
   it('update value on code change', () => {
@@ -39,28 +40,13 @@ describe('CodeEditor', () => {
     wrapper.unmount();
   });
 
-  it('supports default value ', () => {
-    const defaultCode = 'abcdef';
-
-    useStateSpy.mockReset();
-    useStateSpy.mockReturnValue([defaultCode, () => null]);
-    const wrapper = mount(<CodeEditor value={defaultCode} onChange={() => null} language="js" />);
-
-    expect(useStateSpy).toHaveBeenCalledWith(defaultCode);
-    expect(wrapper.find(Editor)).toHaveProp('value', defaultCode);
-    wrapper.unmount();
-  });
-
   it('supports controlled mode', () => {
-    const code = 'abcdef';
     const newCode = 'foobar';
-
-    const wrapper = mount(<CodeEditor onChange={() => null} language="js" value={code} />);
+    const wrapper = mount(<CodeEditor onChange={() => null} language="js" value="test" />);
 
     wrapper.setProps({ value: newCode });
 
     expect(wrapper.find(Editor)).toHaveProp('value', newCode);
-
     wrapper.unmount();
   });
 });

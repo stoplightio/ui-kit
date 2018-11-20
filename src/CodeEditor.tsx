@@ -5,7 +5,7 @@ import * as React from 'react';
 import Editor from 'react-simple-code-editor';
 import styled from 'styled-components';
 import { themeGet } from './utils';
-import { useControllableValue } from './utils/controllableEffect';
+import { useControllableValue } from './utils/controllableValue';
 
 export interface ICodeEditorProps {
   value?: string;
