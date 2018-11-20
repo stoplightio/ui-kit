@@ -141,11 +141,14 @@ export interface IBoxProps {
 }
 
 export const Box = styled<IBoxProps, 'div'>('div')(
+  // @ts-ignore
+  borders,
+  bgColor,
+  textColor,
   borderRadius,
   borderColor,
   borderStyle,
-  bgColor,
-  borders,
+  borderColor,
   bottom,
   boxShadow,
   css,
@@ -165,7 +168,6 @@ export const Box = styled<IBoxProps, 'div'>('div')(
   right,
   space,
   textAlign,
-  textColor,
   top,
   width,
   zIndex

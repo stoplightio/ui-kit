@@ -6,6 +6,7 @@
 export * from './Box';
 export * from './Break';
 export * from './Button';
+export * from './ContextMenu';
 export * from './Flex';
 export * from './Heading';
 export * from './Icon';
