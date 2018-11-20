@@ -1,3 +1,5 @@
+import { BorderStyleProperty } from 'csstype';
+
 import {
   bgColor,
   borders,
@@ -79,6 +81,7 @@ export interface IBoxProps {
   borderBottom?: ValueOf<IBorderWidth>;
   borderColor?: string;
   radius?: ValueOf<IBorderRadius> | string;
+  borderStyle?: BorderStyleProperty;
 
   cursor?:
     | 'auto'

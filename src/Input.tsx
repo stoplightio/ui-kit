@@ -1,3 +1,4 @@
+import noop = require('lodash/noop');
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 
@@ -7,16 +8,41 @@ import { styled } from './utils';
 export interface IInputProps extends ITextProps {
   type?: string;
   autosize?: boolean;
-  as?: any;
+  value?: string | number;
+  onChange?: (value?: string | number) => void;
 }
 
-const StyledAutosizeInput = ({ autosize, className, ...rest }: IInputProps) => (
-  <AutosizeInput inputClassName={className} {...rest} />
-);
+export interface IInputState {
+  value?: string | number;
+}
 
-export const Input = styled<IInputProps>(Text as any).attrs({
-  as: ({ autosize }: IInputProps) => (autosize ? StyledAutosizeInput : 'input'),
-})(
+export const BasicInput = (props: IInputProps) => {
+  const { autosize, className, onChange = noop, ...rest } = props;
+
+  const [value, setValue] = React.useState(props.value || '');
+  const internalValue = props.hasOwnProperty('value') ? props.value : value;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    onChange(event.target.value);
+  };
+
+  if (autosize) {
+    return (
+      <AutosizeInput
+        inputClassName={className}
+        placeholderIsMinWidth={true}
+        {...rest}
+        value={internalValue}
+        onChange={handleChange}
+      />
+    );
+  }
+
+  return React.createElement('input', { className, ...rest, value: internalValue, onChange: handleChange });
+};
+
+export const Input = styled<IInputProps, 'input'>(Text as any)(
   {
     // @ts-ignore
     ':focus': {

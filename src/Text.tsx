@@ -14,15 +14,7 @@ export interface ITextProps extends IBoxProps {
   italic?: boolean;
 }
 
-export const Text = styled<ITextProps, 'p'>(Box as any)(
-  casing,
-  decoration,
-  decorationColor,
-  fontStyle,
-  lineHeight,
-  letterSpacing
-);
-
-Text.defaultProps = {
+export const Text = styled<ITextProps, 'p'>(Box as any).attrs({
   as: 'p',
-};
+  m: 'none',
+})(casing, decoration, decorationColor, fontStyle, lineHeight, letterSpacing);

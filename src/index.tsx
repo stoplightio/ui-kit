@@ -4,11 +4,14 @@
  */
 
 export * from './Box';
+export * from './Break';
 export * from './Button';
+export * from './ContextMenu';
 export * from './Flex';
 export * from './Heading';
 export * from './Icon';
 export * from './List';
+export * from './Menu';
 export * from './Table';
 export * from './Text';
 export * from './ThemeSection';

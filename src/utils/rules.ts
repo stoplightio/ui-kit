@@ -151,7 +151,7 @@ export const zIndex = style({
 });
 
 // @ts-ignore FIXME
-const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
+export const getBorder = n => (num(n) && n > 0 ? n + 'px solid' : n);
 
 export const border = style({
   prop: 'border',
@@ -195,6 +195,10 @@ export const borderColor = styleColor({
 });
 
 // use compose to ensure proper css order
+export const borderStyle = style({
+  prop: 'borderStyle',
+});
+
 export const borders = compose(
   // @ts-ignore FIXME
   border,
@@ -203,6 +207,7 @@ export const borders = compose(
   borderBottom,
   borderLeft,
   borderColor,
+  borderStyle,
   borderRadius
 );
 
@@ -275,7 +280,7 @@ const getProperties = key => {
 };
 
 // @ts-ignore FIXME
-const getSpaceValue = scale => propVal => {
+const getSpaceValue = (scale = {}) => propVal => {
   let val = propVal;
   let isNegative;
 
@@ -286,7 +291,7 @@ const getSpaceValue = scale => propVal => {
     }
 
     // check the theme config for a value, or just use the prop
-    val = val.startsWith('@') ? scale[val.slice(1)] : val || val;
+    val = (val.startsWith('@') ? scale[val.slice(1)] : val) || val;
   }
 
   // if was negative string/add the '-' back
