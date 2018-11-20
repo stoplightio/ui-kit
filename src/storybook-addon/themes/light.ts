@@ -17,7 +17,9 @@ export const light = {
     },
 
     slateEditor: {
-      blockQuote: {},
+      blockQuote: {
+        shadow: '0 0 5px currentColor',
+      },
     },
   },
 
