@@ -13,6 +13,7 @@ import './Input';
 import './KitchenSink';
 import './List';
 import './Menu';
+import './SlateEditor/Link';
 import './Table';
 import './Text';
 import './Textarea';
