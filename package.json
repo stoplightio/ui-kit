@@ -53,6 +53,7 @@
     "@types/styled-components": "4.0.x",
     "@types/styled-system": "3.0.x",
     "lodash": "4.x.x",
+    "react-contextmenu": "2.10.x",
     "react-input-autosize": "2.2.x",
     "react-textarea-autosize": "7.1.0-1",
     "styled-components": "4.0.x",
@@ -99,5 +100,10 @@
   },
   "release": {
     "extends": "@stoplight/scripts/release"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
