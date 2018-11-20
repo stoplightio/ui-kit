@@ -5,7 +5,7 @@ import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Box } from '../src/Box';
+import { Box } from '../Box';
 import {
   BorderRadius,
   BorderWidth,

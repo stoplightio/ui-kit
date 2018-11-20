@@ -7,7 +7,7 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Input } from '../src/Input';
+import { Input } from '../Input';
 import { AutosizeInputType, InlineInputType } from './_utils';
 import { boxKnobs } from './Box';
 import { textKnobs } from './Text';

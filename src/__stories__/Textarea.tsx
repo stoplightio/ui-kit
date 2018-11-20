@@ -7,7 +7,7 @@ import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Textarea } from '../src/Textarea';
+import { Textarea } from '../Textarea';
 import { boxKnobs } from './Box';
 import { textKnobs } from './Text';
 

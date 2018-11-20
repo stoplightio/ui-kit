@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { action } from '@storybook/addon-actions';
-import { Menu } from '../src/';
+import { Menu } from '../Menu';
 
 storiesOf('Menu', module)
   .addDecorator(withKnobs)

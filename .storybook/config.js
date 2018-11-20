@@ -36,7 +36,7 @@ addDecorator(
 addDecorator(withThemes(themes));
 
 function loadStories() {
-  require('../stories');
+  require('../src/__stories__');
 }
 
 configure(loadStories, module);

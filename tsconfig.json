@@ -1,8 +1,5 @@
 {
   "extends": "./node_modules/@stoplight/scripts/tsconfig.json",
-  // MUST only include one element, otherwise build process into dist folder ends up with incorrect structure
-  "include": ["src"],
-  "compilerOptions": {
-    "outDir": "dist"
-  }
+  // target all ts files
+  "include": ["."]
 }
