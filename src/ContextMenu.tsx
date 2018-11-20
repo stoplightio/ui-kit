@@ -11,6 +11,10 @@ import { ITextProps, Text } from './Text';
 import { styled } from './utils';
 
 // TODO: expose SubMenu component
+// TODO: allow custom renderMenu
+// TODO: allow custom renderMenuItem?
+// TODO: add icon support to menu items
+// TODO: Context Menu should probably leverage/use MENU
 
 /**
  * CONTEXT MENU
@@ -56,14 +60,14 @@ interface IMenuProps extends IBoxProps {
   onShow?: (event: any) => void;
 }
 
-export const Menu = styled<IMenuProps, 'div'>(Box as any).attrs({
+const Menu = styled<IMenuProps, 'div'>(Box as any).attrs({
   as: () => (props: IMenuProps) => {
     const { menuItems = [], ...rest } = props;
 
     return (
       <ReactContextMenu {...rest}>
         {menuItems.map((item: IMenuItemProps) => {
-          return <MenuItem {...item} {...item.attributes} />;
+          return <ContextMenuItem {...item} {...item.attributes} />;
         })}
       </ReactContextMenu>
     );
@@ -100,7 +104,7 @@ interface IMenuItemProps extends ITextProps {
   attributes?: ITextProps;
 }
 
-export const MenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs({
+export const ContextMenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs({
   as: () => (props: IMenuItemProps) => {
     const { className, title, divider, disabled, onClick, preventClose } = props;
 
