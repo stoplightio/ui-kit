@@ -81,11 +81,11 @@ const Menu = styled<IMenuProps, 'div'>(Box as any).attrs({
 })``;
 
 Menu.defaultProps = {
-  radius: 'md',
-  border: 'xs',
-  fg: 'contextMenu.fg',
-  bg: 'contextMenu.bg',
-  borderColor: 'contextMenu.border',
+  radius: '@md',
+  border: '@xs',
+  fg: '@contextMenu.fg',
+  bg: '@contextMenu.bg',
+  borderColor: '@contextMenu.border',
 };
 
 /**
@@ -122,8 +122,8 @@ export const ContextMenuItem = styled<IMenuItemProps, 'div'>(Text as any).attrs(
       </ReactMenuItem>
     );
   },
-  px: 'lg',
-  py: 'md',
+  px: '@lg',
+  py: '@md',
   css: {
     ':hover': {
       background: 'dodgerblue',

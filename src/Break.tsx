@@ -17,6 +17,6 @@ export const Break = styled<IBreakProps, 'hr'>(Box as any)(thickness);
 Break.defaultProps = {
   as: 'hr',
   thickness: 1,
-  m: 'none',
-  borderColor: 'break.border',
+  m: '@none',
+  borderColor: '@break.border',
 };

@@ -148,8 +148,8 @@ export interface IBoxProps {
   z?: number;
 }
 
+// Order matters
 export const Box = styled<IBoxProps, 'div'>('div')(
-  // Order matters
   // @ts-ignore
   bgColor,
   textColor,

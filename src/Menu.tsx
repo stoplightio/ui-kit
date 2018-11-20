@@ -23,11 +23,11 @@ export const Menu = (props: IMenuProps) => {
 
   return (
     <Box
-      fg="menu.fg"
-      bg="menu.bg"
-      borderColor="menu.border"
-      border="xs"
-      radius="md"
+      fg="@menu.fg"
+      bg="@menu.bg"
+      borderColor="@menu.border"
+      border="@xs"
+      radius="@md"
       display="inline-block"
       {...attributes}
     >
@@ -61,20 +61,20 @@ export const MenuItem = (props: IMenuItemProps) => {
   return (
     <Flex
       items="center"
-      px="lg"
-      py="md"
-      text="md"
+      px="@lg"
+      py="@md"
+      text="@md"
       cursor={disabled ? 'not-allowed' : onClick ? 'pointer' : 'default'}
       opacity={disabled && 0.6}
       onClick={onClick}
       {...attributes}
     >
-      {icon && <Icon icon={icon} pr={(title || subtitle) && 'xl'} />}
+      {icon && <Icon icon={icon} pr={(title || subtitle) && '@xl'} />}
 
       {(title || subtitle) && (
         <span>
           {title && <Box>{title}</Box>}
-          {subtitle && <Box text="sm">{subtitle}</Box>}
+          {subtitle && <Box text="@sm">{subtitle}</Box>}
         </span>
       )}
     </Flex>

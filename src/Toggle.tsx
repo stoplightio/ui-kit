@@ -40,10 +40,10 @@ export const BasicToggle = (props: IToggleProps) => {
       <Flex
         as="span"
         display="block"
-        m="none"
-        p="none"
+        m="@none"
+        p="@none"
         radius="100px"
-        bg={isChecked ? 'toggle.checked.bg' : 'toggle.bg'}
+        bg={isChecked ? '@toggle.checked.bg' : '@toggle.bg'}
         cursor={disabled ? 'not-allowed' : 'pointer'}
         width={width || '40px'}
         height={height || '20px'}
@@ -56,7 +56,7 @@ export const BasicToggle = (props: IToggleProps) => {
       >
         <Icon
           icon="circle"
-          fg={isChecked ? 'toggle.checked.fg' : 'toggle.fg'}
+          fg={isChecked ? '@toggle.checked.fg' : '@toggle.fg'}
           css={{
             paddingLeft: isChecked ? '22px' : '4px',
             transition: 'padding .15s ease-in-out, color .25s ease-in-out',
