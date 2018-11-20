@@ -9,3 +9,5 @@ const { default: styled, keyframes, ThemeProvider } = styledComponents as styled
 export { keyframes, styled, ThemeProvider };
 
 export * from './rules';
+
+export { themeGet } from 'styled-system';

@@ -4,7 +4,7 @@ import 'prismjs/components/';
 import * as React from 'react';
 import Editor from 'react-simple-code-editor';
 import styled from 'styled-components';
-import { themeGet } from 'styled-system';
+import { themeGet } from './utils';
 
 export interface ICodeEditorProps {
   defaultValue?: string;
@@ -47,8 +47,8 @@ const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
 
 // @ts-ignore
 export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
-  background: ${themeGet('components.codeEditor.bg', '#fff')};
-  border: 1px solid ${themeGet('components.codeEditor.border', '#000')};
+  background: ${themeGet('components.codeEditor.bg')};
+  border: 1px solid ${themeGet('components.codeEditor.border')};
 
   textarea {
     &:focus {
@@ -65,7 +65,7 @@ export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
     &.prolog,
     &.doctype,
     &.cdata {
-      color: ${themeGet('components.codeEditor.syntax.comment', '#90a4ae')};
+      color: ${themeGet('components.codeEditor.syntax.comment')};
     }
 
     &.punctuation {
@@ -78,7 +78,7 @@ export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
     &.number,
     &.symbol,
     &.deleted {
-      color: ${themeGet('components.codeEditor.syntax.primary', '#e91e63')};
+      color: ${themeGet('components.codeEditor.syntax.primary')};
     }
 
     &.selector,
@@ -87,32 +87,32 @@ export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
     &.char,
     &.builtin,
     &.inserted {
-      color: ${themeGet('components.codeEditor.syntax.secondary', '#4caf50')};
+      color: ${themeGet('components.codeEditor.syntax.secondary')};
     }
 
     &.operator,
     &.entity,
     &.url {
-      color: ${themeGet('components.codeEditor.syntax.operator', '#795548')};
+      color: ${themeGet('components.codeEditor.syntax.operator')};
     }
 
     &.atrule,
     &.attr-value,
     &.keyword {
-      color: ${themeGet('components.codeEditor.syntax.keyword', '#3f51b5')};
+      color: ${themeGet('components.codeEditor.syntax.keyword')};
     }
 
     &.function {
-      color: ${themeGet('components.codeEditor.syntax.function', '#f44336')};
+      color: ${themeGet('components.codeEditor.syntax.function')};
     }
 
     &.variable {
-      color: ${themeGet('components.codeEditor.syntax.variable', '#ff9800')};
+      color: ${themeGet('components.codeEditor.syntax.variable')};
     }
 
     &.regex,
     &.important {
-      color: ${themeGet('components.codeEditor.syntax.regex', '#ff9800')};
+      color: ${themeGet('components.codeEditor.syntax.regex')};
     }
 
     &.important,

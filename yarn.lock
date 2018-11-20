@@ -10076,6 +10076,14 @@ react-color@^2.14.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
+react-contextmenu@2.10.x:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/react-contextmenu/-/react-contextmenu-2.10.0.tgz#3a5338a552964db85c300072f719bc1f6b969838"
+  integrity sha512-neiZGpfxfYFjqbcIExi69qruqhB7l0LKEguHDXeizgyTGbJHTwbq1GplXCHIafUAkbGZH8FfD9PBeUcSRG78+Q==
+  dependencies:
+    classnames "^2.2.5"
+    object-assign "^4.1.0"
+
 react-dev-utils@^6.1.0:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-6.1.1.tgz#a07e3e8923c4609d9f27e5af5207e3ca20724895"
