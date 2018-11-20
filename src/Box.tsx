@@ -3,6 +3,7 @@ import {
   borderColor,
   borderRadius,
   borders,
+  borderStyle,
   bottom,
   boxShadow,
   css,
@@ -29,6 +30,7 @@ import {
   zIndex,
 } from './utils';
 
+import { BorderStyleProperty } from 'csstype';
 import { BorderRadius, BorderWidth, BoxDimension, BoxShadow, FontSize, FontWeight, FullSpace } from './types';
 
 export interface IBoxProps {
@@ -70,6 +72,7 @@ export interface IBoxProps {
   borderRight?: BorderWidth;
   borderBottom?: BorderWidth;
   borderColor?: string;
+  borderStyle?: BorderStyleProperty;
   radius?: BorderRadius | string;
 
   cursor?:
@@ -140,6 +143,7 @@ export interface IBoxProps {
 export const Box = styled<IBoxProps, 'div'>('div')(
   borderRadius,
   borderColor,
+  borderStyle,
   bgColor,
   borders,
   bottom,

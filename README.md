@@ -29,13 +29,14 @@ TODO
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
     - Box
+    - Break
+    - Button
     - Flex
-    - Text
     - Heading
     - List
-    - Button
     - Portal
     - Menu
+    - Text
     - Table
 
 ## Helpful Links
@@ -71,6 +72,7 @@ yarn storybook
 ```
 
 ### Linking to another package
+
 ```bash
 # install dependencies
 yarn setup
