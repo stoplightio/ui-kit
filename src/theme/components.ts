@@ -50,5 +50,7 @@ export const components: ISectionTheme = {
         color: 'white',
       },
     },
+
+    slateEditor: {},
   },
 };

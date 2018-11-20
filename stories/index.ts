@@ -11,6 +11,7 @@ import './Input';
 import './KitchenSink';
 import './List';
 import './Menu';
+import './SlateEditor/BlockQuote';
 import './Table';
 import './Text';
 import './Textarea';
