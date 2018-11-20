@@ -7,20 +7,28 @@ import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 
 export interface ICodeEditorProps {
-  code?: string;
+  defaultValue?: string;
+  value?: string;
   language: string;
   onChange?: (code: string) => any;
   style?: object;
 }
 
-// @ts-ignore
-export const CodeEditor = styled<ICodeEditorProps, 'div'>((props: ICodeEditorProps & { className: string }) => {
-  const { className, language, onChange = noop, style } = props;
+const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
+  const { className, defaultValue, language, onChange = noop, style } = props;
+  let { value } = props;
 
-  const [value, setValue] = React.useState(props.code || '');
+  let setValue: undefined | Function;
+
+  if (value === undefined) {
+    [value, setValue] = React.useState(defaultValue || '');
+  }
 
   const handleChange = (newValue: string) => {
-    setValue(newValue);
+    if (setValue !== undefined) {
+      setValue(newValue);
+    }
+
     onChange(newValue);
   };
 
@@ -35,7 +43,10 @@ export const CodeEditor = styled<ICodeEditorProps, 'div'>((props: ICodeEditorPro
       />
     </div>
   );
-})`
+};
+
+// @ts-ignore
+export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
   background: ${themeGet('components.codeEditor.bg', '#fff')};
   border: 1px solid ${themeGet('components.codeEditor.border', '#000')};
 

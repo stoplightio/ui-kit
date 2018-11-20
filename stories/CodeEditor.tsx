@@ -9,7 +9,7 @@ import * as React from 'react';
 import { CodeEditor } from '../src/CodeEditor';
 
 const store = new Store({
-  code: 'stoplight.uiKit();',
+  value: 'stoplight.uiKit();',
 });
 
 export const codeEditorKnobs = (tabName = 'CodeEditor') => {
@@ -21,8 +21,10 @@ export const codeEditorKnobs = (tabName = 'CodeEditor') => {
 
 storiesOf('CodeEditor', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />)
+  .add('with defaults', () => (
+    <CodeEditor {...codeEditorKnobs()} defaultValue="test();" onChange={action('onChange')} />
+  ))
   .addDecorator(StateDecorator(store))
   .add('with store', () => (
-    <CodeEditor {...codeEditorKnobs()} code={store.get('code')} onChange={(code: string) => store.set({ code })} />
+    <CodeEditor {...codeEditorKnobs()} value={store.get('value')} onChange={(value: string) => store.set({ value })} />
   ));
