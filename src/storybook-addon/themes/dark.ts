@@ -32,6 +32,10 @@ export const dark = {
         color: 'white',
       },
     },
+
+    slateEditor: {
+      blockQuote: {},
+    },
   },
 
   sections: {

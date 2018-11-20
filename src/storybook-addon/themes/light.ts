@@ -15,6 +15,10 @@ export const light = {
       fg: 'white',
       border: 'rgb(160, 159, 165)',
     },
+
+    slateEditor: {
+      blockQuote: {},
+    },
   },
 
   sections: {

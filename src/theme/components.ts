@@ -5,6 +5,7 @@ export const colors = {
   colors: {
     fg: 'black',
     bg: 'white',
+    link: '#1E90FF',
     border: 'black',
 
     transparent: 'transparent',
