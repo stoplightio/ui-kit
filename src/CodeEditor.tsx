@@ -5,9 +5,9 @@ import * as React from 'react';
 import Editor from 'react-simple-code-editor';
 import styled from 'styled-components';
 import { themeGet } from './utils';
+import { useControllableValue } from './utils/controllableEffect';
 
 export interface ICodeEditorProps {
-  defaultValue?: string;
   value?: string;
   language: string;
   onChange?: (code: string) => any;
@@ -15,20 +15,12 @@ export interface ICodeEditorProps {
 }
 
 const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
-  const { className, defaultValue, language, onChange = noop, style } = props;
-  let { value } = props;
+  const { className, language, onChange = noop, style } = props;
 
-  let setValue: undefined | Function;
-
-  if (value === undefined) {
-    [value, setValue] = React.useState(defaultValue || '');
-  }
+  const [value, setValue] = useControllableValue(props.value);
 
   const handleChange = (newValue: string) => {
-    if (setValue !== undefined) {
-      setValue(newValue);
-    }
-
+    setValue(newValue);
     onChange(newValue);
   };
 

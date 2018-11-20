@@ -15,6 +15,7 @@ const store = new Store({
 export const codeEditorKnobs = (tabName = 'Code Editor') => {
   return {
     language: text('language', 'js', tabName),
+    value: text('value', 'const defaultValue = stoplight.io();', tabName),
     style: object('style', { fontSize: '12px' }, tabName),
   };
 };
@@ -22,7 +23,7 @@ export const codeEditorKnobs = (tabName = 'Code Editor') => {
 storiesOf('CodeEditor', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <CodeEditor {...codeEditorKnobs()} value="const defaultValue = stoplight.io();" onChange={action('onChange')} />
+    <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />
   ))
   .addDecorator(StateDecorator(store))
   .add('with store', () => (

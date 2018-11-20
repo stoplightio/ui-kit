@@ -39,12 +39,12 @@ describe('CodeEditor', () => {
     wrapper.unmount();
   });
 
-  it('supports defaultValue', () => {
+  it('supports default value ', () => {
     const defaultCode = 'abcdef';
 
     useStateSpy.mockReset();
     useStateSpy.mockReturnValue([defaultCode, () => null]);
-    const wrapper = mount(<CodeEditor defaultValue={defaultCode} onChange={() => null} language="js" />);
+    const wrapper = mount(<CodeEditor value={defaultCode} onChange={() => null} language="js" />);
 
     expect(useStateSpy).toHaveBeenCalledWith(defaultCode);
     expect(wrapper.find(Editor)).toHaveProp('value', defaultCode);
