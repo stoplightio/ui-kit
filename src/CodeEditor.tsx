@@ -1,39 +1,26 @@
 import noop = require('lodash/noop');
 import 'prismjs/components/';
 import * as React from 'react';
+import { useCallback } from 'react';
 import Editor from 'react-simple-code-editor';
 import styled from 'styled-components';
-import { useControllableValue } from './hooks/useControllableValue';
 import { themeGet } from './utils';
 import { highlightCode } from './utils/highlightCode';
-import { useCallback } from 'react';
 
 export interface ICodeEditorProps {
-  value?: string;
+  value: string;
   language: string;
   onChange?: (code: string) => any;
 }
 
 const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
-  const { className, language, onChange = noop } = props;
-
-  const [value, setValue] = useControllableValue(props.value);
+  const { className, language, onChange = noop, value } = props;
 
   const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
 
-  const handleChange = (newValue: string) => {
-    setValue(newValue);
-    onChange(newValue);
-  };
-
   return (
     <div className={className}>
-      <Editor
-        value={value}
-        onValueChange={handleChange}
-        highlight={highlightCodeCallback}
-        padding={10}
-      />
+      <Editor value={value} onValueChange={onChange} highlight={highlightCodeCallback} padding={10} />
     </div>
   );
 };
