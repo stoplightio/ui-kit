@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useControllableValue } from './hooks/useControllableValue';
 import { themeGet } from './utils';
 import { highlightCode } from './utils/highlightCode';
+import { useCallback } from 'react';
 
 export interface ICodeEditorProps {
   value?: string;
@@ -18,6 +19,8 @@ const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
 
   const [value, setValue] = useControllableValue(props.value);
 
+  const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
+
   const handleChange = (newValue: string) => {
     setValue(newValue);
     onChange(newValue);
@@ -28,7 +31,7 @@ const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
       <Editor
         value={value}
         onValueChange={handleChange}
-        highlight={(code: string) => highlightCode(code, language)}
+        highlight={highlightCodeCallback}
         padding={10}
       />
     </div>
