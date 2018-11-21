@@ -4,9 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { ContextMenu } from '../src/ContextMenu';
-// import { boxKnobs } from './Box';
-// import { textKnobs } from './Text';
+import { ContextMenu } from '../ContextMenu';
 
 export const contextMenuKnobs = (tabName = 'ContextMenu') => {
   return {

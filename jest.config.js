@@ -1,6 +1,6 @@
 module.exports = {
   preset: '@stoplight/scripts',
-  setupTestFrameworkScriptFile: './setupTests.js',
+  testEnvironment: 'jsdom',
+  setupTestFrameworkScriptFile: './setupTests.ts',
   snapshotSerializers: ['enzyme-to-json/serializer'],
-  testEnvironment: 'jsdom'
 };

@@ -8,7 +8,7 @@ import { boolean, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { map, omitBy, pick } from 'lodash';
 
-import { Icon, IconLibrary, IIcon } from '../src/Icon';
+import { Icon, IconLibrary, IIcon } from '../Icon';
 import { boxKnobs } from './Box';
 
 const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;

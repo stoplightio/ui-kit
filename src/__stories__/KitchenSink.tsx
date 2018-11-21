@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Box } from '../src/Box';
-import { Button } from '../src/Button';
-import { Flex } from '../src/Flex';
-import { Heading } from '../src/Heading';
-import { Icon } from '../src/Icon';
-import { Text } from '../src/Text';
-import { ThemeSection } from '../src/ThemeSection';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
+import { Heading } from '../Heading';
+import { Icon } from '../Icon';
+import { Text } from '../Text';
+import { ThemeSection } from '../ThemeSection';
 
 storiesOf('Complex', module).add(
   'kitchen sync',

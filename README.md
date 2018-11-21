@@ -36,6 +36,7 @@ TODO
     - Heading
     - List
     - Portal
+    - Menu
     - Text
     - Table
 
@@ -72,6 +73,7 @@ yarn storybook
 ```
 
 ### Linking to another package
+
 ```bash
 # install dependencies
 yarn setup

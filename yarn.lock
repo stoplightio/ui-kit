@@ -1195,10 +1195,10 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@stoplight/scripts@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@stoplight/scripts/-/scripts-1.2.3.tgz#cfa5494c983c5a7ab1de973b6695629b30052418"
-  integrity sha512-rb1IxHpGLEpGM8d9O+r3uPkXitOvTxDZ4kXRvwHAtPmybRT1xxIb0nx/cn1O7HsY2tkulRvNYQWGbOwA+FAFEg==
+"@stoplight/scripts@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@stoplight/scripts/-/scripts-3.0.1.tgz#d4fed670d1249bc0c86350546c29de00f0b3a701"
+  integrity sha512-pbSYKkR+nLFUqTYLOszta/GjVbex3+GIR5GFN2miR4W8VBvOg1ee8909tWobxs2nL8svY3wQPiRzBIthYrSskg==
   dependencies:
     "@babel/core" "7.1.x"
     "@commitlint/cli" "7.2.x"
@@ -1219,26 +1219,31 @@
     "@storybook/addons" "4.0.7"
     "@storybook/core" "4.0.7"
     "@storybook/react" "4.0.7"
+    "@types/enzyme" "3.1.x"
     "@types/jest" "23.3.x"
     "@types/node" "10.12.x"
     "@types/storybook__addon-actions" "3.4.1"
     "@types/storybook__addon-info" "3.4.2"
     "@types/storybook__addon-knobs" "^3.4.1"
-    "@types/storybook__addon-links" "3.3.2"
+    "@types/storybook__addon-links" "3.3.3"
     "@types/storybook__addon-options" "3.2.2"
     "@types/storybook__react" "4.0.0"
     babel-loader "8.0.x"
     cli-ux "4.9.x"
     commitizen "3.0.x"
     cz-conventional-changelog "2.1.x"
+    enzyme "3.7.x"
+    enzyme-adapter-react-16 "1.7.x"
+    enzyme-to-json "3.3.x"
     husky "1.1.x"
     inquirer "6.2.x"
     jest "23.6.x"
+    jest-enzyme "7.0.x"
     lint-staged "8.0.x"
     lodash "4.x.x"
     react-docgen-typescript-loader "3.0.x"
     rimraf "2.6.x"
-    semantic-release "15.11.x"
+    semantic-release "15.12.x"
     shelljs "0.8.x"
     ts-jest "23.10.x"
     ts-loader "5.3.x"
@@ -1542,7 +1547,7 @@
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.9.tgz#b5990152604c2ada749b7f88cab3476f21f39d7b"
   integrity sha512-q6LuBI0t5u04f0Q4/R+cGBqIbZMtJkVvCSF+nTfFBBdQqQvJR/mNHeWjRkszyLl7oyf2rDoKUYMEjTw5AV0hiw==
 
-"@types/enzyme@^3.1.15":
+"@types/enzyme@3.1.x", "@types/enzyme@^3.1.15":
   version "3.1.15"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.15.tgz#fc9a9695ba9f90cd50c4967e64a8c66ec96913d1"
   integrity sha512-6b4JWgV+FNec1c4+8HauGbXg5gRc1oQK93t2+4W+bHjG/PzO+iPvagY6d6bXAZ+t+ps51Zb2F9LQ4vl0S0Epog==
@@ -1673,10 +1678,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/storybook__addon-links@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.2.tgz#913f6dae27903da7b1f117e9b51ca473770dba50"
-  integrity sha512-Fu1CG6WmIMCe8wZFmz17lnneJzNYrcLw4NKi/g+AKJisq0K/smGE9CRz4/Bj23vp3rz298bDJBIH/lStZRIW0A==
+"@types/storybook__addon-links@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.3.tgz#fb920aadcab0e86233888240ec81a04fab0ec473"
+  integrity sha512-Nu+XyDRgyfqbuv1AF8rnJ2RjXKUGunbIYN32IrLkrxzNt2mhyvam+op7Mn4s6XGgeKJtXbMhl2ZetAc+F2i5IQ==
   dependencies:
     "@types/react" "*"
 
@@ -4632,7 +4637,7 @@ env-ci@^3.0.0:
     execa "^1.0.0"
     java-properties "^0.2.9"
 
-enzyme-adapter-react-16@^1.7.0:
+enzyme-adapter-react-16@1.7.x, enzyme-adapter-react-16@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.7.0.tgz#90344395a89624edbe7f0e443bc19fef62bf1f9f"
   integrity sha512-rDr0xlnnFPffAPYrvG97QYJaRl9unVDslKee33wTStsBEwZTkESX1H7VHGT5eUc6ifNzPgOJGvSh2zpHT4gXjA==
@@ -4663,14 +4668,14 @@ enzyme-matchers@^7.0.1:
     circular-json-es6 "^2.0.1"
     deep-equal-ident "^1.1.1"
 
-enzyme-to-json@^3.3.0, enzyme-to-json@^3.3.4:
+enzyme-to-json@3.3.x, enzyme-to-json@^3.3.0, enzyme-to-json@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.3.4.tgz#67c6040e931182f183418af2eb9f4323258aa77f"
   integrity sha1-Z8YEDpMRgvGDQYry659DIyWKp38=
   dependencies:
     lodash "^4.17.4"
 
-enzyme@^3.7.0:
+enzyme@3.7.x, enzyme@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.7.0.tgz#9b499e8ca155df44fef64d9f1558961ba1385a46"
   integrity sha512-QLWx+krGK6iDNyR1KlH5YPZqxZCQaVF6ike1eDJAOg0HvSkSCVImPsdWaNw6v+VrnK92Kg8jIOYhuOSS9sBpyg==
@@ -7007,7 +7012,7 @@ jest-environment-node@^23.4.0:
     jest-mock "^23.2.0"
     jest-util "^23.4.0"
 
-jest-enzyme@^7.0.1:
+jest-enzyme@7.0.x, jest-enzyme@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/jest-enzyme/-/jest-enzyme-7.0.1.tgz#f6c82df31b19ad520300961fa89b2c40c7026745"
   integrity sha512-IpHjNin+7bsRthciMMo5HVA9TTKZCsBkOPsS4qdIZvImZx94no362wwPeustn0SY/REyXm39wHPsORknuXUWmA==
@@ -11006,10 +11011,10 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
-semantic-release@15.11.x:
-  version "15.11.0"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.11.0.tgz#da4c2cc82361f1fcfb546a295931f3d728e5f8c2"
-  integrity sha512-WNni9nH7LlinGrJaby015XxTvy8m08vVtvivgiOIQ1orMFEvjQ5KuI069cUTsTBx7Kck4g3esRdnJXx6oMiLzg==
+semantic-release@15.12.x:
+  version "15.12.0"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.12.0.tgz#061f390bbf999ae56ae52a71f0a986659bbe556d"
+  integrity sha512-s8JQ0twxSTat4aIKy8AVPm6gP+2OlkMyyTGeeWFopOXQVa3Bg0LPNjdhsUL90MHvh9aVy9k0/ym4DWmOcGxOMQ==
   dependencies:
     "@semantic-release/commit-analyzer" "^6.1.0"
     "@semantic-release/error" "^2.2.0"
