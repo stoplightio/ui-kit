@@ -4,7 +4,7 @@ import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { boolean, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Image } from '../src/Image';
+import { Image } from '../Image';
 import { BorderRadius } from './_utils';
 
 export const imageKnobs = (tabName = 'Image'): any => {

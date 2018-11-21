@@ -5,7 +5,7 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Button } from '../src/Button';
+import { Button } from '../Button';
 import { boxKnobs } from './Box';
 import { textKnobs } from './Text';
 

@@ -4,7 +4,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { omitBy } from 'lodash';
-import { BlockQuote } from '../../src/SlateEditor/components/BlockQuote';
+import { BlockQuote } from '../../SlateEditor/components/BlockQuote';
 
 export const blockQuoteKnobs = (tabName = 'Block Quote'): any => {
   return omitBy(

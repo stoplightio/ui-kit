@@ -5,8 +5,8 @@ import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Box } from '../src/Box';
-import { Flex } from '../src/Flex';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { AlignItems, FlexDirection, FlexWrap, JustifyContent } from './_utils';
 import { boxKnobs } from './Box';
 
