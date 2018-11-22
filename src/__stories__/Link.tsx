@@ -4,7 +4,7 @@ import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { omitBy } from 'lodash';
-import { Link } from '../../SlateEditor/components/Link';
+import { Link } from '../Link';
 
 export const linkKnobs = (tabName = 'Link'): any => {
   return omitBy(
@@ -17,6 +17,6 @@ export const linkKnobs = (tabName = 'Link'): any => {
   );
 };
 
-storiesOf('SlateEditor/Link', module)
+storiesOf('Link', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Link {...linkKnobs()} />);

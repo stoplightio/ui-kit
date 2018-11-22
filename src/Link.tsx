@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { Box, IBoxProps } from '../../Box';
+import { Box, IBoxProps } from './Box';
 
-export interface ILinkProps extends IBoxProps {
+export interface ILinkProps {
   attributes?: IBoxProps;
   children: any;
   href: string;

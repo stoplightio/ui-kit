@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 import { IBoxProps } from '../Box';
-import { ILinkProps, Link } from '../SlateEditor/components/Link';
+import { ILinkProps, Link } from '../Link';
 
-describe('SlateEditor/Links', () => {
+describe('Links', () => {
   let props: ILinkProps;
 
   beforeEach(() => {
