@@ -1,9 +1,9 @@
 import { mount } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { BlockQuote } from '../SlateEditor/components/BlockQuote';
+import { BlockQuote } from '../BlockQuote';
 
-describe('SlateEditor/BlockQuote', () => {
+describe('BlockQuote', () => {
   it('renders content', () => {
     const content = 'foo';
     const wrapper = mount(<BlockQuote>{content}</BlockQuote>);

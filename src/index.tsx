@@ -15,4 +15,5 @@ export * from './Menu';
 export * from './Table';
 export * from './Text';
 export * from './ThemeSection';
+export * from './Toggle';
 export * from './types';

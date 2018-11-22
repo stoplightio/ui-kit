@@ -4,7 +4,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { omitBy } from 'lodash';
-import { BlockQuote } from '../../SlateEditor/components/BlockQuote';
+import { BlockQuote } from '../BlockQuote';
 
 export const blockQuoteKnobs = (tabName = 'Block Quote'): any => {
   return omitBy(
@@ -16,7 +16,7 @@ export const blockQuoteKnobs = (tabName = 'Block Quote'): any => {
   );
 };
 
-storiesOf('SlateEditor/BlockQuote', module)
+storiesOf('BlockQuote', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <BlockQuote {...blockQuoteKnobs()} />)
   .add('with shadow', () => <BlockQuote {...blockQuoteKnobs()} isSelected />);

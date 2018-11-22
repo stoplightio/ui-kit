@@ -1,3 +1,4 @@
+import './BlockQuote';
 import './Box';
 import './Break';
 import './Button';
@@ -11,7 +12,6 @@ import './Input';
 import './KitchenSink';
 import './List';
 import './Menu';
-import './SlateEditor/BlockQuote';
 import './Table';
 import './Text';
 import './Textarea';

@@ -52,10 +52,8 @@ export const components: ISectionTheme = {
       },
     },
 
-    slateEditor: {
-      blockQuote: {
-        shadow: '0 0 5px currentColor',
-      },
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
     },
   },
 };

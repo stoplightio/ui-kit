@@ -16,10 +16,8 @@ export const light = {
       border: 'rgb(160, 159, 165)',
     },
 
-    slateEditor: {
-      blockQuote: {
-        shadow: '0 0 5px currentColor',
-      },
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
     },
   },
 

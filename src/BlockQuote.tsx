@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Box, IBoxProps } from '../../Box';
+import { Box, IBoxProps } from './Box';
 
-export interface IBlockQuoteProps extends IBoxProps {
+export interface IBlockQuoteProps {
   attributes?: IBoxProps;
   children: any;
   isSelected?: boolean;
@@ -10,11 +10,11 @@ export interface IBlockQuoteProps extends IBoxProps {
 export const BlockQuote = ({ attributes, children, isSelected }: IBlockQuoteProps) => (
   <Box
     as="blockquote"
-    fg="slateEditor.blockQuote.fg"
+    fg="blockQuote.fg"
     pl="xl"
     borderLeft="3px solid"
-    borderColor="slateEditor.blockQuote.borderColor"
-    shadow={isSelected ? 'slateEditor.blockQuote.shadow' : undefined}
+    borderColor="blockQuote.borderColor"
+    shadow={isSelected ? 'blockQuote.shadow' : undefined}
     {...attributes}
   >
     {children}
