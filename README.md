@@ -28,6 +28,7 @@ TODO
   - [Creating a component](./docs/components.md#create-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
+    - BlockQuote
     - Box
     - Break
     - Button
@@ -39,6 +40,7 @@ TODO
     - Menu
     - Text
     - Table
+    - Toggle
 
 ## Helpful Links
 

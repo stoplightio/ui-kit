@@ -5,6 +5,7 @@ export const colors = {
   colors: {
     fg: 'black',
     bg: 'white',
+    link: '#1E90FF',
     border: 'black',
 
     transparent: 'transparent',
@@ -67,6 +68,10 @@ export const components: ISectionTheme = {
         bg: 'dodgerblue',
         color: 'white',
       },
+    },
+
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
     },
   },
 };

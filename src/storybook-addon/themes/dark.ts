@@ -49,6 +49,10 @@ export const dark = {
         color: 'white',
       },
     },
+
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
+    },
   },
 
   sections: {

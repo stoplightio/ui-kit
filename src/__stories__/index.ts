@@ -1,3 +1,4 @@
+import './BlockQuote';
 import './Box';
 import './Break';
 import './Button';
