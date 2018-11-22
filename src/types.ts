@@ -1,4 +1,4 @@
-import { BorderRadiusProperty } from 'csstype';
+import { BorderRadiusProperty, WidthProperty } from 'csstype';
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 export type FontWeight = 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
@@ -57,6 +57,7 @@ export interface ILayout {
   scrollbars?: {
     thumb?: string;
     thumbRadius?: BorderRadiusProperty<string>;
+    width?: WidthProperty<string>;
   };
 }
 

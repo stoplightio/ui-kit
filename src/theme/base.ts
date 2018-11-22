@@ -90,6 +90,7 @@ export const base: ILayout = {
   },
 
   scrollbars: {
+    width: '10px',
     thumb: '#000',
     thumbRadius: '5px',
   },

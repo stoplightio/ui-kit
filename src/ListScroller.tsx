@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
+import { AutoSizer, Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
 
-import { Box, IBoxProps } from './Box';
-
-import { themeGet } from 'styled-system';
-import { styled } from './utils';
+import { styled, themeGet } from './utils';
 
 export interface IListScrollerItemProps {
   key: string;
@@ -13,44 +10,70 @@ export interface IListScrollerItemProps {
   style: React.CSSProperties;
 }
 
-export interface IListScrollerProps extends IBoxProps {
-  as?: () => any;
-  className?: string;
-  listHeight: number;
-  listWidth: number;
+export interface IListScrollerProps {
+  // Either a fixed row height (number) or a function that returns the height of a row given its index.
   rowHeight: number | ((params: Index) => number);
-  scrollToIndex?: number;
+
+  // Responsible for rendering a row
+  rowRenderer: ({ key, index, value }: IListScrollerItemProps) => JSX.Element;
+  noRowsRenderer?: () => JSX.Element;
+  onScroll?: () => void;
   list: any[];
-  renderRow: ({ key, index, value }: IListScrollerItemProps) => JSX.Element;
+
+  // Controls the alignment scrolled-to-rows.
+  scrollToAlignment?: 'auto' | 'start' | 'end' | 'center';
+
+  // Row index to ensure visible (by forcefully scrolling if necessary)
+  scrollToIndex?: number;
+
+  // Forced vertical scroll offset; can be used to synchronize scrolling between components
+  scrollTop?: number;
 }
 
-const ListView = (props: IListScrollerProps) => {
-  const { className, list, listWidth, listHeight, rowHeight, scrollToIndex, renderRow } = props;
+const ListView = (props: IListScrollerProps & { className: string }) => {
+  const {
+    className,
+    list,
+    rowHeight,
+    scrollToIndex,
+    scrollToAlignment,
+    scrollTop,
+    rowRenderer,
+    noRowsRenderer,
+    onScroll,
+  } = props;
 
-  const rowRenderer = ({ key, index, style }: ListRowProps) => renderRow({ key, index, value: list[index], style });
+  const renderRow = ({ key, index, style }: ListRowProps) => rowRenderer({ key, index, value: list[index], style });
 
   return (
-    <List
-      className={className}
-      height={listHeight}
-      rowHeight={rowHeight}
-      rowCount={list.length}
-      scrollToIndex={scrollToIndex}
-      rowRenderer={rowRenderer as ListRowRenderer}
-      width={listWidth}
-    />
+    <AutoSizer>
+      {({ height, width }) => (
+        <List
+          className={className}
+          height={height}
+          rowHeight={rowHeight}
+          rowCount={list.length}
+          rowRenderer={renderRow as ListRowRenderer}
+          noRowsRenderer={noRowsRenderer}
+          onScroll={onScroll}
+          scrollToAlignment={scrollToAlignment}
+          scrollToIndex={scrollToIndex}
+          scrollTop={scrollTop}
+          width={width}
+        />
+      )}
+    </AutoSizer>
   );
 };
 
-export const ListScroller = styled<IListScrollerProps, 'div'>(Box as any).attrs({
-  as: () => ListView,
-})`
+export const ListScroller = styled<IListScrollerProps>(ListView as any)`
   ::-webkit-scrollbar {
     background: none;
+    width: ${themeGet('scrollbars.width')};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${themeGet('scrollbars.thumb', '#000')};
-    border-radius: ${themeGet('scrollbars.thumbRadius', '0')};
+    background: ${themeGet('scrollbars.thumb')};
+    border-radius: ${themeGet('scrollbars.thumbRadius')};
   }
 `;
