@@ -39,8 +39,10 @@ TODO
     - List
     - Portal
     - Menu
-    - Text
     - Table
+    - Text
+    - Textarea
+    - ThemeSection
     - Toggle
 
 ## Helpful Links
