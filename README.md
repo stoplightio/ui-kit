@@ -31,6 +31,7 @@ TODO
     - Box
     - Break
     - Button
+    - Code Editor
     - Flex
     - Heading
     - List

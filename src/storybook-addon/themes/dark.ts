@@ -23,6 +23,23 @@ export const dark = {
       border: 'rgb(160, 159, 165)',
     },
 
+    codeEditor: {
+      bg: '#222',
+      border: '#f9f9f9',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#c2cbd0',
+        punctuation: '#c3c9cc',
+        keyword: '#FFFFC7',
+        function: '#f44336',
+        variable: '#FFFFC7',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
+    },
+
     contextMenu: {
       bg: 'black',
       borderColor: 'rgba(255, 255, 255, 0.5)',

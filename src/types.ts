@@ -71,4 +71,4 @@ export interface IShadows {
 }
 
 // components created in this repo
-export type Components = 'button' | 'checkbox' | 'toggle' | 'contextMenu';
+export type Components = 'button' | 'checkbox' | 'toggle' | 'codeEditor' | 'contextMenu';
