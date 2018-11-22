@@ -1195,10 +1195,10 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@stoplight/scripts@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@stoplight/scripts/-/scripts-3.0.1.tgz#d4fed670d1249bc0c86350546c29de00f0b3a701"
-  integrity sha512-pbSYKkR+nLFUqTYLOszta/GjVbex3+GIR5GFN2miR4W8VBvOg1ee8909tWobxs2nL8svY3wQPiRzBIthYrSskg==
+"@stoplight/scripts@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@stoplight/scripts/-/scripts-3.0.2.tgz#f79b66ac4b4e6eae90f79f7e632926400ee72339"
+  integrity sha512-SIUJAS9HSEiwgWJQbZCSSWFjiXFTvvc/r7CHchq8P6ZhQ/UOS8ynVH4ZrKdoIqfxd2aySc2Km5eolccXmGCxDw==
   dependencies:
     "@babel/core" "7.1.x"
     "@commitlint/cli" "7.2.x"
