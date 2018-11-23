@@ -35,11 +35,15 @@ TODO
     - Code Editor
     - Flex
     - Heading
+    - Icon
+    - Link
     - List
     - Portal
     - Menu
-    - Text
     - Table
+    - Text
+    - Textarea
+    - ThemeSection
     - Toggle
 
 ## Helpful Links
