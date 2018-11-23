@@ -11,6 +11,7 @@ import './Icon';
 import './Image';
 import './Input';
 import './KitchenSink';
+import './Link';
 import './List';
 import './ListScroller';
 import './Menu';
