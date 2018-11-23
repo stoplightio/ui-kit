@@ -14,27 +14,20 @@ export const listScrollerKnobs = (tabName = 'List Scroller'): any => {
   };
 };
 
+const rowRenderer = ({ value, key, style }: IListScrollerItemProps) => (
+  <Box key={key} as="div" {...style as object} borderBottom="2px solid black">
+    {value}
+  </Box>
+);
+
 storiesOf('ListScroller', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => <Box height="100px">{storyFn()}</Box>)
-  .add('with defaults', () => (
-    <ListScroller
-      {...listScrollerKnobs()}
-      rowRenderer={({ value, key, style }: IListScrollerItemProps) => (
-        <Box key={key} as="div" {...style as object}>
-          {value}
-        </Box>
-      )}
-    />
+  .addDecorator(storyFn => (
+    <Box height="100px" border="2px solid black">
+      {storyFn()}
+    </Box>
   ))
+  .add('with defaults', () => <ListScroller {...listScrollerKnobs()} rowRenderer={rowRenderer} />)
   .add('with random height', () => (
-    <ListScroller
-      {...listScrollerKnobs()}
-      rowHeight={({ index }) => 20 + index * 20}
-      rowRenderer={({ value, key, style }: IListScrollerItemProps) => (
-        <Box key={key} as="div" {...style as object}>
-          {value}
-        </Box>
-      )}
-    />
+    <ListScroller {...listScrollerKnobs()} rowHeight={({ index }) => 20 + index * 20} rowRenderer={rowRenderer} />
   ));
