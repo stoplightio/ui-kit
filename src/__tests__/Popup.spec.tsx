@@ -1,10 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { mount } from 'enzyme';
 
 describe('Popup', () => {
   let props: any;
@@ -30,6 +26,7 @@ describe('Popup', () => {
 
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+    jest.useFakeTimers();
 
     props = {
       renderContent: jest.fn(() => <div />),
@@ -40,6 +37,7 @@ describe('Popup', () => {
   afterEach(() => {
     jest.resetModules();
     jest.unmock('../Portal');
+    jest.useRealTimers();
     addEventListenerSpy.mockRestore();
     removeEventListenerSpy.mockRestore();
   });
@@ -151,6 +149,94 @@ describe('Popup', () => {
 
       wrapper.setProps({ padding: 10 });
       expect(repaintSpy).toHaveBeenCalled();
+    });
+
+    it('handleMouseEnter does nothing', () => {
+      const wrapper = shallow(<Popup {...props} />);
+      const instance = wrapper.instance() as any;
+      const showPopupSpy = jest.spyOn(instance, 'showPopup');
+
+      instance.handleMouseEnter(false);
+      expect(showPopupSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('hidePopup', () => {
+    it('aborts the request if already in progress', () => {
+      const wrapper = shallow(<Popup {...props} />);
+      const instance = wrapper.instance() as any;
+      instance._willHide = 2343;
+
+      instance.hidePopup();
+      expect(setTimeout).not.toHaveBeenCalled();
+    });
+
+    it('sets a timeout according to given hideDelay', () => {
+      const hideDelay = parseInt(String(Math.random() * 100000), 10);
+      const wrapper = shallow(<Popup {...props} hideDelay={hideDelay} />);
+      const instance = wrapper.instance() as any;
+      instance.hidePopup();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), hideDelay);
+    });
+
+    it('clears styles once timeouts', () => {
+      const wrapper = shallow(<Popup {...props} />);
+      const instance = wrapper.instance() as any;
+      instance.hidePopup();
+      jest.runAllTimers();
+      expect(wrapper).toHaveState('style', undefined);
+    });
+  });
+
+  describe('showPopup', () => {
+    it('clears willHide timeout', () => {
+      const wrapper = shallow(<Popup {...props} />);
+      const instance = wrapper.instance() as any;
+      const timeout = 50;
+      instance._willHide = timeout;
+      instance.showPopup();
+      expect(clearTimeout).toHaveBeenCalledWith(timeout);
+      expect(instance).toHaveProperty('_willHide', undefined);
+    });
+
+    it('triggers forced re-render', () => {
+      const wrapper = shallow(<Popup {...props} />);
+      const instance = wrapper.instance() as any;
+      const forceUpdate = jest.spyOn(instance, 'forceUpdate');
+      instance.showPopup();
+      expect(forceUpdate).toHaveBeenCalledWith();
+    });
+  });
+
+  it('handleMouseEnter calls showPopup', () => {
+    const wrapper = shallow(<Popup {...props} isVisible={false} />);
+    const instance = wrapper.instance() as any;
+    const showPopupSpy = jest.spyOn(instance, 'showPopup');
+
+    instance.handleMouseEnter(false);
+    expect(showPopupSpy).toHaveBeenCalled();
+  });
+
+  describe('repaint', () => {
+    it('always sets style', () => {
+      const wrapper = shallow(<Popup {...props} isVisible={false} />);
+      const instance = wrapper.instance() as any;
+      instance._trigger = {
+        getBoundingClientRect: () => ({}),
+      };
+      instance._content = {
+        getBoundingClientRect: () => ({}),
+      };
+
+      instance.repaint();
+      expect(wrapper).toHaveState(
+        'style',
+        expect.objectContaining({
+          minWidth: expect.anything(),
+          left: expect.anything(),
+          bottom: expect.anything(),
+        })
+      );
     });
   });
 });
