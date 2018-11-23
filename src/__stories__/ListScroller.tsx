@@ -23,7 +23,7 @@ const rowRenderer = ({ value, key, style }: IListScrollerItemProps) => (
 storiesOf('ListScroller', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
-    <Box height="100px" border="2px solid black">
+    <Box height="100px" css={{ outline: '2px solid black' }}>
       {storyFn()}
     </Box>
   ))
