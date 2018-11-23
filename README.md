@@ -35,6 +35,7 @@ TODO
     - Code Editor
     - Flex
     - Heading
+    - Icon
     - Link
     - List
     - Portal
