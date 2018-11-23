@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 import * as React from 'react';
 
-import { Box, IThemeInterface, Popup } from '../src/';
+import { Box, IThemeInterface, Popup } from '..';
 
 export const popupKnobs = (tabName = 'Popup'): any => {
   return omitBy(
@@ -71,11 +71,7 @@ storiesOf('Popup', module)
       <Popup
         {...popupKnobs()}
         renderTrigger={(attributes: object) => {
-          return (
-            <Box {...attributes}>
-              With Large Content
-            </Box>
-          );
+          return <Box {...attributes}>With Large Content</Box>;
         }}
         renderContent={({ theme }: { theme: IThemeInterface }) => {
           const color = theme.colors !== undefined ? theme.colors.fg : '#000';
