@@ -29,8 +29,8 @@ export interface IMenuProps {
   ) => any;
 }
 
-const MenuTrigger = styled<IMenuTriggerProps>((props: IMenuTriggerProps) =>
-  React.cloneElement(props.children, props)
+const MenuTrigger = styled<IMenuTriggerProps, any>(
+  ({ children, className }: IMenuTriggerProps & { className: string }) => React.cloneElement(children, { className })
 )``;
 
 const MenuView = (props: IMenuProps & { className: string }) => {
