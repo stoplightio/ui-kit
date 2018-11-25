@@ -95,4 +95,10 @@ export const dark = {
       },
     },
   },
+
+  scrollbars: {
+    width: '7px',
+    thumb: '#f9f9f9',
+    thumbRadius: '5px',
+  },
 };

@@ -52,6 +52,7 @@
     "@types/react-dom": "16.x.x",
     "@types/react-input-autosize": "2.0.x",
     "@types/react-textarea-autosize": "4.3.x",
+    "@types/react-virtualized": "^9.18.9",
     "@types/styled-components": "4.0.x",
     "@types/styled-system": "3.0.x",
     "lodash": "4.x.x",
@@ -61,6 +62,7 @@
     "react-input-autosize": "2.2.x",
     "react-simple-code-editor": "0.7.x",
     "react-textarea-autosize": "7.1.0-1",
+    "react-virtualized": "^9.21.0",
     "styled-components": "4.0.x",
     "styled-system": "3.1.x"
   },

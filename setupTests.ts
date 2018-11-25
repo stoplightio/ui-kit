@@ -5,3 +5,4 @@ Enzyme.configure({ adapter: new Adapter() });
 jest.mock('react');
 jest.mock('lodash');
 jest.mock('styled-components');
+jest.mock('react-virtualized');

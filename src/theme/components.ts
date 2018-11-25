@@ -20,6 +20,14 @@ export const shadows = {
   },
 };
 
+export const scrollbars = {
+  scrollbars: {
+    width: '10px',
+    thumb: 'grey',
+    thumbRadius: '5px',
+  },
+};
+
 // default color stylings we want to use out of the gates (in case someone does not want to have to create their own theme)
 export const components: ISectionTheme = {
   components: {

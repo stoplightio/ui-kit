@@ -58,4 +58,10 @@ export const light = {
       },
     },
   },
+
+  scrollbars: {
+    width: '7px',
+    thumb: 'black',
+    thumbRadius: '5px',
+  },
 };
