@@ -1,15 +1,9 @@
+import debounce = require('lodash/debounce');
 import * as React from 'react';
-import { debounce } from 'lodash';
 
 import { Portal } from './Portal';
-import { IThemeInterface } from './types';
 
 export type PopupTriggerRenderer = (
-  attributes: {
-    onMouseEnter: (e: React.MouseEvent<MouseEvent>) => void;
-    onMouseLeave: (e: React.MouseEvent<MouseEvent>) => void;
-    ref: (el: any) => void;
-  },
   props: {
     isVisible: boolean;
     isOver: boolean;
@@ -19,7 +13,6 @@ export type PopupTriggerRenderer = (
 ) => any;
 
 export type PopupContentRenderer = (
-  attributes: {},
   props: {
     isVisible: boolean;
     isOver: boolean;
@@ -85,7 +78,7 @@ export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
   private _isOverTrigger: boolean = false;
   private _isOverContent: boolean = false;
   private _willHide: any;
-  private _trigger?: HTMLDivElement;
+  private _trigger?: HTMLElement;
   private _content?: HTMLDivElement;
 
   public state: IPopupState = {};
@@ -114,35 +107,32 @@ export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
 
     return (
       <>
-        {renderTrigger(
+        {React.cloneElement(
+          renderTrigger({
+            ...funcs,
+            isOver: this._isOverTrigger,
+          }),
           {
             onMouseEnter: () => this.handleMouseEnter('_isOverTrigger'),
             onMouseLeave: e => this.handleMouseLeave(e, '_isOverTrigger', '_isOverContent'),
-            ref: el => (this._trigger = el),
-          },
-          {
-            ...funcs,
-            isOver: this._isOverTrigger,
+            ref: (el: HTMLElement) => {
+              this._trigger = el;
+            },
           }
         )}
         {this.isVisible && (
           <Portal>
-            {(theme: IThemeInterface) => (
-              <div
-                onMouseEnter={() => this.handleMouseEnter('_isOverContent')}
-                onMouseLeave={e => this.handleMouseLeave(e, '_isOverContent', '_isOverTrigger')}
-                ref={el => (this._content = el || undefined)}
-                style={style}
-              >
-                {renderContent(
-                  { theme },
-                  {
-                    ...funcs,
-                    isOver: this._isOverContent,
-                  }
-                )}
-              </div>
-            )}
+            <div
+              onMouseEnter={() => this.handleMouseEnter('_isOverContent')}
+              onMouseLeave={e => this.handleMouseLeave(e, '_isOverContent', '_isOverTrigger')}
+              ref={el => (this._content = el || undefined)}
+              style={style}
+            >
+              {renderContent({
+                ...funcs,
+                isOver: this._isOverContent,
+              })}
+            </div>
           </Portal>
         )}
       </>
@@ -155,7 +145,7 @@ export class Popup extends React.PureComponent<IPopupProps, IPopupState> {
     }
 
     if (typeof window !== 'undefined') {
-      this._resizeHandler = debounce(this.repaint, 50) as EventListener;
+      this._resizeHandler = debounce<EventListener>(this.repaint, 50);
 
       window.addEventListener('resize', this._resizeHandler);
     }

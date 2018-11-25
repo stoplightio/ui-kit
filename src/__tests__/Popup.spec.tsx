@@ -1,29 +1,16 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import 'jest-enzyme';
+import debounce = require('lodash/debounce');
 import * as React from 'react';
+
+import { Popup, Portal } from '../';
 
 describe('Popup', () => {
   let props: any;
   let addEventListenerSpy: jest.SpyInstance;
   let removeEventListenerSpy: jest.SpyInstance;
-  let Popup: any;
-  let debounce: any;
-  let theme: { color: string };
 
-  beforeEach(async () => {
-    theme = {
-      color: '#fff',
-    };
-
-    jest.mock('../Portal', () => ({
-      Portal: function Portal({ children }: { children: Function }) {
-        return children(theme);
-      },
-    }));
-
-    ({ Popup } = await import('../'));
-    ({ debounce } = await import('lodash'));
-
+  beforeEach(() => {
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
     jest.useFakeTimers();
@@ -35,42 +22,29 @@ describe('Popup', () => {
   });
 
   afterEach(() => {
-    jest.resetModules();
-    jest.unmock('../Portal');
     jest.useRealTimers();
     addEventListenerSpy.mockRestore();
     removeEventListenerSpy.mockRestore();
   });
 
-  it('always calls renderTrigger on render with attributes and some internal methods', () => {
+  it('always calls renderTrigger on render with internal properties', () => {
     const renderTriggerSpy = jest.spyOn(props, 'renderTrigger');
-    const wrapper = mount(<Popup {...props} />);
-    // @ts-ignore
-    const { showPopup, hidePopup } = wrapper.instance();
+    const wrapper = shallow(<Popup {...props} />);
+    const { showPopup, hidePopup } = wrapper.instance() as any;
 
-    expect(renderTriggerSpy).toHaveBeenCalledWith(
-      {
-        onMouseEnter: expect.any(Function),
-        onMouseLeave: expect.any(Function),
-        ref: expect.any(Function),
-      },
-      {
-        hidePopup,
-        showPopup,
-        isOver: false,
-        isVisible: false,
-      }
-    );
-
-    wrapper.unmount();
+    expect(renderTriggerSpy).toHaveBeenCalledWith({
+      hidePopup,
+      showPopup,
+      isOver: false,
+      isVisible: false,
+    });
   });
 
   it('does not call renderContent by default', () => {
     const renderTriggerSpy = jest.spyOn(props, 'renderContent');
-    const wrapper = mount(<Popup {...props} />);
+    shallow(<Popup {...props} />);
 
     expect(renderTriggerSpy).not.toHaveBeenCalledWith();
-    wrapper.unmount();
   });
 
   it('attaches debounced paint resize handler', () => {
@@ -78,8 +52,7 @@ describe('Popup', () => {
     (debounce as any).mockReturnValueOnce(handler);
 
     const wrapper = shallow(<Popup {...props} />);
-    // @ts-ignore
-    const { repaint } = wrapper.instance();
+    const { repaint } = wrapper.instance() as any;
 
     // let's test if debounce was invoked properly
     expect(debounce).toHaveBeenCalledWith(repaint, expect.any(Number));
@@ -111,7 +84,6 @@ describe('Popup', () => {
       shallow(<Popup {...props} />);
 
       expect(renderTriggerSpy).toHaveBeenCalledWith(
-        expect.any(Object),
         expect.objectContaining({
           isVisible: true,
         })
@@ -119,28 +91,22 @@ describe('Popup', () => {
     });
 
     it('renders Portal', () => {
-      const wrapper = mount(<Popup {...props} />);
+      const wrapper = shallow(<Popup {...props} />);
 
-      expect(wrapper.find('Portal')).toExist();
+      expect(wrapper.find(Portal)).toExist();
     });
 
     it('calls on renderContent and passes some internal methods', () => {
       const renderContentSpy = jest.spyOn(props, 'renderContent');
-      const wrapper = mount(<Popup {...props} />);
-      // @ts-ignore
-      const { showPopup, hidePopup } = wrapper.instance();
+      const wrapper = shallow(<Popup {...props} />);
+      const { showPopup, hidePopup } = wrapper.instance() as any;
 
-      expect(renderContentSpy).toHaveBeenCalledWith(
-        { theme },
-        {
-          showPopup,
-          hidePopup,
-          isVisible: true,
-          isOver: false,
-        }
-      );
-
-      wrapper.unmount();
+      expect(renderContentSpy).toHaveBeenCalledWith({
+        showPopup,
+        hidePopup,
+        isVisible: true,
+        isOver: false,
+      });
     });
 
     it('repaints the popup when props change', () => {

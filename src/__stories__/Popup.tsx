@@ -4,32 +4,13 @@ import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 import * as React from 'react';
 
-import { Box, IThemeInterface, Popup } from '..';
+import { Box, Icon, Popup } from '..';
 
 export const popupKnobs = (tabName = 'Popup'): any => {
   return omitBy(
     {
-      show: boolean('show', true, tabName),
-      posX: select(
-        'posX',
-        {
-          left: 'left',
-          center: 'center',
-          right: 'right',
-        },
-        'left',
-        tabName
-      ),
-      posY: select(
-        'posY',
-        {
-          top: 'top',
-          center: 'center',
-          bottom: 'bottom',
-        },
-        'top',
-        tabName
-      ),
+      posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
+      posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
       offset: {
         top: number('offset.top', 0, { min: 0 } as NumberOptions, tabName),
         bottom: number('offset.bottom', 0, { min: 0 } as NumberOptions, tabName),
@@ -45,48 +26,38 @@ export const popupKnobs = (tabName = 'Popup'): any => {
 
 storiesOf('Popup', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => {
-    return (
-      <Popup
-        {...popupKnobs()}
-        renderTrigger={(attributes: object) => {
-          return (
-            <div style={{ background: 'gray' }} {...attributes}>
-              With Defaults
-            </div>
-          );
-        }}
-        renderContent={({ theme }: { theme: IThemeInterface }) => {
-          const color = theme.colors !== undefined ? theme.colors.fg : '#000';
-
-          return (
-            <div style={{ color, boxShadow: `0 0 5px ${color}` }}>{text('content', 'here is the popup content')}</div>
-          );
-        }}
-      />
-    );
-  })
-  .add('with large content', () => {
-    return (
-      <Popup
-        {...popupKnobs()}
-        renderTrigger={(attributes: object) => {
-          return <Box {...attributes}>With Large Content</Box>;
-        }}
-        renderContent={({ theme }: { theme: IThemeInterface }) => {
-          const color = theme.colors !== undefined ? theme.colors.fg : '#000';
-
-          const elems = [];
-          for (let i = 0; i < 100; i++) {
-            elems.push(<li key={i}>item {i}</li>);
-          }
-
-          return (
-            <div style={{ color, boxShadow: `0 0 5px ${color}` }}>
-              <ul>{elems}</ul>
-            </div>
-          );
-        }}
-      />
-    );
-  });
+  .addDecorator(storyFn => (
+    <Box height="500px" width="500px">
+      {storyFn()}
+    </Box>
+  ))
+  .add('with defaults', () => (
+    <Popup
+      {...popupKnobs()}
+      renderTrigger={() => <Box as="span">With Defaults</Box>}
+      renderContent={() => <Box fg="success">{text('content', 'here is the popup content')}</Box>}
+    />
+  ))
+  .add('with icon', () => (
+    <Popup
+      {...popupKnobs()}
+      renderTrigger={() => (
+        <Box as="span">
+          Hover me <Icon icon="globe" />
+        </Box>
+      )}
+      renderContent={() => (
+        <Box as="span" bg="lightest" fg="error">
+          Globe
+        </Box>
+      )}
+    />
+  ))
+  .add('controlled', () => (
+    <Popup
+      {...popupKnobs()}
+      show={boolean('show', true, 'Popup')}
+      renderTrigger={() => <Box as="span">Controlled</Box>}
+      renderContent={() => <Box bg="error">{text('content', 'here is the popup content')}</Box>}
+    />
+  ));
