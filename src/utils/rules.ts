@@ -7,70 +7,12 @@ import { compose, is, num, px } from 'styled-system';
  * MISC
  */
 
-const propThemeMap = {
-  borderColor: 'border',
-  fg: 'fg',
-  bg: 'bg',
-};
-
-// TODO FIX
 export const styleColor = ({ prop, cssProperty }: { prop: string; cssProperty?: string }) => {
-  const resolvedProp = cssProperty || prop;
-
-  // create a cache to check and break circular references
-  // @ts-ignore FIXME
-  const fn = (props: any, cache: any[] = []) => {
-    let val = props[prop] || '';
-
-    if (!val || typeof val !== 'string') return null;
-
-    // if the value is in cache we have a circular reference
-    if (cache.find(i => i && i === val)) {
-      return null;
-    }
-
-    cache.push(val);
-
-    // is pointing to another location in the theme
-    if (val.startsWith('#/')) {
-      val = val.replace('#/', '');
-      val = val.split('/');
-
-      val = get(props.theme, val);
-    } else {
-      // is taken from a prop
-      if (val.startsWith('@')) {
-        if (typeof val === 'string') {
-          val = val.slice(1).split('.');
-        }
-
-        // check components first
-        val = get(props.theme, ['components', ...val]) || get(props.theme, ['colors', ...val]);
-      }
-    }
-
-    // FIXME default to global for that prop
-    if (!val) {
-      val = get(props.theme, ['colors', propThemeMap[prop]]);
-    }
-
-    if (typeof val !== 'string') return null;
-
-    // if the value is another pointer recurse again
-    if (val.startsWith('#/')) {
-      return fn({ ...props, [prop]: val }, cache);
-    }
-
-    return val
-      ? {
-          [resolvedProp]: val,
-        }
-      : null;
-  };
-
-  return fn;
+  // check components first, check colors second, set to default last
+  return style({ prop, cssProperty, key: ['components', 'colors'] });
 };
 
+// TODO add tests
 export const style = ({
   prop,
   cssProperty,
@@ -79,17 +21,31 @@ export const style = ({
 }: {
   prop: string;
   cssProperty?: string;
-  key?: string;
+  key?: string | Array<string | string[]>;
   transformValue?: Function;
-  // TODO FIXME
+  // TODO FIXME fix the type
 }): TemplateStringsArray => {
   const cssName = cssProperty || prop;
+
   const fn = (props: any) => {
     let val = props[prop];
     if (!is(val)) return null;
 
-    if (val.startsWith('@')) {
-      val = get(props.theme, join(concat(key, val.slice(1)), '.'));
+    // references a value from the theme
+    if (typeof val === 'string' && val.startsWith('@')) {
+      // key is an array of fallbacks so check each in order break when value is found
+      if (typeof key === 'object') {
+        for (const index in key) {
+          const newVal = get(props.theme, join(concat(key[index], val.slice(1)), '.'));
+
+          if (newVal) {
+            val = newVal;
+            break;
+          }
+        }
+      } else {
+        val = get(props.theme, join(concat(key, val.slice(1)), '.')) || val;
+      }
     }
 
     if (transformValue) {
@@ -119,7 +75,7 @@ export const bgColor = styleColor({
 export const boxShadow = style({
   prop: 'shadow',
   cssProperty: 'boxShadow',
-  key: 'shadows',
+  key: ['components', 'shadows'],
 });
 
 export const cursor = style({
