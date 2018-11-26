@@ -49,6 +49,7 @@ const MenuView = (props: IMenuProps & { className: string }) => {
         border="xs"
         radius="md"
         direction={direction}
+        position={renderTrigger ? 'absolute' : 'relative'}
         {...attributes}
       >
         {menuItems.map(renderMenuItem)}
@@ -65,7 +66,9 @@ const MenuView = (props: IMenuProps & { className: string }) => {
 };
 
 export const Menu = styled<IMenuProps, 'div'>(MenuView as any)`
-  &:hover ${Flex} {
+  position: relative;
+
+  &:hover > ${Flex} {
     display: flex !important;
   }
   
