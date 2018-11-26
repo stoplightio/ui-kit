@@ -149,7 +149,7 @@ export interface IBoxProps {
 }
 
 interface IAllProps extends IBoxProps, Partial<React.AllHTMLAttributes<'div'>> {
-  as: any;
+  as?: any;
 }
 
 // Order matters
