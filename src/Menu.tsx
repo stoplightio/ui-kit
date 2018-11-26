@@ -20,6 +20,8 @@ export interface IMenuProps {
   menuItems: IMenuItemProps[];
   direction?: IFlexProps['direction'];
   attributes?: IFlexProps;
+  onMouseEnter?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
+  onMouseLeave?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
   renderTrigger?: () => any;
   renderMenuItem?: RenderMenuItem;
   renderMenu?: (
@@ -38,6 +40,8 @@ const MenuView = (props: IMenuProps & { className: string }) => {
     attributes = null,
     className,
     direction = 'column',
+    onMouseEnter,
+    onMouseLeave,
     menuItems = [],
     renderTrigger,
     renderMenuItem = (item: IMenuItemProps, index: number) => <MenuItem key={index} {...item} />,
@@ -58,7 +62,7 @@ const MenuView = (props: IMenuProps & { className: string }) => {
   } = props;
 
   return (
-    <Flex className={className} direction={direction}>
+    <Flex className={className} direction={direction} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {renderTrigger && <MenuTrigger>{renderTrigger()}</MenuTrigger>}
       {renderMenu(props, menuItems, renderMenuItem)}
     </Flex>
