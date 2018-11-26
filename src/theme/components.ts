@@ -37,6 +37,10 @@ export const components: ISectionTheme = {
       border: '#/colors/transparent',
     },
 
+    scrollbar: {
+      bg: 'grey',
+    },
+
     toggle: {
       fg: 'white',
       bg: 'darkgrey',
