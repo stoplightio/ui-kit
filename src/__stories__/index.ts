@@ -15,6 +15,7 @@ import './Link';
 import './List';
 import './ListScroller';
 import './Menu';
+import './Select';
 import './Table';
 import './Text';
 import './Textarea';

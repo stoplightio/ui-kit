@@ -78,4 +78,4 @@ export interface IShadows {
   [color: string]: string | Partial<IShadows>;
 }
 
-export type Components = 'button' | 'checkbox' | 'toggle' | 'codeEditor' | 'contextMenu' | 'blockQuote';
+export type Components = 'button' | 'checkbox' | 'toggle' | 'codeEditor' | 'contextMenu' | 'blockQuote' | 'select';

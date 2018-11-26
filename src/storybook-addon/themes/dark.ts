@@ -53,6 +53,32 @@ export const dark = {
     blockQuote: {
       shadow: '0 0 5px currentColor',
     },
+
+    select: {
+      fg: 'white',
+      bg: 'black',
+      border: 'lightgrey',
+
+      indicator: {
+        fg: 'white',
+        bg: 'black',
+      },
+
+      chip: {
+        fg: 'black',
+        bg: 'lightgrey',
+      },
+
+      menu: {
+        fg: 'white',
+        bg: 'black',
+
+        selected: {
+          fg: 'white',
+          bg: 'dodgerblue',
+        },
+      },
+    },
   },
 
   sections: {

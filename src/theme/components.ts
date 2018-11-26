@@ -81,5 +81,31 @@ export const components: ISectionTheme = {
     blockQuote: {
       shadow: '0 0 5px currentColor',
     },
+
+    select: {
+      fg: 'black',
+      bg: 'white',
+      border: 'black',
+
+      indicator: {
+        fg: 'black',
+        bg: 'white',
+      },
+
+      chip: {
+        fg: 'black',
+        bg: 'lightgrey',
+      },
+
+      menu: {
+        fg: 'black',
+        bg: 'white',
+
+        selected: {
+          fg: 'white',
+          bg: 'dodgerblue',
+        },
+      },
+    },
   },
 };
