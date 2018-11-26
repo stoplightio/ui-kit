@@ -1,5 +1,5 @@
 import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
-import { boolean, number, select, text } from '@storybook/addon-knobs/react';
+import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 import * as React from 'react';
@@ -19,6 +19,7 @@ export const popupKnobs = (tabName = 'Popup'): any => {
       },
       padding: number('padding', 0, { min: 0 } as NumberOptions, tabName),
       width: number('width', 0, { min: 0 } as NumberOptions, tabName),
+      hideDelay: number('hideDelay', 200, { min: 0 } as NumberOptions, tabName),
     },
     val => !val
   );
@@ -51,13 +52,5 @@ storiesOf('Popup', module)
           Globe
         </Box>
       )}
-    />
-  ))
-  .add('controlled', () => (
-    <Popup
-      {...popupKnobs()}
-      show={boolean('show', true, 'Popup')}
-      renderTrigger={() => <Box as="span">Controlled</Box>}
-      renderContent={() => <Box bg="error">{text('content', 'here is the popup content')}</Box>}
     />
   ));
