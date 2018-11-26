@@ -1,14 +1,14 @@
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { ThemeConsumer } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { Portal } from '../Portal';
 
 describe('Portal', () => {
   let appendChildSpy: jest.SpyInstance;
   let removeChildSpy: jest.SpyInstance;
   let setClassNameSpy: jest.SpyInstance;
-  let theme: any;
+  let theme: object;
 
   beforeEach(() => {
     setClassNameSpy = jest.spyOn(HTMLDivElement.prototype, 'className', 'set');
@@ -17,10 +17,6 @@ describe('Portal', () => {
     theme = {
       color: 'test',
     };
-
-    (ThemeConsumer as any).mockImplementationOnce(({ children }: { children: Function }) => {
-      return children(theme);
-    });
   });
 
   afterEach(() => {
@@ -59,9 +55,11 @@ describe('Portal', () => {
 
   it('passes theme to children', () => {
     const wrapper = mount(
-      <Portal>
-        <div />
-      </Portal>
+      <ThemeProvider theme={theme}>
+        <Portal>
+          <div />
+        </Portal>
+      </ThemeProvider>
     );
     expect(wrapper.find('div')).toHaveProp('theme', theme);
     wrapper.unmount();

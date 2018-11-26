@@ -1,16 +1,17 @@
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import 'jest-enzyme';
 import debounce = require('lodash/debounce');
 import * as React from 'react';
 
-import { Popup, Portal } from '../';
+import { Popup } from '../Popup';
+import { PopupContent } from '../Popup/PopupContent';
 
 describe('Popup', () => {
   let props: any;
   let addEventListenerSpy: jest.SpyInstance;
   let removeEventListenerSpy: jest.SpyInstance;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
     jest.useFakeTimers();
@@ -18,6 +19,7 @@ describe('Popup', () => {
     props = {
       renderContent: jest.fn(() => <div />),
       renderTrigger: jest.fn(() => <div />),
+      hideDelay: 300,
     };
   });
 
@@ -28,9 +30,9 @@ describe('Popup', () => {
   });
 
   it('always calls renderTrigger on render with internal properties', () => {
-    const renderTriggerSpy = jest.spyOn(props, 'renderTrigger');
-    const wrapper = shallow(<Popup {...props} />);
-    const { showPopup, hidePopup } = wrapper.instance() as any;
+    const { renderTrigger: renderTriggerSpy } = props;
+    const wrapper = mount(<Popup {...props} />);
+    const [[{ showPopup, hidePopup }]] = renderTriggerSpy.mock.calls;
 
     expect(renderTriggerSpy).toHaveBeenCalledWith({
       hidePopup,
@@ -38,171 +40,168 @@ describe('Popup', () => {
       isOver: false,
       isVisible: false,
     });
+
+    wrapper.unmount();
   });
 
   it('does not call renderContent by default', () => {
     const renderTriggerSpy = jest.spyOn(props, 'renderContent');
-    shallow(<Popup {...props} />);
+    const wrapper = mount(<Popup {...props} />);
 
     expect(renderTriggerSpy).not.toHaveBeenCalledWith();
+    wrapper.unmount();
   });
 
   it('attaches debounced paint resize handler', () => {
     const handler = () => true;
     (debounce as any).mockReturnValueOnce(handler);
 
-    const wrapper = shallow(<Popup {...props} />);
-    const { repaint } = wrapper.instance() as any;
+    const wrapper = mount(<Popup {...props} />);
 
     // let's test if debounce was invoked properly
-    expect(debounce).toHaveBeenCalledWith(repaint, expect.any(Number));
+    expect(debounce).toHaveBeenCalledWith(expect.any(Function), expect.any(Number));
     // and now if event listener was correctly attached
 
     expect(addEventListenerSpy).toHaveBeenCalledWith('resize', handler);
+    wrapper.unmount();
   });
 
   it('removes the previously attached resize handler', () => {
     const handler = () => true;
     (debounce as any).mockReturnValueOnce(handler);
 
-    const wrapper = shallow(<Popup {...props} />);
+    const wrapper = mount(<Popup {...props} />);
     wrapper.unmount();
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', handler);
   });
 
   describe('when Popup is visible', () => {
+    let setStateSpy: jest.SpyInstance;
+    let repaintSpy: jest.SpyInstance;
+    let useCallbackSpy: jest.SpyInstance;
+    let setVisibilitySpy: jest.SpyInstance;
+
     beforeEach(() => {
-      props = {
-        ...props,
-        show: true,
-      };
+      repaintSpy = jest.fn();
+      useCallbackSpy = jest.spyOn(React, 'useCallback').mockReturnValue(repaintSpy);
+
+      setStateSpy = jest.spyOn(React, 'useState');
+      setVisibilitySpy = jest.fn();
+      setStateSpy.mockReturnValueOnce([true, setVisibilitySpy]);
+    });
+
+    afterEach(() => {
+      setStateSpy.mockRestore();
+      useCallbackSpy.mockRestore();
     });
 
     it('calls renderTrigger and passes proper isVisible', () => {
-      const renderTriggerSpy = jest.spyOn(props, 'renderTrigger');
-      shallow(<Popup {...props} />);
+      const wrapper = mount(<Popup {...props} />);
 
-      expect(renderTriggerSpy).toHaveBeenCalledWith(
+      expect(props.renderTrigger).toHaveBeenCalledWith(
         expect.objectContaining({
           isVisible: true,
         })
       );
+      wrapper.unmount();
     });
 
-    it('renders Portal', () => {
-      const wrapper = shallow(<Popup {...props} />);
+    it('renders PopupContent', () => {
+      const wrapper = mount(<Popup {...props} />);
 
-      expect(wrapper.find(Portal)).toExist();
+      expect(wrapper.find(PopupContent)).toExist();
+      wrapper.unmount();
     });
 
     it('calls on renderContent and passes some internal methods', () => {
       const renderContentSpy = jest.spyOn(props, 'renderContent');
-      const wrapper = shallow(<Popup {...props} />);
-      const { showPopup, hidePopup } = wrapper.instance() as any;
+      const wrapper = mount(<Popup {...props} />);
 
       expect(renderContentSpy).toHaveBeenCalledWith({
-        showPopup,
-        hidePopup,
+        showPopup: expect.any(Function),
+        hidePopup: expect.any(Function),
         isVisible: true,
         isOver: false,
       });
+      wrapper.unmount();
     });
 
     it('repaints the popup when props change', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const repaintSpy = jest.spyOn(wrapper.instance() as any, 'repaint');
-
+      const wrapper = mount(<Popup {...props} />);
       wrapper.setProps({ padding: 10 });
       expect(repaintSpy).toHaveBeenCalled();
+      wrapper.unmount();
     });
 
-    it('handleMouseEnter does nothing', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const instance = wrapper.instance() as any;
-      const showPopupSpy = jest.spyOn(instance, 'showPopup');
+    describe('hidePopup', () => {
+      it('aborts the request if already in progress', () => {
+        const wrapper = mount(<Popup {...props} />);
+        const [[{ hidePopup, showPopup }]] = props.renderTrigger.mock.calls;
 
-      instance.handleMouseEnter(false);
-      expect(showPopupSpy).not.toHaveBeenCalled();
-    });
-  });
+        showPopup();
+        hidePopup();
 
-  describe('hidePopup', () => {
-    it('aborts the request if already in progress', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const instance = wrapper.instance() as any;
-      instance._willHide = 2343;
+        expect(setTimeout).toHaveBeenCalledTimes(1);
+        wrapper.unmount();
+      });
 
-      instance.hidePopup();
-      expect(setTimeout).not.toHaveBeenCalled();
-    });
+      it('sets a timeout according to given hideDelay', () => {
+        const hideDelay = parseInt(String(Math.random() * 100000), 10);
+        const wrapper = mount(<Popup {...props} hideDelay={hideDelay} />);
 
-    it('sets a timeout according to given hideDelay', () => {
-      const hideDelay = parseInt(String(Math.random() * 100000), 10);
-      const wrapper = shallow(<Popup {...props} hideDelay={hideDelay} />);
-      const instance = wrapper.instance() as any;
-      instance.hidePopup();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), hideDelay);
-    });
+        const [[{ hidePopup }]] = props.renderTrigger.mock.calls;
 
-    it('clears styles once timeouts', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const instance = wrapper.instance() as any;
-      instance.hidePopup();
-      jest.runAllTimers();
-      expect(wrapper).toHaveState('style', undefined);
+        hidePopup();
+        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), hideDelay);
+        wrapper.unmount();
+      });
+
+      it('hides popup once timeouts', () => {
+        const wrapper = mount(<Popup {...props} />);
+        const [[{ hidePopup }]] = props.renderTrigger.mock.calls;
+        hidePopup();
+
+        jest.runAllTimers();
+        expect(setVisibilitySpy).toHaveBeenCalledWith(false);
+        wrapper.unmount();
+      });
+
+      describe('repaint', () => {
+        it('always sets style', () => {
+          const wrapper = mount(<Popup {...props} />);
+
+          expect(wrapper.find(PopupContent)).toHaveProp('style');
+
+          wrapper.unmount();
+        });
+      });
     });
   });
 
   describe('showPopup', () => {
     it('clears willHide timeout', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const instance = wrapper.instance() as any;
-      const timeout = 50;
-      instance._willHide = timeout;
-      instance.showPopup();
-      expect(clearTimeout).toHaveBeenCalledWith(timeout);
-      expect(instance).toHaveProperty('_willHide', undefined);
-    });
+      const wrapper = mount(<Popup {...props} />);
+      const [[{ showPopup, hidePopup }]] = props.renderTrigger.mock.calls;
 
-    it('triggers forced re-render', () => {
-      const wrapper = shallow(<Popup {...props} />);
-      const instance = wrapper.instance() as any;
-      const forceUpdate = jest.spyOn(instance, 'forceUpdate');
-      instance.showPopup();
-      expect(forceUpdate).toHaveBeenCalledWith();
+      hidePopup();
+      showPopup();
+
+      expect(clearTimeout).toHaveBeenCalled();
+      wrapper.unmount();
     });
   });
 
-  it('handleMouseEnter calls showPopup', () => {
-    const wrapper = shallow(<Popup {...props} isVisible={false} />);
-    const instance = wrapper.instance() as any;
-    const showPopupSpy = jest.spyOn(instance, 'showPopup');
+  it('handleMouseEnter shows popup', () => {
+    const trigger = <span id="trigger">foo</span>;
 
-    instance.handleMouseEnter(false);
-    expect(showPopupSpy).toHaveBeenCalled();
-  });
+    props.renderTrigger.mockReturnValue(trigger);
 
-  describe('repaint', () => {
-    it('always sets style', () => {
-      const wrapper = shallow(<Popup {...props} isVisible={false} />);
-      const instance = wrapper.instance() as any;
-      instance._trigger = {
-        getBoundingClientRect: () => ({}),
-      };
-      instance._content = {
-        getBoundingClientRect: () => ({}),
-      };
+    const wrapper = mount(<Popup {...props} isVisible={false} />);
 
-      instance.repaint();
-      expect(wrapper).toHaveState(
-        'style',
-        expect.objectContaining({
-          minWidth: expect.anything(),
-          left: expect.anything(),
-          bottom: expect.anything(),
-        })
-      );
-    });
+    wrapper.find('#trigger').simulate('mouseenter');
+
+    expect(wrapper.find(PopupContent)).toExist();
+    wrapper.unmount();
   });
 });
