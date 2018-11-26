@@ -1,13 +1,22 @@
 import {
+  BrStyle,
   ContentDistribution,
   ContentPosition,
   DisplayInside,
   DisplayInternal,
   DisplayLegacy,
   DisplayOutside,
-  FontWeightAbsolute,
+  FlexDirectionProperty,
+  FlexWrapProperty,
+  FontWeightProperty,
   Globals,
+  GlobalsNumber,
+  OverflowXProperty,
+  PositionProperty,
   SelfPosition,
+  TextAlignProperty,
+  TextTransformProperty,
+  ZIndexProperty,
 } from 'csstype';
 /**
  * CSStypes
@@ -17,6 +26,8 @@ import {
  */
 
 export interface ICSSProps {
+  borderStyle: Globals | BrStyle;
+
   cursor:
     | Globals
     | '-moz-grab'
@@ -71,10 +82,10 @@ export interface ICSSProps {
   flex: Globals | 'auto' | 'available' | 'content' | 'fit-content' | 'max-content' | 'min-content' | 'none' | number;
   flexAlignItems: Globals | SelfPosition | 'baseline' | 'normal' | 'stretch';
   flexJustifyContent: Globals | ContentDistribution | ContentPosition | 'left' | 'normal' | 'right';
-  flexDirection: Globals | 'column' | 'column-reverse' | 'row' | 'row-reverse';
-  flexWrap: Globals | 'nowrap' | 'wrap' | 'wrap-reverse';
+  flexDirection: FlexDirectionProperty;
+  flexWrap: FlexWrapProperty;
 
-  fontWeight: Globals | FontWeightAbsolute | 'bolder' | 'lighter';
+  fontWeight: FontWeightProperty;
 
   letterSpacing: Globals | 'normal' | number;
   lineHeight: Globals | 'normal' | number;
@@ -105,13 +116,13 @@ export interface ICSSProps {
     | 'inherit';
   listPosition: Globals | 'inside' | 'outside';
 
-  opacity: Globals | number;
+  opacity: GlobalsNumber;
 
-  overflow: Globals | 'auto' | 'clip' | 'hidden' | 'scroll' | 'visible';
+  overflow: OverflowXProperty;
 
-  position: Globals | '-webkit-sticky' | 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky';
+  position: PositionProperty;
 
-  textAlign: Globals | 'center' | 'end' | 'justify' | 'left' | 'match-parent' | 'right' | 'start';
+  textAlign: TextAlignProperty;
 
   textDecoration:
     | Globals
@@ -126,7 +137,7 @@ export interface ICSSProps {
     | 'underline'
     | 'wavy';
 
-  textTransform: Globals | 'capitalize' | 'full-width' | 'lowercase' | 'none' | 'uppercase';
+  textTransform: TextTransformProperty;
 
-  z: Globals | 'auto' | number;
+  z: ZIndexProperty;
 }
