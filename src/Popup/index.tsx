@@ -5,6 +5,8 @@ import { PopupContent } from './PopupContent';
 import { IPopupDefaultProps, IPopupProps } from './types';
 import { calculateStyles, getDefaultStyle } from './utils';
 
+export { IPopupProps, IPopupDefaultProps };
+
 export const Popup = (props: IPopupProps) => {
   const triggerRef = React.useRef<HTMLElement>(null);
   const contentRef = React.createRef<HTMLDivElement>();
