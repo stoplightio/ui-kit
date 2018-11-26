@@ -1,4 +1,4 @@
-import { FlipProp, IconName, IconPrefix, library, RotateProp } from '@fortawesome/fontawesome-svg-core';
+import { FlipProp, IconName, IconPrefix, library, RotateProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
@@ -30,6 +30,7 @@ export interface IIconProps {
   spin?: boolean;
   pulse?: boolean;
   flip?: FlipProp;
+  size?: SizeProp;
   rotation?: RotateProp;
 
   // Subset of Box
@@ -77,10 +78,18 @@ export interface IIconProps {
 export const IconLibrary = library;
 
 export const Icon = styled<IIconProps>((props: IIconProps) => {
-  const { icon, spin, pulse, flip, rotation, className } = props;
+  const { icon, spin, size, pulse, flip, rotation, className } = props;
 
   return (
-    <FontAwesomeIcon className={className} icon={icon} spin={spin} pulse={pulse} flip={flip} rotation={rotation} />
+    <FontAwesomeIcon
+      className={className}
+      icon={icon}
+      spin={spin}
+      size={size}
+      pulse={pulse}
+      flip={flip}
+      rotation={rotation}
+    />
   );
 })(
   // @ts-ignore

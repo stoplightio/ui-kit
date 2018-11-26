@@ -1,3 +1,4 @@
+import { BorderRadiusProperty, WidthProperty } from 'csstype';
 import { Components } from './index';
 
 /**
@@ -45,6 +46,12 @@ export interface IBase {
   height?: { [key in keyof IBoxDimension]?: number | string };
 
   width?: { [key in keyof IBoxDimension]?: number | string };
+
+  scrollbars?: {
+    thumb?: string;
+    thumbRadius?: BorderRadiusProperty<string>;
+    width?: WidthProperty<string>;
+  };
 }
 
 /**
@@ -140,11 +147,17 @@ export interface IFullSpace extends ISpace {
   '-5xl': '-@5xl';
   '-6xl': '-@6xl';
 }
-export type BoxShadow = keyof IShadows;
 
+export interface IShadows {
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+}
 /**
  * MISC
  */
+
+export type ValueOf<T> = T[keyof T];
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
 export interface IColors {
@@ -155,10 +168,10 @@ export interface IColors {
   [color: string]: string | Partial<IColors>;
 }
 
-export interface IShadows {
+export interface IShadowsTheme {
   sm: string;
   md: string;
   lg: string;
 
-  [color: string]: string | Partial<IShadows>;
+  [color: string]: string | Partial<IShadowsTheme>;
 }

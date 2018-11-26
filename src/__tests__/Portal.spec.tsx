@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';

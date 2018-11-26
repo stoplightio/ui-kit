@@ -4,7 +4,9 @@ export const light = {
     bg: 'white',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
-    error: 'red',
+    error: '#ff7979',
+    success: '#4caf50',
+    warning: '#ff9800',
   },
 
   components: {
@@ -12,6 +14,10 @@ export const light = {
       bg: 'rgb(160, 159, 165)',
       fg: 'white',
       border: 'rgb(160, 159, 165)',
+    },
+
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
     },
   },
 
@@ -51,5 +57,11 @@ export const light = {
         border: 'rgb(233, 239, 244)',
       },
     },
+  },
+
+  scrollbars: {
+    width: '7px',
+    thumb: 'black',
+    thumbRadius: '5px',
   },
 };

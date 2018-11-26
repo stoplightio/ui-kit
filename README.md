@@ -28,14 +28,25 @@ TODO
   - [Creating a component](./docs/components.md#create-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
+    - BlockQuote
     - Box
-    - Flex
-    - Text
-    - Heading
-    - List
+    - Break
     - Button
+    - Code Editor
+    - Flex
+    - Heading
+    - Icon
+    - Link
+    - List
+    - ListScroller
     - Portal
+    - Mark
+    - Menu
     - Table
+    - Text
+    - Textarea
+    - ThemeSection
+    - Toggle
 
 ## Helpful Links
 
@@ -70,6 +81,7 @@ yarn storybook
 ```
 
 ### Linking to another package
+
 ```bash
 # install dependencies
 yarn setup

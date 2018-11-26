@@ -78,6 +78,7 @@ export interface IBoxProps {
   borderLeft?: ValueOf<IBorderWidth> | number;
   borderRight?: ValueOf<IBorderWidth> | number;
   borderBottom?: ValueOf<IBorderWidth> | number;
+  borderStyle?: ICSSProps['borderStyle'];
   borderColor?: string;
   radius?: ValueOf<IBorderRadius> | number;
 
@@ -85,8 +86,8 @@ export interface IBoxProps {
 
   display?: ICSSProps['display'];
   flex?: ICSSProps['flex'];
-  shadow?: IShadows;
   opacity?: ICSSProps['opacity'];
+  shadow?: ValueOf<IShadows> | string;
 
   overflow?: ICSSProps['overflow'];
   overflowX?: ICSSProps['overflow'];
@@ -101,8 +102,12 @@ export interface IBoxProps {
   z?: ICSSProps['z'];
 }
 
-export const Box = styled<IBoxProps, 'div'>('div')(
-  // Order matters
+interface IAllProps extends IBoxProps, Partial<React.AllHTMLAttributes<'div'>> {
+  as?: any;
+}
+
+// Order matters
+export const Box = styled<IAllProps, 'div'>('div' as any)(
   // @ts-ignore
   bgColor,
   textColor,

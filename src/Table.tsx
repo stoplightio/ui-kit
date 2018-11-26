@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { themeGet } from 'styled-system';
 import { Box, IBoxProps } from './Box';
-import { styled } from './utils';
+import { styled, themeGet } from './utils';
 
 interface ITableProps extends IBoxProps {
   children: any;
@@ -23,7 +22,7 @@ const TableView = ({ className, children }: ITableViewProps) => (
   </table>
 );
 
-const getBoxShadowTheme = themeGet('shadows.lg', '0 0 5px #000');
+const getBoxShadowTheme = themeGet('shadows.lg');
 const boxShadow = (props: ITableCellProps | ITableProps) =>
   props.isSelection && {
     boxShadow: getBoxShadowTheme(props),
@@ -33,7 +32,7 @@ export const Table = styled<ITableProps, 'table'>(Box as any).attrs({
   as: () => TableView,
   border: '@none',
   borderTop: '@sm',
-  borderColor: '@colors.border',
+  borderColor: '@border',
   css: {
     'border-collapse': 'collapse',
   },
@@ -47,14 +46,14 @@ export const TableRow = styled<ITableProps, 'tr'>(Box as any).attrs({
   border: '@none',
   borderBottom: '@sm',
   borderRight: '@sm',
-  borderColor: '@colors.border',
+  borderColor: '@border',
 })``;
 
 export const TableHeadCell = styled<ITableCellProps, 'th'>(Box as any).attrs({
   as: 'td',
   border: '@none',
   borderLeft: '@sm',
-  borderColor: '@colors.border',
+  borderColor: '@border',
 })(
   // @ts-ignore
   boxShadow
@@ -64,7 +63,7 @@ export const TableCell = styled<ITableCellProps, 'td'>(Box as any).attrs({
   as: 'td',
   border: '@none',
   borderLeft: '@sm',
-  borderColor: 'colors.border',
+  borderColor: '@border',
 })(
   // @ts-ignore
   boxShadow

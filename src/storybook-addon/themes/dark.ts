@@ -6,6 +6,8 @@ export const dark = {
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
     error: '#ff7979',
+    success: '#4caf50',
+    warning: '#ff9800',
   },
 
   shadows: {
@@ -19,6 +21,37 @@ export const dark = {
       bg: 'rgb(255, 255, 255, 0.25)',
       fg: 'white',
       border: 'rgb(160, 159, 165)',
+    },
+
+    codeEditor: {
+      bg: '#222',
+      border: '#f9f9f9',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#c2cbd0',
+        punctuation: '#c3c9cc',
+        keyword: '#FFFFC7',
+        function: '#f44336',
+        variable: '#FFFFC7',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
+    },
+
+    contextMenu: {
+      bg: 'black',
+      borderColor: 'rgba(255, 255, 255, 0.5)',
+
+      hover: {
+        bg: 'dodgerblue',
+        color: 'white',
+      },
+    },
+
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
     },
   },
 
@@ -61,5 +94,11 @@ export const dark = {
         border: 'transparent',
       },
     },
+  },
+
+  scrollbars: {
+    width: '7px',
+    thumb: '#f9f9f9',
+    thumbRadius: '5px',
   },
 };
