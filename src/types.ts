@@ -90,7 +90,12 @@ export interface IFullSpace extends ISpace {
   '-5xl': '-@5xl';
   '-6xl': '-@6xl';
 }
-export type BoxShadow = keyof IShadows;
+
+export interface IShadows {
+  sm: '@sm';
+  md: '@md';
+  lg: '@lg';
+}
 
 export interface IThemeInterface<
   TSections extends string = '',
@@ -110,7 +115,7 @@ export interface IThemeInterface<
 
 export interface ISectionTheme<TComponents extends Components = Components> {
   colors?: Partial<IColors>;
-  shadows?: Partial<IShadows>;
+  shadows?: Partial<IShadowsTheme>;
 
   components?: { [component in TComponents]?: Partial<IColors> };
 }
@@ -151,12 +156,12 @@ export interface IColors {
   [color: string]: string | Partial<IColors>;
 }
 
-export interface IShadows {
+export interface IShadowsTheme {
   sm: string;
   md: string;
   lg: string;
 
-  [color: string]: string | Partial<IShadows>;
+  [color: string]: string | Partial<IShadowsTheme>;
 }
 
 // components created in this repo

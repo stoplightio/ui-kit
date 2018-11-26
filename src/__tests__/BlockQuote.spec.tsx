@@ -13,8 +13,8 @@ describe('BlockQuote', () => {
 
   it('attaches custom attributes', () => {
     const attributes: IBoxProps = {
-      border: 'lg',
-      pl: 'xl',
+      border: '@lg',
+      pl: '@xl',
     };
 
     const wrapper = shallow(<BlockQuote attributes={attributes}>stoplight.io</BlockQuote>);

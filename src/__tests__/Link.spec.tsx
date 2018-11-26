@@ -33,8 +33,8 @@ describe('Links', () => {
 
   it('attaches custom attributes', () => {
     const attributes: IBoxProps = {
-      border: 'lg',
-      pl: 'xl',
+      border: '@lg',
+      pl: '@xl',
     };
 
     const wrapper = shallow(

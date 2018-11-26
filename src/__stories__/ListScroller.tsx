@@ -15,7 +15,7 @@ export const listScrollerKnobs = (tabName = 'List Scroller'): any => {
 };
 
 const rowRenderer = ({ value, key, style }: IListScrollerItemProps) => (
-  <Box key={key} as="div" {...style as object} borderBottom="2px solid black">
+  <Box key={key} as="div" {...style as object} borderBottom="@sm" borderColor="black">
     {value}
   </Box>
 );
