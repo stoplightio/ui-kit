@@ -132,7 +132,7 @@ export interface IBoxProps {
     | 'initial'
     | 'inherit';
   flex?: string | number;
-  shadow?: IShadows;
+  shadow?: ValueOf<IShadows> | string;
   opacity?: number;
 
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
@@ -148,8 +148,12 @@ export interface IBoxProps {
   z?: number;
 }
 
+interface IAllProps extends IBoxProps, Partial<React.AllHTMLAttributes<'div'>> {
+  as: any;
+}
+
 // Order matters
-export const Box = styled<IBoxProps, 'div'>('div')(
+export const Box = styled<IAllProps, 'div'>('div' as any)(
   // @ts-ignore
   bgColor,
   textColor,
