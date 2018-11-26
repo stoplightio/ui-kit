@@ -2,22 +2,23 @@ import { get, merge } from 'lodash';
 import * as React from 'react';
 
 import { base } from './theme/base';
-import { ISectionTheme, IThemeInterface } from './types';
-
 import { ThemeProvider } from './ThemeProvider';
+import { ISectionTheme, IThemeInterface } from './types';
+import { withTheme } from './utils';
 
 interface IThemeSectionProps {
-  theme?: ISectionTheme;
+  theme?: IThemeInterface;
+  sectionTheme?: ISectionTheme;
   section: string;
   children?: any;
 }
 
-export class ThemeSection extends React.Component<IThemeSectionProps> {
+export class ThemeSectionBase extends React.Component<IThemeSectionProps> {
   private computedTheme() {
-    const { section, theme: propsTheme } = this.props;
+    const { section, theme, sectionTheme } = this.props;
 
     // merge base at the end so that the user can change the  base layout options like spacing
-    return (theme: IThemeInterface) => merge({}, theme, get(theme, ['sections', section], {}), propsTheme || {}, base);
+    return merge({}, theme, get(theme, ['sections', section], {}), sectionTheme || {}, base);
   }
 
   public render() {
@@ -26,3 +27,5 @@ export class ThemeSection extends React.Component<IThemeSectionProps> {
     return <ThemeProvider theme={this.computedTheme()}>{this.props.children}</ThemeProvider>;
   }
 }
+
+export const ThemeSection = withTheme(ThemeSectionBase);

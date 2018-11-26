@@ -17,20 +17,17 @@ export interface IThemeProviderProps {
   children?: any;
 }
 export const ThemeProvider = (props: IThemeProviderProps) => {
-  const [theme, setTheme] = React.useState(Object.assign({}, baseTheme, props.theme));
+  let theme: any = Object.assign({}, baseTheme, props.theme);
 
-  React.useEffect(
-    () => {
-      resolver.resolve(theme).then(res => {
-        if (res.errors) {
-          setTheme(baseTheme);
-        } else if (res.result) {
-          setTheme(res.result);
-        }
-      });
-    },
-    [theme]
-  );
+  React.useEffect(() => {
+    resolver.resolve(theme).then(res => {
+      if (res.errors && res.errors.length > 0) {
+        theme = baseTheme;
+      } else if (res.result) {
+        theme = res.result;
+      }
+    });
+  });
 
   return <StyledProvider theme={theme}>{props.children}</StyledProvider>;
 };
