@@ -15,6 +15,7 @@ export * from './Image';
 export * from './List';
 export * from './Link';
 export * from './Portal';
+export * from './Mark';
 export * from './Menu';
 export * from './Table';
 export * from './Text';
