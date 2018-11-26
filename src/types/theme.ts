@@ -157,8 +157,6 @@ export interface IShadows {
  * MISC
  */
 
-export type ValueOf<T> = T[keyof T];
-
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
 export interface IColors {
   fg: string;
