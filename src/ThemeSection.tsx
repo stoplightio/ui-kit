@@ -1,11 +1,10 @@
 import { get, merge } from 'lodash';
 import * as React from 'react';
-import * as styledComponents from 'styled-components';
 
 import { base } from './theme/base';
 import { ISectionTheme, IThemeInterface } from './types';
 
-const { ThemeProvider } = styledComponents as styledComponents.ThemedStyledComponentsModule<IThemeInterface>;
+import { ThemeProvider } from './ThemeProvider';
 
 interface IThemeSectionProps {
   theme?: ISectionTheme;

@@ -6,7 +6,7 @@ import { merge } from 'lodash';
 
 import { Flex } from '../Flex';
 import { baseTheme } from '../theme';
-import { ThemeProvider } from '../utils';
+import { ThemeProvider } from '../ThemeProvider';
 
 export const withThemes = (themes: any[]) =>
   makeDecorator({
