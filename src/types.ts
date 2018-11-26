@@ -1,3 +1,5 @@
+import { BorderRadiusProperty, WidthProperty } from 'csstype';
+
 export type ValueOf<T> = T[keyof T];
 
 export interface IFontSize {
@@ -131,6 +133,12 @@ export interface ILayout {
   height?: { [key in keyof IBoxDimension]?: number | string };
 
   width?: { [key in keyof IBoxDimension]?: number | string };
+
+  scrollbars?: {
+    thumb?: string;
+    thumbRadius?: BorderRadiusProperty<string>;
+    width?: WidthProperty<string>;
+  };
 }
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
@@ -152,4 +160,13 @@ export interface IShadows {
 }
 
 // components created in this repo
-export type Components = 'button' | 'checkbox' | 'contextMenu' | 'input' | 'menu' | 'textarea' | 'toggle';
+export type Components =
+  | 'blockQuote'
+  | 'button'
+  | 'checkbox'
+  | 'codeEditor'
+  | 'contextMenu'
+  | 'input'
+  | 'menu'
+  | 'textarea'
+  | 'toggle';

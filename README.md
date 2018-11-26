@@ -28,16 +28,25 @@ TODO
   - [Creating a component](./docs/components.md#create-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
+    - BlockQuote
     - Box
     - Break
     - Button
+    - Code Editor
     - Flex
     - Heading
+    - Icon
+    - Link
     - List
+    - ListScroller
     - Portal
+    - Mark
     - Menu
-    - Text
     - Table
+    - Text
+    - Textarea
+    - ThemeSection
+    - Toggle
 
 ## Helpful Links
 

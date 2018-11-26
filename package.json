@@ -18,9 +18,7 @@
   },
   "license": "Apache-2.0",
   "files": [
-    "**/*",
-    "!__tests__",
-    "!__stories__"
+    "**/*"
   ],
   "engines": {
     "node": ">=8.3.0"
@@ -49,17 +47,22 @@
     "@fortawesome/react-fontawesome": "0.1.3",
     "@types/enzyme": "^3.1.15",
     "@types/lodash": "4.x.x",
+    "@types/prismjs": "^1.9.0",
     "@types/react": "16.x.x",
     "@types/react-dom": "16.x.x",
     "@types/react-input-autosize": "2.0.x",
     "@types/react-textarea-autosize": "4.3.x",
+    "@types/react-virtualized": "^9.18.9",
     "@types/styled-components": "4.0.x",
     "@types/styled-system": "3.0.x",
     "lodash": "4.x.x",
+    "prismjs": "1.15.x",
     "react-dom": "^16.7.0-alpha.2",
     "react-contextmenu": "2.10.x",
     "react-input-autosize": "2.2.x",
+    "react-simple-code-editor": "0.7.x",
     "react-textarea-autosize": "7.1.0-1",
+    "react-virtualized": "^9.21.0",
     "styled-components": "4.0.x",
     "styled-system": "3.1.x"
   },
@@ -68,12 +71,13 @@
     "@fortawesome/free-regular-svg-icons": "5.5.x",
     "@fortawesome/free-solid-svg-icons": "5.5.x",
     "@sambego/storybook-state": "1.x.x",
-    "@stoplight/scripts": "1.2.3",
+    "@stoplight/scripts": "3.0.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
     "jest-enzyme": "^7.0.1",
     "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
     "storybook-chromatic": "1.2.x",
     "typescript": "3.1.6"
   },

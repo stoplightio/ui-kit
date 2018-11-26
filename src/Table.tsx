@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { themeGet } from 'styled-system';
 import { Box, IBoxProps } from './Box';
-import { styled } from './utils';
+import { styled, themeGet } from './utils';
 
 interface ITableProps extends IBoxProps {
   children: any;
@@ -23,7 +22,7 @@ const TableView = ({ className, children }: ITableViewProps) => (
   </table>
 );
 
-const getBoxShadowTheme = themeGet('shadows.lg', '0 0 5px #000');
+const getBoxShadowTheme = themeGet('shadows.lg');
 const boxShadow = (props: ITableCellProps | ITableProps) =>
   props.isSelection && {
     boxShadow: getBoxShadowTheme(props),

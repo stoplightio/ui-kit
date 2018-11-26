@@ -15,6 +15,10 @@ export const light = {
       fg: 'white',
       border: 'rgb(160, 159, 165)',
     },
+
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
+    },
   },
 
   sections: {
@@ -53,5 +57,11 @@ export const light = {
         border: 'rgb(233, 239, 244)',
       },
     },
+  },
+
+  scrollbars: {
+    width: '7px',
+    thumb: 'black',
+    thumbRadius: '5px',
   },
 };
