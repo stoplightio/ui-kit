@@ -20,37 +20,17 @@ export const shadows = {
   },
 };
 
-export const scrollbars = {
-  scrollbars: {
-    width: '10px',
-    thumb: 'grey',
-    thumbRadius: '5px',
-  },
-};
-
 // default color stylings we want to use out of the gates (in case someone does not want to have to create their own theme)
 export const components: ISectionTheme = {
   components: {
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
+    },
+
     button: {
       fg: 'white',
       bg: 'grey',
       border: '#/colors/transparent',
-    },
-
-    scrollbar: {
-      bg: 'grey',
-    },
-
-    toggle: {
-      fg: 'white',
-      bg: 'darkgrey',
-      border: 'transparent',
-
-      checked: {
-        fg: 'white',
-        bg: 'mediumseagreen',
-        border: 'transparent',
-      },
     },
 
     codeEditor: {
@@ -82,8 +62,20 @@ export const components: ISectionTheme = {
       },
     },
 
-    blockQuote: {
-      shadow: '0 0 5px currentColor',
+    toggle: {
+      fg: 'white',
+      bg: 'darkgrey',
+      border: 'transparent',
+
+      checked: {
+        fg: 'white',
+        bg: 'mediumseagreen',
+        border: 'transparent',
+      },
+    },
+
+    scrollbar: {
+      bg: 'grey',
     },
   },
 };

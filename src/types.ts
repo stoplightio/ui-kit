@@ -1,5 +1,3 @@
-import { BorderRadiusProperty, WidthProperty } from 'csstype';
-
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 export type FontWeight = 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
 export type LineHeight = 'reset' | 'none' | 'tight' | 'normal' | 'loose';
@@ -53,12 +51,6 @@ export interface ILayout {
   height?: { [key in BoxDimension]?: number | string };
 
   width?: { [key in BoxDimension]?: number | string };
-
-  scrollbars?: {
-    thumb?: string;
-    thumbRadius?: BorderRadiusProperty<string>;
-    width?: WidthProperty<string>;
-  };
 }
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }

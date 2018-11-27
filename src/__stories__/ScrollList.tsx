@@ -10,7 +10,7 @@ export const scrollListKnobs = (tabName = 'List Scroller'): any => {
   return {
     scrollToIndex: number('scrollToIndex', 0, { min: 0, max: Infinity } as NumberOptions, tabName),
     rowHeight: number('rowHeight', 20, { min: 0, max: Infinity } as NumberOptions, tabName),
-    list: array('list', ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'], ',', tabName),
+    list: array('list', ['item 0', 'item 1', 'item 2', 'item 3', 'item 4', 'item5', 'item6'], ',', tabName),
   };
 };
 
@@ -22,8 +22,13 @@ const rowRenderer = ({ value, key, style }: IScrollListItemProps) => (
 
 storiesOf('ScrollList', module)
   .addDecorator(withKnobs)
+  // .addDecorator(storyFn => (
+  //   <Box height="100px" css={{ outline: '2px solid black' }}>
+  //     {storyFn()}
+  //   </Box>
+  // ))
   .addDecorator(storyFn => (
-    <Box height="100px" css={{ outline: '2px solid black' }}>
+    <Box height="200px" css={{ outline: '2px solid black' }}>
       {storyFn()}
     </Box>
   ))
