@@ -1,284 +1,143 @@
-import { get } from 'lodash';
+// import { get } from 'lodash';
+import get = require('lodash/get');
 import * as React from 'react';
 import ReactSelect from 'react-select';
+import { Props } from 'react-select/lib/Select';
+import { withTheme } from 'styled-components';
 
 import { IThemeInterface } from './types';
 
-import { withTheme } from 'styled-components';
+// renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.ts
+// @ts-ignore
+interface ISelectProps extends Partial<Props<ISelectOption>> {
+  loading?: boolean; // isLoading
+  disabled?: boolean; // isDisabled
+  multi?: boolean; // isMulti
+  clearable?: boolean; // isClearable
 
-// subset taken from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.ts
-// some props were renamed for better usage
-interface ISelectProps {
-  /* Remove the currently focused option when the user presses backspace */
-  backspaceRemovesValue?: boolean;
-  /* Remove focus from the input when the user selects an option (handy for dismissing the keyboard on touch devices): blurInputOnSelect */
-  blurOnSelect?: boolean;
-  /* className attribute applied to the outer component */
-  className?: string;
-  /* Close the select menu when the user selects an option */
-  closeOnSelect?: boolean;
-  /* Close the select menu when the page is scrolled */
-  closeOnScroll?: boolean | EventListener;
-  /* Custom method to filter whether an option should be displayed in the menu */
-  filterOption?: (option: { label: string; value: string; data: any }, rawInput: string) => boolean;
-  /* Hide the selected option from the menu */
-  hideSelectedOptions?: boolean;
-  /* The id to set on the SelectContainer component. */
-  id?: string;
-  /* The value of the search input: inputValue */
-  searchValue?: string;
-  /* Is the select value clearable: isClearable */
-  clearable?: boolean;
-  /* Is the select disabled: isDisabled */
-  disabled?: boolean;
-  /* Is the select in a state of loading (async): isLoading */
-  loading?: boolean;
-  /* Support multiple selected options: isMulti */
-  multi?: boolean;
-  /* Whether to enable search functionality: isSearchable */
-  searchable?: boolean;
-  /* Async: Text to display when loading options */
+  searchable?: boolean; // isSearchable
+  searchValue?: string; // inputValue
+
+  onOpen?: () => void; // onMenuOpen
+  onClose?: () => void; // onMenuClose
+  onSearch?: (value: string) => void; // onInputChange
+  onScrollToTop?: (event: React.SyntheticEvent<HTMLElement>) => void; // onMenuScrollToTop
+  onScrollToBottom?: (event: React.SyntheticEvent<HTMLElement>) => void; // onMenuScrollToBottom
+
   loadingMessage?: string;
-  /* Minimum height of the menu before flipping */
-  minMenuHeight?: number;
-  /* Maximum height of the menu before scrolling */
-  maxMenuHeight?: number;
-  /* Whether the menu is open */
-  menuIsOpen?: boolean;
-  /* Default placement of the menu in relation to the control. 'auto' will flip
-       when there isn't enough space below the control. */
-  menuPlacement?: 'auto' | 'bottom' | 'top';
-  /* Text to display when there are no options */
   noOptionsMessage?: string;
-  /* Handle blur events on the control */
-  onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
-  /* Handle change events on the select */
-  onChange?: (value: any) => void;
-  /* Handle focus events on the control */
-  onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
-  /* Handle change events on the input: onInputChange*/
-  onSearch?: (value: string) => void;
-  /* Handle the menu opening: onMenuOpen */
-  onOpen?: () => void;
-  /* Handle the menu closing: onMenuClose */
-  onClose?: () => void;
-  /* Fired when the user scrolls to the top of the menu: onMenuScrollToTop */
-  onScrollToTop?: (event: React.SyntheticEvent<HTMLElement>) => void;
-  /* Fired when the user scrolls to the bottom of the menu: onMenuScrollToBottom */
-  onScrollToBottom?: (event: React.SyntheticEvent<HTMLElement>) => void;
-  /* Allows control of whether the menu is opened when the Select is focused */
-  openOnFocus?: boolean;
-  /* Allows control of whether the menu is opened when the Select is clicked */
-  openOnClick?: boolean;
-  /* Array of options that populate the select menu */
-  options?: any | any[];
-  /* Placeholder text for the select value */
-  placeholder?: string;
-  /* The value of the select; reflected by the selected option */
-  value?: any | any[];
-  defaultSearchValue?: string;
-  defaultValue?: any | any[];
 
-  // theme injected from styled-components
-  theme?: IThemeInterface;
+  blurOnSelect?: boolean; // blurInputOnSelect
+
+  theme: IThemeInterface;
+}
+
+interface ISelectOption {
+  label: string;
+  value: any;
 }
 
 export const SelectBase = (props: ISelectProps) => {
   const {
-    id,
-    className,
-
-    value,
-    options,
-    searchValue,
-    defaultValue,
-    defaultSearchValue,
-
     multi,
     loading,
     disabled,
     clearable,
     searchable,
-    placeholder,
-    loadingMessage,
-    noOptionsMessage,
+    searchValue,
 
-    onBlur,
-    onFocus,
-    onChange,
-    onSearch,
     onOpen,
     onClose,
-    openOnFocus,
-    openOnClick,
+    onSearch,
     onScrollToTop,
     onScrollToBottom,
 
-    menuIsOpen,
-    minMenuHeight = 140,
-    maxMenuHeight = 300,
-    menuPlacement = 'bottom',
-
     blurOnSelect = false,
-    closeOnSelect = true,
-    closeOnScroll = false,
 
-    filterOption,
+    loadingMessage = 'Loading...',
+    noOptionsMessage = 'No Options',
 
-    hideSelectedOptions = true,
-    backspaceRemovesValue = true,
+    theme: providerTheme,
+
+    ...selectProps
   } = props;
 
   return (
     <ReactSelect
-      backspaceRemovesValue={backspaceRemovesValue}
       blurInputOnSelect={blurOnSelect}
-      className={className}
-      closeMenuOnSelect={closeOnSelect}
-      closeMenuOnScroll={closeOnScroll}
-      filterOption={filterOption}
-      hideSelectedOptions={hideSelectedOptions}
-      id={id}
       inputValue={searchValue}
       isClearable={clearable}
       isDisabled={disabled}
       isLoading={loading}
       isMulti={multi}
       isSearchable={searchable}
-      loadingMessage={() => loadingMessage || 'Loading...'}
-      minMenuHeight={minMenuHeight}
-      maxMenuHeight={maxMenuHeight}
-      menuIsOpen={menuIsOpen}
-      menuPlacement={menuPlacement}
-      noOptionsMessage={() => noOptionsMessage || 'No Options'}
-      onBlur={onBlur}
-      onChange={onChange}
-      onFocus={onFocus}
+      loadingMessage={() => loadingMessage}
+      noOptionsMessage={() => noOptionsMessage}
       onInputChange={onSearch}
       onMenuOpen={onOpen}
       onMenuClose={onClose}
       onMenuScrollToTop={onScrollToTop}
       onMenuScrollToBottom={onScrollToBottom}
-      openMenuOnFocus={openOnFocus}
-      openMenuOnClick={openOnClick}
-      options={options}
-      placeholder={placeholder}
-      value={value}
-      defaultInputValue={defaultSearchValue}
-      defaultValue={defaultValue}
+      {...selectProps}
       // CUSTOM STYLES
-      styles={customStyles(props.theme)}
+      theme={theme => ({
+        ...theme,
+        colors: buildColors(providerTheme),
+      })}
     />
   );
 };
 
-// inject theme into component
 export const Select = withTheme(SelectBase);
 
 /**
- * @param {Object} provided -- the component's default styles
- * @param {Object} state -- the component's current state e.g. `isFocused`
+ * Custom Theme
  */
 
-const customStyles = (theme?: IThemeInterface) => {
-  const colors = get(theme, 'components.select', {});
-  const indicator = colors.indicator || {};
-  const chip = colors.chip || {};
-  const menu = colors.menu || {};
-  const selected = menu.selected || {};
+const buildColors = (theme: IThemeInterface) => {
+  const selectTheme = get(theme, 'components.select', {});
+  const chipTheme = get(selectTheme, 'chip', {});
+  const optionsTheme = get(selectTheme, 'options', {});
 
   return {
-    control: (provided: any, state: any) => {
-      return {
-        ...provided,
-        backgroundColor: colors.bg,
-        borderColor: colors.border,
-        boxShadow: 'none',
+    primary: optionsTheme.selectedbg, // option:background:selected and control:border
+    primary75: '', // never used in react-select
+    primary50: optionsTheme.activebg, // option:background:active
+    primary25: optionsTheme.hoverbg, // option:background:hover
 
-        '&:hover': { borderColor: colors.border },
-      };
-    },
-    singleValue: (provided: any, state: any) => {
-      return { ...provided, color: colors.fg };
-    },
-    dropdownIndicator: (provided: any, state: any) => {
-      return {
-        ...provided,
-        color: indicator.fg,
-        backgroundColor: indicator.bg,
-        cursor: 'pointer',
+    danger: '', // multiValue:remove
+    dangerLight: '', // multiValue:removeIcon
 
-        '&:hover': { color: indicator.fg },
-      };
-    },
-    indicatorSeparator: (provided: any, state: any) => {
-      return { ...provided, backgroundColor: indicator.fg };
-    },
-    clearIndicator: (provided: any, state: any) => {
-      return {
-        ...provided,
-        color: indicator.fg,
-        backgroundColor: indicator.bg,
-        cursor: 'pointer',
-
-        '&:hover': { color: indicator.fg },
-      };
-    },
-    placeholder: (provided: any, state: any) => {
-      return { ...provided, opacity: 0.5, color: colors.fg };
-    },
-    multiValueLabel: (provided: any, state: any) => {
-      return { ...provided, color: chip.fg, backgroundColor: chip.bg };
-    },
-    multiValueRemove: (provided: any, state: any) => {
-      return {
-        ...provided,
-
-        color: chip.fg,
-        backgroundColor: chip.bg,
-        cursor: 'pointer',
-
-        '&:hover': {
-          color: chip.fg,
-          backgroundColor: chip.bg,
-        },
-      };
-    },
-    menu: (provided: any, state: any) => {
-      return {
-        ...provided,
-        color: menu.fg,
-        backgroundColor: menu.bg,
-      };
-    },
-    option: (provided: any, state: any) => {
-      const { isSelected, isMulti } = state;
-
-      return {
-        ...provided,
-        cursor: isMulti || !isSelected ? 'pointer' : 'default',
-
-        color: isSelected ? selected.fg : menu.fg,
-        backgroundColor: isSelected ? selected.bg : menu.bg,
-
-        '&:active': {
-          color: isSelected ? selected.fg : menu.fg,
-          background: isSelected ? selected.bg : menu.bg,
-        },
-
-        '&:hover': {
-          color: (isMulti || !isSelected) && selected.fg,
-          background: (isMulti || !isSelected) && selected.bg,
-
-          opacity: (isMulti || !isSelected) && 0.5,
-        },
-      };
-    },
-    loadingMessage: (provided: any, state: any) => {
-      return { ...provided, color: menu.fg };
-    },
-    noOptionsMessage: (provided: any, state: any) => {
-      return { ...provided, color: menu.fg };
-    },
+    neutral0: selectTheme.bg, // input:bckground and menu:bckground
+    neutral5: selectTheme.bg, // input:background:disabled
+    neutral10: chipTheme.bg, // input:border:disabled, multiValue:background
+    neutral20: selectTheme.border, // input:border    indicators
+    neutral30: selectTheme.border, // input:border:hover
+    neutral40: optionsTheme.fg, // menuNotice:color   singleValue:color:disabled
+    neutral50: optionsTheme.fg, // placeholder:color
+    neutral60: selectTheme.border, // indicators:focused
+    neutral70: '', // never used in reactSelect
+    neutral80: selectTheme.fg, // input:color mutlival:color singleVal:color indicator:color
   };
 };
+
+/**
+ * A different visualization of how things are mapped in the theme
+ */
+// export const colors = {
+//   fg: [colors.neutral80],
+//   bg: [colors.neutral0],
+//   border: [colors.neutral20],
+
+//   chip: {
+//     bg: [colors.neutral10],
+//   },
+
+//   options: {
+//     fg: [colors.neutral40],
+
+//     selectedbg: [colors.primary],
+//     activebg: [colors.primary50],
+//     hoverbg: [colors.primary25],
+//   },
+// };

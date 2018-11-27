@@ -83,28 +83,20 @@ export const components: ISectionTheme = {
     },
 
     select: {
-      fg: 'black',
-      bg: 'white',
-      border: 'black',
-
-      indicator: {
-        fg: 'black',
-        bg: 'white',
-      },
+      fg: 'hsl(0, 0%, 20%)',
+      bg: 'hsl(0, 0%, 100%)',
+      border: 'hsl(0, 0%, 80%)',
 
       chip: {
-        fg: 'black',
-        bg: 'lightgrey',
+        bg: 'hsl(0, 0%, 90%)',
       },
 
-      menu: {
-        fg: 'black',
-        bg: 'white',
+      options: {
+        fg: 'hsl(0, 0%, 60%)',
 
-        selected: {
-          fg: 'white',
-          bg: 'dodgerblue',
-        },
+        selectedbg: '#2684FF',
+        activebg: '#B2D4FF',
+        hoverbg: '#DEEBFF',
       },
     },
   },

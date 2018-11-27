@@ -1,7 +1,7 @@
 export const dark = {
   colors: {
     fg: 'white',
-    bg: '#222',
+    bg: 'rgb(48,64,77)',
     border: '#f9f9f9',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
@@ -55,28 +55,20 @@ export const dark = {
     },
 
     select: {
-      fg: 'white',
-      bg: 'black',
-      border: 'lightgrey',
-
-      indicator: {
-        fg: 'white',
-        bg: 'black',
-      },
+      fg: '#BFCCD6',
+      bg: '#202D36',
+      border: '#1B262E',
 
       chip: {
-        fg: 'black',
-        bg: 'lightgrey',
+        bg: '#384854',
       },
 
-      menu: {
-        fg: 'white',
-        bg: 'black',
+      options: {
+        fg: 'hsl(0, 0%, 60%)',
 
-        selected: {
-          fg: 'white',
-          bg: 'dodgerblue',
-        },
+        selectedbg: 'hsla(205, 64%, 43%, 0.85)',
+        activebg: 'hsl(205, 64%, 43%, 1)',
+        hoverbg: 'hsla(205, 64%, 43%, 0.6)',
       },
     },
   },
