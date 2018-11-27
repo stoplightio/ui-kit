@@ -147,3 +147,7 @@ export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
     }
   }
 `;
+
+CodeEditor.defaultProps = {
+  language: defaultLanguage,
+};
