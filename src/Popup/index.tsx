@@ -1,6 +1,6 @@
-import debounce = require('lodash/debounce');
 import * as React from 'react';
 
+import { useWindowResize } from '../hooks/useWindowResize';
 import { PopupContent } from './PopupContent';
 import { IPopupDefaultProps, IPopupProps } from './types';
 import { calculateStyles, getDefaultStyle } from './utils';
@@ -11,41 +11,29 @@ export const Popup = (props: IPopupProps) => {
   const triggerRef = React.useRef<HTMLElement>(null);
   const contentRef = React.createRef<HTMLDivElement>();
   const [isVisible, setVisibility] = React.useState<boolean>(false);
+  const lastResizeTimestamp = useWindowResize();
+  let lastRepaintTimestamp = 0;
   const [style, setStyle] = React.useState<React.CSSProperties | undefined>(undefined);
   let isOverTrigger: boolean = false;
   let isOverContent: boolean = false;
-  let lastResizeTimestamp: number = 0;
   // Number could be set here, but unfortunately Node returns Timeout which is not exported
   let willHide: any;
 
   const repaint = React.useCallback(
     () => {
       if (isVisible) {
+        lastRepaintTimestamp = Date.now();
         setStyle({
           ...getDefaultStyle(props),
           ...calculateStyles(triggerRef, contentRef, props),
         });
       }
     },
-    [props.width, props.offset, props.posX, props.posY, contentRef, lastResizeTimestamp]
+    [props.width, props.offset, props.posX, props.posY, contentRef, lastRepaintTimestamp]
   );
 
   if (typeof window !== 'undefined') {
-    React.useEffect(
-      () => {
-        const resizeHandler = debounce<EventListener>((e: Event) => {
-          lastResizeTimestamp = e.timeStamp;
-          repaint();
-        }, 16);
-
-        window.addEventListener('resize', resizeHandler);
-
-        return () => {
-          window.removeEventListener('resize', resizeHandler);
-        };
-      },
-      [contentRef]
-    );
+    React.useEffect(repaint, [lastResizeTimestamp]);
   }
 
   const showPopup = () => {
