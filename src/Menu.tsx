@@ -1,42 +1,85 @@
 import * as React from 'react';
 
 import { Box, IBoxProps } from './Box';
-import { Flex } from './Flex';
+import { Flex, IFlexProps } from './Flex';
 import { Icon, IIcon } from './Icon';
+import { styled } from './utils';
 
 // TODO allow dividers in the menu
-// TODO allow custom renderMenu
-// TODO allow custom renderMenuItem
-// TODO allow custom renderTrigger to make this a popup type component
+
+export interface IMenuTriggerProps {
+  children: any;
+}
 
 /**
  * MENU
  */
+declare type RenderMenuItem = (item: IMenuItemProps, index: number, items: IMenuItemProps[]) => any;
+
 export interface IMenuProps {
   menuItems: IMenuItemProps[];
-
-  attributes?: IBoxProps;
+  direction?: IFlexProps['direction'];
+  attributes?: IFlexProps;
+  onMouseEnter?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
+  onMouseLeave?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
+  renderTrigger?: () => any;
+  renderMenuItem?: RenderMenuItem;
+  renderMenu?: (
+    props: IMenuProps & { className: string },
+    menuItems: IMenuItemProps[],
+    renderMenuItem: RenderMenuItem
+  ) => any;
 }
 
-export const Menu = (props: IMenuProps) => {
-  const { menuItems = [], attributes = {} } = props;
+const MenuTrigger = styled<IMenuTriggerProps, any>(
+  ({ children, className }: IMenuTriggerProps & { className: string }) => React.cloneElement(children, { className })
+)``;
+
+const MenuView = (props: IMenuProps & { className: string }) => {
+  const {
+    attributes = null,
+    className,
+    direction = 'column',
+    onMouseEnter,
+    onMouseLeave,
+    menuItems = [],
+    renderTrigger,
+    renderMenuItem = (item: IMenuItemProps, index: number) => <MenuItem key={index} {...item} />,
+    renderMenu = () => (
+      <Flex
+        fg="menu.fg"
+        bg="menu.bg"
+        borderColor="menu.border"
+        border="xs"
+        radius="md"
+        direction={direction}
+        position={renderTrigger ? 'absolute' : 'relative'}
+        {...attributes}
+      >
+        {menuItems.map(renderMenuItem)}
+      </Flex>
+    ),
+  } = props;
 
   return (
-    <Box
-      fg="menu.fg"
-      bg="menu.bg"
-      borderColor="menu.border"
-      border="xs"
-      radius="md"
-      display="inline-block"
-      {...attributes}
-    >
-      {menuItems.map((item: IMenuItemProps, index: number) => (
-        <MenuItem key={index} {...item} />
-      ))}
-    </Box>
+    <Flex className={className} direction={direction} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      {renderTrigger && <MenuTrigger>{renderTrigger()}</MenuTrigger>}
+      {renderMenu(props, menuItems, renderMenuItem)}
+    </Flex>
   );
 };
+
+export const Menu = styled<IMenuProps, 'div'>(MenuView as any)`
+  position: relative;
+
+  &:hover > ${Flex} {
+    display: flex !important;
+  }
+  
+  ${MenuTrigger} + ${Flex} {
+    display: none;
+  }
+`;
 
 /**
  * MENU ITEM
