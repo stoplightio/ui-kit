@@ -119,8 +119,8 @@ export const SelectBase = (props: ISelectProps) => {
     maxMenuHeight = 300,
     menuPlacement = 'bottom',
 
-    blurOnSelect = false,
-    closeOnSelect = true,
+    blurOnSelect = !props.multi,
+    closeOnSelect = !props.multi,
     closeOnScroll = false,
 
     filterOption,
@@ -191,6 +191,7 @@ const customStyles = (theme?: IThemeInterface) => {
     control: (provided: any, state: any) => {
       return {
         ...provided,
+
         backgroundColor: colors.bg,
         borderColor: colors.border,
         boxShadow: 'none',
@@ -204,8 +205,10 @@ const customStyles = (theme?: IThemeInterface) => {
     dropdownIndicator: (provided: any, state: any) => {
       return {
         ...provided,
+
         color: indicator.fg,
         backgroundColor: indicator.bg,
+        borderRadius: 4,
         cursor: 'pointer',
 
         '&:hover': { color: indicator.fg },
@@ -217,6 +220,7 @@ const customStyles = (theme?: IThemeInterface) => {
     clearIndicator: (provided: any, state: any) => {
       return {
         ...provided,
+
         color: indicator.fg,
         backgroundColor: indicator.bg,
         cursor: 'pointer',
@@ -225,7 +229,8 @@ const customStyles = (theme?: IThemeInterface) => {
       };
     },
     placeholder: (provided: any, state: any) => {
-      return { ...provided, opacity: 0.5, color: colors.fg };
+      const { isDisabled } = state;
+      return { ...provided, opacity: 0.5, color: colors.fg, cursor: isDisabled ? 'default' : 'text' };
     },
     multiValueLabel: (provided: any, state: any) => {
       return { ...provided, color: chip.fg, backgroundColor: chip.bg };
@@ -256,6 +261,7 @@ const customStyles = (theme?: IThemeInterface) => {
 
       return {
         ...provided,
+
         cursor: isMulti || !isSelected ? 'pointer' : 'default',
 
         color: isSelected ? selected.fg : menu.fg,

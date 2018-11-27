@@ -11,20 +11,19 @@ import { Select } from '../Select';
 
 export const selectKnobs = (tabName = 'Select') => ({
   options: [],
-  menuIsOpen: boolean('menuIsOpen', true),
   multi: boolean('multi', false),
   loading: boolean('loading', false),
   disabled: boolean('disabled', false),
-  clearable: boolean('clearable', false),
-  searchable: boolean('searchable', false),
-  placeholder: text('placeholder', 'placeholder'),
+  clearable: boolean('clearable', true),
+  searchable: boolean('searchable', true),
+  placeholder: text('placeholder', 'choose...'),
   loadingMessage: text('loadingMessage', 'loadingMessage'),
-  noOptionsMessage: text('noOptionsMessage', 'noOptionsMessage'),
+  noOptionsMessage: text('noOptionsMessage', 'no results'),
   minMenuHeight: number('minMenuHeight', 140),
   maxMenuHeight: number('maxMenuHeight', 300),
   menuPlacement: select('menuPlacement', ['auto', 'bottom', 'top'], 'auto'),
-  blurOnSelect: boolean('blurOnSelect', false),
-  closeOnSelect: boolean('closeOnSelect', false),
+  blurOnSelect: boolean('blurOnSelect', true),
+  closeOnSelect: boolean('closeOnSelect', true),
   closeOnScroll: boolean('closeOnScroll', false),
   hideSelectedOptions: boolean('hideSelectedOptions', false),
   backspaceRemovesValue: boolean('backspaceRemovesValue', true),
@@ -33,7 +32,7 @@ export const selectKnobs = (tabName = 'Select') => ({
 storiesOf('Select', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Box width="25%">
+    <Box width="40%">
       <Select
         {...selectKnobs()}
         options={[
@@ -47,7 +46,7 @@ storiesOf('Select', module)
     </Box>
   ))
   .add('No Options', () => (
-    <Box width="25%">
+    <Box width="40%">
       <Select {...selectKnobs()} options={[]} />
     </Box>
   ));
