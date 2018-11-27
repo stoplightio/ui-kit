@@ -30,14 +30,13 @@ import {
 } from './utils';
 
 import {
-  IBorderRadius,
-  IBorderWidth,
-  IBoxDimension,
-  IFontSize,
-  IFontWeight,
-  IFullSpace,
-  IShadows,
-  ValueOf,
+  BorderRadiusVal,
+  BorderWidthVal,
+  BoxDimensionVal,
+  FontSizeVal,
+  FontWeightVal,
+  FullSpaceVal,
+  ShadowsVal,
 } from './types';
 
 export interface IBoxProps {
@@ -48,39 +47,39 @@ export interface IBoxProps {
   fg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
   bg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
 
-  text?: ValueOf<IFontSize>;
+  text?: FontSizeVal;
   align?: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'; // textAlign
-  weight?: ValueOf<IFontWeight>;
+  weight?: FontWeightVal;
 
-  m?: ValueOf<IFullSpace>;
-  mt?: ValueOf<IFullSpace>;
-  mr?: ValueOf<IFullSpace>;
-  mb?: ValueOf<IFullSpace>;
-  ml?: ValueOf<IFullSpace>;
-  mx?: ValueOf<IFullSpace>;
-  my?: ValueOf<IFullSpace>;
-  p?: ValueOf<IFullSpace>;
-  pt?: ValueOf<IFullSpace>;
-  pr?: ValueOf<IFullSpace>;
-  pb?: ValueOf<IFullSpace>;
-  pl?: ValueOf<IFullSpace>;
-  px?: ValueOf<IFullSpace>;
-  py?: ValueOf<IFullSpace>;
+  m?: FullSpaceVal;
+  mt?: FullSpaceVal;
+  mr?: FullSpaceVal;
+  mb?: FullSpaceVal;
+  ml?: FullSpaceVal;
+  mx?: FullSpaceVal;
+  my?: FullSpaceVal;
+  p?: FullSpaceVal;
+  pt?: FullSpaceVal;
+  pr?: FullSpaceVal;
+  pb?: FullSpaceVal;
+  pl?: FullSpaceVal;
+  px?: FullSpaceVal;
+  py?: FullSpaceVal;
 
-  height?: ValueOf<IBoxDimension> | string | number;
-  maxHeight?: ValueOf<IBoxDimension> | string | number;
-  minHeight?: ValueOf<IBoxDimension> | string | number;
-  width?: ValueOf<IBoxDimension> | string | number;
-  maxWidth?: ValueOf<IBoxDimension> | string | number;
-  minWidth?: ValueOf<IBoxDimension> | string | number;
+  height?: BoxDimensionVal | string | number;
+  maxHeight?: BoxDimensionVal | string | number;
+  minHeight?: BoxDimensionVal | string | number;
+  width?: BoxDimensionVal | string | number;
+  maxWidth?: BoxDimensionVal | string | number;
+  minWidth?: BoxDimensionVal | string | number;
 
-  border?: ValueOf<IBorderWidth>;
-  borderTop?: ValueOf<IBorderWidth>;
-  borderLeft?: ValueOf<IBorderWidth>;
-  borderRight?: ValueOf<IBorderWidth>;
-  borderBottom?: ValueOf<IBorderWidth>;
+  border?: BorderWidthVal;
+  borderTop?: BorderWidthVal;
+  borderLeft?: BorderWidthVal;
+  borderRight?: BorderWidthVal;
+  borderBottom?: BorderWidthVal;
   borderColor?: string;
-  radius?: ValueOf<IBorderRadius> | string;
+  radius?: BorderRadiusVal | string;
   borderStyle?: BorderStyleProperty;
 
   cursor?:
@@ -132,7 +131,7 @@ export interface IBoxProps {
     | 'initial'
     | 'inherit';
   flex?: string | number;
-  shadow?: ValueOf<IShadows> | string;
+  shadow?: ShadowsVal | string;
   opacity?: number;
 
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';

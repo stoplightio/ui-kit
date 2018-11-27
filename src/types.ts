@@ -15,6 +15,8 @@ export interface IFontSize {
   '6xl': '@6xl';
 }
 
+export type FontSizeVal = ValueOf<IFontSize>;
+
 export interface IFontWeight {
   thin: '@thin';
   light: '@light';
@@ -25,6 +27,8 @@ export interface IFontWeight {
   extrabold: '@extrabold';
 }
 
+export type FontWeightVal = ValueOf<IFontWeight>;
+
 export interface ILineHeight {
   reset: '@reset';
   none: '@none';
@@ -33,11 +37,15 @@ export interface ILineHeight {
   loose: '@loose';
 }
 
+export type LineHeightVal = ValueOf<ILineHeight>;
+
 export interface ILetterSpacing {
   tight: '@tight';
   normal: '@normal';
   wide: '@wide';
 }
+
+export type LetterSpacingVal = ValueOf<ILetterSpacing>;
 
 export interface IBorderRadius {
   none: '@none';
@@ -48,6 +56,8 @@ export interface IBorderRadius {
   full: '@full';
 }
 
+export type BorderRadiusVal = ValueOf<IBorderRadius>;
+
 export interface IBorderWidth {
   none: '@none';
   xs: '@xs';
@@ -56,6 +66,8 @@ export interface IBorderWidth {
   lg: '@lg';
 }
 
+export type BorderWidthVal = ValueOf<IBorderWidth>;
+
 export interface IBoxDimension {
   auto: '@auto';
   none: '@none';
@@ -63,6 +75,8 @@ export interface IBoxDimension {
   full: '@full';
   screen: '@screen';
 }
+
+export type BoxDimensionVal = ValueOf<IBoxDimension>;
 
 export interface ISpace {
   none: '@none';
@@ -78,6 +92,8 @@ export interface ISpace {
   '6xl': '@6xl';
 }
 
+export type SpaceVal = ValueOf<ISpace>;
+
 export interface IFullSpace extends ISpace {
   '-xs': '-@xs';
   '-sm': '-@sm';
@@ -91,11 +107,15 @@ export interface IFullSpace extends ISpace {
   '-6xl': '-@6xl';
 }
 
+export type FullSpaceVal = ValueOf<IFullSpace>;
+
 export interface IShadows {
   sm: '@sm';
   md: '@md';
   lg: '@lg';
 }
+
+export type ShadowsVal = ValueOf<IShadows>;
 
 export interface IThemeInterface<
   TSections extends string = '',
