@@ -127,13 +127,6 @@ describe('Popup', () => {
       wrapper.unmount();
     });
 
-    it('repaints the popup when props change', () => {
-      const wrapper = mount(<Popup {...props} />);
-      wrapper.setProps({ padding: 10 });
-      expect(repaintSpy).toHaveBeenCalled();
-      wrapper.unmount();
-    });
-
     describe('hidePopup', () => {
       it('aborts the request if already in progress', () => {
         const wrapper = mount(<Popup {...props} />);
