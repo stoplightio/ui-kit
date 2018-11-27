@@ -3,7 +3,7 @@ import 'jest-enzyme';
 import debounce = require('lodash/debounce');
 import * as React from 'react';
 
-import { useWindowResize } from '../../../hooks/useWindowResize';
+import { useWindowResize } from '../useWindowResize';
 
 describe('useWindowResize hook', () => {
   let addEventListenerSpy: jest.SpyInstance;
@@ -12,7 +12,7 @@ describe('useWindowResize hook', () => {
   const Wrapper = () => {
     const timestamp = useWindowResize();
 
-    return <span>{timestamp}</span>
+    return <span>{timestamp}</span>;
   };
   beforeEach(async () => {
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');
