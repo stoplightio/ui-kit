@@ -1,59 +1,21 @@
+import { mount } from 'enzyme';
+import 'jest-enzyme';
 import * as React from 'react';
+import { ScrollBox } from '../ScrollBox';
 
-import { select } from '@storybook/addon-knobs/react';
-import { storiesOf } from '@storybook/react';
-
-// @ts-ignore
-import { withKnobs } from '@storybook/addon-knobs';
-
-import { Box } from '../Box';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { IScrollBoxRef, ScrollBox } from '../ScrollBox';
-
-export const scrollContainerKnobs = (tabName = 'ScrollBox') => ({
-  scrollTo: select('scrollTo', ['', 'ul-list', 'sub-heading2', 'sub-heading3'], '', tabName),
-});
-
-storiesOf('ScrollBox', module)
-  .addDecorator(withKnobs)
-  .add('with defaults', () => <WithRef />)
-  .add('with scrollTo on load', () => (
-    <Box width="50%" height="50%" m="auto" border="sm">
+describe('ScrollBox', () => {
+  it('scrollsTo scrolls to proper element', () => {
+    const wrapper = mount(
       <ScrollBox scrollTo="sub-heading2">
         <ScrollContent />
       </ScrollBox>
-    </Box>
-  ));
+    );
 
-const WithRef = () => {
-  const ref = React.useRef<IScrollBoxRef>(null);
-  return (
-    <Box width="50%" height="50%" m="auto" border="sm">
-      <Flex p="lg">
-        <Button
-          onClick={() => {
-            if (!ref.current) return;
-            ref.current.scrollToBottom();
-          }}
-        >
-          Scroll To Bottom
-        </Button>
-        <Button
-          onClick={() => {
-            if (!ref.current) return;
-            ref.current.scrollToTop();
-          }}
-        >
-          Scroll To Top
-        </Button>
-      </Flex>
-      <ScrollBox {...scrollContainerKnobs()} innerRef={ref}>
-        <ScrollContent />
-      </ScrollBox>
-    </Box>
-  );
-};
+    const elem = wrapper.find('#sub-heading2');
+
+    expect(elem.getDOMNode().scrollTop).toBe(0);
+  });
+});
 
 const ScrollContent = () => {
   return (

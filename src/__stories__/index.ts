@@ -15,7 +15,7 @@ import './Link';
 import './List';
 import './Mark';
 import './Menu';
-import './ScrollContainer';
+import './ScrollBox';
 import './ScrollList';
 import './Table';
 import './Text';
