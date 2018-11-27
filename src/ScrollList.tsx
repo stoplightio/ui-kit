@@ -3,19 +3,19 @@ import { AutoSizer, Index, List, ListRowProps, ListRowRenderer } from 'react-vir
 
 import { styled, themeGet } from './utils';
 
-export interface IListScrollerItemProps {
+export interface IScrollListItemProps {
   key: string;
   index: number;
   value: any;
   style: React.CSSProperties;
 }
 
-export interface IListScrollerProps {
+export interface IScrollListProps {
   // Either a fixed row height (number) or a function that returns the height of a row given its index.
   rowHeight: number | ((params: Index) => number);
 
   // Responsible for rendering a row
-  rowRenderer: ({ key, index, value }: IListScrollerItemProps) => JSX.Element;
+  rowRenderer: ({ key, index, value }: IScrollListItemProps) => JSX.Element;
   noRowsRenderer?: () => JSX.Element;
   onScroll?: () => void;
   list: any[];
@@ -30,7 +30,7 @@ export interface IListScrollerProps {
   scrollTop?: number;
 }
 
-const ListView = (props: IListScrollerProps & { className: string }) => {
+const ListView = (props: IScrollListProps & { className: string }) => {
   const {
     className,
     list,
@@ -66,7 +66,7 @@ const ListView = (props: IListScrollerProps & { className: string }) => {
   );
 };
 
-export const ListScroller = styled<IListScrollerProps>(ListView as any)`
+export const ScrollList = styled<IScrollListProps>(ListView as any)`
   ::-webkit-scrollbar {
     background: none;
     width: ${themeGet('scrollbars.width')};
