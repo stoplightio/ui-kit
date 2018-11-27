@@ -1,7 +1,7 @@
 import noop = require('lodash/noop');
 import * as React from 'react';
 
-import { Box } from './Box';
+import { Box, IBoxProps } from './Box';
 import { Flex } from './Flex';
 import { Icon } from './Icon';
 import { styled } from './utils';
@@ -14,10 +14,12 @@ export interface ICheckboxProps {
   width?: string;
   height?: string;
   onChange?: (checked: boolean) => void;
+
+  attributes?: IBoxProps;
 }
 
 export const BasicCheckbox = (props: ICheckboxProps) => {
-  const { id, className, width, height, disabled, onChange = noop } = props;
+  const { id, className, width, height, disabled, onChange = noop, attributes } = props;
 
   const [checked, setValue] = React.useState(props.checked || false);
   const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
@@ -44,7 +46,7 @@ export const BasicCheckbox = (props: ICheckboxProps) => {
         radius="@md"
         items="center"
         justify="center"
-        bg={isChecked ? '@toggle.checked.bg' : '@toggle.bg'}
+        bg={isChecked ? '@checkbox.checked.bg' : '@checkbox.bg'}
         cursor={disabled ? 'not-allowed' : 'pointer'}
         width={width || '20px'}
         height={height || '20px'}
@@ -53,8 +55,9 @@ export const BasicCheckbox = (props: ICheckboxProps) => {
           fontSize: '14px',
           transition: 'background-color .15s ease-in-out',
         }}
+        {...attributes}
       >
-        {isChecked && <Icon icon="check" fg="@toggle.checked.fg" />}
+        {isChecked && <Icon icon="check" fg="@checkbox.checked.fg" />}
       </Flex>
     </Box>
   );
