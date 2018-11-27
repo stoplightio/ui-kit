@@ -75,7 +75,7 @@ export const components: ISectionTheme = {
     },
 
     scrollbar: {
-      bg: 'grey',
+      bg: 'hsla(0, 0%, 27%, 0.84)',
     },
   },
 };

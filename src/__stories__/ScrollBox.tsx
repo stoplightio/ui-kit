@@ -29,7 +29,7 @@ storiesOf('ScrollBox', module)
 const WithRef = () => {
   const ref = React.useRef<IScrollBoxRef>(null);
   return (
-    <Box width="50%" height="50%" m="auto" border="sm">
+    <Box width="500px" height="50%" m="auto" border="sm">
       <Flex p="lg">
         <Button
           onClick={() => {
@@ -59,7 +59,10 @@ const ScrollContent = () => {
   return (
     <div>
       <div style={{ padding: 20 }}>
-        <h1>This is the primary heading and there should only be one of these per page</h1>
+        <h1>
+          This is the primary heading and there should only be one of these per page
+          sadassadasdsdasdaslkdmaslkdmasldkmalskdmasldmasldkamsldkamsdlkasmdlkamsdlkmsadlksamdlksamdlaskdmasldkmsakdmasldkmasdkmalskdmlaskdm
+        </h1>
         <p>
           A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits.
         </p>

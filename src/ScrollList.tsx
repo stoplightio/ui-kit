@@ -2,6 +2,8 @@ import * as React from 'react';
 import { AutoSizer, Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
 
 import { Box } from './Box';
+import { getScrollTransform, getThumbDimension } from './ScrollBox';
+
 import { styled } from './utils';
 
 export interface IScrollListItemProps {
@@ -57,19 +59,7 @@ const ListView = (props: IScrollListProps & { className: string }) => {
 
   const renderRow = ({ key, index, style }: ListRowProps) => rowRenderer({ key, index, value: list[index], style });
 
-  const getThumbVerticalHeight = (height: number) => {
-    if (scrollHeight < clientHeight) return 0;
-
-    const trackHeight = height - 12; // // subtract the top and bottom from div below 2+10
-    const h = Math.ceil((clientHeight / scrollHeight) * trackHeight);
-
-    return Math.max(h, 30);
-  };
-
-  const getThumbVerticalY = (height: number) => {
-    const trackHeight = height - 12; // subtrack the rop and bottom from div below 2+10
-    return (scrollTop / (scrollHeight - clientHeight)) * (trackHeight - getThumbVerticalHeight(height));
-  };
+  const thumbSize = getThumbDimension({ scroll: scrollHeight, client: clientHeight });
 
   return (
     <AutoSizer>
@@ -122,14 +112,14 @@ const ListView = (props: IScrollListProps & { className: string }) => {
           >
             <Box
               className={'scroll1'}
-              height={`${getThumbVerticalHeight(height)}px`}
+              height={`${thumbSize}px`}
               width="6px"
               cursor="grab"
               radius="full"
               opacity={isScrolling ? 1 : 0}
               bg="scrollbar.bg"
               css={{
-                transform: `translateY(${getThumbVerticalY(height)}px)`,
+                transform: `translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbSize)}px)`,
                 transition: 'opacity .1s',
               }}
             />
