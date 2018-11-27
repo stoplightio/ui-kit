@@ -3,7 +3,7 @@ import 'jest-enzyme';
 import debounce = require('lodash/debounce');
 import * as React from 'react';
 
-import { useWindowResize } from '../hooks/useWindowResize';
+import { useWindowResize } from '../../../hooks/useWindowResize';
 
 describe('useWindowResize hook', () => {
   let addEventListenerSpy: jest.SpyInstance;
