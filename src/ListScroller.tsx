@@ -15,7 +15,7 @@ export interface IListScrollerProps {
   rowHeight: number | ((params: Index) => number);
 
   // Responsible for rendering a row
-  rowRenderer: ({ key, index, value }: IListScrollerItemProps) => JSX.Element;
+  rowRenderer: ({ key, index, value, style }: IListScrollerItemProps) => JSX.Element;
   noRowsRenderer?: () => JSX.Element;
   onScroll?: () => void;
   list: any[];

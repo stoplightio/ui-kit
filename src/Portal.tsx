@@ -1,12 +1,14 @@
-import { PureComponent } from 'react';
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { ThemeConsumer } from 'styled-components';
+import { IThemeInterface } from './types';
 
 export interface IPortalProps {
   children: any;
   className?: string;
 }
 
-export class Portal extends PureComponent<IPortalProps> {
+export class Portal extends React.PureComponent<IPortalProps> {
   private readonly el?: HTMLDivElement;
   private readonly root = typeof document === 'object' ? document.body : null;
 
@@ -34,11 +36,21 @@ export class Portal extends PureComponent<IPortalProps> {
     }
   }
 
+  private renderChildren = (theme: IThemeInterface) => {
+    const { children } = this.props;
+
+    if (typeof children === 'function') {
+      return children(theme);
+    }
+
+    return React.Children.map(this.props.children, child => React.cloneElement(child, { theme }));
+  };
+
   public render() {
     if (this.el === undefined) {
       return null;
     }
 
-    return ReactDOM.createPortal(this.props.children, this.el);
+    return ReactDOM.createPortal(<ThemeConsumer>{this.renderChildren}</ThemeConsumer>, this.el);
   }
 }
