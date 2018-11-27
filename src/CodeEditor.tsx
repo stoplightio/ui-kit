@@ -49,8 +49,6 @@ export const supportedLanguages = {
   ...optionalSupport,
 };
 
-export const defaultLanguage = 'javascript';
-
 const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
   const { className, language, onChange = noop, value } = props;
 
@@ -147,7 +145,3 @@ export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
     }
   }
 `;
-
-CodeEditor.defaultProps = {
-  language: defaultLanguage,
-};

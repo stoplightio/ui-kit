@@ -6,7 +6,7 @@ import { text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeEditor, defaultLanguage } from '../CodeEditor';
+import { CodeEditor } from '../CodeEditor';
 
 const store = new Store({
   value: 'stoplight.uiKit();',
@@ -14,7 +14,7 @@ const store = new Store({
 
 export const codeEditorKnobs = (tabName = 'Code Editor') => {
   return {
-    language: text('language', defaultLanguage, tabName),
+    language: text('language', 'javascript', tabName),
     value: text('value', 'const defaultValue = stoplight.io();', tabName),
     style: object('style', { fontSize: '12px' }, tabName),
   };
