@@ -31,13 +31,17 @@ export const scrollbars = {
 // default color stylings we want to use out of the gates (in case someone does not want to have to create their own theme)
 export const components: ISectionTheme = {
   components: {
+    blockQuote: {
+      shadow: '0 0 5px currentColor',
+    },
+
     button: {
       fg: 'white',
       bg: 'grey',
       border: '#/colors/transparent',
     },
 
-    toggle: {
+    checkbox: {
       fg: 'white',
       bg: 'darkgrey',
       border: 'transparent',
@@ -78,8 +82,20 @@ export const components: ISectionTheme = {
       },
     },
 
-    blockQuote: {
-      shadow: '0 0 5px currentColor',
+    table: {
+      border: 'black',
+    },
+
+    toggle: {
+      fg: 'white',
+      bg: 'darkgrey',
+      border: 'transparent',
+
+      checked: {
+        fg: 'white',
+        bg: 'mediumseagreen',
+        border: 'transparent',
+      },
     },
   },
 };

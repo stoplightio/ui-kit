@@ -193,5 +193,6 @@ export type Components =
   | 'contextMenu'
   | 'input'
   | 'menu'
+  | 'table'
   | 'textarea'
   | 'toggle';

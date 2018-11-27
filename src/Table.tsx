@@ -32,7 +32,7 @@ export const Table = styled<ITableProps, 'table'>(Box as any).attrs({
   as: () => TableView,
   border: '@none',
   borderTop: '@sm',
-  borderColor: '@border',
+  borderColor: '@table.border',
   css: {
     'border-collapse': 'collapse',
   },
@@ -46,14 +46,14 @@ export const TableRow = styled<ITableProps, 'tr'>(Box as any).attrs({
   border: '@none',
   borderBottom: '@sm',
   borderRight: '@sm',
-  borderColor: '@border',
+  borderColor: '@table.border',
 })``;
 
 export const TableHeadCell = styled<ITableCellProps, 'th'>(Box as any).attrs({
   as: 'td',
   border: '@none',
   borderLeft: '@sm',
-  borderColor: '@border',
+  borderColor: '@table.border',
 })(
   // @ts-ignore
   boxShadow
@@ -63,7 +63,7 @@ export const TableCell = styled<ITableCellProps, 'td'>(Box as any).attrs({
   as: 'td',
   border: '@none',
   borderLeft: '@sm',
-  borderColor: '@border',
+  borderColor: '@table.border',
 })(
   // @ts-ignore
   boxShadow
