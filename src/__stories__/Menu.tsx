@@ -1,4 +1,4 @@
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 import * as React from 'react';
 
 import { action } from '@storybook/addon-actions';
