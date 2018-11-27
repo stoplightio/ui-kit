@@ -13,6 +13,44 @@ export interface ICodeEditorProps {
   onChange?: (code: string) => any;
 }
 
+const defaultSupport = {
+  css: 'CSS',
+  javascript: 'JavaScript',
+  markup: 'Markup',
+  clike: 'C-like',
+};
+
+const optionalSupport = {
+  // cpp: 'C++',
+  // csharp: 'C#',
+  // go: 'Go',
+  // html: 'HTML',
+  // http: 'HTTP',
+  // java: 'Java',
+  // json: 'JSON',
+  // jsx: 'JSX',
+  // markdown: 'Markdown',
+  // objectivec: 'Objective-C',
+  // perl: 'Perl',
+  // php: 'PHP',
+  // python: 'Python',
+  // ruby: 'Ruby',
+  // scala: 'Scala',
+  // bash: 'Bash',
+  // swift: 'Swift',
+  // yaml: 'YAML',
+};
+
+/**
+ * List of supported languages: https://prismjs.com/#languages-list
+ */
+export const supportedLanguages = {
+  ...defaultSupport,
+  ...optionalSupport,
+};
+
+export const defaultLanguage = 'javascript';
+
 const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
   const { className, language, onChange = noop, value } = props;
 
