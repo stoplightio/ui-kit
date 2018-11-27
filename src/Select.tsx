@@ -186,6 +186,7 @@ const customStyles = (theme?: IThemeInterface) => {
   const chip = colors.chip || {};
   const menu = colors.menu || {};
   const selected = menu.selected || {};
+  const focused = menu.focused || {};
 
   return {
     control: (provided: any, state: any) => {
@@ -257,26 +258,40 @@ const customStyles = (theme?: IThemeInterface) => {
       };
     },
     option: (provided: any, state: any) => {
-      const { isSelected, isMulti } = state;
+      const { isFocused, isSelected, isMulti } = state;
+
+      let color = menu.fg;
+      let backgroundColor = menu.bg;
+
+      if (isSelected) {
+        color = selected.fg;
+        backgroundColor = selected.bg;
+      }
+
+      if (isFocused && !isSelected) {
+        color = focused.fg;
+        backgroundColor = focused.bg;
+      }
+
+      color = color || provided.color;
+      backgroundColor = backgroundColor || provided.backgroundColor;
 
       return {
         ...provided,
 
         cursor: isMulti || !isSelected ? 'pointer' : 'default',
 
-        color: isSelected ? selected.fg : menu.fg,
-        backgroundColor: isSelected ? selected.bg : menu.bg,
+        color,
+        backgroundColor,
 
         '&:active': {
-          color: isSelected ? selected.fg : menu.fg,
-          background: isSelected ? selected.bg : menu.bg,
+          color,
+          backgroundColor,
         },
 
         '&:hover': {
-          color: (isMulti || !isSelected) && selected.fg,
-          background: (isMulti || !isSelected) && selected.bg,
-
-          opacity: (isMulti || !isSelected) && 0.5,
+          color,
+          backgroundColor,
         },
       };
     },

@@ -105,6 +105,10 @@ export const components: ISectionTheme = {
           fg: 'white',
           bg: 'dodgerblue',
         },
+
+        focused: {
+          bg: 'rgba(0, 0, 0, 0.1)',
+        },
       },
     },
   },
