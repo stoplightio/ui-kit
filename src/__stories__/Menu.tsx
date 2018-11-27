@@ -16,6 +16,16 @@ export const menuKnobs = (tabName = 'Menu'): any => {
   );
 };
 
+export const menuActions = (): any => {
+  return omitBy(
+    {
+      onMouseEnter: action('onMouseEnter'),
+      onMouseLeave: action('onMouseLeave'),
+    },
+    val => !val
+  );
+};
+
 storiesOf('Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
@@ -31,6 +41,17 @@ storiesOf('Menu', module)
   .add('with icons', () => (
     <Menu
       {...menuKnobs()}
+      menuItems={[
+        { onClick: action('onClick'), title: <span>Has onClick</span>, icon: 'marker' },
+        { title: 'No onClick', icon: 'image' },
+        { title: 'Disabled Item', disabled: true, icon: 'times-circle' },
+      ]}
+    />
+  ))
+  .add('with actions', () => (
+    <Menu
+      {...menuKnobs()}
+      {...menuActions()}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, icon: 'marker' },
         { title: 'No onClick', icon: 'image' },
@@ -61,6 +82,7 @@ storiesOf('Menu', module)
   .add('with trigger', () => (
     <Menu
       {...menuKnobs()}
+      {...menuActions()}
       renderTrigger={() => <Icon icon="heading" />}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, subtitle: 'has subtitle', icon: 'marker' },
