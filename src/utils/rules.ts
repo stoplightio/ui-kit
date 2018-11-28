@@ -1,4 +1,5 @@
-import { get, merge } from 'lodash';
+import get = require('lodash/get');
+import merge = require('lodash/merge');
 
 // @ts-ignore
 import { compose, is, num, px, style } from 'styled-system';
