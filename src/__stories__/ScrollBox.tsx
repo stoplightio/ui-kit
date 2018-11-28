@@ -1,10 +1,8 @@
 import * as React from 'react';
 
+import { withKnobs } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-
-// @ts-ignore
-import { withKnobs } from '@storybook/addon-knobs';
 
 import { Box } from '../Box';
 import { Button } from '../Button';

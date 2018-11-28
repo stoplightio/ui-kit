@@ -110,7 +110,6 @@ export const ScrollBox = (props: IScrollBox) => {
         return (
           <Box
             radius="full"
-            // @ts-ignore
             cursor="grab"
             height="6px"
             bg="scrollbar.bg"

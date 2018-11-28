@@ -22,11 +22,6 @@ const rowRenderer = ({ value, key, style }: IScrollListItemProps) => (
 
 storiesOf('ScrollList', module)
   .addDecorator(withKnobs)
-  // .addDecorator(storyFn => (
-  //   <Box height="100px" css={{ outline: '2px solid black' }}>
-  //     {storyFn()}
-  //   </Box>
-  // ))
   .addDecorator(storyFn => (
     <Box height="200px" css={{ outline: '2px solid black' }}>
       {storyFn()}
