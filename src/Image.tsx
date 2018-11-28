@@ -14,16 +14,18 @@ export interface IImageProps extends IBoxProps {
 
 export const Image = styled<IImageProps, 'img'>(Box).attrs({
   as: 'img',
-})`
-  ${({ hidden }: IImageProps) => hidden && `display: none;`}
-   
-  ${({ responsive }: IImageProps) => responsive && `
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-  `};
-`;
+})(
+  // @ts-ignore
+  ({ hidden }: IImageProps) => hidden && { display: 'none' },
+
+  ({ responsive }: IImageProps) =>
+    responsive && {
+      width: 'auto',
+      height: 'auto',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }
+);
 
 Image.defaultProps = {
   hidden: false,
