@@ -3,7 +3,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 
 import { List } from '../List';
 import { ListStylePosition, ListStyleType } from './_utils';
