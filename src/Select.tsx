@@ -28,6 +28,8 @@ interface ISelectProps extends Partial<Props<ISelectOption>> {
   noOptionsMessage?: string;
 
   blurOnSelect?: boolean; // blurInputOnSelect
+  closeOnSelect?: boolean;
+  closeOnScroll?: boolean;
 
   theme: IThemeInterface;
 }
@@ -52,7 +54,9 @@ export const SelectBase = (props: ISelectProps) => {
     onScrollToTop,
     onScrollToBottom,
 
-    blurOnSelect = false,
+    blurOnSelect = !props.multi,
+    closeOnSelect = !props.multi,
+    closeOnScroll = false,
 
     loadingMessage = 'Loading...',
     noOptionsMessage = 'No Options',
@@ -65,6 +69,8 @@ export const SelectBase = (props: ISelectProps) => {
   return (
     <ReactSelect
       blurInputOnSelect={blurOnSelect}
+      closeMenuOnSelect={closeOnSelect}
+      closeMenuOnScroll={closeOnScroll}
       inputValue={searchValue}
       isClearable={clearable}
       isDisabled={disabled}
@@ -118,7 +124,6 @@ const buildColors = (theme: IThemeInterface) => {
     neutral60: selectTheme.border, // indicators:focused
     neutral70: '', // never used in reactSelect
     neutral80: selectTheme.fg, // input:color mutlival:color singleVal:color indicator:color
-  };
 };
 
 /**
