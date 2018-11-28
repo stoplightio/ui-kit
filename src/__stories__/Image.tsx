@@ -12,7 +12,7 @@ export const imageKnobs = (tabName = 'Image'): any => {
     radius: select('radius', BorderRadius, '', tabName),
     height: text('height', '', tabName),
     hidden: boolean('hidden', false, tabName),
-    responsive: boolean('responsive', true, tabName),
+    responsive: boolean('responsive', false, tabName),
     opacity: number(
       'opacity',
       1,
@@ -22,16 +22,16 @@ export const imageKnobs = (tabName = 'Image'): any => {
       } as NumberOptions,
       tabName
     ),
-    src: text(
-      'src',
-      'https://s3.amazonaws.com/totem_production/assets/logos/10719/original/logo_light_bg.png?1501094221',
-      tabName
-    ),
+    src: text('src', 'https://placehold.it/150x50', tabName),
+    alt: text('alt', 'Placeholder', tabName),
+    title: text('title', 'Placeholder', tabName),
     width: text('width', '', tabName),
+    shadow: select('shadow', ['', 'sm', 'md', 'lg'], '', tabName),
   };
 };
 
 storiesOf('Image', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>)
-  .add('with defaults', () => <Image {...imageKnobs()} />);
+  .add('with defaults', () => <Image {...imageKnobs()} />)
+  .add('responsive', () => <Image {...imageKnobs()} responsive />);
