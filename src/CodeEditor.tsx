@@ -49,17 +49,17 @@ export const supportedLanguages = {
   ...optionalSupport,
 };
 
-const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
+const CodeEditorView = React.forwardRef((props: ICodeEditorProps & { className: string }, ref: any) => {
   const { className, language, onChange = noop, value } = props;
 
   const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
 
   return (
     <div className={className}>
-      <Editor value={value} onValueChange={onChange} highlight={highlightCodeCallback} padding={10} />
+      <Editor ref={ref} value={value} onValueChange={onChange} highlight={highlightCodeCallback} padding={10} />
     </div>
   );
-};
+});
 
 // @ts-ignore
 export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
