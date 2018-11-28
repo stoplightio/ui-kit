@@ -1,4 +1,5 @@
-import { get, merge } from 'lodash';
+import get = require('lodash/get');
+import merge = require('lodash/merge');
 
 // @ts-ignore
 import { compose, is, num, px, style } from 'styled-system';
@@ -233,7 +234,7 @@ const getProperties = key => {
 };
 
 // @ts-ignore FIXME
-const getSpaceValue = scale => propVal => {
+const getSpaceValue = (scale: any = {}) => propVal => {
   let val = propVal;
   let isNegative;
 
@@ -244,7 +245,7 @@ const getSpaceValue = scale => propVal => {
     }
 
     // check the theme config for a value, or just use the prop
-    val = scale !== undefined ? scale[val] : val;
+    val = scale[val] || val;
   }
 
   // if was negative string/add the '-' back
@@ -267,18 +268,15 @@ export const space = props => {
       const innerProperties = getProperties(key);
 
       // @ts-ignore FIXME
-      const innerStyle = n =>
-        is(n)
-          ? innerProperties.reduce(
-              (a, prop) => ({
-                ...a,
-                [prop]: getStyle(n),
-              }),
-              {}
-            )
-          : null;
+      if (!is(value)) return null;
 
-      return innerStyle(value);
+      return innerProperties.reduce(
+        (a, prop) => ({
+          ...a,
+          [prop]: getStyle(value),
+        }),
+        {}
+      );
     })
     .reduce(merge, {});
 };

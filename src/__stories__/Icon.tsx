@@ -6,7 +6,9 @@ import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import { map, omitBy, pick } from 'lodash';
+import map = require('lodash/map');
+import omitBy = require('lodash/omitBy');
+import pick = require('lodash/pick');
 
 import { Icon, IconLibrary, IIcon } from '../Icon';
 import { boxKnobs } from './Box';

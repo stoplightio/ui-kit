@@ -3,7 +3,7 @@ import * as React from 'react';
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 import { Link } from '../Link';
 
 export const linkKnobs = (tabName = 'Link'): any => {
