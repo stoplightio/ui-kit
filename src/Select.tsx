@@ -124,6 +124,7 @@ const buildColors = (theme: IThemeInterface) => {
     neutral60: selectTheme.border, // indicators:focused
     neutral70: '', // never used in reactSelect
     neutral80: selectTheme.fg, // input:color mutlival:color singleVal:color indicator:color
+  };
 };
 
 /**
