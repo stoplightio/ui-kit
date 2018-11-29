@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 
 import { Break } from '../Break';
 

@@ -59,6 +59,7 @@ export const base: ILayout = {
 
   space: {
     none: '0px',
+    auto: 'auto',
     xs: 2,
     sm: 4,
     md: 6,

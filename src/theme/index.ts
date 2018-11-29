@@ -1,7 +1,7 @@
 import { IThemeInterface } from '../types';
 
 import { base } from './base';
-import { colors, components, scrollbars, shadows } from './components';
+import { colors, components, shadows } from './components';
 
 export const baseTheme: IThemeInterface = {
   base,
@@ -9,5 +9,4 @@ export const baseTheme: IThemeInterface = {
   ...shadows,
   ...colors,
   ...components,
-  ...scrollbars,
 };
