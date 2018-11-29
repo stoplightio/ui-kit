@@ -1,4 +1,5 @@
-import { get, merge } from 'lodash';
+import get = require('lodash/get');
+import merge = require('lodash/merge');
 import * as React from 'react';
 import * as styledComponents from 'styled-components';
 

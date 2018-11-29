@@ -5,7 +5,7 @@ import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 
 import { Textarea } from '../Textarea';
 import { boxKnobs } from './Box';

@@ -2,7 +2,7 @@ import noop = require('lodash/noop');
 import 'prismjs/components/';
 import * as React from 'react';
 import { useCallback } from 'react';
-import Editor from 'react-simple-code-editor';
+import ReactSimpleCodeEditor from 'react-simple-code-editor';
 import styled from 'styled-components';
 import { themeGet } from './utils';
 import { highlightCode } from './utils/highlightCode';
@@ -49,17 +49,27 @@ export const supportedLanguages = {
   ...optionalSupport,
 };
 
-const CodeEditorView = (props: ICodeEditorProps & { className: string }) => {
-  const { className, language, onChange = noop, value } = props;
+export type ReactSimpleCodeEditorRef = ReactSimpleCodeEditor;
 
-  const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
+const CodeEditorView = React.forwardRef<ReactSimpleCodeEditorRef, ICodeEditorProps & { className: string }>(
+  (props, ref) => {
+    const { className, language, onChange = noop, value } = props;
 
-  return (
-    <div className={className}>
-      <Editor value={value} onValueChange={onChange} highlight={highlightCodeCallback} padding={10} />
-    </div>
-  );
-};
+    const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
+
+    return (
+      <div className={className}>
+        <ReactSimpleCodeEditor
+          ref={ref}
+          value={value}
+          onValueChange={onChange}
+          highlight={highlightCodeCallback}
+          padding={10}
+        />
+      </div>
+    );
+  }
+);
 
 // @ts-ignore
 export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`

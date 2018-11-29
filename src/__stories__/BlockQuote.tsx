@@ -3,7 +3,7 @@ import * as React from 'react';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { omitBy } from 'lodash';
+import omitBy = require('lodash/omitBy');
 import { BlockQuote } from '../BlockQuote';
 
 export const blockQuoteKnobs = (tabName = 'Block Quote'): any => {
