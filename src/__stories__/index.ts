@@ -21,3 +21,5 @@ import './Table';
 import './Text';
 import './Textarea';
 import './Toggle';
+
+import './EmotionBox';

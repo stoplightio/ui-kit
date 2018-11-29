@@ -10,6 +10,7 @@ export interface ILinkProps {
 }
 
 export const Link = ({ attributes, children, href, title }: ILinkProps) => (
+  // @ts-ignore
   <Box as="a" fg="link" {...attributes} href={href} title={title}>
     {children}
   </Box>

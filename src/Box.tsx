@@ -41,7 +41,7 @@ import {
 
 export interface IBoxProps {
   className?: string;
-  css?: Object; // a valid javascript style object
+  css?: any; // a valid javascript style object
   as?: any; // TODO type string || jsx element
 
   fg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
@@ -147,7 +147,7 @@ export interface IBoxProps {
   z?: number;
 }
 
-interface IAllProps extends IBoxProps, Partial<React.AllHTMLAttributes<'div'>> {
+interface IAllProps extends IBoxProps {
   as?: any;
 }
 
