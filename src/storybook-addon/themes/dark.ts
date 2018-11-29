@@ -60,15 +60,26 @@ export const dark = {
       border: '#1B262E',
 
       chip: {
+        fg: '#BFCCD6',
         bg: '#384854',
       },
 
-      options: {
-        fg: 'hsl(0, 0%, 60%)',
+      indicator: {
+        fg: 'grey',
+      },
 
-        selectedbg: 'hsla(205, 64%, 43%, 0.85)',
-        activebg: 'hsl(205, 64%, 43%, 1)',
-        hoverbg: 'hsla(205, 64%, 43%, 0.6)',
+      menu: {
+        fg: '#BFCCD6',
+        bg: '#202D36',
+
+        selectedfg: '#BFCCD6',
+        selectedbg: '#193d6b',
+
+        activefg: 'black',
+        activebg: '#B2D4FF',
+
+        hoverfg: 'black',
+        hoverbg: '#DEEBFF',
       },
     },
   },
