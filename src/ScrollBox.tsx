@@ -1,9 +1,10 @@
-import { replace } from 'lodash';
 import * as React from 'react';
 // @ts-ignore
 import { positionValues, Scrollbars } from 'react-custom-scrollbars';
 
 import { Box, IBoxProps } from './Box';
+import { useScrollToHash } from './hooks/useScrollToHash';
+import { getScrollTransform, getThumbDimension, horizontalTrackStyle, verticalTrackStyle } from './utils/scroll';
 
 export interface IScrollBoxRef {
   scrollTop: (top?: number) => void;
@@ -49,7 +50,7 @@ export const ScrollBox = (props: IScrollBox) => {
 
   const [isScrolling, setisScrolling] = React.useState(false);
 
-  useScrollTo(scrollTo);
+  useScrollToHash(scrollTo);
 
   const scrollbars = innerRef || React.useRef<IScrollBoxRef>(null);
   const current = scrollbars.current as IScrollBoxRef;
@@ -93,28 +94,17 @@ export const ScrollBox = (props: IScrollBox) => {
       }}
       // Custom component overrides
       renderTrackHorizontal={({ style }: any) => {
-        return (
-          <div
-            style={{
-              background: 'transparent',
-              position: 'absolute',
-              cursor: 'pointer',
-              right: 10,
-              bottom: 2,
-              left: 2,
-            }}
-          />
-        );
+        return <div style={horizontalTrackStyle()} />;
       }}
       renderThumbHorizontal={({ style }: any) => {
         return (
           <Box
             radius="full"
             cursor="grab"
-            height="6px"
             bg="scrollbar.bg"
-            width={thumbHorizontal}
             opacity={isScrolling ? 1 : 0}
+            height="6px"
+            width={thumbHorizontal}
             css={{
               transition: 'opacity .1s',
               transform: `translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`,
@@ -123,28 +113,17 @@ export const ScrollBox = (props: IScrollBox) => {
         );
       }}
       renderTrackVertical={() => {
-        return (
-          <div
-            style={{
-              background: 'transparent',
-              position: 'absolute',
-              cursor: 'pointer',
-              top: 2,
-              right: 2,
-              bottom: 10,
-            }}
-          />
-        );
+        return <div style={verticalTrackStyle()} />;
       }}
       renderThumbVertical={({ style }: any) => {
         return (
           <Box
             radius="full"
-            width="6px"
             cursor="grab"
             bg="scrollbar.bg"
-            height={thumbVertical}
             opacity={isScrolling ? 1 : 0}
+            height={thumbVertical}
+            width="6px"
             css={{
               transition: 'opacity .1s',
               transform: `translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`,
@@ -156,36 +135,4 @@ export const ScrollBox = (props: IScrollBox) => {
       {children}
     </Scrollbars>
   );
-};
-
-const useScrollTo = (elementId?: string) => {
-  const scrollToHash = (hash?: string) => {
-    const element = document.getElementById(replace(hash || window.location.hash, '#', ''));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-    }
-  };
-
-  const targetScrollTo = elementId || (typeof window !== 'undefined' ? window.location.hash : null);
-  React.useEffect(
-    () => {
-      if (targetScrollTo) {
-        scrollToHash(targetScrollTo);
-      }
-    },
-    [targetScrollTo]
-  );
-};
-
-export const getScrollTransform = (client: number, scroll: number, currentLocation: number, thumb: number) => {
-  const trackSize = client - 28;
-  return (currentLocation / (scroll - client)) * (trackSize - thumb);
-};
-
-export const getThumbDimension = ({ scroll, client }: { scroll: number; client: number }) => {
-  if (scroll < client) return 0;
-
-  const track = client - 28;
-  const height = Math.ceil((client / scroll) * track);
-  return Math.max(height, 30);
 };

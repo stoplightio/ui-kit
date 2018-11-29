@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AutoSizer, Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
 
 import { Box } from './Box';
-import { getScrollTransform, getThumbDimension } from './ScrollBox';
+import { getScrollTransform, getThumbDimension, verticalTrackStyle } from './utils/scroll';
 
 import { styled } from './utils';
 
@@ -14,9 +14,9 @@ export interface IScrollListItemProps {
 }
 
 export interface IOnScroll {
-  clientHeight: number;
-  scrollHeight: number;
-  scrollTop: number;
+  clientHeight?: number;
+  scrollHeight?: number;
+  scrollTop?: number;
 }
 
 export interface IScrollListProps {
@@ -52,14 +52,12 @@ const ListView = (props: IScrollListProps & { className: string }) => {
     onScroll,
   } = props;
 
-  const [clientHeight, setClientHeight] = React.useState(0);
-  const [scrollHeight, setScrollHeight] = React.useState(0);
-  const [scrollTop, setScrollTop] = React.useState(0);
+  const [{ clientHeight, scrollHeight, scrollTop }, setScrollEvent] = React.useState<IOnScroll>({});
+  const thumbSize = getThumbDimension({ scroll: scrollHeight, client: clientHeight });
+
   const [isScrolling, setisScrolling] = React.useState(false);
 
   const renderRow = ({ key, index, style }: ListRowProps) => rowRenderer({ key, index, value: list[index], style });
-
-  const thumbSize = getThumbDimension({ scroll: scrollHeight, client: clientHeight });
 
   return (
     <AutoSizer>
@@ -72,9 +70,7 @@ const ListView = (props: IScrollListProps & { className: string }) => {
             rowRenderer={renderRow as ListRowRenderer}
             noRowsRenderer={noRowsRenderer}
             onScroll={(e: IOnScroll) => {
-              setClientHeight(e.clientHeight);
-              setScrollHeight(e.scrollHeight);
-              setScrollTop(e.scrollTop);
+              setScrollEvent(e);
 
               if (isScrolling) {
                 // @ts-ignore
@@ -100,16 +96,7 @@ const ListView = (props: IScrollListProps & { className: string }) => {
           />
 
           {/** scrollbar */}
-          <div
-            style={{
-              background: 'transparent',
-              position: 'absolute',
-              right: '2px',
-              top: '2px',
-              bottom: '10px',
-              cursor: 'pointer',
-            }}
-          >
+          <div style={verticalTrackStyle()}>
             <Box
               className={'scroll1'}
               height={`${thumbSize}px`}
