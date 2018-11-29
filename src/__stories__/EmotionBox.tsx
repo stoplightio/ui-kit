@@ -5,7 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
-import { Box } from '../emotion/Box';
+import { Box, IBox } from '../emotion/Box';
 import { createThemedModule, ICustomTheme, ThemeZoneObj, ThemeZones } from '../emotion/theme';
 // import {
 //   BorderRadius,
@@ -80,18 +80,18 @@ storiesOf('EmotionBox', module)
   .add('with defaults', () => (
     <ThemeProviderState>
       <div>
-        <StoryBox text="[zone: none] the default root theme values" />
+        <StoryBox p={4}>[zone: none] the default root theme values, with some extra padding</StoryBox>
 
         <br />
 
         <ThemeZone name="inner">
-          <StoryBox text="[zone: 'inner'] defaults canvas.bg to purple and canvas.fg to white" />
+          <StoryBox p={2}>[zone: 'inner'] defaults canvas.bg to purple and canvas.fg to white</StoryBox>
         </ThemeZone>
 
         <br />
 
         <ThemeZone name="inverted">
-          <StoryBox text="[zone: 'inverted'] inverts canvas bg and fg" />
+          <StoryBox p={2}>[zone: 'inverted'] inverts canvas bg and fg</StoryBox>
         </ThemeZone>
       </div>
     </ThemeProviderState>
@@ -140,7 +140,7 @@ const ThemeProviderState: React.SFC = ({ children }) => {
   );
 };
 
-const StoryBox = ({ text }: { text: string }) => {
+const StoryBox: React.SFC<IBox> = props => {
   const theme = useTheme();
 
   return (
@@ -150,9 +150,8 @@ const StoryBox = ({ text }: { text: string }) => {
         backgroundColor: theme.canvas.bg,
         color: theme.canvas.fg,
       }}
-    >
-      {text}
-    </Box>
+      {...props}
+    />
   );
 };
 

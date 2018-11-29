@@ -2,10 +2,11 @@
 
 import { jsx } from '@emotion/core';
 import { CSSProperties, SFC } from 'react';
+import { space, SpaceProps } from 'styled-system';
 
 import { useTheme } from './theme';
 
-interface IBox {
+export interface IBox extends SpaceProps {
   style?: CSSProperties;
 }
 
@@ -29,7 +30,7 @@ export const boxStyle = () => {
 // Box, Flex, Button
 
 export const Box: SFC<IBox> = ({ children, style, ...rest }) => {
-  const styles = [boxStyle()];
+  const styles = [boxStyle(), space(rest)];
 
   if (style) styles.push(style);
 
