@@ -1,5 +1,3 @@
-import { BorderRadiusProperty, WidthProperty } from 'csstype';
-
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 export type FontWeight = 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
 export type LineHeight = 'reset' | 'none' | 'tight' | 'normal' | 'loose';
@@ -8,7 +6,7 @@ export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 export type BoxShadow = keyof IShadows;
 export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
-export type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+export type Space = 'none' | 'auto' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
 export type FullSpace = Space | '-xs' | '-sm' | '-md' | '-lg' | '-xl' | '-2xl' | '-3xl' | '-4xl' | '-5xl' | '-6xl';
 
@@ -53,12 +51,6 @@ export interface ILayout {
   height?: { [key in BoxDimension]?: number | string };
 
   width?: { [key in BoxDimension]?: number | string };
-
-  scrollbars?: {
-    thumb?: string;
-    thumbRadius?: BorderRadiusProperty<string>;
-    width?: WidthProperty<string>;
-  };
 }
 
 // Can be nested into itself example { colors: { primary: { base: #FFFF, light: #FFFF } } }
@@ -78,4 +70,4 @@ export interface IShadows {
   [color: string]: string | Partial<IShadows>;
 }
 
-export type Components = 'button' | 'checkbox' | 'toggle' | 'codeEditor' | 'contextMenu' | 'blockQuote';
+export type Components = 'button' | 'checkbox' | 'toggle' | 'codeEditor' | 'contextMenu' | 'blockQuote' | 'scrollbar';
