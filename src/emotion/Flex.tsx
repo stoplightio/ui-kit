@@ -1,0 +1,41 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { SFC } from 'react';
+import * as ss from 'styled-system';
+
+import { Box, IBox } from './Box';
+
+export const Flex: SFC<IFlex> = props => {
+  const { as = Box, flexBasis, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
+
+  const css = [
+    ss.flexBasis({ flexBasis }),
+    ss.flexDirection({ flexDirection }),
+    ss.flexWrap({ flexWrap }),
+    ss.alignItems({ alignItems }),
+    ss.justifyContent({ justifyContent }),
+    ...flexStyles(),
+  ];
+
+  return jsx(as, {
+    ...rest,
+    css,
+  });
+};
+
+export interface IFlex
+  extends IBox,
+    ss.FlexBasisProps,
+    ss.FlexDirectionProps,
+    ss.FlexWrapProps,
+    ss.AlignItemsProps,
+    ss.JustifyContentProps {}
+
+export const flexStyles = () => {
+  return [
+    {
+      display: 'flex',
+    },
+  ];
+};

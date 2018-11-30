@@ -6,6 +6,8 @@ import { storiesOf } from '@storybook/react';
 import { omitBy } from 'lodash';
 
 import { Box, IBox } from '../emotion/Box';
+import { Button } from '../emotion/Button';
+import { Flex } from '../emotion/Flex';
 import { createThemedModule, ICustomTheme, ThemeZoneObj, ThemeZones } from '../emotion/theme';
 // import {
 //   BorderRadius,
@@ -75,27 +77,93 @@ export const boxKnobs = (tabName = 'Box'): any => {
 type Zones = 'inner' | 'inverted';
 const { ThemeProvider, ThemeZone, useTheme, useThemeZones } = createThemedModule<Zones>();
 
-storiesOf('EmotionBox', module)
+storiesOf('Layout', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => (
+  .add('Flex and Box', () => <App />);
+
+/** Our fictitional App */
+
+const App = () => {
+  const theme = useTheme();
+
+  return (
     <ThemeProviderState>
-      <div>
-        <StoryBox p={4}>[zone: none] the default root theme values, with some extra padding</StoryBox>
+      <Flex
+        flexDirection="column"
+        textAlign="center"
+        p={2}
+        pt={4}
+        position="relative"
+        border={`1px solid ${theme.canvas.bg}`}
+      >
+        <BoxBadge>Flex Column</BoxBadge>
 
-        <br />
+        <CustomStoryBox p={4}>[zone: none] the default root theme values, with some extra padding</CustomStoryBox>
 
-        <ThemeZone name="inner">
-          <StoryBox p={2}>[zone: 'inner'] defaults canvas.bg to purple and canvas.fg to white</StoryBox>
-        </ThemeZone>
+        <Flex
+          p={2}
+          pt={4}
+          mt={2}
+          position="relative"
+          backgroundColor="overwridden-by-style-prop"
+          style={{ backgroundColor: theme.canvas.bg }}
+        >
+          <BoxBadge>Flex Row</BoxBadge>
 
-        <br />
+          <ThemeZone name="inner">
+            <CustomStoryBox flex="1" p={3} pt={4} mr={2}>
+              <Box>[zone: 'inner'] defaults canvas.bg to purple and canvas.fg to white</Box>
+              <Button mt={3}>Go</Button>
+            </CustomStoryBox>
+          </ThemeZone>
 
-        <ThemeZone name="inverted">
-          <StoryBox p={2}>[zone: 'inverted'] inverts canvas bg and fg</StoryBox>
-        </ThemeZone>
-      </div>
+          <ThemeZone name="inverted">
+            <CustomStoryBox flex="1" p={3} pt={4}>
+              <Box>[zone: 'inverted'] inverts canvas bg and fg</Box>
+              <Button mt={3}>Go</Button>
+            </CustomStoryBox>
+          </ThemeZone>
+        </Flex>
+      </Flex>
     </ThemeProviderState>
-  ));
+  );
+};
+
+const BoxBadge: React.SFC = props => {
+  const theme = useTheme();
+
+  return (
+    <Box
+      fontSize={0}
+      position="absolute"
+      top={0}
+      right={0}
+      px={1}
+      py="1px"
+      fontStyle="italic"
+      {...props}
+      backgroundColor={theme.canvas.bg}
+      color={theme.canvas.fg}
+      borderBottom={`1px solid ${theme.canvas.fg}`}
+      borderLeft={`1px solid ${theme.canvas.fg}`}
+    />
+  );
+};
+
+const CustomStoryBox: React.SFC<IBox> = ({ children, ...props }) => {
+  const theme = useTheme();
+
+  return (
+    <Box {...boxKnobs()} backgroundColor={theme.canvas.bg} color={theme.canvas.fg} position="relative" {...props}>
+      {children}
+      <BoxBadge>Box</BoxBadge>
+    </Box>
+  );
+};
+
+/**
+ * The below is internal details.
+ */
 
 const UpdateTheme = React.createContext<React.Dispatch<React.SetStateAction<ICustomTheme>>>(
   () => (state: ICustomTheme) => state
@@ -137,21 +205,6 @@ const ThemeProviderState: React.SFC = ({ children }) => {
         </ThemeProvider>
       </UpdateZones.Provider>
     </UpdateTheme.Provider>
-  );
-};
-
-const StoryBox: React.SFC<IBox> = props => {
-  const theme = useTheme();
-
-  return (
-    <Box
-      {...boxKnobs()}
-      style={{
-        backgroundColor: theme.canvas.bg,
-        color: theme.canvas.fg,
-      }}
-      {...props}
-    />
   );
 };
 

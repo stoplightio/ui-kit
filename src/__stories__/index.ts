@@ -1,3 +1,5 @@
+import './Layout';
+
 import './BlockQuote';
 import './Box';
 import './Break';
@@ -21,5 +23,3 @@ import './Table';
 import './Text';
 import './Textarea';
 import './Toggle';
-
-import './EmotionBox';

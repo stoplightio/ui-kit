@@ -868,7 +868,7 @@
     "@emotion/stylis" "^0.7.1"
     "@emotion/utils" "^0.8.2"
 
-"@emotion/core@10.0.0":
+"@emotion/core@10.0.x":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.0.tgz#4ec44fdafce2d111f286862388cbd4c3c7502d40"
   integrity sha512-VnOWGQ40F2ESyPwEOarUXoG1ts43dQOceXIZZIL4jbjJdzsycOuazODB9RpW/jjY8NnsO8Nb+QnVzHSjz2a9Rg==
@@ -1395,7 +1395,7 @@
   resolved "https://registry.yarnpkg.com/@stoplight/types/-/types-2.0.0.tgz#3e78ad980bb0254759506f9201eb1331663d38f8"
   integrity sha512-oExv0WpTCJCKdtua52R1z0p+UhYys+7ifRuyEidYsUiUkd95pb/olatc8G9S55lnuEMcFiQhBy0lu5DyrIDrOA==
 
-"@stoplight/types@^3.0.0":
+"@stoplight/types@3.0.x":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@stoplight/types/-/types-3.0.0.tgz#2464b3149accd0ef4b822a6079a1a8ece416e9c3"
   integrity sha512-08VUdzyHUenrk5m8rP6DiCQjZ/6DIjmFDKryBTuBNCrQQ6dwlqqGRN+f4nCOPc+Ks6jhHRLjT3hUCn8TUwIKuw==
