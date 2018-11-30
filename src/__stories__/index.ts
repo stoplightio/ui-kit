@@ -18,6 +18,7 @@ import './Menu';
 import './Popup';
 import './ScrollBox';
 import './ScrollList';
+import './Select';
 import './Table';
 import './Text';
 import './Textarea';

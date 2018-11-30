@@ -62,6 +62,39 @@ export const components: ISectionTheme = {
       },
     },
 
+    scrollbar: {
+      bg: 'hsla(0, 0%, 27%, 0.84)',
+    },
+
+    select: {
+      fg: 'black',
+      bg: 'white',
+      border: 'lightgrey',
+
+      chip: {
+        fg: 'green',
+        bg: 'lightgrey',
+      },
+
+      indicator: {
+        fg: 'grey',
+      },
+
+      menu: {
+        fg: 'black',
+        bg: 'white',
+
+        selectedfg: 'black',
+        selectedbg: '#2684FF',
+
+        activefg: 'black',
+        activebg: '#B2D4FF',
+
+        hoverfg: 'black',
+        hoverbg: '#DEEBFF',
+      },
+    },
+
     toggle: {
       fg: 'white',
       bg: 'darkgrey',
@@ -72,10 +105,6 @@ export const components: ISectionTheme = {
         bg: 'mediumseagreen',
         border: 'transparent',
       },
-    },
-
-    scrollbar: {
-      bg: 'hsla(0, 0%, 27%, 0.84)',
     },
   },
 };
