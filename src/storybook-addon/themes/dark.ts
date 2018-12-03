@@ -1,7 +1,7 @@
 export const dark = {
   colors: {
     fg: 'white',
-    bg: '#222',
+    bg: 'rgb(48,64,77)',
     border: '#f9f9f9',
     lightest: '#f9f9f9',
     lighter: 'rgba(255, 255, 255, 0.2)',
@@ -52,6 +52,35 @@ export const dark = {
 
     blockQuote: {
       shadow: '0 0 5px currentColor',
+    },
+
+    select: {
+      fg: '#BFCCD6',
+      bg: '#202D36',
+      border: '#1B262E',
+
+      chip: {
+        fg: '#BFCCD6',
+        bg: '#384854',
+      },
+
+      indicator: {
+        fg: 'grey',
+      },
+
+      menu: {
+        fg: '#BFCCD6',
+        bg: '#202D36',
+
+        selectedfg: '#BFCCD6',
+        selectedbg: '#193d6b',
+
+        activefg: 'black',
+        activebg: '#B2D4FF',
+
+        hoverfg: 'black',
+        hoverbg: '#DEEBFF',
+      },
     },
   },
 
