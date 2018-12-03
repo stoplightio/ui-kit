@@ -75,6 +75,7 @@ const CodeEditorView = React.forwardRef<ReactSimpleCodeEditorRef, ICodeEditorPro
 export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
   background: ${themeGet('components.codeEditor.bg')};
   border: 1px solid ${themeGet('components.codeEditor.border')};
+  font-family: monospace;
 
   textarea {
     &:focus {
