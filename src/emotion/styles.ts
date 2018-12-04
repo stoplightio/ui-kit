@@ -1,4 +1,10 @@
-import { BackgroundColorProperty, ColorProperty, TextDecorationProperty } from 'csstype';
+import {
+  BackgroundColorProperty,
+  ColorProperty,
+  TextDecorationColorProperty,
+  TextDecorationProperty,
+  TextTransformProperty,
+} from 'csstype';
 
 export interface IColorProps {
   color?: ColorProperty;
@@ -16,4 +22,20 @@ export interface ITextDecorationProps {
 
 export const textDecoration = (props: ITextDecorationProps) => ({
   textDecoration: props.textDecoration,
+});
+
+export interface ITextDecorationColorProps {
+  textDecorationColor?: TextDecorationColorProperty;
+}
+
+export const textDecorationColor = (props: ITextDecorationColorProps) => ({
+  textDecorationColor: props.textDecorationColor,
+});
+
+export interface ITextTransformProps {
+  textTransform?: TextTransformProperty;
+}
+
+export const textTransform = (props: ITextTransformProps) => ({
+  textTransform: props.textTransform,
 });

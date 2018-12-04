@@ -56,6 +56,8 @@ export const Box: FunctionComponent<IBox> = props => {
     maxWidth,
     opacity,
     textDecoration,
+    textDecorationColor,
+    textTransform,
     color,
     backgroundColor,
     ...rest
@@ -95,7 +97,9 @@ export const Box: FunctionComponent<IBox> = props => {
     ss.opacity({ opacity }),
 
     sl.color({ color, backgroundColor }),
+    sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration }),
+    sl.textDecorationColor({ textDecorationColor }),
   ];
 
   /** User provided style get pushed on last. */

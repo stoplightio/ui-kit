@@ -5,7 +5,7 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import omitBy = require('lodash/omitBy');
 
-import { Text } from '../Text';
+import { Text } from '../emotion/Text';
 import { Casing, Decoration, LetterSpacing, LineHeight } from './_utils';
 import { boxKnobs } from './Box';
 

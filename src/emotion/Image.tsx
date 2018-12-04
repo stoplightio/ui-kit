@@ -6,13 +6,13 @@ import { FunctionComponent, HTMLAttributes } from 'react';
 import { Box, IBox } from './Box';
 
 export const Image: FunctionComponent<IImage> = props => {
-  const { as = 'img', hidden, responsive, ...rest } = props;
+  const { hidden, responsive, ...rest } = props;
 
   const css = [...imageStyles({ hidden, responsive })];
 
   return jsx(Box, {
     ...rest,
-    as,
+    as: 'img',
     css,
   });
 };
