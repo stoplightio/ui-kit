@@ -53,6 +53,12 @@ interface ITheme {
       regex: string;
     };
   };
+
+  link: {
+    fg: string;
+    hoverFg?: string;
+    visitedFg?: string;
+  };
 }
 
 /**
@@ -97,6 +103,10 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
         regex: '#ff9800',
       },
     },
+
+    link: {
+      fg: '#add8e6',
+    },
   },
 
   light: {
@@ -129,6 +139,10 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
         operator: '#795548',
         regex: '#ff9800',
       },
+    },
+
+    link: {
+      fg: '#72bcd4',
     },
   },
 };

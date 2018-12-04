@@ -7,7 +7,7 @@ import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
 export const Link: FunctionComponent<ILink> = props => {
-  const css = linkStyles();
+  const css = [...linkStyles()];
 
   return jsx(Box, {
     ...props,
@@ -21,7 +21,19 @@ export interface ILink extends IBox, HTMLAttributes<HTMLAnchorElement> {}
 export const linkStyles = () => {
   const theme = useTheme();
 
-  return {
-    color: theme.canvas.link,
-  };
+  return [
+    {
+      color: theme.link.fg,
+    },
+    theme.link.hoverFg && {
+      ':hover': {
+        color: theme.link.hoverFg,
+      },
+    },
+    theme.link.visitedFg && {
+      ':visited': {
+        color: theme.link.visitedFg,
+      },
+    },
+  ];
 };
