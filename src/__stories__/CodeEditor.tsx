@@ -6,7 +6,7 @@ import { text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeEditor } from '../CodeEditor';
+import { CodeEditor } from '../emotion/CodeEditor';
 
 const store = new Store({
   value: 'stoplight.uiKit();',

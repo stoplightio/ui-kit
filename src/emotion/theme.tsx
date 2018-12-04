@@ -35,6 +35,23 @@ interface ITheme {
     bg: string;
     hoverBg: string;
   };
+
+  codeEditor: {
+    bg: string;
+    border: string;
+
+    syntax: {
+      primary: string;
+      secondary: string;
+      comment: string;
+      punctuation: string;
+      keyword: string;
+      function: string;
+      variable: string;
+      operator: string;
+      regex: string;
+    };
+  };
 }
 
 /**
@@ -61,6 +78,23 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
       bg: 'rgba(255, 255, 255, 0.2)',
       hoverBg: 'rgba(255, 255, 255, 0.3)',
     },
+
+    codeEditor: {
+      bg: '#222',
+      border: '#f9f9f9',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#c2cbd0',
+        punctuation: '#c3c9cc',
+        keyword: '#FFFFC7',
+        function: '#f44336',
+        variable: '#FFFFC7',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
+    },
   },
 
   light: {
@@ -75,6 +109,23 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
       fg: 'white',
       bg: 'rgba(0, 0, 0, 0.5)',
       hoverBg: 'rgba(0, 0, 0, 0.6)',
+    },
+
+    codeEditor: {
+      bg: 'white',
+      border: 'grey',
+
+      syntax: {
+        primary: '#e91e63',
+        secondary: '#4caf50',
+        comment: '#90a4ae',
+        punctuation: '#9e9e9e',
+        keyword: '#3f51b5',
+        function: '#f44336',
+        variable: '#ff9800',
+        operator: '#795548',
+        regex: '#ff9800',
+      },
     },
   },
 };
