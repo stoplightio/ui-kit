@@ -4,7 +4,7 @@ import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import omitBy = require('lodash/omitBy');
-import { Link } from '../Link';
+import { Link } from '../emotion/Link';
 
 export const linkKnobs = (tabName = 'Link'): any => {
   return omitBy(

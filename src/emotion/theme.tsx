@@ -28,6 +28,7 @@ interface ITheme {
   canvas: {
     fg: string;
     bg: string;
+    link: string;
   };
 
   button: {
@@ -71,6 +72,7 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
     canvas: {
       fg: 'white',
       bg: '#222',
+      link: '#add8e6',
     },
 
     button: {
@@ -103,6 +105,7 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
     canvas: {
       fg: '#111',
       bg: '#eee',
+      link: '#72bcd4',
     },
 
     button: {
