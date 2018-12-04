@@ -7,13 +7,13 @@ import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
 export const Button: SFC<IButton> = props => {
-  const { as = Box, disabled, ...rest } = props;
+  const { as = 'button', disabled, ...rest } = props;
 
   const css = [...buttonStyles({ disabled })];
 
-  return jsx(as, {
+  return jsx(Box, {
     ...rest,
-    as: 'button',
+    as,
     css,
   });
 };

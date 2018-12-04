@@ -7,7 +7,7 @@ import * as ss from 'styled-system';
 import { Box, IBox } from './Box';
 
 export const Flex: SFC<IFlex> = props => {
-  const { as = Box, flexBasis, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
+  const { as, flexBasis, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
 
   const css = [
     ss.flexBasis({ flexBasis }),
@@ -18,8 +18,9 @@ export const Flex: SFC<IFlex> = props => {
     ...flexStyles(),
   ];
 
-  return jsx(as, {
+  return jsx(Box, {
     ...rest,
+    as,
     css,
   });
 };
