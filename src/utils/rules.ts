@@ -1,4 +1,7 @@
-import { concat, get, join, merge } from 'lodash';
+import concat = require('lodash/concat');
+import get = require('lodash/get');
+import join = require('lodash/join');
+import merge = require('lodash/merge');
 
 // @ts-ignore
 import { compose, is, num, px } from 'styled-system';
@@ -276,18 +279,15 @@ export const space = props => {
       const innerProperties = getProperties(key);
 
       // @ts-ignore FIXME
-      const innerStyle = n =>
-        is(n)
-          ? innerProperties.reduce(
-              (a, prop) => ({
-                ...a,
-                [prop]: getStyle(n),
-              }),
-              {}
-            )
-          : null;
+      if (!is(value)) return null;
 
-      return innerStyle(value);
+      return innerProperties.reduce(
+        (a, prop) => ({
+          ...a,
+          [prop]: getStyle(value),
+        }),
+        {}
+      );
     })
     .reduce(merge, {});
 };

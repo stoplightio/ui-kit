@@ -20,14 +20,6 @@ export const shadows = {
   },
 };
 
-export const scrollbars = {
-  scrollbars: {
-    width: '10px',
-    thumb: 'grey',
-    thumbRadius: '5px',
-  },
-};
-
 // default color stylings we want to use out of the gates (in case someone does not want to have to create their own theme)
 export const components: ISectionTheme = {
   components: {
@@ -79,6 +71,39 @@ export const components: ISectionTheme = {
       hover: {
         bg: 'dodgerblue',
         color: 'white',
+      },
+    },
+
+    scrollbar: {
+      bg: 'hsla(0, 0%, 27%, 0.84)',
+    },
+
+    select: {
+      fg: 'black',
+      bg: 'white',
+      border: 'lightgrey',
+
+      chip: {
+        fg: 'green',
+        bg: 'lightgrey',
+      },
+
+      indicator: {
+        fg: 'grey',
+      },
+
+      menu: {
+        fg: 'black',
+        bg: 'white',
+
+        selectedfg: 'black',
+        selectedbg: '#2684FF',
+
+        activefg: 'black',
+        activebg: '#B2D4FF',
+
+        hoverfg: 'black',
+        hoverbg: '#DEEBFF',
       },
     },
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 // @ts-ignore
 import addons, { makeDecorator } from '@storybook/addons';
-import { merge } from 'lodash';
+import merge = require('lodash/merge');
 
 import { Flex } from '../Flex';
 import { baseTheme } from '../theme';
