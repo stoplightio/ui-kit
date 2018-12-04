@@ -17,6 +17,7 @@ export const Box: FunctionComponent<IBox> = props => {
     borderBottom,
     borderLeft,
     borderRight,
+    borderRadius,
     boxShadow,
     display,
     fontSize,
@@ -63,6 +64,7 @@ export const Box: FunctionComponent<IBox> = props => {
   /** Add all the supported styles, passing in the relevant props. */
   const css = [
     ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
+    ss.borderRadius({ borderRadius }),
     ss.boxShadow({ boxShadow }),
     ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
     ss.flex({ flex }),
@@ -114,6 +116,7 @@ export interface IBox
     ss.BorderBottomProps,
     ss.BorderLeftProps,
     ss.BorderRightProps,
+    ss.BorderRadiusProps,
     ss.BoxShadowProps,
     ss.DisplayProps,
     ss.FontSizeProps,
