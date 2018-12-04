@@ -1,12 +1,12 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { HTMLAttributes, SFC } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export const Button: SFC<IButton> = props => {
+export const Button: FunctionComponent<IButton> = props => {
   const { as = 'button', disabled, ...rest } = props;
 
   const css = [...buttonStyles({ disabled })];

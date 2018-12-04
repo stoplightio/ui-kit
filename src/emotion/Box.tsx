@@ -1,12 +1,12 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { CSSProperties, ReactHTML, SFC } from 'react';
+import { CSSProperties, FunctionComponent, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
 import * as sl from './styles';
 
-export const Box: SFC<IBox> = props => {
+export const Box: FunctionComponent<IBox> = props => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
   const {
     as = 'div',

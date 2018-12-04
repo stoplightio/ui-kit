@@ -11,7 +11,7 @@ export type BaseTheme = 'dark' | 'light';
  */
 export function createThemedModule<S extends string>() {
   return {
-    ThemeProvider: ThemeProvider as React.SFC<IThemeProvider<S>>,
+    ThemeProvider: ThemeProvider as React.FunctionComponent<IThemeProvider<S>>,
     ThemeZone: ThemeZone as IThemeZone<S>,
     useTheme,
     useThemeZones: useThemeZones as () => ThemeZones<S>,
@@ -94,7 +94,7 @@ export interface IThemeProvider<S extends string> {
 }
 
 /** The primary theme provider. Every app should render this once, towards the top of the react component tree. */
-export const ThemeProvider: React.SFC<IThemeProvider<any>> = ({ children, theme, zones = {} }) => {
+export const ThemeProvider: React.FunctionComponent<IThemeProvider<any>> = ({ children, theme, zones = {} }) => {
   const targetTheme = theme || defaultTheme;
 
   return (
@@ -116,7 +116,7 @@ export type ThemeZone = ThemeZoneObj | ((parentTheme: ITheme) => ThemeZoneObj);
 export type ThemeZones<S extends string> = Dictionary<ThemeZone, S>;
 
 export interface IThemeZone<S extends string>
-  extends React.SFC<{
+  extends React.FunctionComponent<{
       name: S;
     }> {}
 

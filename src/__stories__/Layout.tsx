@@ -129,7 +129,7 @@ const App = () => {
   );
 };
 
-const BoxBadge: React.SFC = props => {
+const BoxBadge: React.FunctionComponent = props => {
   const theme = useTheme();
 
   return (
@@ -150,7 +150,7 @@ const BoxBadge: React.SFC = props => {
   );
 };
 
-const CustomStoryBox: React.SFC<IBox> = ({ children, ...props }) => {
+const CustomStoryBox: React.FunctionComponent<IBox> = ({ children, ...props }) => {
   const theme = useTheme();
 
   return (
@@ -175,7 +175,7 @@ const UpdateZones = React.createContext<React.Dispatch<React.SetStateAction<Them
 );
 export const useUpdateZones = () => React.useContext(UpdateZones);
 
-const ThemeProviderState: React.SFC = ({ children }) => {
+const ThemeProviderState: React.FunctionComponent = ({ children }) => {
   const [theme, updateTheme] = React.useState<ICustomTheme>({ base: 'light' });
   const [zones, updateZones] = React.useState<ThemeZones<Zones>>({
     inner: {
@@ -208,7 +208,7 @@ const ThemeProviderState: React.SFC = ({ children }) => {
   );
 };
 
-const ThemeButtons: React.SFC = () => {
+const ThemeButtons: React.FunctionComponent = () => {
   const theme = useTheme();
   const updateTheme = useUpdateTheme();
 

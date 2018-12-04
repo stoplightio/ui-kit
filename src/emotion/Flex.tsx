@@ -1,12 +1,12 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { SFC } from 'react';
+import { FunctionComponent } from 'react';
 import * as ss from 'styled-system';
 
 import { Box, IBox } from './Box';
 
-export const Flex: SFC<IFlex> = props => {
+export const Flex: FunctionComponent<IFlex> = props => {
   const { as, flexBasis, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
 
   const css = [
