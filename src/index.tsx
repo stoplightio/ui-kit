@@ -20,7 +20,6 @@ export * from './Mark';
 export * from './Menu';
 export * from './Table';
 export * from './Text';
-export * from './Textarea';
 export * from './ThemeSection';
 export * from './Toggle';
 export * from './types';

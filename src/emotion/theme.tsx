@@ -65,6 +65,12 @@ interface ITheme {
     hoverFg?: string;
     visitedFg?: string;
   };
+
+  textarea: {
+    fg: string;
+    bg?: string;
+    borderColor?: string;
+  };
 }
 
 /**
@@ -118,6 +124,11 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
     link: {
       fg: '#add8e6',
     },
+
+    textarea: {
+      fg: '#fff',
+      bg: '#222',
+    },
   },
 
   light: {
@@ -159,6 +170,11 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
 
     link: {
       fg: '#72bcd4',
+    },
+
+    textarea: {
+      fg: '#222',
+      bg: '#fff',
     },
   },
 };
