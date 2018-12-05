@@ -22,8 +22,8 @@ import {
 export const boxKnobs = (tabName = 'Box'): any => {
   return omitBy(
     {
-      fg: text('fg', null, tabName),
-      bg: text('bg', null, tabName),
+      color: text('color', null, tabName),
+      backgroundColor: text('backgroundColor', null, tabName),
       text: select('text', FontSize, '', tabName),
       borderColor: text('borderColor', null, tabName),
       align: select('align', TextAlign, '', tabName),

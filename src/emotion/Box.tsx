@@ -1,9 +1,10 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { CSSProperties, FunctionComponent, ReactHTML } from 'react';
+import { ComponentClass, CSSProperties, FunctionComponent, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
+import { IBoxProps } from '../Box';
 import * as sl from './styles';
 
 export const Box: FunctionComponent<IBox> = props => {
@@ -105,11 +106,14 @@ export const Box: FunctionComponent<IBox> = props => {
   /** User provided style get pushed on last. */
   if (style) css.push(style);
 
-  return jsx(as, {
-    ...rest,
-    children,
-    css,
-  });
+  return jsx<Partial<{ css: any } & IBoxProps>>(
+    as,
+    {
+      ...rest,
+      css,
+    },
+    children
+  );
 };
 
 export interface IBox
@@ -145,7 +149,7 @@ export interface IBox
     ss.MinWidthProps,
     ss.MaxWidthProps,
     ss.OpacityProps {
-  as?: keyof ReactHTML;
+  as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   style?: CSSProperties;
   [key: string]: any;
 }

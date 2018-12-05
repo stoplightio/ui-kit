@@ -10,7 +10,7 @@ import map = require('lodash/map');
 import omitBy = require('lodash/omitBy');
 import pick = require('lodash/pick');
 
-import { Icon, IconLibrary, IIcon } from '../Icon';
+import { Icon, IconLibrary, IIcon } from '../emotion/Icon';
 import { boxKnobs } from './Box';
 
 const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;
@@ -66,8 +66,8 @@ storiesOf('Icon', module)
         {...iconKnobs()}
         // Only supports a subset of box
         {...pick(boxKnobs(), [
-          'fg',
-          'bg',
+          'color',
+          'backgroundColor',
           'text',
           'm',
           'mt',
