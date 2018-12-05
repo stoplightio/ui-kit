@@ -5,9 +5,8 @@ import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import omitBy = require('lodash/omitBy');
 
-import { Input } from '../Input';
+import { IInput, Input } from '../emotion/Input';
 import { AutosizeInputType, InlineInputType } from './_utils';
 import { boxKnobs } from './Box';
 import { textKnobs } from './Text';
@@ -16,27 +15,17 @@ const store = new Store({
   value: 'Input Text',
 });
 
-export const inputKnobs = (tabName = 'Input'): any => {
-  return omitBy(
-    {
-      disabled: boolean('disabled', false, tabName),
-      type: select('type', InlineInputType, 'text', tabName),
-      placeholder: text('placeholder', 'placeholder', tabName),
-    },
-    val => !val
-  );
-};
+export const inputKnobs = (tabName = 'Input'): IInput => ({
+  disabled: boolean('disabled', false, tabName),
+  type: select('type', InlineInputType, 'text', tabName),
+  placeholder: text('placeholder', 'placeholder', tabName),
+});
 
-export const autosizeInputKnobs = (tabName = 'Input'): any => {
-  return omitBy(
-    {
-      disabled: boolean('disabled', false, tabName),
-      type: select('type', AutosizeInputType, 'text', tabName),
-      placeholder: text('placeholder', 'placeholder', tabName),
-    },
-    val => !val
-  );
-};
+export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
+  disabled: boolean('disabled', false, tabName),
+  type: select('type', AutosizeInputType, 'text', tabName),
+  placeholder: text('placeholder', 'placeholder', tabName),
+});
 
 storiesOf('Input', module)
   .addDecorator(withKnobs)
@@ -50,6 +39,6 @@ storiesOf('Input', module)
       {...textKnobs()}
       {...boxKnobs()}
       value={store.get('value')}
-      onChange={(value: any) => store.set({ value })}
+      onChange={event => store.set({ value: event.currentTarget.value })}
     />
   ));

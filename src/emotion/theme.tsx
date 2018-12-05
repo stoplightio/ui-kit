@@ -37,6 +37,12 @@ interface ITheme {
     hoverBg: string;
   };
 
+  input: {
+    fg: string;
+    bg?: string;
+    borderColor?: string;
+  };
+
   codeEditor: {
     bg: string;
     border: string;
@@ -104,6 +110,11 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
       },
     },
 
+    input: {
+      fg: '#fff',
+      bg: '#222',
+    },
+
     link: {
       fg: '#add8e6',
     },
@@ -139,6 +150,11 @@ const baseThemes: Dictionary<ITheme, BaseTheme> = {
         operator: '#795548',
         regex: '#ff9800',
       },
+    },
+
+    input: {
+      fg: '#222',
+      bg: '#fff',
     },
 
     link: {
