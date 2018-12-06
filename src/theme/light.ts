@@ -5,7 +5,7 @@ export const lightTheme: ITheme = {
 
   canvas: {
     fg: '#111',
-    bg: '#eee',
+    bg: 'white',
     link: '#72bcd4',
   },
 
@@ -16,7 +16,7 @@ export const lightTheme: ITheme = {
   },
 
   codeEditor: {
-    bg: 'white',
+    bg: '#f9f9f9',
     border: 'grey',
 
     syntax: {

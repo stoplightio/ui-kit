@@ -24,10 +24,10 @@ const App: React.SFC = ({ children }) => {
 
   return (
     <Flex
-      fg={theme.canvas.fg}
-      bg={theme.canvas.bg}
-      items="center"
-      justify="center"
+      color={theme.canvas.fg}
+      backgroundColor={theme.canvas.bg}
+      alignItems="center"
+      justifyContent="center"
       position="absolute"
       top={0}
       bottom={0}

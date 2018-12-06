@@ -16,7 +16,7 @@ export const darkTheme: ITheme = {
   },
 
   codeEditor: {
-    bg: '#222',
+    bg: '#333',
     border: '#f9f9f9',
 
     syntax: {
