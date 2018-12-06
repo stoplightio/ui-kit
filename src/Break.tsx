@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 
@@ -18,7 +18,7 @@ export const Break: FunctionComponent<IBreak> = props => {
   });
 };
 
-export interface IBreak extends IBreakProps, IBox, HTMLAttributes<HTMLHRElement> {}
+export interface IBreak extends IBreakProps, IBox<HTMLHRElement | HTMLElement> {}
 
 export interface IBreakProps {
   thickness?: number;

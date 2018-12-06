@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
 import { IText, Text } from './Text';
 
@@ -18,8 +18,7 @@ export const Heading: FunctionComponent<IHeading> = props => {
 
 export interface IHeading
   extends IHeadingProps,
-    Pick<IText, Exclude<keyof IText, 'as'>>,
-    HTMLAttributes<HTMLHeadingElement> {}
+    Pick<IText<HTMLHeadingElement>, Exclude<keyof IText<HTMLHeadingElement>, 'as'>> {}
 
 export interface IHeadingProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

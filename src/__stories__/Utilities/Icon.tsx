@@ -9,7 +9,7 @@ import { storiesOf } from '@storybook/react';
 import map = require('lodash/map');
 import omitBy = require('lodash/omitBy');
 
-import { Icon, IconLibrary, IIcon } from '../Icon';
+import { Icon, IconLibrary, IIcon } from '../../Icon';
 
 const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;
 const { far, prefix: regularPrefix, ...regularIcons } = _regularIcons;

@@ -1,14 +1,25 @@
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 import { Box, IBox } from './Box';
+import * as sl from './styles';
 
 export const List: FunctionComponent<IList> = props => {
-  const { as = 'ul', ...rest } = props;
+  const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
+
+  const css = [sl.listStyle({ listStyle, listStylePosition })];
 
   return jsx(Box, {
     ...rest,
+    css,
     as,
   });
 };
 
-export interface IList extends IBox, HTMLAttributes<HTMLUListElement> {}
+export interface IList
+  extends IListProps,
+    sl.IColorProps,
+    Pick<IBox<HTMLUListElement | HTMLOListElement>, Exclude<keyof IBox<HTMLUListElement | HTMLOListElement>, 'as'>> {}
+
+export interface IListProps {
+  as?: 'ul' | 'ol';
+}

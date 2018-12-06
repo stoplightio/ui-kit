@@ -3,9 +3,9 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Table, TableCell, TableRow } from '../Table';
+import { Table, TableCell, TableRow } from '../../Table';
 
-storiesOf('Table', module)
+storiesOf('List & Tables/Table', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Table>

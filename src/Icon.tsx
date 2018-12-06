@@ -12,7 +12,7 @@ import {
   Transform,
 } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 
@@ -25,7 +25,7 @@ export const Icon: FunctionComponent<IIcon> = props => {
   });
 };
 
-export interface IIcon extends IIconProps, IBox, HTMLAttributes<HTMLOrSVGElement> {}
+export interface IIcon extends IIconProps, IBox<HTMLOrSVGElement> {}
 
 export interface IIconProps {
   icon: IconProp;

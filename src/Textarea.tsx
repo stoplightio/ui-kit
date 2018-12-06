@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import { FunctionComponent, HTMLAttributes, SyntheticEvent, useState } from 'react';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
 import { Box, IBox } from './Box';
@@ -29,7 +29,7 @@ export const Textarea: FunctionComponent<ITextarea> = props => {
   });
 };
 
-export interface ITextarea extends ITextareaProps, IBox, HTMLAttributes<HTMLTextAreaElement> {}
+export interface ITextarea extends ITextareaProps, IBox<HTMLTextAreaElement> {}
 
 export interface ITextareaProps {
   autosize?: boolean;

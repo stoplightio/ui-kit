@@ -3,10 +3,10 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Box, IBox } from '../Box';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { createThemedModule } from '../theme';
+import { Box, IBox } from '../../Box';
+import { Button } from '../../Button';
+import { Flex } from '../../Flex';
+import { createThemedModule } from '../../theme';
 
 type Zones = 'inner' | 'inverted';
 const { ThemeZone, useTheme } = createThemedModule<Zones>();

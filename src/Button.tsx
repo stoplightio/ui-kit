@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
@@ -18,7 +18,7 @@ export const Button: FunctionComponent<IButton> = props => {
   });
 };
 
-export interface IButton extends IButtonProps, IBox, HTMLAttributes<'button'> {}
+export interface IButton extends IButtonProps, IBox<HTMLButtonElement> {}
 
 export interface IButtonProps {
   disabled?: boolean;

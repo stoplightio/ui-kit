@@ -5,7 +5,7 @@ import { css, jsx } from '@emotion/core';
 import noop = require('lodash/noop');
 import 'prismjs/components/';
 import * as React from 'react';
-import { useCallback } from 'react';
+import { CSSProperties, useCallback } from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
 import { Box } from './Box';
 import { useTheme } from './theme';
@@ -15,6 +15,7 @@ export interface ICodeEditor {
   value: string;
   language: string;
   onChange?: (code: string) => any;
+  style?: CSSProperties;
 }
 
 const defaultSupport = {
@@ -56,19 +57,26 @@ export const supportedLanguages = {
 export type ReactSimpleCodeEditorRef = ReactSimpleCodeEditor;
 
 export const CodeEditor = React.forwardRef<ReactSimpleCodeEditorRef, ICodeEditor>((props, ref) => {
-  const { language, onChange = noop, value } = props;
+  const { language, onChange = noop, style, value } = props;
   const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
-  const styles = [...codeEditorStyles()];
+  const editorCSS = [...codeEditorStyles()];
 
-  return jsx(Box, { css: styles }, [
-    <ReactSimpleCodeEditor
-      ref={ref}
-      value={value}
-      onValueChange={onChange}
-      highlight={highlightCodeCallback}
-      padding={10}
-    />,
-  ]);
+  return jsx(
+    Box,
+    {
+      style,
+      css: editorCSS,
+    },
+    [
+      <ReactSimpleCodeEditor
+        ref={ref}
+        value={value}
+        onValueChange={onChange}
+        highlight={highlightCodeCallback}
+        padding={10}
+      />,
+    ]
+  );
 });
 
 export const codeEditorStyles = () => {

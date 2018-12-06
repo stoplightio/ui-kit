@@ -1,6 +1,6 @@
 import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import { FunctionComponent, HTMLAttributes, SyntheticEvent, useState } from 'react';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
@@ -42,7 +42,7 @@ export const Input: FunctionComponent<IInput> = props => {
   });
 };
 
-export interface IInput extends IInputProps, IBox, HTMLAttributes<HTMLInputElement> {}
+export interface IInput extends IInputProps, IBox<HTMLInputElement> {}
 
 export interface IInputProps {
   autosize?: boolean;

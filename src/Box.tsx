@@ -1,12 +1,12 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { ComponentClass, CSSProperties, FunctionComponent, ReactHTML } from 'react';
+import { ComponentClass, CSSProperties, FunctionComponent, ReactHTML, HTMLAttributes } from 'react';
 import * as ss from 'styled-system';
 
 import * as sl from './styles';
 
-export const Box: FunctionComponent<IBox> = props => {
+export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
   const {
     as = 'div',
@@ -60,8 +60,6 @@ export const Box: FunctionComponent<IBox> = props => {
     textTransform,
     color,
     backgroundColor,
-    listStyle,
-    listStylePosition,
     ...rest
   } = props;
 
@@ -101,13 +99,12 @@ export const Box: FunctionComponent<IBox> = props => {
     sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration, textDecorationColor }),
-    sl.listStyle({ listStyle, listStylePosition }),
   ];
 
   /** User provided style get pushed on last. */
   if (style) css.push(style);
 
-  return jsx<Partial<{ css: any } & IBox>>(
+  return jsx<Partial<IBox<HTMLElement>>>(
     as,
     {
       ...rest,
@@ -117,8 +114,8 @@ export const Box: FunctionComponent<IBox> = props => {
   );
 };
 
-export interface IBox
-  extends sl.IColorProps,
+export interface IBox<T extends HTMLOrSVGElement = HTMLElement>
+  extends HTMLAttributes<T>,
     sl.ITextDecorationProps,
     sl.IListStyleProps,
     ss.BorderProps,
@@ -153,5 +150,6 @@ export interface IBox
     ss.OpacityProps {
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   style?: CSSProperties;
+  css?: any;
   [key: string]: any;
 }

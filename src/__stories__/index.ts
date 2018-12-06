@@ -1,13 +1,8 @@
+import './Data/';
+import './Forms';
 import './Layout';
+import './Typography';
+import './Views/Layout';
 
-import './Break';
-import './BlockQuote';
-import './CodeEditor';
-import './Heading';
-import './Icon';
-import './Input';
-import './Link';
-import './List';
-import './Table';
-import './Text';
-import './Textarea';
+import './Utilities/CodeEditor';
+import './Utilities/Icon';

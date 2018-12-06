@@ -1,26 +1,19 @@
 import * as React from 'react';
 
-import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
-import { boolean, number, select, text } from '@storybook/addon-knobs/react';
+import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { IImage, Image } from '../Image';
 import { BorderRadius } from './_utils';
+import { boxKnobs } from './Layout/Box';
 
 export const imageKnobs = (tabName = 'Image'): IImage => ({
+  ...boxKnobs(),
   borderRadius: select('borderRadius', BorderRadius, '', tabName),
   height: text('height', '', tabName),
   hidden: boolean('hidden', false, tabName),
   responsive: boolean('responsive', false, tabName),
-  opacity: number(
-    'opacity',
-    1,
-    {
-      min: 0,
-      max: 1,
-    } as NumberOptions,
-    tabName
-  ),
   src: text('src', 'https://placehold.it/150x50', tabName),
   alt: text('alt', 'Placeholder', tabName),
   title: text('title', 'Placeholder', tabName),

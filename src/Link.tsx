@@ -1,9 +1,9 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
-import { Box, IBox } from './Box';
+import { IText, Text } from './Text';
 import { useTheme } from './theme';
 
 export const Link: FunctionComponent<ILink> = props => {
@@ -11,14 +11,14 @@ export const Link: FunctionComponent<ILink> = props => {
 
   const css = [...linkStyles()];
 
-  return jsx(Box, {
+  return jsx(Text, {
     ...rest,
     as,
     css,
   });
 };
 
-export interface ILink extends IBox, HTMLAttributes<HTMLAnchorElement> {}
+export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
 
 export const linkStyles = () => {
   const theme = useTheme();

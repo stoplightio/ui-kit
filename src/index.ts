@@ -6,6 +6,7 @@
 export * from './BlockQuote';
 export * from './Break';
 export * from './Button';
+export * from './Box';
 // export * from './ContextMenu';
 export * from './Flex';
 export * from './Heading';

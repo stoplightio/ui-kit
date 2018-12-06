@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { createElement, FunctionComponent, HTMLAttributes } from 'react';
+import { createElement, FunctionComponent } from 'react';
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
@@ -21,7 +21,7 @@ export const Table: FunctionComponent<ITable> = props => {
   );
 };
 
-export interface ITable extends ITableProps, IBox, HTMLAttributes<HTMLTextAreaElement> {}
+export interface ITable extends ITableProps, IBox<HTMLTableElement> {}
 
 export interface ITableProps {
   isSelected?: boolean;
@@ -54,7 +54,7 @@ export const TableRow: FunctionComponent<ITableRow> = props => {
   });
 };
 
-export interface ITableRow extends IBox, HTMLAttributes<HTMLTableRowElement> {}
+export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
 export const tableRowStyles = () => {
   const theme = useTheme();
@@ -83,8 +83,7 @@ export const TableCell: FunctionComponent<ITableCell> = props => {
 
 export interface ITableCell
   extends ITableCellProps,
-    Pick<IBox, Exclude<keyof IBox, 'as'>>,
-    HTMLAttributes<HTMLTableRowElement> {}
+    Pick<IBox<HTMLTableDataCellElement>, Exclude<keyof IBox<HTMLTableDataCellElement>, 'as'>> {}
 
 export interface ITableCellProps extends ITableProps {
   as?: 'th' | 'td';

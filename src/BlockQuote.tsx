@@ -1,7 +1,7 @@
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
-import { Box, IBox } from './Box';
+import { IText, Text } from './Text';
 import { useTheme } from './theme';
 
 export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
@@ -9,14 +9,14 @@ export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
 
   const css = blockQuoteStyles({ isSelected });
 
-  return jsx(Box, {
+  return jsx(Text, {
     ...rest,
     as,
     css,
   });
 };
 
-export interface IBlockQuote extends IBlockQuoteProps, IBox, HTMLAttributes<HTMLTextAreaElement> {}
+export interface IBlockQuote extends IBlockQuoteProps, IText<HTMLQuoteElement | HTMLElement> {}
 
 export interface IBlockQuoteProps {
   isSelected?: boolean;

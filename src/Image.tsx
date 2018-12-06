@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 
@@ -17,7 +17,7 @@ export const Image: FunctionComponent<IImage> = props => {
   });
 };
 
-export interface IImage extends IImageProps, IBox, HTMLAttributes<'img'> {}
+export interface IImage extends IImageProps, IBox<HTMLImageElement> {}
 
 export interface IImageProps {
   hidden?: boolean;
