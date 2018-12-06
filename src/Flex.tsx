@@ -25,8 +25,8 @@ export const Flex: FunctionComponent<IFlex> = props => {
   });
 };
 
-export interface IFlex
-  extends IBox,
+export interface IFlex<T extends HTMLElement = HTMLElement>
+  extends IBox<T>,
     ss.FlexBasisProps,
     ss.FlexDirectionProps,
     ss.FlexWrapProps,

@@ -21,6 +21,12 @@ export const lightTheme: ITheme = {
     shadow: '0 0 5px rgba(0, 0, 0, 0.3)',
   },
 
+  checkbox: {
+    fg: 'white',
+    bg: '#222',
+    checkedBg: 'mediumseagreen',
+  },
+
   codeEditor: {
     bg: '#f9f9f9',
     border: 'grey',
@@ -56,5 +62,15 @@ export const lightTheme: ITheme = {
   textarea: {
     fg: '#222',
     bg: '#fff',
+  },
+
+  toggle: {
+    fg: 'white',
+    bg: 'darkgrey',
+    borderColor: 'transparent',
+
+    checkedFg: 'white',
+    checkedBg: 'mediumseagreen',
+    checkedBorderColor: 'transparent',
   },
 };

@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { ComponentClass, CSSProperties, FunctionComponent, ReactHTML, HTMLAttributes } from 'react';
+import { ComponentClass, CSSProperties, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
 import * as sl from './styles';
@@ -114,7 +114,7 @@ export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
   );
 };
 
-export interface IBox<T extends HTMLOrSVGElement = HTMLElement>
+export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,
     sl.ITextDecorationProps,
     sl.IListStyleProps,
@@ -149,6 +149,7 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLElement>
     ss.MaxWidthProps,
     ss.OpacityProps {
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
+  children?: any;
   style?: CSSProperties;
   css?: any;
   [key: string]: any;

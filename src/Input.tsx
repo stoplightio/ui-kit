@@ -9,7 +9,7 @@ import { useTheme } from './theme';
 export type InputValue = boolean | number | string | undefined;
 
 export const Input: FunctionComponent<IInput> = props => {
-  const { as = 'input', autosize, onChange = noop, ...rest } = props;
+  const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
 
   const css = inputStyles(props);
 
@@ -18,6 +18,7 @@ export const Input: FunctionComponent<IInput> = props => {
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
   const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    // fixme: might not work with boolean inputs such as radio/checkbox
     setValue(event.currentTarget.value);
     onChange(event);
   };
@@ -29,6 +30,7 @@ export const Input: FunctionComponent<IInput> = props => {
       ...rest,
       value: internalValue,
       onChange: handleChange,
+      type,
       css,
     });
   }
@@ -38,6 +40,7 @@ export const Input: FunctionComponent<IInput> = props => {
     as,
     value: internalValue,
     onChange: handleChange,
+    type,
     css,
   });
 };

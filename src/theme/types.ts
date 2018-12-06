@@ -15,6 +15,12 @@ export interface ITheme {
     link: string;
   };
 
+  checkbox: {
+    fg: string;
+    bg: string;
+    checkedBg: string;
+  };
+
   blockQuote: {
     fg?: string;
     bg?: string;
@@ -68,6 +74,15 @@ export interface ITheme {
     fg: string;
     bg?: string;
     borderColor?: string;
+  };
+
+  toggle: {
+    fg: string;
+    bg: string;
+    borderColor: string;
+    checkedFg: string;
+    checkedBg: string;
+    checkedBorderColor: string;
   };
 }
 

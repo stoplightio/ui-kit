@@ -3,6 +3,6 @@ import './Forms';
 import './Layout';
 import './Typography';
 import './Views/Layout';
+import './Utilities/';
 
-import './Utilities/CodeEditor';
-import './Utilities/Icon';
+import './Image';
