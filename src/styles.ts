@@ -1,6 +1,8 @@
 import {
   BackgroundColorProperty,
   ColorProperty,
+  ListStylePositionProperty,
+  ListStyleProperty,
   TextDecorationColorProperty,
   TextDecorationProperty,
   TextTransformProperty,
@@ -18,17 +20,11 @@ export const color = (props: IColorProps) => ({
 
 export interface ITextDecorationProps {
   textDecoration?: TextDecorationProperty;
+  textDecorationColor?: TextDecorationColorProperty;
 }
 
 export const textDecoration = (props: ITextDecorationProps) => ({
   textDecoration: props.textDecoration,
-});
-
-export interface ITextDecorationColorProps {
-  textDecorationColor?: TextDecorationColorProperty;
-}
-
-export const textDecorationColor = (props: ITextDecorationColorProps) => ({
   textDecorationColor: props.textDecorationColor,
 });
 
@@ -38,4 +34,14 @@ export interface ITextTransformProps {
 
 export const textTransform = (props: ITextTransformProps) => ({
   textTransform: props.textTransform,
+});
+
+export interface IListStyleProps {
+  listStyle?: ListStyleProperty;
+  listStylePosition?: ListStylePositionProperty;
+}
+
+export const listStyle = (props: IListStyleProps) => ({
+  listStyle: props.listStyle,
+  listStylePosition: props.listStylePosition,
 });

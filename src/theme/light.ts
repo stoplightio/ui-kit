@@ -15,6 +15,12 @@ export const lightTheme: ITheme = {
     hoverBg: 'rgba(0, 0, 0, 0.6)',
   },
 
+  blockQuote: {
+    fg: '#111',
+    borderColor: '#111',
+    shadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+  },
+
   codeEditor: {
     bg: '#f9f9f9',
     border: 'grey',
@@ -39,6 +45,12 @@ export const lightTheme: ITheme = {
 
   link: {
     fg: '#72bcd4',
+  },
+
+  table: {
+    fg: '#111',
+    borderColor: '#111',
+    shadow: '0 0 8px 1px rgba(0, 0, 0, 0.6) inset',
   },
 
   textarea: {

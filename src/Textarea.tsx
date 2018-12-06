@@ -35,7 +35,7 @@ export interface ITextareaProps {
   autosize?: boolean;
 }
 
-const textareaStyles = ({ autosize, disabled }: ITextarea) => {
+export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
   const theme = useTheme();
 
   return [

@@ -102,7 +102,7 @@ export const LetterSpacing = ['', 'tight', 'normal', 'wide'];
  * LIST
  */
 
-export const ListStylePosition = ['', 'inside', 'outside', 'initial', 'inherit'];
+export const ListStylePosition = ['inside', 'outside', 'initial', 'inherit', 'revert'];
 export const ListStyleType = [
   '',
   'circle',

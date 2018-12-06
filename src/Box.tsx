@@ -60,6 +60,8 @@ export const Box: FunctionComponent<IBox> = props => {
     textTransform,
     color,
     backgroundColor,
+    listStyle,
+    listStylePosition,
     ...rest
   } = props;
 
@@ -98,8 +100,8 @@ export const Box: FunctionComponent<IBox> = props => {
 
     sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
-    sl.textDecoration({ textDecoration }),
-    sl.textDecorationColor({ textDecorationColor }),
+    sl.textDecoration({ textDecoration, textDecorationColor }),
+    sl.listStyle({ listStyle, listStylePosition }),
   ];
 
   /** User provided style get pushed on last. */
@@ -118,6 +120,7 @@ export const Box: FunctionComponent<IBox> = props => {
 export interface IBox
   extends sl.IColorProps,
     sl.ITextDecorationProps,
+    sl.IListStyleProps,
     ss.BorderProps,
     ss.BorderTopProps,
     ss.BorderBottomProps,

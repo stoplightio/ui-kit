@@ -15,6 +15,13 @@ export interface ITheme {
     link: string;
   };
 
+  blockQuote: {
+    fg?: string;
+    bg?: string;
+    borderColor: string;
+    shadow: string;
+  };
+
   button: {
     fg: string;
     bg: string;
@@ -48,6 +55,13 @@ export interface ITheme {
     fg: string;
     hoverFg?: string;
     visitedFg?: string;
+  };
+
+  table: {
+    fg: string;
+    bg?: string;
+    borderColor: string;
+    shadow: string;
   };
 
   textarea: {

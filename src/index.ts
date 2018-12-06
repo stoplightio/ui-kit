@@ -3,7 +3,7 @@
  * Library users will need to `import { Select } from '@stoplight/ui-kit/select` them specifically.
  */
 
-// export * from './BlockQuote';
+export * from './BlockQuote';
 export * from './Break';
 export * from './Button';
 // export * from './ContextMenu';
@@ -20,4 +20,4 @@ export * from './Portal';
 // export * from './Table';
 export * from './Text';
 // export * from './Toggle';
-export * from './theme/types';
+export * from './theme/';

@@ -15,6 +15,12 @@ export const darkTheme: ITheme = {
     hoverBg: 'rgba(255, 255, 255, 0.3)',
   },
 
+  blockQuote: {
+    fg: 'white',
+    borderColor: 'white',
+    shadow: '0 0 5px rgba(255, 255, 255, 0.3)',
+  },
+
   codeEditor: {
     bg: '#333',
     border: '#f9f9f9',
@@ -39,6 +45,12 @@ export const darkTheme: ITheme = {
 
   link: {
     fg: '#add8e6',
+  },
+
+  table: {
+    fg: 'white',
+    borderColor: 'white',
+    shadow: '0 0 10px 1px rgba(255,255,255,0.6) inset',
   },
 
   textarea: {
