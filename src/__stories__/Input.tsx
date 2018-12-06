@@ -6,9 +6,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { IInput, Input } from '../emotion/Input';
+import { IInput, Input } from '../Input';
 import { AutosizeInputType, InlineInputType } from './_utils';
-import { boxKnobs } from './Box';
 import { textKnobs } from './Text';
 
 const store = new Store({
@@ -29,15 +28,14 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
 
 storiesOf('Input', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} />)
-  .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} {...boxKnobs()} autosize />)
-  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} {...boxKnobs()} value="not editable" />)
+  .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} />)
+  .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} autosize />)
+  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} value="not editable" />)
   .addDecorator(StateDecorator(store))
   .add('controlled store', () => (
     <Input
       {...inputKnobs()}
       {...textKnobs()}
-      {...boxKnobs()}
       value={store.get('value')}
       onChange={event => store.set({ value: event.currentTarget.value })}
     />

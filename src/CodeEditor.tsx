@@ -1,13 +1,17 @@
+/* @jsx jsx */
+
+import { css, jsx } from '@emotion/core';
+
 import noop = require('lodash/noop');
 import 'prismjs/components/';
 import * as React from 'react';
 import { useCallback } from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
-import styled from 'styled-components';
-import { themeGet } from './utils';
+import { Box } from './Box';
+import { useTheme } from './theme';
 import { highlightCode } from './utils/highlightCode';
 
-export interface ICodeEditorProps {
+export interface ICodeEditor {
   value: string;
   language: string;
   onChange?: (code: string) => any;
@@ -51,108 +55,110 @@ export const supportedLanguages = {
 
 export type ReactSimpleCodeEditorRef = ReactSimpleCodeEditor;
 
-const CodeEditorView = React.forwardRef<ReactSimpleCodeEditorRef, ICodeEditorProps & { className: string }>(
-  (props, ref) => {
-    const { className, language, onChange = noop, value } = props;
+export const CodeEditor = React.forwardRef<ReactSimpleCodeEditorRef, ICodeEditor>((props, ref) => {
+  const { language, onChange = noop, value } = props;
+  const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
+  const styles = [...codeEditorStyles()];
 
-    const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
+  return jsx(Box, { css: styles }, [
+    <ReactSimpleCodeEditor
+      ref={ref}
+      value={value}
+      onValueChange={onChange}
+      highlight={highlightCodeCallback}
+      padding={10}
+    />,
+  ]);
+});
 
-    return (
-      <div className={className}>
-        <ReactSimpleCodeEditor
-          ref={ref}
-          value={value}
-          onValueChange={onChange}
-          highlight={highlightCodeCallback}
-          padding={10}
-        />
-      </div>
-    );
-  }
-);
+export const codeEditorStyles = () => {
+  const theme = useTheme();
 
-// @ts-ignore
-export const CodeEditor = styled<ICodeEditorProps>(CodeEditorView as any)`
-  background: ${themeGet('components.codeEditor.bg')};
-  border: 1px solid ${themeGet('components.codeEditor.border')};
-  font-family: monospace;
+  return [
+    {
+      background: theme.codeEditor.bg,
+      border: `1px solid ${theme.codeEditor.border}`,
+      fontFamily: 'monospace',
+    },
+    css`
+      textarea {
+        &:focus {
+          outline: none;
+        }
+      }
 
-  textarea {
-    &:focus {
-      outline: none;
-    }
-  }
+      .namespace {
+        opacity: 0.7;
+      }
 
-  .namespace {
-    opacity: 0.7;
-  }
+      .token {
+        &.comment,
+        &.prolog,
+        &.doctype,
+        &.cdata {
+          color: ${theme.codeEditor.syntax.comment};
+        }
 
-  .token {
-    &.comment,
-    &.prolog,
-    &.doctype,
-    &.cdata {
-      color: ${themeGet('components.codeEditor.syntax.comment')};
-    }
+        &.punctuation {
+          color: #9e9e9e;
+        }
 
-    &.punctuation {
-      color: #9e9e9e;
-    }
+        &.property,
+        &.tag,
+        &.boolean,
+        &.number,
+        &.symbol,
+        &.deleted {
+          color: ${theme.codeEditor.syntax.primary};
+        }
 
-    &.property,
-    &.tag,
-    &.boolean,
-    &.number,
-    &.symbol,
-    &.deleted {
-      color: ${themeGet('components.codeEditor.syntax.primary')};
-    }
+        &.selector,
+        &.attr-name,
+        &.string,
+        &.char,
+        &.builtin,
+        &.inserted {
+          color: ${theme.codeEditor.syntax.secondary};
+        }
 
-    &.selector,
-    &.attr-name,
-    &.string,
-    &.char,
-    &.builtin,
-    &.inserted {
-      color: ${themeGet('components.codeEditor.syntax.secondary')};
-    }
+        &.operator,
+        &.entity,
+        &.url {
+          color: ${theme.codeEditor.syntax.operator};
+        }
 
-    &.operator,
-    &.entity,
-    &.url {
-      color: ${themeGet('components.codeEditor.syntax.operator')};
-    }
+        &.atrule,
+        &.attr-value,
+        &.keyword {
+          color: ${theme.codeEditor.syntax.keyword};
+        }
 
-    &.atrule,
-    &.attr-value,
-    &.keyword {
-      color: ${themeGet('components.codeEditor.syntax.keyword')};
-    }
+        &.function {
+          color: ${theme.codeEditor.syntax.function};
+        }
 
-    &.function {
-      color: ${themeGet('components.codeEditor.syntax.function')};
-    }
+        &.variable {
+          color: ${theme.codeEditor.syntax.variable};
+        }
 
-    &.variable {
-      color: ${themeGet('components.codeEditor.syntax.variable')};
-    }
+        &.regex,
+        &.important {
+          color: ${theme.codeEditor.syntax.regex};
+        }
 
-    &.regex,
-    &.important {
-      color: ${themeGet('components.codeEditor.syntax.regex')};
-    }
+        &.important,
+        &.bold {
+          font-weight: bold;
+        }
 
-    &.important,
-    &.bold {
-      font-weight: bold;
-    }
+        &.italic {
+          font-style: italic;
+        }
 
-    &.italic {
-      font-style: italic;
-    }
-
-    &.entity {
-      cursor: help;
-    }
-  }
-`;
+        &.entity {
+          cursor: help;
+        }
+      }
+    `,
+  ];
+};

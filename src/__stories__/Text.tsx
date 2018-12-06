@@ -5,9 +5,8 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import omitBy = require('lodash/omitBy');
 
-import { Text } from '../emotion/Text';
+import { Text } from '../Text';
 import { Casing, Decoration, LetterSpacing, LineHeight } from './_utils';
-import { boxKnobs } from './Box';
 
 export const textKnobs = (tabName = 'Text'): any => {
   return omitBy(
@@ -25,8 +24,4 @@ export const textKnobs = (tabName = 'Text'): any => {
 
 storiesOf('Text', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => (
-    <Text {...textKnobs()} {...boxKnobs()}>
-      Some Text in a P tag
-    </Text>
-  ));
+  .add('with defaults', () => <Text {...textKnobs()}>Some Text in a P tag</Text>);

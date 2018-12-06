@@ -1,22 +1,31 @@
-import { style } from 'styled-system';
-import { Box, IBoxProps } from './Box';
-import { getBorder, styled } from './utils';
+/* @jsx jsx */
 
-export const thickness = style({
-  prop: 'thickness',
-  cssProperty: 'borderTop',
-  transformValue: getBorder,
-});
+import { jsx } from '@emotion/core';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
-export interface IBreakProps extends IBoxProps {
+import { Box, IBox } from './Box';
+
+export const Break: FunctionComponent<IBreak> = props => {
+  const { as = 'hr', m = '0 auto', thickness = 1, ...rest } = props;
+
+  const css = [...breakStyles({ thickness })];
+
+  return jsx(Box, {
+    ...rest,
+    m,
+    as,
+    css,
+  });
+};
+
+export interface IBreak extends IBreakProps, IBox, HTMLAttributes<HTMLHRElement> {}
+
+export interface IBreakProps {
   thickness?: number;
 }
 
-export const Break = styled<IBreakProps, 'hr'>(Box as any)(thickness);
-
-Break.defaultProps = {
-  as: 'hr',
-  thickness: 1,
-  m: '@none',
-  borderColor: '@break.border',
-};
+export const breakStyles = ({ thickness }: IBreakProps) => [
+  {
+    borderTop: `${thickness}px solid`,
+  },
+];

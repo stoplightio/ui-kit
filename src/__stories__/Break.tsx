@@ -5,7 +5,7 @@ import { number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import omitBy = require('lodash/omitBy');
 
-import { Break } from '../emotion/Break';
+import { Break } from '../Break';
 
 export const breakKnobs = (tabName = 'Break'): any => {
   return omitBy(

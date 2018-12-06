@@ -1,186 +1,154 @@
-import { BorderStyleProperty } from 'csstype';
+/* @jsx jsx */
 
-import {
-  bgColor,
-  borders,
-  bottom,
-  boxShadow,
-  css,
-  cursor,
-  display,
-  flex,
-  fontSize,
-  fontWeight,
-  height,
-  left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  opacity,
-  position,
-  right,
-  space,
-  styled,
-  textAlign,
-  textColor,
-  top,
-  width,
-  zIndex,
-} from './utils';
+import { jsx } from '@emotion/core';
+import { ComponentClass, CSSProperties, FunctionComponent, ReactHTML } from 'react';
+import * as ss from 'styled-system';
 
-import {
-  BorderRadiusVal,
-  BorderWidthVal,
-  BoxDimensionVal,
-  FontSizeVal,
-  FontWeightVal,
-  FullSpaceVal,
-  ShadowsVal,
-} from './types';
+import * as sl from './styles';
 
-export interface IBoxProps {
-  className?: string;
-  css?: any; // a valid javascript style object
-  as?: any; // TODO type string || jsx element
+export const Box: FunctionComponent<IBox> = props => {
+  /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
+  const {
+    as = 'div',
+    children,
+    style,
+    border,
+    borderTop,
+    borderBottom,
+    borderLeft,
+    borderRight,
+    borderRadius,
+    boxShadow,
+    display,
+    fontSize,
+    fontWeight,
+    fontStyle,
+    lineHeight,
+    letterSpacing,
+    m,
+    mt,
+    mb,
+    ml,
+    mr,
+    mx,
+    my,
+    p,
+    pt,
+    pb,
+    pl,
+    pr,
+    px,
+    py,
+    flex,
+    alignSelf,
+    textAlign,
+    position,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex,
+    height,
+    minHeight,
+    maxHeight,
+    width,
+    minWidth,
+    maxWidth,
+    opacity,
+    textDecoration,
+    textDecorationColor,
+    textTransform,
+    color,
+    backgroundColor,
+    ...rest
+  } = props;
 
-  fg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
-  bg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
+  /** Add all the supported styles, passing in the relevant props. */
+  const css = [
+    ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
+    ss.borderRadius({ borderRadius }),
+    ss.boxShadow({ boxShadow }),
+    ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
+    ss.flex({ flex }),
+    ss.alignSelf({ alignSelf }),
 
-  text?: FontSizeVal;
-  align?: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'; // textAlign
-  weight?: FontWeightVal;
+    ss.textAlign({ textAlign }),
+    ss.lineHeight({ lineHeight }),
+    ss.fontSize({ fontSize }),
+    ss.fontWeight({ fontWeight }),
+    ss.fontStyle({ fontStyle }),
+    ss.letterSpacing({ letterSpacing }),
 
-  m?: FullSpaceVal;
-  mt?: FullSpaceVal;
-  mr?: FullSpaceVal;
-  mb?: FullSpaceVal;
-  ml?: FullSpaceVal;
-  mx?: FullSpaceVal;
-  my?: FullSpaceVal;
-  p?: FullSpaceVal;
-  pt?: FullSpaceVal;
-  pr?: FullSpaceVal;
-  pb?: FullSpaceVal;
-  pl?: FullSpaceVal;
-  px?: FullSpaceVal;
-  py?: FullSpaceVal;
+    ss.display({ display }),
+    ss.height({ height }),
+    ss.minHeight({ minHeight }),
+    ss.maxHeight({ maxHeight }),
+    ss.width({ width }),
+    ss.minWidth({ minWidth }),
+    ss.maxWidth({ maxWidth }),
 
-  height?: BoxDimensionVal | string | number;
-  maxHeight?: BoxDimensionVal | string | number;
-  minHeight?: BoxDimensionVal | string | number;
-  width?: BoxDimensionVal | string | number;
-  maxWidth?: BoxDimensionVal | string | number;
-  minWidth?: BoxDimensionVal | string | number;
+    ss.position({ position }),
+    ss.top({ top }),
+    ss.bottom({ bottom }),
+    ss.left({ left }),
+    ss.right({ right }),
+    ss.zIndex({ zIndex }),
 
-  border?: BorderWidthVal;
-  borderTop?: BorderWidthVal;
-  borderLeft?: BorderWidthVal;
-  borderRight?: BorderWidthVal;
-  borderBottom?: BorderWidthVal;
-  borderColor?: string;
-  radius?: BorderRadiusVal | string;
-  borderStyle?: BorderStyleProperty;
+    ss.opacity({ opacity }),
 
-  cursor?:
-    | 'auto'
-    | 'default'
-    | 'none'
-    | 'context-menu'
-    | 'help'
-    | 'pointer'
-    | 'progress'
-    | 'wait'
-    | 'cell'
-    | 'crosshair'
-    | 'text'
-    | 'vertical-text'
-    | 'alias'
-    | 'copy'
-    | 'move'
-    | 'no-drop'
-    | 'not-allowed'
-    | 'all-scroll'
-    | 'zoom-in'
-    | 'zoom-out'
-    | 'grab'
-    | 'grabbing';
+    sl.color({ color, backgroundColor }),
+    sl.textTransform({ textTransform }),
+    sl.textDecoration({ textDecoration }),
+    sl.textDecorationColor({ textDecorationColor }),
+  ];
 
-  display?:
-    | 'inline'
-    | 'block'
-    | 'contents'
-    | 'flex'
-    | 'grid'
-    | 'inline-block'
-    | 'inline-flex'
-    | 'inline-grid'
-    | 'inline-table'
-    | 'list-item'
-    | 'run-in'
-    | 'table'
-    | 'table-caption'
-    | 'table-column-group'
-    | 'table-header-group'
-    | 'table-footer-group'
-    | 'table-row-group'
-    | 'table-cell'
-    | 'table-column'
-    | 'table-row'
-    | 'none'
-    | 'initial'
-    | 'inherit';
-  flex?: string | number;
-  shadow?: ShadowsVal | string;
-  opacity?: number;
+  /** User provided style get pushed on last. */
+  if (style) css.push(style);
 
-  overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowX?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
+  return jsx<Partial<{ css: any } & IBox>>(
+    as,
+    {
+      ...rest,
+      css,
+    },
+    children
+  );
+};
 
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-
-  z?: number;
+export interface IBox
+  extends sl.IColorProps,
+    sl.ITextDecorationProps,
+    ss.BorderProps,
+    ss.BorderTopProps,
+    ss.BorderBottomProps,
+    ss.BorderLeftProps,
+    ss.BorderRightProps,
+    ss.BorderRadiusProps,
+    ss.BoxShadowProps,
+    ss.DisplayProps,
+    ss.FontSizeProps,
+    ss.FontWeightProps,
+    ss.FontStyleProps,
+    ss.LineHeightProps,
+    ss.LetterSpacingProps,
+    ss.SpaceProps,
+    ss.FlexProps,
+    ss.AlignSelfProps,
+    ss.TextAlignProps,
+    ss.PositionProps,
+    ss.TopProps,
+    ss.BottomProps,
+    ss.LeftProps,
+    ss.RightProps,
+    ss.ZIndexProps,
+    ss.HeightProps,
+    ss.MinHeightProps,
+    ss.MaxHeightProps,
+    ss.WidthProps,
+    ss.MinWidthProps,
+    ss.MaxWidthProps,
+    ss.OpacityProps {
+  as?: keyof ReactHTML | FunctionComponent | ComponentClass;
+  style?: CSSProperties;
+  [key: string]: any;
 }
-
-interface IAllProps extends IBoxProps {
-  as?: any;
-}
-
-// Order matters
-export const Box = styled<IAllProps, 'div'>('div' as any)(
-  // @ts-ignore
-  bgColor,
-  textColor,
-  borders,
-  boxShadow,
-
-  fontSize,
-  fontWeight,
-  textAlign,
-
-  space,
-  display,
-  flex,
-  cursor,
-  opacity,
-  zIndex,
-
-  position,
-  top,
-  right,
-  bottom,
-  left,
-
-  height,
-  width,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  css
-);

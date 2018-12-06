@@ -4,8 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Heading, IHeadingProps } from '../emotion/Heading';
-import { boxKnobs } from './Box';
+import { Heading, IHeadingProps } from '../Heading';
 import { textKnobs } from './Text';
 
 export const headingKnobs = (tabName = 'Heading'): IHeadingProps => ({
@@ -15,7 +14,7 @@ export const headingKnobs = (tabName = 'Heading'): IHeadingProps => ({
 storiesOf('Heading', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Heading {...headingKnobs()} {...textKnobs()} {...boxKnobs()}>
+    <Heading {...headingKnobs()} {...textKnobs()}>
       Some Text in a H* tag
     </Heading>
   ));

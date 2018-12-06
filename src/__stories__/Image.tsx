@@ -4,8 +4,8 @@ import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { boolean, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Image as EmotionImage } from '../emotion/Image';
 import { Flex } from '../Flex';
+import { Image as EmotionImage } from '../Image';
 import { Image } from '../Image';
 import { BorderRadius } from './_utils';
 

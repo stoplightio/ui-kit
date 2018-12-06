@@ -8,10 +8,8 @@ import { boolean, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import map = require('lodash/map');
 import omitBy = require('lodash/omitBy');
-import pick = require('lodash/pick');
 
-import { Icon, IconLibrary, IIcon } from '../emotion/Icon';
-import { boxKnobs } from './Box';
+import { Icon, IconLibrary, IIcon } from '../Icon';
 
 const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;
 const { far, prefix: regularPrefix, ...regularIcons } = _regularIcons;
@@ -61,43 +59,6 @@ storiesOf('Icon', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <div style={{ fontSize: 40 }}>
-      <Icon
-        key="icon"
-        {...iconKnobs()}
-        // Only supports a subset of box
-        {...pick(boxKnobs(), [
-          'color',
-          'backgroundColor',
-          'text',
-          'm',
-          'mt',
-          'mr',
-          'mb',
-          'ml',
-          'mx',
-          'my',
-          'p',
-          'pt',
-          'pr',
-          'pb',
-          'pl',
-          'px',
-          'py',
-          'border',
-          'borderTop',
-          'borderLeft',
-          'borderRight',
-          'borderBottom',
-          'borderColor',
-          'radius',
-          'opacity',
-          'position',
-          'top',
-          'bottom',
-          'left',
-          'right',
-          'z',
-        ])}
-      />
+      <Icon key="icon" {...iconKnobs()} />
     </div>
   ));

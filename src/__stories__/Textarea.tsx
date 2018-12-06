@@ -6,8 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { ITextarea, Textarea } from '../emotion/Textarea';
-import { boxKnobs } from './Box';
+import { ITextarea, Textarea } from '../Textarea';
 import { textKnobs } from './Text';
 
 const store = new Store({
@@ -47,15 +46,14 @@ export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => ({
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Textarea {...textareaKnobs()} {...boxKnobs()} />)
-  .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} {...boxKnobs()} autosize />)
-  .add('controlled set', () => <Textarea {...textareaKnobs()} {...boxKnobs()} value="not-editable" />)
+  .add('uncontrolled', () => <Textarea {...textareaKnobs()} />)
+  .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} autosize />)
+  .add('controlled set', () => <Textarea {...textareaKnobs()} value="not-editable" />)
   .addDecorator(StateDecorator(store))
   .add('controlled', () => (
     <Textarea
       {...textareaKnobs()}
       {...textKnobs()}
-      {...boxKnobs()}
       value={store.get('value')}
       onChange={(value: any) => store.set({ value })}
     />

@@ -1,20 +1,49 @@
-import { Box, IBoxProps } from './Box';
-import { LetterSpacingVal, LineHeightVal } from './types';
-import { casing, decoration, decorationColor, fontStyle, letterSpacing, lineHeight, styled } from './utils';
+/* @jsx jsx */
 
-type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
+import { jsx } from '@emotion/core';
+import { FunctionComponent, HTMLAttributes } from 'react';
 
-export interface ITextProps extends IBoxProps {
-  tracking?: LetterSpacingVal;
-  leading?: LineHeightVal;
-  // TODO customizae to use lodash from more more options like snakecase
-  casing?: 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial' | 'inherit';
-  decoration?: TextDecoration | TextDecoration[];
-  decorationColor?: string;
+import { Box, IBox } from './Box';
+
+export const Text: FunctionComponent<IText> = props => {
+  const {
+    as = 'p',
+    decoration: textDecoration,
+    decorationColor: textDecorationColor,
+    leading: lineHeight,
+    casing: textTransform,
+    tracking: letterSpacing,
+    italic,
+    ...rest
+  } = props;
+
+  const css = [...textStyles()];
+
+  return jsx(Box, {
+    ...rest,
+    letterSpacing,
+    lineHeight,
+    textDecoration,
+    textDecorationColor,
+    textTransform,
+    fontStyle: italic ? 'italic' : undefined,
+    as,
+    css,
+  });
+};
+
+export interface IText extends ITextProps, IBox, HTMLAttributes<HTMLParagraphElement> {}
+
+export interface ITextProps {
+  leading?: IBox['lineHeight'];
+  decoration?: IBox['textDecoration'];
+  decorationColor?: IBox['textDecorationColor'];
+  casing?: IBox['textTransform'];
   italic?: boolean;
 }
 
-export const Text = styled<ITextProps, 'p'>(Box as any).attrs({
-  as: 'p',
-  m: '@none',
-})(casing, decoration, decorationColor, fontStyle, lineHeight, letterSpacing);
+export const textStyles = () => [
+  {
+    margin: '0',
+  },
+];
