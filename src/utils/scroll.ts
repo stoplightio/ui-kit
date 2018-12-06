@@ -1,4 +1,5 @@
 import replace = require('lodash/replace');
+import { CSSProperties } from 'react';
 
 export const getScrollTransform = (
   client: number = 0,
@@ -18,7 +19,7 @@ export const getThumbDimension = ({ scroll = 0, client = 0 }: { scroll?: number;
   return Math.max(height, 30);
 };
 
-export const horizontalTrackStyle = (style?: object): React.CSSProperties => ({
+export const horizontalTrackStyle = (style?: object): CSSProperties => ({
   background: 'transparent',
   position: 'absolute',
   cursor: 'pointer',
@@ -28,7 +29,7 @@ export const horizontalTrackStyle = (style?: object): React.CSSProperties => ({
   ...style,
 });
 
-export const verticalTrackStyle = (style?: object): React.CSSProperties => ({
+export const verticalTrackStyle = (style?: object): CSSProperties => ({
   background: 'transparent',
   position: 'absolute',
   cursor: 'pointer',

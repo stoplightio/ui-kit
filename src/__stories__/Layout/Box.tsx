@@ -19,7 +19,7 @@ import {
   TextAlign,
 } from '../_utils';
 
-export const boxKnobs = (tabName = 'Box'): IBox =>
+export const boxKnobs = <T extends HTMLElement = HTMLDivElement>(tabName = 'Box'): IBox<T> =>
   pickBy(
     {
       color: text('color', null, tabName),

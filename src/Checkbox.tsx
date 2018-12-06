@@ -1,4 +1,5 @@
 import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
 import { createElement, FunctionComponent, ReactEventHandler, useState } from 'react';
 
@@ -106,9 +107,7 @@ export interface ICheckboxProps {
   onChange?: (checked: boolean) => void;
 }
 
-export interface ICheckbox
-  extends ICheckboxProps,
-    Pick<IBox<HTMLLabelElement>, Exclude<keyof IBox<HTMLLabelElement>, 'as|onChange'>> {}
+export interface ICheckbox extends ICheckboxProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
 
 export const checkboxStyles = () => ({
   display: 'inline-block',

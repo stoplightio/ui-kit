@@ -5,7 +5,7 @@ import {
   ListStyleProperty,
   TextDecorationColorProperty,
   TextDecorationProperty,
-  TextTransformProperty,
+  TextTransformProperty, TransformProperty,
 } from 'csstype';
 
 export interface IColorProps {
@@ -44,4 +44,12 @@ export interface IListStyleProps {
 export const listStyle = (props: IListStyleProps) => ({
   listStyle: props.listStyle,
   listStylePosition: props.listStylePosition,
+});
+
+export interface ITransformProps {
+  transform?: TransformProperty;
+}
+
+export const transform = (props: ITransformProps) => ({
+  transform: props.transform,
 });

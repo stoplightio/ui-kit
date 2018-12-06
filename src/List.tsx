@@ -1,4 +1,5 @@
 import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
 import { FunctionComponent } from 'react';
 import { Box, IBox } from './Box';
 import * as sl from './styles';
@@ -15,10 +16,7 @@ export const List: FunctionComponent<IList> = props => {
   });
 };
 
-export interface IList
-  extends IListProps,
-    sl.IColorProps,
-    Pick<IBox<HTMLUListElement | HTMLOListElement>, Exclude<keyof IBox<HTMLUListElement | HTMLOListElement>, 'as'>> {}
+export interface IList extends IListProps, sl.IColorProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {}
 
 export interface IListProps {
   as?: 'ul' | 'ol';

@@ -1,7 +1,9 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
 import { createElement, FunctionComponent } from 'react';
+
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
@@ -83,7 +85,7 @@ export const TableCell: FunctionComponent<ITableCell> = props => {
 
 export interface ITableCell
   extends ITableCellProps,
-    Pick<IBox<HTMLTableDataCellElement>, Exclude<keyof IBox<HTMLTableDataCellElement>, 'as'>> {}
+    Omit<IBox<HTMLTableDataCellElement>, 'as'> {}
 
 export interface ITableCellProps extends ITableProps {
   as?: 'th' | 'td';

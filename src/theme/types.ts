@@ -63,6 +63,39 @@ export interface ITheme {
     visitedFg?: string;
   };
 
+  scrollbar: {
+    bg: string;
+  };
+
+  select?: {
+    fg: string;
+    bg: string;
+    borderColor: string;
+
+    chip: {
+      fg: string;
+      bg: string;
+    };
+
+    indicator: {
+      fg: string;
+    };
+
+    menu: {
+      fg: string;
+      bg: string;
+
+      selectedFg: string;
+      selectedBg: string;
+
+      activeFg: string;
+      activeBg: string;
+
+      hoverFg: string;
+      hoverBg: string;
+    };
+  };
+
   table: {
     fg: string;
     bg?: string;

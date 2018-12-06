@@ -13,7 +13,7 @@ const store = new Store({
 });
 
 export const textareaKnobs = (tabName = 'Textarea'): ITextarea => ({
-  ...boxKnobs(),
+  ...boxKnobs<HTMLTextAreaElement>(),
   autosize: boolean('autosize', false, tabName),
   disabled: boolean('disabled', false, tabName),
 });

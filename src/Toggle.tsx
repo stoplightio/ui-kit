@@ -1,8 +1,8 @@
-import noop = require('lodash/noop');
-import { FunctionComponent, ReactEventHandler, useState } from 'react';
-
 import { jsx } from '@emotion/core';
-import { createElement, SyntheticEvent } from 'react';
+import { Omit } from '@stoplight/types';
+import noop = require('lodash/noop');
+import { createElement, FunctionComponent, ReactEventHandler, SyntheticEvent, useState } from 'react';
+
 import { Box, Flex, IBox, useTheme } from './';
 import { Icon } from './Icon';
 
@@ -122,9 +122,7 @@ export interface IToggleProps {
   onChange?: (checked: boolean) => void;
 }
 
-export interface IToggle
-  extends IToggleProps,
-    Pick<IBox<HTMLLabelElement>, Exclude<keyof IBox<HTMLLabelElement>, 'as|onChange'>> {}
+export interface IToggle extends IToggleProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
 
 const toggleStyles = () => ({
   display: 'inline-block',

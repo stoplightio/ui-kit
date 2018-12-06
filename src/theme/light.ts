@@ -53,6 +53,39 @@ export const lightTheme: ITheme = {
     fg: '#72bcd4',
   },
 
+  scrollbar: {
+    bg: 'hsla(0, 0%, 27%, 0.84)',
+  },
+
+  select: {
+    fg: 'black',
+    bg: 'white',
+    borderColor: 'lightgrey',
+
+    chip: {
+      fg: 'green',
+      bg: 'lightgrey',
+    },
+
+    indicator: {
+      fg: 'grey',
+    },
+
+    menu: {
+      fg: 'black',
+      bg: 'white',
+
+      selectedFg: 'black',
+      selectedBg: '#2684FF',
+
+      activeFg: 'black',
+      activeBg: '#B2D4FF',
+
+      hoverFg: 'black',
+      hoverBg: '#DEEBFF',
+    },
+  },
+
   table: {
     fg: '#111',
     borderColor: '#111',

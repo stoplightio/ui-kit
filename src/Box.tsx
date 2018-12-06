@@ -60,6 +60,7 @@ export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
     textTransform,
     color,
     backgroundColor,
+    transform,
     ...rest
   } = props;
 
@@ -96,6 +97,7 @@ export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
 
     ss.opacity({ opacity }),
 
+    sl.transform({ transform }),
     sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration, textDecorationColor }),
