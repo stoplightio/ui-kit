@@ -21,6 +21,15 @@ export interface ITheme {
     checkedBg: string;
   };
 
+  contextMenu: {
+    fg: string;
+    bg: string;
+    borderColor: string;
+
+    hoverFg: string;
+    hoverBg: string;
+  };
+
   blockQuote: {
     fg?: string;
     bg?: string;

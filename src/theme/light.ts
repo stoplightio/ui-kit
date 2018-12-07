@@ -44,6 +44,15 @@ export const lightTheme: ITheme = {
     },
   },
 
+  contextMenu: {
+    fg: '#111',
+    bg: '#fff',
+    borderColor: 'lightgrey',
+
+    hoverBg: 'dodgerblue',
+    hoverFg: 'white',
+  },
+
   input: {
     fg: '#222',
     bg: '#fff',

@@ -44,6 +44,15 @@ export const darkTheme: ITheme = {
     },
   },
 
+  contextMenu: {
+    fg: 'white',
+    bg: '#222',
+    borderColor: 'lightgrey',
+
+    hoverBg: 'dodgerblue',
+    hoverFg: 'white',
+  },
+
   input: {
     fg: '#fff',
     bg: '#222',
