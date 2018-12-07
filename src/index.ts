@@ -17,7 +17,7 @@ export * from './Link';
 // export * from './Popup';
 export * from './Portal';
 // export * from './Mark';
-// export * from './Menu';
+export * from './Menu';
 export * from './Table';
 export * from './Text';
 export * from './Toggle';

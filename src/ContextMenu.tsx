@@ -150,7 +150,7 @@ export const contextMenuItemStyles = ({ onClick, divider, disabled }: IMenuItemP
 
   return [
     {
-      padding: '10px 15px', // @md @lg'
+      padding: '6px 10px', // @md @lg'
       ':hover': {
         background: theme.contextMenu.hoverBg,
         color: theme.contextMenu.hoverFg,

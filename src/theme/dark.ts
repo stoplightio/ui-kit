@@ -62,6 +62,15 @@ export const darkTheme: ITheme = {
     fg: '#add8e6',
   },
 
+  menu: {
+    fg: 'white',
+    bg: '#222',
+    borderColor: 'lightgrey',
+
+    hoverBg: 'dodgerblue',
+    hoverFg: 'white',
+  },
+
   scrollbar: {
     bg: 'rgba(255, 255, 255, 0.4)',
   },

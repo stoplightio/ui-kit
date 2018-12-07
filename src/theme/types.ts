@@ -25,7 +25,6 @@ export interface ITheme {
     fg: string;
     bg: string;
     borderColor: string;
-
     hoverFg: string;
     hoverBg: string;
   };
@@ -74,6 +73,14 @@ export interface ITheme {
 
   scrollbar: {
     bg: string;
+  };
+
+  menu: {
+    fg: string;
+    bg: string;
+    borderColor: string;
+    hoverFg: string;
+    hoverBg: string;
   };
 
   select?: {

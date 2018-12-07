@@ -62,6 +62,15 @@ export const lightTheme: ITheme = {
     fg: '#72bcd4',
   },
 
+  menu: {
+    fg: 'white',
+    bg: '#222',
+    borderColor: 'lightgrey',
+
+    hoverBg: 'dodgerblue',
+    hoverFg: 'white',
+  },
+
   scrollbar: {
     bg: 'hsla(0, 0%, 27%, 0.84)',
   },
