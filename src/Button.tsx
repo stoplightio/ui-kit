@@ -9,7 +9,7 @@ import { useTheme } from './theme';
 export const Button: FunctionComponent<IButton> = props => {
   const { as = 'button', disabled, ...rest } = props;
 
-  const css = [...buttonStyles({ disabled })];
+  const css = buttonStyles({ disabled });
 
   return jsx(Box, {
     ...rest,

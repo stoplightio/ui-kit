@@ -4,9 +4,9 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { IImage, Image } from '../Image';
-import { BorderRadius } from './_utils';
-import { boxKnobs } from './Layout/Box';
+import { IImage, Image } from '../../Image';
+import { BorderRadius } from '../_utils';
+import { boxKnobs } from '../Layout/Box';
 
 export const imageKnobs = (tabName = 'Image'): IImage => ({
   ...boxKnobs(),
@@ -21,7 +21,7 @@ export const imageKnobs = (tabName = 'Image'): IImage => ({
   boxShadow: select('boxShadow', ['', '@sm', '@md', '@lg'], '', tabName),
 });
 
-storiesOf('Image', module)
+storiesOf('Miscellaneous/Image', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>)
   .add('with defaults', () => <Image {...imageKnobs()} />)
