@@ -1,3 +1,5 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
 import { FunctionComponent, SyntheticEvent, useState } from 'react';

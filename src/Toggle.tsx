@@ -1,7 +1,9 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
-import { createElement, FunctionComponent, ReactEventHandler, SyntheticEvent, useState } from 'react';
+import { FunctionComponent, ReactEventHandler, SyntheticEvent, useState } from 'react';
 
 import { Box, Flex, IBox, useTheme } from './';
 import { Icon } from './Icon';
@@ -35,7 +37,7 @@ interface IToggleInnerProps {
 const ToggleInnerIcon: FunctionComponent<IToggleInnerProps> = props => {
   const css = toggleInnerIconStyles(props);
 
-  return createElement(Icon, {
+  return jsx(Icon, {
     icon: 'circle',
     css,
   });
@@ -60,7 +62,7 @@ const ToggleInner: FunctionComponent<IToggleInnerProps> = props => {
       as: 'span',
       css,
     },
-    [createElement(ToggleInnerIcon, props)]
+    [jsx(ToggleInnerIcon, props)]
   );
 };
 
@@ -104,11 +106,11 @@ export const Toggle: FunctionComponent<IToggle> = props => {
       css,
     },
     [
-      createElement(ToggleInput, {
+      jsx(ToggleInput, {
         id,
         onChange: handleChange,
       }),
-      createElement(ToggleInner, {
+      jsx(ToggleInner, {
         isChecked,
         isDisabled: !!disabled,
         height,

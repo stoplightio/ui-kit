@@ -1,7 +1,7 @@
-/** @jsx jsx */
+/* @jsx jsx */
 
 import { css, jsx } from '@emotion/core';
-import { createElement, FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 import { Box } from './Box';
 import { Flex, IFlex } from './Flex';
@@ -21,7 +21,7 @@ export declare type RenderMenuFunc = (
 ) => ReactNode;
 
 const defaultRenderMenuItem: RenderMenuItemFunc = (item: IMenuItemProps, index: number) =>
-  createElement(MenuItem, { key: index, ...item });
+  jsx(MenuItem, { key: index, ...item });
 
 const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, ...rest }, menuItems, renderMenuItem) => {
   const theme = useTheme();

@@ -1,3 +1,5 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
 import { FunctionComponent } from 'react';

@@ -1,3 +1,5 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 
@@ -26,13 +28,10 @@ export const blockQuoteStyles = ({ isSelected }: IBlockQuoteProps) => {
   const theme = useTheme();
 
   return [
-    /* todo:
-      {
-         pl="@xl"
-         borderLeft="@sm"
-      }
-    */
     {
+      padding: '15px 25px',
+      borderLeft: '5px solid',
+      maxWidth: '80%',
       color: theme.blockQuote.fg,
       borderColor: theme.blockQuote.borderColor,
     },

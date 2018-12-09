@@ -2,7 +2,7 @@
 
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
-import { createElement, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
@@ -19,7 +19,7 @@ export const Table: FunctionComponent<ITable> = props => {
       as: 'table',
       css,
     },
-    [createElement('tbody', null, children)]
+    [jsx('tbody', null, children)]
   );
 };
 
@@ -83,9 +83,7 @@ export const TableCell: FunctionComponent<ITableCell> = props => {
   });
 };
 
-export interface ITableCell
-  extends ITableCellProps,
-    Omit<IBox<HTMLTableDataCellElement>, 'as'> {}
+export interface ITableCell extends ITableCellProps, Omit<IBox<HTMLTableDataCellElement>, 'as'> {}
 
 export interface ITableCellProps extends ITableProps {
   as?: 'th' | 'td';

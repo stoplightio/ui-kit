@@ -1,3 +1,5 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
 import { FunctionComponent, SyntheticEvent, useState } from 'react';
@@ -7,7 +9,7 @@ import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
 export const Textarea: FunctionComponent<ITextarea> = props => {
-  const { as = props.autosize ? AutosizeTextarea : 'textarea', autosize, onChange = noop, ...rest } = props;
+  const { autosize, as = autosize ? AutosizeTextarea : 'textarea', onChange = noop, ...rest } = props;
 
   const css = textareaStyles(props);
 

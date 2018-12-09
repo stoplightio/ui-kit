@@ -1,7 +1,9 @@
+/* @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
-import { createElement, FunctionComponent, ReactEventHandler, useState } from 'react';
+import { FunctionComponent, ReactEventHandler, useState } from 'react';
 
 import { Box, Flex, IBox, Icon, useTheme } from './';
 
@@ -42,7 +44,7 @@ const CheckboxInner: FunctionComponent<ICheckboxInner> = props => {
       as: 'span',
       css,
     },
-    props.isChecked && [createElement(Icon, { icon: 'check' })]
+    props.isChecked && [jsx(Icon, { icon: 'check' })]
   );
 };
 
@@ -88,11 +90,11 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
       css,
     },
     [
-      createElement(CheckboxInput, {
+      jsx(CheckboxInput, {
         id,
         onChange: handleChange,
       }),
-      createElement(CheckboxInner, {
+      jsx(CheckboxInner, {
         isChecked,
         isDisabled,
         height,
