@@ -1,4 +1,4 @@
-import { CSSProperties, ReactEventHandler, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactEventHandler, ReactNode } from 'react';
 
 export type PopupTriggerRenderer = (
   props: {
@@ -7,7 +7,7 @@ export type PopupTriggerRenderer = (
     showPopup: () => void;
     hidePopup: () => void;
   }
-) => any;
+) => ReactElement<any>;
 
 export type PopupContentRenderer = (
   props: {

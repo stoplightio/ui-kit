@@ -1,12 +1,12 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { ComponentClass, CSSProperties, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
+import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
 import * as sl from './styles';
 
-export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
+export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
   const {
     as = 'div',
@@ -110,11 +110,12 @@ export const Box: FunctionComponent<IBox<HTMLElement>> = props => {
     as,
     {
       ...rest,
+      ref,
       css,
     },
     children
   );
-};
+});
 
 export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,

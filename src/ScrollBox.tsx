@@ -1,19 +1,20 @@
-import * as React from 'react';
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
+import { forwardRef, useRef, useState } from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
-import { jsx } from '@emotion/core';
 import { Box, IBox } from './Box';
 import { useScrollToHash } from './hooks/useScrollToHash';
 import { useTheme } from './theme';
 import { getScrollTransform, getThumbDimension, horizontalTrackStyle, verticalTrackStyle } from './utils/scroll';
 
-const ScrollbarThumb = React.forwardRef<HTMLDivElement, IScrollBoxThumb>((props, innerRef) => {
+const ScrollbarThumb = forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
   const { isScrolling, ...rest } = props;
   const css = scrollbarStyles({ isScrolling });
 
   return jsx(Box, {
     ...rest,
-    innerRef,
+    ref,
     as: 'div',
     css,
   });
@@ -41,11 +42,11 @@ export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
-  const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
+  const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
 
   useScrollToHash(scrollTo);
 
-  const scrollbars = innerRef || React.useRef<Scrollbars>(null);
+  const scrollbars = innerRef || useRef<Scrollbars>(null);
   const current = scrollbars.current;
   const values = (current && current.getValues()) || ({} as positionValues);
   const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = values;
@@ -86,29 +87,21 @@ export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox
       // Custom component overrides
       renderTrackHorizontal={() => <div style={horizontalTrackStyle()} />}
       renderThumbHorizontal={() => (
-        /* todo: unwrap, and try to pass ref in a way Scrollbars receives it */
-        <div>
-          <ScrollbarThumb
-            isScrolling={isScrolling !== null}
-            height="6px"
-            width={thumbHorizontal}
-            transform={`translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`}
-          />
-        </div>
+        <ScrollbarThumb
+          isScrolling={isScrolling !== null}
+          height="6px"
+          width={thumbHorizontal}
+          transform={`translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`}
+        />
       )}
-      renderTrackVertical={() => {
-        return <div style={verticalTrackStyle()} />;
-      }}
+      renderTrackVertical={() => <div style={verticalTrackStyle()} />}
       renderThumbVertical={() => (
-        /* todo: unwrap, and try to pass ref in a way Scrollbars receives it */
-        <div>
-          <ScrollbarThumb
-            isScrolling={isScrolling !== null}
-            height={thumbVertical}
-            width="6px"
-            transform={`translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`}
-          />
-        </div>
+        <ScrollbarThumb
+          isScrolling={isScrolling !== null}
+          height={thumbVertical}
+          width="6px"
+          transform={`translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`}
+        />
       )}
     >
       {children}

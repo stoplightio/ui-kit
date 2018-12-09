@@ -92,14 +92,17 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
 
   return (
     <>
-      <span ref={triggerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {React.cloneElement(
-          renderTrigger({
-            ...funcs,
-            isOver: isOverTrigger,
-          })
-        )}
-      </span>
+      {React.cloneElement(
+        renderTrigger({
+          ...funcs,
+          isOver: isOverTrigger,
+        }),
+        {
+          ref: triggerRef,
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+        }
+      )}
       {isVisible && (
         <PopupContent
           ref={contentRef}
