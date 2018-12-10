@@ -32,8 +32,7 @@ const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, ...rest }, menuItems
       flexDirection: 'column',
       color: theme.menu.fg,
       backgroundColor: theme.menu.bg,
-      borderColor: theme.menu.borderColor,
-      border: 'xs',
+      border: `1px solid ${theme.menu.borderColor}`,
       radius: 'md',
       zIndex: 10000,
       ...rest,
@@ -84,7 +83,7 @@ export const menuStyles = () => {
         display: flex !important;
       }
 
-      > *:first-child + * {
+      > *:first-of-type + * {
         display: none;
       }
     `,

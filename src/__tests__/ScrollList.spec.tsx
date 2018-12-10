@@ -1,9 +1,13 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+
 import { mount } from 'enzyme';
 import 'jest-enzyme';
-import * as React from 'react';
 import { AutoSizer } from 'react-virtualized';
 import { ScrollList } from '../ScrollList';
 
+// fixme: enabled the test
 xdescribe('ScrollList', () => {
   it('calls rowRenderer', () => {
     const list = ['stoplight.io', 'api'];
