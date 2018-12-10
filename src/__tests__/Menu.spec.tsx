@@ -1,14 +1,42 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
+import { FunctionComponent } from 'react';
 
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 
-import { Icon, IconLibrary, IMenuItemProps, Menu, MenuItem } from '../index';
+import { Icon, IconLibrary } from '../Icon';
+import { IMenu, IMenuItem, IMenuItemProps } from '../Menu';
+import { ITheme } from '../theme';
 
-describe('Menu', () => {
+describe('Menu component', () => {
+  let Menu: FunctionComponent<IMenu>;
+  let MenuItem: FunctionComponent<IMenuItem>;
+
+  const theme: Partial<ITheme> = {
+    menu: {
+      fg: '#000',
+      borderColor: '#fff',
+      bg: '#111',
+      hoverBg: 'red',
+      hoverFg: 'blue',
+    },
+  };
+
+  beforeAll(async () => {
+    jest.mock('../theme', () => ({
+      useTheme: jest.fn().mockReturnValue(theme),
+    }));
+
+    ({ Menu, MenuItem } = await import('../'));
+  });
+
+  afterAll(() => {
+    jest.unmock('../theme');
+  });
+
   it('renders items', () => {
     const children = <span>test</span>;
 
@@ -55,24 +83,47 @@ describe('Menu', () => {
   });
 });
 
-describe('MenuItem', () => {
+describe('MenuItem component', () => {
+  let MenuItem: FunctionComponent<IMenuItem>;
+
+  const theme: Partial<ITheme> = {
+    menu: {
+      fg: '#000',
+      borderColor: '#fff',
+      bg: '#111',
+      hoverBg: 'red',
+      hoverFg: 'blue',
+    },
+  };
+
+  beforeAll(async () => {
+    jest.mock('../theme', () => ({
+      useTheme: jest.fn().mockReturnValue(theme),
+    }));
+
+    ({ MenuItem } = await import('../'));
+  });
+
+  afterAll(() => {
+    jest.unmock('../theme');
+  });
+
   it('renders proper Icon', () => {
     const { fas } = _solidIcons;
 
     IconLibrary.add(fas);
 
-    const wrapper = mount(<MenuItem icon="globe" />);
+    const wrapper = shallow(<MenuItem icon="globe" />);
 
     expect(wrapper.find(Icon)).toExist();
     expect(wrapper.find(Icon)).toHaveProp('icon', 'globe');
     wrapper.unmount();
   });
 
-  // fixme: enable the test
-  xit('propagates onClick event', () => {
+  it('propagates onClick event', () => {
     const onClick = jest.fn();
     const event = { type: 'click' };
-    const wrapper = mount(<MenuItem onClick={onClick} />);
+    const wrapper = shallow(<MenuItem onClick={onClick} />);
 
     wrapper.simulate('click', event);
 
@@ -89,15 +140,14 @@ describe('MenuItem', () => {
 
   it('renders subTitle', () => {
     const subText = <h4>sub text</h4>;
-    const wrapper = mount(<MenuItem title="text" subtitle={subText} />);
+    const wrapper = shallow(<MenuItem title="text" subtitle={subText} />);
 
     expect(wrapper).toContainReact(subText);
-    wrapper.unmount();
   });
 
   it('does render subTitle only if title is missing', () => {
     const subText = <h4>test</h4>;
-    const wrapper = mount(<MenuItem subtitle={subText} />);
+    const wrapper = shallow(<MenuItem subtitle={subText} />);
 
     expect(wrapper).toContainReact(subText);
     wrapper.unmount();
