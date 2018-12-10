@@ -32,7 +32,7 @@ const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, ...rest }, menuItems
       flexDirection: 'column',
       color: theme.menu.fg,
       backgroundColor: theme.menu.bg,
-      border: `1px solid ${theme.menu.borderColor}`,
+      border: `1px solid ${theme.menu.border}`,
       radius: 'md',
       zIndex: 10000,
       ...rest,

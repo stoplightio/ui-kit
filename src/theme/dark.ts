@@ -17,7 +17,7 @@ export const darkTheme: ITheme = {
 
   blockQuote: {
     fg: 'white',
-    borderColor: 'white',
+    border: 'white',
     shadow: '0 0 5px rgba(255, 255, 255, 0.3)',
   },
 
@@ -47,8 +47,7 @@ export const darkTheme: ITheme = {
   contextMenu: {
     fg: 'white',
     bg: '#222',
-    borderColor: 'lightgrey',
-
+    border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
   },
@@ -65,8 +64,7 @@ export const darkTheme: ITheme = {
   menu: {
     fg: 'white',
     bg: '#222',
-    borderColor: 'lightgrey',
-
+    border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
   },
@@ -78,7 +76,7 @@ export const darkTheme: ITheme = {
   select: {
     fg: '#BFCCD6',
     bg: '#202D36',
-    borderColor: '#1B262E',
+    border: '#1B262E',
 
     chip: {
       fg: '#BFCCD6',
@@ -106,7 +104,7 @@ export const darkTheme: ITheme = {
 
   table: {
     fg: 'white',
-    borderColor: 'white',
+    border: 'white',
     shadow: '0 0 10px 1px rgba(255,255,255,0.6) inset',
   },
 
@@ -118,9 +116,9 @@ export const darkTheme: ITheme = {
   toggle: {
     fg: 'white',
     bg: 'darkgrey',
-    borderColor: 'transparent',
+    border: 'transparent',
     checkedFg: 'white',
     checkedBg: 'mediumseagreen',
-    checkedBorderColor: 'transparent',
+    checkedBorder: 'transparent',
   },
 };

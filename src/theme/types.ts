@@ -24,7 +24,7 @@ export interface ITheme {
   contextMenu: {
     fg: string;
     bg: string;
-    borderColor: string;
+    border: string;
     hoverFg: string;
     hoverBg: string;
   };
@@ -32,7 +32,7 @@ export interface ITheme {
   blockQuote: {
     fg?: string;
     bg?: string;
-    borderColor: string;
+    border: string;
     shadow: string;
   };
 
@@ -45,7 +45,7 @@ export interface ITheme {
   input: {
     fg: string;
     bg?: string;
-    borderColor?: string;
+    border?: string;
   };
 
   codeEditor: {
@@ -78,7 +78,7 @@ export interface ITheme {
   menu: {
     fg: string;
     bg: string;
-    borderColor: string;
+    border: string;
     hoverFg: string;
     hoverBg: string;
   };
@@ -86,7 +86,7 @@ export interface ITheme {
   select?: {
     fg: string;
     bg: string;
-    borderColor: string;
+    border: string;
 
     chip: {
       fg: string;
@@ -115,23 +115,23 @@ export interface ITheme {
   table: {
     fg: string;
     bg?: string;
-    borderColor: string;
+    border: string;
     shadow: string;
   };
 
   textarea: {
     fg: string;
     bg?: string;
-    borderColor?: string;
+    border?: string;
   };
 
   toggle: {
     fg: string;
     bg: string;
-    borderColor: string;
+    border: string;
     checkedFg: string;
     checkedBg: string;
-    checkedBorderColor: string;
+    checkedBorder: string;
   };
 }
 

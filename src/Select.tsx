@@ -124,7 +124,7 @@ const customStyles = () => {
       ...provided,
       color: selectTheme.fg,
       backgroundColor: selectTheme.bg,
-      borderColor: selectTheme.borderColor,
+      borderColor: selectTheme.border,
 
       boxShadow: null,
       outline: '0 !important',
@@ -133,7 +133,7 @@ const customStyles = () => {
       opacity: isDisabled && 0.6,
 
       ':hover': {
-        borderColor: selectTheme.borderColor,
+        borderColor: selectTheme.border,
       },
     }),
     dropdownIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({

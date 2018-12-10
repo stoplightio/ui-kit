@@ -59,11 +59,10 @@ const inputStyles = ({ disabled }: IInput) => {
   return [
     {
       padding: '2px 4px',
-      border: '1px solid',
+      border: `1px solid ${theme.input.border}`,
       borderRadius: '2px',
       color: theme.input.fg,
       backgroundColor: theme.input.bg,
-      borderColor: theme.input.borderColor,
 
       ':focus': {
         outline: 'none',

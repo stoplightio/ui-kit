@@ -33,7 +33,7 @@ export const blockQuoteStyles = ({ isSelected }: IBlockQuoteProps) => {
       borderLeft: '5px solid',
       maxWidth: '80%',
       color: theme.blockQuote.fg,
-      borderColor: theme.blockQuote.borderColor,
+      borderColor: theme.blockQuote.border,
     },
     isSelected && {
       boxShadow: theme.blockQuote.shadow,

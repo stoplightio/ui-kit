@@ -13,7 +13,7 @@ describe('BlockQuote component', () => {
   const theme: Partial<ITheme> = {
     blockQuote: {
       fg: '#000',
-      borderColor: '#fff',
+      border: '#fff',
       shadow: '0 2px 5px #000',
     },
   };
@@ -65,7 +65,7 @@ describe('BlockQuote component', () => {
         expect.arrayContaining([
           expect.objectContaining({
             color: theme.blockQuote!.fg,
-            borderColor: theme.blockQuote!.borderColor,
+            borderColor: theme.blockQuote!.border,
           }),
         ])
       );

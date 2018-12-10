@@ -34,10 +34,10 @@ export const tableStyles = ({ isSelected }: ITableProps) => {
 
   return [
     {
-      border: '0',
+      border: '0 none',
       borderTop: '1px solid',
       borderCollapse: 'collapse',
-      borderColor: theme.table.borderColor,
+      borderColor: theme.table.border,
     },
     isSelected && {
       boxShadow: theme.table.shadow,
@@ -62,10 +62,10 @@ export const tableRowStyles = () => {
 
   return [
     {
-      border: '0',
+      border: '0 none',
       borderBottom: '1px solid',
       borderRight: '1px solid',
-      borderColor: theme.table.borderColor,
+      borderColor: theme.table.border,
     },
   ];
 };
@@ -92,9 +92,9 @@ export const tableCellStyles = ({ isSelected }: ITableCellProps) => {
 
   return [
     {
-      border: '0',
+      border: '0 none',
       borderLeft: '1px solid',
-      borderColor: theme.table.borderColor,
+      borderColor: theme.table.border,
       textAlign: 'left',
     },
     isSelected && {

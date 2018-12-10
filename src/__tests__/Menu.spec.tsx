@@ -18,7 +18,7 @@ describe('Menu component', () => {
   const theme: Partial<ITheme> = {
     menu: {
       fg: '#000',
-      borderColor: '#fff',
+      border: '#fff',
       bg: '#111',
       hoverBg: 'red',
       hoverFg: 'blue',
@@ -89,7 +89,7 @@ describe('MenuItem component', () => {
   const theme: Partial<ITheme> = {
     menu: {
       fg: '#000',
-      borderColor: '#fff',
+      border: '#fff',
       bg: '#111',
       hoverBg: 'red',
       hoverFg: 'blue',

@@ -17,7 +17,7 @@ export const lightTheme: ITheme = {
 
   blockQuote: {
     fg: '#111',
-    borderColor: '#111',
+    border: '#111',
     shadow: '0 0 5px rgba(0, 0, 0, 0.3)',
   },
 
@@ -47,8 +47,7 @@ export const lightTheme: ITheme = {
   contextMenu: {
     fg: '#111',
     bg: '#fff',
-    borderColor: 'lightgrey',
-
+    border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
   },
@@ -65,8 +64,7 @@ export const lightTheme: ITheme = {
   menu: {
     fg: 'white',
     bg: '#222',
-    borderColor: 'lightgrey',
-
+    border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
   },
@@ -78,7 +76,7 @@ export const lightTheme: ITheme = {
   select: {
     fg: 'black',
     bg: 'white',
-    borderColor: 'lightgrey',
+    border: 'lightgrey',
 
     chip: {
       fg: 'green',
@@ -106,7 +104,7 @@ export const lightTheme: ITheme = {
 
   table: {
     fg: '#111',
-    borderColor: '#111',
+    border: '#111',
     shadow: '0 0 8px 1px rgba(0, 0, 0, 0.6) inset',
   },
 
@@ -118,10 +116,9 @@ export const lightTheme: ITheme = {
   toggle: {
     fg: 'white',
     bg: 'darkgrey',
-    borderColor: 'transparent',
-
+    border: 'transparent',
     checkedFg: 'white',
     checkedBg: 'mediumseagreen',
-    checkedBorderColor: 'transparent',
+    checkedBorder: 'transparent',
   },
 };

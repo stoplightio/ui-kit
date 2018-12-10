@@ -84,10 +84,9 @@ const menuStyles = () => {
     {
       zIndex: 10000,
       borderRadius: '5px',
-      border: '1px solid',
+      border: `1px solid ${theme.contextMenu.border}`,
       color: theme.contextMenu.fg,
       backgroundColor: theme.contextMenu.bg,
-      borderColor: theme.contextMenu.borderColor,
 
       cursor: 'default',
       ':focus': {

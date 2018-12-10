@@ -49,6 +49,6 @@ export class Portal extends React.PureComponent<IPortalProps> {
       return null;
     }
 
-    return ReactDOM.createPortal(this.renderChildren, this.el);
+    return ReactDOM.createPortal(this.renderChildren(), this.el);
   }
 }

@@ -43,11 +43,10 @@ export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
   return [
     {
       padding: '2px 4px',
-      border: '1px solid',
+      border: `1px solid ${theme.textarea.border}`,
       borderRadius: '2px',
       color: theme.textarea.fg,
       backgroundColor: theme.textarea.bg,
-      borderColor: theme.textarea.borderColor,
 
       ':focus': {
         outline: 'none',
