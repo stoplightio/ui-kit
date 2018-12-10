@@ -34,7 +34,7 @@
     "release.dryRun": "sl-scripts release --dry-run --debug",
     "storybook": "start-storybook -p 9001",
     "test": "sl-scripts test",
-    "test.prod": "yarn lint && yarn test --coverage --no-cache",
+    "test.prod": "yarn lint && yarn test --coverage --no-cache --runInBand",
     "test.update": "yarn test --updateSnapshot",
     "test.watch": "yarn test --watch",
     "chromatic": "chromatic test"
