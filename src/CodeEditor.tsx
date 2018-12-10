@@ -53,9 +53,7 @@ export const supportedLanguages = {
   ...optionalSupport,
 };
 
-export type ReactSimpleCodeEditorRef = ReactSimpleCodeEditor;
-
-export const CodeEditor = forwardRef<ReactSimpleCodeEditorRef, ICodeEditor>((props, ref) => {
+export const CodeEditor = forwardRef<HTMLDivElement, ICodeEditor>((props, ref) => {
   const { language, onChange = noop, style, value } = props;
   const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
   const editorCSS = [...codeEditorStyles()];
@@ -66,16 +64,13 @@ export const CodeEditor = forwardRef<ReactSimpleCodeEditorRef, ICodeEditor>((pro
       style,
       css: editorCSS,
     },
-    [
-      // @ts-ignore FIXME
-      jsx(ReactSimpleCodeEditor, {
-        ref,
-        value,
-        onValueChange: onChange,
-        highlight: highlightCodeCallback,
-        padding: 10,
-      }),
-    ]
+    jsx(ReactSimpleCodeEditor, {
+      ref,
+      value,
+      onValueChange: onChange,
+      highlight: highlightCodeCallback,
+      padding: 10,
+    })
   );
 });
 
