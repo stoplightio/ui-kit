@@ -1,5 +1,7 @@
-import * as React from 'react';
-import { FunctionComponent, ReactNode } from 'react';
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { FunctionComponent, ReactNode, useState } from 'react';
 import { AutoSizer, List, ListProps, ListRowProps } from 'react-virtualized';
 
 import { Box } from './Box';
@@ -44,10 +46,10 @@ export const ScrollList: FunctionComponent<IScrollList> = props => {
   const { list, offset, rowRenderer, onScroll, ...rest } = props;
   const theme = useTheme();
 
-  const [{ clientHeight, scrollHeight, scrollTop }, setScrollEvent] = React.useState<IOnScroll>({});
+  const [{ clientHeight, scrollHeight, scrollTop }, setScrollEvent] = useState<IOnScroll>({});
   const thumbSize = getThumbDimension({ scroll: scrollHeight, client: clientHeight });
 
-  const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
+  const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
 
   const renderRow = ({ index, ...rowProps }: ListRowProps) => rowRenderer({ index, value: list[index], ...rowProps });
 
