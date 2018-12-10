@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ThemeConsumer } from 'styled-components';
 
 export interface IPortalProps {
   children: any;
@@ -50,6 +49,6 @@ export class Portal extends React.PureComponent<IPortalProps> {
       return null;
     }
 
-    return ReactDOM.createPortal(<ThemeConsumer>{this.renderChildren}</ThemeConsumer>, this.el);
+    return ReactDOM.createPortal(this.renderChildren, this.el);
   }
 }
