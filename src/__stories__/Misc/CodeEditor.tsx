@@ -17,7 +17,7 @@ export const codeEditorKnobs = (tabName = 'Code Editor'): ICodeEditor => ({
   style: object<React.CSSProperties>('style', { fontSize: '12px' }, tabName),
 });
 
-storiesOf('Utilities/CodeEditor', module)
+storiesOf('Miscellaneous/CodeEditor', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />)
   .addDecorator(StateDecorator(store) as StoryDecorator)
