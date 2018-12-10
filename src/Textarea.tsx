@@ -41,15 +41,10 @@ export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
   const theme = useTheme();
 
   return [
-    /* todo:
-      {
-        px: '@md',
-        py: '@sm',
-        border: '@xs',
-        radius: '@md',
-      }
-    */
     {
+      padding: '2px 4px',
+      border: '1px solid',
+      borderRadius: '2px',
       color: theme.textarea.fg,
       backgroundColor: theme.textarea.bg,
       borderColor: theme.textarea.borderColor,

@@ -35,7 +35,6 @@ export const tableStyles = ({ isSelected }: ITableProps) => {
   return [
     {
       border: '0',
-      // todo: use some shared value
       borderTop: '1px solid',
       borderCollapse: 'collapse',
       borderColor: theme.table.borderColor,
@@ -64,7 +63,6 @@ export const tableRowStyles = () => {
   return [
     {
       border: '0',
-      // todo: use some shared value
       borderBottom: '1px solid',
       borderRight: '1px solid',
       borderColor: theme.table.borderColor,
@@ -95,7 +93,6 @@ export const tableCellStyles = ({ isSelected }: ITableCellProps) => {
   return [
     {
       border: '0',
-      // todo: use some shared value
       borderLeft: '1px solid',
       borderColor: theme.table.borderColor,
       textAlign: 'left',

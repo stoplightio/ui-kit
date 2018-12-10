@@ -57,15 +57,10 @@ const inputStyles = ({ disabled }: IInput) => {
   const theme = useTheme();
 
   return [
-    /* todo:
-      {
-        px: '@md',
-        py: '@sm',
-        border: '@xs',
-        radius: '@md',
-      }
-    */
     {
+      padding: '2px 4px',
+      border: '1px solid',
+      borderRadius: '2px',
       color: theme.input.fg,
       backgroundColor: theme.input.bg,
       borderColor: theme.input.borderColor,
