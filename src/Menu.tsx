@@ -3,7 +3,9 @@
 import { css, jsx } from '@emotion/core';
 import { FunctionComponent, ReactNode } from 'react';
 
-import { Box, Flex, Icon, IFlex, IIcon } from './';
+import { Box } from './Box';
+import { Flex, IFlex } from './Flex';
+import { Icon, IIcon } from './Icon';
 import { useTheme } from './theme';
 
 // TODO allow dividers in the menu

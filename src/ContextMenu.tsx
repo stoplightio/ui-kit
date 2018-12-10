@@ -9,6 +9,7 @@ import {
 
 import { Omit } from '@stoplight/types';
 import { Fragment, FunctionComponent, HTMLAttributes, MouseEvent, TouchEvent } from 'react';
+
 import { Box, Break, IBox, Text, useTheme } from './';
 
 // TODO: expose SubMenu component

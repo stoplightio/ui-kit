@@ -3,9 +3,9 @@
 import { jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 import * as ss from 'styled-system';
-import * as sl from './styles';
 
 import { Box, IBox } from './Box';
+import * as sl from './styles';
 
 export const Flex: FunctionComponent<IFlex> = props => {
   const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;

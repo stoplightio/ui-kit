@@ -1,11 +1,11 @@
 /* @jsx jsx */
 
 import { css, jsx } from '@emotion/core';
-
 import noop = require('lodash/noop');
 import 'prismjs/components/';
 import { CSSProperties, forwardRef, useCallback } from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
+
 import { Box } from './Box';
 import { useTheme } from './theme';
 import { highlightCode } from './utils/highlightCode';
@@ -67,6 +67,7 @@ export const CodeEditor = forwardRef<ReactSimpleCodeEditorRef, ICodeEditor>((pro
       css: editorCSS,
     },
     [
+      // @ts-ignore FIXME
       jsx(ReactSimpleCodeEditor, {
         ref,
         value,
