@@ -1,11 +1,13 @@
 import {
   BackgroundColorProperty,
   ColorProperty,
+  FlexFlowProperty,
   ListStylePositionProperty,
   ListStyleProperty,
   TextDecorationColorProperty,
   TextDecorationProperty,
-  TextTransformProperty, TransformProperty,
+  TextTransformProperty,
+  TransformProperty,
 } from 'csstype';
 
 export interface IColorProps {
@@ -52,4 +54,12 @@ export interface ITransformProps {
 
 export const transform = (props: ITransformProps) => ({
   transform: props.transform,
+});
+
+export interface IFlexFlowProperty {
+  flexFlow?: FlexFlowProperty;
+}
+
+export const flexFlow = (props: IFlexFlowProperty) => ({
+  flexFlow: props.flexFlow,
 });

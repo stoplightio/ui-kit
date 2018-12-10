@@ -3,11 +3,12 @@
 import { jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 import * as ss from 'styled-system';
+import * as sl from './styles';
 
 import { Box, IBox } from './Box';
 
 export const Flex: FunctionComponent<IFlex> = props => {
-  const { as, flexBasis, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
+  const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
 
   const css = [
     ss.flexBasis({ flexBasis }),
@@ -15,12 +16,12 @@ export const Flex: FunctionComponent<IFlex> = props => {
     ss.flexWrap({ flexWrap }),
     ss.alignItems({ alignItems }),
     ss.justifyContent({ justifyContent }),
+    sl.flexFlow({ flexFlow }),
     ...flexStyles(),
   ];
 
   return jsx(Box, {
     ...rest,
-    as,
     css,
   });
 };

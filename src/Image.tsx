@@ -8,7 +8,7 @@ import { Box, IBox } from './Box';
 export const Image: FunctionComponent<IImage> = props => {
   const { hidden, responsive, ...rest } = props;
 
-  const css = [...imageStyles({ hidden, responsive })];
+  const css = imageStyles({ hidden, responsive });
 
   return jsx(Box, {
     ...rest,

@@ -9,7 +9,7 @@ import { useTheme } from './theme';
 export const Link: FunctionComponent<ILink> = props => {
   const { as = 'a', ...rest } = props;
 
-  const css = [...linkStyles()];
+  const css = linkStyles();
 
   return jsx(Text, {
     ...rest,
