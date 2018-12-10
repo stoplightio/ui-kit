@@ -19,7 +19,7 @@ export const Table: FunctionComponent<ITable> = props => {
       as: 'table',
       css,
     },
-    [jsx('tbody', null, children)]
+    jsx('tbody', null, children)
   );
 };
 

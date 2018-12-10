@@ -23,19 +23,20 @@ export declare type RenderMenuFunc = (
 const defaultRenderMenuItem: RenderMenuItemFunc = (item: IMenuItemProps, index: number) =>
   jsx(MenuItem, { key: index, ...item });
 
-const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, ...rest }, menuItems, renderMenuItem) => {
+const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, className }, menuItems, renderMenuItem) => {
   const theme = useTheme();
 
   return jsx(
     Flex,
     {
+      key: 'menu-items',
+      className,
       flexDirection: 'column',
       color: theme.menu.fg,
       backgroundColor: theme.menu.bg,
       border: `1px solid ${theme.menu.border}`,
       radius: 'md',
       zIndex: 10000,
-      ...rest,
       position: renderTrigger ? 'absolute' : 'relative',
     },
     menuItems.map(renderMenuItem)
@@ -48,6 +49,7 @@ export const Menu: FunctionComponent<IMenu> = props => {
     renderTrigger,
     renderMenuItem = defaultRenderMenuItem,
     renderMenu = defaultRenderMenu,
+    key,
     ...rest
   } = props;
 
@@ -56,11 +58,19 @@ export const Menu: FunctionComponent<IMenu> = props => {
   return jsx(
     Flex,
     {
+      key,
       flexDirection: 'column',
       css: styles,
       ...rest,
     },
-    [renderTrigger && <Box as="span">{renderTrigger()}</Box>, renderMenu(props, menuItems, renderMenuItem)]
+    [
+      renderTrigger && (
+        <Box as="span" key="menu-trigger">
+          {renderTrigger()}
+        </Box>
+      ),
+      renderMenu(props, menuItems, renderMenuItem),
+    ]
   );
 };
 
@@ -105,14 +115,9 @@ export const MenuItem: FunctionComponent<IMenuItem> = props => {
       css: styles,
     },
     [
-      icon && (
-        <Icon
-          icon={icon}
-          pr={title || subtitle ? 10 : 0} // todo: replace with @xl
-        />
-      ),
+      icon && <Icon key="menu-icon" icon={icon} pr={title || subtitle ? 10 : 0} />,
       (title || subtitle) && (
-        <span>
+        <span key="menu-title">
           {title && <Box>{title}</Box>}
           {subtitle && <Box>{subtitle}</Box>}
         </span>
