@@ -30,7 +30,7 @@ storiesOf('Miscellaneous/Popup', module)
     <Popup
       {...popupKnobs()}
       renderTrigger={() => <Box as="span">With Defaults</Box>}
-      renderContent={({ theme }) => <Box color={theme.canvas.fg}>{text('content', 'here is the popup content')}</Box>}
+      renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
     />
   ))
   .add('with icon', () => (
@@ -43,10 +43,6 @@ storiesOf('Miscellaneous/Popup', module)
           </Box>
         );
       }}
-      renderContent={({ theme }) => (
-        <Box as="span" backgroundColor={theme.canvas.fg} color={theme.canvas.bg}>
-          Globe
-        </Box>
-      )}
+      renderContent={() => <Box as="span">Globe</Box>}
     />
   ));

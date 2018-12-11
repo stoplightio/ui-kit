@@ -1,10 +1,12 @@
-import * as React from 'react';
+/* @jsx jsx */
 
-// @ts-ignore
+import { jsx } from '@emotion/core';
+/// @ts-ignore
 import addons, { makeDecorator } from '@storybook/addons';
+import { Component, FunctionComponent, ReactNode } from 'react';
 
 import { Flex } from '../Flex';
-import { ThemeProvider, useTheme } from '../theme';
+import { ITheme, ThemeProvider, ThemeZone } from '../theme';
 
 export const withThemes = (themes: any[]) =>
   makeDecorator({
@@ -19,13 +21,9 @@ export const withThemes = (themes: any[]) =>
     },
   });
 
-const App: React.SFC = ({ children }) => {
-  const theme = useTheme();
-
+const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) => {
   return (
     <Flex
-      color={theme.canvas.fg}
-      backgroundColor={theme.canvas.bg}
       alignItems="center"
       justifyContent="center"
       position="absolute"
@@ -56,7 +54,7 @@ const App: React.SFC = ({ children }) => {
   );
 };
 
-class ThemeContainer extends React.Component<any, any> {
+class ThemeContainer extends Component<any, any> {
   public state = {
     themeName: sessionStorage.themeName || 'light',
   };
@@ -77,10 +75,38 @@ class ThemeContainer extends React.Component<any, any> {
 
   public render() {
     const { themeName } = this.state;
+    const zones = {
+      canvas: {
+        box:
+          themeName === 'dark'
+            ? {
+                fg: 'white',
+                bg: '#222',
+              }
+            : {
+                fg: '#111',
+                bg: 'white',
+              },
+      },
+      inverted: ({ box }: ITheme) => ({
+        box: {
+          fg: box!.bg,
+          bg: box!.fg,
+        },
+      }),
+      inner: {
+        box: {
+          fg: 'white',
+          bg: 'purple',
+        },
+      },
+    };
 
     return (
-      <ThemeProvider theme={{ base: themeName }}>
-        <App {...this.props} />
+      <ThemeProvider theme={{ base: themeName }} zones={zones}>
+        <ThemeZone name="canvas">
+          <App {...this.props} />
+        </ThemeZone>
       </ThemeProvider>
     );
   }

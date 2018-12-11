@@ -9,10 +9,10 @@ export type BaseTheme = 'dark' | 'light';
 export interface ITheme {
   base: BaseTheme;
 
-  canvas: {
+  box: {
     fg: string;
     bg: string;
-    link: string;
+    border: string;
   };
 
   checkbox: {

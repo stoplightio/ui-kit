@@ -3,10 +3,10 @@ import { ITheme } from './types';
 export const darkTheme: ITheme = {
   base: 'dark',
 
-  canvas: {
+  box: {
     fg: 'white',
     bg: '#222',
-    link: '#add8e6',
+    border: 'white',
   },
 
   button: {
