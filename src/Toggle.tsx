@@ -1,70 +1,131 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
-import * as React from 'react';
+import { FunctionComponent, ReactEventHandler, SyntheticEvent, useState } from 'react';
 
-import { Box } from './Box';
-import { Flex } from './Flex';
+import { Box, Flex, IBox, useTheme } from './';
 import { Icon } from './Icon';
-import { styled } from './utils';
 
-export interface IToggleProps {
+interface IToggleInputProps {
   id?: string;
-  className?: string;
-  checked?: boolean;
-  disabled?: boolean;
-  width?: string;
-  height?: string;
-  onChange?: (checked: boolean) => void;
+  onChange: ReactEventHandler<HTMLInputElement>;
 }
 
-export const BasicToggle = (props: IToggleProps) => {
-  const { id, className, width, height, disabled, onChange = noop } = props;
+const ToggleInput: FunctionComponent<IToggleInputProps> = props => {
+  return jsx(Box, {
+    ...props,
+    as: 'input',
+    type: 'checkbox',
+    css: {
+      position: 'absolute',
+    },
+    style: {
+      clip: 'rect(1px, 1px, 1px, 1px)',
+    },
+  });
+};
 
-  const [checked, setValue] = React.useState(props.checked || false);
-  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+interface IToggleInnerProps {
+  isChecked: boolean;
+  isDisabled: boolean;
+  height?: IBox['height'];
+  width?: IBox['width'];
+}
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.checked);
-    onChange(event.target.checked);
+const ToggleInnerIcon: FunctionComponent<IToggleInnerProps> = props => {
+  const css = toggleInnerIconStyles(props);
+
+  return jsx(Icon, {
+    icon: 'circle',
+    css,
+  });
+};
+
+const toggleInnerIconStyles = ({ isChecked }: IToggleInnerProps) => {
+  const theme = useTheme();
+
+  return {
+    color: isChecked ? theme.toggle.checkedFg : theme.toggle.checkedBg,
+    paddingLeft: isChecked ? '22px' : '4px',
+    transition: 'padding-left .15s ease-in-out, color .25s ease-in-out',
   };
+};
 
-  return (
-    <Box as="label" display="inline-block" id={id} className={className}>
-      <input
-        type="checkbox"
-        id={id}
-        checked={isChecked || false}
-        disabled={disabled}
-        onChange={handleChange}
-        style={{ position: 'absolute', clip: 'rect(1px, 1px, 1px, 1px)' }}
-      />
-      <Flex
-        as="span"
-        display="block"
-        m="none"
-        p="none"
-        radius="100px"
-        bg={isChecked ? 'toggle.checked.bg' : 'toggle.bg'}
-        cursor={disabled ? 'not-allowed' : 'pointer'}
-        width={width || '40px'}
-        height={height || '20px'}
-        opacity={disabled ? 0.6 : 1}
-        items="center"
-        css={{
-          fontSize: '14px',
-          transition: 'background-color .15s ease-in-out',
-        }}
-      >
-        <Icon
-          icon="circle"
-          fg={isChecked ? 'toggle.checked.fg' : 'toggle.fg'}
-          css={{
-            paddingLeft: isChecked ? '22px' : '4px',
-            transition: 'padding .15s ease-in-out, color .25s ease-in-out',
-          }}
-        />
-      </Flex>
-    </Box>
+const ToggleInner: FunctionComponent<IToggleInnerProps> = props => {
+  const css = toggleInnerStyles(props);
+
+  return jsx(
+    Flex,
+    {
+      as: 'span',
+      css,
+    },
+    [jsx(ToggleInnerIcon, props)]
   );
 };
 
-export const Toggle = styled<IToggleProps>(BasicToggle as any)``;
+const toggleInnerStyles = ({ isDisabled, isChecked, height = '20px', width = '40px' }: IToggleInnerProps) => {
+  const theme = useTheme();
+
+  return {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    borderRadius: '100px',
+    backgroundColor: isChecked ? theme.toggle.checkedBg : theme.toggle.bg,
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    width,
+    height,
+    opacity: isDisabled ? 0.6 : 1,
+    fontSize: '14px',
+    alignItems: 'center',
+    transition: 'background-color .15s ease-in-out',
+  };
+};
+
+export const Toggle: FunctionComponent<IToggle> = props => {
+  const { id, disabled, height, width, onChange = noop, ...rest } = props;
+  const css = toggleStyles();
+
+  const [checked, setValue] = useState<boolean>(props.checked || false);
+  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+
+  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    setValue(event.currentTarget.checked);
+    onChange(event.currentTarget.checked);
+  };
+
+  return jsx(
+    Box,
+    {
+      ...rest,
+      as: 'label',
+      htmlFor: id,
+      css,
+    },
+    [
+      jsx(ToggleInput, {
+        id,
+        onChange: handleChange,
+      }),
+      jsx(ToggleInner, {
+        isChecked,
+        isDisabled: !!disabled,
+        height,
+        width,
+      }),
+    ]
+  );
+};
+
+export interface IToggleProps {
+  onChange?: (checked: boolean) => void;
+}
+
+export interface IToggle extends IToggleProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
+
+const toggleStyles = () => ({
+  display: 'inline-block',
+});

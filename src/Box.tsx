@@ -1,176 +1,173 @@
-import {
-  bgColor,
-  borderColor,
-  borderRadius,
-  borders,
-  borderStyle,
-  bottom,
-  boxShadow,
-  css,
-  cursor,
-  display,
-  flex,
-  fontSize,
-  fontWeight,
-  height,
-  left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  opacity,
-  overflow,
-  position,
-  right,
-  space,
-  styled,
-  textAlign,
-  textColor,
-  top,
-  width,
-  zIndex,
-} from './utils';
+/* @jsx jsx */
 
-import { BorderStyleProperty } from 'csstype';
-import { BorderRadius, BorderWidth, BoxDimension, BoxShadow, FontSize, FontWeight, FullSpace } from './types';
+import { jsx } from '@emotion/core';
+import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
+import * as ss from 'styled-system';
 
-export interface IBoxProps {
-  className?: string;
-  css?: Object; // a valid javascript style object
+import * as sl from './styles';
+import { useTheme } from './theme';
 
-  fg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
-  bg?: string; // should ALWAYS be a theme color path to avoid hardcoding in values
+export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
+  /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
+  const {
+    as = 'div',
+    children,
+    style,
+    border,
+    borderTop,
+    borderBottom,
+    borderLeft,
+    borderRight,
+    borderRadius,
+    boxShadow,
+    display,
+    fontSize,
+    fontWeight,
+    fontStyle,
+    lineHeight,
+    letterSpacing,
+    m,
+    mt,
+    mb,
+    ml,
+    mr,
+    mx,
+    my,
+    p,
+    pt,
+    pb,
+    pl,
+    pr,
+    px,
+    py,
+    flex,
+    alignSelf,
+    textAlign,
+    position,
+    top,
+    bottom,
+    left,
+    right,
+    zIndex,
+    height,
+    minHeight,
+    maxHeight,
+    width,
+    minWidth,
+    maxWidth,
+    opacity,
+    textDecoration,
+    textDecorationColor,
+    textTransform,
+    color,
+    backgroundColor,
+    transform,
+    ...rest
+  } = props;
 
-  text?: FontSize;
-  align?: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'; // textAlign
-  weight?: FontWeight;
+  /** Add all the supported styles, passing in the relevant props. */
+  const css = [
+    ...boxStyles(),
+    ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
+    ss.borderRadius({ borderRadius }),
+    ss.boxShadow({ boxShadow }),
+    ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
+    ss.flex({ flex }),
+    ss.alignSelf({ alignSelf }),
 
-  m?: FullSpace;
-  mt?: FullSpace;
-  mr?: FullSpace;
-  mb?: FullSpace;
-  ml?: FullSpace;
-  mx?: FullSpace;
-  my?: FullSpace;
-  p?: FullSpace;
-  pt?: FullSpace;
-  pr?: FullSpace;
-  pb?: FullSpace;
-  pl?: FullSpace;
-  px?: FullSpace;
-  py?: FullSpace;
+    ss.textAlign({ textAlign }),
+    ss.lineHeight({ lineHeight }),
+    ss.fontSize({ fontSize }),
+    ss.fontWeight({ fontWeight }),
+    ss.fontStyle({ fontStyle }),
+    ss.letterSpacing({ letterSpacing }),
 
-  height?: BoxDimension | string | number;
-  maxHeight?: BoxDimension | string | number;
-  minHeight?: BoxDimension | string | number;
-  width?: BoxDimension | string | number;
-  maxWidth?: BoxDimension | string | number;
-  minWidth?: BoxDimension | string | number;
+    ss.display({ display }),
+    ss.height({ height }),
+    ss.minHeight({ minHeight }),
+    ss.maxHeight({ maxHeight }),
+    ss.width({ width }),
+    ss.minWidth({ minWidth }),
+    ss.maxWidth({ maxWidth }),
 
-  border?: BorderWidth;
-  borderTop?: BorderWidth;
-  borderLeft?: BorderWidth;
-  borderRight?: BorderWidth;
-  borderBottom?: BorderWidth;
-  borderColor?: string;
-  borderStyle?: BorderStyleProperty;
-  radius?: BorderRadius | string;
+    ss.position({ position }),
+    ss.top({ top }),
+    ss.bottom({ bottom }),
+    ss.left({ left }),
+    ss.right({ right }),
+    ss.zIndex({ zIndex }),
 
-  cursor?:
-    | 'auto'
-    | 'default'
-    | 'none'
-    | 'context-menu'
-    | 'help'
-    | 'pointer'
-    | 'progress'
-    | 'wait'
-    | 'cell'
-    | 'crosshair'
-    | 'text'
-    | 'vertical-text'
-    | 'alias'
-    | 'copy'
-    | 'move'
-    | 'no-drop'
-    | 'not-allowed'
-    | 'all-scroll'
-    | 'zoom-in'
-    | 'zoom-out'
-    | 'grab'
-    | 'grabbing';
+    ss.opacity({ opacity }),
 
-  display?:
-    | 'inline'
-    | 'block'
-    | 'contents'
-    | 'flex'
-    | 'grid'
-    | 'inline-block'
-    | 'inline-flex'
-    | 'inline-grid'
-    | 'inline-table'
-    | 'list-item'
-    | 'run-in'
-    | 'table'
-    | 'table-caption'
-    | 'table-column-group'
-    | 'table-header-group'
-    | 'table-footer-group'
-    | 'table-row-group'
-    | 'table-cell'
-    | 'table-column'
-    | 'table-row'
-    | 'none'
-    | 'initial'
-    | 'inherit';
-  flex?: string | number;
-  shadow?: BoxShadow;
-  opacity?: number;
+    sl.transform({ transform }),
+    sl.color({ color, backgroundColor }),
+    sl.textTransform({ textTransform }),
+    sl.textDecoration({ textDecoration, textDecorationColor }),
+  ];
 
-  overflow?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowX?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
-  overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
+  /** User provided style get pushed on last. */
+  if (style) css.push(style);
 
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  return jsx<Partial<IBox<HTMLElement>>>(
+    as,
+    {
+      ...rest,
+      ref,
+      css,
+    },
+    children
+  );
+});
 
-  z?: number;
+export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
+  extends HTMLAttributes<T>,
+    sl.ITextDecorationProps,
+    sl.IListStyleProps,
+    ss.BorderProps,
+    ss.BorderTopProps,
+    ss.BorderBottomProps,
+    ss.BorderLeftProps,
+    ss.BorderRightProps,
+    ss.BorderRadiusProps,
+    ss.BoxShadowProps,
+    ss.DisplayProps,
+    ss.FontSizeProps,
+    ss.FontWeightProps,
+    ss.FontStyleProps,
+    ss.LineHeightProps,
+    ss.LetterSpacingProps,
+    ss.SpaceProps,
+    ss.FlexProps,
+    ss.AlignSelfProps,
+    ss.TextAlignProps,
+    ss.PositionProps,
+    ss.TopProps,
+    ss.BottomProps,
+    ss.LeftProps,
+    ss.RightProps,
+    ss.ZIndexProps,
+    ss.HeightProps,
+    ss.MinHeightProps,
+    ss.MaxHeightProps,
+    ss.WidthProps,
+    ss.MinWidthProps,
+    ss.MaxWidthProps,
+    ss.OpacityProps {
+  as?: keyof ReactHTML | FunctionComponent | ComponentClass;
+  children?: any;
+  style?: CSSProperties;
+  css?: any;
+  [key: string]: any;
 }
 
-export const Box = styled<IBoxProps, 'div'>('div')(
-  // @ts-ignore
-  borders,
-  bgColor,
-  textColor,
-  borderRadius,
-  borderColor,
-  borderStyle,
-  borderColor,
-  bottom,
-  boxShadow,
-  css,
-  cursor,
-  display,
-  flex,
-  fontSize,
-  fontWeight,
-  height,
-  left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  opacity,
-  overflow,
-  position,
-  right,
-  space,
-  textAlign,
-  top,
-  width,
-  zIndex
-);
+export const boxStyles = () => {
+  const theme = useTheme();
+
+  return [
+    {
+      color: theme.box.fg,
+      backgroundColor: theme.box.bg,
+      borderColor: theme.box.border,
+    },
+  ];
+};

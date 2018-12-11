@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { AutoSizer, Index, List, ListRowProps, ListRowRenderer } from 'react-virtualized';
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { FunctionComponent, ReactNode, useState } from 'react';
+import { AutoSizer, List, ListProps, ListRowProps } from 'react-virtualized';
 
 import { Box } from './Box';
+import { useTheme } from './theme';
 import { getScrollTransform, getThumbDimension, verticalTrackStyle } from './utils/scroll';
 
-import { styled } from './utils';
-
-export interface IScrollListItemProps {
-  key: string;
-  index: number;
+export interface IScrollListItemProps extends ListRowProps {
   value: any;
-  style: React.CSSProperties;
 }
 
 export interface IOnScroll {
@@ -19,13 +18,15 @@ export interface IOnScroll {
   scrollTop?: number;
 }
 
+export declare type RowRendererFunc = ({ key, index, value }: IScrollListItemProps) => ReactNode;
+
 export interface IScrollListProps {
   // Either a fixed row height (number) or a function that returns the height of a row given its index.
-  rowHeight: number | ((params: Index) => number);
+  rowHeight: ListProps['rowHeight'];
 
   // Responsible for rendering a row
-  rowRenderer: ({ key, index, value }: IScrollListItemProps) => JSX.Element;
-  noRowsRenderer?: () => JSX.Element;
+  rowRenderer: RowRendererFunc;
+  noRowsRenderer?: ListProps['noRowsRenderer'];
   onScroll?: (e: IOnScroll) => void;
   list: any[];
 
@@ -39,48 +40,37 @@ export interface IScrollListProps {
   offset?: number;
 }
 
-const ListView = (props: IScrollListProps & { className: string }) => {
-  const {
-    className,
-    list,
-    rowHeight,
-    scrollToIndex,
-    scrollToAlignment,
-    offset,
-    rowRenderer,
-    noRowsRenderer,
-    onScroll,
-  } = props;
+export interface IScrollList extends IScrollListProps {}
 
-  const [{ clientHeight, scrollHeight, scrollTop }, setScrollEvent] = React.useState<IOnScroll>({});
+export const ScrollList: FunctionComponent<IScrollList> = props => {
+  const { list, offset, rowRenderer, onScroll, ...rest } = props;
+  const theme = useTheme();
+
+  const [{ clientHeight, scrollHeight, scrollTop }, setScrollEvent] = useState<IOnScroll>({});
   const thumbSize = getThumbDimension({ scroll: scrollHeight, client: clientHeight });
 
-  const [isScrolling, setisScrolling] = React.useState(false);
+  const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
 
-  const renderRow = ({ key, index, style }: ListRowProps) => rowRenderer({ key, index, value: list[index], style });
+  const renderRow = ({ index, ...rowProps }: ListRowProps) => rowRenderer({ index, value: list[index], ...rowProps });
 
   return (
     <AutoSizer>
       {({ height, width }) => (
-        <Box height={height} width={width} overflow="hidden" className={'box'}>
+        <Box height={height} width={width} overflow="hidden">
           <List
-            className={className}
-            rowHeight={rowHeight}
+            {...rest}
             rowCount={list.length}
-            rowRenderer={renderRow as ListRowRenderer}
-            noRowsRenderer={noRowsRenderer}
+            rowRenderer={renderRow}
             onScroll={(e: IOnScroll) => {
               setScrollEvent(e);
 
-              if (isScrolling) {
-                // @ts-ignore
-                clearTimeout(isScrolling);
+              if (isScrolling !== null) {
+                clearTimeout(isScrolling as number);
               }
 
-              setisScrolling(
-                // @ts-ignore
+              setIsScrolling(
                 setTimeout(() => {
-                  setisScrolling(false);
+                  setIsScrolling(null);
                 }, 1000)
               );
 
@@ -88,33 +78,25 @@ const ListView = (props: IScrollListProps & { className: string }) => {
                 onScroll(e);
               }
             }}
-            scrollToAlignment={scrollToAlignment}
-            scrollToIndex={scrollToIndex}
             scrollTop={offset}
             height={height + 15} // add 15 to offset the native scrollbars
             width={width + 15} // add 15 to offset the native scrollbars
           />
 
           {/** scrollbar */}
-          <div style={verticalTrackStyle()}>
-            <Box
-              className={'scroll1'}
-              height={`${thumbSize}px`}
-              width="6px"
-              cursor="grab"
-              radius="full"
-              opacity={isScrolling ? 1 : 0}
-              bg="scrollbar.bg"
-              css={{
-                transform: `translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbSize)}px)`,
-                transition: 'opacity .1s',
-              }}
-            />
-          </div>
+          <Box
+            {...verticalTrackStyle()}
+            height={`${thumbSize}px`}
+            width="6px"
+            cursor="grab"
+            borderRadius="10px"
+            opacity={isScrolling ? 1 : 0}
+            backgroundColor={theme.scrollbar.bg}
+            transform={`translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbSize)}px)`}
+            transition="opacity .1s"
+          />
         </Box>
       )}
     </AutoSizer>
   );
 };
-
-export const ScrollList = styled<IScrollListProps>(ListView as any)``;

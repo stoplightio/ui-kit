@@ -12,7 +12,7 @@ describe('useWindowResize hook', () => {
   const Wrapper = () => {
     const timestamp = useWindowResize();
 
-    return <span>{timestamp}</span>
+    return <span>{timestamp}</span>;
   };
   beforeEach(async () => {
     addEventListenerSpy = jest.spyOn(window, 'addEventListener');

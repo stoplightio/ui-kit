@@ -1,21 +1,43 @@
-import { CSSProperties } from 'react';
-import { Box, IBoxProps } from './Box';
-import { alignItems, flexDirection, flexWrap, justifyContent, styled } from './utils';
+/* @jsx jsx */
 
-export interface IFlexProps extends IBoxProps {
-  items?: CSSProperties['alignItems'];
-  justify?: CSSProperties['justifyContent'];
-  direction?: CSSProperties['flexDirection'];
-  wrap?: CSSProperties['flexWrap'];
-}
+import { jsx } from '@emotion/core';
+import { FunctionComponent } from 'react';
+import * as ss from 'styled-system';
 
-export const Flex = styled<IFlexProps, 'div'>(Box as any)(
-  {
-    // @ts-ignore
-    display: 'flex',
-  },
-  flexWrap,
-  flexDirection,
-  alignItems,
-  justifyContent
-);
+import { Box, IBox } from './Box';
+import * as sl from './styles';
+
+export const Flex: FunctionComponent<IFlex> = props => {
+  const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
+
+  const css = [
+    ss.flexBasis({ flexBasis }),
+    ss.flexDirection({ flexDirection }),
+    ss.flexWrap({ flexWrap }),
+    ss.alignItems({ alignItems }),
+    ss.justifyContent({ justifyContent }),
+    sl.flexFlow({ flexFlow }),
+    ...flexStyles(),
+  ];
+
+  return jsx(Box, {
+    ...rest,
+    css,
+  });
+};
+
+export interface IFlex<T extends HTMLElement = HTMLElement>
+  extends IBox<T>,
+    ss.FlexBasisProps,
+    ss.FlexDirectionProps,
+    ss.FlexWrapProps,
+    ss.AlignItemsProps,
+    ss.JustifyContentProps {}
+
+export const flexStyles = () => {
+  return [
+    {
+      display: 'flex',
+    },
+  ];
+};

@@ -1,7 +1,9 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import * as React from 'react';
-import { IBoxProps } from '../Box';
+
 import { Mark } from '../Mark';
 
 describe('Mark', () => {
@@ -21,17 +23,17 @@ describe('Mark', () => {
     expect(wrapper).toBeEmptyRender();
   });
 
-  it('attaches custom attributes', () => {
-    const attributes: IBoxProps = {
-      border: 'lg',
-      pl: 'xl',
+  it('attaches custom props', () => {
+    const props = {
+      border: '@lg',
+      pl: '@xl',
     };
 
     const wrapper = shallow(
-      <Mark mark={{ type: 'strong' }} attributes={attributes}>
+      <Mark mark={{ type: 'strong' }} {...props}>
         stoplight.io
       </Mark>
     );
-    expect(wrapper).toHaveProp(attributes);
+    expect(wrapper).toHaveProp(props);
   });
 });

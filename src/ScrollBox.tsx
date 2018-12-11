@@ -1,60 +1,54 @@
-import * as React from 'react';
-// @ts-ignore
-import { positionValues, Scrollbars } from 'react-custom-scrollbars';
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
+import { forwardRef, useRef, useState } from 'react';
+import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
-import { Box, IBoxProps } from './Box';
+import { Box, IBox } from './Box';
 import { useScrollToHash } from './hooks/useScrollToHash';
+import { useTheme } from './theme';
 import { getScrollTransform, getThumbDimension, horizontalTrackStyle, verticalTrackStyle } from './utils/scroll';
 
-export interface IScrollBoxRef {
-  scrollTop: (top?: number) => void;
-  scrollLeft: (left?: number) => void;
+const ScrollbarThumb = forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
+  const { isScrolling, ...rest } = props;
+  const css = scrollbarStyles({ isScrolling });
 
-  scrollToTop: () => void;
-  scrollToBottom: () => void;
-  scrollToLeft: () => void;
-  scrollToRight: () => void;
+  return jsx(Box, {
+    ...rest,
+    ref,
+    as: 'div',
+    css,
+  });
+});
 
-  getScrollLeft: () => number;
-  getScrollTop: () => number;
-  getScrollWidth: () => number;
-  getScrollHeight: () => number;
-
-  getClientWidth: () => number;
-  getClientHeight: () => number;
-
-  getThumbVerticalHeight: () => number;
-  getThumbHorizontalWidth: () => number;
-
-  getValues: () => any;
+interface IScrollBoxThumbProps {
+  isScrolling: boolean;
 }
 
-export interface IScrollBox extends IBoxProps {
-  innerRef?: React.RefObject<IScrollBoxRef>;
+interface IScrollBoxThumb extends IScrollBoxThumbProps, IBox<HTMLDivElement> {}
 
-  autoHeight?: boolean;
-  autoHideTimeout?: number;
+const scrollbarStyles = ({ isScrolling }: IScrollBoxThumbProps) => {
+  const theme = useTheme();
 
-  // can scroll to an anchor/id
-  scrollTo?: string;
+  return {
+    borderRadius: '5px',
+    cursor: 'grab',
+    backgroundColor: theme.scrollbar.bg,
+    opacity: isScrolling ? 1 : 0,
+    transition: 'opacity .1s',
+  };
+};
 
-  // if use are using this as a list scroller children should be an array
-  children?: any;
-
-  onUpdate?: (values: positionValues) => void;
-}
-
-export const ScrollBox = (props: IScrollBox) => {
-  // pull out scrollTo so they are not in scrollbarProps (don't want them spred onto <Scrollbars /> component)
+export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox) => {
+  // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
-  const [isScrolling, setisScrolling] = React.useState(false);
+  const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
 
   useScrollToHash(scrollTo);
 
-  const scrollbars = innerRef || React.useRef<IScrollBoxRef>(null);
-  const current = scrollbars.current as IScrollBoxRef;
-  const values = (current && current.getValues()) || {};
+  const scrollbars = innerRef || useRef<Scrollbars>(null);
+  const current = scrollbars.current;
+  const values = (current && current.getValues()) || ({} as positionValues);
   const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = values;
 
   const thumbHorizontal = getThumbDimension({ scroll: scrollWidth, client: clientWidth }) || 0;
@@ -63,20 +57,18 @@ export const ScrollBox = (props: IScrollBox) => {
   return (
     <Scrollbars
       {...scrollbarProps}
-      ref={innerRef || scrollbars}
+      ref={scrollbars}
       autoHideTimeout={autoHideTimeout}
       autoHeight={autoHeight}
       onUpdate={onUpdate}
       onScroll={(e: any) => {
-        if (isScrolling) {
-          // @ts-ignore
-          clearTimeout(isScrolling);
+        if (isScrolling !== null) {
+          clearTimeout(isScrolling as number);
         }
 
-        setisScrolling(
-          // @ts-ignore
+        setIsScrolling(
           setTimeout(() => {
-            setisScrolling(false);
+            setIsScrolling(null);
           }, autoHideTimeout)
         );
       }}
@@ -93,46 +85,42 @@ export const ScrollBox = (props: IScrollBox) => {
         );
       }}
       // Custom component overrides
-      renderTrackHorizontal={({ style }: any) => {
-        return <div style={horizontalTrackStyle()} />;
-      }}
-      renderThumbHorizontal={({ style }: any) => {
-        return (
-          <Box
-            radius="full"
-            cursor="grab"
-            bg="scrollbar.bg"
-            opacity={isScrolling ? 1 : 0}
-            height="6px"
-            width={thumbHorizontal}
-            css={{
-              transition: 'opacity .1s',
-              transform: `translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`,
-            }}
-          />
-        );
-      }}
-      renderTrackVertical={() => {
-        return <div style={verticalTrackStyle()} />;
-      }}
-      renderThumbVertical={({ style }: any) => {
-        return (
-          <Box
-            radius="full"
-            cursor="grab"
-            bg="scrollbar.bg"
-            opacity={isScrolling ? 1 : 0}
-            height={thumbVertical}
-            width="6px"
-            css={{
-              transition: 'opacity .1s',
-              transform: `translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`,
-            }}
-          />
-        );
-      }}
+      renderTrackHorizontal={() => <div style={horizontalTrackStyle()} />}
+      renderThumbHorizontal={() => (
+        <ScrollbarThumb
+          isScrolling={isScrolling !== null}
+          height="6px"
+          width={thumbHorizontal}
+          transform={`translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`}
+        />
+      )}
+      renderTrackVertical={() => <div style={verticalTrackStyle()} />}
+      renderThumbVertical={() => (
+        <ScrollbarThumb
+          isScrolling={isScrolling !== null}
+          height={thumbVertical}
+          width="6px"
+          transform={`translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`}
+        />
+      )}
     >
       {children}
     </Scrollbars>
   );
 };
+
+export interface IScrollBox extends IScrollBoxProps, ScrollbarProps {}
+
+export interface IScrollBoxProps {
+  innerRef?: React.RefObject<Scrollbars>;
+
+  autoHeight?: boolean;
+  autoHideTimeout?: number;
+
+  // can scroll to an anchor/id
+  scrollTo?: string;
+
+  onUpdate?: (values: positionValues) => void;
+}
+
+export { Scrollbars as IScrollbars };

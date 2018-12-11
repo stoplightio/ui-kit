@@ -1,36 +1,26 @@
-import { ITextProps, Text } from './Text';
-import { listStylePosition, listStyleType, styled } from './utils';
+/* @jsx jsx */
 
-export interface IListProps extends ITextProps {
-  listPosition?: 'inside' | 'outside' | 'initial' | 'inherit';
-  itemType?:
-    | 'circle'
-    | 'disc'
-    | 'square'
-    | 'armenian'
-    | 'cjk-ideographic'
-    | 'decimal'
-    | 'decimal-leading-zero'
-    | 'georgian'
-    | 'hebrew'
-    | 'hiragana'
-    | 'hiragana-iroha'
-    | 'katakana'
-    | 'katakana-iroha'
-    | 'lower-alpha'
-    | 'lower-greek'
-    | 'lower-latin'
-    | 'lower-roman'
-    | 'upper-alpha'
-    | 'upper-greek'
-    | 'upper-latin'
-    | 'upper-roman'
-    | 'none'
-    | 'inherit';
-}
+import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
+import { FunctionComponent } from 'react';
 
-export const List = styled<IListProps, 'ul'>(Text as any)(listStylePosition, listStyleType);
+import { Box, IBox } from './Box';
+import * as sl from './styles';
 
-List.defaultProps = {
-  as: 'ul',
+export const List: FunctionComponent<IList> = props => {
+  const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
+
+  const css = [sl.listStyle({ listStyle, listStylePosition })];
+
+  return jsx(Box, {
+    ...rest,
+    css,
+    as,
+  });
 };
+
+export interface IList extends IListProps, sl.IColorProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {}
+
+export interface IListProps {
+  as?: 'ul' | 'ol';
+}

@@ -1,23 +1,29 @@
 import * as React from 'react';
 
 import { useWindowResize } from '../hooks/useWindowResize';
+import { useTheme } from '../theme';
 import { PopupContent } from './PopupContent';
 import { IPopupDefaultProps, IPopupProps } from './types';
 import { calculateStyles, getDefaultStyle } from './utils';
 
 export { IPopupProps, IPopupDefaultProps };
 
-export const Popup = (props: IPopupProps) => {
+export interface IPopup extends IPopupProps {}
+
+export const Popup: React.FunctionComponent<IPopup> = props => {
+  const { hideDelay, width, offset, posX, posY } = props;
+
+  const theme = useTheme();
+
   const triggerRef = React.useRef<HTMLElement>(null);
   const contentRef = React.createRef<HTMLDivElement>();
   const [isVisible, setVisibility] = React.useState<boolean>(false);
   const lastResizeTimestamp = useWindowResize();
   let lastRepaintTimestamp = 0;
-  const [style, setStyle] = React.useState<React.CSSProperties | undefined>(undefined);
+  const [style, setStyle] = React.useState<React.CSSProperties>({});
   let isOverTrigger: boolean = false;
   let isOverContent: boolean = false;
-  // Number could be set here, but unfortunately Node returns Timeout which is not exported
-  let willHide: any;
+  let willHide: NodeJS.Timer | number | null = null;
 
   const repaint = React.useCallback(
     () => {
@@ -29,7 +35,7 @@ export const Popup = (props: IPopupProps) => {
         });
       }
     },
-    [props.width, props.offset, props.posX, props.posY, contentRef, lastRepaintTimestamp]
+    [width, offset, posX, posY, contentRef, lastRepaintTimestamp]
   );
 
   if (typeof window !== 'undefined') {
@@ -37,16 +43,16 @@ export const Popup = (props: IPopupProps) => {
   }
 
   const showPopup = () => {
-    if (willHide !== undefined) {
-      clearTimeout(willHide);
-      willHide = undefined;
+    if (willHide !== null) {
+      clearTimeout(willHide as number);
+      willHide = null;
     }
 
     setVisibility(true);
   };
 
   const hidePopup = () => {
-    if (willHide !== undefined) {
+    if (willHide !== null) {
       return;
     }
 
@@ -54,7 +60,7 @@ export const Popup = (props: IPopupProps) => {
       isOverTrigger = false;
       isOverContent = false;
       setVisibility(false);
-    }, props.hideDelay);
+    }, hideDelay);
   };
 
   const { renderTrigger, renderContent } = props;
@@ -95,9 +101,9 @@ export const Popup = (props: IPopupProps) => {
           isOver: isOverTrigger,
         }),
         {
+          ref: triggerRef,
           onMouseEnter: handleMouseEnter,
           onMouseLeave: handleMouseLeave,
-          ref: triggerRef,
         }
       )}
       {isVisible && (
@@ -111,6 +117,7 @@ export const Popup = (props: IPopupProps) => {
           {renderContent({
             ...funcs,
             isOver: isOverContent,
+            theme,
           })}
         </PopupContent>
       )}

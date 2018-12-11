@@ -1,22 +1,42 @@
-import * as React from 'react';
-import { Box, IBoxProps } from './Box';
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { FunctionComponent } from 'react';
+
+import { IText, Text } from './Text';
+import { useTheme } from './theme';
+
+export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
+  const { as = 'blockquote', isSelected, ...rest } = props;
+
+  const css = blockQuoteStyles({ isSelected });
+
+  return jsx(Text, {
+    ...rest,
+    as,
+    css,
+  });
+};
+
+export interface IBlockQuote extends IBlockQuoteProps, IText<HTMLQuoteElement | HTMLElement> {}
 
 export interface IBlockQuoteProps {
-  attributes?: IBoxProps;
-  children: any;
   isSelected?: boolean;
 }
 
-export const BlockQuote = ({ attributes, children, isSelected }: IBlockQuoteProps) => (
-  <Box
-    as="blockquote"
-    fg="blockQuote.fg"
-    pl="xl"
-    borderLeft="3px solid"
-    borderColor="blockQuote.borderColor"
-    shadow={isSelected ? 'blockQuote.shadow' : undefined}
-    {...attributes}
-  >
-    {children}
-  </Box>
-);
+export const blockQuoteStyles = ({ isSelected }: IBlockQuoteProps) => {
+  const theme = useTheme();
+
+  return [
+    {
+      padding: '15px 25px',
+      borderLeft: '5px solid',
+      maxWidth: '80%',
+      color: theme.blockQuote.fg,
+      borderColor: theme.blockQuote.border,
+    },
+    isSelected && {
+      boxShadow: theme.blockQuote.shadow,
+    },
+  ];
+};

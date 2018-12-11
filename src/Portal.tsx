@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ThemeConsumer } from 'styled-components';
-import { IThemeInterface } from './types';
 
 export interface IPortalProps {
   children: any;
@@ -36,14 +34,14 @@ export class Portal extends React.PureComponent<IPortalProps> {
     }
   }
 
-  private renderChildren = (theme: IThemeInterface) => {
+  private renderChildren = () => {
     const { children } = this.props;
 
     if (typeof children === 'function') {
-      return children(theme);
+      return children();
     }
 
-    return React.Children.map(this.props.children, child => React.cloneElement(child, { theme }));
+    return React.Children.map(this.props.children, child => React.cloneElement(child));
   };
 
   public render() {
@@ -51,6 +49,6 @@ export class Portal extends React.PureComponent<IPortalProps> {
       return null;
     }
 
-    return ReactDOM.createPortal(<ThemeConsumer>{this.renderChildren}</ThemeConsumer>, this.el);
+    return ReactDOM.createPortal(this.renderChildren(), this.el);
   }
 }

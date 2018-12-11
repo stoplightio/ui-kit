@@ -1,112 +1,45 @@
-import { FlipProp, IconName, IconPrefix, library, RotateProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as React from 'react';
+/* @jsx jsx */
 
-import { BorderRadius, BorderWidth, FontSize, FullSpace } from './types';
+import { jsx } from '@emotion/core';
 import {
-  bgColor,
-  borderColor,
-  borderRadius,
-  borders,
-  bottom,
-  css,
-  fontSize,
-  left,
-  opacity,
-  position,
-  right,
-  space,
-  styled,
-  textAlign,
-  textColor,
-  top,
-  zIndex,
-} from './utils';
+  FaSymbol,
+  FlipProp,
+  IconProp,
+  library,
+  PullProp,
+  RotateProp,
+  SizeProp,
+  Transform,
+} from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FunctionComponent } from 'react';
 
-export type IIcon = IconName | [IconPrefix, IconName];
-
-export interface IIconProps {
-  className?: string;
-  icon: IIcon;
-  spin?: boolean;
-  pulse?: boolean;
-  flip?: FlipProp;
-  size?: SizeProp;
-  rotation?: RotateProp;
-
-  // Subset of Box
-  css?: Object; // a valid javascript style object
-
-  fg?: string;
-  bg?: string;
-
-  text?: FontSize;
-
-  m?: FullSpace;
-  mt?: FullSpace;
-  mr?: FullSpace;
-  mb?: FullSpace;
-  ml?: FullSpace;
-  mx?: FullSpace;
-  my?: FullSpace;
-  p?: FullSpace;
-  pt?: FullSpace;
-  pr?: FullSpace;
-  pb?: FullSpace;
-  pl?: FullSpace;
-  px?: FullSpace;
-  py?: FullSpace;
-
-  border?: BorderWidth;
-  borderTop?: BorderWidth;
-  borderLeft?: BorderWidth;
-  borderRight?: BorderWidth;
-  borderBottom?: BorderWidth;
-  borderColor?: string;
-  radius?: BorderRadius;
-
-  opacity?: number;
-
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-
-  z?: number;
-}
+import { Box, IBox } from './Box';
 
 export const IconLibrary = library;
 
-export const Icon = styled<IIconProps>((props: IIconProps) => {
-  const { icon, spin, size, pulse, flip, rotation, className } = props;
+export const Icon: FunctionComponent<IIcon> = props => {
+  return jsx(Box, {
+    backgroundColor: 'transparent',
+    ...props,
+    as: FontAwesomeIcon as FunctionComponent,
+  });
+};
 
-  return (
-    <FontAwesomeIcon
-      className={className}
-      icon={icon}
-      spin={spin}
-      size={size}
-      pulse={pulse}
-      flip={flip}
-      rotation={rotation}
-    />
-  );
-})(
-  borderRadius,
-  borderColor,
-  bgColor,
-  borders,
-  bottom,
-  css,
-  fontSize,
-  left,
-  opacity,
-  position,
-  right,
-  space,
-  textAlign,
-  textColor,
-  top,
-  zIndex
-);
+export interface IIcon extends IIconProps, IBox<HTMLOrSVGElement> {}
+
+export interface IIconProps {
+  icon: IconProp;
+  mask?: IconProp;
+  spin?: boolean;
+  pulse?: boolean;
+  fixedWidth?: boolean;
+  inverse?: boolean;
+  listItem?: boolean;
+  flip?: FlipProp;
+  size?: SizeProp;
+  pull?: PullProp;
+  rotation?: RotateProp;
+  transform?: string | Transform;
+  symbol?: FaSymbol;
+}

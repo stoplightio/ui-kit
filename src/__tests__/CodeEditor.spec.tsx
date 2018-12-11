@@ -4,7 +4,7 @@ import * as React from 'react';
 import Editor from 'react-simple-code-editor';
 import { CodeEditor } from '../CodeEditor';
 
-describe('CodeEditor', () => {
+describe('CodeEditor component', () => {
   it('calls onChange on code change', () => {
     const onChange = jest.fn();
     const newCode = 'abcdef';

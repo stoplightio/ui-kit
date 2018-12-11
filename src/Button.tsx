@@ -1,55 +1,62 @@
-import { ITextProps, Text } from './Text';
-import { styled } from './utils';
+/* @jsx jsx */
 
-export interface IButtonProps extends ITextProps {}
+import { jsx } from '@emotion/core';
+import { FunctionComponent } from 'react';
 
-export const Button = styled<IButtonProps, 'button'>(Text as any)(
-  {
-    // @ts-ignore
-    appearance: 'none',
-    cursor: 'pointer',
-    opacity: 0.85,
+import { Box, IBox } from './Box';
+import { useTheme } from './theme';
 
-    ':focus': {
-      outline: 'none',
+export const Button: FunctionComponent<IButton> = props => {
+  const { as = 'button', disabled, ...rest } = props;
+
+  const css = buttonStyles({ disabled });
+
+  return jsx(Box, {
+    ...rest,
+    as,
+    css,
+  });
+};
+
+export interface IButton extends IButtonProps, IBox<HTMLButtonElement> {}
+
+export interface IButtonProps {
+  disabled?: boolean;
+}
+
+export const buttonStyles = ({ disabled }: IButtonProps = {}) => {
+  const theme = useTheme();
+
+  return [
+    {
+      appearance: 'none',
+      cursor: 'pointer',
+      opacity: 0.85,
+
+      backgroundColor: theme.button.bg,
+      color: theme.button.fg,
+
+      ':focus': {
+        outline: 'none',
+      },
+
+      ':hover': {
+        opacity: 0.75,
+        backgroundColor: theme.button.hoverBg,
+      },
+
+      ':active': {
+        opacity: 1,
+      },
     },
 
-    ':hover': {
-      opacity: 0.75,
-    },
-
-    ':active': {
-      opacity: 1,
-    },
-  },
-  // disabled style
-  // @ts-ignore FIXME
-  props =>
-    props.disabled && {
+    disabled && {
       cursor: 'not-allowed',
       opacity: 0.6,
 
       ':hover': {
         opacity: 0.6,
       },
-    }
-);
-
-Button.defaultProps = {
-  as: 'button',
-  display: 'inline-block',
-  decoration: 'none',
-  weight: 'semibold',
-  align: 'center',
-  m: 'none',
-  px: 'md',
-  py: 'sm',
-  border: 'xs',
-  radius: 'md',
-
-  // reference colors by path in theme
-  // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: 'button.fg',
-  bg: 'button.bg',
-  borderColor: 'button.border',
+    },
+  ];
 };

@@ -1,33 +1,38 @@
-import { styled } from './utils';
+/* @jsx jsx */
 
-import { Box, IBoxProps } from './Box';
+import { jsx } from '@emotion/core';
+import { FunctionComponent } from 'react';
 
-export interface IImageProps extends IBoxProps {
-  src: HTMLImageElement['src'];
-  alt?: HTMLImageElement['alt'];
-  title?: HTMLImageElement['title'];
+import { Box, IBox } from './Box';
+
+export const Image: FunctionComponent<IImage> = props => {
+  const { hidden, responsive, ...rest } = props;
+
+  const css = imageStyles({ hidden, responsive });
+
+  return jsx(Box, {
+    ...rest,
+    as: 'img',
+    css,
+  });
+};
+
+export interface IImage extends IImageProps, IBox<HTMLImageElement> {}
+
+export interface IImageProps {
   hidden?: boolean;
   responsive?: boolean;
-  height?: HTMLImageElement['height'];
-  width?: HTMLImageElement['width'];
 }
 
-export const Image = styled<IImageProps, 'img'>(Box).attrs({
-  as: 'img',
-})(
-  // @ts-ignore
-  ({ hidden }: IImageProps) => hidden && { display: 'none' },
+export const imageStyles = ({ hidden, responsive }: IImageProps = {}) => [
+  hidden && {
+    display: 'none',
+  },
 
-  ({ responsive }: IImageProps) =>
-    responsive && {
-      width: 'auto',
-      height: 'auto',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    }
-);
-
-Image.defaultProps = {
-  hidden: false,
-  responsive: false,
-};
+  responsive && {
+    width: 'auto',
+    height: 'auto',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+];

@@ -1,12 +1,9 @@
-// import { get } from 'lodash';
-import get = require('lodash/get');
 import * as React from 'react';
-import { withTheme } from 'styled-components';
-
+import { ReactEventHandler } from 'react';
 import ReactSelect from 'react-select';
 import { Props } from 'react-select/lib/Select';
 
-import { IThemeInterface } from './types';
+import { useTheme } from './theme';
 
 // renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.ts
 // @ts-ignore
@@ -24,8 +21,8 @@ interface ISelectProps extends Partial<Props<ISelectOption>> {
   onOpen?: () => void; // onMenuOpen
   onClose?: () => void; // onMenuClose
   onSearch?: (value: string) => void; // onInputChange
-  onScrollToTop?: (event: React.SyntheticEvent<HTMLElement>) => void; // onMenuScrollToTop
-  onScrollToBottom?: (event: React.SyntheticEvent<HTMLElement>) => void; // onMenuScrollToBottom
+  onScrollToTop?: ReactEventHandler<HTMLElement>; // onMenuScrollToTop
+  onScrollToBottom?: ReactEventHandler<HTMLElement>; // onMenuScrollToBottom
 
   loadingMessage?: string;
   noOptionsMessage?: string;
@@ -33,8 +30,6 @@ interface ISelectProps extends Partial<Props<ISelectOption>> {
   blurOnSelect?: boolean; // blurInputOnSelect
   closeOnSelect?: boolean;
   closeOnScroll?: boolean;
-
-  theme: IThemeInterface;
 }
 
 interface ISelectOption {
@@ -42,7 +37,7 @@ interface ISelectOption {
   value: any;
 }
 
-export const SelectBase = (props: ISelectProps) => {
+export const Select = (props: ISelectProps) => {
   const {
     multi,
     loading,
@@ -64,8 +59,6 @@ export const SelectBase = (props: ISelectProps) => {
 
     loadingMessage = 'Loading...',
     noOptionsMessage = 'No Options',
-
-    theme: providerTheme,
 
     ...selectProps
   } = props;
@@ -91,12 +84,10 @@ export const SelectBase = (props: ISelectProps) => {
       onMenuScrollToBottom={onScrollToBottom}
       {...selectProps}
       // CUSTOM STYLES
-      styles={customStyles(providerTheme)}
+      styles={customStyles()}
     />
   );
 };
-
-export const Select = withTheme(SelectBase);
 
 /**
  * Component styles copied from React-Select
@@ -104,11 +95,16 @@ export const Select = withTheme(SelectBase);
  * override color related
  */
 
-const customStyles = (theme: IThemeInterface) => {
-  const selectTheme = get(theme, 'components.select', {});
-  const chipTheme = get(selectTheme, 'chip', {});
-  const menuTheme = get(selectTheme, 'menu', {});
-  const indicatorsTheme = get(selectTheme, 'indicator', {});
+const customStyles = () => {
+  const theme = useTheme();
+
+  const { select: selectTheme = null } = theme;
+
+  if (selectTheme === null) {
+    return {};
+  }
+
+  const { chip: chipTheme, menu: menuTheme, indicator: indicatorsTheme } = selectTheme;
 
   return {
     clearIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
@@ -120,7 +116,7 @@ const customStyles = (theme: IThemeInterface) => {
         opacity: !isDisabled && 0.6,
       },
     }),
-    container: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
+    container: (provided: any) => ({
       ...provided,
       pointerEvents: null,
     }),
@@ -206,13 +202,13 @@ const customStyles = (theme: IThemeInterface) => {
       cursor: isMulti || !isSelected ? 'pointer' : 'default',
 
       // isFocus for somereason points to an internal hover state
-      color: isSelected ? menuTheme.selectedfg : isFocused ? menuTheme.hoverfg : 'inherit',
-      backgroundColor: isSelected ? menuTheme.selectedbg : isFocused ? menuTheme.hoverbg : 'transparent',
+      color: isSelected ? menuTheme.selectedFg : isFocused ? menuTheme.hoverFg : 'inherit',
+      backgroundColor: isSelected ? menuTheme.selectedBg : isFocused ? menuTheme.hoverBg : 'transparent',
 
       // provide some affordance on touch devices
       ':active': {
-        color: isSelected ? menuTheme.selectedbg : menuTheme.activebfg,
-        backgroundColor: isSelected ? menuTheme.selectedbg : menuTheme.activebg,
+        color: isSelected ? menuTheme.selectedFg : menuTheme.activeFg,
+        backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.activeBg,
       },
     }),
     placeholder: (provided: any) => ({

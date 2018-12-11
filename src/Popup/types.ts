@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { CSSProperties, ReactElement, ReactEventHandler, ReactNode } from 'react';
+import { ITheme } from '../theme';
 
 export type PopupTriggerRenderer = (
   props: {
@@ -7,7 +8,7 @@ export type PopupTriggerRenderer = (
     showPopup: () => void;
     hidePopup: () => void;
   }
-) => any;
+) => ReactElement<any>;
 
 export type PopupContentRenderer = (
   props: {
@@ -15,24 +16,27 @@ export type PopupContentRenderer = (
     isOver: boolean;
     showPopup: () => void;
     hidePopup: () => void;
+    theme: ITheme;
   }
 ) => any;
+
+export interface IPopupPositionOffset {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
 
 export interface IPopupPosition {
   width?: number; // force a width
   padding: number; // transparent space around the popup
-  offset?: {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-  };
+  offset?: IPopupPositionOffset;
   posX: 'left' | 'center' | 'right';
   posY: 'top' | 'center' | 'bottom';
 }
 
 export interface IPopupProps extends IPopupPosition {
-  hideDelay: number; // how long popup will show for after user mouses out
+  hideDelay?: number; // how long popup will show for after user mouses out
   renderTrigger: PopupTriggerRenderer;
   renderContent: PopupContentRenderer;
 }
@@ -45,9 +49,9 @@ export interface IPopupDefaultProps {
 }
 
 export interface IPopupContentProps {
-  children: React.ReactChildren;
-  onMouseEnter: (e: React.SyntheticEvent<HTMLElement>) => any;
-  onMouseLeave: (e: React.SyntheticEvent<HTMLElement>) => any;
+  children: ReactNode;
+  onMouseEnter: ReactEventHandler<HTMLElement>;
+  onMouseLeave: ReactEventHandler<HTMLElement>;
   repaint: () => any;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }

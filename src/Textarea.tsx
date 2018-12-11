@@ -1,70 +1,64 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import * as React from 'react';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
-import { ITextProps, Text } from './Text';
-import { styled } from './utils';
+import { Box, IBox } from './Box';
+import { useTheme } from './theme';
 
-export interface ITextareaProps extends ITextProps {
-  autosize?: boolean;
-  minRows?: number;
-  maxRows?: number;
+export const Textarea: FunctionComponent<ITextarea> = props => {
+  const { autosize, as = autosize ? AutosizeTextarea : 'textarea', onChange = noop, ...rest } = props;
 
-  value?: string;
-  onChange?: (value: string) => void;
-}
+  const css = textareaStyles(props);
 
-export const BasicTextArea = (props: ITextareaProps) => {
-  const { autosize, minRows, maxRows, onChange = noop, ...rest } = props;
-
-  const [value, setValue] = React.useState(props.value || '');
+  const [value, setValue] = useState<string>(props.value || '');
+  // todo: do we want controlled mode here?
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(event.target.value);
-    onChange(event.target.value);
+  const handleChange = (event: SyntheticEvent<HTMLTextAreaElement>) => {
+    setValue(event.currentTarget.value);
+    onChange(event);
   };
 
-  if (autosize) {
-    return (
-      <AutosizeTextarea {...rest} minRows={minRows} maxRows={maxRows} value={internalValue} onChange={handleChange} />
-    );
-  }
-
-  return React.createElement('textarea', { ...rest, value: internalValue, onChange: handleChange });
+  return jsx(Box, {
+    ...rest,
+    as,
+    value: internalValue,
+    onChange: handleChange,
+    css,
+  });
 };
 
-export const Textarea = styled<ITextareaProps>(Text as any)(
-  {
-    // @ts-ignore
-    ':focus': {
-      outline: 'none',
-      opacity: 1,
+export interface ITextarea extends ITextareaProps, IBox<HTMLTextAreaElement> {}
+
+export interface ITextareaProps {
+  autosize?: boolean;
+}
+
+export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
+  const theme = useTheme();
+
+  return [
+    {
+      padding: '2px 4px',
+      border: `1px solid ${theme.textarea.border}`,
+      borderRadius: '2px',
+      color: theme.textarea.fg,
+      backgroundColor: theme.textarea.bg,
+
+      ':focus': {
+        outline: 'none',
+        opacity: 1,
+      },
     },
-  },
-  // @ts-ignore
-  props =>
-    props.disabled && {
+    disabled && {
       cursor: 'not-allowed',
       opacity: 0.6,
     },
-  // @ts-ignore
-  props =>
-    props.autosize && {
+    autosize && {
       resize: 'none',
-    }
-);
-
-Textarea.defaultProps = {
-  as: BasicTextArea,
-  px: 'md',
-  py: 'sm',
-  border: 'xs',
-  radius: 'md',
-
-  // reference colors by path in theme
-  // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: 'textarea.fg',
-  bg: 'textarea.bg',
-  borderColor: 'textarea.border',
+    },
+  ];
 };

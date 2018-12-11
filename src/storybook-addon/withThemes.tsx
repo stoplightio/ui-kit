@@ -1,12 +1,12 @@
-import * as React from 'react';
+/* @jsx jsx */
 
-// @ts-ignore
+import { jsx } from '@emotion/core';
+/// @ts-ignore
 import addons, { makeDecorator } from '@storybook/addons';
-import merge = require('lodash/merge');
+import { Component, FunctionComponent, ReactNode } from 'react';
 
 import { Flex } from '../Flex';
-import { baseTheme } from '../theme';
-import { ThemeProvider } from '../utils';
+import { ITheme, ThemeProvider, ThemeZone } from '../theme';
 
 export const withThemes = (themes: any[]) =>
   makeDecorator({
@@ -21,7 +21,40 @@ export const withThemes = (themes: any[]) =>
     },
   });
 
-class ThemeContainer extends React.Component<any, any> {
+const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) => {
+  return (
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      position="absolute"
+      top={0}
+      bottom={0}
+      left={0}
+      right={0}
+      style={{
+        fontFamily:
+          'system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+      }}
+    >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .PreviewContainer td:nth-child(2) {
+              max-width: 460px;
+              overflow: auto;
+            }
+          `,
+        }}
+      />
+
+      <Flex style={{ overflow: 'auto' }} m="auto" p="75px 0" className="PreviewContainer">
+        {children}
+      </Flex>
+    </Flex>
+  );
+};
+
+class ThemeContainer extends Component<any, any> {
   public state = {
     themeName: sessionStorage.themeName || 'light',
   };
@@ -42,53 +75,38 @@ class ThemeContainer extends React.Component<any, any> {
 
   public render() {
     const { themeName } = this.state;
-    const { themes } = this.props;
-
-    const theme = merge({}, baseTheme, themes[themeName] || {});
-
-    console.info('Current Theme:', themeName, themes.base, theme);
+    const zones = {
+      canvas: {
+        box:
+          themeName === 'dark'
+            ? {
+                fg: 'white',
+                bg: '#222',
+              }
+            : {
+                fg: '#111',
+                bg: 'white',
+              },
+      },
+      inverted: ({ box }: ITheme) => ({
+        box: {
+          fg: box!.bg,
+          bg: box!.fg,
+        },
+      }),
+      inner: {
+        box: {
+          fg: 'white',
+          bg: 'purple',
+        },
+      },
+    };
 
     return (
-      <ThemeProvider theme={theme}>
-        <Flex
-          fg="fg"
-          bg="bg"
-          items="center"
-          justify="center"
-          position="absolute"
-          top={0}
-          bottom={0}
-          left={0}
-          right={0}
-          style={{
-            fontFamily:
-              'system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
-          }}
-        >
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `
-            .PreviewContainer td:nth-child(2) {
-              max-width: 460px;
-              overflow: auto;
-            }
-          `,
-            }}
-          />
-
-          <Flex
-            position="absolute"
-            top={0}
-            bottom={0}
-            left={0}
-            right={0}
-            style={{ overflow: 'auto', padding: '75px 0' }}
-            justify="center"
-            className="PreviewContainer"
-          >
-            {this.props.children}
-          </Flex>
-        </Flex>
+      <ThemeProvider theme={{ base: themeName }} zones={zones}>
+        <ThemeZone name="canvas">
+          <App {...this.props} />
+        </ThemeZone>
       </ThemeProvider>
     );
   }

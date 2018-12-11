@@ -1,63 +1,116 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
-import * as React from 'react';
+import { FunctionComponent, ReactEventHandler, useState } from 'react';
 
-import { Box } from './Box';
-import { Flex } from './Flex';
-import { Icon } from './Icon';
-import { styled } from './utils';
+import { Box, Flex, IBox, Icon, useTheme } from './';
 
-export interface ICheckboxProps {
-  id?: string;
-  className?: string;
-  checked?: boolean;
-  disabled?: boolean;
-  width?: string;
-  height?: string;
-  onChange?: (checked: boolean) => void;
+interface ICheckboxInputProps {
+  id: IBox['id'];
+  onChange: ReactEventHandler<HTMLInputElement>;
 }
 
-export const BasicCheckbox = (props: ICheckboxProps) => {
-  const { id, className, width, height, disabled, onChange = noop } = props;
+interface ICheckboxInput extends ICheckboxInputProps {}
 
-  const [checked, setValue] = React.useState(props.checked || false);
-  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+const CheckboxInput: FunctionComponent<ICheckboxInput> = props => {
+  return jsx(Box, {
+    ...props,
+    as: 'input',
+    type: 'checkbox',
+    position: 'absolute',
+    style: {
+      clip: 'rect(1px, 1px, 1px, 1px)',
+    },
+  });
+};
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.checked);
-    onChange(event.target.checked);
-  };
+interface ICheckboxInnerProps {
+  isChecked: boolean;
+  isDisabled: boolean;
+  width?: IBox['width'];
+  height?: IBox['height'];
+}
 
-  return (
-    <Box as="label" display="inline-block" id={id} className={className}>
-      <input
-        type="checkbox"
-        checked={isChecked || false}
-        disabled={disabled}
-        onChange={handleChange}
-        style={{ position: 'absolute', clip: 'rect(1px, 1px, 1px, 1px)' }}
-      />
-      <Flex
-        as="span"
-        display="block"
-        m="none"
-        p="none"
-        radius="md"
-        items="center"
-        justify="center"
-        bg={isChecked ? 'toggle.checked.bg' : 'toggle.bg'}
-        cursor={disabled ? 'not-allowed' : 'pointer'}
-        width={width || '20px'}
-        height={height || '20px'}
-        opacity={disabled ? 0.6 : 1}
-        css={{
-          fontSize: '14px',
-          transition: 'background-color .15s ease-in-out',
-        }}
-      >
-        {isChecked && <Icon icon="check" fg="toggle.checked.fg" />}
-      </Flex>
-    </Box>
+export interface ICheckboxInner extends ICheckboxInnerProps {}
+
+const CheckboxInner: FunctionComponent<ICheckboxInner> = props => {
+  const css = checkboxInnerStyles(props);
+
+  return jsx(
+    Flex,
+    {
+      as: 'span',
+      css,
+    },
+    props.isChecked && [jsx(Icon, { icon: 'check', backgroundColor: 'inherit' })]
   );
 };
 
-export const Checkbox = styled<ICheckboxProps>(BasicCheckbox as any)``;
+const checkboxInnerStyles = ({ isDisabled, isChecked, height = '20px', width = '20px' }: ICheckboxInner) => {
+  const theme = useTheme();
+
+  return {
+    margin: 0,
+    padding: 0,
+    borderRadius: '5px',
+    backgroundColor: isChecked ? theme.checkbox.checkedBg : theme.checkbox.bg,
+    color: theme.checkbox.fg,
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    width,
+    height,
+    opacity: isDisabled ? 0.6 : 1,
+    fontSize: '14px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color .15s ease-in-out',
+    overflow: 'hidden',
+  };
+};
+
+export const Checkbox: FunctionComponent<ICheckbox> = props => {
+  const { id, disabled: isDisabled, width, height, onChange = noop, ...rest } = props;
+  const css = checkboxStyles();
+
+  const [checked, setValue] = useState<boolean>(props.checked || false);
+  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+
+  const handleChange: ReactEventHandler<HTMLInputElement> = event => {
+    setValue(event.currentTarget.checked);
+    onChange(event.currentTarget.checked);
+  };
+
+  return jsx(
+    Box,
+    {
+      ...rest,
+      as: 'label',
+      htmlFor: id,
+      css,
+    },
+    [
+      jsx(CheckboxInput, {
+        id,
+        onChange: handleChange,
+      }),
+      jsx(CheckboxInner, {
+        isChecked,
+        isDisabled,
+        height,
+        width,
+      }),
+    ]
+  );
+};
+
+export interface ICheckboxProps {
+  id: IBox['id'];
+  onChange?: (checked: boolean) => void;
+}
+
+export interface ICheckbox extends ICheckboxProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
+
+export const checkboxStyles = () => ({
+  display: 'inline-block',
+});

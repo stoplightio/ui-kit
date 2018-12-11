@@ -1,125 +1,155 @@
-import * as React from 'react';
+/* @jsx jsx */
 
-import { Box, IBoxProps } from './Box';
-import { Flex, IFlexProps } from './Flex';
+import { css, jsx } from '@emotion/core';
+import { FunctionComponent, ReactNode } from 'react';
+
+import { Box } from './Box';
+import { Flex, IFlex } from './Flex';
 import { Icon, IIcon } from './Icon';
-import { styled } from './utils';
+import { useTheme } from './theme';
 
 // TODO allow dividers in the menu
-
-export interface IMenuTriggerProps {
-  children: any;
-}
 
 /**
  * MENU
  */
-declare type RenderMenuItem = (item: IMenuItemProps, index: number, items: IMenuItemProps[]) => any;
+export declare type RenderMenuItemFunc = (item: IMenuItem, index: number, items: IMenuItem[]) => ReactNode;
+export declare type RenderMenuFunc = (
+  props: IMenu,
+  menuItems: IMenuItem[],
+  renderMenuItem: RenderMenuItemFunc
+) => ReactNode;
 
-export interface IMenuProps {
-  menuItems: IMenuItemProps[];
-  direction?: IFlexProps['direction'];
-  attributes?: IFlexProps;
-  onMouseEnter?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
-  onMouseLeave?: React.EventHandler<React.SyntheticEvent<HTMLDivElement>>;
-  renderTrigger?: () => any;
-  renderMenuItem?: RenderMenuItem;
-  renderMenu?: (
-    props: IMenuProps & { className: string },
-    menuItems: IMenuItemProps[],
-    renderMenuItem: RenderMenuItem
-  ) => any;
-}
+const defaultRenderMenuItem: RenderMenuItemFunc = (item: IMenuItemProps, index: number) =>
+  jsx(MenuItem, { key: index, ...item });
 
-const MenuTrigger = styled<IMenuTriggerProps, any>(
-  ({ children, className }: IMenuTriggerProps & { className: string }) => React.cloneElement(children, { className })
-)``;
+const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, className }, menuItems, renderMenuItem) => {
+  const theme = useTheme();
 
-const MenuView = (props: IMenuProps & { className: string }) => {
-  const {
-    attributes = null,
-    className,
-    direction = 'column',
-    onMouseEnter,
-    onMouseLeave,
-    menuItems = [],
-    renderTrigger,
-    renderMenuItem = (item: IMenuItemProps, index: number) => <MenuItem key={index} {...item} />,
-    renderMenu = () => (
-      <Flex
-        fg="menu.fg"
-        bg="menu.bg"
-        borderColor="menu.border"
-        border="xs"
-        radius="md"
-        direction={direction}
-        position={renderTrigger ? 'absolute' : 'relative'}
-        {...attributes}
-      >
-        {menuItems.map(renderMenuItem)}
-      </Flex>
-    ),
-  } = props;
-
-  return (
-    <Flex className={className} direction={direction} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      {renderTrigger && <MenuTrigger>{renderTrigger()}</MenuTrigger>}
-      {renderMenu(props, menuItems, renderMenuItem)}
-    </Flex>
+  return jsx(
+    Flex,
+    {
+      key: 'menu-items',
+      className,
+      flexDirection: 'column',
+      color: theme.menu.fg,
+      backgroundColor: theme.menu.bg,
+      border: `1px solid ${theme.menu.border}`,
+      radius: 'md',
+      zIndex: 10000,
+      position: renderTrigger ? 'absolute' : 'relative',
+    },
+    menuItems.map(renderMenuItem)
   );
 };
 
-export const Menu = styled<IMenuProps, 'div'>(MenuView as any)`
-  position: relative;
+export const Menu: FunctionComponent<IMenu> = props => {
+  const {
+    menuItems,
+    renderTrigger,
+    renderMenuItem = defaultRenderMenuItem,
+    renderMenu = defaultRenderMenu,
+    key,
+    ...rest
+  } = props;
 
-  &:hover > ${Flex} {
-    display: flex !important;
-  }
-  
-  ${MenuTrigger} + ${Flex} {
-    display: none;
-  }
-`;
+  const styles = menuStyles();
 
+  return jsx(
+    Flex,
+    {
+      key,
+      flexDirection: 'column',
+      css: styles,
+      ...rest,
+    },
+    [
+      renderTrigger && (
+        <Box as="span" key="menu-trigger">
+          {renderTrigger()}
+        </Box>
+      ),
+      renderMenu(props, menuItems, renderMenuItem),
+    ]
+  );
+};
+
+export interface IMenuProps {
+  menuItems: IMenuItemProps[];
+  renderTrigger?: () => ReactNode;
+  renderMenuItem?: RenderMenuItemFunc;
+  renderMenu?: RenderMenuFunc;
+}
+
+export interface IMenu extends IMenuProps, IFlex {}
+
+export const menuStyles = () => {
+  return [
+    {
+      position: 'relative',
+    },
+    css`
+      &:hover > * {
+        display: flex !important;
+      }
+
+      > *:first-of-type + * {
+        display: none;
+      }
+    `,
+  ];
+};
 /**
  * MENU ITEM
  */
+export const MenuItem: FunctionComponent<IMenuItem> = props => {
+  const { icon, title, subtitle, onClick, disabled, ...rest } = props;
+
+  const styles = menuItemStyles({ disabled, onClick });
+
+  return jsx(
+    Flex,
+    {
+      ...rest,
+      onClick,
+      css: styles,
+    },
+    [
+      icon && <Icon key="menu-icon" icon={icon} pr={title || subtitle ? 10 : 0} />,
+      (title || subtitle) && (
+        <span key="menu-title">
+          {title && <Box>{title}</Box>}
+          {subtitle && <Box>{subtitle}</Box>}
+        </span>
+      ),
+    ]
+  );
+};
 
 export interface IMenuItemProps {
-  className?: string;
-  children?: any;
-
-  title?: any;
-  subtitle?: any;
-  icon?: IIcon;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  icon?: IIcon['icon'];
   disabled?: boolean;
-
-  onClick?: (event: React.MouseEvent) => any;
-  attributes?: IBoxProps;
+  onClick?: IFlex['onClick'];
 }
 
-export const MenuItem = (props: IMenuItemProps) => {
-  const { icon, title, subtitle, disabled, onClick, attributes = {} } = props;
+export interface IMenuItem extends IMenuItemProps, Pick<IFlex, Exclude<keyof IFlex, 'title'>> {}
 
-  return (
-    <Flex
-      items="center"
-      px="lg"
-      py="md"
-      text="md"
-      cursor={disabled ? 'not-allowed' : onClick ? 'pointer' : 'default'}
-      opacity={disabled && 0.6}
-      onClick={onClick}
-      {...attributes}
-    >
-      {icon && <Icon icon={icon} pr={(title || subtitle) && 'xl'} />}
+const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItemProps>) => {
+  const theme = useTheme();
 
-      {(title || subtitle) && (
-        <span>
-          {title && <Box>{title}</Box>}
-          {subtitle && <Box text="sm">{subtitle}</Box>}
-        </span>
-      )}
-    </Flex>
-  );
+  return [
+    {
+      alignItems: 'center',
+      padding: '6px 10px', // @md @lg'
+      cursor: disabled ? 'not-allowed' : onClick ? 'pointer' : 'default',
+      opacity: disabled && 0.6,
+
+      ':hover': {
+        backgroundColor: theme.menu.hoverBg,
+        color: theme.menu.hoverFg,
+      },
+    },
+  ];
 };

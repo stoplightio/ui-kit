@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { IPopupProps } from './types';
+import { CSSProperties, RefObject } from 'react';
+import { IPopupPositionOffset, IPopupProps } from './types';
 
-const getOffset = ({ offset }: IPopupProps) =>
+const getOffset = (offset?: IPopupPositionOffset) =>
   Object.assign(
     {
       top: 0,
@@ -12,7 +12,7 @@ const getOffset = ({ offset }: IPopupProps) =>
     offset || null
   );
 
-export const getDefaultStyle = ({ width, padding }: IPopupProps): React.CSSProperties => ({
+export const getDefaultStyle = ({ width, padding }: IPopupProps): CSSProperties => ({
   position: 'fixed',
   zIndex: 999,
   padding,
@@ -20,13 +20,13 @@ export const getDefaultStyle = ({ width, padding }: IPopupProps): React.CSSPrope
 });
 
 export const calculateStyles = (
-  trigger: React.RefObject<HTMLElement>,
-  content: React.RefObject<HTMLDivElement>,
+  trigger: RefObject<HTMLElement>,
+  content: RefObject<HTMLDivElement>,
   props: IPopupProps
-): React.CSSProperties | null => {
+): CSSProperties | null => {
   if (!trigger || !content || !trigger.current || !content.current) return null;
 
-  const offset = getOffset(props);
+  const offset = getOffset(props.offset);
 
   // TODO: smart choice based on content size and screen space if props.posX not defined
   let posX = props.posX;
@@ -36,7 +36,7 @@ export const calculateStyles = (
 
   // calculate the tooltip position
   // this style object will be passed to the renderContent function
-  const style: React.CSSProperties = {};
+  const style: CSSProperties = {};
 
   // where on the screen is the target
   const triggerDimensions = trigger.current.getBoundingClientRect();

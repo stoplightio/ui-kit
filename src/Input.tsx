@@ -1,74 +1,77 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import * as React from 'react';
+import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
-import { ITextProps, Text } from './Text';
-import { styled } from './utils';
+import { Box, IBox } from './Box';
+import { useTheme } from './theme';
 
-export interface IInputProps extends ITextProps {
-  type?: string;
-  autosize?: boolean;
-  value?: string | number;
-  onChange?: (value?: string | number) => void;
-}
+export type InputValue = boolean | number | string | undefined;
 
-export interface IInputState {
-  value?: string | number;
-}
+export const Input: FunctionComponent<IInput> = props => {
+  const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
 
-export const BasicInput = (props: IInputProps) => {
-  const { autosize, className, onChange = noop, ...rest } = props;
+  const css = inputStyles(props);
 
-  const [value, setValue] = React.useState(props.value || '');
+  const [value, setValue] = useState<InputValue>(props.value);
+  // todo: do we want controlled mode here?
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    onChange(event.target.value);
+  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    // fixme: might not work with boolean inputs such as radio/checkbox
+    setValue(event.currentTarget.value);
+    onChange(event);
   };
 
   if (autosize) {
-    return (
-      <AutosizeInput
-        inputClassName={className}
-        placeholderIsMinWidth={true}
-        {...rest}
-        value={internalValue}
-        onChange={handleChange}
-      />
-    );
+    return jsx(Box, {
+      as: AutosizeInput,
+      placeholderIsMinWidth: true,
+      ...rest,
+      value: internalValue,
+      onChange: handleChange,
+      type,
+      css,
+    });
   }
 
-  return React.createElement('input', { className, ...rest, value: internalValue, onChange: handleChange });
+  return jsx(Box, {
+    ...rest,
+    as,
+    value: internalValue,
+    onChange: handleChange,
+    type,
+    css,
+  });
 };
 
-export const Input = styled<IInputProps, 'input'>(Text as any)(
-  {
-    // @ts-ignore
-    ':focus': {
-      outline: 'none',
-      opacity: 1,
+export interface IInput extends IInputProps, IBox<HTMLInputElement> {}
+
+export interface IInputProps {
+  autosize?: boolean;
+}
+
+const inputStyles = ({ disabled }: IInput) => {
+  const theme = useTheme();
+
+  return [
+    {
+      padding: '2px 4px',
+      border: `1px solid ${theme.input.border}`,
+      borderRadius: '2px',
+      color: theme.input.fg,
+      backgroundColor: theme.input.bg,
+
+      ':focus': {
+        outline: 'none',
+        opacity: 1,
+      },
     },
-  },
-  // disabled style
-  // @ts-ignore
-  props =>
-    props.disabled && {
+    disabled && {
       cursor: 'not-allowed',
       opacity: 0.6,
-    }
-);
-
-Input.defaultProps = {
-  as: BasicInput,
-  px: 'md',
-  py: 'sm',
-  border: 'xs',
-  radius: 'md',
-
-  // reference colors by path in theme
-  // if path does not exist it at component, default to color.fg || color.bg || color.border respectively
-  fg: 'input.fg',
-  bg: 'input.bg',
-  borderColor: 'input.border',
+    },
+  ];
 };
