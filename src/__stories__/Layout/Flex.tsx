@@ -1,8 +1,11 @@
-import * as React from 'react';
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
+import * as ss from 'styled-system';
 
 import { Box, Flex, IFlex } from '../../';
 import { AlignItems, FlexDirection, FlexWrap, JustifyContent } from '../_utils';
@@ -10,10 +13,10 @@ import { boxKnobs } from './Box';
 
 export const flexKnobs = (tabName = 'Flex'): IFlex => ({
   ...boxKnobs(),
-  items: select('items', AlignItems, '', tabName),
-  justify: select('justify', JustifyContent, '', tabName),
-  direction: select('direction', FlexDirection, '', tabName),
-  wrap: select('wrap', FlexWrap, '', tabName),
+  alignItems: select('alignItems', AlignItems, '', tabName),
+  justifyContent: select('justifyContent', JustifyContent, '', tabName),
+  flexDirection: select('flexDirection', FlexDirection, '', tabName) as ss.FlexDirectionProps['flexDirection'],
+  flexWrap: select('flexWrap', FlexWrap, '', tabName) as ss.FlexWrapProps['flexWrap'],
 });
 
 storiesOf('Layout/Flex', module)
