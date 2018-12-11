@@ -3,10 +3,36 @@
 import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
+import { FunctionComponent } from 'react';
 
-import { Box, Flex, IFlex } from '../';
+import { IBox } from '../Box';
+import { IFlex } from '../Flex';
+import { ITheme } from '../theme';
 
 describe('Flex component', () => {
+  let Flex: FunctionComponent<IFlex>;
+  let Box: FunctionComponent<IBox>;
+
+  const theme: Partial<ITheme> = {
+    box: {
+      fg: '#000',
+      border: '#fff',
+      bg: '#111',
+    },
+  };
+
+  beforeAll(async () => {
+    jest.mock('../theme', () => ({
+      useTheme: jest.fn().mockReturnValue(theme),
+    }));
+
+    ({ Flex, Box } = await import('../'));
+  });
+
+  afterAll(() => {
+    jest.unmock('../theme');
+  });
+
   it('renders Box component', () => {
     const wrapper = shallow(<Flex />);
     expect(wrapper).toMatchElement(<Box />);

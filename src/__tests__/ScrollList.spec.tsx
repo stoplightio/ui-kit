@@ -19,7 +19,7 @@ describe('ScrollList', () => {
 
     jest.mock('../theme', () => ({
       useTheme: jest.fn().mockReturnValue({
-        canvas: {},
+        box: {},
         scrollbar: {},
       }),
     }));
