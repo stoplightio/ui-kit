@@ -3,7 +3,7 @@ import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { Box, Icon, Popup, useTheme } from '../..';
+import { Box, Icon, Popup } from '../..';
 
 export const popupKnobs = (tabName = 'Popup'): any => ({
   posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
@@ -30,14 +30,7 @@ storiesOf('Miscellaneous/Popup', module)
     <Popup
       {...popupKnobs()}
       renderTrigger={() => <Box as="span">With Defaults</Box>}
-      renderContent={() => {
-        const theme = useTheme();
-        return (
-          <Box color={theme.canvas.fg}>
-            {text('content', 'here is the popup content')}
-          </Box>
-        )
-      }}
+      renderContent={({ theme }) => <Box color={theme.canvas.fg}>{text('content', 'here is the popup content')}</Box>}
     />
   ))
   .add('with icon', () => (
@@ -50,13 +43,10 @@ storiesOf('Miscellaneous/Popup', module)
           </Box>
         );
       }}
-      renderContent={() => {
-        const theme = useTheme();
-        return (
-          <Box as="span" backgroundColor={theme.canvas.fg} color={theme.canvas.bg}>
-            Globe
-          </Box>
-        );
-      }}
+      renderContent={({ theme }) => (
+        <Box as="span" backgroundColor={theme.canvas.fg} color={theme.canvas.bg}>
+          Globe
+        </Box>
+      )}
     />
   ));

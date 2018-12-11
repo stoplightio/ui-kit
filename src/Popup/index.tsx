@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { useWindowResize } from '../hooks/useWindowResize';
+import { useTheme } from '../theme';
 import { PopupContent } from './PopupContent';
 import { IPopupDefaultProps, IPopupProps } from './types';
 import { calculateStyles, getDefaultStyle } from './utils';
@@ -11,6 +12,8 @@ export interface IPopup extends IPopupProps {}
 
 export const Popup: React.FunctionComponent<IPopup> = props => {
   const { hideDelay, width, offset, posX, posY } = props;
+
+  const theme = useTheme();
 
   const triggerRef = React.useRef<HTMLElement>(null);
   const contentRef = React.createRef<HTMLDivElement>();
@@ -114,6 +117,7 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
           {renderContent({
             ...funcs,
             isOver: isOverContent,
+            theme,
           })}
         </PopupContent>
       )}

@@ -1,4 +1,5 @@
 import { CSSProperties, ReactElement, ReactEventHandler, ReactNode } from 'react';
+import { ITheme } from '../theme';
 
 export type PopupTriggerRenderer = (
   props: {
@@ -15,6 +16,7 @@ export type PopupContentRenderer = (
     isOver: boolean;
     showPopup: () => void;
     hidePopup: () => void;
+    theme: ITheme;
   }
 ) => any;
 

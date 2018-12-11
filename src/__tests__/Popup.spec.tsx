@@ -123,6 +123,9 @@ describe('Popup', () => {
         hidePopup: expect.any(Function),
         isVisible: true,
         isOver: false,
+        theme: expect.objectContaining({
+          base: expect.any(String),
+        }),
       });
       wrapper.unmount();
     });
