@@ -20,6 +20,7 @@ export const IconLibrary = library;
 
 export const Icon: FunctionComponent<IIcon> = props => {
   return jsx(Box, {
+    backgroundColor: 'transparent',
     ...props,
     as: FontAwesomeIcon as FunctionComponent,
   });

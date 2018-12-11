@@ -44,7 +44,7 @@ const CheckboxInner: FunctionComponent<ICheckboxInner> = props => {
       as: 'span',
       css,
     },
-    props.isChecked && [jsx(Icon, { icon: 'check' })]
+    props.isChecked && [jsx(Icon, { icon: 'check', backgroundColor: 'inherit' })]
   );
 };
 
