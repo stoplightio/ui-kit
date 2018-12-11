@@ -47,7 +47,7 @@ const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) 
         }}
       />
 
-      <Flex style={{ overflow: 'auto' }} m="auto" p="75px 0" className="PreviewContainer">
+      <Flex overflow="visible" m="auto" p="75px 0" className="PreviewContainer">
         {children}
       </Flex>
     </Flex>

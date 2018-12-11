@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/core';
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
+import * as React from 'react';
 import { FunctionComponent } from 'react';
 
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +15,7 @@ import { ITheme } from '../theme';
 describe('Menu component', () => {
   let Menu: FunctionComponent<IMenu>;
   let MenuItem: FunctionComponent<IMenuItem>;
+  let useStateSpy: jest.SpyInstance;
 
   const theme: Partial<ITheme> = {
     menu: {
@@ -30,10 +32,13 @@ describe('Menu component', () => {
       useTheme: jest.fn().mockReturnValue(theme),
     }));
 
+    useStateSpy = jest.spyOn(React, 'useState');
+    useStateSpy.mockReturnValue([true, () => null]);
     ({ Menu, MenuItem } = await import('../'));
   });
 
   afterAll(() => {
+    useStateSpy.mockRestore();
     jest.unmock('../theme');
   });
 

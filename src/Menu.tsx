@@ -1,7 +1,8 @@
 /* @jsx jsx */
 
-import { css, jsx } from '@emotion/core';
-import { FunctionComponent, ReactNode } from 'react';
+import { jsx } from '@emotion/core';
+
+import { CSSProperties, FunctionComponent, ReactNode, useState } from 'react';
 
 import { Box } from './Box';
 import { Flex, IFlex } from './Flex';
@@ -13,9 +14,10 @@ import { useTheme } from './theme';
 /**
  * MENU
  */
+
 export declare type RenderMenuItemFunc = (item: IMenuItem, index: number, items: IMenuItem[]) => ReactNode;
 export declare type RenderMenuFunc = (
-  props: IMenu,
+  css: CSSProperties[],
   menuItems: IMenuItem[],
   renderMenuItem: RenderMenuItemFunc
 ) => ReactNode;
@@ -23,29 +25,47 @@ export declare type RenderMenuFunc = (
 const defaultRenderMenuItem: RenderMenuItemFunc = (item: IMenuItemProps, index: number) =>
   jsx(MenuItem, { key: index, ...item });
 
-const defaultRenderMenu: RenderMenuFunc = ({ renderTrigger, className }, menuItems, renderMenuItem) => {
-  const theme = useTheme();
-
+const defaultRenderMenu: RenderMenuFunc = (styles, menuItems, renderMenuItem) => {
   return jsx(
     Flex,
     {
+      css: styles,
       key: 'menu-items',
-      className,
-      flexDirection: 'column',
-      color: theme.menu.fg,
-      backgroundColor: theme.menu.bg,
-      border: `1px solid ${theme.menu.border}`,
-      radius: 'md',
-      zIndex: 10000,
-      position: renderTrigger ? 'absolute' : 'relative',
     },
     menuItems.map(renderMenuItem)
   );
 };
 
+export const menuListStyles = ({ hasTrigger, posX, posY, offset }: Partial<IMenu> & { hasTrigger: boolean }) => {
+  const theme = useTheme();
+
+  return [
+    {
+      flexDirection: 'column',
+      color: theme.menu.fg,
+      backgroundColor: theme.menu.bg,
+      border: `1px solid ${theme.menu.border}`,
+      borderRadius: '4px',
+      zIndex: 10000,
+      position: hasTrigger ? 'absolute' : 'relative',
+      margin: offset && `${offset.top || 0}px ${offset.right || 0}px ${offset.bottom || 0}px ${offset.left || 0}px`,
+    },
+    posY === 'bottom' ? { top: '100%' } : { bottom: '100%' },
+    posX === 'center' && {
+      left: '50%',
+      transform: 'translateX(-50%)',
+    },
+    posX === 'left' && { right: '100%' },
+    posX === 'right' && { left: '100%' },
+  ];
+};
+
 export const Menu: FunctionComponent<IMenu> = props => {
   const {
     menuItems,
+    posX = 'center',
+    posY = 'bottom',
+    offset,
     renderTrigger,
     renderMenuItem = defaultRenderMenuItem,
     renderMenu = defaultRenderMenu,
@@ -53,32 +73,51 @@ export const Menu: FunctionComponent<IMenu> = props => {
     ...rest
   } = props;
 
+  const [isShown, setShow] = useState<boolean>(false);
+  let timer: null | NodeJS.Timer | number = null;
+
   const styles = menuStyles();
+  const listStyles = menuListStyles({
+    posX,
+    posY,
+    offset,
+    hasTrigger: !!renderTrigger,
+  });
 
   return jsx(
-    Flex,
+    Box,
     {
       key,
-      flexDirection: 'column',
       css: styles,
+      onMouseEnter() {
+        clearTimeout(timer as number);
+        timer = null;
+        setShow(true);
+      },
+      onMouseLeave() {
+        timer = setTimeout(setShow, 200, false);
+      },
       ...rest,
     },
     [
-      renderTrigger && (
-        <Box as="span" key="menu-trigger">
-          {renderTrigger()}
-        </Box>
-      ),
-      renderMenu(props, menuItems, renderMenuItem),
+      renderTrigger && renderTrigger(isShown),
+      (!renderTrigger || isShown) && renderMenu(listStyles, menuItems, renderMenuItem),
     ]
   );
 };
 
 export interface IMenuProps {
   menuItems: IMenuItemProps[];
-  renderTrigger?: () => ReactNode;
+  renderTrigger?: (isShown: boolean) => ReactNode;
   renderMenuItem?: RenderMenuItemFunc;
-  renderMenu?: RenderMenuFunc;
+  posY?: 'top' | 'bottom';
+  posX?: 'left' | 'right' | 'center';
+  offset?: {
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 }
 
 export interface IMenu extends IMenuProps, IFlex {}
@@ -86,17 +125,12 @@ export interface IMenu extends IMenuProps, IFlex {}
 export const menuStyles = () => {
   return [
     {
+      display: 'inline-flex',
       position: 'relative',
+      width: 'auto',
+      overflow: 'visible',
+      whiteSpace: 'nowrap',
     },
-    css`
-      &:hover > * {
-        display: flex !important;
-      }
-
-      > *:first-of-type + * {
-        display: none;
-      }
-    `,
   ];
 };
 /**
@@ -115,12 +149,16 @@ export const MenuItem: FunctionComponent<IMenuItem> = props => {
       css: styles,
     },
     [
-      icon && <Icon key="menu-icon" icon={icon} pr={title || subtitle ? 10 : 0} />,
+      icon && (
+        <Flex alignItems="center" justifyContent="center" width="20px" pr={title || subtitle ? 10 : 0}>
+          <Icon key="menu-icon" icon={icon} />
+        </Flex>
+      ),
       (title || subtitle) && (
-        <span key="menu-title">
-          {title && <Box>{title}</Box>}
-          {subtitle && <Box>{subtitle}</Box>}
-        </span>
+        <Box as="span" key="menu-title">
+          {title && <Box as="span">{title}</Box>}
+          {subtitle && <Box as="span">{subtitle}</Box>}
+        </Box>
       ),
     ]
   );
