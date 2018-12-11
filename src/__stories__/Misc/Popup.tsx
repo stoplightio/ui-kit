@@ -1,7 +1,9 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import * as React from 'react';
 
 import { Box, Icon, Popup } from '../..';
 

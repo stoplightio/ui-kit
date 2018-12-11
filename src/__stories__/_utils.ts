@@ -1,48 +1,9 @@
 /**
  * BOX
  */
-import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-
-export const BorderRadius = ['', '@none', '@sm', '@md', '@lg', '@xl', '@full'];
-export const BorderWidth = ['', '@none', '@xs', '@sm', '@md', '@lg'];
-export const BoxShadow = ['', '@sm', '@md', '@lg'];
-export const TextAlign = ['', 'left', 'right', 'center', 'justify', 'initial', 'inherit'];
-export const OverFlow = ['', 'visible', 'hidden', 'scroll', 'auto', 'initial', 'inherit'];
-export const PositionOpts = ['', 'static', 'relative', 'fixed', 'absolute', 'sticky'];
-
-export const FontSize = ['', '@xs', '@sm', '@md', '@lg', '@xl', '@2xl', '@3xl', '@4xl', '@5xl', '@6xl'];
-export const FontWeight = ['', '@thin', '@light', '@normal', '@medium', '@semibold', '@bold', '@extrabold'];
-
-export const Size: SizeProp[] = ['xs', 'lg', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x'];
-
-export const FullSpace = [
-  '',
-  '@auto',
-  '@none',
-  '@xs',
-  '@sm',
-  '@md',
-  '@lg',
-  '@xl',
-  '@2xl',
-  '@3xl',
-  '@4xl',
-  '@5xl',
-  '@6xl',
-
-  // negative
-
-  '-@xs',
-  '-@sm',
-  '-@md',
-  '-@lg',
-  '-@xl',
-  '-@2xl',
-  '-@3xl',
-  '-@4xl',
-  '-@5xl',
-  '-@6xl',
-];
+export const TextAlign = ['left', 'right', 'center', 'justify', 'initial', 'inherit'];
+export const OverFlow = ['visible', 'hidden', 'scroll', 'auto', 'initial', 'inherit'];
+export const PositionOpts = ['static', 'relative', 'fixed', 'absolute', 'sticky', 'inherit', 'initial'];
 
 export const Display = [
   '',
@@ -147,15 +108,3 @@ export const InlineInputType = [
 ];
 
 export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];
-
-export const PopupPlacements = [
-  '',
-  'left-top',
-  'top',
-  'right-top',
-  'right',
-  'right-bottom',
-  'bottom',
-  'left-bottom',
-  'left',
-];

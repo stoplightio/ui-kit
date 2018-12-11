@@ -1,7 +1,9 @@
-import * as React from 'react';
+/* @jsx jsx */
 
-import { withKnobs } from '@storybook/addon-knobs';
+import { jsx } from '@emotion/core';
+
 import { action } from '@storybook/addon-actions';
+import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 

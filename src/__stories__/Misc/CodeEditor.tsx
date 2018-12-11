@@ -1,9 +1,12 @@
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { object, withKnobs } from '@storybook/addon-knobs';
 import { text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
-import * as React from 'react';
 
 import { CodeEditor, ICodeEditor } from '../../CodeEditor';
 

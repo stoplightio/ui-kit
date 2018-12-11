@@ -1,4 +1,6 @@
-import * as React from 'react';
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
 
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
