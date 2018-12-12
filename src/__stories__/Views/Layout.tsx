@@ -6,7 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { FunctionComponent } from 'react';
 
-import { Box, Button, createThemedModule, Flex, IBox } from '../../';
+import { Box, Button, Container, createThemedModule, Flex, IBox } from '../../';
 
 type Zones = 'inner' | 'inverted';
 const { ThemeZone, useTheme } = createThemedModule<Zones>();
@@ -63,8 +63,8 @@ const BoxBadge: FunctionComponent<IBox> = props => (
 );
 
 const CustomStoryBox: FunctionComponent<IBox> = ({ children, ...props }) => (
-  <Box position="relative" {...props}>
+  <Container position="relative" {...props}>
     {children}
     <BoxBadge>Box</BoxBadge>
-  </Box>
+  </Container>
 );
