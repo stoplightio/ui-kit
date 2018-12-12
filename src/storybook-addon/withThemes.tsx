@@ -6,15 +6,15 @@ import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
 import { Container, Flex } from '../';
-import { ITheme, ThemeProvider } from '../theme';
+import { ThemeProvider } from '../theme';
 
-export const withThemes = (themes: any[]) =>
+export const withThemes = (themes: any[], zones: object) =>
   makeDecorator({
     name: 'withThemes',
     wrapper: (story: any, context: any) => {
       // @ts-ignore
       return (
-        <ThemeContainer channel={addons.getChannel()} themes={themes}>
+        <ThemeContainer channel={addons.getChannel()} themes={themes} zones={zones}>
           {story(context)}
         </ThemeContainer>
       );
@@ -76,20 +76,7 @@ class ThemeContainer extends Component<any, any> {
 
   public render() {
     const { themeName } = this.state;
-    const zones = {
-      inverted: ({ container }: ITheme) => ({
-        container: {
-          fg: container.bg,
-          bg: container.fg,
-        },
-      }),
-      inner: {
-        container: {
-          fg: 'white',
-          bg: 'purple',
-        },
-      },
-    };
+    const { zones } = this.props;
 
     return (
       <ThemeProvider theme={{ base: themeName }} zones={zones}>

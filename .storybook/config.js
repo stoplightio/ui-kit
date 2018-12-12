@@ -4,6 +4,7 @@ import { addDecorator, configure } from '@storybook/react';
 
 import * as themes from '../src/storybook-addon/themes';
 import { withThemes } from '../src/storybook-addon/withThemes';
+import {ITheme} from '../src/theme';
 
 withOptions({
   addonPanelInRight: true,
@@ -33,7 +34,20 @@ addDecorator(
   })
 );
 
-addDecorator(withThemes(themes));
+addDecorator(withThemes(themes, {
+  inverted: ({ container }) => ({
+    container: {
+      fg: container.bg,
+      bg: container.fg,
+    },
+  }),
+  inner: {
+    container: {
+      fg: 'white',
+      bg: 'purple',
+    },
+  },
+}));
 
 function loadStories() {
   require('../src/__stories__');
