@@ -8,7 +8,7 @@ import { Box, IBox } from './Box';
 export const Break: FunctionComponent<IBreak> = props => {
   const { as = 'hr', m = '0 auto', thickness = 1, ...rest } = props;
 
-  const css = [...breakStyles({ thickness })];
+  const css = breakStyles({ thickness });
 
   return jsx(Box, {
     ...rest,
@@ -26,6 +26,9 @@ export interface IBreakProps {
 
 export const breakStyles = ({ thickness }: IBreakProps) => [
   {
+    border: '0 none',
     borderTop: `${thickness}px solid`,
+    height: 0,
+    margin: 0,
   },
 ];
