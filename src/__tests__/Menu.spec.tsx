@@ -32,59 +32,114 @@ describe('Menu component', () => {
       useTheme: jest.fn().mockReturnValue(theme),
     }));
 
+    jest.useFakeTimers();
     useStateSpy = jest.spyOn(React, 'useState');
     useStateSpy.mockReturnValue([true, () => null]);
     ({ Menu, MenuItem } = await import('../'));
   });
 
+  afterEach(() => {
+    useStateSpy.mockClear();
+  });
+
   afterAll(() => {
+    jest.useRealTimers();
     useStateSpy.mockRestore();
     jest.unmock('../theme');
   });
 
   it('renders items', () => {
-    const children = <span>test</span>;
+    const children = <span key="foo">test</span>;
 
-    const wrapper = mount(<Menu menuItems={[{ title: children }, { title: 'second elem' }]} />);
+    const wrapper = shallow(<Menu menuItems={[{ title: children }, { title: 'second elem' }]} />);
 
     expect(wrapper.find(MenuItem)).toHaveLength(2);
-    wrapper.unmount();
   });
 
   it('accepts custom renderTrigger', () => {
-    const trigger = <span>test</span>;
+    const trigger = <span key="menu-trigger">test</span>;
     const renderTrigger = jest.fn(() => trigger);
 
-    const wrapper = mount(<Menu renderTrigger={renderTrigger} menuItems={[]} />);
+    const wrapper = shallow(<Menu renderTrigger={renderTrigger} menuItems={[]} />);
 
     expect(renderTrigger).toHaveBeenCalled();
     expect(wrapper).toHaveText('test');
-    wrapper.unmount();
   });
 
   it('accepts custom renderMenu', () => {
     const renderMenu = jest.fn(() => 'foo');
     const renderMenuItem = jest.fn();
-    const menuItems = [{ title: 'test' }, { title: 'second elem' }];
+    const menuItems = [{ title: 'test', key: '1' }, { title: 'second elem', key: '2' }];
 
-    const wrapper = mount(<Menu renderMenu={renderMenu} renderMenuItem={renderMenuItem} menuItems={menuItems} />);
+    const wrapper = shallow(<Menu renderMenu={renderMenu} renderMenuItem={renderMenuItem} menuItems={menuItems} />);
 
     expect(renderMenu).toHaveBeenCalledWith(expect.any(Object), menuItems, renderMenuItem);
     expect(wrapper).toHaveText('foo');
-    wrapper.unmount();
   });
 
   it('accepts custom renderMenuItem', () => {
     const renderMenuItem = jest.fn((item: IMenuItemProps) => item.title);
-    const menuItems = [{ title: 'test' }, { title: 'second elem' }];
+    const menuItems = [{ title: 'test', key: '1' }, { title: 'second elem', key: '2' }];
 
-    const wrapper = mount(<Menu renderMenuItem={renderMenuItem} menuItems={menuItems} />);
+    const wrapper = shallow(<Menu renderMenuItem={renderMenuItem} menuItems={menuItems} />);
 
     expect(renderMenuItem).toHaveBeenCalledWith(menuItems[0], 0, menuItems);
     expect(renderMenuItem).toHaveBeenLastCalledWith(menuItems[1], 1, menuItems);
 
     expect(wrapper).toHaveText(menuItems.map(({ title }) => title).join(''));
-    wrapper.unmount();
+  });
+
+  describe('on mouseenter', () => {
+    let setStateSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      setStateSpy = jest.fn();
+      useStateSpy.mockReturnValueOnce([false, setStateSpy]);
+    });
+
+    it('sets display state to true', () => {
+      const wrapper = shallow(<Menu menuItems={[]} />);
+
+      wrapper.simulate('mouseenter');
+
+      expect(setStateSpy).toHaveBeenCalledWith(true);
+    });
+
+    it('clears timeout', () => {
+      const wrapper = shallow(<Menu menuItems={[]} />);
+
+      wrapper.simulate('mouseenter');
+
+      expect(clearTimeout).toHaveBeenCalled();
+    });
+  });
+
+  describe('on mouseleave', () => {
+    let setStateSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      setStateSpy = jest.fn();
+      useStateSpy.mockReturnValueOnce([true, setStateSpy]);
+    });
+
+    it('sets timeout', () => {
+      const wrapper = shallow(<Menu menuItems={[]} />);
+
+      wrapper.simulate('mouseleave');
+
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 200, false);
+    });
+
+    it('hides menu after timeout', () => {
+      useStateSpy.mockReturnValueOnce([true, setStateSpy]);
+
+      const wrapper = shallow(<Menu menuItems={[]} />);
+
+      wrapper.simulate('mouseleave');
+      jest.runTimersToTime(300);
+
+      expect(setStateSpy).toHaveBeenCalledWith(false);
+    });
   });
 });
 

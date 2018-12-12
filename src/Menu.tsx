@@ -150,8 +150,8 @@ export const MenuItem: FunctionComponent<IMenuItem> = props => {
     },
     [
       icon && (
-        <Flex alignItems="center" justifyContent="center" width="20px" pr={title || subtitle ? 10 : 0}>
-          <Icon key="menu-icon" icon={icon} />
+        <Flex key="menu-icon" alignItems="center" justifyContent="center" width="20px" pr={title || subtitle ? 10 : 0}>
+          <Icon icon={icon} />
         </Flex>
       ),
       (title || subtitle) && (
