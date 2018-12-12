@@ -22,8 +22,14 @@ export const containerStyles = () => {
 
   return [
     {
-      color: theme.container.fg,
       backgroundColor: theme.container.bg,
+      borderColor: theme.container.border,
+      color: theme.container.fg,
+
+      ':hover': {
+        backgroundColor: theme.container.hoverBg || theme.container.bg,
+        color: theme.container.hoverFg || theme.container.fg,
+      },
     },
   ];
 };

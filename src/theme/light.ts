@@ -6,6 +6,7 @@ export const lightTheme: ITheme = {
   container: {
     fg: '#111',
     bg: 'white',
+    border: '#111',
   },
 
   button: {

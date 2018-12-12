@@ -18,6 +18,9 @@ export interface ITheme {
   container: {
     fg: string;
     bg: string;
+    border: string;
+    hoverBg?: string;
+    hoverFg?: string;
   };
 
   contextMenu: {

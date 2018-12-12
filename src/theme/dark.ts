@@ -6,6 +6,7 @@ export const darkTheme: ITheme = {
   container: {
     fg: 'white',
     bg: '#222',
+    border: 'white',
   },
 
   button: {
