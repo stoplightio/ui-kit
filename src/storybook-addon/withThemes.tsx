@@ -5,8 +5,8 @@ import { jsx } from '@emotion/core';
 import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
-import { Flex } from '../Flex';
-import { ITheme, ThemeProvider, ThemeZone } from '../theme';
+import { Container, Flex } from '../';
+import { ITheme, ThemeProvider } from '../theme';
 
 export const withThemes = (themes: any[]) =>
   makeDecorator({
@@ -23,7 +23,8 @@ export const withThemes = (themes: any[]) =>
 
 const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) => {
   return (
-    <Flex
+    <Container
+      as={Flex}
       alignItems="center"
       justifyContent="center"
       position="absolute"
@@ -50,7 +51,7 @@ const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) 
       <Flex overflow="visible" m="auto" p="75px 0" className="PreviewContainer">
         {children}
       </Flex>
-    </Flex>
+    </Container>
   );
 };
 
@@ -76,26 +77,14 @@ class ThemeContainer extends Component<any, any> {
   public render() {
     const { themeName } = this.state;
     const zones = {
-      canvas: {
-        box:
-          themeName === 'dark'
-            ? {
-                fg: 'white',
-                bg: '#222',
-              }
-            : {
-                fg: '#111',
-                bg: 'white',
-              },
-      },
-      inverted: ({ box }: ITheme) => ({
-        box: {
-          fg: box!.bg,
-          bg: box!.fg,
+      inverted: ({ container }: ITheme) => ({
+        container: {
+          fg: container.bg,
+          bg: container.fg,
         },
       }),
       inner: {
-        box: {
+        container: {
           fg: 'white',
           bg: 'purple',
         },
@@ -104,9 +93,7 @@ class ThemeContainer extends Component<any, any> {
 
     return (
       <ThemeProvider theme={{ base: themeName }} zones={zones}>
-        <ThemeZone name="canvas">
-          <App {...this.props} />
-        </ThemeZone>
+        <App {...this.props} />
       </ThemeProvider>
     );
   }

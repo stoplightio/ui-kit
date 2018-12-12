@@ -13,13 +13,7 @@ describe('Flex component', () => {
   let Flex: FunctionComponent<IFlex>;
   let Box: FunctionComponent<IBox>;
 
-  const theme: Partial<ITheme> = {
-    box: {
-      fg: '#000',
-      border: '#fff',
-      bg: '#111',
-    },
-  };
+  const theme: Partial<ITheme> = {};
 
   beforeAll(async () => {
     jest.mock('../theme', () => ({

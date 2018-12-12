@@ -9,16 +9,15 @@ export type BaseTheme = 'dark' | 'light';
 export interface ITheme {
   base: BaseTheme;
 
-  box: {
-    fg: string;
-    bg: string;
-    border: string;
-  };
-
   checkbox: {
     fg: string;
     bg: string;
     checkedBg: string;
+  };
+
+  container: {
+    fg: string;
+    bg: string;
   };
 
   contextMenu: {

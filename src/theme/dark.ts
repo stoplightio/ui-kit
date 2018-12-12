@@ -3,10 +3,9 @@ import { ITheme } from './types';
 export const darkTheme: ITheme = {
   base: 'dark',
 
-  box: {
+  container: {
     fg: 'white',
     bg: '#222',
-    border: 'white',
   },
 
   button: {
