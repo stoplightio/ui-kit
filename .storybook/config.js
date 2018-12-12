@@ -4,7 +4,6 @@ import { addDecorator, configure } from '@storybook/react';
 
 import * as themes from '../src/storybook-addon/themes';
 import { withThemes } from '../src/storybook-addon/withThemes';
-import {ITheme} from '../src/theme';
 
 withOptions({
   addonPanelInRight: true,
