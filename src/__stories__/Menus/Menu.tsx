@@ -19,7 +19,7 @@ export const menuActions = (): Partial<IMenu> => ({
   onMouseLeave: action('onMouseLeave'),
 });
 
-storiesOf('Menus/Menu', module)
+storiesOf('Menus:Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Menu

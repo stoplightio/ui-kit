@@ -5,15 +5,21 @@ import { addDecorator, configure } from '@storybook/react';
 import * as themes from '../src/storybook-addon/themes';
 import { withThemes } from '../src/storybook-addon/withThemes';
 
-withOptions({
-  addonPanelInRight: true,
-  goFullScreen: false,
-  name: '@stoplight/ui-kit',
-  showAddonPanel: true,
-  showStoriesPanel: true,
-  sortStoriesByKind: true,
-  url: 'https://github.com/stoplightio/ui-kit',
-});
+addDecorator(
+  withOptions({
+    name: 'Stoplight UI-Kit',
+    url: 'https://github.com/stoplightio/ui-kit',
+    goFullScreen: false,
+    showStoriesPanel: true,
+    showAddonPanel: true,
+    showSearchBox: false,
+    addonPanelInRight: true,
+    sortStoriesByKind: true,
+    hierarchySeparator: /\//,
+    hierarchyRootSeparator: /:/,
+    selectedAddonPanel: undefined,
+  })
+);
 
 addDecorator(
   withInfo({

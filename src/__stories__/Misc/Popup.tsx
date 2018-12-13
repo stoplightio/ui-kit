@@ -21,7 +21,7 @@ export const popupKnobs = (tabName = 'Popup'): any => ({
   hideDelay: number('hideDelay', 200, { min: 0 } as NumberOptions, tabName),
 });
 
-storiesOf('Miscellaneous/Popup', module)
+storiesOf('Miscellaneous:Popup', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box height="500px" width="500px">

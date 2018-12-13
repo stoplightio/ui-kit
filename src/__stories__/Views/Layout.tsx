@@ -11,7 +11,7 @@ import { Box, Button, createThemedModule, Flex, IBox } from '../../';
 type Zones = 'inner' | 'inverted';
 const { ThemeZone, useTheme } = createThemedModule<Zones>();
 
-storiesOf('Views', module)
+storiesOf('Views:Kitchen Sink', module)
   .addDecorator(withKnobs)
   .add('Flex and Box', () => <App />);
 

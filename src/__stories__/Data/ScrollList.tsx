@@ -21,7 +21,7 @@ const rowRenderer: RowRendererFunc = ({ value, key, style }) => (
   </Box>
 );
 
-storiesOf('List & Tables/ScrollList', module)
+storiesOf('List & Tables:ScrollList', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box height="200px" css={{ outline: '2px solid black' }}>
