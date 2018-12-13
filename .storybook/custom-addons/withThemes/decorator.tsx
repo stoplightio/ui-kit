@@ -5,8 +5,8 @@ import { jsx } from '@emotion/core';
 import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
-import { Flex } from '../Flex';
-import { ITheme, ThemeProvider, ThemeZone } from '../theme';
+import { Flex } from '../../../src/Flex';
+import { ITheme, ThemeProvider, ThemeZone } from '../../../src/theme';
 
 export const withThemes = (themes: any[]) =>
   makeDecorator({

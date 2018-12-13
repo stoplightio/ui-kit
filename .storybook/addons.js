@@ -6,6 +6,7 @@ require('@storybook/addon-links/register');
 
 require('@storybook/addon-options/register');
 
-const { register } = require('../src/storybook-addon/register');
-const themes = require('../src/storybook-addon/themes');
+const { register } = require('./custom-addons/withThemes/register');
+const themes = require('./custom-addons/withThemes/themes');
+
 register(themes);

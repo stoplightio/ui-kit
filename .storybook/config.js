@@ -2,8 +2,8 @@ import { withInfo } from '@storybook/addon-info';
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
-import * as themes from '../src/storybook-addon/themes';
-import { withThemes } from '../src/storybook-addon/withThemes';
+import * as themes from './custom-addons/withThemes//themes';
+import { withThemes } from './custom-addons/withThemes/decorator';
 
 addDecorator(
   withOptions({
