@@ -2,7 +2,7 @@
 
 import { jsx } from '@emotion/core';
 
-import { CSSProperties, FunctionComponent, ReactNode, useState } from 'react';
+import { FunctionComponent, ReactNode, useState } from 'react';
 
 import { Box } from './Box';
 import { Flex, IFlex } from './Flex';
@@ -17,7 +17,7 @@ import { useTheme } from './theme';
 
 export declare type RenderMenuItemFunc = (item: IMenuItem, index: number, items: IMenuItem[]) => ReactNode;
 export declare type RenderMenuFunc = (
-  css: CSSProperties[],
+  css: IFlex['css'],
   menuItems: IMenuItem[],
   renderMenuItem: RenderMenuItemFunc
 ) => ReactNode;
@@ -48,7 +48,7 @@ export const menuListStyles = ({ hasTrigger, posX, posY, offset }: Partial<IMenu
       borderRadius: '4px',
       zIndex: 10000,
       position: hasTrigger ? 'absolute' : 'relative',
-      margin: offset && `${offset.top || 0}px ${offset.right || 0}px ${offset.bottom || 0}px ${offset.left || 0}px`,
+      margin: offset && `${offset.y || 0}px ${offset.x || 0}px`,
     },
     posY === 'bottom' ? { top: '100%' } : { bottom: '100%' },
     posX === 'center' && {
@@ -113,10 +113,8 @@ export interface IMenuProps {
   posY?: 'top' | 'bottom';
   posX?: 'left' | 'right' | 'center';
   offset?: {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
+    x?: number;
+    y?: number;
   };
 }
 
@@ -155,10 +153,10 @@ export const MenuItem: FunctionComponent<IMenuItem> = props => {
         </Flex>
       ),
       (title || subtitle) && (
-        <Box as="span" key="menu-title">
-          {title && <Box as="span">{title}</Box>}
-          {subtitle && <Box as="span">{subtitle}</Box>}
-        </Box>
+        <span key="menu-title">
+          {title && <span>{title}</span>}
+          {subtitle && <span>{subtitle}</span>}
+        </span>
       ),
     ]
   );

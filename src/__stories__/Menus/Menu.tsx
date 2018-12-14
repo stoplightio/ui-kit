@@ -3,7 +3,7 @@
 import { jsx } from '@emotion/core';
 
 import { action } from '@storybook/addon-actions';
-import { number, NumberOptions, select, withKnobs } from '@storybook/addon-knobs';
+import { number, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Icon, Menu } from '../..';
@@ -15,10 +15,8 @@ export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
   posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
   offset: {
-    top: number('offset.top', 0, { min: 0 } as NumberOptions, tabName),
-    bottom: number('offset.bottom', 0, { min: 0 } as NumberOptions, tabName),
-    left: number('offset.left', 0, { min: 0 } as NumberOptions, tabName),
-    right: number('offset.right', 0, { min: 0 } as NumberOptions, tabName),
+    x: number('offset.x', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+    y: number('offset.y', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   },
 });
 
