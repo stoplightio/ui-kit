@@ -5,8 +5,17 @@ import { jsx } from '@emotion/core';
 import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
-import { Container, Flex } from '../';
+import { createThemedModule, Flex, ICustomTheme } from '../';
 import { ThemeProvider } from '../theme';
+
+interface IAppLayout extends ICustomTheme {
+  canvas?: {
+    fg: string;
+    bg: string;
+  };
+}
+
+const { ThemeZone, useTheme } = createThemedModule<'app', IAppLayout>();
 
 export const withThemes = (themes: any[], zones: object) =>
   makeDecorator({
@@ -22,9 +31,12 @@ export const withThemes = (themes: any[], zones: object) =>
   });
 
 const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) => {
+  const theme = useTheme();
+
   return (
-    <Container
-      as={Flex}
+    <Flex
+      backgroundColor={theme.canvas && theme.canvas.bg}
+      color={theme.canvas && theme.canvas.fg}
       alignItems="center"
       justifyContent="center"
       position="absolute"
@@ -51,7 +63,7 @@ const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) 
       <Flex overflow="visible" m="auto" p="75px 0" className="PreviewContainer">
         {children}
       </Flex>
-    </Container>
+    </Flex>
   );
 };
 
@@ -80,7 +92,9 @@ class ThemeContainer extends Component<any, any> {
 
     return (
       <ThemeProvider theme={{ base: themeName }} zones={zones}>
-        <App {...this.props} />
+        <ThemeZone name="app">
+          <App {...this.props} />
+        </ThemeZone>
       </ThemeProvider>
     );
   }

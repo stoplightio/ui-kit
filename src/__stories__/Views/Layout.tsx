@@ -6,10 +6,17 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { FunctionComponent } from 'react';
 
-import { Box, Button, Container, createThemedModule, Flex, IBox, ITheme } from '../../';
+import { Box, Button, createThemedModule, Flex, IBox, ITheme } from '../../';
+
+interface ILayoutTheme extends ITheme {
+  container?: {
+    fg: string;
+    bg: string;
+  };
+}
 
 type Zones = 'inner' | 'inverted';
-const { ThemeZone, useTheme } = createThemedModule<Zones, ITheme>();
+const { ThemeZone, useTheme } = createThemedModule<Zones, ILayoutTheme>();
 
 storiesOf('Views', module)
   .addDecorator(withKnobs)
@@ -36,7 +43,7 @@ const App = () => {
           </CustomStoryBox>
         </ThemeZone>
 
-        <ThemeZone name="inverted">
+        <ThemeZone name="inner">
           <CustomStoryBox flex="1" p={3} pt={4}>
             <Box>[zone: 'inverted'] inverts canvas bg and fg</Box>
             <Button mt={3}>Go</Button>
@@ -62,9 +69,18 @@ const BoxBadge: FunctionComponent<IBox> = props => (
   />
 );
 
-const CustomStoryBox: FunctionComponent<IBox> = ({ children, ...props }) => (
-  <Container position="relative" {...props}>
-    {children}
-    <BoxBadge>Box</BoxBadge>
-  </Container>
-);
+const CustomStoryBox: FunctionComponent<IBox> = ({ children, ...props }) => {
+  const theme = useTheme();
+
+  return (
+    <Box
+      backgroundColor={theme.container && theme.container.bg}
+      color={theme.container && theme.container.fg}
+      position="relative"
+      {...props}
+    >
+      {children}
+      <BoxBadge>Box</BoxBadge>
+    </Box>
+  );
+};

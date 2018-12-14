@@ -34,11 +34,27 @@ addDecorator(
 );
 
 addDecorator(withThemes(themes, {
-  inverted: ({ container }) => ({
-    container: {
-      fg: container.bg,
-      bg: container.fg,
-    },
+  app: ({ base }) => ({
+    canvas: base === 'light'
+      ? {
+        fg: '#111',
+        bg: '#fff',
+      }
+      : {
+        fg: '#fff',
+        bg: '#111'
+      }
+  }),
+  inverted: ({ base }) => ({
+    container: base === 'dark'
+        ? {
+        fg: '#111',
+        bg: '#fff',
+      }
+      : {
+        fg: '#fff',
+        bg: '#111'
+      }
   }),
   inner: {
     container: {

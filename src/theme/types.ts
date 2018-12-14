@@ -15,21 +15,6 @@ export interface ITheme {
     checkedBg: string;
   };
 
-  container: {
-    fg: string;
-    bg: string;
-    border: string;
-    hoverFg?: string;
-    hoverBg?: string;
-    hoverBorder?: string;
-    focusFg?: string;
-    focusBg?: string;
-    focusBorder?: string;
-    activeFg?: string;
-    activeBg?: string;
-    activeBorder?: string;
-  };
-
   contextMenu: {
     fg: string;
     bg: string;

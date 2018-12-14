@@ -7,6 +7,7 @@ import { lightTheme } from './light';
 import { BaseTheme, ICustomTheme, ITheme } from './types';
 
 export * from './types';
+export * from './utils';
 
 /**
  * Every app should export the result of this function once, and re-use these values.

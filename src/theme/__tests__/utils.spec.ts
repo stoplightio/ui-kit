@@ -1,9 +1,7 @@
-import { ITheme } from '../types';
-
 describe('colorMixin', () => {
   let colorMixin: Function;
 
-  const theme: Partial<ITheme> = {
+  const theme = {
     container: {
       fg: 'red',
       bg: 'green',
