@@ -6,10 +6,10 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { FunctionComponent } from 'react';
 
-import { Box, Button, Container, createThemedModule, Flex, IBox } from '../../';
+import { Box, Button, Container, createThemedModule, Flex, IBox, ITheme } from '../../';
 
 type Zones = 'inner' | 'inverted';
-const { ThemeZone, useTheme } = createThemedModule<Zones>();
+const { ThemeZone, useTheme } = createThemedModule<Zones, ITheme>();
 
 storiesOf('Views', module)
   .addDecorator(withKnobs)
