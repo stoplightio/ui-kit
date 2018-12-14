@@ -2,10 +2,11 @@
 
 import { jsx } from '@emotion/core';
 
-import { FunctionComponent, ReactNode, useState } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 import { Box } from './Box';
 import { Flex, IFlex } from './Flex';
+import { useHover } from './hooks/useHover';
 import { Icon, IIcon } from './Icon';
 import { useTheme } from './theme';
 
@@ -69,12 +70,12 @@ export const Menu: FunctionComponent<IMenu> = props => {
     renderTrigger,
     renderMenuItem = defaultRenderMenuItem,
     renderMenu = defaultRenderMenu,
+    hideDelay = 200,
     key,
     ...rest
   } = props;
 
-  const [isShown, setShow] = useState<boolean>(false);
-  let timer: null | NodeJS.Timer | number = null;
+  const [isShown, handlers] = useHover(false, props, hideDelay);
 
   const styles = menuStyles();
   const listStyles = menuListStyles({
@@ -89,15 +90,8 @@ export const Menu: FunctionComponent<IMenu> = props => {
     {
       key,
       css: styles,
-      onMouseEnter() {
-        clearTimeout(timer as number);
-        timer = null;
-        setShow(true);
-      },
-      onMouseLeave() {
-        timer = setTimeout(setShow, 200, false);
-      },
       ...rest,
+      ...handlers,
     },
     [
       renderTrigger && renderTrigger(isShown),
@@ -110,6 +104,7 @@ export interface IMenuProps {
   menuItems: IMenuItemProps[];
   renderTrigger?: (isShown: boolean) => ReactNode;
   renderMenuItem?: RenderMenuItemFunc;
+  hideDelay?: number;
   posY?: 'top' | 'bottom';
   posX?: 'left' | 'right' | 'center';
   offset?: {

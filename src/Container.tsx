@@ -1,11 +1,10 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { CSSProperties, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
-import { IFlex } from './Flex';
 
 export interface IContainer extends IBox {}
 

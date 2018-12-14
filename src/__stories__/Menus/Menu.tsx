@@ -14,6 +14,7 @@ export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   ...flexKnobs(),
   posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
   posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
+  hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   offset: {
     x: number('offset.x', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
     y: number('offset.y', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
