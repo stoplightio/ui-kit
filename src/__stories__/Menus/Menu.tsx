@@ -3,24 +3,31 @@
 import { jsx } from '@emotion/core';
 
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
+import { number, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Flex, Icon, Menu } from '../..';
+import { Box, Icon, Menu } from '../..';
 import { IMenu } from '../../Menu';
 import { flexKnobs } from '../Layout/Flex';
 
 export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   ...flexKnobs(),
-});
-
-export const menuActions = (): Partial<IMenu> => ({
-  onMouseEnter: action('onMouseEnter'),
-  onMouseLeave: action('onMouseLeave'),
+  posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
+  posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
+  hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+  offset: {
+    x: number('offset.x', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+    y: number('offset.y', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+  },
 });
 
 storiesOf('Menus/Menu', module)
   .addDecorator(withKnobs)
+  .addDecorator(storyFn => (
+    <Box mt="100px" height="500px" width="200px">
+      {storyFn()}
+    </Box>
+  ))
   .add('with defaults', () => (
     <Menu
       {...menuKnobs()}
@@ -44,7 +51,6 @@ storiesOf('Menus/Menu', module)
   .add('with actions', () => (
     <Menu
       {...menuKnobs()}
-      {...menuActions()}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, icon: 'marker' },
         { title: 'No onClick', icon: 'image' },
@@ -75,7 +81,6 @@ storiesOf('Menus/Menu', module)
   .add('with trigger', () => (
     <Menu
       {...menuKnobs()}
-      {...menuActions()}
       renderTrigger={() => <Icon icon="heading" />}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, subtitle: 'has subtitle', icon: 'marker' },
@@ -87,9 +92,6 @@ storiesOf('Menus/Menu', module)
   .add('with custom renderMenu', () => (
     <Menu
       {...menuKnobs()}
-      renderMenu={(props, items, renderMenuItem) => (
-        <Flex direction="column">Custom menu {items.map(renderMenuItem)}</Flex>
-      )}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, subtitle: 'has subtitle', icon: 'marker' },
         { title: 'No onClick', icon: 'image' },
@@ -107,4 +109,4 @@ storiesOf('Menus/Menu', module)
         { title: 'Disabled Item', disabled: true, icon: 'times-circle' },
       ]}
     />
-  ));
+  ))

@@ -13,13 +13,7 @@ describe('Image component', () => {
   let Image: FunctionComponent<IImage>;
   let Box: FunctionComponent<IBox>;
 
-  const theme: Partial<ITheme> = {
-    box: {
-      fg: '#000',
-      border: '#fff',
-      bg: '#111',
-    },
-  };
+  const theme: Partial<ITheme> = {};
 
   beforeAll(async () => {
     jest.mock('../theme', () => ({

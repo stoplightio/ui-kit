@@ -14,6 +14,7 @@ import { ITheme } from '../theme';
 describe('Menu component', () => {
   let Menu: FunctionComponent<IMenu>;
   let MenuItem: FunctionComponent<IMenuItem>;
+  let useHoverMock: jest.MockInstance<any>;
 
   const theme: Partial<ITheme> = {
     menu: {
@@ -30,56 +31,94 @@ describe('Menu component', () => {
       useTheme: jest.fn().mockReturnValue(theme),
     }));
 
+    jest.mock('../hooks/useHover', () => ({
+      useHover: jest.fn().mockReturnValue([]),
+    }));
+
+    // @ts-ignore
+    ({ useHover: useHoverMock } = await import('../hooks/useHover'));
+
+    jest.useFakeTimers();
     ({ Menu, MenuItem } = await import('../'));
   });
 
+  afterEach(() => {
+    useHoverMock.mockClear();
+  });
+
   afterAll(() => {
+    jest.useRealTimers();
     jest.unmock('../theme');
+    jest.unmock('../hooks/useHover');
   });
 
   it('renders items', () => {
-    const children = <span>test</span>;
+    const children = <span key="foo">test</span>;
 
-    const wrapper = mount(<Menu menuItems={[{ title: children }, { title: 'second elem' }]} />);
+    const wrapper = shallow(<Menu menuItems={[{ title: children }, { title: 'second elem' }]} />);
 
     expect(wrapper.find(MenuItem)).toHaveLength(2);
-    wrapper.unmount();
   });
 
   it('accepts custom renderTrigger', () => {
-    const trigger = <span>test</span>;
+    const trigger = <span key="menu-trigger">test</span>;
     const renderTrigger = jest.fn(() => trigger);
 
-    const wrapper = mount(<Menu renderTrigger={renderTrigger} menuItems={[]} />);
+    const wrapper = shallow(<Menu renderTrigger={renderTrigger} menuItems={[]} />);
 
     expect(renderTrigger).toHaveBeenCalled();
     expect(wrapper).toHaveText('test');
-    wrapper.unmount();
   });
 
   it('accepts custom renderMenu', () => {
     const renderMenu = jest.fn(() => 'foo');
     const renderMenuItem = jest.fn();
-    const menuItems = [{ title: 'test' }, { title: 'second elem' }];
+    const menuItems = [{ title: 'test', key: '1' }, { title: 'second elem', key: '2' }];
 
-    const wrapper = mount(<Menu renderMenu={renderMenu} renderMenuItem={renderMenuItem} menuItems={menuItems} />);
+    const wrapper = shallow(<Menu renderMenu={renderMenu} renderMenuItem={renderMenuItem} menuItems={menuItems} />);
 
     expect(renderMenu).toHaveBeenCalledWith(expect.any(Object), menuItems, renderMenuItem);
     expect(wrapper).toHaveText('foo');
-    wrapper.unmount();
   });
 
   it('accepts custom renderMenuItem', () => {
     const renderMenuItem = jest.fn((item: IMenuItemProps) => item.title);
-    const menuItems = [{ title: 'test' }, { title: 'second elem' }];
+    const menuItems = [{ title: 'test', key: '1' }, { title: 'second elem', key: '2' }];
 
-    const wrapper = mount(<Menu renderMenuItem={renderMenuItem} menuItems={menuItems} />);
+    const wrapper = shallow(<Menu renderMenuItem={renderMenuItem} menuItems={menuItems} />);
 
     expect(renderMenuItem).toHaveBeenCalledWith(menuItems[0], 0, menuItems);
     expect(renderMenuItem).toHaveBeenLastCalledWith(menuItems[1], 1, menuItems);
 
     expect(wrapper).toHaveText(menuItems.map(({ title }) => title).join(''));
-    wrapper.unmount();
+  });
+
+  it('attaches hover handlers', () => {
+    const handlers = {
+      onMouseEnter() {
+        /* nada */
+      },
+      onMouseLeave() {
+        /* nada */
+      },
+    };
+
+    useHoverMock.mockReturnValue([false, handlers]);
+    const wrapper = shallow(<Menu menuItems={[]} />);
+    expect(wrapper).toHaveProp(handlers);
+  });
+
+  describe('on hover', () => {
+    beforeEach(() => {
+      useHoverMock.mockReturnValueOnce([true]);
+    });
+
+    it('displays list', () => {
+      const renderMenu = jest.fn();
+      shallow(<Menu menuItems={[]} renderMenu={renderMenu} />);
+
+      expect(renderMenu).toHaveBeenCalled();
+    });
   });
 });
 

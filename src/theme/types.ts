@@ -9,12 +9,6 @@ export type BaseTheme = 'dark' | 'light';
 export interface ITheme {
   base: BaseTheme;
 
-  box: {
-    fg: string;
-    bg: string;
-    border: string;
-  };
-
   checkbox: {
     fg: string;
     bg: string;
@@ -83,7 +77,7 @@ export interface ITheme {
     hoverBg: string;
   };
 
-  select?: {
+  select: {
     fg: string;
     bg: string;
     border: string;

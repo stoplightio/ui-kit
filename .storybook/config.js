@@ -33,7 +33,36 @@ addDecorator(
   })
 );
 
-addDecorator(withThemes(themes));
+addDecorator(withThemes(themes, {
+  app: ({ base }) => ({
+    canvas: base === 'light'
+      ? {
+        fg: '#111',
+        bg: '#fff',
+      }
+      : {
+        fg: '#fff',
+        bg: '#111'
+      }
+  }),
+  inverted: ({ base }) => ({
+    container: base === 'dark'
+        ? {
+        fg: '#111',
+        bg: '#fff',
+      }
+      : {
+        fg: '#fff',
+        bg: '#111'
+      }
+  }),
+  inner: {
+    container: {
+      fg: 'white',
+      bg: 'purple',
+    },
+  },
+}));
 
 function loadStories() {
   require('../src/__stories__');

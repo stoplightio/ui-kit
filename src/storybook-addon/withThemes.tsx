@@ -5,16 +5,25 @@ import { jsx } from '@emotion/core';
 import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
-import { Flex } from '../Flex';
-import { ITheme, ThemeProvider, ThemeZone } from '../theme';
+import { createThemedModule, Flex, ICustomTheme } from '../';
+import { ThemeProvider } from '../theme';
 
-export const withThemes = (themes: any[]) =>
+interface IAppLayout extends ICustomTheme {
+  canvas?: {
+    fg: string;
+    bg: string;
+  };
+}
+
+const { ThemeZone, useTheme } = createThemedModule<'app', IAppLayout>();
+
+export const withThemes = (themes: any[], zones: object) =>
   makeDecorator({
     name: 'withThemes',
     wrapper: (story: any, context: any) => {
       // @ts-ignore
       return (
-        <ThemeContainer channel={addons.getChannel()} themes={themes}>
+        <ThemeContainer channel={addons.getChannel()} themes={themes} zones={zones}>
           {story(context)}
         </ThemeContainer>
       );
@@ -22,8 +31,12 @@ export const withThemes = (themes: any[]) =>
   });
 
 const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) => {
+  const theme = useTheme();
+
   return (
     <Flex
+      backgroundColor={theme.canvas && theme.canvas.bg}
+      color={theme.canvas && theme.canvas.fg}
       alignItems="center"
       justifyContent="center"
       position="absolute"
@@ -47,7 +60,7 @@ const App: FunctionComponent<Partial<{ children: ReactNode }>> = ({ children }) 
         }}
       />
 
-      <Flex style={{ overflow: 'auto' }} m="auto" p="75px 0" className="PreviewContainer">
+      <Flex overflow="visible" m="auto" p="75px 0" className="PreviewContainer">
         {children}
       </Flex>
     </Flex>
@@ -75,36 +88,11 @@ class ThemeContainer extends Component<any, any> {
 
   public render() {
     const { themeName } = this.state;
-    const zones = {
-      canvas: {
-        box:
-          themeName === 'dark'
-            ? {
-                fg: 'white',
-                bg: '#222',
-              }
-            : {
-                fg: '#111',
-                bg: 'white',
-              },
-      },
-      inverted: ({ box }: ITheme) => ({
-        box: {
-          fg: box!.bg,
-          bg: box!.fg,
-        },
-      }),
-      inner: {
-        box: {
-          fg: 'white',
-          bg: 'purple',
-        },
-      },
-    };
+    const { zones } = this.props;
 
     return (
       <ThemeProvider theme={{ base: themeName }} zones={zones}>
-        <ThemeZone name="canvas">
+        <ThemeZone name="app">
           <App {...this.props} />
         </ThemeZone>
       </ThemeProvider>
