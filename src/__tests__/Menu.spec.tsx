@@ -3,7 +3,6 @@
 import { jsx } from '@emotion/core';
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
-import * as React from 'react';
 import { FunctionComponent } from 'react';
 
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +14,7 @@ import { ITheme } from '../theme';
 describe('Menu component', () => {
   let Menu: FunctionComponent<IMenu>;
   let MenuItem: FunctionComponent<IMenuItem>;
-  let useStateSpy: jest.SpyInstance;
+  let useHoverMock: jest.MockInstance<any>;
 
   const theme: Partial<ITheme> = {
     menu: {
@@ -32,20 +31,25 @@ describe('Menu component', () => {
       useTheme: jest.fn().mockReturnValue(theme),
     }));
 
+    jest.mock('../hooks/useHover', () => ({
+      useHover: jest.fn().mockReturnValue([]),
+    }));
+
+    // @ts-ignore
+    ({ useHover: useHoverMock } = await import('../hooks/useHover'));
+
     jest.useFakeTimers();
-    useStateSpy = jest.spyOn(React, 'useState');
-    useStateSpy.mockReturnValue([true, () => null]);
     ({ Menu, MenuItem } = await import('../'));
   });
 
   afterEach(() => {
-    useStateSpy.mockClear();
+    useHoverMock.mockClear();
   });
 
   afterAll(() => {
     jest.useRealTimers();
-    useStateSpy.mockRestore();
     jest.unmock('../theme');
+    jest.unmock('../hooks/useHover');
   });
 
   it('renders items', () => {
@@ -89,56 +93,31 @@ describe('Menu component', () => {
     expect(wrapper).toHaveText(menuItems.map(({ title }) => title).join(''));
   });
 
-  describe('on mouseenter', () => {
-    let setStateSpy: jest.SpyInstance;
+  it('attaches hover handlers', () => {
+    const handlers = {
+      onMouseEnter() {
+        /* nada */
+      },
+      onMouseLeave() {
+        /* nada */
+      },
+    };
 
-    beforeEach(() => {
-      setStateSpy = jest.fn();
-      useStateSpy.mockReturnValueOnce([false, setStateSpy]);
-    });
-
-    it('sets display state to true', () => {
-      const wrapper = shallow(<Menu menuItems={[]} />);
-
-      wrapper.simulate('mouseenter');
-
-      expect(setStateSpy).toHaveBeenCalledWith(true);
-    });
-
-    it('clears timeout', () => {
-      const wrapper = shallow(<Menu menuItems={[]} />);
-
-      wrapper.simulate('mouseenter');
-
-      expect(clearTimeout).toHaveBeenCalled();
-    });
+    useHoverMock.mockReturnValue([false, handlers]);
+    const wrapper = shallow(<Menu menuItems={[]} />);
+    expect(wrapper).toHaveProp(handlers);
   });
 
-  describe('on mouseleave', () => {
-    let setStateSpy: jest.SpyInstance;
-
+  describe('on hover', () => {
     beforeEach(() => {
-      setStateSpy = jest.fn();
-      useStateSpy.mockReturnValueOnce([true, setStateSpy]);
+      useHoverMock.mockReturnValueOnce([true]);
     });
 
-    it('sets timeout', () => {
-      const wrapper = shallow(<Menu menuItems={[]} />);
+    it('displays list', () => {
+      const renderMenu = jest.fn();
+      shallow(<Menu menuItems={[]} renderMenu={renderMenu} />);
 
-      wrapper.simulate('mouseleave');
-
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 200, false);
-    });
-
-    it('hides menu after timeout', () => {
-      useStateSpy.mockReturnValueOnce([true, setStateSpy]);
-
-      const wrapper = shallow(<Menu menuItems={[]} />);
-
-      wrapper.simulate('mouseleave');
-      jest.runTimersToTime(300);
-
-      expect(setStateSpy).toHaveBeenCalledWith(false);
+      expect(renderMenu).toHaveBeenCalled();
     });
   });
 });

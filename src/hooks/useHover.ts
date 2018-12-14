@@ -2,15 +2,15 @@ import { MouseEventHandler, useEffect, useState } from 'react';
 import { IBox } from '../Box';
 
 export const useHover = (
-  initialStyle: boolean,
+  initialState: boolean,
   props: IBox<HTMLElement>,
   hideDelay?: number
 ): [boolean, { onMouseEnter: MouseEventHandler<HTMLElement>; onMouseLeave: MouseEventHandler<HTMLElement> }] => {
   let timer: null | NodeJS.Timer | number = null;
-  const [state, setState] = useState<boolean>(false);
+  const [state, setState] = useState<boolean>(initialState);
 
   const onMouseEnter: MouseEventHandler<HTMLElement> = e => {
-    if (props.onMouseEnter) {
+    if (props && props.onMouseEnter) {
       props.onMouseEnter(e);
     }
 
@@ -23,7 +23,7 @@ export const useHover = (
   };
 
   const onMouseLeave: MouseEventHandler<HTMLElement> = e => {
-    if (props.onMouseLeave) {
+    if (props && props.onMouseLeave) {
       props.onMouseLeave(e);
     }
 
@@ -34,12 +34,15 @@ export const useHover = (
     }
   };
 
-  useEffect(() => {
-    if (timer !== null) {
-      clearTimeout(timer as number);
-      timer = null;
-    }
-  });
+  useEffect(
+    () => {
+      if (timer !== null) {
+        clearTimeout(timer as number);
+        timer = null;
+      }
+    },
+    [timer]
+  );
 
   return [
     state,
