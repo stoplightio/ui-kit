@@ -13,11 +13,11 @@ export * from './types';
  *
  * This enables typings for zones.
  */
-export function createThemedModule<S extends string>() {
+export function createThemedModule<S extends string, T extends ICustomTheme>() {
   return {
-    ThemeProvider: ThemeProvider as React.FunctionComponent<IThemeProvider<S>>,
+    ThemeProvider: ThemeProvider as React.FunctionComponent<IThemeProvider<S, T>>,
     ThemeZone: ThemeZone as IThemeZone<S>,
-    useTheme,
+    useTheme: useTheme as () => T,
     useThemeZones: useThemeZones as () => ThemeZones<S>,
   };
 }
@@ -34,16 +34,16 @@ const defaultTheme = baseThemes.light;
  * ThemeProvider
  */
 
-const Theme = React.createContext<ITheme>(defaultTheme);
-export const useTheme = () => React.useContext(Theme);
+const Theme = React.createContext(defaultTheme);
+export const useTheme = () => React.useContext<ITheme>(Theme);
 
-export interface IThemeProvider<S extends string> {
-  theme?: ICustomTheme;
+export interface IThemeProvider<S extends string, T extends ICustomTheme> {
+  theme?: T;
   zones?: ThemeZones<S>;
 }
 
 /** The primary theme provider. Every app should render this once, towards the top of the react component tree. */
-export const ThemeProvider: React.FunctionComponent<IThemeProvider<any>> = ({ children, theme, zones = {} }) => {
+export const ThemeProvider: React.FunctionComponent<IThemeProvider<any, any>> = ({ children, theme, zones = {} }) => {
   const targetTheme = theme || defaultTheme;
 
   return (

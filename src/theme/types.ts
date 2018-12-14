@@ -19,8 +19,15 @@ export interface ITheme {
     fg: string;
     bg: string;
     border: string;
-    hoverBg?: string;
     hoverFg?: string;
+    hoverBg?: string;
+    hoverBorder?: string;
+    focusFg?: string;
+    focusBg?: string;
+    focusBorder?: string;
+    activeFg?: string;
+    activeBg?: string;
+    activeBorder?: string;
   };
 
   contextMenu: {
@@ -85,7 +92,7 @@ export interface ITheme {
     hoverBg: string;
   };
 
-  select?: {
+  select: {
     fg: string;
     bg: string;
     border: string;
