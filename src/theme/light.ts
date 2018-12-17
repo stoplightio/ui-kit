@@ -3,12 +3,6 @@ import { ITheme } from './types';
 export const lightTheme: ITheme = {
   base: 'light',
 
-  box: {
-    fg: '#111',
-    bg: 'white',
-    border: '#111',
-  },
-
   button: {
     fg: 'white',
     bg: 'rgba(0, 0, 0, 0.5)',

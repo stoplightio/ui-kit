@@ -5,7 +5,6 @@ import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttri
 import * as ss from 'styled-system';
 
 import * as sl from './styles';
-import { useTheme } from './theme';
 
 export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
@@ -67,7 +66,6 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
 
   /** Add all the supported styles, passing in the relevant props. */
   const css = [
-    ...boxStyles(),
     ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
     ss.borderRadius({ borderRadius }),
     ss.boxShadow({ boxShadow }),
@@ -159,15 +157,3 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   css?: any;
   [key: string]: any;
 }
-
-export const boxStyles = () => {
-  const theme = useTheme();
-
-  return [
-    {
-      color: theme.box.fg,
-      backgroundColor: theme.box.bg,
-      borderColor: theme.box.border,
-    },
-  ];
-};
