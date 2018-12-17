@@ -14,7 +14,7 @@ export const listKnobs = (tabName = 'List'): IList => ({
   listStylePosition: select<any>('listStylePosition', ListStylePosition, 'initial', tabName),
 });
 
-storiesOf('List & Tables/List', module)
+storiesOf('List & Tables:List', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <List {...listKnobs()}>

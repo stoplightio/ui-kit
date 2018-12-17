@@ -19,7 +19,7 @@ export const flexKnobs = (tabName = 'Flex'): IFlex => ({
   flexWrap: select('flexWrap', FlexWrap, '', tabName) as ss.FlexWrapProps['flexWrap'],
 });
 
-storiesOf('Layout/Flex', module)
+storiesOf('Layout:Flex', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Flex {...flexKnobs()}>

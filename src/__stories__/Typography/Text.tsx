@@ -20,6 +20,6 @@ export const textKnobs = (tabName = 'Text'): IText => ({
   italic: boolean('italic', false, tabName),
 });
 
-storiesOf('Typography/Text', module)
+storiesOf('Typography:Text', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Text {...textKnobs()}>Some Text in a P tag</Text>);

@@ -28,7 +28,7 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
   type: select('type', AutosizeInputType, 'text', tabName),
 });
 
-storiesOf('Forms/Input', module)
+storiesOf('Forms:Input', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} />)
   .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} autosize />)

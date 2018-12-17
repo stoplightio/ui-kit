@@ -18,7 +18,7 @@ interface ILayoutTheme extends ITheme {
 type Zones = 'inner' | 'inverted';
 const { ThemeZone, useTheme } = createThemedModule<Zones, ILayoutTheme>();
 
-storiesOf('Views', module)
+storiesOf('Views:Kitchen Sink', module)
   .addDecorator(withKnobs)
   .add('Flex and Box', () => <App />);
 
@@ -43,7 +43,7 @@ const App = () => {
           </CustomStoryBox>
         </ThemeZone>
 
-        <ThemeZone name="inner">
+        <ThemeZone name="inverted">
           <CustomStoryBox flex="1" p={3} pt={4}>
             <Box>[zone: 'inverted'] inverts canvas bg and fg</Box>
             <Button mt={3}>Go</Button>

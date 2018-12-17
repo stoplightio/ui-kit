@@ -14,7 +14,7 @@ export const scrollBoxKnobs = (tabName = 'ScrollBox') => ({
   scrollTo: select('scrollTo', ['', 'ul-list', 'sub-heading2', 'sub-heading3'], '', tabName),
 });
 
-storiesOf('Utilities/ScrollBox', module)
+storiesOf('Utilities:ScrollBox', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <WithRef />)
   .add('with scrollTo on load', () => (

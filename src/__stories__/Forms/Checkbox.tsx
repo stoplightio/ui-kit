@@ -18,7 +18,7 @@ export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => ({
   checked: boolean('checked', false, tabName),
 });
 
-storiesOf('Forms/Checkbox', module)
+storiesOf('Forms:Checkbox', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Checkbox id="1" {...checkboxKnobs()} />)
   .add('checked', () => <Checkbox id="2" {...checkboxKnobs()} checked={true} />)

@@ -14,7 +14,7 @@ export const blockQuoteKnobs = (tabName = 'Block Quote'): IBlockQuote => ({
   isSelected: boolean('isSelected', false, tabName),
 });
 
-storiesOf('Typography/BlockQuote', module)
+storiesOf('Typography:BlockQuote', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <BlockQuote {...blockQuoteKnobs()} />)
   .add('with shadow', () => <BlockQuote {...blockQuoteKnobs()} isSelected />);

@@ -15,6 +15,6 @@ export const linkKnobs = (tabName = 'Link'): ILink => ({
   children: text('content', 'stoplight.io', tabName),
 });
 
-storiesOf('Typography/Link', module)
+storiesOf('Typography:Link', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Link {...linkKnobs()} />);

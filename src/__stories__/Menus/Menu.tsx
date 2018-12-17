@@ -21,7 +21,7 @@ export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   },
 });
 
-storiesOf('Menus/Menu', module)
+storiesOf('Menus:Menu', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box mt="100px" height="500px" width="200px">

@@ -73,6 +73,6 @@ export const boxKnobs = <T extends HTMLElement = HTMLDivElement>(tabName = 'Box'
   z: number('z', 0, {}, tabName),
 });
 
-storiesOf('Layout/Box', module)
+storiesOf('Layout:Box', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Box {...boxKnobs()}>Box with child.</Box>);

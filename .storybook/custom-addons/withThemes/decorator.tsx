@@ -5,8 +5,7 @@ import { jsx } from '@emotion/core';
 import addons, { makeDecorator } from '@storybook/addons';
 import { Component, FunctionComponent, ReactNode } from 'react';
 
-import { createThemedModule, Flex, ICustomTheme } from '../';
-import { ThemeProvider } from '../theme';
+import { createThemedModule, Flex, ICustomTheme, ThemeProvider } from '../../../src';
 
 interface IAppLayout extends ICustomTheme {
   canvas?: {
