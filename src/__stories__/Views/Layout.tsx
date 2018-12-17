@@ -43,7 +43,7 @@ const App = () => {
           </CustomStoryBox>
         </ThemeZone>
 
-        <ThemeZone name="inner">
+        <ThemeZone name="inverted">
           <CustomStoryBox flex="1" p={3} pt={4}>
             <Box>[zone: 'inverted'] inverts canvas bg and fg</Box>
             <Button mt={3}>Go</Button>
