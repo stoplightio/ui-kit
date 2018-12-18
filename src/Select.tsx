@@ -7,7 +7,7 @@ import { useTheme } from './theme';
 
 // renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.ts
 // @ts-ignore
-interface ISelectProps extends Partial<Props<ISelectOption>> {
+export interface ISelectProps extends Partial<Props<ISelectOption>> {
   loading?: boolean; // isLoading
   disabled?: boolean; // isDisabled
   multi?: boolean; // isMulti
@@ -37,7 +37,9 @@ interface ISelectOption {
   value: any;
 }
 
-export const Select = (props: ISelectProps) => {
+export interface ISelect extends ISelectProps {}
+
+export const Select: React.FunctionComponent<ISelect> = props => {
   const {
     multi,
     loading,
