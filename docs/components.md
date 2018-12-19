@@ -5,10 +5,10 @@ Theming is accomplished via ThemeZones that rely on React's context.
 
 ## Creating a component
 
-In most cases you should refer to [Extending a component]('#Extending a component') section.
+In most cases you should refer to [Extending a component](#extending-a-component) section.
 A vast amount of components are based on Box, so you won't really need to reinvent the wheel every time.
 If you build a more complex component, such as Toggle, wrap some other React component specific (i.e. Code Editor or Select) or just have a very specific use case, you may prefer not to base the new component on Box.
-There is no general rule how to implement such a component - it's strictly related to a use case. 
+There is no general rule how to implement such a component - it's strictly related to a use case.
 It's all about having a common sense here.
 
 Just think what's actually needed, how much customizable it's supposed be etc.
@@ -62,18 +62,21 @@ export const alertStyles = ({ state }: IAlertProps) => {
 Now, the component can be used as follows
 
 ```jsx
-<Alert state="success">Everything is fine</Alert>;
+<Alert state="success">Everything is fine</Alert>
 ```
 
 You can also pass an event handler, i.e.
 
 ```jsx
-<Alert onClick={() => console.log('click!')} state="success">Everything is fine</Alert>;
+<Alert onClick={() => console.log('click!')} state="success">
+  Everything is fine
+</Alert>
 ```
 
 or some custom style, i.e.
 
 ```jsx
-<Alert fontSize="20px" textTransform="uppercase" state="error">error</Alert>;
+<Alert fontSize="20px" textTransform="uppercase" state="error">
+  error
+</Alert>
 ```
-

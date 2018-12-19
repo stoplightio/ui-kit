@@ -6,7 +6,7 @@ Depending on the component, theming might be slightly different. But for the mos
 - **bg:** used for defining background color
 - **border:** used for defining just border color
 
-Border is less common than bg and bg, but common enough to mention it.
+Border is less common than fg and bg, but common enough to mention it.
 
 If a component is expected to have a state, such as hover/focus/active, you may provide such values either.
 The convention is quite simple:

@@ -7,16 +7,19 @@ They can be used at the same time.
 
 A preferable solution is to extend a theme. You are allowed to add any extra property to it, so when used wisely, it can be a container for colors and other theme specific values.
 Keep in mind, a custom theme may not be the best way to store spacing values, as these are usually not theme specific.
-Use of custom theme is recommended as you will have a typed access meaning it's less error-prone. 
+Use of custom theme is recommended as you will have a typed access meaning it's less error-prone.
 It's also more explicit, so the reading and maintaining the code may be just easier.
 
 NOTE: All your components must import locally (in scope of project) define useTheme and ThemeZone.
 
 #### Example:
+
+```jsx
 /* @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Box } from '@stoplight/ui-kit';
 import { ThemeProvider } from 'styled-components';
+```
 
 ### Custom ThemeProvider
 
@@ -32,15 +35,12 @@ import { Box } from '@stoplight/ui-kit';
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
-  space: [
-    0, 4, 8, 16, 32, 64, 128, 256, 512
-  ]
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
 };
 
 <ThemeProvider theme={theme}>
   <Box px={5} py={3}>
-    my left and right paddings are equal to 32px!
-    and top and left equal 16px.
+    my left and right paddings are equal to 32px! and top and left equal 16px.
   </Box>
-</ThemeProvider>
+</ThemeProvider>;
 ```
