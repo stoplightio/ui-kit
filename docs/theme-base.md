@@ -1,129 +1,46 @@
 # Theme Base
 
-The `base` section of the theme object contains predefined values used by different component props so that when styling, you can stay within these constraints and and have clean consistent usage.
+UI-Kit does not contain any base theme on its own, but there are least 2 ways to exchange the common values for spacing, colors etc.
+They can be used at the same time.
 
-The current base theme is
+### Custom theme
 
-```js
-// values taken from tailwind.config in @stoplight/core
-// https://github.com/stoplightio/core/blob/master/tailwind.config.js
-export const base: ILayout = {
-  textSize: {
-    xs: 9,
-    sm: 11,
-    md: 13,
-    lg: 16,
-    xl: 20,
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '4rem',
-  },
+A preferable solution is to extend a theme. You are allowed to add any extra property to it, so when used wisely, it can be a container for colors and other theme specific values.
+Keep in mind, a custom theme may not be the best way to store spacing values, as these are usually not theme specific.
+Use of custom theme is recommended as you will have a typed access meaning it's less error-prone. 
+It's also more explicit, so the reading and maintaining the code may be just easier.
 
-  weight: {
-    thin: 200,
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 900,
-  },
+NOTE: All your components must import locally (in scope of project) define useTheme and ThemeZone.
 
-  leading: {
-    reset: 0,
-    none: 1,
-    tight: 1.25,
-    normal: 1.5,
-    loose: 1.75,
-  },
+#### Example:
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
+import { Box } from '@stoplight/ui-kit';
+import { ThemeProvider } from 'styled-components';
 
-  tracking: {
-    tight: -0.05, // em unit
-    normal: 0,
-    wide: 0.05,
-  },
+### Custom ThemeProvider
 
-  border: {
-    none: '0px', // need to use a string value since 0 is a falsy value
-    xs: 1,
-    sm: 2,
-    md: 4,
-    lg: 8,
-  },
+You are allowed to supply your own [ThemeProvider](https://github.com/jxnblk/styled-system/blob/master/docs/getting-started.md#theming).
+It's flexible enough and a recommended solution for spacing values.
 
-  radius: {
-    none: '0px',
-    sm: 1,
-    md: 2,
-    lg: 4,
-    xl: 6,
-    full: 9999,
-  },
+#### Example:
 
-  shadow: {
-    sm: '0 0 2px rgba(0, 0, 0, .6)',
-    md: '0 0 5px rgba(0, 0, 0, .5)',
-    lg: '0 0 8px rgba(0, 0, 0, .4)',
-  },
+```jsx
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
+import { Box } from '@stoplight/ui-kit';
+import { ThemeProvider } from 'styled-components';
 
-  space: {
-    none: '0px',
-    xs: 2,
-    sm: 4,
-    md: 6,
-    lg: 10,
-    xl: 13,
-    '2xl': 20,
-    '3xl': 26,
-    '4xl': 32,
-    '5xl': '3rem',
-    '6xl': '3.5rem',
-  },
-
-  height: {
-    auto: 'auto',
-    none: '0px',
-    px: '1px',
-
-    full: '100%',
-    screen: '100vh',
-  },
-
-  width: {
-    auto: 'auto',
-    none: '0px',
-    px: '1px',
-
-    full: '100%',
-    screen: '100vw',
-  },
+const theme = {
+  space: [
+    0, 4, 8, 16, 32, 64, 128, 256, 512
+  ]
 };
+
+<ThemeProvider theme={theme}>
+  <Box px={5} py={3}>
+    my left and right paddings are equal to 32px!
+    and top and left equal 16px.
+  </Box>
+</ThemeProvider>
 ```
-
-# Table of Theme to Props
-
-## Core
-
-| Theme Field | Prop       | CSS Property     |
-| ----------- | ---------- | ---------------- |
-| `textSize`  | `text`     | `font-size`      |
-| `weight`    | `weight`   | `font-weight`    |
-| `leading`   | `leading`  | `font-weight`    |
-| `tracking`  | `tracking` | `font-weight`    |
-| `border`    | `border`   | `border`         |
-| `radius`    | `radius`   | `border-radius`  |
-| `shadow`    | `shadow`   | `box-shadow`     |
-| `space`     | `m`        | `margin`         |
-| `space`     | `mt`       | `margin-top`     |
-| `space`     | `mr`       | `margin-right`   |
-| `space`     | `mb`       | `margin-bottom`  |
-| `space`     | `ml`       | `margin-left`    |
-| `space`     | `p`        | `padding`        |
-| `space`     | `pt`       | `padding-top`    |
-| `space`     | `pr`       | `padding-right`  |
-| `space`     | `pb`       | `padding-bottom` |
-| `space`     | `pl`       | `padding-left`   |
-| `height`    | `height`   | `height`         |
-| `width`     | `width`    | `width`          |
