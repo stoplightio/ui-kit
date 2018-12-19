@@ -18,6 +18,30 @@ yarn add @stoplight/ui-kit react react-dom lodash
 
 Storybook is a good reference of usage.
 
+#### Icons
+
+Icon component requires external icon sets that are not provided with UI-Kit. 
+The installation process is described [here](https://www.npmjs.com/package/@fortawesome/react-fontawesome#installation).
+
+Once installed, an icon set can me imported as follows:
+
+```tsx
+import { IconLibrary } from '@stoplight/ui-kit';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+IconLibrary.add(fas);
+```
+
+You can also import a single icon
+
+```ts
+import { IconLibrary } from '@stoplight/ui-kit';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
+
+IconLibrary.add(faCaretDown);
+```
+
+
 ### Migration guide
 
 - [guide](./docs/migration.md)
