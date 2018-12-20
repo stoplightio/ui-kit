@@ -47,4 +47,24 @@ storiesOf('Forms:Select', module)
     <Box width="40%">
       <Select {...selectKnobs()} options={[]} />
     </Box>
+  ))
+  .add('async', () => (
+    <Box width="40%">
+      <Select
+        {...selectKnobs()}
+        defaultOptions={[{ label: 'option1', value: 2 }]}
+        loadOptions={inputValue => {
+          return new Promise(resolve => {
+            setTimeout(
+              resolve,
+              500,
+              [0, 1, 2, 3].map(index => ({
+                label: `${inputValue}${index}`,
+                value: index,
+              }))
+            );
+          });
+        }}
+      />
+    </Box>
   ));
