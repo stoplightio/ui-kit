@@ -41,7 +41,8 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "react-dom": ">=16"
+    "react-dom": ">=16",
+    "lodash": ">=4.17"
   },
   "dependencies": {
     "@emotion/core": "10.0.x",

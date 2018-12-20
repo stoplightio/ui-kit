@@ -1,133 +1,82 @@
 # Components
 
-All components in this library used styled-components to implement theming, and a subset of style functions from styled-system.
+All components in this library use Emotion to implement styling, and a subset of style functions from styled-system.
+Theming is accomplished via ThemeZones that rely on React's context.
 
-## Create a Component
+## Creating a component
 
-Create a new component that uses our subset of style functions from styled-system. To start with, add the `fontSize` function to the component's styles argument.
+In most cases you should refer to [Extending a component](#extending-a-component) section.
+A vast amount of components are based on Box, so you won't really need to reinvent the wheel every time.
+If you build a more complex component, such as Toggle, wrap some other React component specific (i.e. Code Editor or Select) or just have a very specific use case, you may prefer not to base the new component on Box.
+There is no general rule how to implement such a component - it's strictly related to a use case.
+It's all about having a common sense here.
 
-```typescript
-import { textColor, styled } from '../utils';
+Just think what's actually needed, how much customizable it's supposed be etc.
 
-export interface IBoxProps {
-  className?: string;
-  css?: Object; // a valid javascript style object
+You can refer to:
 
-  text?: FontSize;
+- [Context Menu](https://github.com/stoplightio/ui-kit/blob/master/src/ContextMenu.tsx)
+- [Code Editor](https://github.com/stoplightio/ui-kit/blob/master/src/CodeEditor.tsx)
+- [Menu](https://github.com/stoplightio/ui-kit/blob/master/src/Menu.tsx)
+- [Select](https://github.com/stoplightio/ui-kit/blob/master/src/Select.tsx)
+- [Toggle](https://github.com/stoplightio/ui-kit/blob/master/src/Toggle.tsx)
+
+## Extending a component
+
+It's advisable to base off your new component on Box/Flex/Text, which are foundational components for almost all styled components in UI-Kit.
+This will guarantee your props will be properly passed and a ref will be forwarded.
+
+```typescript jsx
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
+import { Box, IBox } from '@stoplight/ui-kit';
+import { FunctionComponent } from 'react';
+
+export interface IAlertProps {
+  state: 'error' | 'warning' | 'success';
 }
 
-export const Box = styled<IBoxProps, 'a'>('a')(fontSize);
-```
+export interface IAlert extends IAlertProps, IBox {}
 
-Now, this component will have the style prop `text` available to set the fontSize css property
+export const Alert: FunctionComponent<IAlert> = props => {
+  const { children, state, ...rest } = props;
+  const css = alertStyles({ state });
 
-```jsx
-() => <Box text="sm">Tomato</Box>;
-```
-
-Style functions take in the components props as an argument and returns a javascript style object. The theme will be accessible through the props They can easily be defined inline if needed. An example of this is as follows:
-
-```typescript
-export interface IBoxProps {
-  className?: string;
-  css?: Object; // a valid javascript style object
-
-  text?: FontSize;
-}
-
-export const Box = styled<IBoxProps, 'a'>('a')({
-    border: '1px solid black',
-    borderRadius: '9999px',
-  }),
-  fontSize;
-```
-
-If you wanted to add a style that is prop independent this can also be easily done:
-
-```typescript
-import { textColor, styled } from '../utils';
-
-export interface IBoxProps {
-  className?: string;
-  css?: Object; // a valid javascript style object
-
-  text?: FontSize;
-  fg?: number;
-}
-
-export const Box = styled<IBoxProps, 'a'>('a')(
-  {
-    border: '1px solid black',
-    borderRadius: '9999px',
-  },
-  fontSize,
-  ({ theme, ...props }) => {
-    if (!props.fg) return;
-
-    return { color: props.theme.colors[fg] };
-  }
-);
-```
-
-The last way to style an style-component is inline during use. The `css` prop on any styled component can be used to define any styling at that moment. Think of them as html `script` tags, only that the style object gets converted into a classname.
-
-This box has a blue background on hover. The `css` prop supports a variety of pseudo selectors and children options
-
-```jsx
-() => (
-  <Box css={{ ':hover': { background: 'blue' } }} fg="primary" text="sm">
-    Tomato
-  </Box>
-);
-```
-
-### Extending a component
-
-Another common use case is needing to create a more complex styled component from a simpler one. Think extending a component to support more style options. A good example of this is the `Flex` component, which is just a box with more options. There are two way of doing this. The first is to wrap the new component directly around the old.
-
-```typescript
-export interface IFlexProps extends IBoxProps {
-  items?: 'stretch' | 'center' | 'flex-start' | 'flex-end'; // alignItems
-  justify?:  // justifyContent
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'initial'
-    | 'inherit';
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse'; // flexDirection
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | 'initial' | 'inherit'; // flexWrap
-}
-
-export const Flex = styled<IFlexProps, 'div'>(Box as any)(
-  {
-    display: 'flex',
-  },
-  flexWrap,
-  flexDirection,
-  alignItems,
-  justifyContent
-);
-```
-
-The second and more explicit was its to difine a small wrapped component that implements the old component. This method is good for when you new component needs not only extra styling but also extra functionality.
-
-```typescript
-const FlexBase = (props: IFlexProps) => {
-  // make sure to remove nonBox props
-  const { items, justify, direction, wrap, ...boxProps } = props;
-
-  return <Box {...boxProps} />;
+  return (
+    <Box css={css} {...rest}>
+      {children}
+    </Box>
+  );
 };
 
-export const Flex = styled<IFlexProps, 'div'>(FlexBase as any)(
-  {
-    display: 'flex',
-  },
-  flexWrap,
-  flexDirection,
-  alignItems,
-  justifyContent
-);
+export const alertStyles = ({ state }: IAlertProps) => {
+  return [
+    {
+      color: state === 'error' || state === 'warning' ? 'orange' : 'green',
+      backgroundColor: 'black',
+    },
+  ];
+};
+```
+
+Now, the component can be used as follows
+
+```jsx
+<Alert state="success">Everything is fine</Alert>
+```
+
+You can also pass an event handler, i.e.
+
+```jsx
+<Alert onClick={() => console.log('click!')} state="success">
+  Everything is fine
+</Alert>
+```
+
+or some custom style, i.e.
+
+```jsx
+<Alert fontSize="20px" textTransform="uppercase" state="error">
+  error
+</Alert>
 ```

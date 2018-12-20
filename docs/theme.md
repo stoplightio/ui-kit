@@ -1,107 +1,155 @@
 # Theme
 
-The theme object gets passed to a provider and is accessible by styled-components. It is helpul to either define constants and pass them around or use it for dynamic styling that will update with user input.
+The theme object gets passed to a provider and is accessible by styled components.
+It is helpful to either define constants and pass them around or use it for dynamic styling that will update with user input.
+You are welcome to extend the theme and add new properties you might need, such as canvas.
 
-The theme object is broken down into four major properties:
+The theme object is quite flat and just a foundation for end-applications.
+It covers specific components needs' and do not provide any default spacings and such.
 
-- **base**: contains layout type constants like font sizes or spacing options, this is used by component props. See [Theme Base](./theme-base.md) for more details
+## Interfaces/Types
 
-- **colors**: a color definition object used to define "constants" used to theme sections and components and contains our default prepackaged colors
-
-- **components**: defines color theming options for a component and contains our default prepackaged theme. See [Theming Components](./theme-components.md) for more details
-
-- **sections**: defines color theming options for a section, this would get defined by the user, depending on the project, and gets merged over colors and components. Think of this as a theming override. Example is if you wanted a different styled button in both the header and the footer. See [Theming Sections](./theme-section.md) for more details
-
-note that the only one of these properties that should every be changed by an end user is the sections property. It can be used to override colors and components, but those should never be altered directly.
-
-## Interfaces
-
-#### Theme
+#### BaseTheme
 
 ```typescript
-IThemeInterface<TSections extends string = ''> extends ISectionTheme<TComponents> {
-  base: ILayout;
-
-  /*
-   Extended from ISectionTheme these will be globals used throughout the app
-   colors?: ...
-   components?: ...
-  */
-
-
-  sections?: { [section in TSections]: ISectionTheme<TComponents> };
-}
-
-/*
-uses generics so you can pass in sections TSections = header | footer | sidebar... (this allows different typings for platform and hubs)
-
-sections are used to colorize the bg/fg/border of the section as well as override nested component colors
-*/
+export type BaseTheme = 'dark' | 'light';
 ```
 
-#### Section
+#### ITheme
 
 ```typescript
-export interface ISectionTheme<TComponents> {
-  colors?: Partial<IColors>;
+export interface ITheme {
+  base: BaseTheme;
 
-  components?: { [component in TComponents]?: Partial<IColors> };
+  checkbox: {
+    fg: string;
+    bg: string;
+    checkedBg: string;
+  };
+
+  contextMenu: {
+    fg: string;
+    bg: string;
+    border: string;
+    hoverFg: string;
+    hoverBg: string;
+  };
+
+  blockQuote: {
+    fg?: string;
+    bg?: string;
+    border: string;
+    shadow: string;
+  };
+
+  button: {
+    fg: string;
+    bg: string;
+    hoverBg: string;
+  };
+
+  input: {
+    fg: string;
+    bg?: string;
+    border?: string;
+  };
+
+  codeEditor: {
+    bg: string;
+    border: string;
+
+    syntax: {
+      primary: string;
+      secondary: string;
+      comment: string;
+      punctuation: string;
+      keyword: string;
+      function: string;
+      variable: string;
+      operator: string;
+      regex: string;
+    };
+  };
+
+  link: {
+    fg: string;
+    hoverFg?: string;
+    visitedFg?: string;
+  };
+
+  scrollbar: {
+    bg: string;
+  };
+
+  menu: {
+    fg: string;
+    bg: string;
+    border: string;
+    hoverFg: string;
+    hoverBg: string;
+  };
+
+  select: {
+    fg: string;
+    bg: string;
+    border: string;
+
+    chip: {
+      fg: string;
+      bg: string;
+    };
+
+    indicator: {
+      fg: string;
+    };
+
+    menu: {
+      fg: string;
+      bg: string;
+
+      selectedFg: string;
+      selectedBg: string;
+
+      activeFg: string;
+      activeBg: string;
+
+      hoverFg: string;
+      hoverBg: string;
+    };
+  };
+
+  table: {
+    fg: string;
+    bg?: string;
+    border: string;
+    shadow: string;
+  };
+
+  textarea: {
+    fg: string;
+    bg?: string;
+    border?: string;
+  };
+
+  toggle: {
+    fg: string;
+    bg: string;
+    border: string;
+    checkedFg: string;
+    checkedBg: string;
+    checkedBorder: string;
+  };
 }
 
-export interface IColors {
-  fg: string;
-  bg: string;
-  border: string;
-
-  [color: string]: string | Partial<IColors>;
-}
-
-// Can be nested into itself example {colors: {primary: {base: #FFFF, light: #FFFF}}}
 ```
 
-#### Base
+#### ICustomTheme
+
+Custom theme is just a subset of Theme. It may override any property present on ITheme.
 
 ```typescript
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
-export type FontWeight = 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
-export type LineHeight = 'reset' | 'none' | 'tight' | 'normal' | 'loose';
-export type LetterSpacing = 'tight' | 'normal' | 'wide';
-export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-export type BorderWidth = 'none' | 'xs' | 'sm' | 'md' | 'lg';
-export type BoxShadow = 'sm' | 'md' | 'lg';
-export type BoxDimension = 'auto' | 'none' | 'px' | 'full' | 'screen';
-export type Space =
-  | 'none'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | '6xl';
-
-export interface ILayout {
-  textSize: { [key in FontSize]?: number | string }; // px
-
-  weight: { [key in FontWeight]?: number };
-
-  leading: { [key in LineHeight]?: number };
-
-  tracking: { [key in LetterSpacing]?: number }; // ems
-
-  radius: { [key in BorderRadius]?: number | string }; // px
-
-  border: { [key in BorderWidth]?: number | string }; // px
-
-  shadow: { [key in BoxShadow]?: string };
-
-  space: { [key in Space]?: number | string }; // px
-
-  height?: { [key in BoxDimension]?: number | string };
-
-  width?: { [key in BoxDimension]?: number | string };
+export interface ICustomTheme extends DeepPartial<ITheme> {
+  base: BaseTheme;
 }
 ```
+
