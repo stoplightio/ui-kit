@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { ReactEventHandler } from 'react';
 import ReactSelect from 'react-select';
+import ReactAsyncSelect, { Props as AsyncProps } from 'react-select/lib/Async'; // we can live with it, as it adds very little overhead (just a wrapper around Select)
 import { Props } from 'react-select/lib/Select';
 
+import { Omit } from '@stoplight/types';
 import { useTheme } from './theme';
 
-// renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.ts
-// @ts-ignore
-export interface ISelectProps extends Partial<Props<ISelectOption>> {
+// renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.t
+export interface ISelectBaseProps {
   loading?: boolean; // isLoading
   disabled?: boolean; // isDisabled
   multi?: boolean; // isMulti
@@ -32,12 +33,20 @@ export interface ISelectProps extends Partial<Props<ISelectOption>> {
   closeOnScroll?: boolean;
 }
 
-interface ISelectOption {
+export interface ISelectProps
+  extends ISelectBaseProps,
+    Omit<Omit<Props<ISelectOption>, 'noOptionsMessage'>, 'loadingMessage'> {} // pipe doesn't work for some reason
+
+export interface ISelectAsyncProps
+  extends ISelectBaseProps,
+    Omit<Omit<AsyncProps<ISelectOption>, 'noOptionsMessage'>, 'loadingMessage'> {} // pipe doesn't work for some reason
+
+export type ISelect = ISelectProps | ISelectAsyncProps;
+
+export interface ISelectOption {
   label: string;
   value: any;
 }
-
-export interface ISelect extends ISelectProps {}
 
 export const Select: React.FunctionComponent<ISelect> = props => {
   const {
@@ -65,30 +74,34 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     ...selectProps
   } = props;
 
-  return (
-    <ReactSelect
-      blurInputOnSelect={blurOnSelect}
-      closeMenuOnSelect={closeOnSelect}
-      closeMenuOnScroll={closeOnScroll}
-      inputValue={searchValue}
-      isClearable={clearable}
-      isDisabled={disabled}
-      isLoading={loading}
-      isMulti={multi}
-      menuIsOpen={isOpen}
-      isSearchable={searchable}
-      loadingMessage={() => loadingMessage}
-      noOptionsMessage={() => noOptionsMessage}
-      onInputChange={onSearch}
-      onMenuOpen={onOpen}
-      onMenuClose={onClose}
-      onMenuScrollToTop={onScrollToTop}
-      onMenuScrollToBottom={onScrollToBottom}
-      {...selectProps}
-      // CUSTOM STYLES
-      styles={customStyles()}
-    />
-  );
+  const actualProps = {
+    blurInputOnSelect: blurOnSelect,
+    closeMenuOnSelect: closeOnSelect,
+    closeMenuOnScroll: closeOnScroll,
+    inputValue: searchValue,
+    isClearable: clearable,
+    isDisabled: disabled,
+    isLoading: loading,
+    isMulti: multi,
+    menuIsOpen: isOpen,
+    isSearchable: searchable,
+    loadingMessage: () => loadingMessage,
+    noOptionsMessage: () => noOptionsMessage,
+    onInputChange: onSearch,
+    onMenuOpen: onOpen,
+    onMenuClose: onClose,
+    onMenuScrollToTop: onScrollToTop,
+    onMenuScrollToBottom: onScrollToBottom,
+    ...selectProps,
+    // CUSTOM STYLES
+    styles: customStyles(),
+  };
+
+  if ('loadOptions' in props || 'defaultOptions' in props) {
+    return <ReactAsyncSelect {...actualProps} />;
+  }
+
+  return <ReactSelect {...actualProps} />;
 };
 
 /**
