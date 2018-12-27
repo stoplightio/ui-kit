@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 
 import { Box, Image } from '../';
