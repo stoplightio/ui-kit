@@ -10,6 +10,10 @@ import { useTheme } from './theme';
 
 export type InputValue = boolean | number | string | undefined;
 
+const AutosizeWrapper: FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
+  <AutosizeInput inputClassName={className} {...props} />
+);
+
 export const Input: FunctionComponent<IInput> = props => {
   const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
 
@@ -26,25 +30,20 @@ export const Input: FunctionComponent<IInput> = props => {
   };
 
   if (autosize) {
-    return jsx(Box, {
-      as: AutosizeInput,
-      placeholderIsMinWidth: true,
-      ...rest,
-      value: internalValue,
-      onChange: handleChange,
-      type,
-      css,
-    });
+    return (
+      <Box
+        as={AutosizeWrapper}
+        placeholderIsMinWidth
+        {...rest}
+        value={internalValue}
+        onChange={handleChange}
+        type={type}
+        css={css}
+      />
+    );
   }
 
-  return jsx(Box, {
-    ...rest,
-    as,
-    value: internalValue,
-    onChange: handleChange,
-    type,
-    css,
-  });
+  return <Box {...rest} as={as} value={internalValue} onChange={handleChange} type={type} css={css} />;
 };
 
 export interface IInput extends IInputProps, IBox<HTMLInputElement> {}
