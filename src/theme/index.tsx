@@ -19,7 +19,7 @@ export function createThemedModule<S extends string, T extends ICustomTheme>() {
     ThemeProvider: ThemeProvider as React.FunctionComponent<IThemeProvider<S, T>>,
     ThemeZone: ThemeZone as IThemeZone<S>,
     useTheme: useTheme as () => T,
-    useThemeZones: useThemeZones as () => ThemeZones<S>,
+    useThemeZones: useThemeZones as () => ThemeZones<S, T>,
   };
 }
 
@@ -40,7 +40,7 @@ export const useTheme = () => React.useContext<ITheme>(Theme);
 
 export interface IThemeProvider<S extends string, T extends ICustomTheme> {
   theme?: T;
-  zones?: ThemeZones<S>;
+  zones?: ThemeZones<S, T>;
 }
 
 /** The primary theme provider. Every app should render this once, towards the top of the react component tree. */
@@ -58,12 +58,16 @@ export const ThemeProvider: React.FunctionComponent<IThemeProvider<any, any>> = 
  * ThemeZone
  */
 
-const ThemeZones = React.createContext<ThemeZones<any>>({});
+const ThemeZones = React.createContext<ThemeZones<any, any>>({});
 export const useThemeZones = () => React.useContext(ThemeZones);
 
 export type ThemeZoneObj = Omit<ICustomTheme, 'base'>;
-export type ThemeZone = ThemeZoneObj | ((parentTheme: ITheme) => ThemeZoneObj);
-export type ThemeZones<S extends string> = Dictionary<ThemeZone, S>;
+export type ThemeZone<T extends ThemeZoneObj> =
+  | T
+  | ThemeZoneObj
+  | ((parentTheme: ITheme) => ThemeZoneObj)
+  | ((parentTheme: ITheme) => T);
+export type ThemeZones<S extends string, T extends ThemeZoneObj> = Dictionary<ThemeZone<T>, S>;
 
 export interface IThemeZone<S extends string>
   extends React.FunctionComponent<{

@@ -16,16 +16,44 @@ yarn add @stoplight/ui-kit react react-dom lodash
 
 ### Usage
 
-TODO
+Storybook is a good reference of usage.
+
+#### Icons
+
+Icon component requires external icon sets that are not provided with UI-Kit. 
+The installation process is described [here](https://www.npmjs.com/package/@fortawesome/react-fontawesome#installation).
+
+Once installed, an icon set can me imported as follows:
+
+```tsx
+import { IconLibrary } from '@stoplight/ui-kit';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+IconLibrary.add(fas);
+```
+
+You can also import a single icon
+
+```ts
+import { IconLibrary } from '@stoplight/ui-kit';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
+
+IconLibrary.add(faCaretDown);
+```
+
+
+### Migration guide
+
+- [guide](./docs/migration.md)
 
 ## API Reference
 
 - [Theme](./docs/theme.md)
   - [base](./docs/theme-base.md)
   - [components](./docs/theme-components.md)
-  - [sections](./docs/theme-section.md)
+  - [zones](docs/theme-zone.md)
 - [Components](./docs/components.md)
-  - [Creating a component](./docs/components.md#create-a-component)
+  - [Creating a component](./docs/components.md#creating-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
     - BlockQuote
@@ -57,10 +85,10 @@ TODO
 
 - Guideline for "good" Storybook stories: https://blog.hichroma.com/the-delightful-storybook-workflow-b322b76fd07
 
-- Styled Components
+- Emotion
 
-  - [Git Repo](https://github.com/styled-components/styled-components)
-  - [Documentation](https://www.styled-components.com/docs)
+    - [Git Repo](https://github.com/emotion-js/emotion)
+    - [Documentation](https://emotion.sh/docs/introduction)
 
 - Styled System
 
