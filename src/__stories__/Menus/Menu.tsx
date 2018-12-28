@@ -109,4 +109,4 @@ storiesOf('Menus:Menu', module)
         { title: 'Disabled Item', disabled: true, icon: 'times-circle' },
       ]}
     />
-  ))
+  ));

@@ -101,7 +101,7 @@ describe('ContextMenuView component', () => {
   });
 
   it('should render as ReactContextMenu', () => {
-    const wrapper = shallow(<ContextMenuView id="t" />)
+    const wrapper = shallow(<ContextMenuView id="t" />);
 
     expect(wrapper).toHaveProp('as', ReactContextMenu);
   });

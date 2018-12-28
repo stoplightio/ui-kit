@@ -121,7 +121,7 @@ describe('TableCell component', () => {
   it('renders td by default', () => {
     const wrapper = shallow(<TableCell as="td" />);
     expect(wrapper).toHaveProp('as', 'td');
-  })
+  });
 
   it('may render th', () => {
     const wrapper = shallow(<TableCell as="th" />);
