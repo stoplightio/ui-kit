@@ -1,6 +1,6 @@
 /* @jsx jsx */
 import { jsx } from '@emotion/core';
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, FunctionComponent, RefObject, useRef, useState } from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
 import { Box, IBox } from './Box';
@@ -38,7 +38,7 @@ const scrollbarStyles = ({ isScrolling }: IScrollBoxThumbProps) => {
   };
 };
 
-export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox) => {
+export const ScrollBox: FunctionComponent<IScrollBox> = (props: IScrollBox) => {
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
@@ -112,7 +112,7 @@ export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox
 export interface IScrollBox extends IScrollBoxProps, ScrollbarProps {}
 
 export interface IScrollBoxProps {
-  innerRef?: React.RefObject<Scrollbars>;
+  innerRef?: RefObject<Scrollbars>;
 
   autoHeight?: boolean;
   autoHideTimeout?: number;
