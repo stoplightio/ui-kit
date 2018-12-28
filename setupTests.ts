@@ -6,3 +6,4 @@ jest.mock('react');
 jest.mock('lodash');
 jest.mock('lodash/debounce');
 jest.mock('react-virtualized');
+jest.mock('react-contextmenu');

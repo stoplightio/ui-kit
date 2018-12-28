@@ -8,7 +8,7 @@ import {
 } from 'react-contextmenu';
 
 import { Omit } from '@stoplight/types';
-import { Fragment, FunctionComponent, HTMLAttributes, MouseEvent, TouchEvent } from 'react';
+import { Fragment, FunctionComponent, HTMLAttributes, MouseEvent, ReactNode, TouchEvent } from 'react';
 
 import { Box, Break, IBox, Text, useTheme } from './';
 
@@ -22,18 +22,18 @@ import { Box, Break, IBox, Text, useTheme } from './';
  * CONTEXT MENU
  */
 
-export interface IContextMenuProps {
-  renderTrigger: (props?: IContextMenuProps) => JSX.Element | string;
+interface IContextMenuProps {
+  renderTrigger?: (props?: IContextMenuProps) => ReactNode | string;
 }
 
-export interface IContextMenu extends IContextMenuProps, IMenuProps {}
+export interface IContextMenu extends IContextMenuProps, IContextMenuViewProps {}
 
-export const ContextMenu = (props: IContextMenu) => {
+export const ContextMenu: FunctionComponent<IContextMenu> = props => {
   const { id, renderTrigger, ...rest } = props;
 
   return (
     <Fragment>
-      <ReactContextMenuTrigger id={id}>{renderTrigger && renderTrigger()}</ReactContextMenuTrigger>
+      {renderTrigger && <ReactContextMenuTrigger id={id}>{renderTrigger()}</ReactContextMenuTrigger>}
 
       <ContextMenuView id={id} {...rest} />
     </Fragment>
@@ -46,25 +46,27 @@ export { ReactContextMenuTrigger as ContextMenuTrigger };
  * MENU
  */
 
-interface IMenuProps {
+interface IContextMenuViewProps {
   id: string;
   className?: string;
 
-  menuItems?: IMenuItem[];
+  menuItems?: IContextMenuItem[];
   hideOnLeave?: boolean;
   onHide?: (event: any) => void;
   onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
   onShow?: (event: any) => void;
 }
 
-export const ContextMenuView = (props: IMenuProps) => {
+export interface IContextMenuView extends IContextMenuViewProps {}
+
+export const ContextMenuView: FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...rest } = props;
   const css = menuStyles();
 
   return (
     <Box {...rest} as={ReactContextMenu} css={css}>
-      {menuItems.map((item: IMenuItemProps) => (
-        <ContextMenuItem {...item} />
+      {menuItems.map((item, index) => (
+        <ContextMenuItem key={item.key || index} {...item} />
       ))}
     </Box>
   );
@@ -93,7 +95,7 @@ const menuStyles = () => {
  * MENUITEM
  */
 
-interface IMenuItemProps {
+interface IContextMenuItemProps {
   attributes?: HTMLAttributes<HTMLDivElement>;
   data?: Object;
   title?: string;
@@ -107,9 +109,9 @@ interface IMenuItemProps {
   ) => void | Function;
 }
 
-interface IMenuItem extends IMenuItemProps, Omit<IBox, 'onClick'> {}
+export interface IContextMenuItem extends IContextMenuItemProps, Omit<IBox, 'onClick'> {}
 
-export const ContextMenuItem: FunctionComponent<IMenuItem> = props => {
+export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
   const { attributes, data, title, divider, disabled, preventClose, onClick, ...rest } = props;
   const css = contextMenuItemStyles({
     onClick,
@@ -140,7 +142,7 @@ export const ContextMenuItem: FunctionComponent<IMenuItem> = props => {
   );
 };
 
-export const contextMenuItemStyles = ({ onClick, divider, disabled }: IMenuItemProps) => {
+export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMenuItemProps) => {
   const theme = useTheme();
 
   return [
