@@ -22,30 +22,25 @@ import { Box, Break, IBox, Text, useTheme } from './';
  * CONTEXT MENU
  */
 
-interface IContextMenuProps extends IMenuProps {
-  id: string;
-
+export interface IContextMenuProps {
   renderTrigger: (props?: IContextMenuProps) => JSX.Element | string;
 }
 
-export const ContextMenu = (props: IContextMenuProps) => {
-  const { id, menuItems = [], renderTrigger, onMouseLeave, hideOnLeave, onHide, onShow } = props;
+export interface IContextMenu extends IContextMenuProps, IMenuProps {}
+
+export const ContextMenu = (props: IContextMenu) => {
+  const { id, renderTrigger, ...rest } = props;
 
   return (
     <Fragment>
       <ReactContextMenuTrigger id={id}>{renderTrigger && renderTrigger()}</ReactContextMenuTrigger>
 
-      <Menu
-        id={id}
-        menuItems={menuItems}
-        onHide={onHide}
-        onShow={onShow}
-        onMouseLeave={onMouseLeave}
-        hideOnLeave={hideOnLeave}
-      />
+      <ContextMenuView id={id} {...rest} />
     </Fragment>
   );
 };
+
+export { ReactContextMenuTrigger as ContextMenuTrigger };
 
 /**
  * MENU
@@ -62,18 +57,16 @@ interface IMenuProps {
   onShow?: (event: any) => void;
 }
 
-const Menu = (props: IMenuProps) => {
+export const ContextMenuView = (props: IMenuProps) => {
   const { menuItems = [], ...rest } = props;
   const css = menuStyles();
 
-  return jsx(
-    Box,
-    {
-      ...rest,
-      as: ReactContextMenu as any,
-      css,
-    },
-    menuItems.map((item: IMenuItemProps) => <ContextMenuItem {...item} />)
+  return (
+    <Box {...rest} as={ReactContextMenu} css={css}>
+      {menuItems.map((item: IMenuItemProps) => (
+        <ContextMenuItem {...item} />
+      ))}
+    </Box>
   );
 };
 
@@ -124,25 +117,27 @@ export const ContextMenuItem: FunctionComponent<IMenuItem> = props => {
     disabled,
   });
 
-  return jsx(Box, {
-    ...rest,
-    as: (asProps: object) => (
-      <ReactMenuItem
-        attributes={{
-          ...attributes,
-          ...asProps,
-        }}
-        data={data}
-        preventClose={preventClose}
-        disabled={disabled}
-        onClick={onClick}
-      >
-        {title && <Text>{title}</Text>}
-        {divider && <Break thickness={1} />}
-      </ReactMenuItem>
-    ),
-    css,
-  });
+  return (
+    <Box
+      {...rest}
+      css={css}
+      as={(asProps: object) => (
+        <ReactMenuItem
+          attributes={{
+            ...attributes,
+            ...asProps,
+          }}
+          data={data}
+          preventClose={preventClose}
+          disabled={disabled}
+          onClick={onClick}
+        >
+          {title && <Text>{title}</Text>}
+          {divider && <Break thickness={1} />}
+        </ReactMenuItem>
+      )}
+    />
+  );
 };
 
 export const contextMenuItemStyles = ({ onClick, divider, disabled }: IMenuItemProps) => {
