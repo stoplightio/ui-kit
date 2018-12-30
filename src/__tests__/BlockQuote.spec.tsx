@@ -30,9 +30,9 @@ describe('BlockQuote component', () => {
     jest.unmock('../theme');
   });
 
-  it('renders Text component', () => {
+  it('renders Text as blockquote', () => {
     const wrapper = shallow(<BlockQuote />);
-    expect(wrapper).toMatchElement(<Text />);
+    expect(wrapper).toMatchElement(<Text as="blockquote" />);
   });
 
   it('passes all props but isSelected', () => {

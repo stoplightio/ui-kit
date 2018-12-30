@@ -31,9 +31,9 @@ describe('Link component', () => {
     jest.unmock('../theme');
   });
 
-  it('renders Text component', () => {
+  it('renders Text as anchor', () => {
     const wrapper = shallow(<Link />);
-    expect(wrapper).toMatchElement(<Text />);
+    expect(wrapper).toMatchElement(<Text as="a" />);
   });
 
   it('passes all props', () => {
