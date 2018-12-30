@@ -1,70 +1,148 @@
-// /* @jsx jsx */
-//
-// import { jsx } from '@emotion/core';
-//
-// import { mount } from 'enzyme';
-// import 'jest-enzyme';
-// import * as React from 'react';
-// import { AutoSizer } from 'react-virtualized';
-//
-// import { IScrollList } from '../ScrollList';
-//
-// // fixme: enabled the test
-// describe('ScrollList', () => {
-//   let useStateSpy: jest.SpyInstance;
-//   let ScrollList: React.FunctionComponent<IScrollList>;
-//
-//   beforeAll(async () => {
-//     useStateSpy = jest.spyOn(React, 'useState').mockReturnValue([{}, jest.fn()]);
-//
-//     jest.mock('../theme', () => ({
-//       useTheme: jest.fn().mockReturnValue({
-//         box: {},
-//         scrollbar: {},
-//       }),
-//     }));
-//
-//     ({ ScrollList } = await import('../ScrollList'));
-//   });
-//
-//   afterAll(() => {
-//     useStateSpy.mockReset();
-//     jest.unmock('../theme');
-//   });
-//
-//   it('calls rowRenderer', () => {
-//     const list = ['stoplight.io', 'api'];
-//     const rowHeight = 20;
-//     const rowRenderer = jest.fn(() => null);
-//
-//     // @ts-ignore
-//     AutoSizer.mockImplementation(({ children: render }) => render({ height: 50, width: 100 }));
-//
-//     const wrapper = mount(<ScrollList rowHeight={rowHeight} rowRenderer={rowRenderer} list={list} />);
-//
-//     // there was a memory leak when using toHaveBeenCalledWith
-//     expect(rowRenderer.mock.calls[0][0]).toMatchObject({
-//       index: 0,
-//       key: '0-0',
-//       isScrolling: false,
-//       isVisible: true,
-//       style: expect.objectContaining({
-//         height: rowHeight,
-//       }),
-//       value: list[0],
-//     });
-//
-//     expect(rowRenderer.mock.calls[1][0]).toMatchObject({
-//       index: 1,
-//       key: '1-0',
-//       isScrolling: false,
-//       isVisible: true,
-//       style: expect.objectContaining({
-//         height: rowHeight,
-//       }),
-//       value: list[1],
-//     });
-//
-//     wrapper.unmount();
-//   });
-// });
+/* @jsx jsx */
+
+import { jsx } from '@emotion/core';
+import { shallow, mount } from 'enzyme';
+import 'jest-enzyme';
+import { FunctionComponent } from 'react';
+import { FixedSizeList as WindowFixedSizeList, VariableSizeList as WindowVariableSizeList } from 'react-window';
+
+describe('FixedSizeList component', () => {
+  let FixedSizeList: FunctionComponent<any>;
+  let AutoSizer: jest.Mock;
+
+  beforeAll(async () => {
+    jest.mock('../theme', () => ({
+      useTheme: jest.fn().mockReturnValue({
+        scrollbar: {},
+      }),
+    }));
+
+    jest.mock('../AutoSizer');
+    jest.mock('../Box');
+
+    // @ts-ignore
+    ({ AutoSizer } = await import('../AutoSizer'));
+
+    AutoSizer.mockImplementation(({ width, height, children }) => children({ width, height }));
+
+    ({ FixedSizeList } = await import('../ScrollList'));
+  });
+
+  afterAll(() => {
+    jest.unmock('../theme');
+    jest.unmock('../AutoSizer');
+    jest.unmock('../Box');
+  });
+
+  it('should pass height and width to AutoSizer', () => {
+    const dimensions = {
+      width: '80%',
+      height: 40,
+    };
+
+    shallow(<FixedSizeList {...dimensions} />).dive();
+
+    expect(AutoSizer).toHaveBeenCalledWith(expect.objectContaining(dimensions), expect.anything());
+  });
+
+  it('should render WindowFixedSizeList', () => {
+    const wrapper = mount(
+      <FixedSizeList width="100%" height="100%">abc</FixedSizeList>
+    );
+
+    expect(wrapper.find(WindowFixedSizeList)).toExist();
+    wrapper.unmount();
+  });
+
+  it('should pass computed width and height to WindowFixedSizeList', () => {
+    const dimensions = {
+      width: '241px',
+      height: '92px',
+    };
+
+    AutoSizer.mockImplementation(({ children }) => children(dimensions));
+    const wrapper = shallow(<FixedSizeList width="100%" height="100%" />).dive();
+
+    expect(wrapper).toHaveProp(dimensions);
+  });
+
+  it('should pass all other properties to WindowFixedSizeList', () => {
+    const props = {
+      itemSize: 20,
+      itemCount: 100,
+    };
+
+    const wrapper = shallow(<FixedSizeList width="100%" height="100%" {...props} />).dive();
+
+    expect(wrapper).toHaveProp(props);
+  });
+});
+
+describe('VariableSizeList component', () => {
+  let VariableSizeList: React.FunctionComponent<any>;
+  let AutoSizer: jest.Mock;
+
+  beforeAll(async () => {
+    jest.mock('../theme', () => ({
+      useTheme: jest.fn().mockReturnValue({
+        scrollbar: {},
+      }),
+    }));
+
+    jest.mock('../AutoSizer');
+
+    // @ts-ignore
+    ({ AutoSizer } = await import('../AutoSizer'));
+    AutoSizer.mockImplementation(({ width, height, children }) => children({ width, height }));
+
+    ({ VariableSizeList } = await import('../ScrollList'));
+  });
+
+  afterAll(() => {
+    jest.unmock('../theme');
+    jest.unmock('../AutoSizer');
+  });
+
+  it('should pass height and width to AutoSizer', () => {
+    const dimensions = {
+      width: '80%',
+      height: 40,
+    };
+
+    shallow(<VariableSizeList {...dimensions} />).dive();
+
+    expect(AutoSizer).toHaveBeenCalledWith(expect.objectContaining(dimensions), expect.anything());
+  });
+
+  it('should render WindowVariableSizeList', () => {
+    const wrapper = mount(
+      <VariableSizeList width="100%" height="100%">abc</VariableSizeList>
+    );
+
+    expect(wrapper.find(WindowVariableSizeList)).toExist();
+    wrapper.unmount();
+  });
+
+  it('should pass computed width and height to WindowVariableSizeList', () => {
+    const dimensions = {
+      width: '241px',
+      height: '92px',
+    };
+
+    AutoSizer.mockImplementation(({ children }) => children(dimensions));
+    const wrapper = shallow(<VariableSizeList width="100%" height="100%" />).dive();
+
+    expect(wrapper).toHaveProp(dimensions);
+  });
+
+  it('should pass all other properties to WindowVariableSizeList', () => {
+    const props = {
+      itemSize: 20,
+      itemCount: 100,
+    };
+
+    const wrapper = shallow(<VariableSizeList width="100%" height="100%" {...props} />).dive();
+
+    expect(wrapper).toHaveProp(props);
+  });
+});

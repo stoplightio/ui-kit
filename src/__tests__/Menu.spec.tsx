@@ -1,9 +1,6 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 
@@ -12,8 +9,8 @@ import { IMenu, IMenuItem, IMenuItemProps } from '../Menu';
 import { ITheme } from '../theme';
 
 describe('Menu component', () => {
-  let Menu: FunctionComponent<IMenu>;
-  let MenuItem: FunctionComponent<IMenuItem>;
+  let Menu: React.FunctionComponent<IMenu>;
+  let MenuItem: React.FunctionComponent<IMenuItem>;
   let useHoverMock: jest.MockInstance<any>;
 
   const theme: Partial<ITheme> = {
@@ -90,7 +87,7 @@ describe('Menu component', () => {
     expect(renderMenuItem).toHaveBeenCalledWith(menuItems[0], 0, menuItems);
     expect(renderMenuItem).toHaveBeenLastCalledWith(menuItems[1], 1, menuItems);
 
-    expect(wrapper).toHaveText(menuItems.map(({ title }) => title).join(''));
+    expect(wrapper.html()).toContain(menuItems.map(({ title }) => title).join(''));
   });
 
   it('attaches hover handlers', () => {
@@ -123,7 +120,7 @@ describe('Menu component', () => {
 });
 
 describe('MenuItem component', () => {
-  let MenuItem: FunctionComponent<IMenuItem>;
+  let MenuItem: React.FunctionComponent<IMenuItem>;
 
   const theme: Partial<ITheme> = {
     menu: {

@@ -27,9 +27,9 @@ describe('Image component', () => {
     jest.unmock('../theme');
   });
 
-  it('renders Box component', () => {
+  it('renders Box as img', () => {
     const wrapper = shallow(<Image />);
-    expect(wrapper).toMatchElement(<Box />);
+    expect(wrapper).toMatchElement(<Box as="img" />);
   });
 
   it('passes all props but hidden and responsive', () => {
