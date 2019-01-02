@@ -2,121 +2,63 @@
 
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
-import noop = require('lodash/noop');
-import { FunctionComponent, ReactEventHandler, SyntheticEvent, useState } from 'react';
+import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 'react';
 
-import { Box, Flex, IBox, useTheme } from './';
-import { Icon } from './Icon';
+import { Box, Flex, IBox, IBoxCSS, useTheme } from './';
 
-interface IToggleInputProps {
-  id?: string;
-  onChange: ReactEventHandler<HTMLInputElement>;
-}
+const ToggleCircle: FunctionComponent<IToggleCircle> = props => {
+  const css = circleStyles(props);
 
-const ToggleInput: FunctionComponent<IToggleInputProps> = props => {
-  return jsx(Box, {
-    ...props,
-    as: 'input',
-    type: 'checkbox',
-    css: {
-      position: 'absolute',
-    },
-    style: {
-      clip: 'rect(1px, 1px, 1px, 1px)',
-    },
-  });
+  return <Box as="span" css={css} />;
 };
 
-interface IToggleInnerProps {
+interface IToggleCircleProps {
   isChecked: boolean;
-  isDisabled: boolean;
-  height?: IBox['height'];
-  width?: IBox['width'];
 }
 
-const ToggleInnerIcon: FunctionComponent<IToggleInnerProps> = props => {
-  const css = toggleInnerIconStyles(props);
+interface IToggleCircle extends IToggleCircleProps {}
 
-  return jsx(Icon, {
-    icon: 'circle',
-    css,
-  });
-};
-
-const toggleInnerIconStyles = ({ isChecked }: IToggleInnerProps) => {
+const circleStyles = ({ isChecked }: IToggleCircleProps) => {
   const theme = useTheme();
 
   return {
-    color: isChecked ? theme.toggle.checkedFg : theme.toggle.checkedBg,
-    paddingLeft: isChecked ? '22px' : '4px',
-    transition: 'padding-left .15s ease-in-out, color .25s ease-in-out',
-  };
-};
-
-const ToggleInner: FunctionComponent<IToggleInnerProps> = props => {
-  const css = toggleInnerStyles(props);
-
-  return jsx(
-    Flex,
-    {
-      as: 'span',
-      css,
-    },
-    [jsx(ToggleInnerIcon, props)]
-  );
-};
-
-const toggleInnerStyles = ({ isDisabled, isChecked, height = '20px', width = '40px' }: IToggleInnerProps) => {
-  const theme = useTheme();
-
-  return {
-    display: 'block',
-    margin: 0,
-    padding: 0,
-    borderRadius: '100px',
-    backgroundColor: isChecked ? theme.toggle.checkedBg : theme.toggle.bg,
-    cursor: isDisabled ? 'not-allowed' : 'pointer',
-    width,
-    height,
-    opacity: isDisabled ? 0.6 : 1,
-    fontSize: '14px',
-    alignItems: 'center',
-    transition: 'background-color .15s ease-in-out',
+    display: 'inline-block',
+    borderRadius: '50%',
+    width: '14px',
+    height: '14px',
+    backgroundColor: isChecked ? theme.toggle.checkedFg : theme.toggle.checkedBg,
+    marginLeft: isChecked ? '22px' : '4px',
+    transition: 'margin-left .15s ease-in-out, background-color .25s ease-in-out',
   };
 };
 
 export const Toggle: FunctionComponent<IToggle> = props => {
-  const { id, disabled, height, width, onChange = noop, ...rest } = props;
-  const css = toggleStyles();
+  const { id, disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(props.checked || false);
   const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
 
-  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.checked);
-    onChange(event.currentTarget.checked);
-  };
+  const css = toggleStyles({ isDisabled, isChecked });
 
-  return jsx(
-    Box,
-    {
-      ...rest,
-      as: 'label',
-      htmlFor: id,
-      css,
-    },
-    [
-      jsx(ToggleInput, {
-        id,
-        onChange: handleChange,
-      }),
-      jsx(ToggleInner, {
-        isChecked,
-        isDisabled: !!disabled,
-        height,
-        width,
-      }),
-    ]
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
+    setValue(target.checked);
+    if (onChange !== undefined) {
+      onChange(target.checked);
+    }
+  }, []);
+
+  return (
+    <Flex {...rest} as="label" css={css} htmlFor={id}>
+      <Box
+        as="input"
+        type="checkbox"
+        id={id}
+        onChange={handleChange}
+        position="absolute"
+        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+      />
+      <ToggleCircle isChecked={isChecked} />
+    </Flex>
   );
 };
 
@@ -126,6 +68,25 @@ export interface IToggleProps {
 
 export interface IToggle extends IToggleProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
 
-const toggleStyles = () => ({
-  display: 'inline-block',
-});
+const toggleStyles = ({ isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
+  const theme = useTheme();
+
+  return {
+    alignItems: 'center',
+    backgroundColor: isChecked ? theme.toggle.checkedBg : theme.toggle.bg,
+    borderRadius: '100px',
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    fontSize: '14px',
+    height: '20px',
+    opacity: isDisabled ? 0.6 : 1,
+    padding: 0,
+    margin: 0,
+    width: '40px',
+    transition: 'background-color .15s ease-in-out',
+  };
+};
+
+interface IToggleStyles {
+  isChecked: boolean;
+  isDisabled: boolean;
+}

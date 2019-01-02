@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { Interpolation, jsx } from '@emotion/core';
 import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
@@ -108,7 +108,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
   /** User provided style get pushed on last. */
   if (style) css.push(style);
 
-  return jsx<Partial<IBox<HTMLElement>>>(
+  return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
       ...rest,
@@ -118,6 +118,8 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     children
   );
 });
+
+export type IBoxCSS = Interpolation | Interpolation[];
 
 export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,
@@ -156,6 +158,6 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   children?: any;
   style?: CSSProperties;
-  css?: any;
+  css?: IBoxCSS;
   [key: string]: any;
 }
