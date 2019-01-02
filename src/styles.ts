@@ -1,6 +1,7 @@
 import {
   BackgroundColorProperty,
   ColorProperty,
+  CursorProperty,
   FlexFlowProperty,
   ListStylePositionProperty,
   ListStyleProperty,
@@ -8,6 +9,7 @@ import {
   TextDecorationProperty,
   TextTransformProperty,
   TransformProperty,
+  VisibilityProperty,
 } from 'csstype';
 
 export interface IColorProps {
@@ -62,4 +64,20 @@ export interface IFlexFlowProperty {
 
 export const flexFlow = (props: IFlexFlowProperty) => ({
   flexFlow: props.flexFlow,
+});
+
+export interface ICursorProps {
+  cursor?: CursorProperty;
+}
+
+export const cursor = (props: ICursorProps) => ({
+  cursor: props.cursor,
+});
+
+export interface IVisibilityProps {
+  visibility?: VisibilityProperty;
+}
+
+export const visibility = (props: IVisibilityProps) => ({
+  visibility: props.visibility,
 });

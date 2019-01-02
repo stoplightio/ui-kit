@@ -19,6 +19,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     borderRight,
     borderRadius,
     boxShadow,
+    cursor,
     display,
     fontSize,
     fontWeight,
@@ -62,6 +63,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     color,
     backgroundColor,
     transform,
+    visibility,
     ...rest
   } = props;
 
@@ -103,6 +105,8 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration, textDecorationColor }),
+    sl.cursor({ cursor }),
+    sl.visibility({ visibility }),
   ];
 
   /** User provided style get pushed on last. */
@@ -119,12 +123,13 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
   );
 });
 
-export type IBoxCSS = Interpolation | Interpolation[];
-
 export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,
+    sl.IColorProps,
     sl.ITextDecorationProps,
-    sl.IListStyleProps,
+    sl.ITextTransformProps,
+    sl.IVisibilityProps,
+    sl.ICursorProps,
     ss.BorderProps,
     ss.BorderTopProps,
     ss.BorderBottomProps,
@@ -161,3 +166,5 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   css?: IBoxCSS;
   [key: string]: any;
 }
+
+export type IBoxCSS = Interpolation | Interpolation[];
