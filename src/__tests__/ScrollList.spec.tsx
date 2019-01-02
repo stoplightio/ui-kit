@@ -1,7 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import { FunctionComponent } from 'react';
 import { FixedSizeList as WindowFixedSizeList, VariableSizeList as WindowVariableSizeList } from 'react-window';
@@ -47,7 +47,9 @@ describe('FixedSizeList component', () => {
 
   it('should render WindowFixedSizeList', () => {
     const wrapper = mount(
-      <FixedSizeList width="100%" height="100%">abc</FixedSizeList>
+      <FixedSizeList width="100%" height="100%">
+        abc
+      </FixedSizeList>
     );
 
     expect(wrapper.find(WindowFixedSizeList)).toExist();
@@ -116,7 +118,9 @@ describe('VariableSizeList component', () => {
 
   it('should render WindowVariableSizeList', () => {
     const wrapper = mount(
-      <VariableSizeList width="100%" height="100%">abc</VariableSizeList>
+      <VariableSizeList width="100%" height="100%">
+        abc
+      </VariableSizeList>
     );
 
     expect(wrapper.find(WindowVariableSizeList)).toExist();
