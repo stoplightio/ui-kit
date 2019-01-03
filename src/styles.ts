@@ -5,6 +5,9 @@ import {
   FlexFlowProperty,
   ListStylePositionProperty,
   ListStyleProperty,
+  OverflowProperty,
+  OverflowXProperty,
+  OverflowYProperty,
   TextDecorationColorProperty,
   TextDecorationProperty,
   TextTransformProperty,
@@ -81,3 +84,15 @@ export interface IVisibilityProps {
 export const visibility = (props: IVisibilityProps) => ({
   visibility: props.visibility,
 });
+
+export const overflow = (props: IOverflowProps) => ({
+  overflow: props.overflow,
+  overflowX: props.overflowX,
+  overflowY: props.overflowY,
+});
+
+export interface IOverflowProps {
+  overflow?: OverflowProperty;
+  overflowX?: OverflowXProperty;
+  overflowY?: OverflowYProperty;
+}
