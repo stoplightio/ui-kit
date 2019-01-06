@@ -27,6 +27,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
         as="input"
         type="checkbox"
         id={id}
+        checked={checked}
         onChange={handleChange}
         position="absolute"
         css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}

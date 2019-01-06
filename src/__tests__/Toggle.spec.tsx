@@ -61,4 +61,14 @@ describe('Toggle component', () => {
     expect(onChange).toHaveBeenLastCalledWith(false);
     wrapper.unmount();
   });
+
+  it('passes checked prop to inner Input', () => {
+    let wrapper = mount(<Toggle id="4" checked={true} />);
+    expect(wrapper.find('input')).toHaveProp('checked', true);
+    wrapper.unmount();
+
+    wrapper = mount(<Toggle id="4" checked={false} />);
+    expect(wrapper.find('input')).toHaveProp('checked', false);
+    wrapper.unmount();
+  });
 });
