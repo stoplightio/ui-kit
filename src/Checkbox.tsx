@@ -2,105 +2,43 @@
 
 import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
-import noop = require('lodash/noop');
-import { FunctionComponent, ReactEventHandler, useState } from 'react';
+import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 'react';
 
-import { Box, Flex, IBox, Icon, useTheme } from './';
-
-interface ICheckboxInputProps {
-  id: IBox['id'];
-  onChange: ReactEventHandler<HTMLInputElement>;
-}
-
-interface ICheckboxInput extends ICheckboxInputProps {}
-
-const CheckboxInput: FunctionComponent<ICheckboxInput> = props => {
-  return jsx(Box, {
-    ...props,
-    as: 'input',
-    type: 'checkbox',
-    position: 'absolute',
-    style: {
-      clip: 'rect(1px, 1px, 1px, 1px)',
-    },
-  });
-};
-
-interface ICheckboxInnerProps {
-  isChecked: boolean;
-  isDisabled: boolean;
-  width?: IBox['width'];
-  height?: IBox['height'];
-}
-
-export interface ICheckboxInner extends ICheckboxInnerProps {}
-
-const CheckboxInner: FunctionComponent<ICheckboxInner> = props => {
-  const css = checkboxInnerStyles(props);
-
-  return jsx(
-    Flex,
-    {
-      as: 'span',
-      css,
-    },
-    props.isChecked && [jsx(Icon, { icon: 'check', backgroundColor: 'inherit' })]
-  );
-};
-
-const checkboxInnerStyles = ({ isDisabled, isChecked, height = '20px', width = '20px' }: ICheckboxInner) => {
-  const theme = useTheme();
-
-  return {
-    margin: 0,
-    padding: 0,
-    borderRadius: '5px',
-    backgroundColor: isChecked ? theme.checkbox.checkedBg : theme.checkbox.bg,
-    color: theme.checkbox.fg,
-    cursor: isDisabled ? 'not-allowed' : 'pointer',
-    width,
-    height,
-    opacity: isDisabled ? 0.6 : 1,
-    fontSize: '14px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'background-color .15s ease-in-out',
-    overflow: 'hidden',
-  };
-};
+import { Box, Flex, IBox, useTheme } from './';
 
 export const Checkbox: FunctionComponent<ICheckbox> = props => {
-  const { id, disabled: isDisabled, width, height, onChange = noop, ...rest } = props;
-  const css = checkboxStyles();
+  const { id, disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(props.checked || false);
   const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
 
-  const handleChange: ReactEventHandler<HTMLInputElement> = event => {
-    setValue(event.currentTarget.checked);
-    onChange(event.currentTarget.checked);
-  };
+  const css = checkboxStyles({ isDisabled, isChecked });
 
-  return jsx(
-    Box,
-    {
-      ...rest,
-      as: 'label',
-      htmlFor: id,
-      css,
-    },
-    [
-      jsx(CheckboxInput, {
-        id,
-        onChange: handleChange,
-      }),
-      jsx(CheckboxInner, {
-        isChecked,
-        isDisabled,
-        height,
-        width,
-      }),
-    ]
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
+    setValue(target.checked);
+    if (onChange !== undefined) {
+      onChange(target.checked);
+    }
+  }, []);
+
+  return (
+    <Flex {...rest} as="label" css={css} htmlFor={id}>
+      <Box
+        as="input"
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={handleChange}
+        position="absolute"
+        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+      />
+      <svg aria-hidden="true" viewBox="0 0 512 512" width="14px" height="14px">
+        <path
+          fill="currentColor"
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+        />
+      </svg>
+    </Flex>
   );
 };
 
@@ -111,6 +49,27 @@ export interface ICheckboxProps {
 
 export interface ICheckbox extends ICheckboxProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
 
-export const checkboxStyles = () => ({
-  display: 'inline-block',
-});
+export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
+  const theme = useTheme();
+
+  return {
+    alignItems: 'center',
+    backgroundColor: isChecked ? theme.checkbox.checkedBg : theme.checkbox.bg,
+    borderRadius: '5px',
+    color: isChecked ? theme.checkbox.fg : theme.checkbox.bg,
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    height: '20px',
+    justifyContent: 'center',
+    opacity: isDisabled ? 0.6 : 1,
+    overflow: 'hidden',
+    margin: 0,
+    padding: 0,
+    width: '20px',
+    transition: 'background-color .15s ease-in-out',
+  };
+};
+
+interface ICheckboxStyles {
+  isChecked: boolean;
+  isDisabled: boolean;
+}

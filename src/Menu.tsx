@@ -4,7 +4,7 @@ import { jsx } from '@emotion/core';
 
 import { FunctionComponent, ReactNode } from 'react';
 
-import { Box } from './Box';
+import { Box, IBoxCSS } from './Box';
 import { Flex, IFlex } from './Flex';
 import { useHover } from './hooks/useHover';
 import { Icon, IIcon } from './Icon';
@@ -167,15 +167,15 @@ export interface IMenuItemProps {
 
 export interface IMenuItem extends IMenuItemProps, Pick<IFlex, Exclude<keyof IFlex, 'title'>> {}
 
-const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItemProps>) => {
+const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItemProps>): IBoxCSS => {
   const theme = useTheme();
 
   return [
     {
       alignItems: 'center',
-      padding: '6px 10px', // @md @lg'
+      padding: '6px 10px',
       cursor: disabled ? 'not-allowed' : onClick ? 'pointer' : 'default',
-      opacity: disabled && 0.6,
+      opacity: disabled ? 0.6 : 1,
 
       ':hover': {
         backgroundColor: theme.menu.hoverBg,

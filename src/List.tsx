@@ -10,16 +10,12 @@ import * as sl from './styles';
 export const List: FunctionComponent<IList> = props => {
   const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
 
-  const css = [sl.listStyle({ listStyle, listStylePosition })];
+  const css = sl.listStyle({ listStyle, listStylePosition });
 
-  return jsx(Box, {
-    ...rest,
-    css,
-    as,
-  });
+  return <Box {...rest} as={as} css={css} />;
 };
 
-export interface IList extends IListProps, sl.IColorProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {}
+export interface IList extends IListProps, sl.IListStyleProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {}
 
 export interface IListProps {
   as?: 'ul' | 'ol';
