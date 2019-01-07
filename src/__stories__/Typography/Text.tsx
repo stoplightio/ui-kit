@@ -14,7 +14,7 @@ export const textKnobs = (tabName = 'Text'): IText => ({
   ...boxKnobs(),
   tracking: select('tracking', LetterSpacing, '', tabName),
   leading: select('leading', LineHeight, '', tabName),
-  casing: select('casing', Casing, '', tabName),
+  casing: select('casing', Casing, '', tabName) as IText['textTransform'],
   textDecoration: select('textDecoration', Decoration, '', tabName),
   textDecorationColor: text('textDecorationColor', 'valid-color', tabName),
   italic: boolean('italic', false, tabName),

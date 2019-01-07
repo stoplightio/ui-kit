@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { Interpolation, jsx } from '@emotion/core';
 import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
@@ -18,7 +18,9 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     borderLeft,
     borderRight,
     borderRadius,
+    borderColor,
     boxShadow,
+    cursor,
     display,
     fontSize,
     fontWeight,
@@ -56,18 +58,22 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     maxWidth,
     opacity,
     overflow,
+    overflowX,
+    overflowY,
     textDecoration,
     textDecorationColor,
     textTransform,
     color,
     backgroundColor,
     transform,
+    visibility,
     ...rest
   } = props;
 
   /** Add all the supported styles, passing in the relevant props. */
-  const css = [
+  const css: IBoxCSS = [
     ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
+    ss.borderColor({ borderColor }),
     ss.borderRadius({ borderRadius }),
     ss.boxShadow({ boxShadow }),
     ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
@@ -89,7 +95,6 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     ss.minWidth({ minWidth }),
     ss.maxWidth({ maxWidth }),
 
-    ss.overflow({ overflow }),
     ss.position({ position }),
     ss.top({ top }),
     ss.bottom({ bottom }),
@@ -103,12 +108,15 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration, textDecorationColor }),
+    sl.cursor({ cursor }),
+    sl.visibility({ visibility }),
+    sl.overflow({ overflow, overflowX, overflowY }),
   ];
 
   /** User provided style get pushed on last. */
-  if (style) css.push(style);
+  if (style) css.push(style as IBoxCSS);
 
-  return jsx<Partial<IBox<HTMLElement>>>(
+  return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
       ...rest,
@@ -121,8 +129,12 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
 
 export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,
+    sl.IColorProps,
     sl.ITextDecorationProps,
-    sl.IListStyleProps,
+    sl.ITextTransformProps,
+    sl.IVisibilityProps,
+    sl.IOverflowProps,
+    sl.ICursorProps,
     ss.BorderProps,
     ss.BorderTopProps,
     ss.BorderBottomProps,
@@ -156,6 +168,8 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   children?: any;
   style?: CSSProperties;
-  css?: any;
+  css?: IBoxCSS;
   [key: string]: any;
 }
+
+export type IBoxCSS = Interpolation | Interpolation[];
