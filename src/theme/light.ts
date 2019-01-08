@@ -46,6 +46,11 @@ export const lightTheme: ITheme = {
     hoverFg: 'white',
   },
 
+  dialog: {
+    bg: '#fff',
+    fg: '#111',
+  },
+
   input: {
     fg: '#222',
     bg: '#fff',
@@ -61,6 +66,10 @@ export const lightTheme: ITheme = {
     border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
+  },
+
+  overlay: {
+    bg: 'rgba(0, 0, 0, 0.4)',
   },
 
   scrollbar: {

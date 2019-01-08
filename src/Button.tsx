@@ -3,7 +3,7 @@
 import { jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 
-import { Box, IBox } from './Box';
+import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
 export const Button: FunctionComponent<IButton> = props => {
@@ -11,11 +11,7 @@ export const Button: FunctionComponent<IButton> = props => {
 
   const css = buttonStyles({ disabled });
 
-  return jsx(Box, {
-    ...rest,
-    as,
-    css,
-  });
+  return <Box {...rest} as={as} css={css} disabled={disabled} />;
 };
 
 export interface IButton extends IButtonProps, IBox<HTMLButtonElement> {}
@@ -24,7 +20,7 @@ export interface IButtonProps {
   disabled?: boolean;
 }
 
-export const buttonStyles = ({ disabled }: IButtonProps = {}) => {
+export const buttonStyles = ({ disabled }: IButtonProps = {}): IBoxCSS => {
   const theme = useTheme();
 
   return [
@@ -48,15 +44,15 @@ export const buttonStyles = ({ disabled }: IButtonProps = {}) => {
       ':active': {
         opacity: 1,
       },
-    },
 
-    disabled && {
-      cursor: 'not-allowed',
-      opacity: 0.6,
-
-      ':hover': {
+      ...(disabled && {
+        cursor: 'not-allowed',
         opacity: 0.6,
-      },
+
+        ':hover': {
+          opacity: 0.6,
+        },
+      }),
     },
   ];
 };
