@@ -36,6 +36,12 @@ export interface ITheme {
     hoverBg: string;
   };
 
+  dialog: {
+    bg: string;
+    fg: string;
+    border?: string;
+  };
+
   input: {
     fg: string;
     bg?: string;
@@ -75,6 +81,10 @@ export interface ITheme {
     border: string;
     hoverFg: string;
     hoverBg: string;
+  };
+
+  overlay: {
+    bg?: string;
   };
 
   select: {

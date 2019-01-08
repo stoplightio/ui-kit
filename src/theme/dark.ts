@@ -46,6 +46,12 @@ export const darkTheme: ITheme = {
     hoverFg: 'white',
   },
 
+  dialog: {
+    bg: '#222',
+    fg: '#fff',
+    border: '',
+  },
+
   input: {
     fg: '#fff',
     bg: '#222',
@@ -61,6 +67,10 @@ export const darkTheme: ITheme = {
     border: 'lightgrey',
     hoverBg: 'dodgerblue',
     hoverFg: 'white',
+  },
+
+  overlay: {
+    bg: 'rgba(255, 255, 255, 0.4)',
   },
 
   scrollbar: {
