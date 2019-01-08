@@ -5,9 +5,9 @@ import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
 import { number, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 
-import { Box, Flex } from '../..';
+import { areEqual, Box, Flex } from '../..';
 import { FixedSizeList, IFixedSizeList, IVariableSizeList, VariableSizeList } from '../../ScrollList';
 
 export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVariableSizeList, 'children'> => ({
@@ -29,16 +29,24 @@ const Row: FunctionComponent<any> = ({ index, style, key }) => (
   </Flex>
 );
 
+const MemoizedRow = memo(props => <Row {...props} />, areEqual);
+
 storiesOf('List & Tables:FixedSizeList', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
-  .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row as any}</FixedSizeList>);
+  .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>)
+  .add('memoized', () => <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>);
 
 storiesOf('List & Tables:VariableSizeList', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
   .add('with defaults', () => (
     <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
-      {Row as any}
+      {Row}
+    </VariableSizeList>
+  ))
+  .add('memoized', () => (
+    <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
+      {MemoizedRow}
     </VariableSizeList>
   ));
