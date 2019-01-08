@@ -7,6 +7,7 @@ export * from './BlockQuote';
 export * from './Box';
 export * from './Break';
 export * from './Button';
+export * from './Canvas';
 export * from './Checkbox';
 export * from './Dialog';
 export * from './Flex';
