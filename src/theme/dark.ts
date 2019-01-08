@@ -74,7 +74,7 @@ export const darkTheme: ITheme = {
   },
 
   scrollbar: {
-    bg: 'rgba(255, 255, 255, 0.4)',
+    bg: 'rgba(255, 255, 255, 0.7)',
   },
 
   select: {

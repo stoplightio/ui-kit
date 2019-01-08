@@ -2,7 +2,9 @@
 
 import { jsx } from '@emotion/core';
 import { mount } from 'enzyme';
+
 import 'jest-enzyme';
+import * as React from 'react';
 
 import { Box } from '../';
 

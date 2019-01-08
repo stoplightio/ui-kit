@@ -2,33 +2,51 @@
 
 import { jsx } from '@emotion/core';
 
-import { array, number, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-
 import { Omit } from '@stoplight/types';
-import { Box } from '../..';
-import { IScrollList, RowRendererFunc, ScrollList } from '../../ScrollList';
+import { number, select, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { FunctionComponent, memo } from 'react';
 
-export const scrollListKnobs = (tabName = 'List Scroller'): Omit<IScrollList, 'rowRenderer'> => ({
-  scrollToIndex: number('scrollToIndex', 0, { min: 0, max: Infinity, step: 1, range: false }, tabName),
-  rowHeight: number('rowHeight', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-  list: array<string>('list', ['item 0', 'item 1', 'item 2', 'item 3', 'item 4', 'item5', 'item6'], 'item 0', tabName),
+import { areEqual, Box, Flex } from '../..';
+import { FixedSizeList, IFixedSizeList, IVariableSizeList, VariableSizeList } from '../../ScrollList';
+
+export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVariableSizeList, 'children'> => ({
+  itemSize: () => 0,
+  direction: select('direction', ['vertical', 'horizontal'], 'vertical', tabName),
+  height: text('height', '500px', tabName),
+  width: text('width', '100%', tabName),
+  itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
-const rowRenderer: RowRendererFunc = ({ value, key, style }) => (
-  <Box key={key} style={style} borderBottom="1px solid" borderColor="black">
-    {value}
-  </Box>
+export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeList, 'children'> => ({
+  ...variableSizeListKnobs(tabName),
+  itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+});
+
+const Row: FunctionComponent<any> = ({ index, style, key }) => (
+  <Flex key={key} style={style} alignItems="center" borderBottom="1px solid" borderColor="currentColor">
+    Item {index}
+  </Flex>
 );
 
-storiesOf('List & Tables:ScrollList', module)
+const MemoizedRow = memo(props => <Row {...props} />, areEqual);
+
+storiesOf('List & Tables:FixedSizeList', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => (
-    <Box height="200px" css={{ outline: '2px solid black' }}>
-      {storyFn()}
-    </Box>
+  .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
+  .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>)
+  .add('memoized', () => <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>);
+
+storiesOf('List & Tables:VariableSizeList', module)
+  .addDecorator(withKnobs)
+  .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
+  .add('with defaults', () => (
+    <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
+      {Row}
+    </VariableSizeList>
   ))
-  .add('with defaults', () => <ScrollList {...scrollListKnobs()} rowRenderer={rowRenderer} />)
-  .add('with random height', () => (
-    <ScrollList {...scrollListKnobs()} rowHeight={({ index }) => 20 + index * 20} rowRenderer={rowRenderer} />
+  .add('memoized', () => (
+    <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
+      {MemoizedRow}
+    </VariableSizeList>
   ));
