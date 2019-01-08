@@ -3,8 +3,10 @@
 import { css, jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
 import {
+  areEqual,
   FixedSizeList as WindowFixedSizeList,
   FixedSizeListProps as IFixedSizeList,
+  shouldComponentUpdate,
   VariableSizeList as WindowVariableSizeList,
   VariableSizeListProps as IVariableSizeList,
 } from 'react-window';
@@ -38,7 +40,7 @@ export const VariableSizeList: FunctionComponent<IVariableSizeList> = props => {
   );
 };
 
-export { IFixedSizeList, IVariableSizeList };
+export { IFixedSizeList, IVariableSizeList, areEqual, shouldComponentUpdate };
 
 export const scrollListStyles = () => {
   const theme = useTheme();
