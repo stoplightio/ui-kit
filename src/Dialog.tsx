@@ -13,7 +13,6 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   const css = dialogStyles();
 
   const onOverlayClick = useCallback<MouseEventHandler<HTMLElement>>(e => {
-    e.stopPropagation();
     if (onClickOutside !== undefined) {
       onClickOutside(e);
     }

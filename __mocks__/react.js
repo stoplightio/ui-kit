@@ -6,4 +6,4 @@
  */
 
 const React = require.requireActual('react');
-module.exports = { ...React, useEffect: React.useLayoutEffect };
+module.exports = { ...React, useEffect: React.useLayoutEffect, useCallback: jest.fn((fn) => fn) };
