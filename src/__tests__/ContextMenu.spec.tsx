@@ -53,7 +53,7 @@ describe('ContextMenu component', () => {
       hideOnLeave: true,
     };
 
-    const wrapper = shallow(<ContextMenu id="uniq-id" {...props} />);
+    const wrapper = shallow(<ContextMenu renderTrigger={() => null} id="uniq-id" {...props} />);
 
     expect(wrapper.find(ContextMenuView)).toExist();
     expect(wrapper.find(ContextMenuView)).toHaveProp(props);
@@ -66,11 +66,6 @@ describe('ContextMenu component', () => {
     const wrapper = shallow(<ContextMenu renderTrigger={renderTrigger} id={id} />);
     expect(wrapper.find(ContextMenuView)).toHaveProp('id', id);
     expect(wrapper.find(ContextMenuTrigger)).toHaveProp('id', id);
-  });
-
-  it('should not render ContextMenuTrigger when no renderTrigger is given', () => {
-    const wrapper = shallow(<ContextMenu id="a" />);
-    expect(wrapper.find(ContextMenuTrigger)).not.toExist();
   });
 });
 

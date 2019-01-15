@@ -46,4 +46,64 @@ storiesOf('Menus:Context Menu', module)
         },
       ]}
     />
+  ))
+  .add('sub menu', () => (
+    <ContextMenu
+      id="defaultContextMenu"
+      renderTrigger={() => 'Right Click Me!'}
+      menuItems={[
+        { title: 'Menu Item 1', color: 'success', onClick: action('onClick') },
+        {
+          title: 'SubMenu Item',
+          color: 'warning',
+          menuItems: [
+            { title: 'SubMenu Item 1', color: 'success', onClick: action('onClick') },
+            {
+              title: 'Nested SubMenu Item 2',
+              color: 'warning',
+              menuItems: [
+                { title: 'SubMenu Item 1', color: 'success', onClick: action('onClick') },
+                { title: 'SubMenu Item 2', color: 'warning' },
+                { title: 'SubMenu Item 3', color: 'error' },
+                { divider: true, borderColor: 'fg' },
+                {
+                  title: 'Disabled SubMenu Item',
+                  disabled: true,
+                  fontStyle: 'italic',
+                },
+              ],
+            },
+            { title: 'SubMenu Item 3', color: 'error' },
+            {
+              title: 'Nested SubMenu Item 4',
+              color: 'warning',
+              menuItems: [
+                { title: 'SubMenu Item 1', color: 'success', onClick: action('onClick') },
+                { title: 'SubMenu Item 2', color: 'warning' },
+                { title: 'SubMenu Item 3', color: 'error' },
+                { divider: true, borderColor: 'fg' },
+                {
+                  title: 'Disabled SubMenu Item',
+                  disabled: true,
+                  fontStyle: 'italic',
+                },
+              ],
+            },
+            { divider: true, borderColor: 'fg' },
+            {
+              title: 'Disabled SubMenu Item',
+              disabled: true,
+              fontStyle: 'italic',
+            },
+          ],
+        },
+        { title: 'Menu Item 3', color: 'error' },
+        { divider: true, borderColor: 'fg' },
+        {
+          title: 'Disabled Menu Item',
+          disabled: true,
+          fontStyle: 'italic',
+        },
+      ]}
+    />
   ));
