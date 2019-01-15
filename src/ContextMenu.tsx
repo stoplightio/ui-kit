@@ -41,6 +41,8 @@ export const ContextMenu: FunctionComponent<IContextMenu> = props => {
   );
 };
 
+export { ContextMenuTrigger };
+
 /**
  * MENU
  */
