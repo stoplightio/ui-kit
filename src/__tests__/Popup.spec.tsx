@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
+import { Popup } from '../';
 import { useWindowResize } from '../hooks/useWindowResize';
-import { Popup } from '../Popup';
 import { PopupContent } from '../Popup/PopupContent';
 
 jest.mock('../theme', () => ({
