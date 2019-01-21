@@ -24,7 +24,7 @@ export const calculateStyles = (
   content: RefObject<HTMLDivElement>,
   props: IPopupProps
 ): CSSProperties | null => {
-  if (!trigger || !content || !trigger.current || !content.current) return null;
+  if (!trigger.current || !content.current) return null;
 
   const offset = getOffset(props.offset);
 

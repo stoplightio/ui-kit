@@ -11,15 +11,16 @@ export { IPopupProps, IPopupDefaultProps };
 export interface IPopup extends IPopupProps {}
 
 export const Popup: React.FunctionComponent<IPopup> = props => {
-  const { hideDelay, width, offset, posX, posY } = props;
+  const { hideDelay, width, offset, posX, posY, show = false } = props;
 
   const theme = useTheme();
 
+  const controlled = 'show' in props;
   const triggerRef = React.useRef<HTMLElement>(null);
-  const contentRef = React.createRef<HTMLDivElement>();
-  const [isVisible, setVisibility] = React.useState<boolean>(false);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [visibility, setVisibility] = React.useState<boolean>(false);
+  const isVisible = controlled ? show : visibility;
   const lastResizeTimestamp = useWindowResize();
-  let lastRepaintTimestamp = 0;
   const [style, setStyle] = React.useState<React.CSSProperties>({});
   let isOverTrigger: boolean = false;
   let isOverContent: boolean = false;
@@ -28,40 +29,46 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
   const repaint = React.useCallback(
     () => {
       if (isVisible) {
-        lastRepaintTimestamp = Date.now();
         setStyle({
           ...getDefaultStyle(props),
           ...calculateStyles(triggerRef, contentRef, props),
         });
       }
     },
-    [width, offset, posX, posY, contentRef, lastRepaintTimestamp]
+    [triggerRef.current, contentRef.current, width, offset, posX, posY, isVisible]
   );
 
   if (typeof window !== 'undefined') {
-    React.useEffect(repaint, [lastResizeTimestamp]);
+    React.useEffect(repaint, [lastResizeTimestamp, contentRef.current]);
   }
 
-  const showPopup = () => {
-    if (willHide !== null) {
-      clearTimeout(willHide as number);
-      willHide = null;
-    }
+  const showPopup = React.useCallback(
+    () => {
+      if (controlled) return;
+      if (willHide !== null) {
+        clearTimeout(willHide as number);
+        willHide = null;
+      }
 
-    setVisibility(true);
-  };
+      setVisibility(true);
+    },
+    [willHide, isVisible, controlled]
+  );
 
-  const hidePopup = () => {
-    if (willHide !== null) {
-      return;
-    }
+  const hidePopup = React.useCallback(
+    () => {
+      if (willHide !== null || controlled) {
+        return;
+      }
 
-    willHide = setTimeout(() => {
-      isOverTrigger = false;
-      isOverContent = false;
-      setVisibility(false);
-    }, hideDelay);
-  };
+      willHide = setTimeout(() => {
+        isOverTrigger = false;
+        isOverContent = false;
+        setVisibility(false);
+      }, hideDelay);
+    },
+    [willHide, isVisible, controlled]
+  );
 
   const { renderTrigger, renderContent } = props;
 
@@ -71,27 +78,33 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
     hidePopup,
   };
 
-  const handleMouseEnter = ({ target }: React.SyntheticEvent<HTMLElement>) => {
-    if (target === triggerRef.current) {
-      isOverTrigger = true;
-    } else if (target === contentRef.current) {
-      isOverContent = true;
-    }
+  const handleMouseEnter = React.useCallback<React.MouseEventHandler<HTMLElement>>(
+    ({ target }) => {
+      if (target === triggerRef.current) {
+        isOverTrigger = true;
+      } else if (target === contentRef.current) {
+        isOverContent = true;
+      }
 
-    showPopup();
-  };
+      showPopup();
+    },
+    [triggerRef.current, contentRef.current, isVisible]
+  );
 
-  const handleMouseLeave = ({ target }: React.SyntheticEvent<HTMLElement>) => {
-    if (target === triggerRef.current) {
-      isOverTrigger = false;
-    } else if (target === contentRef.current) {
-      isOverContent = false;
-    }
+  const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLElement>>(
+    ({ target }) => {
+      if (target === triggerRef.current) {
+        isOverTrigger = false;
+      } else if (target === contentRef.current) {
+        isOverContent = false;
+      }
 
-    if (isVisible && !isOverTrigger && !isOverContent) {
-      hidePopup();
-    }
-  };
+      if (isVisible && !isOverTrigger && !isOverContent) {
+        hidePopup();
+      }
+    },
+    [triggerRef.current, contentRef.current, isVisible]
+  );
 
   return (
     <>
