@@ -39,6 +39,7 @@ export interface IPopupProps extends IPopupPosition {
   hideDelay?: number; // how long popup will show for after user mouses out
   renderTrigger: PopupTriggerRenderer;
   renderContent: PopupContentRenderer;
+  show?: boolean;
 }
 
 export interface IPopupDefaultProps {

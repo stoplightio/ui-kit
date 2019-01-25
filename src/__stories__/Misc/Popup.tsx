@@ -1,13 +1,15 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { NumberOptions, withKnobs } from '@storybook/addon-knobs';
+import { boolean, NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Icon, Popup } from '../..';
 
-export const popupKnobs = (tabName = 'Popup'): any => ({
+const TAB_NAME = 'Popup';
+
+export const popupKnobs = (tabName = TAB_NAME): any => ({
   posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
   posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
   offset: {
@@ -46,5 +48,13 @@ storiesOf('Miscellaneous:Popup', module)
         );
       }}
       renderContent={() => <Box as="span">Globe</Box>}
+    />
+  ))
+  .add('with controlled mode', () => (
+    <Popup
+      {...popupKnobs()}
+      show={boolean('show', false, TAB_NAME)}
+      renderTrigger={() => <Box as="span">I am controlled, so hovering is no-op!</Box>}
+      renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
     />
   ));
