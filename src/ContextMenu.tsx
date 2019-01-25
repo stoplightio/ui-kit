@@ -1,6 +1,6 @@
 /* @jsx jsx */
-
 import { jsx } from '@emotion/core';
+import * as React from 'react';
 import {
   ContextMenu as ReactContextMenu,
   ContextMenuTrigger,
@@ -11,7 +11,7 @@ import {
 import { Omit } from '@stoplight/types';
 import { Fragment, FunctionComponent, HTMLAttributes, MouseEvent, ReactNode, TouchEvent } from 'react';
 
-import { Box, Break, Flex, IBox, Text, useTheme } from './';
+import { Box, Break, Flex, IBox, useTheme } from './';
 
 // TODO: allow custom renderMenu
 // TODO: allow custom renderMenuItem?
@@ -23,7 +23,18 @@ import { Box, Break, Flex, IBox, Text, useTheme } from './';
  */
 
 interface IContextMenuProps {
-  renderTrigger: (props?: IContextMenuProps) => ReactNode | string;
+  renderTrigger: (
+    ref: React.MutableRefObject<{
+      handleContextClick: (e: MouseEvent<HTMLDivElement>) => void;
+      // TODO get event type
+      handleContextMenu: (e: any) => void;
+      handleMouseDown: (e: MouseEvent<HTMLDivElement>) => void;
+      handleMouseOut: (e: MouseEvent<HTMLDivElement>) => void;
+      handleMouseUp: (e: MouseEvent<HTMLDivElement>) => void;
+      handleTouchEnd: (e: TouchEvent<HTMLDivElement>) => void;
+      handleTouchstart: (e: TouchEvent<HTMLDivElement>) => void;
+    }>
+  ) => ReactNode | string;
 }
 
 export interface IContextMenu extends IContextMenuProps, IContextMenuViewProps {}
@@ -31,11 +42,13 @@ export interface IContextMenu extends IContextMenuProps, IContextMenuViewProps {
 export const ContextMenu: FunctionComponent<IContextMenu> = props => {
   const { id, renderTrigger, ...rest } = props;
 
-  if (typeof renderTrigger !== 'function') return null;
+  const contextTriggerRef = React.useRef<any>(null);
 
   return (
     <Fragment>
-      <ContextMenuTrigger id={id}>{renderTrigger()}</ContextMenuTrigger>
+      <ContextMenuTrigger id={id} ref={contextTriggerRef} holdToDisplay={-1}>
+        {renderTrigger(contextTriggerRef)}
+      </ContextMenuTrigger>
       <ContextMenuView id={id} {...rest} />
     </Fragment>
   );
@@ -82,6 +95,7 @@ const menuStyles = () => {
       border: `1px solid ${theme.contextMenu.border}`,
       color: theme.contextMenu.fg,
       backgroundColor: theme.contextMenu.bg,
+      minWidth: '180px',
 
       cursor: 'default',
       ':focus': {
@@ -89,8 +103,8 @@ const menuStyles = () => {
       },
 
       '.react-contextmenu-submenu': {
-        '.react-contextmenu': { opacity: 0, display: 'none' },
-        '.react-contextmenu--visible': { opacity: 1, display: 'block' },
+        '.react-contextmenu': { display: 'none' },
+        '.react-contextmenu--visible': { display: 'block' },
       },
     },
   ];
@@ -101,9 +115,9 @@ const menuStyles = () => {
  */
 
 interface IContextMenuItemProps {
-  attributes?: HTMLAttributes<HTMLDivElement>;
-  data?: Object;
   title?: string;
+  key?: number | string;
+  data?: Object;
   divider?: boolean;
   disabled?: boolean;
   preventClose?: boolean;
@@ -113,6 +127,7 @@ interface IContextMenuItemProps {
     target: HTMLElement
   ) => void | Function;
   menuItems?: IContextMenuItem[];
+  attributes?: HTMLAttributes<HTMLDivElement>;
 }
 
 export interface IContextMenuItem extends IContextMenuItemProps, Omit<IBox, 'onClick'> {}
@@ -125,7 +140,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
     disabled,
   });
 
-  const isSubMenu = menuItems && menuItems.length;
+  const isSubMenu = menuItems.length > 0;
 
   const menuItem = (
     <Box
@@ -140,15 +155,11 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
           data={data}
           preventClose={preventClose}
           disabled={disabled}
-          onClick={(e, d, t) => {
-            if (onClick) {
-              return onClick(e, d, t);
-            }
-          }}
+          onClick={onClick}
         >
           <Flex alignItems="center">
-            {title ? <Text flex={1}>{title}</Text> : null}
-            {isSubMenu ? <Text pl="5px">&#9658;</Text> : null}
+            {title ? <Box flex={1}>{title}</Box> : null}
+            {isSubMenu ? <Box pl="5px">&#9658;</Box> : null}
           </Flex>
 
           {divider ? <Break thickness={1} /> : null}
@@ -167,7 +178,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
             // @ts-ignore
             <ReactSubMenu
               title={menuItem}
-              className={className} // className on the resulting menu Menu
+              className={className} // className on the resulting submenu Menu
             >
               {menuItems.map((item, index) => {
                 return <ContextMenuItem key={index} {...item} />;

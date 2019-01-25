@@ -30,6 +30,21 @@ storiesOf('Menus:Context Menu', module)
       ]}
     />
   ))
+  .add('open on click', () => (
+    <ContextMenu
+      id="defaultContextMenu"
+      renderTrigger={ref => {
+        return <div onClick={e => (ref.current ? ref.current.handleContextClick(e) : undefined)}>trigger</div>;
+      }}
+      menuItems={[
+        { title: 'Menu Item 1' },
+        { title: 'Menu Item 2' },
+        { title: 'Menu Item 3' },
+        { divider: true },
+        { title: 'Disabled Menu Item', disabled: true },
+      ]}
+    />
+  ))
   .add('custom items', () => (
     <ContextMenu
       id="defaultContextMenu"
