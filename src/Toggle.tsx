@@ -36,7 +36,7 @@ export const Toggle: FunctionComponent<IToggle> = props => {
   const { id, disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(props.checked || false);
-  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+  const isChecked = props.hasOwnProperty('checked') ? props.checked || false : checked;
 
   const css = toggleStyles({ isDisabled, isChecked });
 
@@ -64,6 +64,7 @@ export const Toggle: FunctionComponent<IToggle> = props => {
 };
 
 export interface IToggleProps {
+  checked?: boolean;
   onChange?: (checked: boolean) => void;
 }
 

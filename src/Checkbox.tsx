@@ -10,7 +10,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
   const { id, disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(props.checked || false);
-  const isChecked = props.hasOwnProperty('checked') ? props.checked : checked;
+  const isChecked = props.hasOwnProperty('checked') ? props.checked || false : checked;
 
   const css = checkboxStyles({ isDisabled, isChecked });
 
@@ -44,6 +44,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 
 export interface ICheckboxProps {
   id: IBox['id'];
+  checked?: boolean;
   onChange?: (checked: boolean) => void;
 }
 
