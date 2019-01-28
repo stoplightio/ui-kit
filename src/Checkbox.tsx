@@ -9,8 +9,8 @@ import { Box, Flex, IBox, useTheme } from './';
 export const Checkbox: FunctionComponent<ICheckbox> = props => {
   const { id, disabled: isDisabled, onChange, ...rest } = props;
 
-  const [checked, setValue] = useState<boolean>(props.checked || false);
-  const isChecked = props.hasOwnProperty('checked') ? props.checked || false : checked;
+  const [checked, setValue] = useState<boolean>(!!props.checked);
+  const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
 
   const css = checkboxStyles({ isDisabled, isChecked });
 
