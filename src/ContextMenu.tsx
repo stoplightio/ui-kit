@@ -175,7 +175,6 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
         css={menuStyles()}
         as={({ className }: { className: string }) => {
           return (
-            // @ts-ignore
             <ReactSubMenu
               title={menuItem}
               className={className} // className on the resulting submenu Menu
