@@ -33,6 +33,8 @@ export interface ISelectBaseProps {
   blurOnSelect?: boolean; // blurInputOnSelect
   closeOnSelect?: boolean;
   closeOnScroll?: boolean;
+
+  allowCreate?: boolean;
 }
 
 export interface ISelectProps
@@ -79,6 +81,8 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     loadingMessage = 'Loading...',
     noOptionsMessage = 'No Options',
 
+    allowCreate = false,
+
     ...selectProps
   } = props;
 
@@ -105,7 +109,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     styles: customStyles(),
   };
 
-  if ('loadOptions' in props && 'onCreateOption' in props) {
+  if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
     return <ReactAsyncCreatableSelect {...actualProps} />;
   }
 
@@ -113,7 +117,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     return <ReactAsyncSelect {...actualProps} />;
   }
 
-  if ('onCreateOption' in props) {
+  if ('onCreateOption' in props || allowCreate) {
     return <ReactCreatableSelect {...actualProps} />;
   }
 

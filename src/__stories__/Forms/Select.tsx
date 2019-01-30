@@ -1,7 +1,8 @@
 import * as React from 'react';
 
+import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
-import { boolean, number, select, text } from '@storybook/addon-knobs/react';
+import { array, boolean, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Box } from '../../Box';
@@ -25,6 +26,7 @@ export const selectKnobs = (tabName = 'Select'): ISelect => ({
   closeOnScroll: boolean('closeOnScroll', false),
   hideSelectedOptions: boolean('hideSelectedOptions', false),
   backspaceRemovesValue: boolean('backspaceRemovesValue', true),
+  onChange: action('onChange'),
 });
 
 storiesOf('Forms:Select', module)
@@ -62,6 +64,40 @@ storiesOf('Forms:Select', module)
                 label: `${inputValue}${index}`,
                 value: index,
               }))
+            );
+          });
+        }}
+      />
+    </Box>
+  ))
+  .add('creatable multi', () => (
+    <Box width="40%">
+      <Select
+        {...selectKnobs()}
+        isMulti={true}
+        allowCreate={true}
+        defaultOptions={[{ label: 'option1', value: 2 }]}
+        options={array('options', ['1', '2', '3', '4']).map(x => ({ value: x, label: x }))}
+      />
+    </Box>
+  ))
+  .add('creatable async', () => (
+    <Box width="40%">
+      <Select
+        {...selectKnobs()}
+        allowCreate={true}
+        defaultOptions={[{ label: 'option1', value: 2 }]}
+        loadOptions={inputValue => {
+          return new Promise(resolve => {
+            setTimeout(
+              () =>
+                resolve(
+                  [0, 1, 2, 3].map(index => ({
+                    label: `${inputValue}${index}`,
+                    value: `${index}`,
+                  }))
+                ),
+              250
             );
           });
         }}
