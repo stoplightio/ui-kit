@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ReactEventHandler } from 'react';
 import ReactSelect from 'react-select';
 import ReactAsyncSelect, { Props as AsyncProps } from 'react-select/lib/Async'; // we can live with it, as it adds very little overhead (just a wrapper around Select)
+import ReactAsyncCreatableSelect from 'react-select/lib/AsyncCreatable';
 import ReactCreatableSelect, { Props as CreatableProps } from 'react-select/lib/Creatable';
 import { Props } from 'react-select/lib/Select';
 
@@ -46,7 +47,9 @@ export interface ISelectCreatableProps
   extends ISelectBaseProps,
     Omit<CreatableProps<ISelectOption>, 'noOptionsMessage' | 'loadingMessage'> {}
 
-export type ISelect = ISelectProps | ISelectAsyncProps | ISelectCreatableProps;
+export type ISelectAsyncCreatableProps = ISelectCreatableProps & ISelectAsyncProps;
+
+export type ISelect = ISelectProps | ISelectAsyncProps | ISelectCreatableProps | ISelectAsyncCreatableProps;
 
 export interface ISelectOption {
   label: string;
@@ -101,6 +104,10 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     // CUSTOM STYLES
     styles: customStyles(),
   };
+
+  if ('loadOptions' in props && 'onCreateOption' in props) {
+    return <ReactAsyncCreatableSelect {...actualProps} />;
+  }
 
   if ('loadOptions' in props) {
     return <ReactAsyncSelect {...actualProps} />;
