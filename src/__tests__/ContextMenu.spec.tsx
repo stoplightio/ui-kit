@@ -19,7 +19,6 @@ describe('ContextMenu component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 
@@ -81,7 +80,6 @@ describe('ContextMenuView component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 
