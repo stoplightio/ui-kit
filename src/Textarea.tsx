@@ -8,13 +8,15 @@ import AutosizeTextarea from 'react-textarea-autosize';
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
+export interface ITextarea extends IBox<HTMLTextAreaElement> {
+  autosize?: boolean;
+}
+
 export const Textarea: FunctionComponent<ITextarea> = props => {
-  const { autosize, as = autosize ? AutosizeTextarea : 'textarea', onChange = noop, ...rest } = props;
+  const { autosize, as = 'textarea', onChange = noop, ...rest } = props;
 
-  const css = textareaStyles(props);
-
-  const [value, setValue] = useState<string>(props.value || '');
   // todo: do we want controlled mode here?
+  const [value, setValue] = useState<string>(props.value || '');
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
   const handleChange = (event: SyntheticEvent<HTMLTextAreaElement>) => {
@@ -24,38 +26,37 @@ export const Textarea: FunctionComponent<ITextarea> = props => {
 
   return jsx(Box, {
     ...rest,
-    as,
+    as: autosize ? AutosizeTextarea : as,
     value: internalValue,
     onChange: handleChange,
-    css,
+    css: textareaStyles(props),
   });
 };
 
-export interface ITextarea extends ITextareaProps, IBox<HTMLTextAreaElement> {}
-
-export interface ITextareaProps {
-  autosize?: boolean;
-}
-
 export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
-  const theme = useTheme();
+  const { textarea } = useTheme();
 
   return [
     {
-      padding: '2px 4px',
-      border: `1px solid ${theme.textarea.border}`,
-      borderRadius: '2px',
-      color: theme.textarea.fg,
-      backgroundColor: theme.textarea.bg,
+      color: textarea.fg,
+      backgroundColor: textarea.bg,
+      border: textarea.border ? `1px solid ${textarea.border}` : 'none',
+
+      // TODO the top/bottom padding is a rough estimation find a better solution
+      padding: '7px 10px',
+      minHeight: '30px',
+      minWidth: '147px',
+      lineHeight: '15px',
+      borderRadius: '3px',
+      boxSizing: 'border-box',
 
       ':focus': {
         outline: 'none',
-        opacity: 1,
       },
     },
     disabled && {
-      cursor: 'not-allowed',
       opacity: 0.6,
+      cursor: 'not-allowed',
     },
     autosize && {
       resize: 'none',
