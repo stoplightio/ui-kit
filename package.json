@@ -84,7 +84,7 @@
     "typescript": "3.2.2"
   },
   "lint-staged": {
-    "xxx": [
+    "{.ts,.tsx}": [
       "yarn lint.fix",
       "git add"
     ]

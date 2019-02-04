@@ -156,8 +156,7 @@ describe('Dialog component', () => {
     it('dispatches onClickOutside when click happens on Overlay', () => {
       const onClickOutside = jest.fn();
       const wrapper = shallow(<Dialog {...defaultProps} onClickOutside={onClickOutside} />);
-      const event = {
-      };
+      const event = {};
       wrapper
         .shallow()
         .find(Overlay)

@@ -1,15 +1,21 @@
 /* @jsx jsx */
 
+import { ClassNames, css, jsx } from '@emotion/core';
 import * as React from 'react';
-import { jsx, css, ClassNames } from '@emotion/core'
-import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
-const StyledTab: React.FunctionComponent & { tabsRole: string } = (props) => (
+const StyledTab: React.FunctionComponent & { tabsRole: string } = props => (
   <ClassNames>
-    {({ css }) => <Tab {...props} className={css(tabStyle)} selectedClassName={css(selectedTabStyle)}>
-      {props.children}
-    </Tab>
-    }
+    {({ css: getClassName }) => (
+      <Tab
+        {...props}
+        className={getClassName(tabStyle)}
+        disabledClassName={getClassName(disabledTabStyle)}
+        selectedClassName={getClassName(selectedTabStyle)}
+      >
+        {props.children}
+      </Tab>
+    )}
   </ClassNames>
 );
 
@@ -31,7 +37,7 @@ const tabStyle = css`
     outline: none;
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       height: 5px;
       left: -4px;
@@ -49,7 +55,12 @@ const selectedTabStyle = css`
   border-radius: 5px 5px 0 0;
 `;
 
-const StyledTabList: React.FunctionComponent & { tabsRole: string } = (props) => (
+const disabledTabStyle = css`
+  color: GrayText;
+  cursor: default;
+`;
+
+const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
   <TabList {...props} css={tabListStyle}>
     {props.children}
   </TabList>
@@ -63,13 +74,17 @@ const tabListStyle = css`
   padding: 0;
 `;
 
-
-const StyledTabPanel: React.FunctionComponent & { tabsRole: string } = (props) => (
+const StyledTabPanel: React.FunctionComponent & { tabsRole: string } = props => (
   <ClassNames>
-    {({ css }) => <TabPanel {...props} className={css(tabPanelStyle)} selectedClassName={css(selectedTabPanelStyle)}>
-      {props.children}
-    </TabPanel>
-    }
+    {({ css: getClassName }) => (
+      <TabPanel
+        {...props}
+        className={getClassName(tabPanelStyle)}
+        selectedClassName={getClassName(selectedTabPanelStyle)}
+      >
+        {props.children}
+      </TabPanel>
+    )}
   </ClassNames>
 );
 
@@ -81,6 +96,6 @@ const tabPanelStyle = css`
 
 const selectedTabPanelStyle = css`
   display: block;
-`
+`;
 
-export { Tabs, StyledTabList as TabList, StyledTab as Tab, StyledTabPanel as TabPanel }
+export { Tabs, StyledTabList as TabList, StyledTab as Tab, StyledTabPanel as TabPanel };
