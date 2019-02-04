@@ -1,5 +1,6 @@
 import {
   BackgroundColorProperty,
+  BoxSizingProperty,
   ColorProperty,
   CursorProperty,
   FlexFlowProperty,
@@ -95,4 +96,12 @@ export interface IOverflowProps {
   overflow?: OverflowProperty;
   overflowX?: OverflowXProperty;
   overflowY?: OverflowYProperty;
+}
+
+export const boxSizing = (props: IBoxSizingProps) => ({
+  boxSizing: props.boxSizing,
+});
+
+export interface IBoxSizingProps {
+  boxSizing?: BoxSizingProperty;
 }

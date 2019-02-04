@@ -19,7 +19,6 @@ describe('Menu component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 
@@ -128,7 +127,6 @@ describe('MenuItem component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 

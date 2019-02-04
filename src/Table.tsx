@@ -7,43 +7,49 @@ import { FunctionComponent } from 'react';
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
+/**
+ * TABLE
+ */
+
+export interface ITable extends IBox<HTMLTableElement> {
+  isSelected?: boolean;
+}
+
 export const Table: FunctionComponent<ITable> = props => {
   const { children, isSelected, ...rest } = props;
-
-  const css = tableStyles({ isSelected });
 
   return jsx(
     Box,
     {
       ...rest,
       as: 'table',
-      css,
+      css: tableStyles({ isSelected }),
     },
     jsx('tbody', null, children)
   );
 };
 
-export interface ITable extends ITableProps, IBox<HTMLTableElement> {}
-
-export interface ITableProps {
-  isSelected?: boolean;
-}
-
-export const tableStyles = ({ isSelected }: ITableProps) => {
-  const theme = useTheme();
+export const tableStyles = ({ isSelected }: ITable) => {
+  const { table } = useTheme();
 
   return [
     {
       border: '0 none',
       borderTop: '1px solid',
       borderCollapse: 'collapse',
-      borderColor: theme.table.border,
+      borderColor: table.border,
     },
     isSelected && {
-      boxShadow: theme.table.shadow,
+      boxShadow: table.shadow,
     },
   ];
 };
+
+/**
+ * TABLE ROW
+ */
+
+export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
 export const TableRow: FunctionComponent<ITableRow> = props => {
   const css = tableRowStyles();
@@ -55,50 +61,49 @@ export const TableRow: FunctionComponent<ITableRow> = props => {
   });
 };
 
-export interface ITableRow extends IBox<HTMLTableRowElement> {}
-
 export const tableRowStyles = () => {
-  const theme = useTheme();
+  const { table } = useTheme();
 
   return [
     {
       border: '0 none',
       borderBottom: '1px solid',
       borderRight: '1px solid',
-      borderColor: theme.table.border,
+      borderColor: table.border,
     },
   ];
 };
 
+/**
+ * TABLE CEL
+ */
+
+export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
+  as?: 'th' | 'td';
+}
+
 export const TableCell: FunctionComponent<ITableCell> = props => {
   const { as = 'td', isSelected, ...rest } = props;
-  const css = tableCellStyles({ as, isSelected });
 
   return jsx(Box, {
     ...rest,
     as,
-    css,
+    css: tableCellStyles({ as, isSelected }),
   });
 };
 
-export interface ITableCell extends ITableCellProps, Omit<IBox<HTMLTableDataCellElement>, 'as'> {}
-
-export interface ITableCellProps extends ITableProps {
-  as?: 'th' | 'td';
-}
-
-export const tableCellStyles = ({ isSelected }: ITableCellProps) => {
-  const theme = useTheme();
+export const tableCellStyles = ({ isSelected }: ITableCell) => {
+  const { table } = useTheme();
 
   return [
     {
       border: '0 none',
       borderLeft: '1px solid',
-      borderColor: theme.table.border,
+      borderColor: table.border,
       textAlign: 'left',
     },
     isSelected && {
-      boxShadow: theme.table.shadow,
+      boxShadow: table.shadow,
     },
   ];
 };

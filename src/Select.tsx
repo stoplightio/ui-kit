@@ -131,11 +131,9 @@ export const Select: React.FunctionComponent<ISelect> = props => {
  */
 
 const customStyles = () => {
-  const theme = useTheme();
+  const { select: selectTheme } = useTheme();
 
-  const { select: selectTheme = null } = theme;
-
-  if (selectTheme === null) {
+  if (!selectTheme) {
     return {};
   }
 
@@ -261,7 +259,7 @@ const customStyles = () => {
 
 /**
  * React-Select Styles
- * Copied over the styles from each component that are overridable, this will serve as a quick reference to what is actually being applied on the components by default
+ * Copied over the styles from each component that are overridable, this will serve as a quick reference to what is actually being applied to the components by default
  */
 
 // const ReactSelectStyles = {

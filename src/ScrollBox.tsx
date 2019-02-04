@@ -8,6 +8,14 @@ import { useScrollToHash } from './hooks/useScrollToHash';
 import { useTheme } from './theme';
 import { getScrollTransform, getThumbDimension, horizontalTrackStyle, verticalTrackStyle } from './utils/scroll';
 
+/**
+ * THUMB
+ * this is the actual bar
+ */
+interface IScrollBoxThumb extends IBox<HTMLDivElement> {
+  isScrolling: boolean;
+}
+
 const ScrollbarThumb = forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
   const { isScrolling, ...rest } = props;
   const css = scrollbarStyles({ isScrolling });
@@ -20,36 +28,44 @@ const ScrollbarThumb = forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) 
   });
 });
 
-interface IScrollBoxThumbProps {
-  isScrolling: boolean;
-}
-
-interface IScrollBoxThumb extends IScrollBoxThumbProps, IBox<HTMLDivElement> {}
-
-const scrollbarStyles = ({ isScrolling }: IScrollBoxThumbProps) => {
-  const theme = useTheme();
+const scrollbarStyles = ({ isScrolling }: IScrollBoxThumb) => {
+  const { scrollbar } = useTheme();
 
   return {
+    backgroundColor: scrollbar.bg,
+
     borderRadius: '5px',
     cursor: 'grab',
-    backgroundColor: theme.scrollbar.bg,
     opacity: isScrolling ? 1 : 0,
     transition: 'opacity .1s',
   };
 };
+
+/**
+ * SCROLLBOX
+ */
+
+export interface IScrollBox extends ScrollbarProps {
+  innerRef?: RefObject<Scrollbars>;
+
+  autoHeight?: boolean;
+  autoHideTimeout?: number;
+  onUpdate?: (values: positionValues) => void;
+
+  // can scroll to an anchor/id
+  scrollTo?: string;
+}
 
 export const ScrollBox: FunctionComponent<IScrollBox> = (props: IScrollBox) => {
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
   const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
-
   useScrollToHash(scrollTo);
 
   const scrollbars = innerRef || useRef<Scrollbars>(null);
-  const current = scrollbars.current;
-  const values = (current && current.getValues()) || ({} as positionValues);
-  const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = values;
+  const position = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
+  const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = position;
 
   const thumbHorizontal = getThumbDimension({ scroll: scrollWidth, client: clientWidth }) || 0;
   const thumbVertical = getThumbDimension({ scroll: scrollHeight, client: clientHeight }) || 0;
@@ -108,19 +124,5 @@ export const ScrollBox: FunctionComponent<IScrollBox> = (props: IScrollBox) => {
     </Scrollbars>
   );
 };
-
-export interface IScrollBox extends IScrollBoxProps, ScrollbarProps {}
-
-export interface IScrollBoxProps {
-  innerRef?: RefObject<Scrollbars>;
-
-  autoHeight?: boolean;
-  autoHideTimeout?: number;
-
-  // can scroll to an anchor/id
-  scrollTo?: string;
-
-  onUpdate?: (values: positionValues) => void;
-}
 
 export { Scrollbars as IScrollbars };

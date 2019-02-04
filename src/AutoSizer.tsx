@@ -8,11 +8,9 @@ import useResizeObserver from 'use-resize-observer';
 
 import { Box, IBox } from './Box';
 
-export interface IAutoSizerProps {
+export interface IAutoSizer extends Omit<IBox, 'children'> {
   children: ({ width, height }: { width: string; height: string }) => ReactNode;
 }
-
-export interface IAutoSizer extends IAutoSizerProps, Omit<IBox, 'children'> {}
 
 export const AutoSizer: FunctionComponent<IAutoSizer> = props => {
   const { children, ...rest } = props;

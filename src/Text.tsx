@@ -5,10 +5,14 @@ import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 
+export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBox<T> {
+  leading?: IBox['lineHeight'];
+  casing?: IBox['textTransform'];
+  italic?: boolean;
+}
+
 export const Text: FunctionComponent<IText> = props => {
   const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
-
-  const css = [...textStyles()];
 
   return jsx(Box, {
     ...rest,
@@ -17,17 +21,9 @@ export const Text: FunctionComponent<IText> = props => {
     textTransform,
     fontStyle: italic ? 'italic' : undefined,
     as,
-    css,
+    css: textStyles(),
   });
 };
-
-export interface IText<T extends HTMLElement = HTMLParagraphElement> extends ITextProps, IBox<T> {}
-
-export interface ITextProps {
-  leading?: IBox['lineHeight'];
-  casing?: IBox['textTransform'];
-  italic?: boolean;
-}
 
 export const textStyles = () => [
   {

@@ -5,6 +5,11 @@ import { FunctionComponent } from 'react';
 
 import { Box, IBox } from './Box';
 
+export interface IImage extends IBox<HTMLImageElement> {
+  hidden?: boolean;
+  responsive?: boolean;
+}
+
 export const Image: FunctionComponent<IImage> = props => {
   const { hidden, responsive, ...rest } = props;
 
@@ -17,14 +22,7 @@ export const Image: FunctionComponent<IImage> = props => {
   });
 };
 
-export interface IImage extends IImageProps, IBox<HTMLImageElement> {}
-
-export interface IImageProps {
-  hidden?: boolean;
-  responsive?: boolean;
-}
-
-export const imageStyles = ({ hidden, responsive }: IImageProps = {}) => [
+export const imageStyles = ({ hidden, responsive }: IImage = {}) => [
   hidden && {
     display: 'none',
   },
