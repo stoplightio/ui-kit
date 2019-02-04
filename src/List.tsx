@@ -7,16 +7,16 @@ import { FunctionComponent } from 'react';
 import { Box, IBox } from './Box';
 import * as sl from './styles';
 
+export interface IList extends sl.IListStyleProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {
+  as?: 'ul' | 'ol';
+}
+
 export const List: FunctionComponent<IList> = props => {
   const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
 
-  const css = sl.listStyle({ listStyle, listStylePosition });
-
-  return <Box {...rest} as={as} css={css} />;
+  return <Box {...rest} as={as} css={listStyles({ listStyle, listStylePosition })} />;
 };
 
-export interface IList extends IListProps, sl.IListStyleProps, Omit<IBox<HTMLUListElement | HTMLOListElement>, 'as'> {}
-
-export interface IListProps {
-  as?: 'ul' | 'ol';
-}
+export const listStyles = ({ listStyle, listStylePosition }: IList) => {
+  return sl.listStyle({ listStyle, listStylePosition });
+};

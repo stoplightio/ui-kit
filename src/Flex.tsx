@@ -7,6 +7,14 @@ import * as ss from 'styled-system';
 import { Box, IBox } from './Box';
 import * as sl from './styles';
 
+export interface IFlex<T extends HTMLElement = HTMLElement>
+  extends IBox<T>,
+    ss.FlexBasisProps,
+    ss.FlexDirectionProps,
+    ss.FlexWrapProps,
+    ss.AlignItemsProps,
+    ss.JustifyContentProps {}
+
 export const Flex: FunctionComponent<IFlex> = props => {
   const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
 
@@ -25,14 +33,6 @@ export const Flex: FunctionComponent<IFlex> = props => {
     css,
   });
 };
-
-export interface IFlex<T extends HTMLElement = HTMLElement>
-  extends IBox<T>,
-    ss.FlexBasisProps,
-    ss.FlexDirectionProps,
-    ss.FlexWrapProps,
-    ss.AlignItemsProps,
-    ss.JustifyContentProps {}
 
 export const flexStyles = () => {
   return [

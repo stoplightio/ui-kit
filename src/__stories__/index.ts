@@ -5,4 +5,5 @@ import './Menus/';
 import './Misc/';
 import './Typography';
 import './Utilities/';
+import './Views/Components';
 import './Views/Layout';

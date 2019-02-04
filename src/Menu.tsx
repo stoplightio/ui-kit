@@ -179,7 +179,6 @@ const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItemProps>): IBoxCSS
 
       ':hover': {
         backgroundColor: theme.menu.hoverBg,
-        color: theme.menu.hoverFg,
       },
     },
   ];

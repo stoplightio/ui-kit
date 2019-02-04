@@ -8,6 +8,11 @@ import { Overlay } from './Overlay';
 import { Portal } from './Portal';
 import { useTheme } from './theme';
 
+export interface IDialog extends IBox<HTMLElement> {
+  show?: boolean;
+  onClickOutside?: ReactEventHandler<HTMLElement>;
+}
+
 export const Dialog: FunctionComponent<IDialog> = props => {
   const { children, show, onClickOutside, onClick, ...rest } = props;
   const css = dialogStyles();
@@ -40,20 +45,14 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   );
 };
 
-export interface IDialogProps {
-  show?: boolean;
-  onClickOutside?: ReactEventHandler<HTMLElement>;
-}
-
-export interface IDialog extends IDialogProps, IBox<HTMLElement> {}
-
 export const dialogStyles = () => {
-  const theme = useTheme();
+  const { dialog } = useTheme();
 
   return {
-    backgroundColor: theme.dialog.bg,
-    color: theme.dialog.fg,
-    ...(theme.dialog.border !== undefined && { border: '1px solid', borderColor: theme.dialog.border }),
+    color: dialog.fg,
+    backgroundColor: dialog.bg,
+    border: dialog.border ? `1px solid ${dialog.border}` : 'none',
+
     // these ensure our dialog content won't leave the screen
     maxWidth: '95vw',
     maxHeight: '95vh',

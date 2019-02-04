@@ -18,17 +18,7 @@ import { Box, IBox } from './Box';
 
 export const IconLibrary = library;
 
-export const Icon: FunctionComponent<IIcon> = props => {
-  return jsx(Box, {
-    backgroundColor: 'transparent',
-    ...props,
-    as: FontAwesomeIcon as FunctionComponent,
-  });
-};
-
-export interface IIcon extends IIconProps, IBox<HTMLOrSVGElement> {}
-
-export interface IIconProps {
+export interface IIcon extends IBox<HTMLOrSVGElement> {
   icon: IconProp;
   mask?: IconProp;
   spin?: boolean;
@@ -43,3 +33,11 @@ export interface IIconProps {
   transform?: string | Transform;
   symbol?: FaSymbol;
 }
+
+export const Icon: FunctionComponent<IIcon> = props => {
+  return jsx(Box, {
+    backgroundColor: 'transparent',
+    ...props,
+    as: FontAwesomeIcon as FunctionComponent,
+  });
+};

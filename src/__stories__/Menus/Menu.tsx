@@ -6,13 +6,13 @@ import { action } from '@storybook/addon-actions';
 import { number, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Box, Icon, Menu } from '../..';
+import { Icon, Menu } from '../..';
 import { IMenu } from '../../Menu';
 import { flexKnobs } from '../Layout/Flex';
 
 export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   ...flexKnobs(),
-  posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
+  posX: select('posX', ['left', 'center', 'right'], 'right', tabName),
   posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
   hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   offset: {
@@ -23,11 +23,11 @@ export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
 
 storiesOf('Menus:Menu', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => (
-    <Box mt="100px" height="500px" width="200px">
-      {storyFn()}
-    </Box>
-  ))
+  // .addDecorator(storyFn => (
+  //   <Box mt="100px" height="500px" width="200px">
+  //     {storyFn()}
+  //   </Box>
+  // ))
   .add('with defaults', () => (
     <Menu
       {...menuKnobs()}

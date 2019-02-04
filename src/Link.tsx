@@ -6,6 +6,8 @@ import { FunctionComponent } from 'react';
 import { IText, Text } from './Text';
 import { useTheme } from './theme';
 
+export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
+
 export const Link: FunctionComponent<ILink> = props => {
   const { as = 'a', ...rest } = props;
 
@@ -18,23 +20,21 @@ export const Link: FunctionComponent<ILink> = props => {
   });
 };
 
-export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
-
 export const linkStyles = () => {
-  const theme = useTheme();
+  const { link } = useTheme();
 
   return [
     {
-      color: theme.link.fg,
+      color: link.fg,
     },
-    theme.link.hoverFg && {
+    link.hoverFg && {
       ':hover': {
-        color: theme.link.hoverFg,
+        color: link.hoverFg,
       },
     },
-    theme.link.visitedFg && {
+    link.visitedFg && {
       ':visited': {
-        color: theme.link.visitedFg,
+        color: link.visitedFg,
       },
     },
   ];
