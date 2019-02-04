@@ -48,17 +48,17 @@ const tabStyle = css`
   }
 `;
 
-const selectedTabStyle = css`
-  background: #fff;
-  border-color: #aaa;
-  color: black;
-  border-radius: 5px 5px 0 0;
-`;
+const selectedTabStyle = css({
+  background: '#fff',
+  borderColor: '#aaa',
+  color: 'black',
+  borderRadius: '5px 5px 0 0',
+});
 
-const disabledTabStyle = css`
-  color: GrayText;
-  cursor: default;
-`;
+const disabledTabStyle = css({
+  color: 'GrayText',
+  cursor: 'default',
+});
 
 const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
   <TabList {...props} css={tabListStyle}>
@@ -68,11 +68,11 @@ const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
 
 StyledTabList.tabsRole = 'TabList';
 
-const tabListStyle = css`
-  border-bottom: 1px solid #aaa;
-  margin: 0 0 10px;
-  padding: 0;
-`;
+const tabListStyle = css({
+  borderBottom: '1px solid #aaa',
+  margin: '0 0 10px',
+  padding: '0'
+});
 
 const StyledTabPanel: React.FunctionComponent & { tabsRole: string } = props => (
   <ClassNames>
@@ -90,12 +90,7 @@ const StyledTabPanel: React.FunctionComponent & { tabsRole: string } = props => 
 
 StyledTabPanel.tabsRole = 'TabPanel';
 
-const tabPanelStyle = css`
-  display: none;
-`;
-
-const selectedTabPanelStyle = css`
-  display: block;
-`;
+const tabPanelStyle = css({ display: 'none' });
+const selectedTabPanelStyle = css({ display: 'block' });
 
 export { Tabs, StyledTabList as TabList, StyledTab as Tab, StyledTabPanel as TabPanel };
