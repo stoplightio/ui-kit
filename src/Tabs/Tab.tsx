@@ -1,8 +1,6 @@
-/* @jsx jsx */
-
-import { ClassNames, css, jsx } from '@emotion/core';
+import { ClassNames, css } from '@emotion/core';
 import * as React from 'react';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import { Tab } from 'react-tabs';
 
 const StyledTab: React.FunctionComponent & { tabsRole: string } = props => (
   <ClassNames>
@@ -60,37 +58,4 @@ const disabledTabStyle = css({
   cursor: 'default',
 });
 
-const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
-  <TabList {...props} css={tabListStyle}>
-    {props.children}
-  </TabList>
-);
-
-StyledTabList.tabsRole = 'TabList';
-
-const tabListStyle = css({
-  borderBottom: '1px solid #aaa',
-  margin: '0 0 10px',
-  padding: '0'
-});
-
-const StyledTabPanel: React.FunctionComponent & { tabsRole: string } = props => (
-  <ClassNames>
-    {({ css: getClassName }) => (
-      <TabPanel
-        {...props}
-        className={getClassName(tabPanelStyle)}
-        selectedClassName={getClassName(selectedTabPanelStyle)}
-      >
-        {props.children}
-      </TabPanel>
-    )}
-  </ClassNames>
-);
-
-StyledTabPanel.tabsRole = 'TabPanel';
-
-const tabPanelStyle = css({ display: 'none' });
-const selectedTabPanelStyle = css({ display: 'block' });
-
-export { Tabs, StyledTabList as TabList, StyledTab as Tab, StyledTabPanel as TabPanel };
+export { StyledTab as Tab };
