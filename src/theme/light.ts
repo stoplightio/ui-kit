@@ -1,12 +1,42 @@
 import { ITheme } from './types';
 
+/**
+ * CONSTANTS/HELPERS
+ */
+
+const opacityBorder = 'rgba(16,22,26,.15)';
+
+const inputTheme: ITheme['input'] = {
+  fg: '#222',
+  bg: '#fff',
+  border: opacityBorder,
+};
+
+const checkboxTheme: ITheme['checkbox'] = {
+  fg: 'white',
+  bg: 'rgb(245, 248, 250)',
+  border: opacityBorder,
+  checked: 'steelblue',
+};
+
+const menuTheme: ITheme['menu'] = {
+  fg: '#111',
+  bg: '#fff',
+  border: opacityBorder,
+  hoverBg: 'rgba(167,182,194,.3)',
+};
+
+/**
+ * THEME
+ */
 export const lightTheme: ITheme = {
   base: 'light',
 
   button: {
-    fg: 'white',
-    bg: 'rgba(0, 0, 0, 0.5)',
-    hoverBg: 'rgba(0, 0, 0, 0.6)',
+    fg: 'black',
+    bg: 'rgb(245, 248, 250)',
+    border: opacityBorder,
+    hoverBg: '#ebf1f5',
   },
 
   blockQuote: {
@@ -15,11 +45,7 @@ export const lightTheme: ITheme = {
     shadow: '0 0 5px rgba(0, 0, 0, 0.3)',
   },
 
-  checkbox: {
-    fg: 'white',
-    bg: '#222',
-    checkedBg: 'mediumseagreen',
-  },
+  checkbox: checkboxTheme,
 
   codeEditor: {
     bg: '#f9f9f9',
@@ -38,35 +64,20 @@ export const lightTheme: ITheme = {
     },
   },
 
-  contextMenu: {
-    fg: '#111',
-    bg: '#fff',
-    border: 'lightgrey',
-    hoverBg: 'dodgerblue',
-    hoverFg: 'white',
-  },
+  contextMenu: menuTheme,
 
   dialog: {
     bg: '#fff',
     fg: '#111',
   },
 
-  input: {
-    fg: '#222',
-    bg: '#fff',
-  },
+  input: inputTheme,
 
   link: {
     fg: '#72bcd4',
   },
 
-  menu: {
-    fg: 'white',
-    bg: '#222',
-    border: 'lightgrey',
-    hoverBg: 'dodgerblue',
-    hoverFg: 'white',
-  },
+  menu: menuTheme,
 
   overlay: {
     bg: 'rgba(0, 0, 0, 0.4)',
@@ -111,10 +122,7 @@ export const lightTheme: ITheme = {
     shadow: '0 0 8px 1px rgba(0, 0, 0, 0.6) inset',
   },
 
-  textarea: {
-    fg: '#222',
-    bg: '#fff',
-  },
+  textarea: inputTheme,
 
   tabs: {
     fg: '#222',
@@ -124,11 +132,7 @@ export const lightTheme: ITheme = {
   },
 
   toggle: {
-    fg: 'white',
-    bg: 'darkgrey',
-    border: 'transparent',
-    checkedFg: 'white',
-    checkedBg: 'mediumseagreen',
-    checkedBorder: 'transparent',
+    ...checkboxTheme,
+    bg: 'gainsboro',
   },
 };
