@@ -6,53 +6,57 @@ import { FunctionComponent } from 'react';
 import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
-export const Button: FunctionComponent<IButton> = props => {
-  const { as = 'button', disabled, ...rest } = props;
+// TODO better active styling
 
-  const css = buttonStyles({ disabled });
-
-  return <Box {...rest} as={as} css={css} disabled={disabled} />;
-};
-
-export interface IButton extends IButtonProps, IBox<HTMLButtonElement> {}
-
-export interface IButtonProps {
+export interface IButton extends IBox<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const buttonStyles = ({ disabled }: IButtonProps = {}): IBoxCSS => {
-  const theme = useTheme();
+export const Button: FunctionComponent<IButton> = props => {
+  const { as = 'button', ...rest } = props;
+  const css = buttonStyles(props);
+
+  return <Box {...rest} as={as} css={css} />;
+};
+
+export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {
+  const { button } = useTheme();
 
   return [
     {
+      color: button.fg,
+      backgroundColor: button.bg,
+      borderColor: button.border,
+
+      padding: '5px 10px',
+      minHeight: '30px',
+      minWidth: '30px',
+
+      borderRadius: '3px',
+
       appearance: 'none',
       cursor: 'pointer',
-      opacity: 0.85,
-
-      backgroundColor: theme.button.bg,
-      color: theme.button.fg,
 
       ':focus': {
         outline: 'none',
       },
 
       ':hover': {
-        opacity: 0.75,
-        backgroundColor: theme.button.hoverBg,
+        backgroundColor: button.hoverBg,
       },
 
       ':active': {
-        opacity: 1,
+        borderStyle: 'solid',
       },
+    },
 
-      ...(disabled && {
-        cursor: 'not-allowed',
-        opacity: 0.6,
+    disabled && {
+      opacity: 0.6,
+      cursor: 'not-allowed',
 
-        ':hover': {
-          opacity: 0.6,
-        },
-      }),
+      ':hover': {
+        backgroundColor: button.bg,
+      },
     },
   ];
 };
