@@ -13,9 +13,7 @@ describe('Toggle component', () => {
       fg: 'blue',
       bg: 'red',
       border: 'green',
-      checkedBg: 'orange',
-      checkedFg: 'black',
-      checkedBorder: 'white',
+      checked: 'orange',
     },
   };
 
