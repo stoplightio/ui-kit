@@ -19,32 +19,32 @@ const StyledTab: React.FunctionComponent & { tabsRole: string } = props => (
 
 StyledTab.tabsRole = 'Tab';
 
-const tabStyle = css`
-  display: inline-block;
-  border: 1px solid transparent;
-  border-bottom: none;
-  bottom: -1px;
-  position: relative;
-  list-style: none;
-  padding: 6px 12px;
-  cursor: pointer;
+const tabStyle = css({
+  display: 'inline-block',
+  border: '1px solid transparent',
+  borderBottom: 'none',
+  bottom: '-1px',
+  position: 'relative',
+  listStyle: 'none',
+  padding: '6px 12px',
+  cursor: 'pointer',
 
-  &:focus {
-    box-shadow: 0 0 5px hsl(208, 99%, 50%);
-    border-color: hsl(208, 99%, 50%);
-    outline: none;
+  '&:focus': {
+    boxShadow: '0 0 5px hsl(208, 99%, 50%)',
+    borderColor: 'hsl(208, 99%, 50%)',
+    outline: 'none',
 
-    &:after {
-      content: '';
-      position: absolute;
-      height: 5px;
-      left: -4px;
-      right: -4px;
-      bottom: -5px;
-      background: #fff;
-    }
-  }
-`;
+    '&:after': {
+      content: '',
+      position: 'absolute',
+      height: '5px',
+      left: '-4px',
+      right: '-4px',
+      bottom: '-5px',
+      background: '#fff',
+    },
+  },
+});
 
 const selectedTabStyle = css({
   background: '#fff',
