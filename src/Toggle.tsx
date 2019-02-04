@@ -6,89 +6,91 @@ import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 're
 
 import { Box, Flex, IBox, IBoxCSS, useTheme } from './';
 
-const ToggleCircle: FunctionComponent<IToggleCircle> = props => {
-  const css = circleStyles(props);
-
-  return <Box as="span" css={css} />;
-};
-
-interface IToggleCircleProps {
-  isChecked: boolean;
+export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
 }
 
-interface IToggleCircle extends IToggleCircleProps {}
-
-const circleStyles = ({ isChecked }: IToggleCircleProps) => {
-  const theme = useTheme();
-
-  return {
-    display: 'inline-block',
-    borderRadius: '50%',
-    width: '14px',
-    height: '14px',
-    backgroundColor: isChecked ? theme.toggle.checkedFg : theme.toggle.checkedBg,
-    marginLeft: isChecked ? '22px' : '4px',
-    transition: 'margin-left .15s ease-in-out, background-color .25s ease-in-out',
-  };
-};
-
 export const Toggle: FunctionComponent<IToggle> = props => {
-  const { id, disabled: isDisabled, onChange, ...rest } = props;
+  const { disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
 
-  const css = toggleStyles({ isDisabled, isChecked });
-
   const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
     setValue(target.checked);
-    if (onChange !== undefined) {
-      onChange(target.checked);
-    }
+    if (onChange) onChange(target.checked);
   }, []);
 
   return (
-    <Flex {...rest} as="label" css={css} htmlFor={id}>
+    <Flex {...rest} as="label" css={toggleStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
-        id={id}
         checked={checked}
         onChange={handleChange}
         position="absolute"
         css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
-      <ToggleCircle isChecked={isChecked} />
+      <Box as="span" css={circleStyles({ isChecked })} />
     </Flex>
   );
 };
 
-export interface IToggleProps {
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
+interface IToggleStyles {
+  isChecked?: boolean;
+  isDisabled?: boolean;
 }
-
-export interface IToggle extends IToggleProps, Omit<IBox<HTMLLabelElement>, 'as|onChange'> {}
 
 const toggleStyles = ({ isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
-  const theme = useTheme();
+  const { toggle } = useTheme();
 
-  return {
-    alignItems: 'center',
-    backgroundColor: isChecked ? theme.toggle.checkedBg : theme.toggle.bg,
-    borderRadius: '100px',
-    cursor: isDisabled ? 'not-allowed' : 'pointer',
-    fontSize: '14px',
-    height: '20px',
-    opacity: isDisabled ? 0.6 : 1,
-    padding: 0,
-    margin: 0,
-    width: '40px',
-    transition: 'background-color .15s ease-in-out',
-  };
+  return [
+    {
+      backgroundColor: toggle.bg,
+      border: toggle.border ? `1px solid ${toggle.border}` : 'none',
+
+      height: '16px',
+      width: '32px',
+      padding: 0,
+      margin: 0,
+      borderRadius: '100px',
+
+      fontSize: '14px',
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+
+      transition: 'background-color .15s ease-in-out',
+    },
+    isChecked && {
+      backgroundColor: toggle.checked,
+    },
+    isDisabled && {
+      cursor: 'not-allowed',
+      opacity: 0.6,
+    },
+  ];
 };
 
-interface IToggleStyles {
-  isChecked: boolean;
-  isDisabled: boolean;
-}
+const circleStyles = ({ isChecked }: IToggleStyles) => {
+  const { toggle } = useTheme();
+
+  return [
+    {
+      backgroundColor: toggle.fg,
+
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      marginLeft: '4px',
+
+      display: 'inline-block',
+      transition: 'margin-left .15s ease-in-out',
+    },
+    isChecked && {
+      // toggle width - circle width - original margin left
+      marginLeft: '18px',
+    },
+  ];
+};
