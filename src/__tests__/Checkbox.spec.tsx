@@ -12,7 +12,7 @@ describe('Checkbox component', () => {
     checkbox: {
       fg: 'blue',
       bg: 'red',
-      checkedBg: 'green',
+      checked: 'green',
     },
   };
 

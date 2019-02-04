@@ -20,7 +20,11 @@ export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => ({
 
 storiesOf('Forms:Checkbox', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Checkbox id="1" {...checkboxKnobs()} />)
+  .add('uncontrolled', () => (
+    <div>
+      <Checkbox id="1" {...checkboxKnobs()} /> Text
+    </div>
+  ))
   .add('checked', () => <Checkbox id="2" {...checkboxKnobs()} checked={true} />)
   .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled', () => (
