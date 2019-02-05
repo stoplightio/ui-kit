@@ -121,7 +121,7 @@ export const darkTheme: ITheme = {
     fg: '#fff',
     bg: '#222',
     border: '#fff',
-    disabledColor: 'GrayText',
+    disabledFg: 'GrayText',
   },
 
   toggle: {

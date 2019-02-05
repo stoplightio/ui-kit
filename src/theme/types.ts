@@ -134,7 +134,7 @@ export interface ITheme {
     bg: string;
     border: string;
 
-    disabledColor: string;
+    disabledFg: string;
   };
 
   toggle: {

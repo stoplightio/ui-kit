@@ -120,7 +120,7 @@ export const lightTheme: ITheme = {
     fg: '#222',
     bg: '#fff',
     border: '#aaa',
-    disabledColor: 'GrayText',
+    disabledFg: 'GrayText',
   },
 
   toggle: {
