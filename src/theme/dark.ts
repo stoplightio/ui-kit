@@ -108,6 +108,13 @@ export const darkTheme: ITheme = {
     border: 'rgba(16,22,26,.2)',
   },
 
+  tabs: {
+    fg: '#fff',
+    bg: '#222',
+    border: '#fff',
+    disabledFg: '#99a89c',
+  },
+
   toggle: {
     fg: 'white',
     bg: 'darkgrey',

@@ -109,6 +109,13 @@ export const lightTheme: ITheme = {
 
   textarea: inputTheme,
 
+  tabs: {
+    fg: '#222',
+    bg: '#fff',
+    border: '#aaa',
+    disabledFg: 'GrayText',
+  },
+
   toggle: {
     ...checkboxTheme,
     bg: 'gainsboro',
