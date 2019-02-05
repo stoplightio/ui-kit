@@ -1,4 +1,5 @@
-import { ClassNames, css } from '@emotion/core';
+/* @jsx jsx */
+import { ClassNames, css, jsx } from '@emotion/core';
 import * as React from 'react';
 import { Tab } from 'react-tabs';
 import { useTheme } from '../theme';
