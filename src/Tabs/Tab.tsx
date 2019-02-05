@@ -47,7 +47,7 @@ const tabStyles = (tabTheme: { fg: string; bg: string }): Dictionary<IBoxCSS> =>
         borderColor: 'hsl(208, 99%, 50%)',
         outline: 'none',
 
-        '&:after': {
+        '&::after': {
           content: '""',
           position: 'absolute',
           height: '5px',
