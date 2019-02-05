@@ -86,22 +86,13 @@ export const darkTheme: ITheme = {
       bg: '#384854',
     },
 
-    indicator: {
-      fg: 'grey',
-    },
-
     menu: {
       fg: '#BFCCD6',
       bg: '#202D36',
+      border: '',
 
-      selectedFg: '#BFCCD6',
-      selectedBg: '#193d6b',
-
-      activeFg: 'black',
-      activeBg: '#B2D4FF',
-
-      hoverFg: 'black',
       hoverBg: '#DEEBFF',
+      selectedBg: '#193d6b',
     },
   },
 

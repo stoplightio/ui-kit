@@ -6,7 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Button, Checkbox, Flex, Input, Textarea, Toggle } from '../../';
-// import { Select } from '../../Select';
+import { Select } from '../../Select';
 
 storiesOf('Views:Components', module)
   .addDecorator(withKnobs)
@@ -36,8 +36,15 @@ const App = () => {
       </Box>
 
       <Box mr="3">
-        TODO style select
-        {/* <Select placeholder="placeholder" /> */}
+        <Select placeholder="select" options={['1', '2', '3', '4'].map(x => ({ value: x, label: x }))} />
+      </Box>
+
+      <Box mr="3">
+        <Select
+          placeholder="select-multi"
+          isMulti={true}
+          options={['1', '2', '3', '4'].map(x => ({ value: x, label: x }))}
+        />
       </Box>
     </Flex>
   );
