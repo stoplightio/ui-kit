@@ -132,6 +132,9 @@ export interface ITheme {
   tabs: {
     fg: string;
     bg: string;
+    border: string;
+
+    disabledColor: string;
   };
 
   toggle: {

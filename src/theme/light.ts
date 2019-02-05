@@ -119,6 +119,8 @@ export const lightTheme: ITheme = {
   tabs: {
     fg: '#222',
     bg: '#fff',
+    border: '#aaa',
+    disabledColor: 'GrayText',
   },
 
   toggle: {

@@ -120,6 +120,8 @@ export const darkTheme: ITheme = {
   tabs: {
     fg: '#fff',
     bg: '#222',
+    border: '#fff',
+    disabledColor: 'GrayText',
   },
 
   toggle: {

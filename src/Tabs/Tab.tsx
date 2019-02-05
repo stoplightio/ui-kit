@@ -3,11 +3,11 @@
 import { ClassNames, jsx } from '@emotion/core';
 import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
-import { Tab } from 'react-tabs';
+import { Tab, TabProps } from 'react-tabs';
 import { IBoxCSS } from '..';
 import { useTheme } from '../theme';
 
-const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: string } = props => {
+const StyledTab: React.FunctionComponent<TabProps> & { tabsRole: string } = props => {
   const styles = tabStyles();
   return (
     <ClassNames>
@@ -54,20 +54,20 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
           left: '-4px',
           right: '-4px',
           bottom: '-5px',
-          background: '#fff',
+          backgroundColor: theme.tabs.bg,
         },
       },
     },
 
     selectedTabStyle: {
-      background: '#fff',
+      backgroundColor: theme.tabs.bg,
       borderColor: theme.tabs.fg,
       color: theme.tabs.fg,
       borderRadius: '5px 5px 0 0',
     },
 
     disabledTabStyle: {
-      color: 'GrayText',
+      color: theme.tabs.disabledColor,
       cursor: 'default',
     },
   };
