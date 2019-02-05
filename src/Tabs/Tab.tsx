@@ -1,7 +1,10 @@
 /* @jsx jsx */
-import { ClassNames, css, jsx } from '@emotion/core';
+
+import { ClassNames, jsx } from '@emotion/core';
+import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
 import { Tab } from 'react-tabs';
+import { IBoxCSS } from '..';
 import { useTheme } from '../theme';
 
 const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: string } = props => {
@@ -25,9 +28,9 @@ const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: s
 
 StyledTab.tabsRole = 'Tab';
 
-const tabStyles = (tabTheme: { fg: string; bg: string }) => {
+const tabStyles = (tabTheme: { fg: string; bg: string }): Dictionary<IBoxCSS> => {
   return {
-    tabStyle: css({
+    tabStyle: {
       display: 'inline-block',
       border: '1px solid transparent',
       borderBottom: 'none',
@@ -54,19 +57,19 @@ const tabStyles = (tabTheme: { fg: string; bg: string }) => {
           background: '#fff',
         },
       },
-    }),
+    },
 
-    selectedTabStyle: css({
+    selectedTabStyle: {
       background: '#fff',
       borderColor: tabTheme.fg,
       color: tabTheme.fg,
       borderRadius: '5px 5px 0 0',
-    }),
+    },
 
-    disabledTabStyle: css({
+    disabledTabStyle: {
       color: 'GrayText',
       cursor: 'default',
-    }),
+    },
   };
 };
 

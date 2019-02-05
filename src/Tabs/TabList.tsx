@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import { css, jsx } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import * as React from 'react';
 import { TabList } from 'react-tabs';
 
@@ -12,10 +12,10 @@ const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
 
 StyledTabList.tabsRole = 'TabList';
 
-const tabListStyle = css({
+const tabListStyle = {
   borderBottom: '1px solid #aaa',
   margin: '0 0 10px',
   padding: '0',
-});
+};
 
 export { StyledTabList as TabList };
