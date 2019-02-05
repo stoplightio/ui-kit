@@ -2,9 +2,9 @@
 
 import { jsx } from '@emotion/core';
 import * as React from 'react';
-import { TabList } from 'react-tabs';
+import { TabList, TabListProps } from 'react-tabs';
 
-const StyledTabList: React.FunctionComponent & { tabsRole: string } = props => (
+const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => (
   <TabList {...props} css={tabListStyle}>
     {props.children}
   </TabList>
