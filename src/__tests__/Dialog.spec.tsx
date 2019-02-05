@@ -129,8 +129,7 @@ describe('Dialog component', () => {
       expect(content).toHaveProp(
         'css',
         expect.not.objectContaining({
-          borderColor: expect.stringMatching(/./),
-          border: expect.stringMatching(/./),
+          border: `1px solid ${theme.dialog!.border}`,
         })
       );
     });
@@ -147,8 +146,7 @@ describe('Dialog component', () => {
       expect(content).toHaveProp(
         'css',
         expect.objectContaining({
-          borderColor: theme.dialog!.border,
-          border: '1px solid',
+          border: `1px solid ${theme.dialog!.border}`,
         })
       );
     });
