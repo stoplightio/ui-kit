@@ -8,8 +8,7 @@ import { IBoxCSS } from '..';
 import { useTheme } from '../theme';
 
 const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: string } = props => {
-  const theme = useTheme();
-  const styles = tabStyles(theme.tabs);
+  const styles = tabStyles();
   return (
     <ClassNames>
       {({ css: getClassName }) => (
@@ -28,7 +27,8 @@ const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: s
 
 StyledTab.tabsRole = 'Tab';
 
-const tabStyles = (tabTheme: { fg: string; bg: string }): Dictionary<IBoxCSS> => {
+const tabStyles = (): Dictionary<IBoxCSS> => {
+  const theme = useTheme();
   return {
     tabStyle: {
       display: 'inline-block',
@@ -39,8 +39,8 @@ const tabStyles = (tabTheme: { fg: string; bg: string }): Dictionary<IBoxCSS> =>
       listStyle: 'none',
       padding: '6px 12px',
       cursor: 'pointer',
-      backgroundColor: tabTheme.bg,
-      color: tabTheme.fg,
+      backgroundColor: theme.tabs.bg,
+      color: theme.tabs.fg,
 
       '&:focus': {
         boxShadow: '0 0 5px hsl(208, 99%, 50%)',
@@ -61,8 +61,8 @@ const tabStyles = (tabTheme: { fg: string; bg: string }): Dictionary<IBoxCSS> =>
 
     selectedTabStyle: {
       background: '#fff',
-      borderColor: tabTheme.fg,
-      color: tabTheme.fg,
+      borderColor: theme.tabs.fg,
+      color: theme.tabs.fg,
       borderRadius: '5px 5px 0 0',
     },
 
