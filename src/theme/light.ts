@@ -88,31 +88,16 @@ export const lightTheme: ITheme = {
   },
 
   select: {
-    fg: 'black',
-    bg: 'white',
-    border: 'lightgrey',
-
-    chip: {
-      fg: 'green',
-      bg: 'lightgrey',
-    },
-
-    indicator: {
-      fg: 'grey',
-    },
+    ...inputTheme,
 
     menu: {
+      ...menuTheme,
+      selectedBg: '#B2D4FF',
+    },
+
+    chip: {
       fg: 'black',
-      bg: 'white',
-
-      selectedFg: 'black',
-      selectedBg: '#2684FF',
-
-      activeFg: 'black',
-      activeBg: '#B2D4FF',
-
-      hoverFg: 'black',
-      hoverBg: '#DEEBFF',
+      bg: opacityBorder,
     },
   },
 

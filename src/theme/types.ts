@@ -45,7 +45,7 @@ export interface ITheme {
 
   input: {
     fg: string;
-    bg?: string;
+    bg: string;
     border?: string;
   };
 
@@ -90,29 +90,20 @@ export interface ITheme {
   select: {
     fg: string;
     bg: string;
-    border: string;
+    border?: string;
 
     chip: {
       fg: string;
       bg: string;
     };
 
-    indicator: {
-      fg: string;
-    };
-
     menu: {
       fg: string;
       bg: string;
+      border: string;
 
-      selectedFg: string;
-      selectedBg: string;
-
-      activeFg: string;
-      activeBg: string;
-
-      hoverFg: string;
       hoverBg: string;
+      selectedBg: string;
     };
   };
 

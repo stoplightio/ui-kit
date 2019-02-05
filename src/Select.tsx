@@ -137,15 +137,16 @@ const customStyles = () => {
     return {};
   }
 
-  const { chip: chipTheme, menu: menuTheme, indicator: indicatorsTheme } = selectTheme;
+  const { chip: chipTheme, menu: menuTheme } = selectTheme;
 
   return {
     clearIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: indicatorsTheme.fg,
+      color: selectTheme.border || selectTheme.fg,
+      padding: '0px',
 
       ':hover': {
-        color: indicatorsTheme.fg,
+        color: selectTheme.border || selectTheme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
@@ -157,8 +158,15 @@ const customStyles = () => {
       ...provided,
       color: selectTheme.fg,
       backgroundColor: selectTheme.bg,
-      borderColor: selectTheme.border,
+      border: selectTheme.border ? `1px solid ${selectTheme.border}` : 'none',
 
+      minWidth: '147px',
+      minHeight: '30px',
+      padding: '0px 10px',
+      boxSizing: 'border-box',
+      fontSize: '11px',
+
+      borderRadius: '3px',
       boxShadow: null,
       outline: '0 !important',
 
@@ -171,52 +179,73 @@ const customStyles = () => {
     }),
     dropdownIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: indicatorsTheme.fg,
+      color: selectTheme.border || selectTheme.fg,
+
+      padding: '0px',
 
       ':hover': {
-        color: indicatorsTheme.fg,
+        color: selectTheme.border || selectTheme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,
-      backgroundColor: indicatorsTheme.fg,
+      backgroundColor: selectTheme.border || selectTheme.fg,
+      marginLeft: '5px',
+      marginRight: '5px',
     }),
     input: (provided: any, { isDisabled }: { isDisabled: false }) => ({
       ...provided,
       color: selectTheme.fg,
       backgroundColor: selectTheme.bg,
 
+      padding: '0px',
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       userSelect: 'none',
     }),
     loadingIndicator: (provided: any) => ({
       ...provided,
-      color: indicatorsTheme.fg,
+      color: selectTheme.border || selectTheme.fg,
+      padding: '0px',
     }),
     loadingMessage: (provided: any) => ({
       ...provided,
       color: menuTheme.fg,
+      padding: '0px',
+      fontSize: '14px',
     }),
     menu: (provided: any) => ({
       ...provided,
       color: menuTheme.fg,
       backgroundColor: menuTheme.bg,
+      border: menuTheme.border ? `1px solid ${menuTheme.border}` : 'none',
+
+      zIndex: 10000,
+      padding: '5px 7px',
+      borderRadius: '3px',
+      minWidth: '180px',
+      maxWidth: '280px',
+      boxShadow: 'none',
     }),
     multiValue: (provided: any) => ({
       ...provided,
       color: chipTheme.fg,
       backgroundColor: chipTheme.bg,
+      borderRadius: '3px',
     }),
     multiValueLabel: (provided: any) => ({
       ...provided,
       color: chipTheme.fg,
       backgroundColor: chipTheme.bg,
+      borderRadius: '0px',
     }),
     multiValueRemove: (provided: any) => ({
       ...provided,
       color: chipTheme.fg,
       backgroundColor: chipTheme.bg,
+
+      paddingLeft: '0px',
+      borderRadius: '0px',
 
       ':hover': {
         color: chipTheme.fg,
@@ -226,22 +255,29 @@ const customStyles = () => {
     noOptionsMessage: (provided: any) => ({
       ...provided,
       color: menuTheme.fg,
+      fontSize: '14px',
+      padding: '0px',
     }),
     option: (
       provided: any,
       { isFocused, isMulti, isSelected }: { isFocused: boolean; isMulti: boolean; isSelected: boolean }
     ) => ({
       ...provided,
+
+      padding: '5px 7px',
+      fontSize: '14px',
+      borderRadius: '2px',
+
       cursor: isMulti || !isSelected ? 'pointer' : 'default',
 
       // isFocus for somereason points to an internal hover state
-      color: isSelected ? menuTheme.selectedFg : isFocused ? menuTheme.hoverFg : 'inherit',
+      color: menuTheme.fg,
       backgroundColor: isSelected ? menuTheme.selectedBg : isFocused ? menuTheme.hoverBg : 'transparent',
 
       // provide some affordance on touch devices
       ':active': {
-        color: isSelected ? menuTheme.selectedFg : menuTheme.activeFg,
-        backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.activeBg,
+        color: menuTheme.fg,
+        backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.hoverBg,
       },
     }),
     placeholder: (provided: any) => ({
@@ -253,6 +289,12 @@ const customStyles = () => {
     singleValue: (provided: any) => ({
       ...provided,
       color: selectTheme.fg,
+      padding: '0px',
+    }),
+
+    valueContainer: (provided: any) => ({
+      ...provided,
+      padding: '0px',
     }),
   };
 };
