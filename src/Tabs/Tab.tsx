@@ -67,8 +67,8 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
     },
 
     disabledTabStyle: {
-      color: theme.tabs.disabledFg,
-      cursor: 'default',
+      color: `${theme.tabs.disabledFg} !important`,
+      cursor: 'default !important',
     },
   };
 };
