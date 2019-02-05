@@ -20,7 +20,7 @@ Storybook is a good reference of usage.
 
 #### Icons
 
-Icon component requires external icon sets that are not provided with UI-Kit. 
+Icon component requires external icon sets that are not provided with UI-Kit.
 The installation process is described [here](https://www.npmjs.com/package/@fortawesome/react-fontawesome#installation).
 
 Once installed, an icon set can me imported as follows:
@@ -78,6 +78,7 @@ IconLibrary.add(faCaretDown);
     - Select
     - Table
     - Text
+    - Tabs
     - Textarea
     - Toggle
 
