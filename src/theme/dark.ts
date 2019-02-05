@@ -117,6 +117,11 @@ export const darkTheme: ITheme = {
     bg: '#222',
   },
 
+  tabs: {
+    fg: '#fff',
+    bg: '#222',
+  },
+
   toggle: {
     fg: 'white',
     bg: 'darkgrey',

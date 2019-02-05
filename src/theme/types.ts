@@ -129,6 +129,11 @@ export interface ITheme {
     border?: string;
   };
 
+  tabs: {
+    fg: string;
+    bg: string;
+  };
+
   toggle: {
     fg: string;
     bg: string;
