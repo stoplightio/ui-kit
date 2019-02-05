@@ -58,8 +58,8 @@ const tabStyles = (tabTheme: { fg: string; bg: string }) => {
 
     selectedTabStyle: css({
       background: '#fff',
-      borderColor: '#aaa',
-      color: 'black',
+      borderColor: tabTheme.fg,
+      color: tabTheme.fg,
       borderRadius: '5px 5px 0 0',
     }),
 
