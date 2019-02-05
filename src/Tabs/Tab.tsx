@@ -1,61 +1,72 @@
 import { ClassNames, css } from '@emotion/core';
 import * as React from 'react';
 import { Tab } from 'react-tabs';
+import { useTheme } from '../theme';
 
-const StyledTab: React.FunctionComponent & { tabsRole: string } = props => (
-  <ClassNames>
-    {({ css: getClassName }) => (
-      <Tab
-        {...props}
-        className={getClassName(tabStyle)}
-        disabledClassName={getClassName(disabledTabStyle)}
-        selectedClassName={getClassName(selectedTabStyle)}
-      >
-        {props.children}
-      </Tab>
-    )}
-  </ClassNames>
-);
+const StyledTab: React.FunctionComponent<{ disabled?: boolean }> & { tabsRole: string } = props => {
+  const theme = useTheme();
+  const styles = tabStyles(theme.tabs);
+  return (
+    <ClassNames>
+      {({ css: getClassName }) => (
+        <Tab
+          {...props}
+          className={getClassName(styles.tabStyle)}
+          disabledClassName={getClassName(styles.disabledTabStyle)}
+          selectedClassName={getClassName(styles.selectedTabStyle)}
+        >
+          {props.children}
+        </Tab>
+      )}
+    </ClassNames>
+  );
+};
 
 StyledTab.tabsRole = 'Tab';
 
-const tabStyle = css({
-  display: 'inline-block',
-  border: '1px solid transparent',
-  borderBottom: 'none',
-  bottom: '-1px',
-  position: 'relative',
-  listStyle: 'none',
-  padding: '6px 12px',
-  cursor: 'pointer',
+const tabStyles = (tabTheme: { fg: string; bg: string }) => {
+  return {
+    tabStyle: css({
+      display: 'inline-block',
+      border: '1px solid transparent',
+      borderBottom: 'none',
+      bottom: '-1px',
+      position: 'relative',
+      listStyle: 'none',
+      padding: '6px 12px',
+      cursor: 'pointer',
+      backgroundColor: tabTheme.bg,
+      color: tabTheme.fg,
 
-  '&:focus': {
-    boxShadow: '0 0 5px hsl(208, 99%, 50%)',
-    borderColor: 'hsl(208, 99%, 50%)',
-    outline: 'none',
+      '&:focus': {
+        boxShadow: '0 0 5px hsl(208, 99%, 50%)',
+        borderColor: 'hsl(208, 99%, 50%)',
+        outline: 'none',
 
-    '&:after': {
-      content: '',
-      position: 'absolute',
-      height: '5px',
-      left: '-4px',
-      right: '-4px',
-      bottom: '-5px',
+        '&:after': {
+          content: '""',
+          position: 'absolute',
+          height: '5px',
+          left: '-4px',
+          right: '-4px',
+          bottom: '-5px',
+          background: '#fff',
+        },
+      },
+    }),
+
+    selectedTabStyle: css({
       background: '#fff',
-    },
-  },
-});
+      borderColor: '#aaa',
+      color: 'black',
+      borderRadius: '5px 5px 0 0',
+    }),
 
-const selectedTabStyle = css({
-  background: '#fff',
-  borderColor: '#aaa',
-  color: 'black',
-  borderRadius: '5px 5px 0 0',
-});
-
-const disabledTabStyle = css({
-  color: 'GrayText',
-  cursor: 'default',
-});
+    disabledTabStyle: css({
+      color: 'GrayText',
+      cursor: 'default',
+    }),
+  };
+};
 
 export { StyledTab as Tab };
