@@ -39,7 +39,7 @@ describe('Overlay component', () => {
   it('applies background from theme', () => {
     const wrapper = shallow(<Overlay />);
     expect(wrapper).toHaveProp(
-      'css',
+      'defaultCSS',
       expect.objectContaining({
         backgroundColor: theme.overlay!.bg,
       })

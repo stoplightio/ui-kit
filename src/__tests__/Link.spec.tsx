@@ -59,7 +59,7 @@ describe('Link component', () => {
   describe('styles', () => {
     it('provides a default styling based on theme', () => {
       const wrapper = shallow(<Link />);
-      expect(wrapper).toHaveProp('css', [
+      expect(wrapper).toHaveProp('defaultCSS', [
         { color: theme.link!.fg },
         {
           ':hover': { color: theme.link!.hoverFg },

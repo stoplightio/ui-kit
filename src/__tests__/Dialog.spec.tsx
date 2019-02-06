@@ -119,7 +119,7 @@ describe('Dialog component', () => {
         .first();
 
       expect(content).toHaveProp(
-        'css',
+        'defaultCSS',
         expect.objectContaining({
           backgroundColor: theme.dialog!.bg,
           color: theme.dialog!.fg,
@@ -127,7 +127,7 @@ describe('Dialog component', () => {
       );
 
       expect(content).toHaveProp(
-        'css',
+        'defaultCSS',
         expect.not.objectContaining({
           border: `1px solid ${theme.dialog!.border}`,
         })
@@ -144,7 +144,7 @@ describe('Dialog component', () => {
         .first();
 
       expect(content).toHaveProp(
-        'css',
+        'defaultCSS',
         expect.objectContaining({
           border: `1px solid ${theme.dialog!.border}`,
         })

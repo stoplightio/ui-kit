@@ -58,13 +58,13 @@ describe('Image component', () => {
   describe('styles', () => {
     it('hides image when hidden is true', () => {
       const wrapper = shallow(<Image hidden />);
-      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ display: 'none' }]));
+      expect(wrapper).toHaveProp('defaultCSS', expect.arrayContaining([{ display: 'none' }]));
     });
 
     it('sets responsive dimension when responsive is true', () => {
       const wrapper = shallow(<Image responsive />);
       expect(wrapper).toHaveProp(
-        'css',
+        'defaultCSS',
         expect.arrayContaining([
           {
             width: 'auto',

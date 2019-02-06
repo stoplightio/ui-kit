@@ -61,7 +61,7 @@ describe('BlockQuote component', () => {
     it('provides a default styling based on theme', () => {
       const wrapper = shallow(<BlockQuote />);
       expect(wrapper).toHaveProp(
-        'css',
+        'defaultCSS',
         expect.arrayContaining([
           expect.objectContaining({
             color: theme.blockQuote!.fg,
@@ -73,7 +73,7 @@ describe('BlockQuote component', () => {
 
     it('adds a shadow when isSelected is true', () => {
       const wrapper = shallow(<BlockQuote isSelected />);
-      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
+      expect(wrapper).toHaveProp('defaultCSS', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
     });
   });
 });
