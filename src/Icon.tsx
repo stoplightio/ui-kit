@@ -35,9 +35,5 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
 }
 
 export const Icon: FunctionComponent<IIcon> = props => {
-  return jsx(Box, {
-    backgroundColor: 'transparent',
-    ...props,
-    as: FontAwesomeIcon as FunctionComponent,
-  });
+  return <Box bg="transparent" {...props} as={FontAwesomeIcon} />;
 };
