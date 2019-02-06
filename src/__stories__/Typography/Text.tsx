@@ -16,7 +16,7 @@ export const textKnobs = (tabName = 'Text'): IText => ({
   leading: select('leading', LineHeight, '', tabName),
   casing: select('casing', Casing, '', tabName) as IText['textTransform'],
   textDecoration: select('textDecoration', Decoration, '', tabName),
-  textDecorationColor: text('textDecorationColor', 'valid-color', tabName),
+  textDecorationColor: text('textDecorationColor', null, tabName),
   italic: boolean('italic', false, tabName),
 });
 

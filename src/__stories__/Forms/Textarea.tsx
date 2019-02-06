@@ -1,6 +1,7 @@
 /* @jsx jsx */
 
 import { jsx } from '@emotion/core';
+import omit = require('lodash/omit');
 
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -15,7 +16,7 @@ const store = new Store({
 });
 
 export const textareaKnobs = (tabName = 'Textarea'): ITextarea => ({
-  ...boxKnobs<HTMLTextAreaElement>(),
+  ...omit(boxKnobs<HTMLTextAreaElement>(), 'opacity'),
   autosize: boolean('autosize', false, tabName),
   disabled: boolean('disabled', false, tabName),
 });
