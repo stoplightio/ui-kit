@@ -13,11 +13,7 @@ export interface IHeading extends Omit<IText<HTMLHeadingElement>, 'as'> {
 export const Heading: FunctionComponent<IHeading> = props => {
   const { as = 'h2', ...rest } = props;
 
-  return jsx(Text, {
-    ...rest,
-    as,
-    defaultCSS: headingStyles(),
-  });
+  return <Text {...rest} as={as} defaultCSS={headingStyles()} />;
 };
 
-const headingStyles = () => [{ magin: '0', fontWeight: 900 }];
+const headingStyles = () => ({ magin: '0', fontWeight: 900 });

@@ -13,11 +13,7 @@ export interface IBlockQuote extends IText<HTMLQuoteElement | HTMLElement> {
 export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
   const { as = 'blockquote', isSelected, ...rest } = props;
 
-  return jsx(Text, {
-    ...rest,
-    as,
-    defaultCSS: blockQuoteStyles({ isSelected }),
-  });
+  return <Text {...rest} as={as} defaultCSS={blockQuoteStyles({ isSelected })} />;
 };
 
 export const blockQuoteStyles = ({ isSelected }: IBlockQuote) => {

@@ -25,19 +25,10 @@ export const Flex: FunctionComponent<IFlex> = props => {
     ss.alignItems({ alignItems }),
     ss.justifyContent({ justifyContent }),
     sl.flexFlow({ flexFlow }),
-    ...flexStyles(),
+    flexStyles(),
   ];
 
-  return jsx(Box, {
-    ...rest,
-    defaultCSS,
-  });
+  return <Box {...rest} defaultCSS={defaultCSS} />;
 };
 
-export const flexStyles = () => {
-  return [
-    {
-      display: 'flex',
-    },
-  ];
-};
+export const flexStyles = () => ({ display: 'flex' });

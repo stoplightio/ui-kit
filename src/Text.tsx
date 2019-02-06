@@ -14,19 +14,19 @@ export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBo
 export const Text: FunctionComponent<IText> = props => {
   const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
 
-  return jsx(Box, {
-    ...rest,
-    letterSpacing,
-    lineHeight,
-    textTransform,
-    fontStyle: italic ? 'italic' : undefined,
-    as,
-    defaultCSS: textStyles(),
-  });
+  return (
+    <Box
+      {...rest}
+      letterSpacing={letterSpacing}
+      lineHeight={lineHeight}
+      textTransform={textTransform}
+      fontStyle={italic ? 'italic' : undefined}
+      as={as}
+      defaultCSS={textStyles()}
+    />
+  );
 };
 
-export const textStyles = () => [
-  {
-    margin: '0',
-  },
-];
+export const textStyles = () => ({
+  margin: '0',
+});

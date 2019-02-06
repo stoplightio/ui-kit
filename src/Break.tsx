@@ -11,11 +11,7 @@ export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
 export const Break: FunctionComponent<IBreak> = props => {
   const { as = 'hr', thickness = 1, ...rest } = props;
 
-  return jsx(Box, {
-    ...rest,
-    as,
-    defaultCSS: breakStyles({ thickness }),
-  });
+  return <Box {...rest} as={as} defaultCSS={breakStyles({ thickness })} />;
 };
 
 export const breakStyles = ({ thickness }: IBreak) => [

@@ -13,11 +13,7 @@ export interface IImage extends IBox<HTMLImageElement> {
 export const Image: FunctionComponent<IImage> = props => {
   const { hidden, responsive, ...rest } = props;
 
-  return jsx(Box, {
-    ...rest,
-    as: 'img',
-    defaultCSS: imageStyles({ hidden, responsive }),
-  });
+  return <Box {...rest} as="img" defaultCSS={imageStyles({ hidden, responsive })} />;
 };
 
 export const imageStyles = ({ hidden, responsive }: IImage = {}) => [
