@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactPortal } from 'react';
 import * as ReactDOM from 'react-dom';
 
 export interface IPortalProps {
@@ -44,7 +45,7 @@ export class Portal extends React.PureComponent<IPortalProps> {
     return React.Children.map(this.props.children, child => React.cloneElement(child));
   };
 
-  public render() {
+  public render(): ReactPortal | null {
     if (this.el === undefined) {
       return null;
     }
