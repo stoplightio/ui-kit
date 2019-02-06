@@ -23,6 +23,7 @@ export * from './Popup';
 export * from './Portal';
 export * from './ScrollList';
 export * from './Table';
+export * from './Tabs';
 export * from './Text';
 export * from './Textarea';
 export * from './Toggle';
