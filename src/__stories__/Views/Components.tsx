@@ -2,21 +2,30 @@
 
 import { jsx } from '@emotion/core';
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Box, Button, Checkbox, Flex, Input, Textarea, Toggle } from '../../';
+import { Box, Button, Checkbox, Flex, Icon, IconLibrary, Input, Textarea, Toggle } from '../../';
 import { Select } from '../../Select';
+
+IconLibrary.add(faPlus);
 
 storiesOf('Views:Components', module)
   .addDecorator(withKnobs)
-  .add('Flex and Box', () => <App />);
+  .add('Form Components', () => <App />);
 
 const App = () => {
   return (
     <Flex alignItems="center">
       <Box mr="3">
         <Button>Button</Button>
+      </Box>
+
+      <Box mr="3">
+        <Button>
+          <Icon icon="plus" />
+        </Button>
       </Box>
 
       <Box mr="3">
