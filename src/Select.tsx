@@ -162,7 +162,7 @@ const customStyles = () => {
 
       minWidth: '147px',
       minHeight: '30px',
-      padding: '0px 10px',
+      padding: '0px 5px 0px 10px',
       boxSizing: 'border-box',
       fontSize: '11px',
 
