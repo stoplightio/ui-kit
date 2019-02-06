@@ -14,7 +14,6 @@ export interface IButton extends IBox<HTMLButtonElement> {
 
 export const Button: FunctionComponent<IButton> = props => {
   const { as = 'button', ...rest } = props;
-
   return <Box {...rest} as={as} defaultCSS={buttonStyles(props)} />;
 };
 

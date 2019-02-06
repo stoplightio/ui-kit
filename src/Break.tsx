@@ -8,7 +8,6 @@ import { Box, IBox } from './Box';
 export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
   thickness?: number;
 }
-
 export const Break: FunctionComponent<IBreak> = props => {
   const { as = 'hr', thickness = 1, ...rest } = props;
 

@@ -23,7 +23,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
   }, []);
 
   return (
-    // @ts-ignore FIXME border-box causes error in css
+    // @ts-ignore FIXME issue with border-box in styling
     <Flex {...rest} as="label" defaultCSS={checkboxStyles({ isDisabled, isChecked })}>
       <Box
         as="input"

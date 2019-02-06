@@ -36,6 +36,7 @@ export const Input: FunctionComponent<IInput> = props => {
       type={type}
       value={internalValue}
       onChange={handleChange}
+      // @ts-ignore FIXME borderSizing in styles type mismatch
       defaultCSS={inputStyles(props)}
     />
   );
