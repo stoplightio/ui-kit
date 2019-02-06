@@ -4,35 +4,23 @@ import { jsx } from '@emotion/core';
 
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import { Link } from '../Link';
+import { Text } from '../Text';
+import { useTheme } from '../theme';
 
-import { ILink, IText, ITheme } from '../';
-
-describe('Link component', () => {
-  let Link: FunctionComponent<ILink>;
-  let Text: FunctionComponent<IText>;
-  const theme: Partial<ITheme> = {
+jest.mock('../theme', () => ({
+  useTheme: jest.fn().mockReturnValue({
     link: {
       fg: '#000',
       hoverFg: '#111',
       visitedFg: '#222',
     },
-  };
+  }),
+}));
 
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ Link, Text } = await import('../'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
+describe('Link component', () => {
   it('renders Text as anchor', () => {
-    const wrapper = shallow(<Link />);
+    const wrapper = shallow(<Link />).shallow();
     expect(wrapper).toMatchElement(<Text as="a" />);
   });
 
@@ -59,6 +47,7 @@ describe('Link component', () => {
   describe('styles', () => {
     it('provides a default styling based on theme', () => {
       const wrapper = shallow(<Link />);
+      const theme = useTheme();
       expect(wrapper).toHaveProp('defaultCSS', [
         { color: theme.link!.fg },
         {

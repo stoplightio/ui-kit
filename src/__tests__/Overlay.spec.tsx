@@ -32,7 +32,7 @@ describe('Overlay component', () => {
   });
 
   it('renders Box component', () => {
-    const wrapper = shallow(<Overlay />);
+    const wrapper = shallow(<Overlay />).shallow();
     expect(wrapper).toMatchElement(<Box />);
   });
 

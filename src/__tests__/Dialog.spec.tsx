@@ -83,7 +83,8 @@ describe('Dialog component', () => {
         .shallow()
         .find(Overlay)
         .children()
-        .first();
+        .first()
+        .shallow();
 
       expect(content).toMatchElement(<Box>{children}</Box>);
     });

@@ -3,36 +3,23 @@
 import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
 
-import { IBox, IButton, ITheme } from '../';
+import { Box } from '../Box';
+import { Button } from '../Button';
 
-describe('Button component', () => {
-  let Button: FunctionComponent<IButton>;
-  let Box: FunctionComponent<IBox>;
-  const theme: Partial<ITheme> = {
+jest.mock('../theme', () => ({
+  useTheme: jest.fn().mockReturnValue({
     button: {
       fg: '#000',
       bg: '#fff',
       hoverBg: '0 2px 5px #000',
     },
-  };
+  }),
+}));
 
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ Button } = await import('../Button'));
-    ({ Box } = await import('../Box'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
+describe('Button component', () => {
   it('renders Box as button', () => {
-    const wrapper = shallow(<Button />);
+    const wrapper = shallow(<Button />).shallow();
     expect(wrapper).toMatchElement(<Box as="button" />);
   });
 

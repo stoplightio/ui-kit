@@ -11,11 +11,7 @@ export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
 export const Link: FunctionComponent<ILink> = props => {
   const { as = 'a', ...rest } = props;
 
-  return jsx(Text, {
-    ...rest,
-    as,
-    defaultCSS: linkStyles(),
-  });
+  return <Text {...rest} as={as} defaultCSS={linkStyles()} />;
 };
 
 export const linkStyles = () => {
