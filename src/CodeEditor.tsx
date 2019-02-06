@@ -56,13 +56,12 @@ export const supportedLanguages = {
 export const CodeEditor = forwardRef<HTMLDivElement, ICodeEditor>((props, ref) => {
   const { language, onChange = noop, style, value } = props;
   const highlightCodeCallback = useCallback(() => highlightCode(value, language), [value, language]);
-  const editorCSS = [...codeEditorStyles()];
 
   return jsx(
     Box,
     {
       style,
-      css: editorCSS,
+      defaultCSS: codeEditorStyles(),
     },
     jsx(ReactSimpleCodeEditor, {
       ref,
@@ -75,12 +74,12 @@ export const CodeEditor = forwardRef<HTMLDivElement, ICodeEditor>((props, ref) =
 });
 
 export const codeEditorStyles = () => {
-  const theme = useTheme();
+  const { codeEditor } = useTheme();
 
   return [
     {
-      background: theme.codeEditor.bg,
-      border: `1px solid ${theme.codeEditor.border}`,
+      background: codeEditor.bg,
+      border: codeEditor.border ? `1px solid ${codeEditor.border}` : undefined,
       fontFamily: 'monospace',
     },
     css`
@@ -99,7 +98,7 @@ export const codeEditorStyles = () => {
         &.prolog,
         &.doctype,
         &.cdata {
-          color: ${theme.codeEditor.syntax.comment};
+          color: ${codeEditor.syntax.comment};
         }
 
         &.punctuation {
@@ -112,7 +111,7 @@ export const codeEditorStyles = () => {
         &.number,
         &.symbol,
         &.deleted {
-          color: ${theme.codeEditor.syntax.primary};
+          color: ${codeEditor.syntax.primary};
         }
 
         &.selector,
@@ -121,32 +120,32 @@ export const codeEditorStyles = () => {
         &.char,
         &.builtin,
         &.inserted {
-          color: ${theme.codeEditor.syntax.secondary};
+          color: ${codeEditor.syntax.secondary};
         }
 
         &.operator,
         &.entity,
         &.url {
-          color: ${theme.codeEditor.syntax.operator};
+          color: ${codeEditor.syntax.operator};
         }
 
         &.atrule,
         &.attr-value,
         &.keyword {
-          color: ${theme.codeEditor.syntax.keyword};
+          color: ${codeEditor.syntax.keyword};
         }
 
         &.function {
-          color: ${theme.codeEditor.syntax.function};
+          color: ${codeEditor.syntax.function};
         }
 
         &.variable {
-          color: ${theme.codeEditor.syntax.variable};
+          color: ${codeEditor.syntax.variable};
         }
 
         &.regex,
         &.important {
-          color: ${theme.codeEditor.syntax.regex};
+          color: ${codeEditor.syntax.regex};
         }
 
         &.important,

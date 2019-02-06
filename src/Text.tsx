@@ -21,7 +21,7 @@ export const Text: FunctionComponent<IText> = props => {
     textTransform,
     fontStyle: italic ? 'italic' : undefined,
     as,
-    css: textStyles(),
+    defaultCSS: textStyles(),
   });
 };
 

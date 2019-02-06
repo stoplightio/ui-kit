@@ -8,7 +8,7 @@ import { useTheme } from './theme';
 export interface IOverlay extends IBox<HTMLElement> {}
 
 export const Overlay: FunctionComponent<IOverlay> = props => {
-  return <Box css={overlayStyles()} {...props} />;
+  return <Box {...props} defaultCSS={overlayStyles()} />;
 };
 
 export const overlayStyles = (): IBoxCSS => {

@@ -14,7 +14,7 @@ export interface IList extends sl.IListStyleProps, Omit<IBox<HTMLUListElement | 
 export const List: FunctionComponent<IList> = props => {
   const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
 
-  return <Box {...rest} as={as} css={listStyles({ listStyle, listStylePosition })} />;
+  return <Box {...rest} as={as} defaultCSS={listStyles({ listStyle, listStylePosition })} />;
 };
 
 export const listStyles = ({ listStyle, listStylePosition }: IList) => {

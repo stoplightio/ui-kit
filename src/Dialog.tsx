@@ -37,7 +37,7 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box css={css} {...rest} onClick={onBoxClick}>
+        <Box {...rest} onClick={onBoxClick} defaultCSS={css}>
           {children}
         </Box>
       </Overlay>

@@ -36,8 +36,7 @@ export const Input: FunctionComponent<IInput> = props => {
       type={type}
       value={internalValue}
       onChange={handleChange}
-      // @ts-ignore boxSixing causes some issue?
-      css={inputStyles(props)}
+      defaultCSS={inputStyles(props)}
     />
   );
 };

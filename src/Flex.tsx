@@ -18,7 +18,7 @@ export interface IFlex<T extends HTMLElement = HTMLElement>
 export const Flex: FunctionComponent<IFlex> = props => {
   const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
 
-  const css = [
+  const defaultCSS = [
     ss.flexBasis({ flexBasis }),
     ss.flexDirection({ flexDirection }),
     ss.flexWrap({ flexWrap }),
@@ -30,7 +30,7 @@ export const Flex: FunctionComponent<IFlex> = props => {
 
   return jsx(Box, {
     ...rest,
-    css,
+    defaultCSS,
   });
 };
 

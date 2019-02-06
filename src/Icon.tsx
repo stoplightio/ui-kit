@@ -35,5 +35,7 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
 }
 
 export const Icon: FunctionComponent<IIcon> = props => {
-  return <Box bg="transparent" {...props} as={FontAwesomeIcon} />;
+  return <Box {...props} as={FontAwesomeIcon} defaultCSS={iconStyles()} />;
 };
+
+const iconStyles = () => [{ background: 'transparent' }];

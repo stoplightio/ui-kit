@@ -17,23 +17,21 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
   const [checked, setValue] = useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
 
-  const css = checkboxStyles({ isDisabled, isChecked });
-
   const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
     setValue(target.checked);
     if (onChange) onChange(target.checked);
   }, []);
 
   return (
-    // @ts-ignore FIXME border-box
-    <Flex {...rest} as="label" css={css}>
+    // @ts-ignore FIXME border-box causes error in css
+    <Flex {...rest} as="label" defaultCSS={checkboxStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         position="absolute"
-        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+        defaultCSS={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
       <svg aria-hidden="true" viewBox="0 0 512 512" width="10px" height="10px">
         <path

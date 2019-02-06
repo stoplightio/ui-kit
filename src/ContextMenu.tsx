@@ -73,7 +73,7 @@ export const ContextMenuView: FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
   return (
-    <Box {...viewProps} as={ReactContextMenu} css={menuStyles()}>
+    <Box {...viewProps} as={ReactContextMenu} defaultCSS={menuStyles()}>
       {menuItems.map((item, index) => {
         return <ContextMenuItem key={index} {...item} />;
       })}
@@ -136,7 +136,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
   const menuItem = (
     <Box
       {...rest}
-      css={contextMenuItemStyles({ onClick, divider, disabled })}
+      defaultCSS={contextMenuItemStyles({ onClick, divider, disabled })}
       as={(asProps: object) => (
         <ReactMenuItem
           attributes={asProps}
@@ -164,7 +164,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
     return (
       <Box
         {...rest}
-        css={menuStyles()}
+        defaultCSS={menuStyles()}
         as={({ className }: { className: string }) => {
           return (
             <ReactSubMenu

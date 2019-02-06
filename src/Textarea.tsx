@@ -29,7 +29,7 @@ export const Textarea: FunctionComponent<ITextarea> = props => {
     as: autosize ? AutosizeTextarea : as,
     value: internalValue,
     onChange: handleChange,
-    css: textareaStyles(props),
+    defaultCSS: textareaStyles(props),
   });
 };
 

@@ -4,6 +4,8 @@ import { Interpolation, jsx } from '@emotion/core';
 import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
+import flattenDeep = require('lodash/flattenDeep');
+
 import * as sl from './styles';
 
 export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
@@ -68,11 +70,13 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     borderColor,
     transform,
     visibility,
+
+    defaultCSS,
     ...rest
   } = props;
 
   /** Add all the supported styles, passing in the relevant props. */
-  const css: IBoxCSS = [
+  const styles: IBoxCSS = [
     sl.color({ color, backgroundColor }),
     ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
     ss.borderRadius({ borderRadius }),
@@ -115,15 +119,18 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     sl.overflow({ overflow, overflowX, overflowY }),
   ];
 
+  /** Component provided defaults get pushed on first. */
+  if (defaultCSS) styles.unshift(...flattenDeep<IBoxCSS>([defaultCSS]));
+
   /** User provided style get pushed on last. */
-  if (style) css.push(style as IBoxCSS);
+  if (style) styles.push(style as IBoxCSS);
 
   return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
       ...rest,
       ref,
-      css,
+      css: styles,
     },
     children
   );
@@ -171,7 +178,7 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   children?: any;
   style?: CSSProperties;
-  css?: IBoxCSS;
+  defaultCSS?: IBoxCSS;
   [key: string]: any;
 }
 

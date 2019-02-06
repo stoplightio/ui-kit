@@ -23,7 +23,7 @@ export const Table: FunctionComponent<ITable> = props => {
     {
       ...rest,
       as: 'table',
-      css: tableStyles({ isSelected }),
+      defaultCSS: tableStyles({ isSelected }),
     },
     jsx('tbody', null, children)
   );
@@ -52,12 +52,10 @@ export const tableStyles = ({ isSelected }: ITable) => {
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
 export const TableRow: FunctionComponent<ITableRow> = props => {
-  const css = tableRowStyles();
-
   return jsx(Box, {
     ...props,
     as: 'tr',
-    css,
+    defaultCSS: tableRowStyles(),
   });
 };
 
@@ -88,7 +86,7 @@ export const TableCell: FunctionComponent<ITableCell> = props => {
   return jsx(Box, {
     ...rest,
     as,
-    css: tableCellStyles({ as, isSelected }),
+    defaultCSS: tableCellStyles({ as, isSelected }),
   });
 };
 

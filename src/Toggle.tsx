@@ -23,16 +23,16 @@ export const Toggle: FunctionComponent<IToggle> = props => {
   }, []);
 
   return (
-    <Flex {...rest} as="label" css={toggleStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" defaultCSS={toggleStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         position="absolute"
-        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+        defaultCSS={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
-      <Box as="span" css={circleStyles({ isChecked })} />
+      <Box as="span" defaultCSS={circleStyles({ isChecked })} />
     </Flex>
   );
 };

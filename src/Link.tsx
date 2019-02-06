@@ -11,12 +11,10 @@ export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
 export const Link: FunctionComponent<ILink> = props => {
   const { as = 'a', ...rest } = props;
 
-  const css = linkStyles();
-
   return jsx(Text, {
     ...rest,
     as,
-    css,
+    defaultCSS: linkStyles(),
   });
 };
 

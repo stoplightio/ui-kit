@@ -16,7 +16,7 @@ export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
   return jsx(Text, {
     ...rest,
     as,
-    css: blockQuoteStyles({ isSelected }),
+    defaultCSS: blockQuoteStyles({ isSelected }),
   });
 };
 
