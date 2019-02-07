@@ -1,4 +1,4 @@
-import { css, jsx } from '@emotion/core';
+import { css } from '@emotion/core';
 import * as React from 'react';
 
 import noop = require('lodash/noop');
@@ -56,18 +56,16 @@ export const CodeEditor = React.forwardRef<HTMLDivElement, ICodeEditor>((props, 
   const { language, onChange = noop, style, value } = props;
   const highlightCodeCallback = React.useCallback(() => highlightCode(value, language), [value, language]);
 
-  const SimpleCodeEditor = jsx(ReactSimpleCodeEditor, {
-    ref,
-    value,
-    onValueChange: onChange,
-    highlight: highlightCodeCallback,
-    padding: 10,
-  });
-
   return (
     <Box style={style} css={codeEditorStyles()}>
-      {SimpleCodeEditor}
-      <Box as={ReactSimpleCodeEditor} />
+      <ReactSimpleCodeEditor
+        // @ts-ignore FIXME type erorr
+        ref={ref}
+        value={value}
+        onValueChange={onChange}
+        highlight={highlightCodeCallback}
+        padding={10}
+      />
     </Box>
   );
 });
