@@ -1,11 +1,8 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import { Omit } from '@stoplight/types';
 import { number, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { FunctionComponent, memo } from 'react';
 
 import { areEqual, Box, Flex } from '../..';
 import { FixedSizeList, IFixedSizeList, IVariableSizeList, VariableSizeList } from '../../ScrollList';
@@ -23,13 +20,13 @@ export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeLi
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
-const Row: FunctionComponent<any> = ({ index, style, key }) => (
+const Row: React.FunctionComponent<any> = ({ index, style, key }) => (
   <Flex key={key} style={style} alignItems="center" borderBottom="1px solid" borderColor="currentColor">
     Item {index}
   </Flex>
 );
 
-const MemoizedRow = memo(props => <Row {...props} />, areEqual);
+const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
 storiesOf('List & Tables:FixedSizeList', module)
   .addDecorator(withKnobs)

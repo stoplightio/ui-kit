@@ -1,7 +1,5 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
-import { FunctionComponent, MouseEventHandler, ReactEventHandler, useCallback } from 'react';
 import { Box, IBox } from './Box';
 import { Flex } from './Flex';
 import { Overlay } from './Overlay';
@@ -10,20 +8,20 @@ import { useTheme } from './theme';
 
 export interface IDialog extends IBox<HTMLElement> {
   show?: boolean;
-  onClickOutside?: ReactEventHandler<HTMLElement>;
+  onClickOutside?: React.ReactEventHandler<HTMLElement>;
 }
 
-export const Dialog: FunctionComponent<IDialog> = props => {
+export const Dialog: React.FunctionComponent<IDialog> = props => {
   const { children, show, onClickOutside, onClick, ...rest } = props;
   const css = dialogStyles();
 
-  const onOverlayClick = useCallback<MouseEventHandler<HTMLElement>>(e => {
+  const onOverlayClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     if (onClickOutside !== undefined) {
       onClickOutside(e);
     }
   }, []);
 
-  const onBoxClick = useCallback<MouseEventHandler<HTMLElement>>(e => {
+  const onBoxClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     e.stopPropagation();
     if (onClick !== undefined) {
       onClick(e);
@@ -37,7 +35,7 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box {...rest} onClick={onBoxClick} defaultCSS={css}>
+        <Box {...rest} onClick={onBoxClick} css={css}>
           {children}
         </Box>
       </Overlay>

@@ -15,8 +15,8 @@ NOTE: All your components must import locally (in scope of project) define useTh
 #### Example:
 
 ```jsx
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import * as React from 'react';
 import { Box } from '@stoplight/ui-kit';
 import { ThemeProvider } from 'styled-components';
 ```
@@ -29,8 +29,8 @@ It's flexible enough and a recommended solution for spacing values.
 #### Example:
 
 ```jsx
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import * as React from 'react';
 import { Box } from '@stoplight/ui-kit';
 import { ThemeProvider } from 'styled-components';
 

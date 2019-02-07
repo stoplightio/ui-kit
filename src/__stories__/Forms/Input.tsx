@@ -1,12 +1,10 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import omit = require('lodash/omit');
+import * as React from 'react';
 
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
+import omit = require('lodash/omit');
 
 import { IInput, Input } from '../../Input';
 import { AutosizeInputType, InlineInputType } from '../_utils';

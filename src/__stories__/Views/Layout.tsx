@@ -1,10 +1,7 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { FunctionComponent } from 'react';
 
 import { Box, Button, createThemedModule, Flex, IBox, ITheme } from '../../';
 
@@ -54,7 +51,7 @@ const App = () => {
   );
 };
 
-const BoxBadge: FunctionComponent<IBox> = props => (
+const BoxBadge: React.FunctionComponent<IBox> = props => (
   <Box
     fontSize={0}
     position="absolute"
@@ -69,7 +66,7 @@ const BoxBadge: FunctionComponent<IBox> = props => (
   />
 );
 
-const CustomStoryBox: FunctionComponent<IBox> = ({ children, ...props }) => {
+const CustomStoryBox: React.FunctionComponent<IBox> = ({ children, ...props }) => {
   const theme = useTheme();
 
   return (

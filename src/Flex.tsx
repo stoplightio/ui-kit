@@ -1,7 +1,5 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import flattenDeep = require('lodash/flattenDeep');
+import * as React from 'react';
 import * as ss from 'styled-system';
 
 import { Box, IBox } from './Box';
@@ -15,10 +13,11 @@ export interface IFlex<T extends HTMLElement = HTMLElement>
     ss.AlignItemsProps,
     ss.JustifyContentProps {}
 
-export const Flex: FunctionComponent<IFlex> = props => {
-  const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, ...rest } = props;
+export const Flex: React.FunctionComponent<IFlex> = props => {
+  const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, css, ...rest } = props;
 
-  const defaultCSS = [
+  const styles = [
+    ...flattenDeep([css]),
     ss.flexBasis({ flexBasis }),
     ss.flexDirection({ flexDirection }),
     ss.flexWrap({ flexWrap }),
@@ -28,7 +27,7 @@ export const Flex: FunctionComponent<IFlex> = props => {
     flexStyles(),
   ];
 
-  return <Box {...rest} defaultCSS={defaultCSS} />;
+  return <Box {...rest} css={styles} />;
 };
 
 export const flexStyles = () => ({ display: 'flex' });

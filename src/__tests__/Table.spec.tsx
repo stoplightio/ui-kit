@@ -1,15 +1,12 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { ITable, ITableCell, ITableRow } from '../Table';
 import { ITheme } from '../theme';
 
 describe('Table component', () => {
-  let Table: FunctionComponent<ITable>;
+  let Table: React.FunctionComponent<ITable>;
 
   const theme: Partial<ITheme> = {
     table: {
@@ -54,7 +51,7 @@ describe('Table component', () => {
 });
 
 describe('TableRow component', () => {
-  let TableRow: FunctionComponent<ITableRow>;
+  let TableRow: React.FunctionComponent<ITableRow>;
 
   const theme: Partial<ITheme> = {
     table: {
@@ -95,7 +92,7 @@ describe('TableRow component', () => {
 });
 
 describe('TableCell component', () => {
-  let TableCell: FunctionComponent<ITableCell>;
+  let TableCell: React.FunctionComponent<ITableCell>;
 
   const theme: Partial<ITheme> = {
     table: {

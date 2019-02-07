@@ -1,10 +1,10 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import { ClassNames, jsx } from '@emotion/core';
-import * as React from 'react';
+import { FunctionComponent } from 'react';
 import { TabPanel, TabPanelProps } from 'react-tabs';
 
-const StyledTabPanel: React.FunctionComponent<TabPanelProps> & { tabsRole: string } = props => (
+const StyledTabPanel: FunctionComponent<TabPanelProps> & { tabsRole: string } = props => (
   <ClassNames>
     {({ css: getClassName }) => (
       <TabPanel

@@ -1,5 +1,3 @@
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
 import * as React from 'react';
 import {
   ContextMenu as ReactContextMenu,
@@ -9,7 +7,6 @@ import {
 } from 'react-contextmenu';
 
 import { Omit } from '@stoplight/types';
-import { Fragment, FunctionComponent, MouseEvent, ReactNode, TouchEvent } from 'react';
 
 import { Box, Break, Flex, IBox, useTheme } from './';
 
@@ -25,30 +22,30 @@ import { Box, Break, Flex, IBox, useTheme } from './';
 export interface IContextMenu extends IContextMenuView {
   renderTrigger: (
     ref: React.MutableRefObject<{
-      handleContextClick: (e: MouseEvent<HTMLDivElement>) => void;
+      handleContextClick: (e: React.MouseEvent<HTMLDivElement>) => void;
       // TODO get event type
       handleContextMenu: (e: any) => void;
-      handleMouseDown: (e: MouseEvent<HTMLDivElement>) => void;
-      handleMouseOut: (e: MouseEvent<HTMLDivElement>) => void;
-      handleMouseUp: (e: MouseEvent<HTMLDivElement>) => void;
-      handleTouchEnd: (e: TouchEvent<HTMLDivElement>) => void;
-      handleTouchstart: (e: TouchEvent<HTMLDivElement>) => void;
+      handleMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleMouseOut: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleTouchEnd: (e: React.TouchEvent<HTMLDivElement>) => void;
+      handleTouchstart: (e: React.TouchEvent<HTMLDivElement>) => void;
     }>
-  ) => ReactNode | string;
+  ) => React.ReactNode | string;
 }
 
-export const ContextMenu: FunctionComponent<IContextMenu> = props => {
+export const ContextMenu: React.FunctionComponent<IContextMenu> = props => {
   const { id, renderTrigger, ...rest } = props;
 
   const contextTriggerRef = React.useRef<any>(null);
 
   return (
-    <Fragment>
+    <React.Fragment>
       <ContextMenuTrigger id={id} ref={contextTriggerRef} holdToDisplay={-1}>
         {renderTrigger(contextTriggerRef)}
       </ContextMenuTrigger>
       <ContextMenuView id={id} {...rest} />
-    </Fragment>
+    </React.Fragment>
   );
 };
 
@@ -65,15 +62,15 @@ export interface IContextMenuView {
   menuItems?: IContextMenuItem[];
   hideOnLeave?: boolean;
   onHide?: (event: any) => void;
-  onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
+  onMouseLeave?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onShow?: (event: any) => void;
 }
 
-export const ContextMenuView: FunctionComponent<IContextMenuView> = props => {
+export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
   return (
-    <Box {...viewProps} as={ReactContextMenu} defaultCSS={menuStyles()}>
+    <Box {...viewProps} as={ReactContextMenu} css={menuStyles()}>
       {menuItems.map((item, index) => {
         return <ContextMenuItem key={index} {...item} />;
       })}
@@ -120,14 +117,14 @@ export interface IContextMenuItem extends Omit<IBox, 'onClick'> {
   disabled?: boolean;
   preventClose?: boolean;
   onClick?: (
-    event: TouchEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>,
+    event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
     data: Object,
     target: HTMLElement
   ) => void | Function;
   menuItems?: IContextMenuItem[];
 }
 
-export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
+export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
   const { attributes, data, title, divider, disabled, preventClose, onClick, menuItems = [], ...rest } = props;
   const { contextMenu } = useTheme();
 
@@ -136,7 +133,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
   const menuItem = (
     <Box
       {...rest}
-      defaultCSS={contextMenuItemStyles({ onClick, divider, disabled })}
+      css={contextMenuItemStyles({ onClick, divider, disabled })}
       as={(asProps: object) => (
         <ReactMenuItem
           attributes={asProps}
@@ -164,7 +161,7 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
     return (
       <Box
         {...rest}
-        defaultCSS={menuStyles()}
+        css={menuStyles()}
         as={({ className }: { className: string }) => {
           return (
             <ReactSubMenu

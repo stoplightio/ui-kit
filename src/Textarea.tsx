@@ -1,39 +1,38 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import { FunctionComponent, SyntheticEvent, useState } from 'react';
+import * as React from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
-import { Box, IBox } from './Box';
+import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
 export interface ITextarea extends IBox<HTMLTextAreaElement> {
   autosize?: boolean;
 }
 
-export const Textarea: FunctionComponent<ITextarea> = props => {
+export const Textarea: React.FunctionComponent<ITextarea> = props => {
   const { autosize, as = 'textarea', onChange = noop, ...rest } = props;
 
-  // todo: do we want controlled mode here?
-  const [value, setValue] = useState<string>(props.value || '');
+  // TODO: do we want controlled mode here?
+  const [value, setValue] = React.useState<string>(props.value || '');
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-  const handleChange = (event: SyntheticEvent<HTMLTextAreaElement>) => {
+  const handleChange = (event: React.SyntheticEvent<HTMLTextAreaElement>) => {
     setValue(event.currentTarget.value);
     onChange(event);
   };
 
-  return jsx(Box, {
-    ...rest,
-    as: autosize ? AutosizeTextarea : as,
-    value: internalValue,
-    onChange: handleChange,
-    defaultCSS: textareaStyles(props),
-  });
+  return (
+    <Box
+      {...rest}
+      as={autosize ? AutosizeTextarea : as}
+      value={internalValue}
+      onChange={handleChange}
+      css={textareaStyles(props)}
+    />
+  );
 };
 
-export const textareaStyles = ({ autosize, disabled }: ITextarea) => {
+export const textareaStyles = ({ autosize, disabled }: ITextarea): IBoxCSS => {
   const { textarea } = useTheme();
 
   return [

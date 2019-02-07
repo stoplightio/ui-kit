@@ -1,7 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { useRef } from 'react';
+import * as React from 'react';
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs/react';
@@ -26,7 +23,7 @@ storiesOf('Utilities:ScrollBox', module)
   ));
 
 const WithRef = () => {
-  const ref = useRef<IScrollbars>(null);
+  const ref = React.useRef<IScrollbars>(null);
 
   return (
     <Box width="500px" height="50%" m="@auto" border="@sm">

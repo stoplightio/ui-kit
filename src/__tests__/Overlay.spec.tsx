@@ -1,17 +1,14 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { IBox } from '../Box';
 import { IOverlay } from '../Overlay';
 import { ITheme } from '../theme';
 
 describe('Overlay component', () => {
-  let Overlay: FunctionComponent<IOverlay>;
-  let Box: FunctionComponent<IBox>;
+  let Overlay: React.FunctionComponent<IOverlay>;
+  let Box: React.FunctionComponent<IBox>;
 
   const theme: Partial<ITheme> = {
     overlay: {
@@ -39,7 +36,7 @@ describe('Overlay component', () => {
   it('applies background from theme', () => {
     const wrapper = shallow(<Overlay />);
     expect(wrapper).toHaveProp(
-      'defaultCSS',
+      'css',
       expect.objectContaining({
         backgroundColor: theme.overlay!.bg,
       })

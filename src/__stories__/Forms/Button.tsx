@@ -1,6 +1,5 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
 import omit = require('lodash/omit');
 
 import { withKnobs } from '@storybook/addon-knobs';

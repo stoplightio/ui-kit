@@ -1,7 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box, IBox } from './Box';
 
@@ -11,7 +8,7 @@ export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBo
   italic?: boolean;
 }
 
-export const Text: FunctionComponent<IText> = props => {
+export const Text: React.FunctionComponent<IText> = props => {
   const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
 
   return (
@@ -22,7 +19,7 @@ export const Text: FunctionComponent<IText> = props => {
       textTransform={textTransform}
       fontStyle={italic ? 'italic' : undefined}
       as={as}
-      defaultCSS={textStyles()}
+      css={textStyles()}
     />
   );
 };

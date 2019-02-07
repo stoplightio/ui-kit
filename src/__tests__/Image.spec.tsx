@@ -1,8 +1,6 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
+import * as React from 'react';
 
 import { Box } from '../Box';
 import { Image } from '../Image';
@@ -39,13 +37,13 @@ describe('Image component', () => {
   describe('styles', () => {
     it('hides image when hidden is true', () => {
       const wrapper = shallow(<Image hidden />);
-      expect(wrapper).toHaveProp('defaultCSS', expect.arrayContaining([{ display: 'none' }]));
+      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ display: 'none' }]));
     });
 
     it('sets responsive dimension when responsive is true', () => {
       const wrapper = shallow(<Image responsive />);
       expect(wrapper).toHaveProp(
-        'defaultCSS',
+        'css',
         expect.arrayContaining([
           {
             width: 'auto',

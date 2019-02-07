@@ -1,6 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import * as _brandIcons from '@fortawesome/free-brands-svg-icons';
 import * as _regularIcons from '@fortawesome/free-regular-svg-icons';

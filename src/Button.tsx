@@ -1,7 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
@@ -12,9 +9,9 @@ export interface IButton extends IBox<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button: FunctionComponent<IButton> = props => {
+export const Button: React.FunctionComponent<IButton> = props => {
   const { as = 'button', ...rest } = props;
-  return <Box {...rest} as={as} defaultCSS={buttonStyles(props)} />;
+  return <Box {...rest} as={as} css={buttonStyles(props)} />;
 };
 
 export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {

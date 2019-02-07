@@ -1,7 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { IText, Text } from './Text';
 import { useTheme } from './theme';
@@ -10,10 +7,10 @@ export interface IBlockQuote extends IText<HTMLQuoteElement | HTMLElement> {
   isSelected?: boolean;
 }
 
-export const BlockQuote: FunctionComponent<IBlockQuote> = props => {
+export const BlockQuote: React.FunctionComponent<IBlockQuote> = props => {
   const { as = 'blockquote', isSelected, ...rest } = props;
 
-  return <Text {...rest} as={as} defaultCSS={blockQuoteStyles({ isSelected })} />;
+  return <Text {...rest} as={as} css={blockQuoteStyles({ isSelected })} />;
 };
 
 export const blockQuoteStyles = ({ isSelected }: IBlockQuote) => {

@@ -1,10 +1,7 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
-import { Box, IBox } from './Box';
+import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
 /**
@@ -15,21 +12,17 @@ export interface ITable extends IBox<HTMLTableElement> {
   isSelected?: boolean;
 }
 
-export const Table: FunctionComponent<ITable> = props => {
+export const Table: React.FunctionComponent<ITable> = props => {
   const { children, isSelected, ...rest } = props;
 
-  return jsx(
-    Box,
-    {
-      ...rest,
-      as: 'table',
-      defaultCSS: tableStyles({ isSelected }),
-    },
-    jsx('tbody', null, children)
+  return (
+    <Box {...rest} as="table" css={tableStyles({ isSelected })}>
+      <tbody>{children}</tbody>
+    </Box>
   );
 };
 
-export const tableStyles = ({ isSelected }: ITable) => {
+export const tableStyles = ({ isSelected }: ITable): IBoxCSS => {
   const { table } = useTheme();
 
   return [
@@ -51,12 +44,8 @@ export const tableStyles = ({ isSelected }: ITable) => {
 
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
-export const TableRow: FunctionComponent<ITableRow> = props => {
-  return jsx(Box, {
-    ...props,
-    as: 'tr',
-    defaultCSS: tableRowStyles(),
-  });
+export const TableRow: React.FunctionComponent<ITableRow> = props => {
+  return <Box {...props} as="tr" css={tableRowStyles()} />;
 };
 
 export const tableRowStyles = () => {
@@ -80,17 +69,12 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
   as?: 'th' | 'td';
 }
 
-export const TableCell: FunctionComponent<ITableCell> = props => {
+export const TableCell: React.FunctionComponent<ITableCell> = props => {
   const { as = 'td', isSelected, ...rest } = props;
-
-  return jsx(Box, {
-    ...rest,
-    as,
-    defaultCSS: tableCellStyles({ as, isSelected }),
-  });
+  return <Box {...rest} as={as} css={tableCellStyles({ as, isSelected })} />;
 };
 
-export const tableCellStyles = ({ isSelected }: ITableCell) => {
+export const tableCellStyles = ({ isSelected }: ITableCell): IBoxCSS => {
   const { table } = useTheme();
 
   return [

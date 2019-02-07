@@ -1,7 +1,5 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
+import * as React from 'react';
 import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 'react';
 
 import { Box, Flex, IBox, useTheme } from './';
@@ -24,14 +22,14 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 
   return (
     // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" defaultCSS={checkboxStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         position="absolute"
-        defaultCSS={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
       <svg aria-hidden="true" viewBox="0 0 512 512" width="10px" height="10px">
         <path

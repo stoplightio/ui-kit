@@ -1,9 +1,6 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box } from '../Box';
 import { IDialog } from '../Dialog';
@@ -11,8 +8,8 @@ import { IOverlay } from '../Overlay';
 import { ITheme } from '../theme';
 
 describe('Dialog component', () => {
-  let Overlay: FunctionComponent<IOverlay>;
-  let Dialog: FunctionComponent<IDialog>;
+  let Overlay: React.FunctionComponent<IOverlay>;
+  let Dialog: React.FunctionComponent<IDialog>;
 
   const theme: Partial<ITheme> = {
     overlay: {
@@ -120,7 +117,7 @@ describe('Dialog component', () => {
         .first();
 
       expect(content).toHaveProp(
-        'defaultCSS',
+        'css',
         expect.objectContaining({
           backgroundColor: theme.dialog!.bg,
           color: theme.dialog!.fg,
@@ -128,7 +125,7 @@ describe('Dialog component', () => {
       );
 
       expect(content).toHaveProp(
-        'defaultCSS',
+        'css',
         expect.not.objectContaining({
           border: `1px solid ${theme.dialog!.border}`,
         })
@@ -145,7 +142,7 @@ describe('Dialog component', () => {
         .first();
 
       expect(content).toHaveProp(
-        'defaultCSS',
+        'css',
         expect.objectContaining({
           border: `1px solid ${theme.dialog!.border}`,
         })

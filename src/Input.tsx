@@ -1,8 +1,6 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
@@ -12,19 +10,19 @@ export interface IInput extends IBox<HTMLInputElement> {
   autosize?: boolean;
 }
 
-const AutosizeWrapper: FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
+const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
   <AutosizeInput {...props} inputClassName={className} placeholderIsMinWidth />
 );
 
-export const Input: FunctionComponent<IInput> = props => {
+export const Input: React.FunctionComponent<IInput> = props => {
   const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
 
   // TODO: do we want controlled mode here?
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = React.useState(props.value);
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
   // FIXME: might not work with boolean inputs such as radio/checkbox
-  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
     onChange(event);
   };
@@ -37,7 +35,7 @@ export const Input: FunctionComponent<IInput> = props => {
       value={internalValue}
       onChange={handleChange}
       // @ts-ignore FIXME borderSizing in styles type mismatch
-      defaultCSS={inputStyles(props)}
+      css={inputStyles(props)}
     />
   );
 };

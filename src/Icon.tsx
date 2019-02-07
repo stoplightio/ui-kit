@@ -1,6 +1,5 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
 import {
   FaSymbol,
   FlipProp,
@@ -12,8 +11,6 @@ import {
   Transform,
 } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent } from 'react';
-
 import { Box, IBox } from './Box';
 
 export const IconLibrary = library;
@@ -34,8 +31,8 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
   symbol?: FaSymbol;
 }
 
-export const Icon: FunctionComponent<IIcon> = props => {
-  return <Box {...props} as={FontAwesomeIcon} defaultCSS={iconStyles()} />;
+export const Icon: React.FunctionComponent<IIcon> = props => {
+  return <Box {...props} as={FontAwesomeIcon} css={iconStyles()} />;
 };
 
 const iconStyles = () => [{ background: 'transparent' }];

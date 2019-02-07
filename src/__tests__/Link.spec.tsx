@@ -1,6 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
@@ -48,7 +46,7 @@ describe('Link component', () => {
     it('provides a default styling based on theme', () => {
       const wrapper = shallow(<Link />);
       const theme = useTheme();
-      expect(wrapper).toHaveProp('defaultCSS', [
+      expect(wrapper).toHaveProp('css', [
         { color: theme.link!.fg },
         {
           ':hover': { color: theme.link!.hoverFg },

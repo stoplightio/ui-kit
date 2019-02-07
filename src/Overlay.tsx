@@ -1,14 +1,11 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
 export interface IOverlay extends IBox<HTMLElement> {}
 
-export const Overlay: FunctionComponent<IOverlay> = props => {
-  return <Box {...props} defaultCSS={overlayStyles()} />;
+export const Overlay: React.FunctionComponent<IOverlay> = props => {
+  return <Box {...props} css={overlayStyles()} />;
 };
 
 export const overlayStyles = (): IBoxCSS => {

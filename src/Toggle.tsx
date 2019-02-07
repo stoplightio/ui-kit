@@ -1,8 +1,5 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { Omit } from '@stoplight/types';
-import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 'react';
+import * as React from 'react';
 
 import { Box, Flex, IBox, IBoxCSS, useTheme } from './';
 
@@ -11,28 +8,28 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   onChange?: (checked: boolean) => void;
 }
 
-export const Toggle: FunctionComponent<IToggle> = props => {
+export const Toggle: React.FunctionComponent<IToggle> = props => {
   const { disabled: isDisabled, onChange, ...rest } = props;
 
-  const [checked, setValue] = useState<boolean>(!!props.checked);
+  const [checked, setValue] = React.useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
 
-  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
+  const handleChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(({ target }) => {
     setValue(target.checked);
     if (onChange) onChange(target.checked);
   }, []);
 
   return (
-    <Flex {...rest} as="label" defaultCSS={toggleStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" css={toggleStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         position="absolute"
-        defaultCSS={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
-      <Box as="span" defaultCSS={circleStyles({ isChecked })} />
+      <Box as="span" css={circleStyles({ isChecked })} />
     </Flex>
   );
 };

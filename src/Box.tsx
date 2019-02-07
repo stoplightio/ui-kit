@@ -71,7 +71,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     transform,
     visibility,
 
-    defaultCSS,
+    css,
     ...rest
   } = props;
 
@@ -120,7 +120,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
   ];
 
   /** Component provided defaults get pushed on first. */
-  if (defaultCSS) styles.unshift(...flattenDeep<IBoxCSS>([defaultCSS]));
+  if (css) styles.unshift(...flattenDeep<IBoxCSS>([css]));
 
   /** User provided style get pushed on last. */
   if (style) styles.push(style as IBoxCSS);
@@ -178,7 +178,7 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   as?: keyof ReactHTML | FunctionComponent | ComponentClass;
   children?: any;
   style?: CSSProperties;
-  defaultCSS?: IBoxCSS;
+  css?: IBoxCSS;
   [key: string]: any;
 }
 

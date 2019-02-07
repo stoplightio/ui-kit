@@ -1,17 +1,14 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box, IBox } from './Box';
 
 export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
   thickness?: number;
 }
-export const Break: FunctionComponent<IBreak> = props => {
+export const Break: React.FunctionComponent<IBreak> = props => {
   const { as = 'hr', thickness = 1, ...rest } = props;
 
-  return <Box {...rest} as={as} defaultCSS={breakStyles({ thickness })} />;
+  return <Box {...rest} as={as} css={breakStyles({ thickness })} />;
 };
 
 export const breakStyles = ({ thickness }: IBreak) => [

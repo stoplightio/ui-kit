@@ -1,10 +1,9 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
 import { withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
-import * as ss from 'styled-system';
+import { TextAlignProps } from 'styled-system';
 
 import { Box, IBox } from '../../Box';
 import { Display, OverFlow, PositionOpts, TextAlign } from '../_utils';
@@ -12,7 +11,7 @@ import { Display, OverFlow, PositionOpts, TextAlign } from '../_utils';
 export const boxKnobs = <T extends HTMLElement = HTMLDivElement>(tabName = 'Box'): Partial<IBox<T>> => ({
   color: text('color', null, tabName),
   backgroundColor: text('backgroundColor', null, tabName),
-  textAlign: select('textAlign', TextAlign, 'initial', tabName) as ss.TextAlignProps['textAlign'],
+  textAlign: select('textAlign', TextAlign, 'initial', tabName) as TextAlignProps['textAlign'],
   fontSize: text('fontSize', null, tabName),
   fontWeight: select('fontWeight', [100, 200, 300, 400, 500, 600, 700, 800, 900], 400, tabName),
   m: text('m', null, tabName),

@@ -1,6 +1,4 @@
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef, FunctionComponent, RefObject, useRef, useState } from 'react';
+import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
 import { Box, IBox } from './Box';
@@ -16,15 +14,10 @@ interface IScrollBoxThumb extends IBox<HTMLDivElement> {
   isScrolling: boolean;
 }
 
-const ScrollbarThumb = forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
+const ScrollbarThumb = React.forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
   const { isScrolling, ...rest } = props;
 
-  return jsx(Box, {
-    ...rest,
-    ref,
-    as: 'div',
-    defaultCSS: scrollbarStyles({ isScrolling }),
-  });
+  return <Box {...rest} ref={ref} css={scrollbarStyles({ isScrolling })} />;
 });
 
 const scrollbarStyles = ({ isScrolling }: IScrollBoxThumb) => {
@@ -45,7 +38,7 @@ const scrollbarStyles = ({ isScrolling }: IScrollBoxThumb) => {
  */
 
 export interface IScrollBox extends ScrollbarProps {
-  innerRef?: RefObject<Scrollbars>;
+  innerRef?: React.RefObject<Scrollbars>;
 
   autoHeight?: boolean;
   autoHideTimeout?: number;
@@ -55,14 +48,14 @@ export interface IScrollBox extends ScrollbarProps {
   scrollTo?: string;
 }
 
-export const ScrollBox: FunctionComponent<IScrollBox> = (props: IScrollBox) => {
+export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox) => {
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
-  const [isScrolling, setIsScrolling] = useState<null | number | NodeJS.Timer>(null);
+  const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
   useScrollToHash(scrollTo);
 
-  const scrollbars = innerRef || useRef<Scrollbars>(null);
+  const scrollbars = innerRef || React.useRef<Scrollbars>(null);
   const position = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
   const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = position;
 

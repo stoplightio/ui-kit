@@ -1,8 +1,6 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
+import * as React from 'react';
 
 import { BlockQuote } from '../BlockQuote';
 import { Text } from '../Text';
@@ -51,7 +49,7 @@ describe('BlockQuote component', () => {
       const theme = useTheme();
       const wrapper = shallow(<BlockQuote />);
       expect(wrapper).toHaveProp(
-        'defaultCSS',
+        'css',
         expect.arrayContaining([
           expect.objectContaining({
             color: theme.blockQuote!.fg,
@@ -64,7 +62,7 @@ describe('BlockQuote component', () => {
     it('adds a shadow when isSelected is true', () => {
       const theme = useTheme();
       const wrapper = shallow(<BlockQuote isSelected />);
-      expect(wrapper).toHaveProp('defaultCSS', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
+      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
     });
   });
 });
