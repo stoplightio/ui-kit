@@ -1,12 +1,14 @@
 /* @jsx jsx */
 
 import { Interpolation, jsx } from '@emotion/core';
+import pickBy = require('lodash/pickBy');
 import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
 import flattenDeep = require('lodash/flattenDeep');
 
 import * as sl from './styles';
+import { validPropsPicker } from './utils/validPropsPicker';
 
 export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
@@ -128,7 +130,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
   return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
-      ...rest,
+      ...pickBy(rest, validPropsPicker),
       ref,
       css: styles,
     },
