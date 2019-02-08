@@ -12,4 +12,12 @@ describe('Box component', () => {
     expect(ref).toHaveBeenLastCalledWith(expect.any(Object));
     wrapper.unmount();
   });
+
+  it('filters out unknown properties', () => {
+    const ref = jest.fn();
+    const wrapper = mount(<Box ref={ref} node="dd" />);
+
+    expect(wrapper.find('div')).not.toHaveProp('node');
+    wrapper.unmount();
+  });
 });
