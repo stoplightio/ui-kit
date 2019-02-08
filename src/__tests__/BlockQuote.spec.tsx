@@ -1,37 +1,24 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
-import { IBlockQuote, IText, ITheme } from '../';
+import { BlockQuote } from '../BlockQuote';
+import { Text } from '../Text';
+import { useTheme } from '../theme';
 
-describe('BlockQuote component', () => {
-  let BlockQuote: FunctionComponent<IBlockQuote>;
-  let Text: FunctionComponent<IText>;
-  const theme: Partial<ITheme> = {
+jest.mock('../theme', () => ({
+  useTheme: jest.fn().mockReturnValue({
     blockQuote: {
       fg: '#000',
       border: '#fff',
       shadow: '0 2px 5px #000',
     },
-  };
+  }),
+}));
 
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ BlockQuote, Text } = await import('../'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
+describe('BlockQuote component', () => {
   it('renders Text as blockquote', () => {
-    const wrapper = shallow(<BlockQuote />);
+    const wrapper = shallow(<BlockQuote />).shallow();
     expect(wrapper).toMatchElement(<Text as="blockquote" />);
   });
 
@@ -59,6 +46,7 @@ describe('BlockQuote component', () => {
 
   describe('styles', () => {
     it('provides a default styling based on theme', () => {
+      const theme = useTheme();
       const wrapper = shallow(<BlockQuote />);
       expect(wrapper).toHaveProp(
         'css',
@@ -72,6 +60,7 @@ describe('BlockQuote component', () => {
     });
 
     it('adds a shadow when isSelected is true', () => {
+      const theme = useTheme();
       const wrapper = shallow(<BlockQuote isSelected />);
       expect(wrapper).toHaveProp('css', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
     });

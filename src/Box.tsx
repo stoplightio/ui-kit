@@ -4,6 +4,8 @@ import { Interpolation, jsx } from '@emotion/core';
 import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
 import * as ss from 'styled-system';
 
+import flattenDeep = require('lodash/flattenDeep');
+
 import * as sl from './styles';
 
 export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
@@ -18,8 +20,8 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     borderLeft,
     borderRight,
     borderRadius,
-    borderColor,
     boxShadow,
+    boxSizing,
     cursor,
     display,
     fontSize,
@@ -65,17 +67,22 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     textTransform,
     color,
     backgroundColor,
+    borderColor,
     transform,
     visibility,
+
+    css,
     ...rest
   } = props;
 
   /** Add all the supported styles, passing in the relevant props. */
-  const css: IBoxCSS = [
+  const styles: IBoxCSS = [
+    sl.color({ color, backgroundColor }),
     ss.borders({ border, borderTop, borderBottom, borderLeft, borderRight }),
-    ss.borderColor({ borderColor }),
     ss.borderRadius({ borderRadius }),
+    ss.borderColor({ borderColor }),
     ss.boxShadow({ boxShadow }),
+    sl.boxSizing({ boxSizing }),
     ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
     ss.flex({ flex }),
     ss.alignSelf({ alignSelf }),
@@ -105,7 +112,6 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     ss.opacity({ opacity }),
 
     sl.transform({ transform }),
-    sl.color({ color, backgroundColor }),
     sl.textTransform({ textTransform }),
     sl.textDecoration({ textDecoration, textDecorationColor }),
     sl.cursor({ cursor }),
@@ -113,15 +119,18 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
     sl.overflow({ overflow, overflowX, overflowY }),
   ];
 
+  /** Component provided defaults get pushed on first. */
+  if (css) styles.unshift(...flattenDeep<IBoxCSS>([css]));
+
   /** User provided style get pushed on last. */
-  if (style) css.push(style as IBoxCSS);
+  if (style) styles.push(style as IBoxCSS);
 
   return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
       ...rest,
       ref,
-      css,
+      css: styles,
     },
     children
   );
@@ -142,6 +151,7 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
     ss.BorderRightProps,
     ss.BorderRadiusProps,
     ss.BoxShadowProps,
+    sl.IBoxSizingProps,
     ss.DisplayProps,
     ss.FontSizeProps,
     ss.FontWeightProps,

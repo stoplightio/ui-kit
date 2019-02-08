@@ -1,76 +1,66 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
 import noop = require('lodash/noop');
-import { FunctionComponent, SyntheticEvent, useState } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export type InputValue = boolean | number | string | undefined;
+export interface IInput extends IBox<HTMLInputElement> {
+  autosize?: boolean;
+}
 
-const AutosizeWrapper: FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
-  <AutosizeInput inputClassName={className} {...props} />
+const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
+  <AutosizeInput {...props} inputClassName={className} placeholderIsMinWidth />
 );
 
-export const Input: FunctionComponent<IInput> = props => {
+export const Input: React.FunctionComponent<IInput> = props => {
   const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
 
-  const css = inputStyles(props);
-
-  const [value, setValue] = useState<InputValue>(props.value);
-  // todo: do we want controlled mode here?
+  // TODO: do we want controlled mode here?
+  const [value, setValue] = React.useState(props.value);
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-  const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    // fixme: might not work with boolean inputs such as radio/checkbox
+  // FIXME: might not work with boolean inputs such as radio/checkbox
+  const handleChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
     onChange(event);
   };
 
-  if (autosize) {
-    return (
-      <Box
-        as={AutosizeWrapper}
-        placeholderIsMinWidth
-        {...rest}
-        value={internalValue}
-        onChange={handleChange}
-        type={type}
-        css={css}
-      />
-    );
-  }
-
-  return <Box {...rest} as={as} value={internalValue} onChange={handleChange} type={type} css={css} />;
+  return (
+    <Box
+      {...rest}
+      as={autosize ? AutosizeWrapper : as}
+      type={type}
+      value={internalValue}
+      onChange={handleChange}
+      // @ts-ignore FIXME borderSizing in styles type mismatch
+      css={inputStyles(props)}
+    />
+  );
 };
 
-export interface IInput extends IInputProps, IBox<HTMLInputElement> {}
-
-export interface IInputProps {
-  autosize?: boolean;
-}
-
 const inputStyles = ({ disabled }: IInput) => {
-  const theme = useTheme();
+  const { input } = useTheme();
 
   return [
     {
-      padding: '2px 4px',
-      border: `1px solid ${theme.input.border}`,
-      borderRadius: '2px',
-      color: theme.input.fg,
-      backgroundColor: theme.input.bg,
+      color: input.fg,
+      backgroundColor: input.bg,
+      border: input.border ? `1px solid ${input.border}` : 'none',
+
+      padding: '0px 10px',
+      minHeight: '30px',
+      borderRadius: '3px',
+      boxSizing: 'border-box',
 
       ':focus': {
         outline: 'none',
-        opacity: 1,
       },
     },
     disabled && {
-      cursor: 'not-allowed',
       opacity: 0.6,
+      cursor: 'not-allowed',
     },
   ];
 };

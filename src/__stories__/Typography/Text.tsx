@@ -1,6 +1,4 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
@@ -16,7 +14,7 @@ export const textKnobs = (tabName = 'Text'): IText => ({
   leading: select('leading', LineHeight, '', tabName),
   casing: select('casing', Casing, '', tabName) as IText['textTransform'],
   textDecoration: select('textDecoration', Decoration, '', tabName),
-  textDecorationColor: text('textDecorationColor', 'valid-color', tabName),
+  textDecorationColor: text('textDecorationColor', null, tabName),
   italic: boolean('italic', false, tabName),
 });
 

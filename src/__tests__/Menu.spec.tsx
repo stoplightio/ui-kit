@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 
 import { Icon, IconLibrary } from '../Icon';
-import { IMenu, IMenuItem, IMenuItemProps } from '../Menu';
+import { IMenu, IMenuItem } from '../Menu';
 import { ITheme } from '../theme';
 
 describe('Menu component', () => {
@@ -19,7 +19,6 @@ describe('Menu component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 
@@ -79,7 +78,7 @@ describe('Menu component', () => {
   });
 
   it('accepts custom renderMenuItem', () => {
-    const renderMenuItem = jest.fn((item: IMenuItemProps) => item.title);
+    const renderMenuItem = jest.fn((item: IMenuItem) => item.title);
     const menuItems = [{ title: 'test', key: '1' }, { title: 'second elem', key: '2' }];
 
     const wrapper = shallow(<Menu renderMenuItem={renderMenuItem} menuItems={menuItems} />);
@@ -128,7 +127,6 @@ describe('MenuItem component', () => {
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
-      hoverFg: 'blue',
     },
   };
 

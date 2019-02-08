@@ -66,8 +66,8 @@ export const zones: ThemeZones<themeZones, themeTypes> = {
 
 ```typescript jsx
 // src/Container.tsx
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import * as React from 'react';
 import { FunctionComponent } from 'react';
 import { Page } from './Page';
 import { theme, ThemeProvider, zones } from './theme';
@@ -85,8 +85,8 @@ export const Container: FunctionComponent<IContainer> = props => {
 
 ```typescript jsx
 // src/Page.tsx
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import * as React from 'react';
 import { Box, Button, IBox } from '@stoplight/ui-kit';
 import { FunctionComponent } from 'react';
 import { IBodyTheme, IHeaderTheme, ThemeZone, useTheme } from './theme';

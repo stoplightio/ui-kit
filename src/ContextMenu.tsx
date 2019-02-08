@@ -1,5 +1,3 @@
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
 import * as React from 'react';
 import {
   ContextMenu as ReactContextMenu,
@@ -9,7 +7,6 @@ import {
 } from 'react-contextmenu';
 
 import { Omit } from '@stoplight/types';
-import { Fragment, FunctionComponent, HTMLAttributes, MouseEvent, ReactNode, TouchEvent } from 'react';
 
 import { Box, Break, Flex, IBox, useTheme } from './';
 
@@ -22,35 +19,33 @@ import { Box, Break, Flex, IBox, useTheme } from './';
  * CONTEXT MENU
  */
 
-interface IContextMenuProps {
+export interface IContextMenu extends IContextMenuView {
   renderTrigger: (
     ref: React.MutableRefObject<{
-      handleContextClick: (e: MouseEvent<HTMLDivElement>) => void;
+      handleContextClick: (e: React.MouseEvent<HTMLDivElement>) => void;
       // TODO get event type
       handleContextMenu: (e: any) => void;
-      handleMouseDown: (e: MouseEvent<HTMLDivElement>) => void;
-      handleMouseOut: (e: MouseEvent<HTMLDivElement>) => void;
-      handleMouseUp: (e: MouseEvent<HTMLDivElement>) => void;
-      handleTouchEnd: (e: TouchEvent<HTMLDivElement>) => void;
-      handleTouchstart: (e: TouchEvent<HTMLDivElement>) => void;
+      handleMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleMouseOut: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
+      handleTouchEnd: (e: React.TouchEvent<HTMLDivElement>) => void;
+      handleTouchstart: (e: React.TouchEvent<HTMLDivElement>) => void;
     }>
-  ) => ReactNode | string;
+  ) => React.ReactNode | string;
 }
 
-export interface IContextMenu extends IContextMenuProps, IContextMenuViewProps {}
-
-export const ContextMenu: FunctionComponent<IContextMenu> = props => {
+export const ContextMenu: React.FunctionComponent<IContextMenu> = props => {
   const { id, renderTrigger, ...rest } = props;
 
   const contextTriggerRef = React.useRef<any>(null);
 
   return (
-    <Fragment>
+    <React.Fragment>
       <ContextMenuTrigger id={id} ref={contextTriggerRef} holdToDisplay={-1}>
         {renderTrigger(contextTriggerRef)}
       </ContextMenuTrigger>
       <ContextMenuView id={id} {...rest} />
-    </Fragment>
+    </React.Fragment>
   );
 };
 
@@ -60,24 +55,22 @@ export { ContextMenuTrigger };
  * MENU
  */
 
-interface IContextMenuViewProps {
+export interface IContextMenuView {
   id: string;
   className?: string;
 
   menuItems?: IContextMenuItem[];
   hideOnLeave?: boolean;
   onHide?: (event: any) => void;
-  onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
+  onMouseLeave?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onShow?: (event: any) => void;
 }
 
-export interface IContextMenuView extends IContextMenuViewProps {}
-
-export const ContextMenuView: FunctionComponent<IContextMenuView> = props => {
-  const { menuItems = [], ...rest } = props;
+export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
+  const { menuItems = [], ...viewProps } = props;
 
   return (
-    <Box {...rest} as={ReactContextMenu} css={menuStyles()}>
+    <Box {...viewProps} as={ReactContextMenu} css={menuStyles()}>
       {menuItems.map((item, index) => {
         return <ContextMenuItem key={index} {...item} />;
       })}
@@ -86,22 +79,25 @@ export const ContextMenuView: FunctionComponent<IContextMenuView> = props => {
 };
 
 const menuStyles = () => {
-  const theme = useTheme();
+  const { contextMenu } = useTheme();
 
   return [
     {
-      zIndex: 10000,
-      borderRadius: '5px',
-      border: `1px solid ${theme.contextMenu.border}`,
-      color: theme.contextMenu.fg,
-      backgroundColor: theme.contextMenu.bg,
-      minWidth: '180px',
+      color: contextMenu.fg,
+      backgroundColor: contextMenu.bg,
+      border: contextMenu.border ? `1px solid ${contextMenu.border}` : 'none',
 
-      cursor: 'default',
+      zIndex: 10000,
+      padding: '5px 7px',
+      borderRadius: '3px',
+      minWidth: '180px',
+      maxWidth: '280px',
+
       ':focus': {
         outline: '0 none',
       },
 
+      // so submenus only appear when hovering over the correct item
       '.react-contextmenu-submenu': {
         '.react-contextmenu': { display: 'none' },
         '.react-contextmenu--visible': { display: 'block' },
@@ -114,44 +110,33 @@ const menuStyles = () => {
  * MENUITEM
  */
 
-interface IContextMenuItemProps {
+export interface IContextMenuItem extends Omit<IBox, 'onClick'> {
   title?: string;
-  key?: number | string;
   data?: Object;
   divider?: boolean;
   disabled?: boolean;
   preventClose?: boolean;
   onClick?: (
-    event: TouchEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>,
+    event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
     data: Object,
     target: HTMLElement
   ) => void | Function;
   menuItems?: IContextMenuItem[];
-  attributes?: HTMLAttributes<HTMLDivElement>;
 }
 
-export interface IContextMenuItem extends IContextMenuItemProps, Omit<IBox, 'onClick'> {}
-
-export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
+export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
   const { attributes, data, title, divider, disabled, preventClose, onClick, menuItems = [], ...rest } = props;
-  const css = contextMenuItemStyles({
-    onClick,
-    divider,
-    disabled,
-  });
+  const { contextMenu } = useTheme();
 
   const isSubMenu = menuItems.length > 0;
 
   const menuItem = (
     <Box
       {...rest}
-      css={css}
+      css={contextMenuItemStyles({ onClick, divider, disabled })}
       as={(asProps: object) => (
         <ReactMenuItem
-          attributes={{
-            ...attributes,
-            ...asProps,
-          }}
+          attributes={asProps}
           data={data}
           preventClose={preventClose}
           disabled={disabled}
@@ -159,10 +144,14 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
         >
           <Flex alignItems="center">
             {title ? <Box flex={1}>{title}</Box> : null}
-            {isSubMenu ? <Box pl="5px">&#9658;</Box> : null}
+            {isSubMenu ? (
+              <Box pl="6px" fontSize="10px">
+                &#9658;
+              </Box>
+            ) : null}
           </Flex>
 
-          {divider ? <Break thickness={1} /> : null}
+          {divider ? <Break thickness={1} m="5px" color={contextMenu.border} /> : null}
         </ReactMenuItem>
       )}
     />
@@ -192,15 +181,17 @@ export const ContextMenuItem: FunctionComponent<IContextMenuItem> = props => {
   return menuItem;
 };
 
-export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMenuItemProps) => {
-  const theme = useTheme();
+export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMenuItem) => {
+  const { contextMenu } = useTheme();
 
   return [
     {
-      padding: '6px 10px', // @md @lg'
+      padding: '5px 7px',
+      fontSize: '14px',
+      borderRadius: '2px',
+
       ':hover': {
-        background: theme.contextMenu.hoverBg,
-        color: theme.contextMenu.hoverFg,
+        background: contextMenu.hoverBg,
       },
       ':focus': {
         outline: '0 none',
@@ -209,16 +200,11 @@ export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMe
     onClick && {
       cursor: 'pointer',
     },
-    divider && {
-      ':hover': {
-        background: 'inherit',
-        color: 'inherit',
-      },
-    },
     disabled && {
       opacity: 0.6,
       cursor: 'not-allowed',
-
+    },
+    (divider || disabled) && {
       ':hover': {
         background: 'inherit',
         color: 'inherit',

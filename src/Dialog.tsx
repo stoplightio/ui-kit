@@ -1,24 +1,27 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
-import { FunctionComponent, MouseEventHandler, ReactEventHandler, useCallback } from 'react';
 import { Box, IBox } from './Box';
 import { Flex } from './Flex';
 import { Overlay } from './Overlay';
 import { Portal } from './Portal';
 import { useTheme } from './theme';
 
-export const Dialog: FunctionComponent<IDialog> = props => {
+export interface IDialog extends IBox<HTMLElement> {
+  show?: boolean;
+  onClickOutside?: React.ReactEventHandler<HTMLElement>;
+}
+
+export const Dialog: React.FunctionComponent<IDialog> = props => {
   const { children, show, onClickOutside, onClick, ...rest } = props;
   const css = dialogStyles();
 
-  const onOverlayClick = useCallback<MouseEventHandler<HTMLElement>>(e => {
+  const onOverlayClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     if (onClickOutside !== undefined) {
       onClickOutside(e);
     }
   }, []);
 
-  const onBoxClick = useCallback<MouseEventHandler<HTMLElement>>(e => {
+  const onBoxClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     e.stopPropagation();
     if (onClick !== undefined) {
       onClick(e);
@@ -32,7 +35,7 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box css={css} {...rest} onClick={onBoxClick}>
+        <Box {...rest} onClick={onBoxClick} css={css}>
           {children}
         </Box>
       </Overlay>
@@ -40,20 +43,14 @@ export const Dialog: FunctionComponent<IDialog> = props => {
   );
 };
 
-export interface IDialogProps {
-  show?: boolean;
-  onClickOutside?: ReactEventHandler<HTMLElement>;
-}
-
-export interface IDialog extends IDialogProps, IBox<HTMLElement> {}
-
 export const dialogStyles = () => {
-  const theme = useTheme();
+  const { dialog } = useTheme();
 
   return {
-    backgroundColor: theme.dialog.bg,
-    color: theme.dialog.fg,
-    ...(theme.dialog.border !== undefined && { border: '1px solid', borderColor: theme.dialog.border }),
+    color: dialog.fg,
+    backgroundColor: dialog.bg,
+    border: dialog.border ? `1px solid ${dialog.border}` : 'none',
+
     // these ensure our dialog content won't leave the screen
     maxWidth: '95vw',
     maxHeight: '95vh',

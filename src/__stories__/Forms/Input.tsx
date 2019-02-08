@@ -1,11 +1,10 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
+import * as React from 'react';
 
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
+import omit = require('lodash/omit');
 
 import { IInput, Input } from '../../Input';
 import { AutosizeInputType, InlineInputType } from '../_utils';
@@ -17,7 +16,7 @@ const store = new Store({
 });
 
 export const inputKnobs = (tabName = 'Input'): IInput => ({
-  ...boxKnobs(),
+  ...omit(boxKnobs(), 'opacity'),
   disabled: boolean('disabled', false, tabName),
   type: select('type', InlineInputType, 'text', tabName),
   placeholder: text('placeholder', 'placeholder', tabName),

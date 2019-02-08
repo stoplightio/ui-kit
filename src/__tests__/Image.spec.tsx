@@ -1,34 +1,13 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
-import { IBox } from '../Box';
-import { IImage } from '../Image';
-import { ITheme } from '../theme';
+import { Box } from '../Box';
+import { Image } from '../Image';
 
 describe('Image component', () => {
-  let Image: FunctionComponent<IImage>;
-  let Box: FunctionComponent<IBox>;
-
-  const theme: Partial<ITheme> = {};
-
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ Image, Box } = await import('../'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
   it('renders Box as img', () => {
-    const wrapper = shallow(<Image />);
+    const wrapper = shallow(<Image />).shallow();
     expect(wrapper).toMatchElement(<Box as="img" />);
   });
 

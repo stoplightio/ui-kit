@@ -1,40 +1,31 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { IText, Text } from './Text';
 import { useTheme } from './theme';
 
-export const Link: FunctionComponent<ILink> = props => {
-  const { as = 'a', ...rest } = props;
-
-  const css = linkStyles();
-
-  return jsx(Text, {
-    ...rest,
-    as,
-    css,
-  });
-};
-
 export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
 
+export const Link: React.FunctionComponent<ILink> = props => {
+  const { as = 'a', ...rest } = props;
+
+  return <Text {...rest} as={as} css={linkStyles()} />;
+};
+
 export const linkStyles = () => {
-  const theme = useTheme();
+  const { link } = useTheme();
 
   return [
     {
-      color: theme.link.fg,
+      color: link.fg,
     },
-    theme.link.hoverFg && {
+    link.hoverFg && {
       ':hover': {
-        color: theme.link.hoverFg,
+        color: link.hoverFg,
       },
     },
-    theme.link.visitedFg && {
+    link.visitedFg && {
       ':visited': {
-        color: theme.link.visitedFg,
+        color: link.visitedFg,
       },
     },
   ];

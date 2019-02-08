@@ -1,16 +1,13 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { mount } from 'enzyme';
 import 'jest-enzyme';
+import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 
-import { FunctionComponent } from 'react';
 import { IInput } from '../Input';
 import { ITheme } from '../theme';
 
 describe('Input component', () => {
-  let Input: FunctionComponent<IInput>;
+  let Input: React.FunctionComponent<IInput>;
 
   const theme: Partial<ITheme> = {
     input: {

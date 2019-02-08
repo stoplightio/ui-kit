@@ -9,17 +9,24 @@ export type BaseTheme = 'dark' | 'light';
 export interface ITheme {
   base: BaseTheme;
 
+  button: {
+    fg: string;
+    bg: string;
+    hoverBg: string;
+    border?: string;
+  };
+
   checkbox: {
     fg: string;
     bg: string;
-    checkedBg: string;
+    border?: string;
+    checked: string;
   };
 
   contextMenu: {
     fg: string;
     bg: string;
     border: string;
-    hoverFg: string;
     hoverBg: string;
   };
 
@@ -30,12 +37,6 @@ export interface ITheme {
     shadow: string;
   };
 
-  button: {
-    fg: string;
-    bg: string;
-    hoverBg: string;
-  };
-
   dialog: {
     bg: string;
     fg: string;
@@ -44,7 +45,7 @@ export interface ITheme {
 
   input: {
     fg: string;
-    bg?: string;
+    bg: string;
     border?: string;
   };
 
@@ -79,7 +80,6 @@ export interface ITheme {
     fg: string;
     bg: string;
     border: string;
-    hoverFg: string;
     hoverBg: string;
   };
 
@@ -90,29 +90,20 @@ export interface ITheme {
   select: {
     fg: string;
     bg: string;
-    border: string;
+    border?: string;
 
     chip: {
       fg: string;
       bg: string;
     };
 
-    indicator: {
-      fg: string;
-    };
-
     menu: {
       fg: string;
       bg: string;
+      border: string;
 
-      selectedFg: string;
-      selectedBg: string;
-
-      activeFg: string;
-      activeBg: string;
-
-      hoverFg: string;
       hoverBg: string;
+      selectedBg: string;
     };
   };
 
@@ -140,10 +131,8 @@ export interface ITheme {
   toggle: {
     fg: string;
     bg: string;
-    border: string;
-    checkedFg: string;
-    checkedBg: string;
-    checkedBorder: string;
+    border?: string;
+    checked: string;
   };
 }
 

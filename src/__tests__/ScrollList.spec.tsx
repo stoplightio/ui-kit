@@ -1,13 +1,10 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 import { FixedSizeList as WindowFixedSizeList, VariableSizeList as WindowVariableSizeList } from 'react-window';
 
 describe('FixedSizeList component', () => {
-  let FixedSizeList: FunctionComponent<any>;
+  let FixedSizeList: React.FunctionComponent<any>;
   let AutoSizer: jest.Mock;
 
   beforeAll(async () => {

@@ -18,7 +18,7 @@ export const darkTheme: ITheme = {
   checkbox: {
     fg: 'white',
     bg: 'white',
-    checkedBg: 'mediumseagreen',
+    checked: 'mediumseagreen',
   },
 
   codeEditor: {
@@ -43,7 +43,6 @@ export const darkTheme: ITheme = {
     bg: '#222',
     border: 'lightgrey',
     hoverBg: 'dodgerblue',
-    hoverFg: 'white',
   },
 
   dialog: {
@@ -53,8 +52,9 @@ export const darkTheme: ITheme = {
   },
 
   input: {
-    fg: '#fff',
-    bg: '#222',
+    fg: '#f5f8fa',
+    bg: 'rgba(92, 92, 92, 0.5)',
+    border: 'rgba(16,22,26,.2)',
   },
 
   link: {
@@ -66,7 +66,6 @@ export const darkTheme: ITheme = {
     bg: '#222',
     border: 'lightgrey',
     hoverBg: 'dodgerblue',
-    hoverFg: 'white',
   },
 
   overlay: {
@@ -87,22 +86,13 @@ export const darkTheme: ITheme = {
       bg: '#384854',
     },
 
-    indicator: {
-      fg: 'grey',
-    },
-
     menu: {
       fg: '#BFCCD6',
       bg: '#202D36',
+      border: '',
 
-      selectedFg: '#BFCCD6',
-      selectedBg: '#193d6b',
-
-      activeFg: 'black',
-      activeBg: '#B2D4FF',
-
-      hoverFg: 'black',
       hoverBg: '#DEEBFF',
+      selectedBg: '#193d6b',
     },
   },
 
@@ -113,8 +103,9 @@ export const darkTheme: ITheme = {
   },
 
   textarea: {
-    fg: '#fff',
-    bg: '#222',
+    fg: '#f5f8fa',
+    bg: 'rgba(92, 92, 92, 0.5)',
+    border: 'rgba(16,22,26,.2)',
   },
 
   tabs: {
@@ -128,8 +119,6 @@ export const darkTheme: ITheme = {
     fg: 'white',
     bg: 'darkgrey',
     border: 'transparent',
-    checkedFg: 'white',
-    checkedBg: 'mediumseagreen',
-    checkedBorder: 'transparent',
+    checked: 'mediumseagreen',
   },
 };

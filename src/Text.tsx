@@ -1,36 +1,29 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box, IBox } from './Box';
 
-export const Text: FunctionComponent<IText> = props => {
-  const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
-
-  const css = [...textStyles()];
-
-  return jsx(Box, {
-    ...rest,
-    letterSpacing,
-    lineHeight,
-    textTransform,
-    fontStyle: italic ? 'italic' : undefined,
-    as,
-    css,
-  });
-};
-
-export interface IText<T extends HTMLElement = HTMLParagraphElement> extends ITextProps, IBox<T> {}
-
-export interface ITextProps {
+export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBox<T> {
   leading?: IBox['lineHeight'];
   casing?: IBox['textTransform'];
   italic?: boolean;
 }
 
-export const textStyles = () => [
-  {
-    margin: '0',
-  },
-];
+export const Text: React.FunctionComponent<IText> = props => {
+  const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
+
+  return (
+    <Box
+      {...rest}
+      letterSpacing={letterSpacing}
+      lineHeight={lineHeight}
+      textTransform={textTransform}
+      fontStyle={italic ? 'italic' : undefined}
+      as={as}
+      css={textStyles()}
+    />
+  );
+};
+
+export const textStyles = () => ({
+  margin: '0',
+});

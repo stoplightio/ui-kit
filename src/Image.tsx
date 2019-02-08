@@ -1,30 +1,19 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
 import { Box, IBox } from './Box';
 
-export const Image: FunctionComponent<IImage> = props => {
-  const { hidden, responsive, ...rest } = props;
-
-  const css = imageStyles({ hidden, responsive });
-
-  return jsx(Box, {
-    ...rest,
-    as: 'img',
-    css,
-  });
-};
-
-export interface IImage extends IImageProps, IBox<HTMLImageElement> {}
-
-export interface IImageProps {
+export interface IImage extends IBox<HTMLImageElement> {
   hidden?: boolean;
   responsive?: boolean;
 }
 
-export const imageStyles = ({ hidden, responsive }: IImageProps = {}) => [
+export const Image: React.FunctionComponent<IImage> = props => {
+  const { hidden, responsive, ...rest } = props;
+
+  return <Box {...rest} as="img" css={imageStyles({ hidden, responsive })} />;
+};
+
+export const imageStyles = ({ hidden, responsive }: IImage = {}) => [
   hidden && {
     display: 'none',
   },

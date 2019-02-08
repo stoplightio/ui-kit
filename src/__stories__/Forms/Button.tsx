@@ -1,6 +1,6 @@
-/* @jsx jsx */
+import * as React from 'react';
 
-import { jsx } from '@emotion/core';
+import omit = require('lodash/omit');
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
@@ -10,7 +10,7 @@ import { Button, IButton } from '../../Button';
 import { boxKnobs } from '../Layout/Box';
 
 export const buttonKnobs = (tabName = 'Button'): Partial<IButton> => ({
-  ...boxKnobs(),
+  ...omit(boxKnobs(), 'opacity'),
   disabled: boolean('disabled', false, tabName),
 });
 

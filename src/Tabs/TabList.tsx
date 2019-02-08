@@ -1,8 +1,6 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
-import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
+
+import { Dictionary } from '@stoplight/types';
 import { TabList, TabListProps } from 'react-tabs';
 import { IBoxCSS, useTheme } from '..';
 

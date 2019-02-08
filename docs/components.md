@@ -27,8 +27,8 @@ It's advisable to base off your new component on Box/Flex/Text, which are founda
 This will guarantee your props will be properly passed and a ref will be forwarded.
 
 ```typescript jsx
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import * as React from 'react';
 import { Box, IBox } from '@stoplight/ui-kit';
 import { FunctionComponent } from 'react';
 

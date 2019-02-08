@@ -1,34 +1,13 @@
-/* @jsx jsx */
-
-import { jsx } from '@emotion/core';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
-import { FunctionComponent } from 'react';
+import * as React from 'react';
 
-import { IBox } from '../Box';
-import { IFlex } from '../Flex';
-import { ITheme } from '../theme';
+import { Box } from '../Box';
+import { Flex, IFlex } from '../Flex';
 
 describe('Flex component', () => {
-  let Flex: FunctionComponent<IFlex>;
-  let Box: FunctionComponent<IBox>;
-
-  const theme: Partial<ITheme> = {};
-
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ Flex, Box } = await import('../'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
   it('renders Box component', () => {
-    const wrapper = shallow(<Flex />);
+    const wrapper = shallow(<Flex />).shallow();
     expect(wrapper).toMatchElement(<Box />);
   });
 
