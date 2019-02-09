@@ -6,10 +6,8 @@ import { storiesOf } from '@storybook/react';
 
 import { Icon, Menu } from '../..';
 import { IMenu } from '../../Menu';
-import { flexKnobs } from '../Layout/Flex';
 
 export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
-  ...flexKnobs(),
   posX: select('posX', ['left', 'center', 'right'], 'right', tabName),
   posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
   hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
