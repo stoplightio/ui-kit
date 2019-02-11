@@ -130,7 +130,7 @@ export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, 
   return jsx<Partial<IBox<HTMLOrSVGElement>>>(
     as,
     {
-      ...pickBy(rest, validPropsPicker),
+      ...(typeof as === 'string' ? pickBy(rest, validPropsPicker) : rest),
       ref,
       css: styles,
     },

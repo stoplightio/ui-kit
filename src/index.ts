@@ -16,7 +16,6 @@ export * from './Image';
 export * from './Input';
 export * from './Link';
 export * from './List';
-export * from './Mark';
 export * from './Menu';
 export * from './Overlay';
 export * from './Popup';

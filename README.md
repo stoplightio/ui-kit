@@ -69,7 +69,6 @@ IconLibrary.add(faCaretDown);
     - Input
     - Link
     - List
-    - Mark
     - Menu
     - Popup
     - Portal

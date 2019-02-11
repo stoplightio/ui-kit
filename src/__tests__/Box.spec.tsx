@@ -20,4 +20,17 @@ describe('Box component', () => {
     expect(wrapper.find('div')).not.toHaveProp('node');
     wrapper.unmount();
   });
+
+  it('does not filter out unknown properties when custom component is given', () => {
+    const customComponent = jest.fn(() => null);
+    const wrapper = mount(<Box ref={jest.fn()} as={customComponent} attributes="abc" />);
+
+    expect(customComponent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        attributes: 'abc',
+      }),
+      expect.anything()
+    );
+    wrapper.unmount();
+  });
 });
