@@ -8,6 +8,7 @@ import { useTheme } from './theme';
 
 export interface IInput extends IBox<HTMLInputElement> {
   autosize?: boolean;
+  invalid?: boolean;
 }
 
 const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
@@ -15,7 +16,7 @@ const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> =
 );
 
 export const Input: React.FunctionComponent<IInput> = props => {
-  const { as = 'input', autosize, onChange = noop, type, ...rest } = props;
+  const { as = 'input', autosize, onChange = noop, type, invalid, ...rest } = props;
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState(props.value);
@@ -40,14 +41,14 @@ export const Input: React.FunctionComponent<IInput> = props => {
   );
 };
 
-const inputStyles = ({ disabled }: IInput) => {
+const inputStyles = ({ disabled, invalid }: IInput) => {
   const { input } = useTheme();
 
   return [
     {
       color: input.fg,
       backgroundColor: input.bg,
-      border: input.border ? `1px solid ${input.border}` : 'none',
+      border: invalid ? `1px solid ${input.invalid}` : input.border ? `1px solid ${input.border}` : 'none',
 
       padding: '0px 10px',
       minHeight: '30px',

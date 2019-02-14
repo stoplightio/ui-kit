@@ -14,6 +14,7 @@ const store = new Store<Partial<ICheckbox>>({
 export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => ({
   disabled: boolean('disabled', false, tabName),
   checked: boolean('checked', false, tabName),
+  invalid: boolean('invalid', false, tabName),
 });
 
 storiesOf('Forms:Checkbox', module)

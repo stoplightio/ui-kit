@@ -7,10 +7,11 @@ import { Box, Flex, IBox, useTheme } from './';
 export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
+  invalid?: boolean;
 }
 
 export const Checkbox: FunctionComponent<ICheckbox> = props => {
-  const { disabled: isDisabled, onChange, ...rest } = props;
+  const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
@@ -22,7 +23,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 
   return (
     // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked, invalid })}>
       <Box
         as="input"
         type="checkbox"
@@ -41,14 +42,14 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
   );
 };
 
-export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
+export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
   const { checkbox } = useTheme();
 
   return [
     {
       color: checkbox.bg,
       backgroundColor: checkbox.bg,
-      border: checkbox.border ? `1px solid ${checkbox.border}` : 'none',
+      border: invalid ? `1px solid ${checkbox.invalid}` : checkbox.border ? `1px solid ${checkbox.border}` : 'none',
 
       height: '14px',
       width: '14px',
@@ -80,4 +81,5 @@ export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
 interface ICheckboxStyles {
   isChecked: boolean;
   isDisabled: boolean;
+  invalid: boolean;
 }
