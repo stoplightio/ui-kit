@@ -1,13 +1,46 @@
 import { ITheme } from './types';
 
+/**
+ * CONSTANTS/HELPERS
+ */
+
+const opacityBorder = 'rgba(16,22,26,.15)';
+
+const inputTheme: ITheme['input'] = {
+  fg: '#f5f8fa',
+  bg: 'rgba(92, 92, 92, 0.5)',
+  border: opacityBorder,
+  invalidFg: 'darkred',
+};
+
+const buttonTheme: ITheme['button'] = {
+  fg: 'white',
+  bg: 'rgba(255, 255, 255, 0.2)',
+  border: opacityBorder,
+  hoverBg: 'rgba(255, 255, 255, 0.3)',
+};
+
+const checkboxTheme: ITheme['checkbox'] = {
+  ...buttonTheme,
+  fg: 'white',
+  checked: 'steelblue',
+  invalidFg: 'darkred',
+};
+
+const menuTheme: ITheme['menu'] = {
+  fg: 'white',
+  bg: '#222',
+  border: opacityBorder,
+  hoverBg: 'rgba(167,182,194,.3)',
+};
+
+/**
+ * THEME
+ */
 export const darkTheme: ITheme = {
   base: 'dark',
 
-  button: {
-    fg: 'white',
-    bg: 'rgba(255, 255, 255, 0.2)',
-    hoverBg: 'rgba(255, 255, 255, 0.3)',
-  },
+  button: buttonTheme,
 
   blockQuote: {
     fg: 'white',
@@ -15,12 +48,7 @@ export const darkTheme: ITheme = {
     shadow: '0 0 5px rgba(255, 255, 255, 0.3)',
   },
 
-  checkbox: {
-    fg: 'white',
-    bg: 'white',
-    checked: 'mediumseagreen',
-    invalidFg: 'darkred',
-  },
+  checkbox: checkboxTheme,
 
   codeEditor: {
     bg: '#333',
@@ -39,36 +67,20 @@ export const darkTheme: ITheme = {
     },
   },
 
-  contextMenu: {
-    fg: 'white',
-    bg: '#222',
-    border: 'lightgrey',
-    hoverBg: 'dodgerblue',
-  },
+  contextMenu: menuTheme,
 
   dialog: {
     bg: '#222',
     fg: '#fff',
-    border: '',
   },
 
-  input: {
-    fg: '#f5f8fa',
-    bg: 'rgba(92, 92, 92, 0.5)',
-    border: 'rgba(16,22,26,.2)',
-    invalidFg: 'darkred',
-  },
+  input: inputTheme,
 
   link: {
     fg: '#add8e6',
   },
 
-  menu: {
-    fg: 'white',
-    bg: '#222',
-    border: 'lightgrey',
-    hoverBg: 'dodgerblue',
-  },
+  menu: menuTheme,
 
   overlay: {
     bg: 'rgba(255, 255, 255, 0.4)',
@@ -79,23 +91,17 @@ export const darkTheme: ITheme = {
   },
 
   select: {
-    fg: '#BFCCD6',
-    bg: '#202D36',
-    border: '#1B262E',
-    invalidFg: 'darkred',
+    ...inputTheme,
+
+    menu: {
+      ...menuTheme,
+      selectedBg: '#193d6b',
+    },
 
     chip: {
       fg: '#BFCCD6',
-      bg: '#384854',
-    },
-
-    menu: {
-      fg: '#BFCCD6',
-      bg: '#202D36',
-      border: '',
-
-      hoverBg: '#DEEBFF',
-      selectedBg: '#193d6b',
+      bg: buttonTheme.bg,
+      border: opacityBorder,
     },
   },
 
@@ -105,12 +111,7 @@ export const darkTheme: ITheme = {
     shadow: '0 0 10px 1px rgba(255,255,255,0.6) inset',
   },
 
-  textarea: {
-    fg: '#f5f8fa',
-    bg: 'rgba(92, 92, 92, 0.5)',
-    border: 'rgba(16,22,26,.2)',
-    invalidFg: 'darkred',
-  },
+  textarea: inputTheme,
 
   tabs: {
     fg: '#fff',
@@ -120,9 +121,7 @@ export const darkTheme: ITheme = {
   },
 
   toggle: {
-    fg: 'white',
-    bg: 'darkgrey',
-    border: 'transparent',
-    checked: 'mediumseagreen',
+    ...checkboxTheme,
+    bg: 'gainsboro',
   },
 };

@@ -13,10 +13,16 @@ const inputTheme: ITheme['input'] = {
   invalidFg: 'red',
 };
 
-const checkboxTheme: ITheme['checkbox'] = {
-  fg: 'white',
+const buttonTheme: ITheme['button'] = {
+  fg: 'black',
   bg: 'rgb(245, 248, 250)',
   border: opacityBorder,
+  hoverBg: '#ebf1f5',
+};
+
+const checkboxTheme: ITheme['checkbox'] = {
+  ...buttonTheme,
+  fg: 'white',
   checked: 'steelblue',
   invalidFg: 'red',
 };
@@ -34,12 +40,7 @@ const menuTheme: ITheme['menu'] = {
 export const lightTheme: ITheme = {
   base: 'light',
 
-  button: {
-    fg: 'black',
-    bg: 'rgb(245, 248, 250)',
-    border: opacityBorder,
-    hoverBg: '#ebf1f5',
-  },
+  button: buttonTheme,
 
   blockQuote: {
     fg: '#111',
@@ -99,7 +100,8 @@ export const lightTheme: ITheme = {
 
     chip: {
       fg: 'black',
-      bg: opacityBorder,
+      bg: 'rgb(245, 248, 250)',
+      border: opacityBorder,
     },
   },
 
