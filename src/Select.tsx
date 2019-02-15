@@ -35,6 +35,7 @@ export interface ISelectBaseProps {
   closeOnScroll?: boolean;
 
   allowCreate?: boolean;
+  invalid?: boolean;
 }
 
 export interface ISelectProps
@@ -82,6 +83,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     noOptionsMessage = 'No Options',
 
     allowCreate = false,
+    invalid = false,
 
     ...selectProps
   } = props;
@@ -106,7 +108,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     onMenuScrollToBottom: onScrollToBottom,
     ...selectProps,
     // CUSTOM STYLES
-    styles: customStyles(),
+    styles: customStyles(invalid),
   };
 
   if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
@@ -130,23 +132,31 @@ export const Select: React.FunctionComponent<ISelect> = props => {
  * override color related
  */
 
-const customStyles = () => {
-  const { select: selectTheme } = useTheme();
-
-  if (!selectTheme) {
+const customStyles = (invalid: boolean) => {
+  const { select: baseTheme } = useTheme();
+  if (!baseTheme) {
     return {};
   }
 
-  const { chip: chipTheme, menu: menuTheme } = selectTheme;
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+  };
+
+  const { chip: chipTheme, menu: menuTheme } = baseTheme;
+
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return {
     clearIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
       padding: '0px',
 
       ':hover': {
-        color: selectTheme.border || selectTheme.fg,
+        color: theme.border || theme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
@@ -156,9 +166,9 @@ const customStyles = () => {
     }),
     control: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.fg,
-      backgroundColor: selectTheme.bg,
-      border: selectTheme.border ? `1px solid ${selectTheme.border}` : 'none',
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       minWidth: '147px',
       minHeight: '30px',
@@ -174,29 +184,29 @@ const customStyles = () => {
       opacity: isDisabled && 0.6,
 
       ':hover': {
-        borderColor: selectTheme.border,
+        borderColor: theme.border,
       },
     }),
     dropdownIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
 
       padding: '0px',
 
       ':hover': {
-        color: selectTheme.border || selectTheme.fg,
+        color: theme.border || theme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,
-      backgroundColor: selectTheme.border || selectTheme.fg,
+      backgroundColor: theme.border || theme.fg,
       marginLeft: '5px',
       marginRight: '5px',
     }),
     input: (provided: any, { isDisabled }: { isDisabled: false }) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
 
       padding: '0px',
       cursor: isDisabled ? 'not-allowed' : 'pointer',
@@ -204,7 +214,7 @@ const customStyles = () => {
     }),
     loadingIndicator: (provided: any) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
       padding: '0px',
     }),
     loadingMessage: (provided: any) => ({
@@ -285,13 +295,13 @@ const customStyles = () => {
     }),
     placeholder: (provided: any) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
 
       opacity: 0.6,
     }),
     singleValue: (provided: any) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
       padding: '0px',
     }),
 

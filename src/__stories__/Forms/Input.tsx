@@ -20,6 +20,7 @@ export const inputKnobs = (tabName = 'Input'): IInput => ({
   disabled: boolean('disabled', false, tabName),
   type: select('type', InlineInputType, 'text', tabName),
   placeholder: text('placeholder', 'placeholder', tabName),
+  invalid: boolean('invalid', false, tabName),
 });
 
 export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({

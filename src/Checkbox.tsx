@@ -7,10 +7,11 @@ import { Box, Flex, IBox, useTheme } from './';
 export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
+  invalid?: boolean;
 }
 
 export const Checkbox: FunctionComponent<ICheckbox> = props => {
-  const { disabled: isDisabled, onChange, ...rest } = props;
+  const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
@@ -22,7 +23,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 
   return (
     // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked, invalid })}>
       <Box
         as="input"
         type="checkbox"
@@ -41,14 +42,24 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
   );
 };
 
-export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
-  const { checkbox } = useTheme();
+export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
+  const { checkbox: baseTheme } = useTheme();
+
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+    checked: baseTheme.invalidChecked,
+  };
+
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return [
     {
-      color: checkbox.bg,
-      backgroundColor: checkbox.bg,
-      border: checkbox.border ? `1px solid ${checkbox.border}` : 'none',
+      color: theme.bg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       height: '14px',
       width: '14px',
@@ -67,8 +78,8 @@ export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
       transition: 'background-color .15s ease-in-out',
     },
     isChecked && {
-      color: checkbox.fg,
-      backgroundColor: checkbox.checked,
+      color: theme.fg,
+      backgroundColor: theme.checked,
     },
     isDisabled && {
       opacity: 0.6,
@@ -80,4 +91,5 @@ export const checkboxStyles = ({ isChecked, isDisabled }: ICheckboxStyles) => {
 interface ICheckboxStyles {
   isChecked: boolean;
   isDisabled: boolean;
+  invalid: boolean;
 }

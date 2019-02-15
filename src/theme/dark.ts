@@ -8,8 +8,11 @@ const opacityBorder = 'rgba(16,22,26,.15)';
 
 const inputTheme: ITheme['input'] = {
   fg: '#f5f8fa',
-  bg: 'rgba(92, 92, 92, 0.5)',
+  bg: 'rgb(65, 65, 65)',
   border: opacityBorder,
+  invalidFg: 'red',
+  invalidBg: 'rgba(200,0,0,0.15)',
+  invalidBorder: 'darkred',
 };
 
 const buttonTheme: ITheme['button'] = {
@@ -21,8 +24,12 @@ const buttonTheme: ITheme['button'] = {
 
 const checkboxTheme: ITheme['checkbox'] = {
   ...buttonTheme,
-  fg: 'white',
+  fg: 'rgb(65, 65, 65)',
   checked: 'steelblue',
+  invalidFg: 'red',
+  invalidBg: 'rgb(45, 18, 17)',
+  invalidChecked: 'rgb(45, 18, 17)',
+  invalidBorder: 'darkred',
 };
 
 const menuTheme: ITheme['menu'] = {
