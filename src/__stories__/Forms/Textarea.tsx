@@ -17,6 +17,7 @@ export const textareaKnobs = (tabName = 'Textarea'): ITextarea => ({
   ...omit(boxKnobs<HTMLTextAreaElement>(), 'opacity'),
   autosize: boolean('autosize', false, tabName),
   disabled: boolean('disabled', false, tabName),
+  invalid: boolean('invalid', false, tabName),
 });
 
 export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => ({

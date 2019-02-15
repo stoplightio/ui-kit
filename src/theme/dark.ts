@@ -108,6 +108,7 @@ export const darkTheme: ITheme = {
     fg: '#f5f8fa',
     bg: 'rgba(92, 92, 92, 0.5)',
     border: 'rgba(16,22,26,.2)',
+    invalidFg: 'darkred',
   },
 
   tabs: {

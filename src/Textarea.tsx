@@ -7,10 +7,11 @@ import { useTheme } from './theme';
 
 export interface ITextarea extends IBox<HTMLTextAreaElement> {
   autosize?: boolean;
+  invalid?: boolean;
 }
 
 export const Textarea: React.FunctionComponent<ITextarea> = props => {
-  const { autosize, as = 'textarea', onChange = noop, ...rest } = props;
+  const { autosize, as = 'textarea', onChange = noop, invalid, ...rest } = props;
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState<string>(props.value || '');
@@ -32,14 +33,14 @@ export const Textarea: React.FunctionComponent<ITextarea> = props => {
   );
 };
 
-export const textareaStyles = ({ autosize, disabled }: ITextarea): IBoxCSS => {
+export const textareaStyles = ({ autosize, disabled, invalid }: ITextarea): IBoxCSS => {
   const { textarea } = useTheme();
 
   return [
     {
       color: textarea.fg,
       backgroundColor: textarea.bg,
-      border: textarea.border ? `1px solid ${textarea.border}` : 'none',
+      border: invalid ? `1px solid ${textarea.invalidFg}` : textarea.border ? `1px solid ${textarea.border}` : 'none',
 
       // TODO the top/bottom padding is a rough estimation find a better solution
       padding: '7px 10px',
