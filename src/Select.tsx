@@ -133,22 +133,23 @@ export const Select: React.FunctionComponent<ISelect> = props => {
  */
 
 const customStyles = (invalid: boolean) => {
-  const { select: selectTheme } = useTheme();
-
-  if (!selectTheme) {
+  const { select: baseTheme } = useTheme();
+  if (!baseTheme) {
     return {};
   }
+  const { chip: chipTheme, menu: menuTheme, invalid: invalidTheme = {} } = baseTheme;
 
-  const { chip: chipTheme, menu: menuTheme } = selectTheme;
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return {
     clearIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
       padding: '0px',
 
       ':hover': {
-        color: selectTheme.border || selectTheme.fg,
+        color: theme.border || theme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
@@ -158,13 +159,9 @@ const customStyles = (invalid: boolean) => {
     }),
     control: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.fg,
-      backgroundColor: selectTheme.bg,
-      border: invalid
-        ? `1px solid ${selectTheme.invalidFg}`
-        : selectTheme.border
-          ? `1px solid ${selectTheme.border}`
-          : 'none',
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       minWidth: '147px',
       minHeight: '30px',
@@ -180,29 +177,29 @@ const customStyles = (invalid: boolean) => {
       opacity: isDisabled && 0.6,
 
       ':hover': {
-        borderColor: invalid ? selectTheme.invalidFg : selectTheme.border,
+        borderColor: theme.border,
       },
     }),
     dropdownIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
 
       padding: '0px',
 
       ':hover': {
-        color: selectTheme.border || selectTheme.fg,
+        color: theme.border || theme.fg,
         opacity: !isDisabled && 0.6,
       },
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,
-      backgroundColor: selectTheme.border || selectTheme.fg,
+      backgroundColor: theme.border || theme.fg,
       marginLeft: '5px',
       marginRight: '5px',
     }),
     input: (provided: any, { isDisabled }: { isDisabled: false }) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
 
       padding: '0px',
       cursor: isDisabled ? 'not-allowed' : 'pointer',
@@ -210,7 +207,7 @@ const customStyles = (invalid: boolean) => {
     }),
     loadingIndicator: (provided: any) => ({
       ...provided,
-      color: selectTheme.border || selectTheme.fg,
+      color: theme.border || theme.fg,
       padding: '0px',
     }),
     loadingMessage: (provided: any) => ({
@@ -291,13 +288,13 @@ const customStyles = (invalid: boolean) => {
     }),
     placeholder: (provided: any) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
 
       opacity: 0.6,
     }),
     singleValue: (provided: any) => ({
       ...provided,
-      color: selectTheme.fg,
+      color: theme.fg,
       padding: '0px',
     }),
 

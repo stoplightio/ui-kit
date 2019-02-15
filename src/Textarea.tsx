@@ -34,13 +34,17 @@ export const Textarea: React.FunctionComponent<ITextarea> = props => {
 };
 
 export const textareaStyles = ({ autosize, disabled, invalid }: ITextarea): IBoxCSS => {
-  const { textarea } = useTheme();
+  const { textarea: baseTheme } = useTheme();
+  const { invalid: invalidTheme = {} } = baseTheme;
+
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return [
     {
-      color: textarea.fg,
-      backgroundColor: textarea.bg,
-      border: invalid ? `1px solid ${textarea.invalidFg}` : textarea.border ? `1px solid ${textarea.border}` : 'none',
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       // TODO the top/bottom padding is a rough estimation find a better solution
       padding: '7px 10px',

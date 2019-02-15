@@ -43,13 +43,18 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 };
 
 export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
-  const { checkbox } = useTheme();
+  const { checkbox: baseTheme } = useTheme();
+
+  const { invalid: invalidTheme = {} } = baseTheme;
+
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return [
     {
-      color: checkbox.bg,
-      backgroundColor: checkbox.bg,
-      border: invalid ? `1px solid ${checkbox.invalidFg}` : checkbox.border ? `1px solid ${checkbox.border}` : 'none',
+      color: theme.bg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       height: '14px',
       width: '14px',
@@ -68,8 +73,8 @@ export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyl
       transition: 'background-color .15s ease-in-out',
     },
     isChecked && {
-      color: checkbox.fg,
-      backgroundColor: checkbox.checked,
+      color: theme.fg,
+      backgroundColor: theme.checked,
     },
     isDisabled && {
       opacity: 0.6,

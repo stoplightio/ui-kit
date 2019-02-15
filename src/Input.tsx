@@ -42,13 +42,17 @@ export const Input: React.FunctionComponent<IInput> = props => {
 };
 
 const inputStyles = ({ disabled, invalid }: IInput) => {
-  const { input } = useTheme();
+  const { input: baseTheme } = useTheme();
+  const { invalid: invalidTheme = {} } = baseTheme;
+
+  const theme = { ...baseTheme };
+  if (invalid) Object.assign(theme, invalidTheme);
 
   return [
     {
-      color: input.fg,
-      backgroundColor: input.bg,
-      border: invalid ? `1px solid ${input.invalidFg}` : input.border ? `1px solid ${input.border}` : 'none',
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       padding: '0px 10px',
       minHeight: '30px',
