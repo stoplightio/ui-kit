@@ -197,7 +197,6 @@ const customStyles = () => {
     input: (provided: any, { isDisabled }: { isDisabled: false }) => ({
       ...provided,
       color: selectTheme.fg,
-      backgroundColor: selectTheme.bg,
 
       padding: '0px',
       cursor: isDisabled ? 'not-allowed' : 'pointer',
@@ -232,6 +231,10 @@ const customStyles = () => {
       color: chipTheme.fg,
       backgroundColor: chipTheme.bg,
       borderRadius: '3px',
+      overflow: 'hidden',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: chipTheme.border,
     }),
     multiValueLabel: (provided: any) => ({
       ...provided,
