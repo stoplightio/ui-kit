@@ -95,6 +95,7 @@ export interface ITheme {
     chip: {
       fg: string;
       bg: string;
+      border?: string;
     };
 
     menu: {
