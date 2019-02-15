@@ -82,6 +82,7 @@ export const darkTheme: ITheme = {
     fg: '#BFCCD6',
     bg: '#202D36',
     border: '#1B262E',
+    invalidFg: 'darkred',
 
     chip: {
       fg: '#BFCCD6',

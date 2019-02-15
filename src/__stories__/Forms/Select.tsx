@@ -27,6 +27,7 @@ export const selectKnobs = (tabName = 'Select'): ISelect => ({
   hideSelectedOptions: boolean('hideSelectedOptions', false),
   backspaceRemovesValue: boolean('backspaceRemovesValue', true),
   onChange: action('onChange'),
+  invalid: boolean('invalid', false),
 });
 
 storiesOf('Forms:Select', module)

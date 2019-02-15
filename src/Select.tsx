@@ -35,6 +35,7 @@ export interface ISelectBaseProps {
   closeOnScroll?: boolean;
 
   allowCreate?: boolean;
+  invalid?: boolean;
 }
 
 export interface ISelectProps
@@ -82,6 +83,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     noOptionsMessage = 'No Options',
 
     allowCreate = false,
+    invalid = false,
 
     ...selectProps
   } = props;
@@ -106,7 +108,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     onMenuScrollToBottom: onScrollToBottom,
     ...selectProps,
     // CUSTOM STYLES
-    styles: customStyles(),
+    styles: customStyles(invalid),
   };
 
   if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
@@ -130,7 +132,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
  * override color related
  */
 
-const customStyles = () => {
+const customStyles = (invalid: boolean) => {
   const { select: selectTheme } = useTheme();
 
   if (!selectTheme) {
@@ -158,7 +160,11 @@ const customStyles = () => {
       ...provided,
       color: selectTheme.fg,
       backgroundColor: selectTheme.bg,
-      border: selectTheme.border ? `1px solid ${selectTheme.border}` : 'none',
+      border: invalid
+        ? `1px solid ${selectTheme.invalidFg}`
+        : selectTheme.border
+          ? `1px solid ${selectTheme.border}`
+          : 'none',
 
       minWidth: '147px',
       minHeight: '30px',
@@ -174,7 +180,7 @@ const customStyles = () => {
       opacity: isDisabled && 0.6,
 
       ':hover': {
-        borderColor: selectTheme.border,
+        borderColor: invalid ? selectTheme.invalidFg : selectTheme.border,
       },
     }),
     dropdownIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({
