@@ -10,11 +10,9 @@ const inputTheme: ITheme['input'] = {
   fg: '#222',
   bg: '#fff',
   border: opacityBorder,
-  invalid: {
-    fg: 'red',
-    bg: 'rgba(200,0,0,0.15)',
-    border: 'red',
-  },
+  invalidFg: 'red',
+  invalidBg: 'rgb(248, 222, 220)',
+  invalidBorder: 'red',
 };
 
 const buttonTheme: ITheme['button'] = {
@@ -28,12 +26,10 @@ const checkboxTheme: ITheme['checkbox'] = {
   ...buttonTheme,
   fg: 'white',
   checked: 'steelblue',
-  invalid: {
-    fg: 'red',
-    bg: 'rgba(200,0,0,0.15)',
-    checked: 'rgba(200,0,0,0.15)',
-    border: 'red',
-  },
+  invalidFg: 'red',
+  invalidBg: 'rgb(248, 222, 220)',
+  invalidChecked: 'rgb(248, 222, 220)',
+  invalidBorder: 'red',
 };
 
 const menuTheme: ITheme['menu'] = {

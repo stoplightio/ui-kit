@@ -137,7 +137,14 @@ const customStyles = (invalid: boolean) => {
   if (!baseTheme) {
     return {};
   }
-  const { chip: chipTheme, menu: menuTheme, invalid: invalidTheme = {} } = baseTheme;
+
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+  };
+
+  const { chip: chipTheme, menu: menuTheme } = baseTheme;
 
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);

@@ -43,7 +43,12 @@ export const Input: React.FunctionComponent<IInput> = props => {
 
 const inputStyles = ({ disabled, invalid }: IInput) => {
   const { input: baseTheme } = useTheme();
-  const { invalid: invalidTheme = {} } = baseTheme;
+
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+  };
 
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);

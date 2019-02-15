@@ -35,7 +35,12 @@ export const Textarea: React.FunctionComponent<ITextarea> = props => {
 
 export const textareaStyles = ({ autosize, disabled, invalid }: ITextarea): IBoxCSS => {
   const { textarea: baseTheme } = useTheme();
-  const { invalid: invalidTheme = {} } = baseTheme;
+
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+  };
 
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);

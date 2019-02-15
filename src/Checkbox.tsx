@@ -45,7 +45,12 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
   const { checkbox: baseTheme } = useTheme();
 
-  const { invalid: invalidTheme = {} } = baseTheme;
+  const invalidTheme = {
+    fg: baseTheme.invalidFg,
+    bg: baseTheme.invalidBg,
+    border: baseTheme.invalidBorder,
+    checked: baseTheme.invalidChecked,
+  };
 
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);
