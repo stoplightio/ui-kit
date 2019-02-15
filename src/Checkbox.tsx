@@ -49,7 +49,7 @@ export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyl
     {
       color: checkbox.bg,
       backgroundColor: checkbox.bg,
-      border: invalid ? `1px solid ${checkbox.invalid}` : checkbox.border ? `1px solid ${checkbox.border}` : 'none',
+      border: invalid ? `1px solid ${checkbox.invalidFg}` : checkbox.border ? `1px solid ${checkbox.border}` : 'none',
 
       height: '14px',
       width: '14px',

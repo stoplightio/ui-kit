@@ -19,7 +19,7 @@ export const darkTheme: ITheme = {
     fg: 'white',
     bg: 'white',
     checked: 'mediumseagreen',
-    invalid: 'darkred',
+    invalidFg: 'darkred',
   },
 
   codeEditor: {
@@ -56,7 +56,7 @@ export const darkTheme: ITheme = {
     fg: '#f5f8fa',
     bg: 'rgba(92, 92, 92, 0.5)',
     border: 'rgba(16,22,26,.2)',
-    invalid: 'darkred',
+    invalidFg: 'darkred',
   },
 
   link: {

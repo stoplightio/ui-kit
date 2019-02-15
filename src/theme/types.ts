@@ -21,7 +21,7 @@ export interface ITheme {
     bg: string;
     border?: string;
     checked: string;
-    invalid?: string;
+    invalidFg?: string;
   };
 
   contextMenu: {
@@ -48,7 +48,7 @@ export interface ITheme {
     fg: string;
     bg: string;
     border?: string;
-    invalid?: string;
+    invalidFg?: string;
   };
 
   codeEditor: {
@@ -93,7 +93,7 @@ export interface ITheme {
     fg: string;
     bg: string;
     border?: string;
-    invalid?: string;
+    invalidFg?: string;
 
     chip: {
       fg: string;
@@ -121,7 +121,7 @@ export interface ITheme {
     fg: string;
     bg?: string;
     border?: string;
-    invalid?: string;
+    invalidFg?: string;
   };
 
   tabs: {

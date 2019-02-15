@@ -48,7 +48,7 @@ const inputStyles = ({ disabled, invalid }: IInput) => {
     {
       color: input.fg,
       backgroundColor: input.bg,
-      border: invalid ? `1px solid ${input.invalid}` : input.border ? `1px solid ${input.border}` : 'none',
+      border: invalid ? `1px solid ${input.invalidFg}` : input.border ? `1px solid ${input.border}` : 'none',
 
       padding: '0px 10px',
       minHeight: '30px',
