@@ -69,6 +69,11 @@ export interface IContextMenuView {
 export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
+  // Only show context menu if we have items to show
+  if (!menuItems.length) {
+    return null;
+  }
+
   return (
     <Box {...viewProps} as={ReactContextMenu} css={menuStyles()}>
       {menuItems.map((item, index) => {

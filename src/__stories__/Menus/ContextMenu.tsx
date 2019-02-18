@@ -28,6 +28,7 @@ storiesOf('Menus:Context Menu', module)
       ]}
     />
   ))
+  .add('with no menu items', () => <ContextMenu id="defaultContextMenu" renderTrigger={() => 'trigger'} />)
   .add('open on click', () => (
     <ContextMenu
       id="defaultContextMenu"
