@@ -95,10 +95,10 @@ describe('ContextMenuView component', () => {
     jest.unmock('../theme');
   });
 
-  it('should render as ReactContextMenu', () => {
-    const wrapper = shallow(<ContextMenuView id="t" />);
+  it('should render null when no menuItems are passed in', () => {
+    const wrapper = shallow(<ContextMenuView id="t" menuItems={[]} />);
 
-    expect(wrapper).toHaveProp('as', ReactContextMenu);
+    expect(wrapper.type()).toBeNull();
   });
 
   it('should iterate over menuItems and render ContextMenuItem', () => {
@@ -118,6 +118,7 @@ describe('ContextMenuView component', () => {
     const wrapper = shallow(<ContextMenuView id="t" menuItems={menuItems} />);
     const children = wrapper.children();
 
+    expect(wrapper).toHaveProp('as', ReactContextMenu);
     expect(wrapper.find(ContextMenuItem)).toHaveLength(2);
     delete menuItems[0].key;
     delete menuItems[1].key;
