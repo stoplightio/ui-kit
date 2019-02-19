@@ -55,7 +55,7 @@ export const lightTheme: ITheme = {
 
   checkbox: checkboxTheme,
 
-  codeEditor: {
+  code: {
     bg: '#f9f9f9',
     border: 'grey',
 

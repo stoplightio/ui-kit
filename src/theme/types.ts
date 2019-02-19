@@ -56,7 +56,7 @@ export interface ITheme {
     invalidBorder?: string;
   };
 
-  codeEditor: {
+  code: {
     bg: string;
     border: string;
 
