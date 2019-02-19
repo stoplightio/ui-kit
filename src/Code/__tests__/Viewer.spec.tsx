@@ -43,6 +43,7 @@ describe('Code Viewer component', () => {
         properties: {
           className: ['token', 'function'],
         },
+        value: 'function',
       },
     ];
     const markup = <span className="token function">function</span>;
