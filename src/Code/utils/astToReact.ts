@@ -1,15 +1,23 @@
-import { createElement } from 'react';
+import { Dictionary } from '@stoplight/types';
+import { createElement, ReactHTML, ReactNode } from 'react';
 
-// todo: add actual type
+type ASTNode = Partial<{
+  type: string;
+  tagName: keyof ReactHTML;
+  children?: ASTNode[];
+  properties: Dictionary<any>;
+  value?: string;
+}>;
+
 // based on https://github.com/rexxars/react-lowlight/blob/master/src/mapChildren.js
-export function mapChild(child: any, i: number, depth: number) {
+export function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
   if (child.tagName) {
     return createElement(
       child.tagName,
       {
         key: `cv-${depth}-${i}`,
         ...child.properties,
-        className: (child.properties.className || []).join(' '),
+        className: child.properties && (child.properties.className || []).join(' '),
       },
       child.children && child.children.map(mapWithDepth(depth + 1))
     );
@@ -19,8 +27,7 @@ export function mapChild(child: any, i: number, depth: number) {
 }
 
 export function mapWithDepth(depth: number) {
-  // todo: add actual type
-  return function mapChildrenWithDepth(child: any, i: number) {
+  return function mapChildrenWithDepth(child: ASTNode, i: number) {
     return mapChild(child, i, depth);
   };
 }
