@@ -17,6 +17,13 @@ export const getDefaultStyle = ({ width, padding }: IPopupProps): CSSProperties 
   zIndex: 999,
   padding,
   width,
+  opacity: 1,
+  transition: 'opacity 0.2s',
+});
+
+export const getInitialStyle = (args: IPopupProps): CSSProperties => ({
+  ...getDefaultStyle(args),
+  opacity: 0,
 });
 
 export const calculateStyles = (
