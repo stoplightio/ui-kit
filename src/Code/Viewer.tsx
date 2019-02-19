@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, IBox } from '../Box';
 import { codeStyles } from './styles';
-import { mapWithDepth } from './utils/astToReact';
+import { astToReact } from './utils/astToReact';
 import { parseCode } from './utils/parseCode';
 
 export interface IViewer extends IBox {
@@ -17,7 +17,7 @@ export const Viewer: React.FunctionComponent<IViewer> = ({ language, value, ...r
 
   return (
     <Box {...rest} as="pre" css={codeStyles()}>
-      {markup ? markup.map(mapWithDepth(0)) : value}
+      {markup ? markup.map(astToReact()) : value}
     </Box>
   );
 };

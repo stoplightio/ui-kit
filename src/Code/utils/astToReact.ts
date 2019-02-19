@@ -10,7 +10,7 @@ type ASTNode = Partial<{
 }>;
 
 // based on https://github.com/rexxars/react-lowlight/blob/master/src/mapChildren.js
-export function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
+function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
   if (child.tagName) {
     return createElement(
       child.tagName,
@@ -19,14 +19,14 @@ export function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
         ...child.properties,
         className: child.properties && (child.properties.className || []).join(' '),
       },
-      child.children && child.children.map(mapWithDepth(depth + 1))
+      child.children && child.children.map(astToReact(depth + 1))
     );
   }
 
   return child.value;
 }
 
-export function mapWithDepth(depth: number) {
+export function astToReact(depth: number = 0) {
   return function mapChildrenWithDepth(child: ASTNode, i: number) {
     return mapChild(child, i, depth);
   };
