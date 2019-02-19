@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/* @jsx jsx */
 
 import { ClassNames, jsx } from '@emotion/core';
 import { FunctionComponent } from 'react';
