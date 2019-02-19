@@ -5,6 +5,7 @@ import { TabList, TabListProps } from 'react-tabs';
 import { IBoxCSS, useTheme } from '..';
 
 const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => (
+  // @ts-ignore ref type is incompatible after @types/react bump
   <TabList {...props} css={tabListStyle()}>
     {props.children}
   </TabList>

@@ -7,6 +7,7 @@ import { TabPanel, TabPanelProps } from 'react-tabs';
 const StyledTabPanel: FunctionComponent<TabPanelProps> & { tabsRole: string } = props => (
   <ClassNames>
     {({ css: getClassName }) => (
+      // @ts-ignore ref type is incompatible after @types/react bump
       <TabPanel
         {...props}
         className={getClassName(tabPanelStyle)}
