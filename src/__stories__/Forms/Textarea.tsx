@@ -56,6 +56,6 @@ storiesOf('Forms:Textarea', module)
     <Textarea
       {...textareaKnobs()}
       value={store.get('value')}
-      onChange={event => store.set({ value: event.currentTarget.value })}
+      onChange={(event: any) => store.set({ value: event.currentTarget.value })}
     />
   ));

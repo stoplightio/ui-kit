@@ -10,7 +10,7 @@ export interface ITextarea extends IBox<HTMLTextAreaElement> {
   invalid?: boolean;
 }
 
-export const Textarea: React.FunctionComponent<ITextarea> = props => {
+export const Textarea = React.forwardRef<HTMLOrSVGElement, ITextarea>((props, ref) => {
   const { autosize, as = 'textarea', onChange = noop, invalid, ...rest } = props;
 
   // TODO: do we want controlled mode here?
@@ -26,12 +26,13 @@ export const Textarea: React.FunctionComponent<ITextarea> = props => {
     <Box
       {...rest}
       as={autosize ? AutosizeTextarea : as}
+      ref={ref}
       value={internalValue}
       onChange={handleChange}
       css={textareaStyles(props)}
     />
   );
-};
+});
 
 export const textareaStyles = ({ autosize, disabled, invalid }: ITextarea): IBoxCSS => {
   const { textarea: baseTheme } = useTheme();

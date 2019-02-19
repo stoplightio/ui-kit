@@ -93,7 +93,7 @@ storiesOf('Menus:Menu', module)
   .add('with custom renderMenuItem', () => (
     <Menu
       {...menuKnobs()}
-      renderMenuItem={item => <span>{item.title}</span>}
+      renderMenuItem={(item: any) => <span>{item.title}</span>}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, subtitle: 'has subtitle', icon: 'marker' },
         { title: 'No onClick', icon: 'image' },

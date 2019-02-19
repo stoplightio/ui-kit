@@ -15,7 +15,7 @@ const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> =
   <AutosizeInput {...props} inputClassName={className} placeholderIsMinWidth />
 );
 
-export const Input: React.FunctionComponent<IInput> = props => {
+export const Input = React.forwardRef<HTMLOrSVGElement, IInput>((props, ref) => {
   const { as = 'input', autosize, onChange = noop, type, invalid, ...rest } = props;
 
   // TODO: do we want controlled mode here?
@@ -32,6 +32,7 @@ export const Input: React.FunctionComponent<IInput> = props => {
     <Box
       {...rest}
       as={autosize ? AutosizeWrapper : as}
+      ref={ref}
       type={type}
       value={internalValue}
       onChange={handleChange}
@@ -39,7 +40,7 @@ export const Input: React.FunctionComponent<IInput> = props => {
       css={inputStyles(props)}
     />
   );
-};
+});
 
 const inputStyles = ({ disabled, invalid }: IInput) => {
   const { input: baseTheme } = useTheme();

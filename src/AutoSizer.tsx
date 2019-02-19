@@ -14,7 +14,7 @@ export const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
   const [ref, width = '100%', height = '100%'] = useResizeObserver();
 
   return (
-    <Box ref={ref} {...rest}>
+    <Box {...rest} ref={ref}>
       {children({ width, height })}
     </Box>
   );

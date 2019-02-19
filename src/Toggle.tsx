@@ -8,7 +8,7 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   onChange?: (checked: boolean) => void;
 }
 
-export const Toggle: React.FunctionComponent<IToggle> = props => {
+export const Toggle = React.forwardRef<HTMLOrSVGElement, IToggle>((props, ref) => {
   const { disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = React.useState<boolean>(!!props.checked);
@@ -20,7 +20,7 @@ export const Toggle: React.FunctionComponent<IToggle> = props => {
   }, []);
 
   return (
-    <Flex {...rest} as="label" css={toggleStyles({ isDisabled, isChecked })}>
+    <Flex {...rest} as="label" ref={ref} css={toggleStyles({ isDisabled, isChecked })}>
       <Box
         as="input"
         type="checkbox"
@@ -32,7 +32,7 @@ export const Toggle: React.FunctionComponent<IToggle> = props => {
       <Box as="span" css={circleStyles({ isChecked })} />
     </Flex>
   );
-};
+});
 
 interface IToggleStyles {
   isChecked?: boolean;

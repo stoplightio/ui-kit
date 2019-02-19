@@ -5,11 +5,12 @@ import { Box, IBox } from './Box';
 export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
   thickness?: number;
 }
-export const Break: React.FunctionComponent<IBreak> = props => {
+
+export const Break = React.forwardRef<HTMLOrSVGElement, IBreak>((props, ref) => {
   const { as = 'hr', thickness = 1, ...rest } = props;
 
-  return <Box {...rest} as={as} css={breakStyles({ thickness })} />;
-};
+  return <Box {...rest} as={as} ref={ref} css={breakStyles({ thickness })} />;
+});
 
 export const breakStyles = ({ thickness }: IBreak) => [
   {

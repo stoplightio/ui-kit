@@ -11,7 +11,7 @@ export interface IDialog extends IBox<HTMLElement> {
   onClickOutside?: React.ReactEventHandler<HTMLElement>;
 }
 
-export const Dialog: React.FunctionComponent<IDialog> = props => {
+export const Dialog = React.forwardRef<HTMLOrSVGElement, IDialog>((props, ref) => {
   const { children, show, onClickOutside, onClick, ...rest } = props;
   const css = dialogStyles();
 
@@ -35,13 +35,13 @@ export const Dialog: React.FunctionComponent<IDialog> = props => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box {...rest} onClick={onBoxClick} css={css}>
+        <Box {...rest} ref={ref} onClick={onBoxClick} css={css}>
           {children}
         </Box>
       </Overlay>
     </Portal>
   );
-};
+});
 
 export const dialogStyles = () => {
   const { dialog } = useTheme();
