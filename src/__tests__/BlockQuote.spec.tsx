@@ -1,9 +1,8 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-
 import { BlockQuote } from '../BlockQuote';
-import { Text } from '../Text';
+import { Box } from '../Box';
 import { useTheme } from '../theme';
 
 jest.mock('../theme', () => ({
@@ -17,25 +16,9 @@ jest.mock('../theme', () => ({
 }));
 
 describe('BlockQuote component', () => {
-  it('renders Text as blockquote', () => {
+  it('renders Box as blockquote', () => {
     const wrapper = shallow(<BlockQuote />).shallow();
-    expect(wrapper).toMatchElement(<Text as="blockquote" />);
-  });
-
-  it('passes all props but isSelected', () => {
-    const props = {
-      children: 'example',
-      test: 2,
-      isSelected: false,
-    };
-
-    const wrapper = shallow(<BlockQuote {...props} />);
-    expect(wrapper).toHaveProp({
-      children: props.children,
-      test: props.test,
-    });
-
-    expect(wrapper).not.toHaveProp('isSelected');
+    expect(wrapper).toMatchElement(<Box as="blockquote" />);
   });
 
   it('can render any tag', () => {
@@ -50,19 +33,12 @@ describe('BlockQuote component', () => {
       const wrapper = shallow(<BlockQuote />);
       expect(wrapper).toHaveProp(
         'css',
-        expect.arrayContaining([
-          expect.objectContaining({
-            color: theme.blockQuote!.fg,
-            borderColor: theme.blockQuote!.border,
-          }),
-        ])
+        expect.objectContaining({
+          backgroundColor: theme.blockQuote!.bg,
+          borderLeft: expect.stringContaining(theme.blockQuote!.border),
+          boxShadow: theme.blockQuote!.shadow,
+        })
       );
-    });
-
-    it('adds a shadow when isSelected is true', () => {
-      const theme = useTheme();
-      const wrapper = shallow(<BlockQuote isSelected />);
-      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ boxShadow: theme.blockQuote!.shadow }]));
     });
   });
 });

@@ -13,14 +13,12 @@ export const BlockQuote: React.FunctionComponent<IBlockQuote> = props => {
 export const blockQuoteStyles = () => {
   const { blockQuote } = useTheme();
 
-  return [
-    {
-      color: blockQuote.fg,
-      backgroundColor: blockQuote.bg,
-      boxShadow: blockQuote.shadow,
-      padding: '.85rem 1.3rem',
-      margin: '.5rem auto',
-      borderLeft: `6px solid ${blockQuote.border}`,
-    },
-  ];
+  return {
+    color: blockQuote.fg,
+    backgroundColor: blockQuote.bg,
+    boxShadow: blockQuote.shadow,
+    padding: '.85rem 1.3rem',
+    margin: '.5rem auto',
+    borderLeft: `6px solid ${blockQuote.border}`,
+  };
 };
