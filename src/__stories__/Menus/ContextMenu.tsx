@@ -33,7 +33,15 @@ storiesOf('Menus:Context Menu', module)
     <ContextMenu
       id="defaultContextMenu"
       renderTrigger={ref => {
-        return <div onClick={e => (ref.current ? ref.current.handleContextClick(e) : undefined)}>trigger</div>;
+        return (
+          <div
+            onClick={e =>
+              ref.current ? ref.current.handleContextClick(e as React.MouseEvent<HTMLDivElement>) : undefined
+            }
+          >
+            trigger
+          </div>
+        );
       }}
       menuItems={[
         { title: 'Menu Item 1' },
