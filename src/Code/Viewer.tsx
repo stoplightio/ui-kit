@@ -22,7 +22,7 @@ export const Viewer: React.FunctionComponent<IViewer> = ({ language, value, show
     );
   }
 
-  const markup = parseCode(value, language);
+  const markup = parseCode(value, language, showLineNumbers);
 
   return (
     <Box {...rest} as="pre" css={css}>

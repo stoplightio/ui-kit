@@ -1,13 +1,5 @@
-import { Dictionary } from '@stoplight/types';
-import { createElement, ReactHTML, ReactNode } from 'react';
-
-type ASTNode = Partial<{
-  type: string;
-  tagName: keyof ReactHTML;
-  children?: ASTNode[];
-  properties: Dictionary<any>;
-  value?: string;
-}>;
+import { createElement, ReactNode } from 'react';
+import { ASTNode } from '../types';
 
 // based on https://github.com/rexxars/react-lowlight/blob/master/src/mapChildren.js
 function mapChild(child: ASTNode, i: number, depth: number): ReactNode {

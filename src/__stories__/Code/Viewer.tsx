@@ -9,6 +9,7 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): IViewer => ({
   language: text('language', 'javascript', tabName),
   value: text('value', 'const defaultValue = stoplight.io();', tabName),
   inline: boolean('inline', false, tabName),
+  showLineNumbers: boolean('showLineNumbers', false, tabName),
 });
 
 storiesOf('Code:Viewer', module)

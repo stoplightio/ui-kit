@@ -31,6 +31,15 @@ export const codeStyles = ({ inline }: ICodeStyles = {}) => {
         opacity: 0.7;
       }
 
+      .line-number {
+        display: inline-block;
+        min-width: 25px;
+        text-align: right;
+        opacity: 0.3;
+        padding-right: 15px;
+        user-select: none;
+      }
+
       .token {
         &.comment,
         &.prolog,
