@@ -10,6 +10,9 @@ module.exports = (baseConfig, env, config) => {
     use: [
       {
         loader: require.resolve('ts-loader'),
+        options: {
+          onlyCompileBundledFiles: true,
+        }
       },
     ],
   });

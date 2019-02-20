@@ -36,7 +36,7 @@ export interface ITheme {
 
   blockQuote: {
     fg?: string;
-    bg?: string;
+    bg: string;
     border: string;
     shadow: string;
   };
@@ -139,7 +139,8 @@ export interface ITheme {
     bg: string;
     border: string;
 
-    disabledFg: string;
+    selectedFg: string;
+    selectedBg: string;
   };
 
   toggle: {

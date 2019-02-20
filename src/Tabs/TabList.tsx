@@ -1,25 +1,22 @@
+/* @jsx jsx */
+import { jsx } from '@emotion/core';
 import * as React from 'react';
 
-import { Dictionary } from '@stoplight/types';
 import { TabList, TabListProps } from 'react-tabs';
-import { IBoxCSS, useTheme } from '..';
+import { IBoxCSS } from '../Box';
 
 const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => (
-  <TabList {...props} css={tabListStyle()}>
+  <TabList {...props} css={tabListStyle}>
     {props.children}
   </TabList>
 );
 
 StyledTabList.tabsRole = 'TabList';
 
-const tabListStyle = (): Dictionary<IBoxCSS> => {
-  const theme = useTheme();
-
-  return {
-    borderBottom: `1px solid ${theme.tabs.border}`,
-    margin: '0 0 10px',
-    padding: '0',
-  };
+const tabListStyle: IBoxCSS = {
+  margin: '0',
+  padding: '0',
+  'user-select': 'none',
 };
 
 export { StyledTabList as TabList };

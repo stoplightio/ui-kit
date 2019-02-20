@@ -32,43 +32,40 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
   return {
     tabStyle: {
       display: 'inline-block',
-      border: '1px solid transparent',
-      borderBottom: 'none',
+      border: `1px solid ${theme.tabs.border}`,
+      fontSize: '0.9rem',
+      fontWeight: 'bold',
       bottom: '-1px',
       position: 'relative',
       listStyle: 'none',
-      padding: '6px 12px',
+      padding: '7px 15px',
       cursor: 'pointer',
       backgroundColor: theme.tabs.bg,
       color: theme.tabs.fg,
+      zIndex: 2,
 
-      '&:focus': {
-        boxShadow: '0 0 5px hsl(208, 99%, 50%)',
-        borderColor: 'hsl(208, 99%, 50%)',
+      ':first-of-type': {
+        borderTopLeftRadius: '3px',
+      },
+
+      ':last-of-type': {
+        borderTopRightRadius: '3px',
+      },
+
+      ':focus': {
         outline: 'none',
-
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          height: '5px',
-          left: '-4px',
-          right: '-4px',
-          bottom: '-5px',
-          backgroundColor: theme.tabs.bg,
-        },
       },
     },
 
     selectedTabStyle: {
-      backgroundColor: theme.tabs.bg,
-      borderColor: theme.tabs.fg,
-      color: theme.tabs.fg,
-      borderRadius: '5px 5px 0 0',
+      backgroundColor: theme.tabs.selectedBg,
+      borderBottomColor: theme.tabs.selectedBg,
+      color: theme.tabs.selectedFg,
     },
 
     disabledTabStyle: {
-      color: theme.tabs.disabledFg,
       cursor: 'default',
+      opacity: 0.5,
     },
   };
 };

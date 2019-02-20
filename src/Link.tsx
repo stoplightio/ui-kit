@@ -1,15 +1,12 @@
 import * as React from 'react';
-
-import { IText, Text } from './Text';
+import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
+export interface ILink extends IBox<HTMLAnchorElement> {}
 
-export const Link = React.forwardRef<HTMLAnchorElement | HTMLElement, ILink>((props, ref) => {
-  const { as = 'a', ...rest } = props;
-
-  return <Text {...rest} as={as} ref={ref} css={linkStyles()} />;
-});
+export const Link = React.forwardRef<HTMLAnchorElement, ILink>((props, ref) => {
+  return <Box {...props} as="a" ref={ref} css={linkStyles()} />;
+};
 
 export const linkStyles = () => {
   const { link } = useTheme();
@@ -17,6 +14,7 @@ export const linkStyles = () => {
   return [
     {
       color: link.fg,
+      textDecoration: 'none',
     },
     link.hoverFg && {
       ':hover': {

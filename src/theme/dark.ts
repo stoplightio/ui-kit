@@ -48,9 +48,9 @@ export const darkTheme: ITheme = {
   button: buttonTheme,
 
   blockQuote: {
-    fg: 'white',
-    border: 'white',
-    shadow: '0 0 5px rgba(255, 255, 255, 0.3)',
+    bg: '#093e6f',
+    border: '#247aca',
+    shadow: '0 0 1px rgba(72, 164, 249, 0.15)',
   },
 
   checkbox: checkboxTheme,
@@ -119,10 +119,12 @@ export const darkTheme: ITheme = {
   textarea: inputTheme,
 
   tabs: {
-    fg: '#fff',
-    bg: '#222',
-    border: '#fff',
-    disabledFg: '#99a89c',
+    fg: '#f6f6f6',
+    bg: '#636363',
+    border: '#a9a5a5',
+
+    selectedFg: '#fff',
+    selectedBg: '#111',
   },
 
   toggle: {
