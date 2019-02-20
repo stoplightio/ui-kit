@@ -77,7 +77,7 @@
     "@types/react-dom": "16.8.2",
     "@types/react-input-autosize": "2.0.x",
     "@types/react-select": "2.0.13",
-    "@types/react-tabs": "^2.3.1",
+    "@types/react-tabs": "2.3.0",
     "@types/react-textarea-autosize": "4.3.x",
     "@types/react-window": "1.5.1",
     "prismjs": "1.15.x",

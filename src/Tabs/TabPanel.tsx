@@ -10,7 +10,6 @@ const StyledTabPanel: React.FunctionComponent<TabPanelProps> & { tabsRole: strin
   return (
     <ClassNames>
       {({ css: getClassName }) => (
-        // @ts-ignore ref type is incompatible after @types/react bump
         <TabPanel
           {...props}
           className={getClassName(tabPanelCSS)}

@@ -3,9 +3,9 @@ import { jsx } from '@emotion/core';
 import * as React from 'react';
 
 import { TabList, TabListProps } from 'react-tabs';
+import { IBoxCSS } from '../Box';
 
 const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => (
-  // @ts-ignore ref type is incompatible after @types/react bump
   <TabList {...props} css={tabListStyle}>
     {props.children}
   </TabList>
@@ -13,10 +13,10 @@ const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string 
 
 StyledTabList.tabsRole = 'TabList';
 
-const tabListStyle = {
+const tabListStyle: IBoxCSS = {
   margin: '0',
   padding: '0',
-  userSelect: 'none',
+  'user-select': 'none',
 };
 
 export { StyledTabList as TabList };
