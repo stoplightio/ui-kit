@@ -6,7 +6,7 @@ export interface ILink extends IBox<HTMLAnchorElement> {}
 
 export const Link = React.forwardRef<HTMLAnchorElement, ILink>((props, ref) => {
   return <Box {...props} as="a" ref={ref} css={linkStyles()} />;
-};
+});
 
 export const linkStyles = () => {
   const { link } = useTheme();

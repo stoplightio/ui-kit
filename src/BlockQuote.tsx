@@ -8,7 +8,7 @@ export const BlockQuote = React.forwardRef<HTMLQuoteElement | HTMLElement, IBloc
   const { as = 'blockquote', ...rest } = props;
 
   return <Box {...rest} as={as} ref={ref} css={blockQuoteStyles()} />;
-};
+});
 
 export const blockQuoteStyles = () => {
   const { blockQuote } = useTheme();
