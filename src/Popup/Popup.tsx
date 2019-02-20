@@ -4,7 +4,7 @@ import { useWindowResize } from '../hooks/useWindowResize';
 import { useTheme } from '../theme';
 import { PopupContent } from './PopupContent';
 import { IPopupDefaultProps, IPopupProps } from './types';
-import { calculateStyles, getDefaultStyle } from './utils';
+import { calculateStyles, getDefaultStyle, getInitialStyle } from './utils';
 
 export { IPopupProps, IPopupDefaultProps };
 
@@ -21,7 +21,7 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
   const [visibility, setVisibility] = React.useState<boolean>(false);
   const isVisible = controlled ? show : visibility;
   const lastResizeTimestamp = useWindowResize();
-  const [style, setStyle] = React.useState<React.CSSProperties>({});
+  const [style, setStyle] = React.useState<React.CSSProperties>(getInitialStyle(props));
   let isOverTrigger: boolean = false;
   let isOverContent: boolean = false;
   let willHide: NodeJS.Timer | number | null = null;
