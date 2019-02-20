@@ -27,17 +27,26 @@ export const codeStyles = ({ inline }: ICodeStyles = {}) => {
       padding: 10,
     },
     css`
+      counter-reset: line;
+
       .namespace {
         opacity: 0.7;
       }
 
       .line-number {
-        display: inline-block;
-        min-width: 25px;
-        text-align: right;
-        opacity: 0.3;
-        padding-right: 15px;
-        user-select: none;
+        padding-right: 10px;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          user-select: none;
+          opacity: 0.3;
+          text-align: right;
+          min-width: 25px;
+          padding-right: 15px;
+          counter-increment: line;
+          content: counter(line);
+        }
       }
 
       .token {

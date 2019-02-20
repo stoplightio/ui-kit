@@ -1,62 +1,118 @@
+// based on https://github.com/FormidableLabs/prism-react-renderer
 import { ASTNode } from '../types';
 
-const NEW_LINES = /\n/g;
-
-function countNewLines(value: string) {
-  const newLines = value.match(NEW_LINES);
-  if (newLines === null) return 0;
-  return newLines.length;
+const newLineRegex = /\n/g;
+function getNewLines(str: string) {
+  return str.match(newLineRegex);
 }
 
-function createLineNumberElement(lineNumber: number): ASTNode {
+function createLineElement({
+  children,
+  lineNumber,
+  className,
+}: {
+  children: ASTNode[];
+  lineNumber?: number;
+  className?: string[];
+}): ASTNode {
   return {
     type: 'element',
     tagName: 'span',
     properties: {
-      className: ['line-number'],
+      className: lineNumber === undefined ? className : ['line-number'],
     },
-    children: [
-      {
-        type: 'text',
-        value: String(lineNumber),
-      },
-    ],
+    children,
   };
 }
 
-function createNewLineElement(): ASTNode {
-  return {
-    type: 'element',
-    tagName: 'span',
-    properties: {},
-    children: [
-      {
-        type: 'text',
-        value: '\n',
-      },
-    ],
-  };
-}
-
-export function lineNumberify(nodes: ASTNode[]) {
-  if (nodes.length === 0) return nodes;
-
-  let lineNumber = 1;
-  nodes.unshift(createLineNumberElement(lineNumber));
-
-  for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i];
-    if (node.type !== 'text') continue;
-    const newLinesAmount = countNewLines(node.value!); // text always have value
-    if (newLinesAmount > 0) {
-      node.value = node.value!.replace(NEW_LINES, '');
-      for (let newLine = 0; newLine < newLinesAmount; newLine++) {
-        lineNumber++;
-        nodes.splice(i, 0, createNewLineElement(), createLineNumberElement(lineNumber));
-        i += 2;
-      }
+function flattenCodeTree(tree: ASTNode[], className: string[] = [], newTree: ASTNode[] = []) {
+  for (const node of tree) {
+    if (node.type === 'text') {
+      newTree.push(
+        createLineElement({
+          children: [node],
+          className,
+        })
+      );
+    } else if (node.children) {
+      const classNames = className.concat(node.properties!.className);
+      newTree = newTree.concat(flattenCodeTree(node.children, classNames));
     }
   }
 
-  return nodes;
+  return newTree;
+}
+
+export function lineNumberify(codeTree: ASTNode[]) {
+  const tree = flattenCodeTree(codeTree);
+  const newTree = [];
+  let lastLineBreakIndex = -1;
+  let index = 0;
+
+  while (index < tree.length) {
+    const node = tree[index];
+    const value = node.children![0].value!;
+    const newLines = getNewLines(value);
+
+    if (newLines) {
+      const splitValue = value.split('\n');
+      splitValue.forEach((text, i) => {
+        const lineNumber = newTree.length + 1;
+        const newChild = { type: 'text', value: `${text}\n` };
+
+        if (i === 0) {
+          const children = tree.slice(lastLineBreakIndex + 1, index).concat(
+            createLineElement({
+              children: [newChild],
+              className: node.properties!.className,
+            })
+          );
+          newTree.push(createLineElement({ children, lineNumber }));
+        } else if (i === splitValue.length - 1) {
+          const stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children![0];
+          if (stringChild) {
+            const lastLineInPreviousSpan = { type: 'text', value: `${text}` };
+            const newElem = createLineElement({
+              children: [lastLineInPreviousSpan],
+              className: node.properties!.className,
+            });
+            tree.splice(index + 1, 0, newElem);
+          } else {
+            newTree.push(
+              createLineElement({
+                children: [newChild],
+                lineNumber,
+                className: node.properties!.className,
+              })
+            );
+          }
+        } else {
+          newTree.push(
+            createLineElement({
+              children: [newChild],
+              lineNumber,
+              className: node.properties!.className,
+            })
+          );
+        }
+      });
+
+      lastLineBreakIndex = index;
+    }
+    index++;
+  }
+
+  if (lastLineBreakIndex !== tree.length - 1) {
+    const children = tree.slice(lastLineBreakIndex + 1, tree.length);
+    if (children && children.length) {
+      newTree.push(
+        createLineElement({
+          children,
+          lineNumber: newTree.length + 1,
+        })
+      );
+    }
+  }
+
+  return newTree;
 }

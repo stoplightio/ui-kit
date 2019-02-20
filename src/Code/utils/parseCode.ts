@@ -1,5 +1,6 @@
 // @ts-ignore
 import * as refractor from 'refractor';
+// @ts-ignore
 import { lineNumberify } from './lineNumberify';
 
 export function parseCode(code: string, language?: string, addLineNumbers?: boolean) {

@@ -15,6 +15,25 @@ describe('Code Viewer component', () => {
     (astToReact as jest.Mock).mockReset();
   });
 
+  it('renders code element with raw value for inline view', () => {
+    const code = '{}';
+    const language = 'json';
+
+    const wrapper = shallow(<Viewer language={language} value={code} inline />);
+    expect(wrapper).toHaveText(code);
+    expect(wrapper).toHaveProp('as', 'code');
+
+    expect(parseCode).not.toHaveBeenCalled();
+  });
+
+  it('renders pre element for block view', () => {
+    const code = '{}';
+    const language = 'json';
+
+    const wrapper = shallow(<Viewer language={language} value={code} />);
+    expect(wrapper).toHaveProp('as', 'pre');
+  });
+
   it('renders code as is if parsing fails', () => {
     const code = '{}';
     const language = 'json';
@@ -23,7 +42,7 @@ describe('Code Viewer component', () => {
     const wrapper = shallow(<Viewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
-    expect(parseCode).toHaveBeenCalledWith(code, language);
+    expect(parseCode).toHaveBeenCalledWith(code, language, undefined);
   });
 
   it('does not try to map ast nodes to react nodes if parsing failed', () => {
@@ -53,7 +72,7 @@ describe('Code Viewer component', () => {
 
     const wrapper = shallow(<Viewer language={language} value={code} />);
     expect(wrapper).toContainReact(markup);
-    expect(parseCode).toHaveBeenCalledWith(code, language);
+    expect(parseCode).toHaveBeenCalledWith(code, language, undefined);
     expect(astToReact).toHaveBeenCalled();
   });
 });
