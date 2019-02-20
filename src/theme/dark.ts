@@ -119,10 +119,12 @@ export const darkTheme: ITheme = {
   textarea: inputTheme,
 
   tabs: {
-    fg: '#fff',
-    bg: '#222',
-    border: '#fff',
-    disabledFg: '#99a89c',
+    fg: '#f6f6f6',
+    bg: '#636363',
+    border: '#a9a5a5',
+
+    selectedFg: '#fff',
+    selectedBg: '#111',
   },
 
   toggle: {
