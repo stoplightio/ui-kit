@@ -48,9 +48,9 @@ export const darkTheme: ITheme = {
   button: buttonTheme,
 
   blockQuote: {
-    fg: 'white',
-    border: 'white',
-    shadow: '0 0 5px rgba(255, 255, 255, 0.3)',
+    bg: '#093e6f',
+    border: '#247aca',
+    shadow: '0 0 1px rgba(72, 164, 249, 0.15)',
   },
 
   checkbox: checkboxTheme,
