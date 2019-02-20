@@ -4,11 +4,11 @@ import { useTheme } from './theme';
 
 export interface IBlockQuote extends IBox<HTMLQuoteElement | HTMLElement> {}
 
-export const BlockQuote: React.FunctionComponent<IBlockQuote> = props => {
+export const BlockQuote = React.forwardRef<HTMLQuoteElement | HTMLElement, IBlockQuote>((props, ref) => {
   const { as = 'blockquote', ...rest } = props;
 
-  return <Box {...rest} as={as} css={blockQuoteStyles()} />;
-};
+  return <Box {...rest} as={as} ref={ref} css={blockQuoteStyles()} />;
+});
 
 export const blockQuoteStyles = () => {
   const { blockQuote } = useTheme();

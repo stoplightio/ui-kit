@@ -1,12 +1,13 @@
 import * as React from 'react';
 
+import { Omit } from '@stoplight/types';
 import noop = require('lodash/noop');
 import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export interface IInput extends IBox<HTMLInputElement> {
+export interface IInput extends Omit<IBox<HTMLInputElement>, 'as'> {
   autosize?: boolean;
   invalid?: boolean;
 }
@@ -15,8 +16,8 @@ const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> =
   <AutosizeInput {...props} inputClassName={className} placeholderIsMinWidth />
 );
 
-export const Input: React.FunctionComponent<IInput> = props => {
-  const { as = 'input', autosize, onChange = noop, type, invalid, ...rest } = props;
+export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
+  const { autosize, onChange = noop, type, invalid, ...rest } = props;
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState(props.value);
@@ -31,7 +32,8 @@ export const Input: React.FunctionComponent<IInput> = props => {
   return (
     <Box
       {...rest}
-      as={autosize ? AutosizeWrapper : as}
+      as={autosize ? AutosizeWrapper : 'input'}
+      ref={ref}
       type={type}
       value={internalValue}
       onChange={handleChange}
@@ -39,7 +41,7 @@ export const Input: React.FunctionComponent<IInput> = props => {
       css={inputStyles(props)}
     />
   );
-};
+});
 
 const inputStyles = ({ disabled, invalid }: IInput) => {
   const { input: baseTheme } = useTheme();

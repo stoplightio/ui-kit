@@ -4,7 +4,7 @@ import { boolean, NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Box, Icon, Popup } from '../..';
+import { Box, Button, Flex, Icon, Input, Popup, Text } from '../..';
 
 const TAB_NAME = 'Popup';
 
@@ -55,5 +55,53 @@ storiesOf('Miscellaneous:Popup', module)
       show={boolean('show', false, TAB_NAME)}
       renderTrigger={() => <Box as="span">I am controlled, so hovering is no-op!</Box>}
       renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+    />
+  ))
+  .add('inside Flexbox', () => (
+    <Flex width="100%">
+      <Popup
+        {...popupKnobs()}
+        renderTrigger={() => (
+          <Flex flex="1" backgroundColor="red">
+            {'<Flex> flex=1'}
+          </Flex>
+        )}
+        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+      />
+      <Popup
+        {...popupKnobs()}
+        renderTrigger={() => (
+          <Input type="text" value="<Input> flex=2" onChange={() => void 0} flex="2" invalid={true} />
+        )}
+        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+      />
+      <Popup
+        {...popupKnobs()}
+        renderTrigger={() => <Button backgroundColor="green">{'<Button> no flex'}</Button>}
+        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+      />
+    </Flex>
+  ))
+  .add('form validation', () => (
+    <Popup
+      {...popupKnobs()}
+      padding={3}
+      renderContent={() => (
+        <Box border={`1px solid red`} borderRadius="10px" p={2}>
+          This is a tooltip message.
+        </Box>
+      )}
+      renderTrigger={() => (
+        <Flex width="100%" alignItems="center">
+          <Box flex="1">
+            <Text as="label">Title</Text>
+          </Box>
+          <Flex flex="1" width="100%">
+            <Box>
+              <Input type="text" value="Here is some text" onChange={() => void 0} flex="1" invalid={true} />
+            </Box>
+          </Flex>
+        </Flex>
+      )}
     />
   ));

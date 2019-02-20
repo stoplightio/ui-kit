@@ -5,7 +5,7 @@ import { number, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { Icon, Menu } from '../..';
-import { IMenu } from '../../Menu';
+import { IMenu, IMenuItem } from '../../Menu';
 
 export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
   posX: select('posX', ['left', 'center', 'right'], 'right', tabName),
@@ -93,7 +93,7 @@ storiesOf('Menus:Menu', module)
   .add('with custom renderMenuItem', () => (
     <Menu
       {...menuKnobs()}
-      renderMenuItem={item => <span>{item.title}</span>}
+      renderMenuItem={(item: IMenuItem) => <span>{item.title}</span>}
       menuItems={[
         { onClick: action('onClick'), title: <span>Has onClick</span>, subtitle: 'has subtitle', icon: 'marker' },
         { title: 'No onClick', icon: 'image' },

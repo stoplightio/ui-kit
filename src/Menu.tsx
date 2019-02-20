@@ -43,7 +43,8 @@ export interface IMenu extends IFlex {
     y?: number;
   };
 }
-export const Menu: React.FunctionComponent<IMenu> = props => {
+
+export const Menu = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
   const {
     menuItems,
     posX = 'center',
@@ -68,12 +69,12 @@ export const Menu: React.FunctionComponent<IMenu> = props => {
   });
 
   return (
-    <Box key={key} css={styles} {...rest} {...handlers}>
+    <Box key={key} ref={ref} css={styles} {...rest} {...handlers}>
       {renderTrigger && renderTrigger(isShown)}
       {(!renderTrigger || isShown) && renderMenu(listStyles, menuItems, renderMenuItem)}
     </Box>
   );
-};
+});
 
 export const menuListStyles = ({ hasTrigger, posX, posY, offset }: Partial<IMenu> & { hasTrigger: boolean }) => {
   const theme = useTheme();
@@ -122,13 +123,13 @@ export interface IMenuItem extends Pick<IFlex, Exclude<keyof IFlex, 'title'>> {
   onClick?: IFlex['onClick'];
 }
 
-export const MenuItem: React.FunctionComponent<IMenuItem> = props => {
+export const MenuItem = React.forwardRef<HTMLOrSVGElement, IMenuItem>((props, ref) => {
   const { icon, title, subtitle, onClick, disabled, ...rest } = props;
 
   const styles = menuItemStyles({ disabled, onClick });
 
   return (
-    <Flex {...rest} onClick={onClick} css={styles}>
+    <Flex {...rest} ref={ref} onClick={onClick} css={styles}>
       {icon && (
         <Flex key="menu-icon" alignItems="center" justifyContent="center" width="20px" pr={title || subtitle ? 10 : 0}>
           <Icon icon={icon} />
@@ -142,7 +143,7 @@ export const MenuItem: React.FunctionComponent<IMenuItem> = props => {
       )}
     </Flex>
   );
-};
+});
 
 const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItem>): IBoxCSS => {
   const { menu } = useTheme();

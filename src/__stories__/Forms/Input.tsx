@@ -38,6 +38,6 @@ storiesOf('Forms:Input', module)
     <Input
       {...inputKnobs()}
       value={store.get('value')}
-      onChange={event => store.set({ value: event.currentTarget.value })}
+      onChange={(event: React.SyntheticEvent<HTMLInputElement>) => store.set({ value: event.currentTarget.value })}
     />
   ));

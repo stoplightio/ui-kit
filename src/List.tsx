@@ -8,11 +8,11 @@ export interface IList extends sl.IListStyleProps, Omit<IBox<HTMLUListElement | 
   as?: 'ul' | 'ol';
 }
 
-export const List: React.FunctionComponent<IList> = props => {
+export const List = React.forwardRef<HTMLUListElement | HTMLOListElement, IList>((props, ref) => {
   const { as = 'ul', listStyle, listStylePosition, ...rest } = props;
 
-  return <Box {...rest} as={as} css={listStyles({ listStyle, listStylePosition })} />;
-};
+  return <Box {...rest} as={as} ref={ref} css={listStyles({ listStyle, listStylePosition })} />;
+});
 
 export const listStyles = ({ listStyle, listStylePosition }: IList) => {
   return sl.listStyle({ listStyle, listStylePosition });

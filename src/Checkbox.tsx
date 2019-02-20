@@ -1,6 +1,6 @@
 import { Omit } from '@stoplight/types';
 import * as React from 'react';
-import { ChangeEventHandler, FunctionComponent, useCallback, useState } from 'react';
+import { ChangeEventHandler, useCallback, useState } from 'react';
 
 import { Box, Flex, IBox, useTheme } from './';
 
@@ -10,7 +10,7 @@ export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   invalid?: boolean;
 }
 
-export const Checkbox: FunctionComponent<ICheckbox> = props => {
+export const Checkbox = React.forwardRef<HTMLLabelElement, ICheckbox>((props, ref) => {
   const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(!!props.checked);
@@ -23,7 +23,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
 
   return (
     // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" css={checkboxStyles({ isDisabled, isChecked, invalid })}>
+    <Flex {...rest} as="label" ref={ref} css={checkboxStyles({ isDisabled, isChecked, invalid })}>
       <Box
         as="input"
         type="checkbox"
@@ -40,7 +40,7 @@ export const Checkbox: FunctionComponent<ICheckbox> = props => {
       </svg>
     </Flex>
   );
-};
+});
 
 export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
   const { checkbox: baseTheme } = useTheme();
