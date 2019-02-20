@@ -45,6 +45,21 @@ const menuTheme: ITheme['menu'] = {
 export const darkTheme: ITheme = {
   base: 'dark',
 
+  badge: {
+    default: {
+      fg: '#fff',
+      bg: '#6c757e',
+    },
+    warning: {
+      fg: '#21252a',
+      bg: '#ffc108',
+    },
+    error: {
+      fg: '#fff',
+      bg: '#dc3546',
+    },
+  },
+
   button: buttonTheme,
 
   blockQuote: {
