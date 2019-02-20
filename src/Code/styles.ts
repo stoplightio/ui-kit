@@ -1,8 +1,23 @@
 import { css } from '@emotion/core';
 import { useTheme } from '../theme';
 
-export const codeStyles = () => {
+export interface ICodeStyles {
+  inline?: boolean;
+}
+
+export const codeStyles = ({ inline }: ICodeStyles = {}) => {
   const { code } = useTheme();
+
+  if (inline) {
+    return [
+      {
+        background: code.inlineBg,
+        color: code.inlineFg,
+        padding: 4,
+        borderRadius: '2px',
+      },
+    ];
+  }
 
   return [
     {

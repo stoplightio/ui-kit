@@ -59,6 +59,9 @@ export const lightTheme: ITheme = {
     bg: '#f9f9f9',
     border: 'grey',
 
+    inlineBg: '#f9f2f4',
+    inlineFg: '#c7254e',
+
     syntax: {
       primary: '#e91e63',
       secondary: '#4caf50',

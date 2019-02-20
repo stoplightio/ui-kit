@@ -7,16 +7,25 @@ import { parseCode } from './utils/parseCode';
 export interface IViewer extends IBox {
   value: string;
   language?: string;
-  // todo: implement me
-  // showLineNumbers?: boolean;
-  // inline?: boolean;
+  showLineNumbers?: boolean;
+  inline?: boolean;
 }
 
-export const Viewer: React.FunctionComponent<IViewer> = ({ language, value, ...rest }) => {
+export const Viewer: React.FunctionComponent<IViewer> = ({ language, value, showLineNumbers, inline, ...rest }) => {
+  const css = codeStyles({ inline });
+
+  if (inline) {
+    return (
+      <Box {...rest} css={css} as="code">
+        {value}
+      </Box>
+    );
+  }
+
   const markup = parseCode(value, language);
 
   return (
-    <Box {...rest} as="pre" css={codeStyles()}>
+    <Box {...rest} as="pre" css={css}>
       {markup ? markup.map(astToReact()) : value}
     </Box>
   );

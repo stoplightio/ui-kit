@@ -60,6 +60,9 @@ export interface ITheme {
     bg: string;
     border: string;
 
+    inlineBg: string;
+    inlineFg: string;
+
     syntax: {
       primary: string;
       secondary: string;
