@@ -8,7 +8,7 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   onChange?: (checked: boolean) => void;
 }
 
-export const Toggle = React.forwardRef<HTMLOrSVGElement, IToggle>((props, ref) => {
+export const Toggle = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) => {
   const { disabled: isDisabled, onChange, ...rest } = props;
 
   const [checked, setValue] = React.useState<boolean>(!!props.checked);

@@ -9,7 +9,7 @@ export interface IButton extends IBox<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button = React.forwardRef<HTMLOrSVGElement, IButton>((props, ref) => {
+export const Button = React.forwardRef<HTMLButtonElement, IButton>((props, ref) => {
   const { as = 'button', ...rest } = props;
   return <Box {...rest} as={as} ref={ref} css={buttonStyles(props)} />;
 });

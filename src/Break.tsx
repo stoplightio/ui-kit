@@ -6,7 +6,7 @@ export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
   thickness?: number;
 }
 
-export const Break = React.forwardRef<HTMLOrSVGElement, IBreak>((props, ref) => {
+export const Break = React.forwardRef<HTMLHRElement | HTMLElement, IBreak>((props, ref) => {
   const { as = 'hr', thickness = 1, ...rest } = props;
 
   return <Box {...rest} as={as} ref={ref} css={breakStyles({ thickness })} />;

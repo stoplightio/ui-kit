@@ -10,7 +10,7 @@ export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   invalid?: boolean;
 }
 
-export const Checkbox = React.forwardRef<HTMLOrSVGElement, ICheckbox>((props, ref) => {
+export const Checkbox = React.forwardRef<HTMLLabelElement, ICheckbox>((props, ref) => {
   const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
   const [checked, setValue] = useState<boolean>(!!props.checked);

@@ -7,7 +7,7 @@ export interface IImage extends IBox<HTMLImageElement> {
   responsive?: boolean;
 }
 
-export const Image = React.forwardRef<HTMLOrSVGElement, IImage>((props, ref) => {
+export const Image = React.forwardRef<HTMLImageElement, IImage>((props, ref) => {
   const { hidden, responsive, ...rest } = props;
 
   return <Box {...rest} as="img" ref={ref} css={imageStyles({ hidden, responsive })} />;

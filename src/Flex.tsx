@@ -5,7 +5,7 @@ import * as ss from 'styled-system';
 import { Box, IBox } from './Box';
 import * as sl from './styles';
 
-export interface IFlex<T extends HTMLElement = HTMLElement>
+export interface IFlex<T extends HTMLOrSVGElement = HTMLElement>
   extends IBox<T>,
     ss.FlexBasisProps,
     ss.FlexDirectionProps,

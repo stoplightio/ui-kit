@@ -12,7 +12,7 @@ export interface ITable extends IBox<HTMLTableElement> {
   isSelected?: boolean;
 }
 
-export const Table = React.forwardRef<HTMLOrSVGElement, ITable>((props, ref) => {
+export const Table = React.forwardRef<HTMLTableElement, ITable>((props, ref) => {
   const { children, isSelected, ...rest } = props;
 
   return (
@@ -44,7 +44,7 @@ export const tableStyles = ({ isSelected }: ITable): IBoxCSS => {
 
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
-export const TableRow = React.forwardRef<HTMLOrSVGElement, ITableRow>((props, ref) => {
+export const TableRow = React.forwardRef<HTMLTableRowElement, ITableRow>((props, ref) => {
   return <Box {...props} as="tr" ref={ref} css={tableRowStyles()} />;
 });
 
@@ -69,7 +69,7 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
   as?: 'th' | 'td';
 }
 
-export const TableCell = React.forwardRef<HTMLOrSVGElement, ITableCell>((props, ref) => {
+export const TableCell = React.forwardRef<HTMLTableDataCellElement, ITableCell>((props, ref) => {
   const { as = 'td', isSelected, ...rest } = props;
   return <Box {...rest} as={as} ref={ref} css={tableCellStyles({ as, isSelected })} />;
 });

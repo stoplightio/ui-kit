@@ -7,7 +7,7 @@ export interface IBlockQuote extends IText<HTMLQuoteElement | HTMLElement> {
   isSelected?: boolean;
 }
 
-export const BlockQuote = React.forwardRef<HTMLOrSVGElement, IBlockQuote>((props, ref) => {
+export const BlockQuote = React.forwardRef<HTMLQuoteElement | HTMLElement, IBlockQuote>((props, ref) => {
   const { as = 'blockquote', isSelected, ...rest } = props;
 
   return <Text {...rest} as={as} ref={ref} css={blockQuoteStyles({ isSelected })} />;

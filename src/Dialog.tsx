@@ -11,7 +11,7 @@ export interface IDialog extends IBox<HTMLElement> {
   onClickOutside?: React.ReactEventHandler<HTMLElement>;
 }
 
-export const Dialog = React.forwardRef<HTMLOrSVGElement, IDialog>((props, ref) => {
+export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
   const { children, show, onClickOutside, onClick, ...rest } = props;
   const css = dialogStyles();
 

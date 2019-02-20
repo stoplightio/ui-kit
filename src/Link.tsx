@@ -5,7 +5,7 @@ import { useTheme } from './theme';
 
 export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
 
-export const Link = React.forwardRef<HTMLOrSVGElement, ILink>((props, ref) => {
+export const Link = React.forwardRef<HTMLAnchorElement | HTMLElement, ILink>((props, ref) => {
   const { as = 'a', ...rest } = props;
 
   return <Text {...rest} as={as} ref={ref} css={linkStyles()} />;
