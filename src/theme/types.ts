@@ -36,7 +36,7 @@ export interface ITheme {
 
   blockQuote: {
     fg?: string;
-    bg?: string;
+    bg: string;
     border: string;
     shadow: string;
   };

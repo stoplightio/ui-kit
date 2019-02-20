@@ -1,32 +1,24 @@
 import * as React from 'react';
-
-import { IText, Text } from './Text';
+import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export interface IBlockQuote extends IText<HTMLQuoteElement | HTMLElement> {
-  isSelected?: boolean;
-}
+export interface IBlockQuote extends IBox<HTMLQuoteElement | HTMLElement> {}
 
 export const BlockQuote: React.FunctionComponent<IBlockQuote> = props => {
-  const { as = 'blockquote', isSelected, ...rest } = props;
+  const { as = 'blockquote', ...rest } = props;
 
-  return <Text {...rest} as={as} css={blockQuoteStyles({ isSelected })} />;
+  return <Box {...rest} as={as} css={blockQuoteStyles()} />;
 };
 
-export const blockQuoteStyles = ({ isSelected }: IBlockQuote) => {
+export const blockQuoteStyles = () => {
   const { blockQuote } = useTheme();
 
-  return [
-    {
-      color: blockQuote.fg,
-      borderColor: blockQuote.border,
-
-      padding: '15px 25px',
-      borderLeft: '5px solid',
-      maxWidth: '80%',
-    },
-    isSelected && {
-      boxShadow: blockQuote.shadow,
-    },
-  ];
+  return {
+    color: blockQuote.fg,
+    backgroundColor: blockQuote.bg,
+    boxShadow: blockQuote.shadow,
+    padding: '.85rem 1.3rem',
+    margin: '.5rem auto',
+    borderLeft: `6px solid ${blockQuote.border}`,
+  };
 };

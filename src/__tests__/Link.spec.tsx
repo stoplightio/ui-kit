@@ -1,9 +1,8 @@
-import * as React from 'react';
-
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
+import * as React from 'react';
+import { Box } from '../Box';
 import { Link } from '../Link';
-import { Text } from '../Text';
 import { useTheme } from '../theme';
 
 jest.mock('../theme', () => ({
@@ -17,9 +16,9 @@ jest.mock('../theme', () => ({
 }));
 
 describe('Link component', () => {
-  it('renders Text as anchor', () => {
+  it('renders Box as anchor', () => {
     const wrapper = shallow(<Link />).shallow();
-    expect(wrapper).toMatchElement(<Text as="a" />);
+    expect(wrapper).toMatchElement(<Box as="a" />);
   });
 
   it('passes all props', () => {
@@ -36,18 +35,12 @@ describe('Link component', () => {
     });
   });
 
-  it('can render any tag', () => {
-    const as = 'span';
-    const wrapper = shallow(<Link as={as} />);
-    expect(wrapper).toHaveProp({ as });
-  });
-
   describe('styles', () => {
     it('provides a default styling based on theme', () => {
       const wrapper = shallow(<Link />);
       const theme = useTheme();
       expect(wrapper).toHaveProp('css', [
-        { color: theme.link!.fg },
+        expect.objectContaining({ color: theme.link!.fg }),
         {
           ':hover': { color: theme.link!.hoverFg },
         },

@@ -1,14 +1,11 @@
 import * as React from 'react';
-
-import { IText, Text } from './Text';
+import { Box, IBox } from './Box';
 import { useTheme } from './theme';
 
-export interface ILink extends IText<HTMLAnchorElement | HTMLElement> {}
+export interface ILink extends IBox<HTMLAnchorElement> {}
 
 export const Link: React.FunctionComponent<ILink> = props => {
-  const { as = 'a', ...rest } = props;
-
-  return <Text {...rest} as={as} css={linkStyles()} />;
+  return <Box {...props} as="a" css={linkStyles()} />;
 };
 
 export const linkStyles = () => {
@@ -17,6 +14,7 @@ export const linkStyles = () => {
   return [
     {
       color: link.fg,
+      textDecoration: 'none',
     },
     link.hoverFg && {
       ':hover': {

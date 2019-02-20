@@ -48,9 +48,9 @@ export const lightTheme: ITheme = {
   button: buttonTheme,
 
   blockQuote: {
-    fg: '#111',
-    border: '#111',
-    shadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+    bg: '#f4faff',
+    border: '#48a4f9',
+    shadow: '0 0 1px rgba(72, 164, 249, 0.15)',
   },
 
   checkbox: checkboxTheme,
