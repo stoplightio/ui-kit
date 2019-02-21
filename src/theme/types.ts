@@ -16,6 +16,15 @@ export interface ITheme {
     border?: string;
   };
 
+  callout: {
+    fg: string;
+    bg: string;
+    border?: string;
+    invalidFg?: string;
+    invalidBg?: string;
+    invalidBorder?: string;
+  };
+
   checkbox: {
     fg: string;
     bg: string;
