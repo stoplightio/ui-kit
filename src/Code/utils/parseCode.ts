@@ -1,13 +1,38 @@
 // @ts-ignore
 import * as refractor from 'refractor';
-// @ts-ignore
 import { lineNumberify } from './lineNumberify';
 
-export function parseCode(code: string, language?: string, addLineNumbers?: boolean) {
-  if (!language) return null;
+function parsePlainText(code: string) {
+  return code.split('\n').map((value, i, arr) => ({
+    type: 'element',
+    tagName: 'span',
+    properties: {
+      className: [],
+    },
+    children: [
+      {
+        type: 'text',
+        value: arr.length - 1 === i ? value : `${value}\n`,
+      },
+    ],
+  }));
+}
 
+function safeParse(code: string, language?: string) {
+  if (language) {
+    try {
+      return refractor.highlight(code, language);
+    } catch (ex) {
+      // let's fallback to plain text
+    }
+  }
+
+  return parsePlainText(code);
+}
+
+export function parseCode(code: string, language?: string, addLineNumbers?: boolean) {
   try {
-    const ast = refractor.highlight(code, language);
+    const ast = safeParse(code, language);
     if (addLineNumbers) {
       return lineNumberify(ast);
     }
