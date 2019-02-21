@@ -11,7 +11,13 @@ export interface IViewer extends IBox {
   inline?: boolean;
 }
 
-export const Viewer: React.FunctionComponent<IViewer> = ({ language, value, showLineNumbers, inline, ...rest }) => {
+export const Viewer: React.FunctionComponent<IViewer> = ({
+  language,
+  value,
+  showLineNumbers = false,
+  inline = false,
+  ...rest
+}) => {
   const css = codeStyles({ inline });
 
   if (inline) {

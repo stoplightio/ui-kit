@@ -42,7 +42,7 @@ describe('Code Viewer component', () => {
     const wrapper = shallow(<Viewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
-    expect(parseCode).toHaveBeenCalledWith(code, language, undefined);
+    expect(parseCode).toHaveBeenCalledWith(code, language, false);
   });
 
   it('does not try to map ast nodes to react nodes if parsing failed', () => {
@@ -72,7 +72,7 @@ describe('Code Viewer component', () => {
 
     const wrapper = shallow(<Viewer language={language} value={code} />);
     expect(wrapper).toContainReact(markup);
-    expect(parseCode).toHaveBeenCalledWith(code, language, undefined);
+    expect(parseCode).toHaveBeenCalledWith(code, language, false);
     expect(astToReact).toHaveBeenCalled();
   });
 });
