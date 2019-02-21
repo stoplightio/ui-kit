@@ -1,11 +1,12 @@
 import { css } from '@emotion/core';
+import { IBoxCSS } from '../Box';
 import { useTheme } from '../theme';
 
 export interface ICodeStyles {
   inline?: boolean;
 }
 
-export const codeStyles = ({ inline }: ICodeStyles = {}) => {
+export const codeStyles = ({ inline }: ICodeStyles = {}): IBoxCSS[] => {
   const { code } = useTheme();
 
   if (inline) {
@@ -25,6 +26,8 @@ export const codeStyles = ({ inline }: ICodeStyles = {}) => {
       ...(code.border && { border: `1px solid ${code.border}` }),
       fontFamily: 'monospace',
       padding: 10,
+      whiteSpace: 'pre-wrap',
+      maxWidth: '100%',
     },
     css`
       counter-reset: line;
@@ -34,7 +37,10 @@ export const codeStyles = ({ inline }: ICodeStyles = {}) => {
       }
 
       .line-number {
-        padding-right: 10px;
+        padding-left: 40px;
+        position: relative;
+        width: calc(100% - 40px);
+        display: block;
 
         &::before {
           content: '';
@@ -43,7 +49,8 @@ export const codeStyles = ({ inline }: ICodeStyles = {}) => {
           opacity: 0.3;
           text-align: right;
           min-width: 25px;
-          padding-right: 15px;
+          position: absolute;
+          left: 0;
           counter-increment: line;
           content: counter(line);
         }
