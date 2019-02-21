@@ -25,7 +25,8 @@ function createLineElement({
   };
 }
 
-function flattenCodeTree(tree: ASTNode[], className: string[] = [], newTree: ASTNode[] = []) {
+function flattenCodeTree(tree: ASTNode[], className: string[] = []): ASTNode[] {
+  const newTree: ASTNode[] = [];
   for (const node of tree) {
     if (node.type === 'text') {
       newTree.push(
@@ -36,7 +37,7 @@ function flattenCodeTree(tree: ASTNode[], className: string[] = [], newTree: AST
       );
     } else if (node.children) {
       const classNames = className.concat(node.properties!.className);
-      newTree = newTree.concat(flattenCodeTree(node.children, classNames));
+      newTree.push(...flattenCodeTree(node.children, classNames));
     }
   }
 
