@@ -8,8 +8,8 @@ import { Badge, BadgeColor, BadgeVariant } from '../../Badge';
 
 export const badgeKnobs = (tabName = 'Badge'): any => {
   return {
-    color: select('color', [BadgeColor.Error, BadgeColor.Warning, BadgeColor.Default], BadgeColor.Default, tabName),
-    variant: select('variant', [BadgeVariant.Pill, BadgeVariant.Textual], BadgeVariant.Pill, tabName),
+    color: select('color', [Object.values(BadgeColor)], BadgeColor.Default, tabName),
+    variant: select('variant', [Object.values(BadgeVariant)], BadgeVariant.Pill, tabName),
   };
 };
 
