@@ -118,17 +118,22 @@ describe('Dialog component', () => {
 
       expect(content).toHaveProp(
         'css',
-        expect.objectContaining({
-          backgroundColor: theme.dialog!.bg,
-          color: theme.dialog!.fg,
-        })
+        expect.arrayContaining([
+          expect.objectContaining({
+            backgroundColor: theme.dialog!.bg,
+            color: theme.dialog!.fg,
+          }),
+          undefined,
+        ])
       );
 
       expect(content).toHaveProp(
         'css',
-        expect.not.objectContaining({
-          border: `1px solid ${theme.dialog!.border}`,
-        })
+        expect.not.arrayContaining([
+          {
+            border: `1px solid ${theme.dialog!.border}`,
+          },
+        ])
       );
     });
 
@@ -143,9 +148,12 @@ describe('Dialog component', () => {
 
       expect(content).toHaveProp(
         'css',
-        expect.objectContaining({
-          border: `1px solid ${theme.dialog!.border}`,
-        })
+        expect.arrayContaining([
+          expect.objectContaining({
+            border: `1px solid ${theme.dialog!.border}`,
+          }),
+          undefined,
+        ])
       );
     });
 

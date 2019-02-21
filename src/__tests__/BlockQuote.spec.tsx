@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
+
 import { BlockQuote } from '../BlockQuote';
 import { Box } from '../Box';
 import { useTheme } from '../theme';
@@ -8,6 +9,7 @@ import { useTheme } from '../theme';
 jest.mock('../theme', () => ({
   useTheme: jest.fn().mockReturnValue({
     blockQuote: {
+      bg: 'white',
       fg: '#000',
       border: '#fff',
       shadow: '0 2px 5px #000',
@@ -28,16 +30,22 @@ describe('BlockQuote component', () => {
   });
 
   describe('styles', () => {
-    it('provides a default styling based on theme', () => {
+    it('provides a default styling based on theme, and passes custom css through', () => {
       const theme = useTheme();
-      const wrapper = shallow(<BlockQuote />);
+      const wrapper = shallow(<BlockQuote css={{ opacity: 0.5 }} />);
       expect(wrapper).toHaveProp(
         'css',
-        expect.objectContaining({
-          backgroundColor: theme.blockQuote!.bg,
-          borderLeft: expect.stringContaining(theme.blockQuote!.border),
-          boxShadow: theme.blockQuote!.shadow,
-        })
+        expect.arrayContaining([
+          expect.objectContaining({
+            backgroundColor: theme.blockQuote!.bg,
+            color: theme.blockQuote!.fg,
+            borderLeft: expect.stringContaining(theme.blockQuote!.border),
+            boxShadow: theme.blockQuote!.shadow,
+          }),
+          {
+            opacity: 0.5,
+          },
+        ])
       );
     });
   });

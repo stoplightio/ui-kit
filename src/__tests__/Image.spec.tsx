@@ -36,8 +36,8 @@ describe('Image component', () => {
 
   describe('styles', () => {
     it('hides image when hidden is true', () => {
-      const wrapper = shallow(<Image hidden />);
-      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ display: 'none' }]));
+      const wrapper = shallow(<Image hidden css={{ opacity: 0.5 }} />);
+      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ display: 'none' }, { opacity: 0.5 }]));
     });
 
     it('sets responsive dimension when responsive is true', () => {
@@ -51,6 +51,7 @@ describe('Image component', () => {
             maxWidth: '100%',
             maxHeight: '100%',
           },
+          undefined,
         ])
       );
     });

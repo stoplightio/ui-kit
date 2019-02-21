@@ -15,9 +15,9 @@ interface IScrollBoxThumb extends IBox<HTMLDivElement> {
 }
 
 const ScrollbarThumb = React.forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
-  const { isScrolling, ...rest } = props;
+  const { isScrolling, css, ...rest } = props;
 
-  return <Box {...rest} ref={ref} css={scrollbarStyles({ isScrolling })} />;
+  return <Box {...rest} ref={ref} css={[scrollbarStyles({ isScrolling }), css]} />;
 });
 
 const scrollbarStyles = ({ isScrolling }: IScrollBoxThumb) => {

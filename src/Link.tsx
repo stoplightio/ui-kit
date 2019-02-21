@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Box, IBox } from './Box';
+import { Box, IBox, IBoxCSS } from './Box';
 import { useTheme } from './theme';
 
 export interface ILink extends IBox<HTMLAnchorElement> {}
 
 export const Link = React.forwardRef<HTMLAnchorElement, ILink>((props, ref) => {
-  return <Box {...props} as="a" ref={ref} css={linkStyles()} />;
+  const { css, ...rest } = props;
+  return <Box {...rest} as="a" ref={ref} css={linkStyles(css)} />;
 });
 
-export const linkStyles = () => {
+export const linkStyles = (css: IBoxCSS) => {
   const { link } = useTheme();
 
   return [
@@ -26,5 +27,6 @@ export const linkStyles = () => {
         color: link.visitedFg,
       },
     },
+    css,
   ];
 };

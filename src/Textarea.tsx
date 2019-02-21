@@ -13,7 +13,7 @@ export interface ITextarea extends Omit<IBox<HTMLTextAreaElement>, 'as'> {
 }
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
-  const { autosize, onChange = noop, invalid, ...rest } = props;
+  const { autosize, onChange = noop, invalid, css, ...rest } = props;
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState<string>(props.value || '');
@@ -31,7 +31,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, ITextarea>((props,
       ref={ref}
       value={internalValue}
       onChange={handleChange}
-      css={textareaStyles(props)}
+      css={[textareaStyles(props), css]}
     />
   );
 });
