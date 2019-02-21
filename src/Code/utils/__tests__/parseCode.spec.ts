@@ -9,8 +9,47 @@ describe('parseCode util', () => {
     refractor.highlight.mockReset();
   });
 
-  it('returns null if language is falsy', () => {
-    expect(parseCode('')).toBeNull();
+  it('produces basic AST of if language is falsy', () => {
+    expect(parseCode('foo\nbar')).toEqual([
+      {
+        children: [
+          {
+            type: 'text',
+            value: 'foo\n',
+          },
+        ],
+        properties: {},
+        tagName: 'span',
+        type: 'element',
+      },
+      {
+        children: [
+          {
+            type: 'text',
+            value: 'bar',
+          },
+        ],
+        properties: {},
+        tagName: 'span',
+        type: 'element',
+      },
+    ]);
+  });
+
+  it('produces basic AST even when both code and language are falsy', () => {
+    expect(parseCode('')).toEqual([
+      {
+        children: [
+          {
+            type: 'text',
+            value: '',
+          },
+        ],
+        properties: {},
+        tagName: 'span',
+        type: 'element',
+      },
+    ]);
   });
 
   it('calls refractor.highlight and returns its result', () => {
@@ -23,14 +62,26 @@ describe('parseCode util', () => {
     expect(refractor.highlight).toHaveBeenCalledWith(code, language);
   });
 
-  it('returns null if parsing fails', () => {
+  it('fall backs to plain text parsing if refractor highlighting fails', () => {
     const code = 'foo()';
     const language = 'javscript';
     refractor.highlight.mockImplementation(() => {
       throw new Error();
     });
 
-    expect(parseCode(code, language)).toBeNull();
+    expect(parseCode(code, language)).toEqual([
+      {
+        children: [
+          {
+            type: 'text',
+            value: code,
+          },
+        ],
+        properties: {},
+        tagName: 'span',
+        type: 'element',
+      },
+    ]);
     expect(refractor.highlight).toHaveBeenCalledWith(code, language);
   });
 });

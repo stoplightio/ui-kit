@@ -6,9 +6,7 @@ function parsePlainText(code: string) {
   return code.split('\n').map((value, i, arr) => ({
     type: 'element',
     tagName: 'span',
-    properties: {
-      className: [],
-    },
+    properties: {},
     children: [
       {
         type: 'text',

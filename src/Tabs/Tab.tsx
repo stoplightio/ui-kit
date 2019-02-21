@@ -12,7 +12,6 @@ const StyledTab: React.FunctionComponent<TabProps> & { tabsRole: string } = prop
   return (
     <ClassNames>
       {({ css: getClassName }) => (
-        // @ts-ignore
         <Tab
           {...props}
           className={getClassName(styles.tabStyle)}
