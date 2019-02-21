@@ -1,0 +1,54 @@
+[
+  {
+    "type": "text",
+    "value": "fn\n\n\n\nabc\n"
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "function"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": "t"
+      }
+    ]
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "punctuation"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": "("
+      }
+    ]
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "punctuation"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": ")"
+      }
+    ]
+  }
+]

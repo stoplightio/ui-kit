@@ -5,6 +5,7 @@ import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Button, Flex } from '../../';
+import { Viewer } from '../../Code/Viewer';
 import { IScrollbars, ScrollBox } from '../../ScrollBox';
 
 export const scrollBoxKnobs = (tabName = 'ScrollBox') => ({
@@ -18,6 +19,35 @@ storiesOf('Utilities:ScrollBox', module)
     <Box width="50%" height="50%" m="@auto" border="@sm">
       <ScrollBox scrollTo="sub-heading2">
         <ScrollContent />
+      </ScrollBox>
+    </Box>
+  ))
+  .add('with Code Viwer inside', () => (
+    <Box width="50%" height="50%" m="@auto" border="@sm">
+      <ScrollBox>
+        <Viewer
+          language="javascript"
+          showLineNumbers={true}
+          value={`import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs/react';
+import { storiesOf } from '@storybook/react';
+import * as React from 'react';
+
+import { IViewer, Viewer } from '../../Code/Viewer';
+
+export const codeViewerKnobs = (tabName = 'Code Viewer'): IViewer => ({
+  language: text('language', 'javascript', tabName),
+  value: text('value', 'const defaultValue = stoplight.io();', tabName),
+  inline: boolean('inline', false, tabName),
+  showLineNumbers: boolean('showLineNumbers', false, tabName),
+});
+
+storiesOf('Code:Viewer', module)
+  .addDecorator(withKnobs)
+  .add('with defaults', () => <Viewer {...codeViewerKnobs()} />)
+  .add('inline', () => <Viewer {...codeViewerKnobs()} inline />);
+`}
+        />
       </ScrollBox>
     </Box>
   ));

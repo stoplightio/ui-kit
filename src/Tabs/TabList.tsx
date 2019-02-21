@@ -16,7 +16,7 @@ StyledTabList.tabsRole = 'TabList';
 const tabListStyle: IBoxCSS = {
   margin: '0',
   padding: '0',
-  'user-select': 'none',
+  userSelect: 'none',
 };
 
 export { StyledTabList as TabList };
