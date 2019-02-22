@@ -92,63 +92,55 @@ const caretStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): React.
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);
 
-  const pstyles: React.CSSProperties = {};
+  const s: React.CSSProperties = {};
+  s.width = `${sz}px`;
+  s.height = `${sz}px`;
+  s.border = `${b}px solid ${theme.border}`;
+  s.backgroundColor = theme.bg;
 
-  pstyles.width = `${sz}px`;
-  pstyles.height = `${sz}px`;
-  pstyles.border = `${b}px solid ${theme.border}`;
-  pstyles.backgroundColor = theme.bg;
   if (posY === 'bottom') {
     if (posX === 'right') {
-      caretCorner(pstyles, 'top', 'left');
-      rotate(pstyles, 'top', 'right');
-      pstyles.top = `-${b}px`;
-      pstyles.right = `${sz}px`;
+      caretCorner(s, 'top', 'left');
+      rotate(s, 'top', 'right');
+      move(s, 'top', 'right');
     } else if (posX === 'center') {
-      caretCorner(pstyles, 'top', 'left');
-      rotateCenterCenter(pstyles);
-      pstyles.top = `-${b + sz / 2}px`;
-      pstyles.left = `calc(50% - ${caretHeight}px)`;
+      caretCorner(s, 'top', 'left');
+      rotate(s, 'center', 'center');
+      move(s, 'top', 'center');
     } else if (posX === 'left') {
-      caretCorner(pstyles, 'top', 'right');
-      rotate(pstyles, 'top', 'left');
-      pstyles.top = `-${b}px`;
-      pstyles.left = `${sz}px`;
+      caretCorner(s, 'top', 'right');
+      rotate(s, 'top', 'left');
+      move(s, 'top', 'left');
     }
   } else if (posY === 'top') {
     if (posX === 'right') {
-      caretCorner(pstyles, 'bottom', 'left');
-      rotate(pstyles, 'bottom', 'right');
-      pstyles.bottom = `-${b}px`;
-      pstyles.right = `${sz}px`;
+      caretCorner(s, 'bottom', 'left');
+      rotate(s, 'bottom', 'right');
+      move(s, 'bottom', 'right');
     } else if (posX === 'center') {
-      caretCorner(pstyles, 'bottom', 'right');
-      rotateCenterCenter(pstyles);
-      pstyles.bottom = `-${b + sz / 2}px`;
-      pstyles.left = `calc(50% - ${caretHeight}px)`;
+      caretCorner(s, 'bottom', 'right');
+      rotate(s, 'center', 'center');
+      move(s, 'bottom', 'center');
     } else if (posX === 'left') {
-      caretCorner(pstyles, 'bottom', 'right');
-      rotate(pstyles, 'bottom', 'left');
-      pstyles.bottom = `-${b}px`;
-      pstyles.left = `${sz}px`;
+      caretCorner(s, 'bottom', 'right');
+      rotate(s, 'bottom', 'left');
+      move(s, 'bottom', 'left');
     }
   } else if (posY === 'center') {
     if (posX === 'right') {
-      caretCorner(pstyles, 'top', 'left');
-      rotate(pstyles, 'top', 'left');
-      pstyles.left = `-${b + caretHeight}px`;
-      pstyles.top = '50%';
+      caretCorner(s, 'top', 'left');
+      rotate(s, 'top', 'left');
+      move(s, 'center', 'left');
     } else if (posX === 'center') {
-      pstyles.visibility = 'hidden';
+      s.visibility = 'hidden';
     } else if (posX === 'left') {
-      caretCorner(pstyles, 'top', 'right');
-      rotate(pstyles, 'top', 'right');
-      pstyles.right = `-${b + caretHeight}px`;
-      pstyles.top = '50%';
+      caretCorner(s, 'top', 'right');
+      rotate(s, 'top', 'right');
+      move(s, 'center', 'right');
     }
   }
 
-  return pstyles;
+  return s;
 };
 
 // CONSTANTS
@@ -178,16 +170,35 @@ const opposingMargin = (side: Side) => 'margin' + capitalize(oppositeSide(side))
 
 const opposingBorderWidth = (side: Side) => 'border' + capitalize(oppositeSide(side)) + 'Width';
 
-const rotate = (styles: React.CSSProperties, side1: 'top' | 'bottom', side2: 'right' | 'left') => {
-  styles.transformOrigin = `${side1} ${side2}`;
-  const signs = [[-1, 1], [1, -1]];
-  const sign = signs[side1 === 'top' ? 0 : 1][side2 === 'left' ? 0 : 1];
-  const deg = 45 * sign;
-  styles.transform = `rotate(${deg}deg)`;
+const rotate = (
+  styles: React.CSSProperties,
+  side1: 'top' | 'bottom' | 'center',
+  side2: 'right' | 'left' | 'center'
+) => {
+  if (side1 !== 'center' && side2 !== 'center') {
+    styles.transformOrigin = `${side1} ${side2}`;
+    const signs = [[-1, 1], [1, -1]];
+    const sign = signs[side1 === 'top' ? 0 : 1][side2 === 'left' ? 0 : 1];
+    const deg = 45 * sign;
+    styles.transform = `rotate(${deg}deg)`;
+  } else {
+    styles.transform = 'rotate(45deg)';
+  }
 };
 
-const rotateCenterCenter = (styles: React.CSSProperties) => {
-  styles.transform = 'rotate(45deg)';
+const move = (styles: React.CSSProperties, side1: 'top' | 'bottom' | 'center', side2: 'right' | 'left' | 'center') => {
+  if (side1 !== 'center') {
+    if (side2 !== 'center') {
+      styles[side1] = `-${b}px`;
+      styles[side2] = `${sz}px`;
+    } else {
+      styles[side1] = `-${b + sz / 2}px`;
+      styles.left = `calc(50% - ${caretHeight}px)`;
+    }
+  } else {
+    styles.top = '50%';
+    styles[side2] = `-${b + caretHeight}px`;
+  }
 };
 
 // This helper removes the border from two sides of the caret depending on which
