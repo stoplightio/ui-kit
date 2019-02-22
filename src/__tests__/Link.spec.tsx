@@ -41,12 +41,16 @@ describe('Link component', () => {
       const theme = useTheme();
       expect(wrapper).toHaveProp('css', [
         expect.objectContaining({ color: theme.link!.fg }),
+        undefined,
+        undefined,
         {
           ':hover': { color: theme.link!.hoverFg },
         },
         {
           ':visited': { color: theme.link!.visitedFg },
         },
+        undefined,
+        undefined,
         {
           opacity: 0.5,
         },

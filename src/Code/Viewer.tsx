@@ -1,8 +1,13 @@
 import * as React from 'react';
+
 import { Box, IBox } from '../Box';
 import { codeStyles } from './styles';
 import { astToReact } from './utils/astToReact';
 import { parseCode } from './utils/parseCode';
+
+const languageMaps: { [from: string]: string } = {
+  md: 'markdown',
+};
 
 export interface IViewer extends IBox {
   value: string;
@@ -19,7 +24,8 @@ export const Viewer: React.FunctionComponent<IViewer> = ({
   css,
   ...rest
 }) => {
-  const codeCss = codeStyles({ inline });
+  const codeCss = codeStyles({ inline, showLineNumbers });
+  const lang = (language && languageMaps[language]) || language;
 
   if (inline) {
     return (
@@ -29,7 +35,7 @@ export const Viewer: React.FunctionComponent<IViewer> = ({
     );
   }
 
-  const markup = parseCode(value, language, showLineNumbers);
+  const markup = parseCode(value, lang, showLineNumbers);
 
   return (
     <Box {...rest} as="pre" css={[codeCss, css]}>

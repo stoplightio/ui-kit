@@ -27,10 +27,14 @@ export const tableStyles = ({ isSelected }: ITable): IBoxCSS => {
 
   return [
     {
-      border: '0 none',
-      borderTop: '1px solid',
+      border: '1px solid',
       borderCollapse: 'collapse',
       borderColor: table.border,
+      tr: {
+        '&:first-child': {
+          fontWeight: 'bold',
+        },
+      },
     },
     isSelected && {
       boxShadow: table.shadow,
@@ -55,14 +59,19 @@ export const tableRowStyles = () => {
     {
       border: '0 none',
       borderBottom: '1px solid',
-      borderRight: '1px solid',
       borderColor: table.border,
+      '&:last-child': {
+        borderBottom: '0 none',
+      },
+      '&:nth-child(even)': {
+        backgroundColor: table.evenBg,
+      },
     },
   ];
 };
 
 /**
- * TABLE CEL
+ * TABLE CELL
  */
 
 export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
@@ -81,8 +90,16 @@ export const tableCellStyles = ({ isSelected }: ITableCell): IBoxCSS => {
     {
       border: '0 none',
       borderLeft: '1px solid',
+      borderRight: '1px solid',
       borderColor: table.border,
       textAlign: 'left',
+      padding: '10px 40px 10px 15px',
+      '&:first-child': {
+        borderLeft: '0 none',
+      },
+      '&:last-child': {
+        borderRight: '0 none',
+      },
     },
     isSelected && {
       boxShadow: table.shadow,

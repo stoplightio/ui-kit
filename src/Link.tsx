@@ -16,6 +16,15 @@ export const linkStyles = (css: IBoxCSS) => {
     {
       color: link.fg,
       textDecoration: 'none',
+      padding: '0 3px',
+    },
+    link.bg && {
+      backgroundColor: link.bg,
+    },
+    link.hoverBg && {
+      ':hover': {
+        backgroundColor: link.hoverBg,
+      },
     },
     link.hoverFg && {
       ':hover': {
@@ -25,6 +34,14 @@ export const linkStyles = (css: IBoxCSS) => {
     link.visitedFg && {
       ':visited': {
         color: link.visitedFg,
+      },
+    },
+    link.border && {
+      borderBottom: `1px solid ${link.border}`,
+    },
+    link.hoverBorder && {
+      ':hover': {
+        borderColor: link.hoverBorder,
       },
     },
     css,
