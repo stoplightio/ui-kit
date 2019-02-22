@@ -53,8 +53,6 @@ export const lightTheme: ITheme = {
     shadow: '0 0 1px rgba(72, 164, 249, 0.15)',
   },
 
-  callout: inputTheme,
-
   checkbox: checkboxTheme,
 
   code: {
@@ -136,4 +134,6 @@ export const lightTheme: ITheme = {
     ...checkboxTheme,
     bg: 'gainsboro',
   },
+
+  tooltip: inputTheme,
 };

@@ -16,15 +16,6 @@ export interface ITheme {
     border?: string;
   };
 
-  callout: {
-    fg: string;
-    bg: string;
-    border?: string;
-    invalidFg?: string;
-    invalidBg?: string;
-    invalidBorder?: string;
-  };
-
   checkbox: {
     fg: string;
     bg: string;
@@ -160,6 +151,15 @@ export interface ITheme {
     bg: string;
     border?: string;
     checked: string;
+  };
+
+  tooltip: {
+    fg: string;
+    bg: string;
+    border?: string;
+    invalidFg?: string;
+    invalidBg?: string;
+    invalidBorder?: string;
   };
 }
 
