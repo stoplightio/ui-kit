@@ -7,14 +7,10 @@ import { Box, IBox, IBoxCSS } from './Box';
 import { Flex } from './Flex';
 import { useTheme } from './theme';
 
-export interface ITooltipCaret {
-  posX?: 'left' | 'center' | 'right';
-  posY?: 'top' | 'center' | 'bottom';
-}
-
 export interface ITooltip extends IBox<HTMLDivElement> {
   invalid?: boolean;
-  caret?: ITooltipCaret;
+  posX?: 'left' | 'center' | 'right';
+  posY?: 'top' | 'center' | 'bottom';
 }
 
 export const Tooltip: React.FunctionComponent<ITooltip> = props => {
@@ -30,7 +26,7 @@ export const Tooltip: React.FunctionComponent<ITooltip> = props => {
   );
 };
 
-const tooltipStyles = ({ invalid }: ITooltip): IBoxCSS => {
+const tooltipStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): IBoxCSS => {
   const { tooltip: baseTheme } = useTheme();
 
   const invalidTheme = {
@@ -42,6 +38,21 @@ const tooltipStyles = ({ invalid }: ITooltip): IBoxCSS => {
   const theme = { ...baseTheme };
   if (invalid) Object.assign(theme, invalidTheme);
 
+  const sz = (20 * Math.SQRT2) / 2;
+  let margin = '';
+  if (posY === 'bottom') {
+    margin = `${sz}px 0 0 0`;
+  } else if (posY === 'top') {
+    margin = `0 0 ${sz}px 0`;
+  } else if (posY === 'center') {
+    if (posX === 'right') {
+      margin = `0 0 0 ${sz}px`;
+    } else if (posX === 'center') {
+      margin = `0 0 0 0`;
+    } else if (posX === 'left') {
+      margin = `0 ${sz}px 0 0`;
+    }
+  }
   return [
     {
       color: theme.fg,
@@ -49,6 +60,7 @@ const tooltipStyles = ({ invalid }: ITooltip): IBoxCSS => {
       border: `1px solid ${theme.border || theme.fg}`,
       position: 'relative',
       borderRadius: '3px',
+      margin,
     },
   ];
 };
@@ -74,9 +86,8 @@ const contentStyles = ({ invalid }: ITooltip): IBoxCSS => {
   ];
 };
 
-const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => {
+const caretStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): React.CSSProperties => {
   const { tooltip: baseTheme } = useTheme();
-  const { posX = 'left', posY = 'top' } = caret;
 
   const invalidTheme = {
     fg: baseTheme.invalidFg,
@@ -108,7 +119,7 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
       pstyles.borderBottomWidth = 0;
       pstyles.borderRightWidth = 0;
       pstyles.top = `-${sz / 2 + b}px`;
-      pstyles.left = '50%';
+      pstyles.left = `calc(50% - ${(sz * Math.SQRT2) / 2}px)`;
     } else if (posX === 'left') {
       pstyles.transformOrigin = 'top left';
       pstyles.transform = 'rotate(-45deg)';
@@ -130,7 +141,7 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
       pstyles.borderTopWidth = 0;
       pstyles.borderLeftWidth = 0;
       pstyles.bottom = `-${sz / 2 + b}px`;
-      pstyles.left = '50%';
+      pstyles.left = `calc(50% - ${(sz * Math.SQRT2) / 2}px)`;
     } else if (posX === 'left') {
       pstyles.transformOrigin = 'bottom left';
       pstyles.transform = 'rotate(45deg)';
