@@ -17,7 +17,7 @@ const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> =
 );
 
 export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
-  const { autosize, onChange = noop, type, invalid, ...rest } = props;
+  const { autosize, onChange = noop, type, invalid, css, ...rest } = props;
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState(props.value);
@@ -37,13 +37,12 @@ export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => 
       type={type}
       value={internalValue}
       onChange={handleChange}
-      // @ts-ignore FIXME borderSizing in styles type mismatch
       css={inputStyles(props)}
     />
   );
 });
 
-const inputStyles = ({ disabled, invalid }: IInput) => {
+const inputStyles = ({ disabled, invalid, css }: IInput) => {
   const { input: baseTheme } = useTheme();
 
   const invalidTheme = {
@@ -70,9 +69,12 @@ const inputStyles = ({ disabled, invalid }: IInput) => {
         outline: 'none',
       },
     },
+
     disabled && {
       opacity: 0.6,
       cursor: 'not-allowed',
     },
+
+    css,
   ];
 };

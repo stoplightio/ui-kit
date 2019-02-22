@@ -8,12 +8,12 @@ export interface IImage extends IBox<HTMLImageElement> {
 }
 
 export const Image = React.forwardRef<HTMLImageElement, IImage>((props, ref) => {
-  const { hidden, responsive, ...rest } = props;
+  const { hidden, responsive, css, ...rest } = props;
 
-  return <Box {...rest} as="img" ref={ref} css={imageStyles({ hidden, responsive })} />;
+  return <Box {...rest} as="img" ref={ref} css={imageStyles({ hidden, responsive, css })} />;
 });
 
-export const imageStyles = ({ hidden, responsive }: IImage = {}) => [
+export const imageStyles = ({ hidden, responsive, css }: IImage = {}) => [
   hidden && {
     display: 'none',
   },
@@ -24,4 +24,6 @@ export const imageStyles = ({ hidden, responsive }: IImage = {}) => [
     maxWidth: '100%',
     maxHeight: '100%',
   },
+
+  css,
 ];

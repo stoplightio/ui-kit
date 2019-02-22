@@ -3,35 +3,49 @@ import 'jest-enzyme';
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 
-import { IInput } from '../Input';
-import { ITheme } from '../theme';
+import { Box } from '../Box';
+import { Input } from '../Input';
+import { useTheme } from '../theme';
 
-describe('Input component', () => {
-  let Input: React.FunctionComponent<IInput>;
-
-  const theme: Partial<ITheme> = {
+jest.mock('../theme', () => ({
+  useTheme: jest.fn().mockReturnValue({
     input: {
       fg: 'black',
-      bg: 'red',
+      bg: 'pink',
+      border: 'red',
     },
-  };
+  }),
+}));
 
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ Input } = await import('../'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
+describe('Input component', () => {
   it('passes className as inputClassName to AutosizeInput component', () => {
     const wrapper = mount(<Input autosize />);
 
     expect(wrapper.find(AutosizeInput)).toHaveProp('inputClassName', expect.stringMatching('css-'));
     wrapper.unmount();
+  });
+
+  describe('styles', () => {
+    // TODO: why does this not work?
+    it('provides a default styling based on theme, and passes custom css through', () => {
+      const theme = useTheme();
+      const wrapper = mount(<Input css={{ opacity: 0.5 }} />);
+
+      expect(wrapper.find(Box)).toHaveProp(
+        'css',
+        expect.arrayContaining([
+          expect.objectContaining({
+            backgroundColor: theme.input!.bg,
+            color: theme.input!.fg,
+            border: `1px solid ${theme.input!.border}`,
+          }),
+          {
+            opacity: 0.5,
+          },
+        ])
+      );
+
+      wrapper.unmount();
+    });
   });
 });

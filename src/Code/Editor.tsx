@@ -1,4 +1,3 @@
-import { css } from '@emotion/core';
 import { Omit } from '@stoplight/types';
 import 'prismjs/components/';
 import * as React from 'react';
@@ -14,11 +13,11 @@ export interface IEditor extends Omit<IBox, 'onChange'> {
 }
 
 export const Editor = React.forwardRef<HTMLDivElement, IEditor>((props, ref) => {
-  const { language, onChange, value, ...rest } = props;
+  const { language, onChange, value, css, ...rest } = props;
   const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
 
   return (
-    <Box {...rest} css={codeEditorStyles()}>
+    <Box {...rest} css={[codeEditorStyles(), css]}>
       <ReactSimpleCodeEditor
         // @ts-ignore FIXME type erorr
         ref={ref}
@@ -33,12 +32,12 @@ export const Editor = React.forwardRef<HTMLDivElement, IEditor>((props, ref) => 
 export const codeEditorStyles = () => {
   return [
     ...codeStyles(),
-    css`
-      textarea {
-        &:focus {
-          outline: none;
-        }
-      }
-    `,
+    {
+      textarea: {
+        '&:focus': {
+          outline: 'none',
+        },
+      },
+    },
   ];
 };

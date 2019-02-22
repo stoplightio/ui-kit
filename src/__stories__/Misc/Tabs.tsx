@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
+
 import { Tab, TabList, TabPanel, Tabs } from '../../Tabs';
 
 storiesOf('Miscellaneous:Tabs', module)
