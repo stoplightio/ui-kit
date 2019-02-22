@@ -17,8 +17,9 @@ export const blockQuoteStyles = () => {
     color: blockQuote.fg,
     backgroundColor: blockQuote.bg,
     boxShadow: blockQuote.shadow,
-    padding: '.85rem 1.3rem',
-    margin: '.5rem auto',
     borderLeft: `6px solid ${blockQuote.border}`,
+    padding: '20px 30px 20px 20px',
+    margin: 0,
+    borderRadius: 2,
   };
 };

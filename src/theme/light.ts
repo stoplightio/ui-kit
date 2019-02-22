@@ -56,11 +56,10 @@ export const lightTheme: ITheme = {
   checkbox: checkboxTheme,
 
   code: {
-    bg: '#f9f9f9',
-    border: 'grey',
-
-    inlineBg: '#f9f2f4',
-    inlineFg: '#c7254e',
+    bg: '#F5F7F9',
+    border: '#E6ECF1',
+    inlineFg: '#1a1a1a',
+    inlineBg: 'rgba(255, 229, 100, 0.3)',
 
     syntax: {
       primary: '#e91e63',
@@ -115,18 +114,19 @@ export const lightTheme: ITheme = {
 
   table: {
     fg: '#111',
-    border: '#111',
+    border: '#E6ECF1',
     shadow: '0 0 8px 1px rgba(0, 0, 0, 0.6) inset',
+    evenBg: '#F5F7F9',
   },
 
   textarea: inputTheme,
 
   tabs: {
-    fg: '#9b9a9f',
-    bg: '#f6f6f6',
-    border: '#e8e8e8',
+    fg: '#9DAAB6',
+    bg: '#F5F7F9',
+    border: '#E6ECF1',
 
-    selectedFg: '#111',
+    selectedFg: '#32373D',
     selectedBg: '#fff',
   },
 

@@ -56,11 +56,11 @@ export const darkTheme: ITheme = {
   checkbox: checkboxTheme,
 
   code: {
-    bg: '#333',
-    border: '#f9f9f9',
+    bg: '#28303a',
+    border: 'rgba(255, 255, 255, 0.2)',
 
-    inlineBg: '#f9f2f4',
-    inlineFg: '#c7254e',
+    inlineFg: 'inherit',
+    inlineBg: 'rgba(255, 255, 255, 0.25)',
 
     syntax: {
       primary: '#e91e63',
@@ -85,7 +85,8 @@ export const darkTheme: ITheme = {
   input: inputTheme,
 
   link: {
-    fg: '#add8e6',
+    fg: '#3498db',
+    hoverFg: '#c6f6ff',
   },
 
   menu: menuTheme,
@@ -114,20 +115,20 @@ export const darkTheme: ITheme = {
   },
 
   table: {
-    fg: 'white',
-    border: 'white',
+    fg: 'inherit',
+    border: 'rgba(255, 255, 255, 0.25)',
     shadow: '0 0 10px 1px rgba(255,255,255,0.6) inset',
+    evenBg: 'rgba(255, 255, 255, 0.05)',
   },
 
   textarea: inputTheme,
 
   tabs: {
-    fg: '#f6f6f6',
-    bg: '#636363',
-    border: '#a9a5a5',
-
+    bg: '#28303a',
+    fg: 'rgba(255, 255, 255, 0.6)',
+    border: 'rgba(255, 255, 255, 0.2)',
     selectedFg: '#fff',
-    selectedBg: '#111',
+    selectedBg: '#1b2129',
   },
 
   toggle: {

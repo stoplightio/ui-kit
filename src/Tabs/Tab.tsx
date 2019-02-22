@@ -34,19 +34,20 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
     tabStyle: {
       display: 'inline-block',
       border: `1px solid ${theme.tabs.border}`,
-      fontSize: '0.9rem',
       fontWeight: 'bold',
       bottom: '-1px',
       position: 'relative',
       listStyle: 'none',
-      padding: '7px 15px',
+      padding: '8px 15px',
       cursor: 'pointer',
       backgroundColor: theme.tabs.bg,
       color: theme.tabs.fg,
       zIndex: 2,
+      marginLeft: -1,
 
       ':first-of-type': {
         borderTopLeftRadius: '3px',
+        marginLeft: 0,
       },
 
       ':last-of-type': {
@@ -55,6 +56,10 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
 
       ':focus': {
         outline: 'none',
+      },
+
+      ':hover': {
+        color: theme.tabs.selectedFg,
       },
     },
 
