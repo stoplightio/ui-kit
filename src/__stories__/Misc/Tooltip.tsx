@@ -1,15 +1,16 @@
 import * as React from 'react';
 
 import { select, withKnobs } from '@storybook/addon-knobs';
-import { boolean, number, text } from '@storybook/addon-knobs/react';
+import { boolean, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Box } from '../../Box';
 import { Button } from '../../Button';
 import { Popup } from '../../Popup';
 import { ITooltip, Tooltip } from '../../Tooltip';
+import { boxKnobs } from '../Layout/Box';
 
 export const TooltipKnobs = (tabName = 'Tooltip'): ITooltip => ({
+  ...boxKnobs(),
   invalid: boolean('invalid', false, tabName),
   posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
   posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
@@ -20,11 +21,9 @@ const sometext = `Here is some tooltip text Here is some tooltip text Here is so
 storiesOf('Miscellaneous:Tooltip', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Box width={number('container width', 400, {}, 'Tooltip')}>
-      <Tooltip {...TooltipKnobs()}>
-        <div>{text('children', 'Here is some tooltip text', 'Tooltip')}</div>
-      </Tooltip>
-    </Box>
+    <Tooltip {...TooltipKnobs()}>
+      <div>{text('children', 'Here is some tooltip text', 'Tooltip')}</div>
+    </Tooltip>
   ))
   .add('inside Popups', () => (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', width: '403px', margin: '100px' }}>

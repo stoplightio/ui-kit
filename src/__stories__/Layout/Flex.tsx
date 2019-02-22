@@ -20,7 +20,7 @@ export const flexKnobs = (tabName = 'Flex'): IFlex => ({
 storiesOf('Layout:Flex', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Flex {...flexKnobs()}>
+    <Flex {...flexKnobs()} width="500px" border="1px solid blue">
       <Box flex={1} border="@xs">
         Flex 1
       </Box>
