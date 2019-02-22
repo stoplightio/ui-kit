@@ -9,6 +9,21 @@ export type BaseTheme = 'dark' | 'light';
 export interface ITheme {
   base: BaseTheme;
 
+  badge: {
+    default: {
+      fg: string;
+      bg: string;
+    };
+    warning: {
+      fg: string;
+      bg: string;
+    };
+    error: {
+      fg: string;
+      bg: string;
+    };
+  };
+
   button: {
     fg: string;
     bg: string;

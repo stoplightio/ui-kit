@@ -3,6 +3,7 @@
  * Library users will need to `import { Select } from '@stoplight/ui-kit/select` them specifically.
  */
 
+export * from './Badge';
 export * from './BlockQuote';
 export * from './Box';
 export * from './Break';

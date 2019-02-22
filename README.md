@@ -56,6 +56,7 @@ IconLibrary.add(faCaretDown);
   - [Creating a component](./docs/components.md#creating-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
   - Component List
+    - Badge
     - BlockQuote
     - Box
     - Break
