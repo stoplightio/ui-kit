@@ -150,4 +150,6 @@ export const darkTheme: ITheme = {
     ...checkboxTheme,
     bg: 'gainsboro',
   },
+
+  tooltip: inputTheme,
 };

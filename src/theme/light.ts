@@ -149,4 +149,6 @@ export const lightTheme: ITheme = {
     ...checkboxTheme,
     bg: 'gainsboro',
   },
+
+  tooltip: inputTheme,
 };

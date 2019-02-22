@@ -172,6 +172,15 @@ export interface ITheme {
     border?: string;
     checked: string;
   };
+
+  tooltip: {
+    fg: string;
+    bg: string;
+    border?: string;
+    invalidFg?: string;
+    invalidBg?: string;
+    invalidBorder?: string;
+  };
 }
 
 /**
