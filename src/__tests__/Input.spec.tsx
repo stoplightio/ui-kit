@@ -3,6 +3,7 @@ import 'jest-enzyme';
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 
+import { Box } from '../Box';
 import { Input } from '../Input';
 import { useTheme } from '../theme';
 
@@ -26,11 +27,11 @@ describe('Input component', () => {
 
   describe('styles', () => {
     // TODO: why does this not work?
-    it.skip('provides a default styling based on theme, and passes custom css through', () => {
+    it('provides a default styling based on theme, and passes custom css through', () => {
       const theme = useTheme();
       const wrapper = mount(<Input css={{ opacity: 0.5 }} />);
 
-      expect(wrapper).toHaveProp(
+      expect(wrapper.find(Box)).toHaveProp(
         'css',
         expect.arrayContaining([
           expect.objectContaining({
@@ -43,6 +44,8 @@ describe('Input component', () => {
           },
         ])
       );
+
+      wrapper.unmount();
     });
   });
 });
