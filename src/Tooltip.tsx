@@ -67,7 +67,6 @@ const contentStyles = ({ invalid }: ITooltip): IBoxCSS => {
 
   return [
     {
-      border: `1px solid #FFF`,
       backgroundColor: theme.bg,
       margin: `2px 5px`,
       padding: 0,
@@ -100,21 +99,21 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
     if (posX === 'right') {
       pstyles.transformOrigin = 'top right';
       pstyles.transform = 'rotate(45deg)';
-      pstyles.borderBottomColor = '#FFF';
-      pstyles.borderRightColor = '#FFF';
+      pstyles.borderBottomWidth = 0;
+      pstyles.borderRightWidth = 0;
       pstyles.top = `-${b}px`;
       pstyles.right = `${sz}px`;
     } else if (posX === 'center') {
       pstyles.transform = 'rotate(45deg)';
-      pstyles.borderBottomColor = '#FFF';
-      pstyles.borderRightColor = '#FFF';
+      pstyles.borderBottomWidth = 0;
+      pstyles.borderRightWidth = 0;
       pstyles.top = `-${sz / 2 + b}px`;
       pstyles.left = '50%';
     } else if (posX === 'left') {
       pstyles.transformOrigin = 'top left';
       pstyles.transform = 'rotate(-45deg)';
-      pstyles.borderBottomColor = '#FFF';
-      pstyles.borderLeftColor = '#FFF';
+      pstyles.borderBottomWidth = 0;
+      pstyles.borderLeftWidth = 0;
       pstyles.top = `-${b}px`;
       pstyles.left = `${sz}px`;
     }
@@ -122,21 +121,21 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
     if (posX === 'right') {
       pstyles.transformOrigin = 'bottom right';
       pstyles.transform = 'rotate(-45deg)';
-      pstyles.borderTopColor = '#FFF';
-      pstyles.borderRightColor = '#FFF';
+      pstyles.borderTopWidth = 0;
+      pstyles.borderRightWidth = 0;
       pstyles.bottom = `-${b}px`;
       pstyles.right = `${sz}px`;
     } else if (posX === 'center') {
       pstyles.transform = 'rotate(45deg)';
-      pstyles.borderTopColor = '#FFF';
-      pstyles.borderLeftColor = '#FFF';
+      pstyles.borderTopWidth = 0;
+      pstyles.borderLeftWidth = 0;
       pstyles.bottom = `-${sz / 2 + b}px`;
       pstyles.left = '50%';
     } else if (posX === 'left') {
       pstyles.transformOrigin = 'bottom left';
       pstyles.transform = 'rotate(45deg)';
-      pstyles.borderTopColor = '#FFF';
-      pstyles.borderLeftColor = '#FFF';
+      pstyles.borderTopWidth = 0;
+      pstyles.borderLeftWidth = 0;
       pstyles.bottom = `-${b}px`;
       pstyles.left = `${sz}px`;
     }
@@ -144,8 +143,8 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
     if (posX === 'right') {
       pstyles.transformOrigin = 'top left';
       pstyles.transform = 'rotate(-45deg)';
-      pstyles.borderRightColor = '#FFF';
-      pstyles.borderBottomColor = '#FFF';
+      pstyles.borderRightWidth = 0;
+      pstyles.borderBottomWidth = 0;
       pstyles.left = `-${(sz * Math.SQRT2) / 2 + b}px`;
       pstyles.top = '50%';
     } else if (posX === 'center') {
@@ -153,8 +152,8 @@ const caretStyles = ({ invalid, caret = {} }: ITooltip): React.CSSProperties => 
     } else if (posX === 'left') {
       pstyles.transformOrigin = 'top right';
       pstyles.transform = 'rotate(45deg)';
-      pstyles.borderLeftColor = '#FFF';
-      pstyles.borderBottomColor = '#FFF';
+      pstyles.borderLeftWidth = 0;
+      pstyles.borderBottomWidth = 0;
       pstyles.right = `-${(sz * Math.SQRT2) / 2 + b}px`;
       pstyles.top = '50%';
     }
