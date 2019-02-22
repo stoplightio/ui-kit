@@ -16,12 +16,12 @@ export interface ITooltip extends IBox<HTMLDivElement> {
 }
 
 export const Tooltip = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
-  const { children, posX, posY, invalid, ...rest } = props;
+  const { children, posX, posY, invalid, css, ...rest } = props;
 
   return (
-    <Box {...rest} css={tooltipStyles(props)}>
+    <Box {...rest} css={tooltipStyles(props)} ref={ref}>
       <Caret {...props} />
-      <Flex justifyContent="center" alignItems="center" position="relative">
+      <Flex position="relative">
         <Box style={contentStyles(props)}>{children}</Box>
       </Flex>
     </Box>
@@ -30,10 +30,10 @@ export const Tooltip = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) =
 
 // This is exported mostly to make testing easier :-)
 export const Caret = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => (
-  <Box position="absolute" style={caretStyles(props)} />
+  <Box position="absolute" style={caretStyles(props)} ref={ref} />
 ));
 
-const tooltipStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): IBoxCSS => {
+const tooltipStyles = ({ invalid, posX = 'left', posY = 'top', css }: ITooltip): IBoxCSS => {
   const { tooltip: baseTheme } = useTheme();
 
   const invalidTheme = {
@@ -51,16 +51,20 @@ const tooltipStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): IBox
   } else if (posY === 'center' && posX !== 'center') {
     margin[opposingMargin(posX)] = `${caretHeight}px`;
   }
+
   return [
     {
       color: theme.fg,
       backgroundColor: theme.bg,
       border: `1px solid ${theme.border || theme.fg}`,
       position: 'relative',
-      borderRadius: '3px',
+      borderRadius: 2,
       margin: 0,
+      display: 'inline-block',
+      maxWidth: 400,
       ...margin,
     },
+    css,
   ];
 };
 
@@ -80,7 +84,7 @@ const contentStyles = ({ invalid }: ITooltip): IBoxCSS => {
     {
       backgroundColor: theme.bg,
       margin: `2px 5px`,
-      padding: 0,
+      padding: 8,
     },
   ];
 };
@@ -149,7 +153,7 @@ const caretStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): React.
 
 // CONSTANTS
 const b = 1; // border width
-const sz = 20; // length of caret's side
+const sz = 12; // length of caret's side
 const caretHeight = (sz * Math.SQRT2) / 2;
 
 // HELPERS

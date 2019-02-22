@@ -32,33 +32,33 @@ describe('Tooltip component', () => {
     it('default (top left)', () => {
       const wrapper = mount(<Tooltip />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '20px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '12px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('bottom', '-1px');
     });
 
     it('top left', () => {
       const wrapper = mount(<Tooltip posY="top" posX="left" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '20px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '12px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('bottom', '-1px');
     });
     it('top center', () => {
       const wrapper = mount(<Tooltip posY="top" posX="center" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', 'calc(50% - 14.142135623730951px)');
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('bottom', '-11px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', 'calc(50% - 8.485281374238571px)');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('bottom', '-7px');
     });
     it('top right', () => {
       const wrapper = mount(<Tooltip posY="top" posX="right" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '20px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '12px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('bottom', '-1px');
     });
 
     it('center left', () => {
       const wrapper = mount(<Tooltip posY="center" posX="left" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '-15.142135623730951px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '-9.485281374238571px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '50%');
     });
     it('center center', () => {
@@ -69,26 +69,26 @@ describe('Tooltip component', () => {
     it('center right', () => {
       const wrapper = mount(<Tooltip posY="center" posX="right" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '-15.142135623730951px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '-9.485281374238571px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '50%');
     });
 
     it('bottom left', () => {
       const wrapper = mount(<Tooltip posY="bottom" posX="left" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '20px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', '12px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '-1px');
     });
     it('bottom center', () => {
       const wrapper = mount(<Tooltip posY="bottom" posX="center" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', 'calc(50% - 14.142135623730951px)');
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '-11px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('left', 'calc(50% - 8.485281374238571px)');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '-7px');
     });
     it('bottom right', () => {
       const wrapper = mount(<Tooltip posY="bottom" posX="right" />);
       expect(wrapper.children()).toHaveLength(1);
-      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '20px');
+      expect(wrapper.find(Caret).childAt(0)).toHaveStyle('right', '12px');
       expect(wrapper.find(Caret).childAt(0)).toHaveStyle('top', '-1px');
     });
   });
