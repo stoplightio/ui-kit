@@ -27,13 +27,12 @@ export const FixedSizeList: FunctionComponent<IFixedSizeList> = props => {
 };
 
 export const VariableSizeList: FunctionComponent<IVariableSizeList> = props => {
-  const styles = scrollListStyles();
   const { width, height, ...rest } = props;
 
   return (
     <AutoSizer width={width} height={height}>
       {({ width: listWidth, height: listHeight }) => (
-        <WindowVariableSizeList {...rest} css={styles} height={listHeight} width={listWidth} />
+        <WindowVariableSizeList {...rest} css={scrollListStyles()} height={listHeight} width={listWidth} />
       )}
     </AutoSizer>
   );

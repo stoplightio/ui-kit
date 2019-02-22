@@ -10,8 +10,8 @@ export interface IButton extends IBox<HTMLButtonElement> {
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, IButton>((props, ref) => {
-  const { as = 'button', ...rest } = props;
-  return <Box {...rest} as={as} ref={ref} css={buttonStyles(props)} />;
+  const { as = 'button', css, ...rest } = props;
+  return <Box {...rest} as={as} ref={ref} css={[buttonStyles(props), css]} />;
 });
 
 export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {

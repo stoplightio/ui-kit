@@ -32,7 +32,8 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
 }
 
 export const Icon = React.forwardRef<HTMLOrSVGElement, IIcon>((props, ref) => {
-  return <Box {...props} as={FontAwesomeIcon} ref={ref} css={iconStyles()} />;
+  const { css, ...rest } = props;
+  return <Box {...rest} as={FontAwesomeIcon} ref={ref} css={[iconStyles(), css]} />;
 });
 
 const iconStyles = () => [{ background: 'transparent' }];

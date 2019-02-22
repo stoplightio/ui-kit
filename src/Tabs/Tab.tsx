@@ -4,6 +4,7 @@ import { ClassNames, jsx } from '@emotion/core';
 import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
 import { Tab, TabProps } from 'react-tabs';
+
 import { IBoxCSS } from '..';
 import { useTheme } from '../theme';
 

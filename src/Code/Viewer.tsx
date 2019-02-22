@@ -16,13 +16,14 @@ export const Viewer: React.FunctionComponent<IViewer> = ({
   value,
   showLineNumbers = false,
   inline = false,
+  css,
   ...rest
 }) => {
-  const css = codeStyles({ inline });
+  const codeCss = codeStyles({ inline });
 
   if (inline) {
     return (
-      <Box {...rest} css={css} as="code">
+      <Box {...rest} css={[codeCss, css]} as="code">
         {value}
       </Box>
     );
@@ -31,7 +32,7 @@ export const Viewer: React.FunctionComponent<IViewer> = ({
   const markup = parseCode(value, language, showLineNumbers);
 
   return (
-    <Box {...rest} as="pre" css={css}>
+    <Box {...rest} as="pre" css={[codeCss, css]}>
       {markup ? markup.map(astToReact()) : value}
     </Box>
   );

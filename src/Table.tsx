@@ -13,10 +13,10 @@ export interface ITable extends IBox<HTMLTableElement> {
 }
 
 export const Table = React.forwardRef<HTMLTableElement, ITable>((props, ref) => {
-  const { children, isSelected, ...rest } = props;
+  const { children, isSelected, css, ...rest } = props;
 
   return (
-    <Box {...rest} as="table" ref={ref} css={tableStyles({ isSelected })}>
+    <Box {...rest} as="table" ref={ref} css={[tableStyles({ isSelected }), css]}>
       <tbody>{children}</tbody>
     </Box>
   );

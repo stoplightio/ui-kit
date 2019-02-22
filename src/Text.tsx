@@ -9,7 +9,7 @@ export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBo
 }
 
 export const Text = React.forwardRef<HTMLElement, IText>((props, ref) => {
-  const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, ...rest } = props;
+  const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, css, ...rest } = props;
 
   return (
     <Box
@@ -20,7 +20,7 @@ export const Text = React.forwardRef<HTMLElement, IText>((props, ref) => {
       fontStyle={italic ? 'italic' : undefined}
       as={as}
       ref={ref}
-      css={textStyles()}
+      css={[textStyles(), css]}
     />
   );
 });

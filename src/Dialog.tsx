@@ -12,8 +12,7 @@ export interface IDialog extends IBox<HTMLElement> {
 }
 
 export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
-  const { children, show, onClickOutside, onClick, ...rest } = props;
-  const css = dialogStyles();
+  const { children, show, onClickOutside, onClick, css, ...rest } = props;
 
   const onOverlayClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     if (onClickOutside !== undefined) {
@@ -35,7 +34,7 @@ export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box {...rest} ref={ref} onClick={onBoxClick} css={css}>
+        <Box {...rest} ref={ref} onClick={onBoxClick} css={[dialogStyles(), css]}>
           {children}
         </Box>
       </Overlay>
