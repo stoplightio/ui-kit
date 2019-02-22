@@ -30,13 +30,21 @@ const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
 storiesOf('List & Tables:FixedSizeList', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
+  .addDecorator(storyFn => (
+    <Box css={{ outline: '2px solid currentColor' }} width="500px">
+      {storyFn()}
+    </Box>
+  ))
   .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>)
   .add('memoized', () => <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>);
 
 storiesOf('List & Tables:VariableSizeList', module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => <Box css={{ outline: '2px solid currentColor' }}>{storyFn()}</Box>)
+  .addDecorator(storyFn => (
+    <Box css={{ outline: '2px solid currentColor' }} width="500px">
+      {storyFn()}
+    </Box>
+  ))
   .add('with defaults', () => (
     <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
       {Row}
