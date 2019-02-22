@@ -78,8 +78,12 @@ export interface ITheme {
 
   link: {
     fg: string;
+    bg?: string;
     hoverFg?: string;
     visitedFg?: string;
+    hoverBg?: string;
+    border?: string;
+    hoverBorder?: string;
   };
 
   scrollbar: {
@@ -126,6 +130,7 @@ export interface ITheme {
     bg?: string;
     border: string;
     shadow: string;
+    evenBg: string;
   };
 
   textarea: {

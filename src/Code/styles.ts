@@ -4,9 +4,10 @@ import { useTheme } from '../theme';
 
 export interface ICodeStyles {
   inline?: boolean;
+  showLineNumbers?: boolean;
 }
 
-export const codeStyles = ({ inline }: ICodeStyles = {}): IBoxCSS[] => {
+export const codeStyles = ({ inline, showLineNumbers }: ICodeStyles = {}): IBoxCSS[] => {
   const { code } = useTheme();
 
   if (inline) {
@@ -14,8 +15,9 @@ export const codeStyles = ({ inline }: ICodeStyles = {}): IBoxCSS[] => {
       {
         background: code.inlineBg,
         color: code.inlineFg,
-        padding: 4,
-        borderRadius: '2px',
+        padding: '3px 4px',
+        margin: '0 2px',
+        borderRadius: 2,
       },
     ];
   }
@@ -25,9 +27,9 @@ export const codeStyles = ({ inline }: ICodeStyles = {}): IBoxCSS[] => {
       background: code.bg,
       ...(code.border && { border: `1px solid ${code.border}` }),
       fontFamily: 'monospace',
-      padding: 10,
+      padding: showLineNumbers ? `10px 20px 10px 0` : `15px 20px 15px 18px`,
       whiteSpace: 'pre-wrap',
-      maxWidth: '100%',
+      borderRadius: 5,
     },
     css`
       counter-reset: line;

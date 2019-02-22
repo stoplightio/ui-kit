@@ -14,6 +14,7 @@ describe('Table component', () => {
       border: '#fff',
       bg: '#111',
       shadow: '0 0 5px',
+      evenBg: '#f9f9f9',
     },
   };
 
@@ -59,6 +60,7 @@ describe('TableRow component', () => {
       border: '#fff',
       bg: '#111',
       shadow: '0 0 5px',
+      evenBg: '#f9f9f9',
     },
   };
 
@@ -100,6 +102,7 @@ describe('TableCell component', () => {
       border: '#fff',
       bg: '#111',
       shadow: '0 0 5px',
+      evenBg: '#f9f9f9',
     },
   };
 

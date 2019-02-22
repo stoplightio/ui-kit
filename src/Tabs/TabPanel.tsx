@@ -30,7 +30,8 @@ const tabPanelStyle = (): IBoxCSS => {
   return {
     border: `1px solid ${theme.tabs.border}`,
     display: 'none',
-    padding: '4px 8px',
+    padding: '25px',
+    borderRadius: 3,
   };
 };
 

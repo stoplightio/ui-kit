@@ -39,18 +39,21 @@ describe('Link component', () => {
     it('provides a default styling based on theme, and passes custom css through', () => {
       const wrapper = shallow(<Link css={{ opacity: 0.5 }} />);
       const theme = useTheme();
-      expect(wrapper).toHaveProp('css', [
-        expect.objectContaining({ color: theme.link!.fg }),
-        {
-          ':hover': { color: theme.link!.hoverFg },
-        },
-        {
-          ':visited': { color: theme.link!.visitedFg },
-        },
-        {
-          opacity: 0.5,
-        },
-      ]);
+      expect(wrapper).toHaveProp(
+        'css',
+        expect.arrayContaining([
+          expect.objectContaining({ color: theme.link!.fg }),
+          {
+            ':hover': { color: theme.link!.hoverFg },
+          },
+          {
+            ':visited': { color: theme.link!.visitedFg },
+          },
+          {
+            opacity: 0.5,
+          },
+        ])
+      );
     });
   });
 });
