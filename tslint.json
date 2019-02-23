@@ -1,3 +1,8 @@
 {
-  "extends": ["./node_modules/@stoplight/scripts/tslint.json"]
+  "extends": ["./node_modules/@stoplight/scripts/tslint.json", "tslint-react", "tslint-react-hooks"],
+  "rules": {
+    "react-hooks-nesting": "error",
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false
+  }
 }
