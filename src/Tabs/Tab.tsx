@@ -13,16 +13,18 @@ const StyledTab: React.FunctionComponent<TabProps> & { tabsRole: string } = prop
 
   const styles = tabStyles(theme);
 
+  const { children, ref, ...rest } = props;
+
   return (
     <ClassNames>
       {({ css: getClassName }) => (
         <Tab
-          {...props}
+          {...rest}
           className={getClassName(styles.tabStyle)}
           disabledClassName={getClassName(styles.disabledTabStyle)}
           selectedClassName={getClassName(styles.selectedTabStyle)}
         >
-          {props.children}
+          {children}
         </Tab>
       )}
     </ClassNames>

@@ -36,8 +36,7 @@
     "test": "sl-scripts test",
     "test.prod": "yarn lint && yarn test --coverage --no-cache --runInBand",
     "test.update": "yarn test --updateSnapshot",
-    "test.watch": "yarn test --watch",
-    "chromatic": "chromatic test"
+    "test.watch": "yarn test --watch"
   },
   "peerDependencies": {
     "lodash": ">=4.17",
@@ -55,14 +54,14 @@
     "react-contextmenu": "2.10.x",
     "react-custom-scrollbars": "4.2.x",
     "react-input-autosize": "2.2.x",
-    "react-select": "2.1.x",
+    "react-select": "2.4.x",
     "react-simple-code-editor": "0.9.3",
     "react-tabs": "3.0.0",
     "react-textarea-autosize": "7.1.x",
     "react-window": "1.5.2",
     "refractor": "2.6.2",
     "styled-system": "3.2.1",
-    "use-resize-observer": "2.0.1"
+    "use-resize-observer": "3.1.0"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "5.7.2",
@@ -77,12 +76,12 @@
     "@types/enzyme-adapter-react-16": "^1.0.4",
     "@types/lodash": "4.14.121",
     "@types/prismjs": "1.9.1",
-    "@types/react": "16.8.3",
+    "@types/react": "16.8.4",
     "@types/react-custom-scrollbars": "4.0.x",
     "@types/react-dom": "16.8.2",
     "@types/react-input-autosize": "2.0.x",
     "@types/react-select": "2.0.13",
-    "@types/react-tabs": "2.3.0",
+    "@types/react-tabs": "2.3.1",
     "@types/react-textarea-autosize": "4.3.x",
     "@types/react-window": "1.5.1",
     "enzyme": "^3.9.0",
@@ -90,10 +89,9 @@
     "enzyme-to-json": "^3.3.5",
     "jest-enzyme": "^7.0.1",
     "prismjs": "1.15.x",
-    "react": "16.8.2",
-    "react-dom": "16.8.2",
-    "storybook-chromatic": "1.2.6",
-    "typescript": "3.3.3"
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "typescript": "3.3.3333"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

@@ -5,6 +5,8 @@ import { IBoxCSS } from '../Box';
 import { ITheme, useTheme } from '../theme';
 
 const StyledTabPanel: React.FunctionComponent<TabPanelProps> & { tabsRole: string } = props => {
+  const { children, ref, ...rest } = props;
+
   const { tabs: theme } = useTheme();
   const tabPanelCSS = tabPanelStyle(theme);
 
@@ -12,11 +14,11 @@ const StyledTabPanel: React.FunctionComponent<TabPanelProps> & { tabsRole: strin
     <ClassNames>
       {({ css: getClassName }) => (
         <TabPanel
-          {...props}
+          {...rest}
           className={getClassName(tabPanelCSS)}
           selectedClassName={getClassName(selectedTabPanelStyle)}
         >
-          {props.children}
+          {children}
         </TabPanel>
       )}
     </ClassNames>
