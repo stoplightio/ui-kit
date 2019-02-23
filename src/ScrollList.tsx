@@ -11,10 +11,11 @@ import {
 } from 'react-window';
 
 import { AutoSizer } from './AutoSizer';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export const FixedSizeList: FunctionComponent<IFixedSizeList> = props => {
-  const styles = scrollListStyles();
+  const { scrollbar: theme } = useTheme();
+  const styles = scrollListStyles(theme);
   const { width, height, ...rest } = props;
 
   return (
@@ -29,10 +30,12 @@ export const FixedSizeList: FunctionComponent<IFixedSizeList> = props => {
 export const VariableSizeList: FunctionComponent<IVariableSizeList> = props => {
   const { width, height, ...rest } = props;
 
+  const { scrollbar: theme } = useTheme();
+
   return (
     <AutoSizer width={width} height={height}>
       {({ width: listWidth, height: listHeight }) => (
-        <WindowVariableSizeList {...rest} css={scrollListStyles()} height={listHeight} width={listWidth} />
+        <WindowVariableSizeList {...rest} css={scrollListStyles(theme)} height={listHeight} width={listWidth} />
       )}
     </AutoSizer>
   );
@@ -40,9 +43,7 @@ export const VariableSizeList: FunctionComponent<IVariableSizeList> = props => {
 
 export { IFixedSizeList, IVariableSizeList, areEqual, shouldComponentUpdate };
 
-export const scrollListStyles = () => {
-  const theme = useTheme();
-
+export const scrollListStyles = (theme: ITheme['scrollbar']) => {
   return css`
     &::-webkit-scrollbar {
       height: 6px;
@@ -51,11 +52,11 @@ export const scrollListStyles = () => {
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: ${theme.scrollbar.bg};
+      background-color: ${theme.bg};
       border-radius: 10px;
     }
 
-    scrollbar-color: ${theme.scrollbar.bg} transparent;
+    scrollbar-color: ${theme.bg} transparent;
     scrollbar-width: thin;
   `;
 };

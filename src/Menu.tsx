@@ -4,7 +4,7 @@ import { Box, IBoxCSS } from './Box';
 import { Flex, IFlex } from './Flex';
 import { useHover } from './hooks/useHover';
 import { Icon, IIcon } from './Icon';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 // TODO allow dividers in the menu
 
@@ -58,10 +58,12 @@ export const Menu = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
     ...rest
   } = props;
 
+  const { menu: theme } = useTheme();
+
   const [isShown, handlers] = useHover(false, props, hideDelay);
 
   const styles = menuStyles();
-  const listStyles = menuListStyles({
+  const listStyles = menuListStyles(theme, {
     posX,
     posY,
     offset,
@@ -76,15 +78,16 @@ export const Menu = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
   );
 });
 
-export const menuListStyles = ({ hasTrigger, posX, posY, offset }: Partial<IMenu> & { hasTrigger: boolean }) => {
-  const theme = useTheme();
-
+export const menuListStyles = (
+  theme: ITheme['menu'],
+  { hasTrigger, posX, posY, offset }: Partial<IMenu> & { hasTrigger: boolean }
+) => {
   return [
     {
       flexDirection: 'column',
-      color: theme.menu.fg,
-      backgroundColor: theme.menu.bg,
-      border: `1px solid ${theme.menu.border}`,
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: `1px solid ${theme.border}`,
       borderRadius: '4px',
       zIndex: 10000,
       position: hasTrigger ? 'absolute' : 'relative',
@@ -126,7 +129,8 @@ export interface IMenuItem extends Pick<IFlex, Exclude<keyof IFlex, 'title'>> {
 export const MenuItem = React.forwardRef<HTMLOrSVGElement, IMenuItem>((props, ref) => {
   const { icon, title, subtitle, onClick, disabled, ...rest } = props;
 
-  const styles = menuItemStyles({ disabled, onClick });
+  const { menu: theme } = useTheme();
+  const styles = menuItemStyles(theme, { disabled, onClick });
 
   return (
     <Flex {...rest} ref={ref} onClick={onClick} css={styles}>
@@ -145,9 +149,7 @@ export const MenuItem = React.forwardRef<HTMLOrSVGElement, IMenuItem>((props, re
   );
 });
 
-const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItem>): IBoxCSS => {
-  const { menu } = useTheme();
-
+const menuItemStyles = (theme: ITheme['menu'], { disabled, onClick }: Partial<IMenuItem>): IBoxCSS => {
   return [
     {
       alignItems: 'center',
@@ -156,7 +158,7 @@ const menuItemStyles = ({ disabled, onClick }: Partial<IMenuItem>): IBoxCSS => {
       opacity: disabled ? 0.6 : 1,
 
       ':hover': {
-        backgroundColor: menu.hoverBg,
+        backgroundColor: theme.hoverBg,
       },
     },
   ];

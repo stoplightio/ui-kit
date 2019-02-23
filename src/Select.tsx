@@ -7,7 +7,7 @@ import ReactCreatableSelect, { Props as CreatableProps } from 'react-select/lib/
 import { Props } from 'react-select/lib/Select';
 
 import { Omit } from '@stoplight/types';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 // renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.t
 export interface ISelectBaseProps {
@@ -88,6 +88,8 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     ...selectProps
   } = props;
 
+  const { select: theme } = useTheme();
+
   const actualProps = {
     blurInputOnSelect: blurOnSelect,
     closeMenuOnSelect: closeOnSelect,
@@ -108,7 +110,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
     onMenuScrollToBottom: onScrollToBottom,
     ...selectProps,
     // CUSTOM STYLES
-    styles: customStyles(invalid),
+    styles: customStyles(theme, invalid),
   };
 
   if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
@@ -132,8 +134,7 @@ export const Select: React.FunctionComponent<ISelect> = props => {
  * override color related
  */
 
-const customStyles = (invalid: boolean) => {
-  const { select: baseTheme } = useTheme();
+const customStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
   if (!baseTheme) {
     return {};
   }

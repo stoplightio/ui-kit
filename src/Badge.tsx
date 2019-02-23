@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, IBox, useTheme } from './';
+import { Box, IBox, ITheme, useTheme } from './';
 
 export enum BadgeVariant {
   Pill = 'pill',
@@ -21,12 +21,20 @@ export interface IBadge extends IBox<HTMLSpanElement> {
 export const Badge: React.FunctionComponent<IBadge> = props => {
   const { color = BadgeColor.Default, variant = BadgeVariant.Pill, ...restProps } = props;
 
-  return <Box {...restProps} as="span" css={badgeStyles({ color, variant })} />;
-};
-
-const badgeStyles = ({ color, variant }: { color: BadgeColor; variant: BadgeVariant }) => {
   const { badge: theme } = useTheme();
 
+  return <Box {...restProps} as="span" css={badgeStyles({ color, variant, theme })} />;
+};
+
+const badgeStyles = ({
+  color,
+  variant,
+  theme,
+}: {
+  color: BadgeColor;
+  variant: BadgeVariant;
+  theme: ITheme['badge'];
+}) => {
   return [
     {
       padding: '.25em .6em',

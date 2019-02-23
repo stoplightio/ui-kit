@@ -6,6 +6,48 @@ import { DeepPartial } from '@stoplight/types';
 
 export type BaseTheme = 'dark' | 'light';
 
+// interface IThemeColor {
+//   light: string;
+//   normal: string;
+//   dark: string;
+// }
+
+// interface IThemeColor {
+//   fg: IThemeColor;
+//   bg: IThemeColor;
+//   border: IThemeColor;
+// }
+
+// export interface IThemeColors {
+//   default: IThemeColor;
+//   primary: IThemeColor;
+//   accent: IThemeColor;
+//   active: IThemeColor;
+//   success: IThemeColor;
+//   warning: IThemeColor;
+//   error: IThemeColor;
+//   info: IThemeColor;
+// }
+
+// export interface ITheme {
+//   base: BaseTheme;
+//   colors: IThemeColors;
+//   inlineCode: IThemeColor;
+//   code: {
+//     syntax: {
+//       primary: string;
+//       secondary: string;
+//       comment: string;
+//       punctuation: string;
+//       keyword: string;
+//       function: string;
+//       variable: string;
+//       operator: string;
+//       regex: string;
+//     };
+//   };
+// }
+
 export interface ITheme {
   base: BaseTheme;
 

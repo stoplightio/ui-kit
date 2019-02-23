@@ -1,47 +1,48 @@
 import * as React from 'react';
 import { Box, IBox, IBoxCSS } from './Box';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export interface ILink extends IBox<HTMLAnchorElement> {}
 
 export const Link = React.forwardRef<HTMLAnchorElement, ILink>((props, ref) => {
   const { css, ...rest } = props;
-  return <Box {...rest} as="a" ref={ref} css={linkStyles(css)} />;
-});
 
-export const linkStyles = (css: IBoxCSS) => {
   const { link } = useTheme();
 
+  return <Box {...rest} as="a" ref={ref} css={linkStyles(link, css)} />;
+});
+
+export const linkStyles = (theme: ITheme['link'], css: IBoxCSS) => {
   return [
     {
-      color: link.fg,
+      color: theme.fg,
       textDecoration: 'none',
       padding: '0 3px',
     },
-    link.bg && {
-      backgroundColor: link.bg,
+    theme.bg && {
+      backgroundColor: theme.bg,
     },
-    link.hoverBg && {
+    theme.hoverBg && {
       ':hover': {
-        backgroundColor: link.hoverBg,
+        backgroundColor: theme.hoverBg,
       },
     },
-    link.hoverFg && {
+    theme.hoverFg && {
       ':hover': {
-        color: link.hoverFg,
+        color: theme.hoverFg,
       },
     },
-    link.visitedFg && {
+    theme.visitedFg && {
       ':visited': {
-        color: link.visitedFg,
+        color: theme.visitedFg,
       },
     },
-    link.border && {
-      borderBottom: `1px solid ${link.border}`,
+    theme.border && {
+      borderBottom: `1px solid ${theme.border}`,
     },
-    link.hoverBorder && {
+    theme.hoverBorder && {
       ':hover': {
-        borderColor: link.hoverBorder,
+        borderColor: theme.hoverBorder,
       },
     },
     css,

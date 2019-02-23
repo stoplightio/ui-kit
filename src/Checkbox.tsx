@@ -2,7 +2,7 @@ import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import { ChangeEventHandler, useCallback, useState } from 'react';
 
-import { Box, Flex, IBox, useTheme } from './';
+import { Box, Flex, IBox, ITheme, useTheme } from './';
 
 export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   checked?: boolean;
@@ -12,6 +12,8 @@ export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
 
 export const Checkbox = React.forwardRef<HTMLLabelElement, ICheckbox>((props, ref) => {
   const { disabled: isDisabled, onChange, invalid, ...rest } = props;
+
+  const { checkbox: baseTheme } = useTheme();
 
   const [checked, setValue] = useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
@@ -23,7 +25,7 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, ICheckbox>((props, re
 
   return (
     // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" ref={ref} css={checkboxStyles({ isDisabled, isChecked, invalid })}>
+    <Flex {...rest} as="label" ref={ref} css={checkboxStyles(baseTheme, { isDisabled, isChecked, invalid })}>
       <Box
         as="input"
         type="checkbox"
@@ -42,9 +44,7 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, ICheckbox>((props, re
   );
 });
 
-export const checkboxStyles = ({ isChecked, isDisabled, invalid }: ICheckboxStyles) => {
-  const { checkbox: baseTheme } = useTheme();
-
+export const checkboxStyles = (baseTheme: ITheme['checkbox'], { isChecked, isDisabled, invalid }: ICheckboxStyles) => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,
