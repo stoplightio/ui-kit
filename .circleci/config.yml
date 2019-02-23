@@ -47,7 +47,9 @@ workflows:
   test_and_release:
     jobs:
       - test
-      - build
+      - build:
+          requires:
+            - test
       - release:
           filters:
             branches:
