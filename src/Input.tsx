@@ -5,7 +5,7 @@ import noop = require('lodash/noop');
 import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export interface IInput extends Omit<IBox<HTMLInputElement>, 'as'> {
   autosize?: boolean;
@@ -18,6 +18,8 @@ const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> =
 
 export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
   const { autosize, onChange = noop, type, invalid, css, ...rest } = props;
+
+  const { input: theme } = useTheme();
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState(props.value);
@@ -37,14 +39,12 @@ export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => 
       type={type}
       value={internalValue}
       onChange={handleChange}
-      css={inputStyles(props)}
+      css={inputStyles(theme, props)}
     />
   );
 });
 
-const inputStyles = ({ disabled, invalid, css }: IInput) => {
-  const { input: baseTheme } = useTheme();
-
+const inputStyles = (baseTheme: ITheme['input'], { disabled, invalid, css }: IInput) => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,

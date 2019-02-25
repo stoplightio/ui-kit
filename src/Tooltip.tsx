@@ -5,9 +5,8 @@ import * as React from 'react';
 const capitalize = require('lodash/capitalize');
 
 import { Box, IBox, IBoxCSS } from './Box';
-
 import { Flex } from './Flex';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export interface ITooltip extends IBox<HTMLDivElement> {
   invalid?: boolean;
@@ -18,24 +17,28 @@ export interface ITooltip extends IBox<HTMLDivElement> {
 export const Tooltip = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
   const { children, posX, posY, invalid, css, ...rest } = props;
 
+  const { tooltip: theme } = useTheme();
+
   return (
-    <Box {...rest} css={tooltipStyles(props)} ref={ref}>
+    <Box {...rest} css={tooltipStyles(theme, props)} ref={ref}>
       <Caret {...props} />
       <Flex position="relative">
-        <Box style={contentStyles(props)}>{children}</Box>
+        <Box style={contentStyles(theme, props)}>{children}</Box>
       </Flex>
     </Box>
   );
 });
 
 // This is exported mostly to make testing easier :-)
-export const Caret = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => (
-  <Box position="absolute" style={caretStyles(props)} ref={ref} />
-));
+export const Caret = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
+  const { tooltip: theme } = useTheme();
+  return <Box position="absolute" style={caretStyles(theme, props)} ref={ref} />;
+});
 
-const tooltipStyles = ({ invalid, posX = 'left', posY = 'top', css }: ITooltip): IBoxCSS => {
-  const { tooltip: baseTheme } = useTheme();
-
+const tooltipStyles = (
+  baseTheme: ITheme['tooltip'],
+  { invalid, posX = 'left', posY = 'top', css }: ITooltip
+): IBoxCSS => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,
@@ -68,9 +71,7 @@ const tooltipStyles = ({ invalid, posX = 'left', posY = 'top', css }: ITooltip):
   ];
 };
 
-const contentStyles = ({ invalid }: ITooltip): IBoxCSS => {
-  const { tooltip: baseTheme } = useTheme();
-
+const contentStyles = (baseTheme: ITheme['tooltip'], { invalid }: ITooltip): IBoxCSS => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,
@@ -89,9 +90,10 @@ const contentStyles = ({ invalid }: ITooltip): IBoxCSS => {
   ];
 };
 
-const caretStyles = ({ invalid, posX = 'left', posY = 'top' }: ITooltip): React.CSSProperties => {
-  const { tooltip: baseTheme } = useTheme();
-
+const caretStyles = (
+  baseTheme: ITheme['tooltip'],
+  { invalid, posX = 'left', posY = 'top' }: ITooltip
+): React.CSSProperties => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,

@@ -6,7 +6,7 @@ import useResizeObserver from 'use-resize-observer';
 import { Box, IBox } from './Box';
 
 export interface IAutoSizer extends Omit<IBox, 'children'> {
-  children: ({ width, height }: { width: string; height: string }) => React.ReactNode;
+  children: ({ width, height }: { width: string | number; height: string | number }) => React.ReactNode;
 }
 
 export const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {

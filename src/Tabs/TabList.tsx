@@ -5,11 +5,15 @@ import * as React from 'react';
 import { TabList, TabListProps } from 'react-tabs';
 import { IBoxCSS } from '../Box';
 
-const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => (
-  <TabList {...props} css={tabListStyle}>
-    {props.children}
-  </TabList>
-);
+const StyledTabList: React.FunctionComponent<TabListProps> & { tabsRole: string } = props => {
+  const { children, ref, ...rest } = props;
+
+  return (
+    <TabList {...rest} css={tabListStyle}>
+      {children}
+    </TabList>
+  );
+};
 
 StyledTabList.tabsRole = 'TabList';
 

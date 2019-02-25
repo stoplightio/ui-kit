@@ -71,8 +71,8 @@ export type ThemeZones<S extends string, T extends ThemeZoneObj> = Dictionary<Th
 
 export interface IThemeZone<S extends string>
   extends React.FunctionComponent<{
-      name: S;
-    }> {}
+    name: S;
+  }> {}
 
 export const ThemeZone: IThemeZone<any> = ({ children, name }) => {
   const parentTheme = useTheme();

@@ -1,7 +1,7 @@
 import { Omit } from '@stoplight/types';
 import * as React from 'react';
 
-import { Box, Flex, IBox, IBoxCSS, useTheme } from './';
+import { Box, Flex, IBox, IBoxCSS, ITheme, useTheme } from './';
 
 export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   checked?: boolean;
@@ -10,6 +10,8 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
 
 export const Toggle = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) => {
   const { disabled: isDisabled, onChange, css, ...rest } = props;
+
+  const { toggle: theme } = useTheme();
 
   const [checked, setValue] = React.useState<boolean>(!!props.checked);
   const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
@@ -20,7 +22,7 @@ export const Toggle = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) =
   }, []);
 
   return (
-    <Flex {...rest} as="label" ref={ref} css={[toggleStyles({ isDisabled, isChecked }), css]}>
+    <Flex {...rest} as="label" ref={ref} css={[toggleStyles(theme, { isDisabled, isChecked }), css]}>
       <Box
         as="input"
         type="checkbox"
@@ -29,7 +31,7 @@ export const Toggle = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) =
         position="absolute"
         css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
       />
-      <Box as="span" css={circleStyles({ isChecked })} />
+      <Box as="span" css={circleStyles(theme, { isChecked })} />
     </Flex>
   );
 });
@@ -39,13 +41,11 @@ interface IToggleStyles {
   isDisabled?: boolean;
 }
 
-const toggleStyles = ({ isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
-  const { toggle } = useTheme();
-
+const toggleStyles = (theme: ITheme['toggle'], { isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
   return [
     {
-      backgroundColor: toggle.bg,
-      border: toggle.border ? `1px solid ${toggle.border}` : 'none',
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       height: '16px',
       width: '32px',
@@ -61,7 +61,7 @@ const toggleStyles = ({ isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
       transition: 'background-color .15s ease-in-out',
     },
     isChecked && {
-      backgroundColor: toggle.checked,
+      backgroundColor: theme.checked,
     },
     isDisabled && {
       cursor: 'not-allowed',
@@ -70,12 +70,10 @@ const toggleStyles = ({ isDisabled, isChecked }: IToggleStyles): IBoxCSS => {
   ];
 };
 
-const circleStyles = ({ isChecked }: IToggleStyles) => {
-  const { toggle } = useTheme();
-
+const circleStyles = (theme: ITheme['toggle'], { isChecked }: IToggleStyles) => {
   return [
     {
-      backgroundColor: toggle.fg,
+      backgroundColor: theme.fg,
 
       width: '10px',
       height: '10px',

@@ -5,7 +5,7 @@ import noop = require('lodash/noop');
 import AutosizeTextarea from 'react-textarea-autosize';
 
 import { Box, IBox, IBoxCSS } from './Box';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export interface ITextarea extends Omit<IBox<HTMLTextAreaElement>, 'as'> {
   autosize?: boolean;
@@ -14,6 +14,8 @@ export interface ITextarea extends Omit<IBox<HTMLTextAreaElement>, 'as'> {
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
   const { autosize, onChange = noop, invalid, css, ...rest } = props;
+
+  const { textarea: theme } = useTheme();
 
   // TODO: do we want controlled mode here?
   const [value, setValue] = React.useState<string>(props.value || '');
@@ -31,14 +33,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, ITextarea>((props,
       ref={ref}
       value={internalValue}
       onChange={handleChange}
-      css={[textareaStyles(props), css]}
+      css={[textareaStyles(theme, props), css]}
     />
   );
 });
 
-export const textareaStyles = ({ autosize, disabled, invalid }: ITextarea): IBoxCSS => {
-  const { textarea: baseTheme } = useTheme();
-
+export const textareaStyles = (baseTheme: ITheme['textarea'], { autosize, disabled, invalid }: ITextarea): IBoxCSS => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
     bg: baseTheme.invalidBg,
