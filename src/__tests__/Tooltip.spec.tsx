@@ -25,7 +25,7 @@ describe('Tooltip component', () => {
         <div>Hello</div>
       </Tooltip>
     );
-    expect(wrapper.containsAnyMatchingElements([<div>Hello</div>])).toBeTruthy();
+    expect(wrapper.containsAnyMatchingElements([<div key="1">Hello</div>])).toBeTruthy();
   });
 
   describe('positions caret based on props', () => {
