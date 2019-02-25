@@ -4,14 +4,14 @@ import * as React from 'react';
 describe('useHover hook', () => {
   let useEffectSpy: jest.SpyInstance;
   let useStateSpy: jest.SpyInstance;
-  let setStateSpy: jest.MockInstance<boolean>;
+  let setStateSpy: jest.MockInstance<boolean, any>;
   let useHover: Function;
 
   beforeAll(async () => {
     jest.useFakeTimers();
     useEffectSpy = jest.spyOn(React, 'useEffect').mockReturnValue(void 0);
     setStateSpy = jest.fn();
-    useStateSpy = jest.spyOn(React, 'useState').mockReturnValue([false, setStateSpy]);
+    useStateSpy = jest.spyOn<any, string>(React, 'useState').mockReturnValue([false, setStateSpy]);
     ({ useHover } = await import('../useHover'));
   });
 

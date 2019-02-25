@@ -8,7 +8,7 @@ import { useWindowResize } from '../useWindowResize';
 describe('useWindowResize hook', () => {
   let addEventListenerSpy: jest.SpyInstance;
   let removeEventListenerSpy: jest.SpyInstance;
-  let debouncedHandlerMock: jest.MockInstance<EventListener>;
+  let debouncedHandlerMock: jest.MockInstance<EventListener, any>;
   const Wrapper = () => {
     const timestamp = useWindowResize();
 

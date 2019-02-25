@@ -11,7 +11,7 @@ import { ITheme } from '../theme';
 describe('Menu component', () => {
   let Menu: React.FunctionComponent<IMenu>;
   let MenuItem: React.FunctionComponent<IMenuItem>;
-  let useHoverMock: jest.MockInstance<any>;
+  let useHoverMock: jest.MockInstance<any, any>;
 
   const theme: Partial<ITheme> = {
     menu: {
