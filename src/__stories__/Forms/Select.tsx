@@ -21,6 +21,7 @@ export const selectKnobs = (tabName = 'Select'): ISelect => ({
   minMenuHeight: number('minMenuHeight', 140),
   maxMenuHeight: number('maxMenuHeight', 300),
   menuPlacement: select('menuPlacement', ['auto', 'bottom', 'top'], 'auto'),
+  menuIsOpen: boolean('menuIsOpen', false),
   blurOnSelect: boolean('blurOnSelect', true),
   closeOnSelect: boolean('closeOnSelect', true),
   closeOnScroll: boolean('closeOnScroll', false),
