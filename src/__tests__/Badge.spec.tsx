@@ -38,9 +38,9 @@ describe('Badge component', () => {
       );
     });
 
-    it('do not renders children when in dot variant', () => {
+    it('do not render children when in dot variant', () => {
       const wrapper = shallow(<Badge variant={BadgeVariant.Dot}>test</Badge>).shallow();
-      expect(wrapper.contains('test')).toBe(false);
+      expect(wrapper).not.toHaveText('test');
     });
   });
 });
