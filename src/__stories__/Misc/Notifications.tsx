@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Box } from '../../Box';
-import { Notifications, NotificationsState } from '../../Notifications';
+import { Notifications } from '../../Notifications';
 import { INotification, NotificationType } from '../../Toast';
 import { boxKnobs } from '../Layout/Box';
 
@@ -38,22 +38,7 @@ storiesOf('Miscellaneous:Notifications', module)
         css={{ border: '1px solid' }}
         onClose={action('close')}
         onMinimize={action('minimize')}
-        onMaximize={action('maximize')}
         notifications={notifications}
-        state={NotificationsState.MAXIMIZED}
-      />
-    </Box>
-  ))
-  .add('minimized', () => (
-    <Box>
-      <Notifications
-        {...notificationsKnobs()}
-        css={{ border: '1px solid' }}
-        onClose={action('close')}
-        onMinimize={action('minimize')}
-        onMaximize={action('maximize')}
-        notifications={notifications}
-        state={NotificationsState.MINIMIZED}
       />
     </Box>
   ))
@@ -64,9 +49,7 @@ storiesOf('Miscellaneous:Notifications', module)
         css={{ border: '1px solid' }}
         onClose={action('close')}
         onMinimize={action('minimize')}
-        onMaximize={action('maximize')}
         notifications={[]}
-        state={NotificationsState.MAXIMIZED}
       />
     </Box>
   ));
