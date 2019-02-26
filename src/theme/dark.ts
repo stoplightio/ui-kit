@@ -11,15 +11,15 @@ const inputTheme: ITheme['input'] = {
   bg: 'rgb(65, 65, 65)',
   border: opacityBorder,
   invalidFg: 'red',
-  invalidBg: 'rgba(200,0,0,0.15)',
+  invalidBg: 'rgb(45, 18, 17)',
   invalidBorder: 'darkred',
 };
 
 const buttonTheme: ITheme['button'] = {
   fg: 'white',
-  bg: 'rgba(255, 255, 255, 0.2)',
+  bg: 'rgb(65, 65, 65)',
   border: opacityBorder,
-  hoverBg: 'rgba(255, 255, 255, 0.3)',
+  hoverBg: 'rgb(89, 89, 89)',
 };
 
 const checkboxTheme: ITheme['checkbox'] = {
@@ -72,10 +72,10 @@ export const darkTheme: ITheme = {
 
   code: {
     bg: '#28303a',
-    border: 'rgba(255, 255, 255, 0.2)',
+    border: 'rgb(83, 89, 97)',
 
     inlineFg: 'inherit',
-    inlineBg: 'rgba(255, 255, 255, 0.25)',
+    inlineBg: 'rgb(77, 77, 77)',
 
     syntax: {
       primary: '#e91e63',
@@ -131,17 +131,17 @@ export const darkTheme: ITheme = {
 
   table: {
     fg: 'inherit',
-    border: 'rgba(255, 255, 255, 0.25)',
+    border: 'rgb(77, 77, 77)',
     shadow: '0 0 10px 1px rgba(255,255,255,0.6) inset',
-    evenBg: 'rgba(255, 255, 255, 0.05)',
+    evenBg: 'rgb(29, 29, 29)',
   },
 
   textarea: inputTheme,
 
   tabs: {
     bg: '#28303a',
-    fg: 'rgba(255, 255, 255, 0.6)',
-    border: 'rgba(255, 255, 255, 0.2)',
+    fg: 'rgb(168, 172, 175)',
+    border: 'rgb(65, 65, 65)',
     selectedFg: '#fff',
     selectedBg: '#1b2129',
   },
