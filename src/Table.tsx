@@ -31,7 +31,7 @@ export const tableStyles = (theme: ITheme['table'], { isSelected }: ITable): IBo
       borderCollapse: 'collapse',
       borderColor: theme.border,
       tr: {
-        '&:first-child': {
+        '&:first-of-type': {
           fontWeight: 'bold',
         },
       },
@@ -62,7 +62,7 @@ export const tableRowStyles = (theme: ITheme['table']) => {
       '&:last-child': {
         borderBottom: '0 none',
       },
-      '&:nth-child(even)': {
+      '&:nth-of-type(even)': {
         backgroundColor: theme.evenBg,
       },
     },
@@ -78,21 +78,27 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
 }
 
 export const TableCell = React.forwardRef<HTMLTableDataCellElement, ITableCell>((props, ref) => {
-  const { as = 'td', isSelected, ...rest } = props;
+  const { as = 'td', isSelected, textAlign, ...rest } = props;
   const { table: theme } = useTheme();
-  return <Box {...rest} as={as} ref={ref} css={tableCellStyles(theme, { as, isSelected })} />;
+  return <Box {...rest} as={as} ref={ref} css={tableCellStyles(theme, { as, isSelected, textAlign })} />;
 });
 
-export const tableCellStyles = (theme: ITheme['table'], { isSelected }: ITableCell): IBoxCSS => {
+const textAlignPadding = {
+  left: '10px 40px 10px 15px',
+  center: '10px 15px 10px 15px',
+  right: '10px 15px 10px 40px',
+};
+
+export const tableCellStyles = (theme: ITheme['table'], { isSelected, textAlign = 'left' }: ITableCell): IBoxCSS => {
   return [
     {
       border: '0 none',
       borderLeft: '1px solid',
       borderRight: '1px solid',
       borderColor: theme.border,
-      textAlign: 'left',
-      padding: '10px 40px 10px 15px',
-      '&:first-child': {
+      textAlign,
+      padding: textAlignPadding[textAlign],
+      '&:first-of-type': {
         borderLeft: '0 none',
       },
       '&:last-child': {
