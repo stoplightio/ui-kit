@@ -23,9 +23,24 @@ describe('Badge component', () => {
       expect(wrapper).toHaveProp('css', expect.arrayContaining([{ color: 'black', backgroundColor: 'transparent' }]));
     });
 
-    it('displays pill variant correctly', () => {
-      const wrapper = shallow(<Badge variant={BadgeVariant.Pill}>test</Badge>);
-      expect(wrapper).toHaveProp('css', expect.arrayContaining([{ color: 'white', backgroundColor: 'black' }]));
+    it('displays dot variant correctly', () => {
+      const wrapper = shallow(<Badge variant={BadgeVariant.Dot}>test</Badge>);
+      expect(wrapper).toHaveProp(
+        'css',
+        expect.arrayContaining([
+          {
+            padding: '0',
+            width: '8px',
+            height: '8px',
+            display: 'inline-block',
+          },
+        ])
+      );
+    });
+
+    it('do not render children when in dot variant', () => {
+      const wrapper = shallow(<Badge variant={BadgeVariant.Dot}>test</Badge>).shallow();
+      expect(wrapper).not.toHaveText('test');
     });
   });
 });
