@@ -2,13 +2,14 @@ import { mount } from 'enzyme';
 import 'jest-enzyme';
 import debounce = require('lodash/debounce');
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 
 import { useWindowResize } from '../useWindowResize';
 
 describe('useWindowResize hook', () => {
   let addEventListenerSpy: jest.SpyInstance;
   let removeEventListenerSpy: jest.SpyInstance;
-  let debouncedHandlerMock: jest.MockInstance<EventListener>;
+  let debouncedHandlerMock: jest.MockInstance<EventListener, any>;
   const Wrapper = () => {
     const timestamp = useWindowResize();
 
@@ -55,7 +56,10 @@ describe('useWindowResize hook', () => {
     const wrapper = mount(<Wrapper />);
 
     const event = new Event('resize');
-    resize(event);
+
+    act(() => {
+      resize(event);
+    });
 
     expect(wrapper).toHaveText(String(event.timeStamp));
 

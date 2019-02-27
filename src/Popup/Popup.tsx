@@ -26,49 +26,40 @@ export const Popup: React.FunctionComponent<IPopup> = props => {
   let isOverContent: boolean = false;
   let willHide: NodeJS.Timer | number | null = null;
 
-  const repaint = React.useCallback(
-    () => {
-      if (isVisible) {
-        setStyle({
-          ...getDefaultStyle(props),
-          ...calculateStyles(triggerRef, contentRef, props),
-        });
-      }
-    },
-    [triggerRef.current, contentRef.current, width, offset, posX, posY, isVisible]
-  );
+  const repaint = React.useCallback(() => {
+    if (isVisible) {
+      setStyle({
+        ...getDefaultStyle(props),
+        ...calculateStyles(triggerRef, contentRef, props),
+      });
+    }
+  }, [triggerRef.current, contentRef.current, width, offset, posX, posY, isVisible]);
 
   if (typeof window !== 'undefined') {
     React.useEffect(repaint, [lastResizeTimestamp, contentRef.current]);
   }
 
-  const showPopup = React.useCallback(
-    () => {
-      if (controlled) return;
-      if (willHide !== null) {
-        clearTimeout(willHide as number);
-        willHide = null;
-      }
+  const showPopup = React.useCallback(() => {
+    if (controlled) return;
+    if (willHide !== null) {
+      clearTimeout(willHide as number);
+      willHide = null;
+    }
 
-      setVisibility(true);
-    },
-    [willHide, isVisible, controlled]
-  );
+    setVisibility(true);
+  }, [willHide, isVisible, controlled]);
 
-  const hidePopup = React.useCallback(
-    () => {
-      if (willHide !== null || controlled) {
-        return;
-      }
+  const hidePopup = React.useCallback(() => {
+    if (willHide !== null || controlled) {
+      return;
+    }
 
-      willHide = setTimeout(() => {
-        isOverTrigger = false;
-        isOverContent = false;
-        setVisibility(false);
-      }, hideDelay);
-    },
-    [willHide, isVisible, controlled]
-  );
+    willHide = setTimeout(() => {
+      isOverTrigger = false;
+      isOverContent = false;
+      setVisibility(false);
+    }, hideDelay);
+  }, [willHide, isVisible, controlled]);
 
   const { renderTrigger, renderContent } = props;
 

@@ -27,5 +27,6 @@ export * from './Tabs';
 export * from './Text';
 export * from './Textarea';
 export * from './Toggle';
+export * from './Tooltip';
 
 export * from './theme';

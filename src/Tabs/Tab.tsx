@@ -6,20 +6,25 @@ import * as React from 'react';
 import { Tab, TabProps } from 'react-tabs';
 
 import { IBoxCSS } from '..';
-import { useTheme } from '../theme';
+import { ITheme, useTheme } from '../theme';
 
 const StyledTab: React.FunctionComponent<TabProps> & { tabsRole: string } = props => {
-  const styles = tabStyles();
+  const { tabs: theme } = useTheme();
+
+  const styles = tabStyles(theme);
+
+  const { children, ref, ...rest } = props;
+
   return (
     <ClassNames>
       {({ css: getClassName }) => (
         <Tab
-          {...props}
+          {...rest}
           className={getClassName(styles.tabStyle)}
           disabledClassName={getClassName(styles.disabledTabStyle)}
           selectedClassName={getClassName(styles.selectedTabStyle)}
         >
-          {props.children}
+          {children}
         </Tab>
       )}
     </ClassNames>
@@ -28,20 +33,19 @@ const StyledTab: React.FunctionComponent<TabProps> & { tabsRole: string } = prop
 
 StyledTab.tabsRole = 'Tab';
 
-const tabStyles = (): Dictionary<IBoxCSS> => {
-  const theme = useTheme();
+const tabStyles = (theme: ITheme['tabs']): Dictionary<IBoxCSS> => {
   return {
     tabStyle: {
       display: 'inline-block',
-      border: `1px solid ${theme.tabs.border}`,
+      border: `1px solid ${theme.border}`,
       fontWeight: 'bold',
       bottom: '-1px',
       position: 'relative',
       listStyle: 'none',
       padding: '8px 15px',
       cursor: 'pointer',
-      backgroundColor: theme.tabs.bg,
-      color: theme.tabs.fg,
+      backgroundColor: theme.bg,
+      color: theme.fg,
       zIndex: 2,
       marginLeft: -1,
 
@@ -59,14 +63,14 @@ const tabStyles = (): Dictionary<IBoxCSS> => {
       },
 
       ':hover': {
-        color: theme.tabs.selectedFg,
+        color: theme.selectedFg,
       },
     },
 
     selectedTabStyle: {
-      backgroundColor: theme.tabs.selectedBg,
-      borderBottomColor: theme.tabs.selectedBg,
-      color: theme.tabs.selectedFg,
+      backgroundColor: theme.selectedBg,
+      borderBottomColor: theme.selectedBg,
+      color: theme.selectedFg,
     },
 
     disabledTabStyle: {

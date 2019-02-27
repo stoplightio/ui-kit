@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Box, IBox, IBoxCSS } from './Box';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 // TODO better active styling
 
@@ -11,17 +11,18 @@ export interface IButton extends IBox<HTMLButtonElement> {
 
 export const Button = React.forwardRef<HTMLButtonElement, IButton>((props, ref) => {
   const { as = 'button', css, ...rest } = props;
-  return <Box {...rest} as={as} ref={ref} css={[buttonStyles(props), css]} />;
-});
 
-export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {
   const { button } = useTheme();
 
+  return <Box {...rest} as={as} ref={ref} css={[buttonStyles(button, props), css]} />;
+});
+
+export const buttonStyles = (theme: ITheme['button'], { disabled }: IButton = {}): IBoxCSS => {
   return [
     {
-      color: button.fg,
-      backgroundColor: button.bg,
-      borderColor: button.border,
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      borderColor: theme.border,
 
       padding: '5px 10px',
       minHeight: '30px',
@@ -37,7 +38,7 @@ export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {
       },
 
       ':hover': {
-        backgroundColor: button.hoverBg,
+        backgroundColor: theme.hoverBg,
       },
 
       ':active': {
@@ -50,7 +51,7 @@ export const buttonStyles = ({ disabled }: IButton = {}): IBoxCSS => {
       cursor: 'not-allowed',
 
       ':hover': {
-        backgroundColor: button.bg,
+        backgroundColor: theme.bg,
       },
     },
   ];

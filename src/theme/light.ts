@@ -74,7 +74,7 @@ export const lightTheme: ITheme = {
     bg: '#F5F7F9',
     border: '#E6ECF1',
     inlineFg: '#1a1a1a',
-    inlineBg: 'rgba(255, 229, 100, 0.3)',
+    inlineBg: 'rgb(255, 247, 211)',
 
     syntax: {
       primary: '#e91e63',
@@ -149,4 +149,6 @@ export const lightTheme: ITheme = {
     ...checkboxTheme,
     bg: 'gainsboro',
   },
+
+  tooltip: inputTheme,
 };

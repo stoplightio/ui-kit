@@ -20,6 +20,6 @@ describe('Select', () => {
     );
 
     expect(wrapper.find('input')).toHaveLength(1);
-    expect(wrapper.find('div[role="option"]')).toHaveLength(5);
+    expect(wrapper.find('Option')).toHaveLength(5);
   });
 });

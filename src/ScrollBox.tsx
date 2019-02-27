@@ -3,7 +3,7 @@ import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollb
 
 import { Box, IBox } from './Box';
 import { useScrollToHash } from './hooks/useScrollToHash';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 import { getScrollTransform, getThumbDimension, horizontalTrackStyle, verticalTrackStyle } from './utils/scroll';
 
 /**
@@ -17,15 +17,14 @@ interface IScrollBoxThumb extends IBox<HTMLDivElement> {
 const ScrollbarThumb = React.forwardRef<HTMLDivElement, IScrollBoxThumb>((props, ref) => {
   const { isScrolling, css, ...rest } = props;
 
-  return <Box {...rest} ref={ref} css={[scrollbarStyles({ isScrolling }), css]} />;
+  const { scrollbar: theme } = useTheme();
+
+  return <Box {...rest} ref={ref} css={[scrollbarStyles(theme, { isScrolling }), css]} />;
 });
 
-const scrollbarStyles = ({ isScrolling }: IScrollBoxThumb) => {
-  const { scrollbar } = useTheme();
-
+const scrollbarStyles = (theme: ITheme['scrollbar'], { isScrolling }: IScrollBoxThumb) => {
   return {
-    backgroundColor: scrollbar.bg,
-
+    backgroundColor: theme.bg,
     borderRadius: '5px',
     cursor: 'grab',
     opacity: isScrolling ? 1 : 0,

@@ -8,7 +8,7 @@ import {
 
 import { Omit } from '@stoplight/types';
 
-import { Box, Break, Flex, IBox, useTheme } from './';
+import { Box, Break, Flex, IBox, ITheme, useTheme } from './';
 
 // TODO: allow custom renderMenu
 // TODO: allow custom renderMenuItem?
@@ -69,13 +69,15 @@ export interface IContextMenuView {
 export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
+  const { contextMenu: theme } = useTheme();
+
   // Only show context menu if we have items to show
   if (!menuItems.length) {
     return null;
   }
 
   return (
-    <Box {...viewProps} as={ReactContextMenu} css={menuStyles()}>
+    <Box {...viewProps} as={ReactContextMenu} css={menuStyles(theme)}>
       {menuItems.map((item, index) => {
         return <ContextMenuItem key={index} {...item} />;
       })}
@@ -83,14 +85,12 @@ export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props 
   );
 };
 
-const menuStyles = () => {
-  const { contextMenu } = useTheme();
-
+const menuStyles = (theme: ITheme['contextMenu']) => {
   return [
     {
-      color: contextMenu.fg,
-      backgroundColor: contextMenu.bg,
-      border: contextMenu.border ? `1px solid ${contextMenu.border}` : 'none',
+      color: theme.fg,
+      backgroundColor: theme.bg,
+      border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       zIndex: 10000,
       padding: '5px 7px',
@@ -131,14 +131,14 @@ export interface IContextMenuItem extends Omit<IBox, 'onClick'> {
 
 export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
   const { attributes, data, title, divider, disabled, preventClose, onClick, menuItems = [], ...rest } = props;
-  const { contextMenu } = useTheme();
+  const { contextMenu: theme } = useTheme();
 
   const isSubMenu = menuItems.length > 0;
 
   const menuItem = (
     <Box
       {...rest}
-      css={contextMenuItemStyles({ onClick, divider, disabled })}
+      css={contextMenuItemStyles(theme, { onClick, divider, disabled })}
       as={(asProps: object) => (
         <ReactMenuItem
           attributes={asProps}
@@ -156,7 +156,7 @@ export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props 
             ) : null}
           </Flex>
 
-          {divider ? <Break thickness={1} m="5px" color={contextMenu.border} /> : null}
+          {divider ? <Break thickness={1} m="5px" color={theme.border} /> : null}
         </ReactMenuItem>
       )}
     />
@@ -166,7 +166,7 @@ export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props 
     return (
       <Box
         {...rest}
-        css={menuStyles()}
+        css={menuStyles(theme)}
         as={({ className }: { className: string }) => {
           return (
             <ReactSubMenu
@@ -186,9 +186,10 @@ export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props 
   return menuItem;
 };
 
-export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMenuItem) => {
-  const { contextMenu } = useTheme();
-
+export const contextMenuItemStyles = (
+  theme: ITheme['contextMenu'],
+  { onClick, divider, disabled }: IContextMenuItem
+) => {
   return [
     {
       padding: '5px 7px',
@@ -196,7 +197,7 @@ export const contextMenuItemStyles = ({ onClick, divider, disabled }: IContextMe
       borderRadius: '2px',
 
       ':hover': {
-        background: contextMenu.hoverBg,
+        background: theme.hoverBg,
       },
       ':focus': {
         outline: '0 none',

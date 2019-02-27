@@ -4,7 +4,7 @@ import { Box, IBox } from './Box';
 import { Flex } from './Flex';
 import { Overlay } from './Overlay';
 import { Portal } from './Portal';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 export interface IDialog extends IBox<HTMLElement> {
   show?: boolean;
@@ -13,6 +13,8 @@ export interface IDialog extends IBox<HTMLElement> {
 
 export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
   const { children, show, onClickOutside, onClick, css, ...rest } = props;
+
+  const { dialog } = useTheme();
 
   const onOverlayClick = React.useCallback<React.MouseEventHandler<HTMLElement>>(e => {
     if (onClickOutside !== undefined) {
@@ -34,7 +36,7 @@ export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
   return (
     <Portal>
       <Overlay as={Flex} alignItems="center" justifyContent="center" onClick={onOverlayClick}>
-        <Box {...rest} ref={ref} onClick={onBoxClick} css={[dialogStyles(), css]}>
+        <Box {...rest} ref={ref} onClick={onBoxClick} css={[dialogStyles(dialog), css]}>
           {children}
         </Box>
       </Overlay>
@@ -42,9 +44,7 @@ export const Dialog = React.forwardRef<HTMLElement, IDialog>((props, ref) => {
   );
 });
 
-export const dialogStyles = () => {
-  const { dialog } = useTheme();
-
+export const dialogStyles = (dialog: ITheme['dialog']) => {
   return {
     color: dialog.fg,
     backgroundColor: dialog.bg,

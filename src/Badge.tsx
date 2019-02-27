@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-import { Box, IBox, useTheme } from './';
+import { Box, IBox, ITheme, useTheme } from './';
 
 export enum BadgeVariant {
   Pill = 'pill',
   Textual = 'textual',
+  Dot = 'dot',
 }
 
 export enum BadgeColor {
@@ -19,29 +20,49 @@ export interface IBadge extends IBox<HTMLSpanElement> {
 }
 
 export const Badge: React.FunctionComponent<IBadge> = props => {
-  const { color = BadgeColor.Default, variant = BadgeVariant.Pill, ...restProps } = props;
+  const { color = BadgeColor.Default, variant = BadgeVariant.Pill, children, ...restProps } = props;
 
-  return <Box {...restProps} as="span" css={badgeStyles({ color, variant })} />;
-};
-
-const badgeStyles = ({ color, variant }: { color: BadgeColor; variant: BadgeVariant }) => {
   const { badge: theme } = useTheme();
 
+  return (
+    <Box {...restProps} as="span" css={badgeStyles({ color, variant, theme })}>
+      {variant === BadgeVariant.Dot ? null : children}
+    </Box>
+  );
+};
+
+const badgeStyles = ({
+  color,
+  variant,
+  theme,
+}: {
+  color: BadgeColor;
+  variant: BadgeVariant;
+  theme: ITheme['badge'];
+}) => {
   return [
     {
-      padding: '.25em .6em',
+      padding: '.25em 0',
       fontSize: '75%',
       fontWeight: 700,
       lineHeight: 1,
       borderRadius: '16px',
-    },
-    variant === BadgeVariant.Pill && {
       color: theme[color].fg,
       backgroundColor: theme[color].bg,
+      margin: '0 2px',
     },
     variant === BadgeVariant.Textual && {
       color: theme[color].bg,
       backgroundColor: 'transparent',
+    },
+    variant === BadgeVariant.Pill && {
+      padding: '.25em .6em',
+    },
+    variant === BadgeVariant.Dot && {
+      padding: '0',
+      width: '8px',
+      height: '8px',
+      display: 'inline-block',
     },
   ];
 };

@@ -2,7 +2,7 @@ import { Omit } from '@stoplight/types';
 import * as React from 'react';
 
 import { Box, IBox, IBoxCSS } from './Box';
-import { useTheme } from './theme';
+import { ITheme, useTheme } from './theme';
 
 /**
  * TABLE
@@ -15,29 +15,29 @@ export interface ITable extends IBox<HTMLTableElement> {
 export const Table = React.forwardRef<HTMLTableElement, ITable>((props, ref) => {
   const { children, isSelected, css, ...rest } = props;
 
+  const { table: theme } = useTheme();
+
   return (
-    <Box {...rest} as="table" ref={ref} css={[tableStyles({ isSelected }), css]}>
+    <Box {...rest} as="table" ref={ref} css={[tableStyles(theme, { isSelected }), css]}>
       <tbody>{children}</tbody>
     </Box>
   );
 });
 
-export const tableStyles = ({ isSelected }: ITable): IBoxCSS => {
-  const { table } = useTheme();
-
+export const tableStyles = (theme: ITheme['table'], { isSelected }: ITable): IBoxCSS => {
   return [
     {
       border: '1px solid',
       borderCollapse: 'collapse',
-      borderColor: table.border,
+      borderColor: theme.border,
       tr: {
-        '&:first-child': {
+        '&:first-of-type': {
           fontWeight: 'bold',
         },
       },
     },
     isSelected && {
-      boxShadow: table.shadow,
+      boxShadow: theme.shadow,
     },
   ];
 };
@@ -49,22 +49,21 @@ export const tableStyles = ({ isSelected }: ITable): IBoxCSS => {
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, ITableRow>((props, ref) => {
-  return <Box {...props} as="tr" ref={ref} css={tableRowStyles()} />;
+  const { table: theme } = useTheme();
+  return <Box {...props} as="tr" ref={ref} css={tableRowStyles(theme)} />;
 });
 
-export const tableRowStyles = () => {
-  const { table } = useTheme();
-
+export const tableRowStyles = (theme: ITheme['table']) => {
   return [
     {
       border: '0 none',
       borderBottom: '1px solid',
-      borderColor: table.border,
+      borderColor: theme.border,
       '&:last-child': {
         borderBottom: '0 none',
       },
-      '&:nth-child(even)': {
-        backgroundColor: table.evenBg,
+      '&:nth-of-type(even)': {
+        backgroundColor: theme.evenBg,
       },
     },
   ];
@@ -79,22 +78,27 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
 }
 
 export const TableCell = React.forwardRef<HTMLTableDataCellElement, ITableCell>((props, ref) => {
-  const { as = 'td', isSelected, ...rest } = props;
-  return <Box {...rest} as={as} ref={ref} css={tableCellStyles({ as, isSelected })} />;
+  const { as = 'td', isSelected, textAlign, ...rest } = props;
+  const { table: theme } = useTheme();
+  return <Box {...rest} as={as} ref={ref} css={tableCellStyles(theme, { as, isSelected, textAlign })} />;
 });
 
-export const tableCellStyles = ({ isSelected }: ITableCell): IBoxCSS => {
-  const { table } = useTheme();
+const textAlignPadding = {
+  left: '10px 40px 10px 15px',
+  center: '10px 15px 10px 15px',
+  right: '10px 15px 10px 40px',
+};
 
+export const tableCellStyles = (theme: ITheme['table'], { isSelected, textAlign = 'left' }: ITableCell): IBoxCSS => {
   return [
     {
       border: '0 none',
       borderLeft: '1px solid',
       borderRight: '1px solid',
-      borderColor: table.border,
-      textAlign: 'left',
-      padding: '10px 40px 10px 15px',
-      '&:first-child': {
+      borderColor: theme.border,
+      textAlign,
+      padding: textAlignPadding[textAlign],
+      '&:first-of-type': {
         borderLeft: '0 none',
       },
       '&:last-child': {
@@ -102,7 +106,7 @@ export const tableCellStyles = ({ isSelected }: ITableCell): IBoxCSS => {
       },
     },
     isSelected && {
-      boxShadow: table.shadow,
+      boxShadow: theme.shadow,
     },
   ];
 };
