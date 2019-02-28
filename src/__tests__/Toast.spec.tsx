@@ -4,16 +4,16 @@ import 'jest-enzyme';
 import * as React from 'react';
 
 import { IconLibrary } from '../Icon';
-import { NotificationType, Toast } from '../Toast';
+import { Toast } from '../Toaster/Toast';
 
-function expectToast(type: NotificationType, iconClassName: string) {
+function expectToast(type: string, iconClassName: string) {
   const toast = mount(
     <Toast
-      notification={{
+      content={{
         title: 'Title',
         body: 'Body',
-        type,
       }}
+      type={type}
     />
   );
 
@@ -27,24 +27,8 @@ describe('Toast', () => {
     const { fas } = _solidIcons;
     IconLibrary.add(fas);
 
-    expectToast(NotificationType.INFO, 'fa-info-circle');
-    expectToast(NotificationType.WARNING, 'fa-exclamation-triangle');
-    expectToast(NotificationType.ERROR, 'fa-times-circle');
-  });
-
-  it('emits close events', () => {
-    const onClose = jest.fn();
-    const notification = {
-      title: 'Title',
-      body: 'Body',
-      type: NotificationType.INFO,
-    };
-
-    const toast = mount(<Toast notification={notification} onClose={onClose} />);
-
-    toast.find('.fa-window-close').simulate('click');
-
-    expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenCalledWith(notification);
+    expectToast('info', 'fa-info-circle');
+    expectToast('warning', 'fa-exclamation-triangle');
+    expectToast('error', 'fa-times-circle');
   });
 });

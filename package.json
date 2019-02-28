@@ -60,6 +60,7 @@
     "react-simple-code-editor": "0.9.3",
     "react-tabs": "3.0.x",
     "react-textarea-autosize": "7.1.x",
+    "react-toastify": "4.5.x",
     "react-window": "1.5.2",
     "refractor": "2.6.2",
     "styled-system": "3.2.1",

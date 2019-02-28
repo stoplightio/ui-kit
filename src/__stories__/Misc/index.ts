@@ -1,7 +1,6 @@
 import './Dialog';
 import './Image';
-import './Notifications';
 import './Popup';
 import './Tabs';
-import './Toast';
+import './Toaster';
 import './Tooltip';
