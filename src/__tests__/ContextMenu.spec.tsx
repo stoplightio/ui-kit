@@ -95,10 +95,11 @@ describe('ContextMenuView component', () => {
     jest.unmock('../theme');
   });
 
-  it('should render null when no menuItems are passed in', () => {
+  it('should render an empty placeholder element', () => {
     const wrapper = shallow(<ContextMenuView id="t" menuItems={[]} />);
 
-    expect(wrapper.type()).toBeNull();
+    expect(wrapper).toHaveProp('as', ReactContextMenu);
+    expect(wrapper.find(ContextMenuItem)).toHaveLength(0);
   });
 
   it('should iterate over menuItems and render ContextMenuItem', () => {
