@@ -73,7 +73,8 @@ export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props 
 
   // Only show context menu if we have items to show
   if (!menuItems.length) {
-    return null;
+    // We still need to render a placeholder so the context menu can reference the menu to show/hide
+    return <Box {...viewProps} as={ReactContextMenu} css={{ display: 'none' }} />;
   }
 
   return (
