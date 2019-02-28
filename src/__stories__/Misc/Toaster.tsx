@@ -1,16 +1,32 @@
+import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
-import { ToastType } from 'react-toastify';
 import { Box } from '../../Box';
 import { toast, Toaster } from '../../Toaster';
 
-storiesOf('Miscellaneous:Toaster', module).add('with defaults', () => (
-  <Box>
-    <Toaster />
-    <button onClick={() => toast({ title: 'Info', body: 'Body' }, { type: ToastType.INFO })}>Info!</button>
-    <button onClick={() => toast({ title: 'Warning', body: 'Body' }, { type: ToastType.WARNING })}>Warning!</button>
-    <button onClick={() => toast({ title: 'Error', body: 'Body' }, { type: ToastType.ERROR })}>Error!</button>
-    <button onClick={() => toast({ title: 'Success', body: 'Body' }, { type: ToastType.SUCCESS })}>Success!</button>
-    <button onClick={() => toast({ title: 'Default', body: 'Body' }, { type: ToastType.DEFAULT })}>Default!</button>
-  </Box>
-));
+export const toasterKnobs = (tabName = 'Toaster'): any => ({
+  type: select('type', ['info', 'error', 'success', 'warning', 'default'], 'default', tabName),
+  title: text('title', 'Title', tabName),
+  body: text('body', 'Body', tabName),
+});
+
+storiesOf('Miscellaneous:Toaster', module)
+  .addDecorator(withKnobs)
+  .add('with defaults', () => (
+    <Box>
+      <Toaster />
+      <button
+        onClick={() =>
+          toast(
+            {
+              title: toasterKnobs().title,
+              body: toasterKnobs().body,
+            },
+            { type: toasterKnobs().type }
+          )
+        }
+      >
+        Toast!
+      </button>
+    </Box>
+  ));
