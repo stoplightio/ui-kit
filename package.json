@@ -7,7 +7,8 @@
     "ui",
     "ui-components"
   ],
-  "main": "dist/index.js",
+  "main": "index.js",
+  "types": "index.d.ts",
   "sideEffects": false,
   "homepage": "https://github.com/stoplightio/ui-kit",
   "bugs": "https://github.com/stoplightio/ui-kit/issues",
@@ -59,6 +60,7 @@
     "react-simple-code-editor": "0.9.3",
     "react-tabs": "3.0.x",
     "react-textarea-autosize": "7.1.x",
+    "react-toastify": "4.5.x",
     "react-window": "1.5.2",
     "refractor": "2.6.2",
     "styled-system": "3.2.1",

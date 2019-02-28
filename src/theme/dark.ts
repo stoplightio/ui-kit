@@ -152,4 +152,15 @@ export const darkTheme: ITheme = {
   },
 
   tooltip: inputTheme,
+
+  toaster: {
+    toastFg: '#f0f0f0',
+    toastBg: '#222',
+    progressBg: '#fff',
+    warningFg: 'orange',
+    infoFg: 'blue',
+    defaultFg: 'gray',
+    errorFg: 'red',
+    successFg: 'green',
+  },
 };

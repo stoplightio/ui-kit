@@ -223,6 +223,17 @@ export interface ITheme {
     invalidBg?: string;
     invalidBorder?: string;
   };
+
+  toaster: {
+    toastFg: string;
+    toastBg: string;
+    progressBg: string;
+    warningFg: string;
+    infoFg: string;
+    defaultFg: string;
+    errorFg: string;
+    successFg: string;
+  };
 }
 
 /**
