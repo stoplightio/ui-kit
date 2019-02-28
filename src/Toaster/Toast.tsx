@@ -6,11 +6,11 @@ import { Icon } from '../Icon';
 import { Text } from '../Text';
 
 export const iconMap = {
-  [ToastType.INFO]: ['fas', 'info-circle'],
-  [ToastType.WARNING]: ['fas', 'exclamation-triangle'],
-  [ToastType.ERROR]: ['fas', 'times-circle'],
-  [ToastType.SUCCESS]: ['fas', 'check-circle'],
-  [ToastType.DEFAULT]: ['fas', 'lightbulb'],
+  [ToastType.INFO]: 'info-circle',
+  [ToastType.WARNING]: 'exclamation-triangle',
+  [ToastType.ERROR]: 'times-circle',
+  [ToastType.SUCCESS]: 'check-circle',
+  [ToastType.DEFAULT]: 'lightbulb',
 };
 
 export const Toast = React.forwardRef<HTMLElement, IToast>((props, ref) => {
