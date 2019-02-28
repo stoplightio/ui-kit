@@ -156,5 +156,10 @@ export const lightTheme: ITheme = {
     toastFg: '#111',
     toastBg: '#fff',
     progressBg: '#222',
+    warningFg: 'orange',
+    infoFg: 'blue',
+    defaultFg: 'gray',
+    errorFg: 'red',
+    successFg: 'green',
   },
 };

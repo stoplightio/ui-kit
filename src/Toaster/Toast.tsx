@@ -4,6 +4,7 @@ import { IToast } from '.';
 import { Box, IBoxCSS } from '../Box';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
+import { useTheme } from '../theme';
 
 export const iconMap = {
   [ToastType.INFO]: 'info-circle',
@@ -15,10 +16,11 @@ export const iconMap = {
 
 export const Toast = React.forwardRef<HTMLElement, IToast>((props, ref) => {
   const { content, type, css, closeToast, ...rest } = props;
+  const { toaster: theme } = useTheme();
 
   return (
     <Box {...rest} ref={ref} css={[toastStyles(), css]}>
-      <Icon icon={iconMap[type]} />
+      <Icon icon={iconMap[type]} color={theme[`${type}Fg`]} />
       <Text as="b" ml="5px">
         {content.title}
       </Text>
