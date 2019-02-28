@@ -15,7 +15,7 @@ describe('Toaster', () => {
 
   it('renders ToastContainer', () => {
     const wrapper = mount(<Toaster />);
-    expect(wrapper.find(ToastContainer)).toHaveLength(1);
+    expect(wrapper.find(ToastContainer)).toExist();
     wrapper.unmount();
   });
 
