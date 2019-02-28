@@ -2,6 +2,7 @@ import { ClassNames } from '@emotion/core';
 import * as React from 'react';
 import { toast as toastify, ToastContainer, ToastOptions, ToastType } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Icon } from '..';
 import { IBox, IBoxCSS } from '../Box';
 import { ITheme, useTheme } from '../theme';
 import { Toast } from './Toast';
@@ -31,6 +32,7 @@ export const Toaster = () => {
         <ToastContainer
           toastClassName={getClassName(toastStyles(theme))}
           progressClassName={getClassName(progressStyles(theme))}
+          closeButton={<Icon icon="times" />}
         />
       )}
     </ClassNames>
