@@ -1,3 +1,6 @@
+jest.mock('react-toastify/dist/ReactToastify.css', () => ({}));
+jest.mock('react-toastify');
+
 import * as _solidIcons from '@fortawesome/free-solid-svg-icons';
 import { mount } from 'enzyme';
 import 'jest-enzyme';
@@ -5,8 +8,6 @@ import * as React from 'react';
 import { toast as toastify, ToastContainer } from 'react-toastify';
 import { toast, Toaster } from '../Toaster';
 import { Toast } from '../Toaster/Toast';
-
-jest.mock('react-toastify');
 
 describe('Toaster', () => {
   afterEach(() => {

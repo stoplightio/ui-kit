@@ -14,7 +14,7 @@ export const iconMap = {
 };
 
 export const Toast = React.forwardRef<HTMLElement, IToast>((props, ref) => {
-  const { content, type, css, ...rest } = props;
+  const { content, type, css, closeToast, ...rest } = props;
 
   return (
     <Box {...rest} ref={ref} css={[toastStyles(), css]}>

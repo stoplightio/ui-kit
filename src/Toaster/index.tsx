@@ -14,6 +14,7 @@ export interface IToastContent {
 export interface IToast extends IBox<HTMLElement> {
   content: IToastContent;
   type: string;
+  closeToast: () => void;
 }
 
 export function toast(content: IToastContent, options?: ToastOptions) {
