@@ -48,8 +48,10 @@ export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => ({
 
 storiesOf('Forms:Textarea', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Textarea {...textareaKnobs()} />)
+  .add('uncontrolled', () => <Textarea {...textareaKnobs()} autoFocus />)
+  .add('uncontrolled autofocus', () => <Textarea {...textareaKnobs()} autoFocus />)
   .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} autosize />)
+  .add('autosize autofocus', () => <Textarea {...textareaAutosizeKnobs()} autosize autoFocus />)
   .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled set', () => <Textarea {...textareaKnobs()} value="not-editable" />)
   .add('controlled store', () => (

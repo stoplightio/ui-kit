@@ -9,7 +9,6 @@ import omit = require('lodash/omit');
 import { IInput, Input } from '../../Input';
 import { AutosizeInputType, InlineInputType } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
-import { textKnobs } from '../Typography/Text';
 
 const store = new Store({
   value: 'Input Text',
@@ -30,10 +29,12 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
 
 storiesOf('Forms:Input', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} />)
-  .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} autosize />)
+  .add('uncontrolled', () => <Input {...inputKnobs()} />)
+  .add('uncontrolled autofocus', () => <Input {...inputKnobs()} autoFocus />)
+  .add('autosize', () => <Input {...autosizeInputKnobs()} autosize />)
+  .add('autosize autofocus', () => <Input {...autosizeInputKnobs()} autosize autoFocus />)
   .addDecorator(StateDecorator(store) as StoryDecorator)
-  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} value="not editable" />)
+  .add('controlled set', () => <Input {...inputKnobs()} value="not editable" />)
   .add('controlled store', () => (
     <Input
       {...inputKnobs()}

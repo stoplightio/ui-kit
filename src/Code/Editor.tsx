@@ -13,12 +13,13 @@ export interface IEditor extends Omit<IBox, 'onChange'> {
 }
 
 export const Editor = React.forwardRef<HTMLDivElement, IEditor>((props, ref) => {
-  const { language, onChange, value, css, ...rest } = props;
+  const { autoFocus, language, onChange, value, css, ...rest } = props;
   const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
 
   return (
     <Box {...rest} css={[codeEditorStyles(), css]}>
       <ReactSimpleCodeEditor
+        autoFocus={autoFocus}
         // @ts-ignore FIXME type erorr
         ref={ref}
         value={value}
