@@ -3,7 +3,10 @@ import * as React from 'react';
 import { Portal } from '../Portal';
 import { IPopupContentProps } from './types';
 
-export const PopupContent = React.forwardRef<HTMLDivElement, IPopupContentProps>((props, ref) => {
+export const PopupContent: React.FunctionComponent<IPopupContentProps & { ref?: any }> = React.forwardRef<
+  HTMLDivElement,
+  IPopupContentProps
+>((props, ref) => {
   const { children, onMouseEnter, onMouseLeave, repaint, style } = props;
 
   React.useEffect(repaint, []);

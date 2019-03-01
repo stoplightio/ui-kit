@@ -14,7 +14,7 @@ export interface ITooltip extends IBox<HTMLDivElement> {
   posY?: 'top' | 'center' | 'bottom';
 }
 
-export const Tooltip = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
+export const Tooltip: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
   const { children, posX, posY, invalid, css, ...rest } = props;
 
   const { tooltip: theme } = useTheme();
@@ -23,14 +23,14 @@ export const Tooltip = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) =
     <Box {...rest} css={tooltipStyles(theme, props)} ref={ref}>
       <Caret {...props} />
       <Flex position="relative">
-        <Box style={contentStyles(theme, props)}>{children}</Box>
+        <Box css={contentStyles(theme, props)}>{children}</Box>
       </Flex>
     </Box>
   );
 });
 
 // This is exported mostly to make testing easier :-)
-export const Caret = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
+export const Caret: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>((props, ref) => {
   const { tooltip: theme } = useTheme();
   return <Box position="absolute" style={caretStyles(theme, props)} ref={ref} />;
 });

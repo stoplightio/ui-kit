@@ -11,9 +11,10 @@ const store = new Store({
   value: 'stoplight.uiKit();',
 });
 
-export const codeEditorKnobs = (tabName = 'Code Editor'): Partial<IEditor> => ({
+export const codeEditorKnobs = (tabName = 'Code Editor'): IEditor => ({
   language: text('language', 'javascript', tabName),
   value: text('value', 'const defaultValue = stoplight.io();', tabName),
+  onChange: action('onChange'),
 });
 
 storiesOf('Code:Editor', module)

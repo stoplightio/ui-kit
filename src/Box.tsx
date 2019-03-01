@@ -2,7 +2,7 @@
 
 import { Interpolation, jsx } from '@emotion/core';
 import pickBy = require('lodash/pickBy');
-import { ComponentClass, CSSProperties, forwardRef, FunctionComponent, HTMLAttributes, ReactHTML } from 'react';
+import { CSSProperties, forwardRef, HTMLAttributes } from 'react';
 import * as ss from 'styled-system';
 
 import flattenDeep = require('lodash/flattenDeep');
@@ -10,7 +10,10 @@ import flattenDeep = require('lodash/flattenDeep');
 import * as sl from './styles';
 import { validPropsPicker } from './utils/validPropsPicker';
 
-export const Box = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>((props, ref) => {
+export const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<
+  HTMLOrSVGElement,
+  IBox<HTMLOrSVGElement>
+>((props, ref) => {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
   const {
     as = 'div',
@@ -177,7 +180,7 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
     ss.MinWidthProps,
     ss.MaxWidthProps,
     ss.OpacityProps {
-  as?: keyof ReactHTML | FunctionComponent | ComponentClass;
+  as?: any;
   children?: any;
   style?: CSSProperties;
   css?: IBoxCSS;
