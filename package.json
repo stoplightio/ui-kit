@@ -63,7 +63,7 @@
     "react-toastify": "4.5.x",
     "react-window": "1.5.2",
     "refractor": "2.6.2",
-    "styled-system": "3.2.1",
+    "styled-system": "4.0.1",
     "use-resize-observer": "3.1.0"
   },
   "devDependencies": {
