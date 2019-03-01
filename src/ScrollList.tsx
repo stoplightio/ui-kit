@@ -1,47 +1,60 @@
 /* @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FunctionComponent } from 'react';
-import {
-  areEqual,
-  FixedSizeList as WindowFixedSizeList,
-  FixedSizeListProps as IFixedSizeList,
-  shouldComponentUpdate,
-  VariableSizeList as WindowVariableSizeList,
-  VariableSizeListProps as IVariableSizeList,
-} from 'react-window';
+import { forwardRef } from 'react';
+import * as ReactWindow from 'react-window';
 
 import { AutoSizer } from './AutoSizer';
 import { ITheme, useTheme } from './theme';
 
-export const FixedSizeList: FunctionComponent<IFixedSizeList> = props => {
+export {
+  areEqual,
+  shouldComponentUpdate,
+  ListItemKeySelector,
+  FixedSizeList as IFixedSizeList,
+  VariableSizeList as IVariableSizeList,
+  FixedSizeListProps as IFixedSizeListProps,
+  VariableSizeListProps as IVariableSizeListProps,
+} from 'react-window';
+
+export const FixedSizeList = forwardRef<ReactWindow.FixedSizeList, ReactWindow.FixedSizeListProps>((props, ref) => {
   const { scrollbar: theme } = useTheme();
-  const styles = scrollListStyles(theme);
   const { width, height, ...rest } = props;
 
   return (
     <AutoSizer width={width} height={height}>
       {({ width: listWidth, height: listHeight }) => (
-        <WindowFixedSizeList {...rest} css={styles} height={listHeight} width={listWidth} />
+        <ReactWindow.FixedSizeList
+          {...rest}
+          ref={ref}
+          css={scrollListStyles(theme)}
+          height={listHeight}
+          width={listWidth}
+        />
       )}
     </AutoSizer>
   );
-};
+});
 
-export const VariableSizeList: FunctionComponent<IVariableSizeList> = props => {
-  const { width, height, ...rest } = props;
+export const VariableSizeList = forwardRef<ReactWindow.VariableSizeList, ReactWindow.VariableSizeListProps>(
+  (props, ref) => {
+    const { width, height, ...rest } = props;
+    const { scrollbar: theme } = useTheme();
 
-  const { scrollbar: theme } = useTheme();
-
-  return (
-    <AutoSizer width={width} height={height}>
-      {({ width: listWidth, height: listHeight }) => (
-        <WindowVariableSizeList {...rest} css={scrollListStyles(theme)} height={listHeight} width={listWidth} />
-      )}
-    </AutoSizer>
-  );
-};
-
-export { IFixedSizeList, IVariableSizeList, areEqual, shouldComponentUpdate };
+    return (
+      <AutoSizer width={width} height={height}>
+        {({ width: listWidth, height: listHeight }) => (
+          <ReactWindow.VariableSizeList
+            {...rest}
+            ref={ref}
+            css={scrollListStyles(theme)}
+            height={listHeight}
+            width={listWidth}
+          />
+        )}
+      </AutoSizer>
+    );
+  }
+);
 
 export const scrollListStyles = (theme: ITheme['scrollbar']) => {
   return css`
