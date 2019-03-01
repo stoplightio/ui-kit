@@ -71,13 +71,8 @@ export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props 
 
   const { contextMenu: theme } = useTheme();
 
-  // Only show context menu if we have items to show
-  if (!menuItems.length) {
-    return null;
-  }
-
   return (
-    <Box {...viewProps} as={ReactContextMenu} css={menuStyles(theme)}>
+    <Box {...viewProps} as={ReactContextMenu} css={menuStyles(theme, menuItems.length > 0)}>
       {menuItems.map((item, index) => {
         return <ContextMenuItem key={index} {...item} />;
       })}
@@ -85,7 +80,12 @@ export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props 
   );
 };
 
-const menuStyles = (theme: ITheme['contextMenu']) => {
+const menuStyles = (theme: ITheme['contextMenu'], hasMenuItems: boolean) => {
+  // Only show context menu if we have items to show
+  if (!hasMenuItems) {
+    return [{ display: 'none' }];
+  }
+
   return [
     {
       color: theme.fg,
@@ -166,7 +166,7 @@ export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props 
     return (
       <Box
         {...rest}
-        css={menuStyles(theme)}
+        css={menuStyles(theme, true)}
         as={({ className }: { className: string }) => {
           return (
             <ReactSubMenu
