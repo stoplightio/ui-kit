@@ -12,8 +12,11 @@ export interface IInput extends Omit<IBox<HTMLInputElement>, 'as'> {
   invalid?: boolean;
 }
 
-const AutosizeWrapper: React.FunctionComponent<Partial<{ className: string }>> = ({ className, ...props }) => (
-  <AutosizeInput {...props} inputClassName={className} placeholderIsMinWidth />
+const AutosizeWrapper = React.forwardRef<HTMLInputElement, Partial<{ className: string }>>(
+  ({ className, ...props }, ref) => (
+    // @ts-ignore
+    <AutosizeInput {...props} ref={ref} inputClassName={className} placeholderIsMinWidth />
+  )
 );
 
 export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
@@ -26,10 +29,13 @@ export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => 
   const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
   // FIXME: might not work with boolean inputs such as radio/checkbox
-  const handleChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.value);
-    onChange(event);
-  };
+  const handleChange = React.useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    e => {
+      setValue(e.target.value);
+      onChange(e);
+    },
+    [onChange, setValue]
+  );
 
   return (
     <Box

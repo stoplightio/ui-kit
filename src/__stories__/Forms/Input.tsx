@@ -6,13 +6,20 @@ import { boolean, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
 import omit = require('lodash/omit');
 
+import { forwardRef } from 'react';
+import { useAutoFocus } from '../../hooks/useAutoFocus';
 import { IInput, Input } from '../../Input';
 import { AutosizeInputType, InlineInputType } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
-import { textKnobs } from '../Typography/Text';
 
 const store = new Store({
   value: 'Input Text',
+});
+
+const CustomInput = forwardRef<HTMLInputElement, IInput>(({ autoFocus, ...props }, ref) => {
+  const [nodeRef] = useAutoFocus<HTMLInputElement>(autoFocus, ref);
+
+  return <Input {...props} ref={nodeRef} />;
 });
 
 export const inputKnobs = (tabName = 'Input'): IInput => ({
@@ -30,10 +37,15 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
 
 storiesOf('Forms:Input', module)
   .addDecorator(withKnobs)
-  .add('uncontrolled', () => <Input {...inputKnobs()} {...textKnobs()} />)
-  .add('autosize', () => <Input {...autosizeInputKnobs()} {...textKnobs()} autosize />)
+  .add('uncontrolled', () => <Input {...inputKnobs()} />)
+  .add('uncontrolled autofocus', () => <Input {...inputKnobs()} autoFocus />)
+  .add('autosize', () => <Input {...autosizeInputKnobs()} autosize />)
+  .add('autosize autofocus', () => <Input {...autosizeInputKnobs()} autosize autoFocus />)
+  .add('with controlled autofocus', () => (
+    <CustomInput {...inputKnobs()} autoFocus={boolean('autoFocus', true, 'Input')} />
+  ))
   .addDecorator(StateDecorator(store) as StoryDecorator)
-  .add('controlled set', () => <Input {...inputKnobs()} {...textKnobs()} value="not editable" />)
+  .add('controlled set', () => <Input {...inputKnobs()} value="not editable" />)
   .add('controlled store', () => (
     <Input
       {...inputKnobs()}

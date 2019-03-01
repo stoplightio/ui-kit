@@ -22,4 +22,12 @@ storiesOf('Code:Editor', module)
   .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('with store', () => (
     <Editor {...codeEditorKnobs()} value={store.get('value')} onChange={(value: string) => store.set({ value })} />
+  ))
+  .add('with store autofocus', () => (
+    <Editor
+      {...codeEditorKnobs()}
+      value={store.get('value')}
+      onChange={(value: string) => store.set({ value })}
+      autoFocus
+    />
   ));
