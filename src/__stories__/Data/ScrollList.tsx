@@ -5,9 +5,9 @@ import { number, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { areEqual, Box, Flex } from '../..';
-import { FixedSizeList, IFixedSizeList, IVariableSizeList, VariableSizeList } from '../../ScrollList';
+import { FixedSizeList, IFixedSizeListProps, IVariableSizeListProps, VariableSizeList } from '../../ScrollList';
 
-export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVariableSizeList, 'children'> => ({
+export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVariableSizeListProps, 'children'> => ({
   itemSize: () => 0,
   direction: select('direction', ['vertical', 'horizontal'], 'vertical', tabName),
   height: text('height', '500px', tabName),
@@ -15,7 +15,7 @@ export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVaria
   itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
-export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeList, 'children'> => ({
+export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeListProps, 'children'> => ({
   ...variableSizeListKnobs(tabName),
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
