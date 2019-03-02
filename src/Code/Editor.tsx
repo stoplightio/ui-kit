@@ -12,7 +12,7 @@ export interface IEditor extends Omit<IBox, 'onChange'> {
   onChange(code: string): any;
 }
 
-export const Editor = React.forwardRef<HTMLDivElement, IEditor>((props, ref) => {
+export const Editor: React.FunctionComponent<IEditor> = React.forwardRef<HTMLDivElement, IEditor>((props, ref) => {
   const { autoFocus, language, onChange, value, css, ...rest } = props;
   const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
 

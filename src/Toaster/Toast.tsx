@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ToastType } from 'react-toastify';
-import { IToast } from '.';
-import { Box, IBoxCSS } from '../Box';
+import { Box, IBox, IBoxCSS } from '../Box';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import { useTheme } from '../theme';
@@ -14,7 +13,18 @@ export const iconMap = {
   [ToastType.DEFAULT]: 'lightbulb',
 };
 
-export const Toast = React.forwardRef<HTMLElement, IToast>((props, ref) => {
+export interface IToastContent {
+  title: string;
+  body: string;
+}
+
+export interface IToast extends IBox<HTMLElement> {
+  content: IToastContent;
+  type: string;
+  closeToast?: () => void;
+}
+
+export const Toast: React.FunctionComponent<IToast> = React.forwardRef<HTMLElement, IToast>((props, ref) => {
   const { content, type, css, closeToast, ...rest } = props;
   const { toaster: theme } = useTheme();
 

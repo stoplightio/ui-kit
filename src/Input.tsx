@@ -12,14 +12,18 @@ export interface IInput extends Omit<IBox<HTMLInputElement>, 'as'> {
   invalid?: boolean;
 }
 
-const AutosizeWrapper = React.forwardRef<HTMLInputElement, Partial<{ className: string }>>(
+export interface IAutosizeInput {
+  className?: string;
+}
+
+const AutosizeWrapper: React.FunctionComponent<IAutosizeInput> = React.forwardRef<HTMLInputElement, IAutosizeInput>(
   ({ className, ...props }, ref) => (
     // @ts-ignore
     <AutosizeInput {...props} ref={ref} inputClassName={className} placeholderIsMinWidth />
   )
 );
 
-export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
+export const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
   const { autosize, onChange = noop, type, invalid, css, ...rest } = props;
 
   const { input: theme } = useTheme();
@@ -39,6 +43,9 @@ export const Input = React.forwardRef<HTMLInputElement, IInput>((props, ref) => 
 
   return (
     <Box
+      px={3}
+      py={2}
+      borderRadius={2}
       {...rest}
       as={autosize ? AutosizeWrapper : 'input'}
       ref={ref}
@@ -66,9 +73,6 @@ const inputStyles = (baseTheme: ITheme['input'], { disabled, invalid, css }: IIn
       backgroundColor: theme.bg,
       border: theme.border ? `1px solid ${theme.border}` : 'none',
 
-      padding: '0px 10px',
-      minHeight: '30px',
-      borderRadius: '3px',
       boxSizing: 'border-box',
 
       ':focus': {

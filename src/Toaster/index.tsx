@@ -2,21 +2,11 @@ import { ClassNames } from '@emotion/core';
 import * as React from 'react';
 import { toast as toastify, ToastContainer, ToastOptions, ToastType } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Icon } from '..';
-import { IBox, IBoxCSS } from '../Box';
+
+import { IBoxCSS } from '../Box';
+import { Icon } from '../Icon';
 import { ITheme, useTheme } from '../theme';
-import { Toast } from './Toast';
-
-export interface IToastContent {
-  title: string;
-  body: string;
-}
-
-export interface IToast extends IBox<HTMLElement> {
-  content: IToastContent;
-  type: string;
-  closeToast: () => void;
-}
+import { IToastContent, Toast } from './Toast';
 
 export function toast(content: IToastContent, options?: ToastOptions) {
   const type = (options && options.type) || ToastType.DEFAULT;

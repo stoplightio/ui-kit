@@ -4,7 +4,10 @@ import { ITheme, useTheme } from './theme';
 
 export interface IBlockQuote extends IBox<HTMLQuoteElement | HTMLElement> {}
 
-export const BlockQuote = React.forwardRef<HTMLQuoteElement | HTMLElement, IBlockQuote>((props, ref) => {
+export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<
+  HTMLQuoteElement | HTMLElement,
+  IBlockQuote
+>((props, ref) => {
   const { as = 'blockquote', css, ...rest } = props;
 
   const { blockQuote } = useTheme();

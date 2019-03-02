@@ -1,24 +1,20 @@
 import { CSSProperties, ReactElement, ReactEventHandler, ReactNode } from 'react';
 import { ITheme } from '../theme';
 
-export type PopupTriggerRenderer = (
-  props: {
-    isVisible: boolean;
-    isOver: boolean;
-    showPopup: () => void;
-    hidePopup: () => void;
-  }
-) => ReactElement<any>;
+export type PopupTriggerRenderer = (props: {
+  isVisible: boolean;
+  isOver: boolean;
+  showPopup: () => void;
+  hidePopup: () => void;
+}) => ReactElement<any>;
 
-export type PopupContentRenderer = (
-  props: {
-    isVisible: boolean;
-    isOver: boolean;
-    showPopup: () => void;
-    hidePopup: () => void;
-    theme: ITheme;
-  }
-) => any;
+export type PopupContentRenderer = (props: {
+  isVisible: boolean;
+  isOver: boolean;
+  showPopup: () => void;
+  hidePopup: () => void;
+  theme: ITheme;
+}) => any;
 
 export interface IPopupPositionOffset {
   top?: number;
