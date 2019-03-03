@@ -59,8 +59,7 @@ export const toastContentStyles = (theme: ITheme['toast']): IBoxCSS => {
     {
       background: theme.toastBg,
       color: theme.toastFg,
-      // TODO take from theme
-      border: '1px solid',
+      border: theme.toastBorder && `1px solid ${theme.toastBorder}`,
       boxSizing: 'border-box',
       padding: '10px',
       height: '100%',
