@@ -44,7 +44,7 @@ export interface IMenu extends IFlex {
   };
 }
 
-export const Menu = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
+export const Menu: React.FunctionComponent<IMenu> = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
   const {
     menuItems,
     posX = 'center',
@@ -126,28 +126,36 @@ export interface IMenuItem extends Pick<IFlex, Exclude<keyof IFlex, 'title'>> {
   onClick?: IFlex['onClick'];
 }
 
-export const MenuItem = React.forwardRef<HTMLOrSVGElement, IMenuItem>((props, ref) => {
-  const { icon, title, subtitle, onClick, disabled, ...rest } = props;
+export const MenuItem: React.FunctionComponent<IMenuItem> = React.forwardRef<HTMLOrSVGElement, IMenuItem>(
+  (props, ref) => {
+    const { icon, title, subtitle, onClick, disabled, ...rest } = props;
 
-  const { menu: theme } = useTheme();
-  const styles = menuItemStyles(theme, { disabled, onClick });
+    const { menu: theme } = useTheme();
+    const styles = menuItemStyles(theme, { disabled, onClick });
 
-  return (
-    <Flex {...rest} ref={ref} onClick={onClick} css={styles}>
-      {icon && (
-        <Flex key="menu-icon" alignItems="center" justifyContent="center" width="20px" pr={title || subtitle ? 10 : 0}>
-          <Icon icon={icon} />
-        </Flex>
-      )}
-      {(title || subtitle) && (
-        <span key="menu-title">
-          {title && <span>{title}</span>}
-          {subtitle && <span>{subtitle}</span>}
-        </span>
-      )}
-    </Flex>
-  );
-});
+    return (
+      <Flex {...rest} ref={ref} onClick={onClick} css={styles}>
+        {icon && (
+          <Flex
+            key="menu-icon"
+            alignItems="center"
+            justifyContent="center"
+            width="20px"
+            pr={title || subtitle ? 10 : 0}
+          >
+            <Icon icon={icon} />
+          </Flex>
+        )}
+        {(title || subtitle) && (
+          <span key="menu-title">
+            {title && <span>{title}</span>}
+            {subtitle && <span>{subtitle}</span>}
+          </span>
+        )}
+      </Flex>
+    );
+  }
+);
 
 const menuItemStyles = (theme: ITheme['menu'], { disabled, onClick }: Partial<IMenuItem>): IBoxCSS => {
   return [

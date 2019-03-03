@@ -7,10 +7,12 @@ export interface IHeading extends Omit<IText<HTMLHeadingElement>, 'as'> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export const Heading = React.forwardRef<HTMLHeadingElement, IHeading>((props, ref) => {
-  const { as = 'h2', css, ...rest } = props;
+export const Heading: React.FunctionComponent<IHeading> = React.forwardRef<HTMLHeadingElement, IHeading>(
+  (props, ref) => {
+    const { as = 'h2', css, ...rest } = props;
 
-  return <Text {...rest} as={as} ref={ref} css={[headingStyles(), css]} />;
-});
+    return <Text {...rest} as={as} ref={ref} css={[headingStyles(), css]} />;
+  }
+);
 
 const headingStyles = () => ({ magin: '0', fontWeight: 900 });
