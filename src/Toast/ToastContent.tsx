@@ -20,16 +20,11 @@ export interface IToastContent<T = {}> {
   type?: ToastType;
 
   closeToast?: () => void;
-  render?: (props: { ref?: React.Ref<HTMLElement>; closeToast?: () => void }) => any;
 }
 
 export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((props, ref) => {
-  const { title, message, type = 'default', icon, closeIcon, closeToast, render: customRenderer, css, ...rest } = props;
+  const { title, message, type = 'default', icon, closeIcon, closeToast, css, ...rest } = props;
   const { toast: theme } = useTheme();
-
-  if (customRenderer) {
-    return customRenderer({ ref, closeToast });
-  }
 
   return (
     <Box {...rest} ref={ref} css={[toastContentStyles(theme), css]}>
