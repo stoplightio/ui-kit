@@ -16,7 +16,7 @@ export interface IToastContent<T = {}> {
   title?: string;
   message?: string;
   icon?: IIcon['IconProp'];
-  closeIcon?: IIcon['IconProp'] | boolean;
+  closeIcon?: IIcon['IconProp'] | false;
   type?: ToastType;
 
   closeToast?: () => void;
@@ -26,9 +26,14 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
   const { title, message, type = 'default', icon, closeIcon, closeToast, css, ...rest } = props;
   const { toast: theme } = useTheme();
 
+  const showCloseIcon = closeIcon !== false;
+
   return (
     <Box {...rest} ref={ref} css={[toastContentStyles(theme), css]}>
-      <Icon icon={closeIcon || 'times'} onClick={closeToast} position="absolute" cursor="pointer" right={10} />
+      {showCloseIcon && (
+        <Icon icon={closeIcon || 'times'} onClick={closeToast} position="absolute" cursor="pointer" right={10} />
+      )}
+
       <Icon icon={icon || iconMap[type]} color={theme[`${type}Fg`]} />
 
       {title && (
