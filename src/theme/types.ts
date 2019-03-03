@@ -224,7 +224,7 @@ export interface ITheme {
     invalidBorder?: string;
   };
 
-  toaster: {
+  toast: {
     toastFg: string;
     toastBg: string;
     progressBg: string;
