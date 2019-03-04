@@ -17,7 +17,7 @@ const inputTheme: ITheme['input'] = {
 
 const buttonTheme: ITheme['button'] = {
   fg: 'black',
-  bg: 'rgb(245, 248, 250)',
+  bg: 'white',
   border: opacityBorder,
   hoverBg: '#ebf1f5',
 };
