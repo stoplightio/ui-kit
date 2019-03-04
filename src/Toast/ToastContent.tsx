@@ -1,6 +1,9 @@
+import { Omit } from '@stoplight/types';
+import noop = require('lodash/noop');
 import * as React from 'react';
 
 import { Box, IBox, IBoxCSS } from '../Box';
+import { Button, IButton } from '../Button';
 import { Icon, IIcon } from '../Icon';
 import { Text } from '../Text';
 import { ITheme, useTheme } from '../theme';
@@ -12,18 +15,24 @@ import { ToastType } from './index';
 
 interface IToastContentProps extends IToastContent, IBox<HTMLElement> {}
 
+interface IToastAction extends Omit<IButton, 'onClick'> {
+  title: string;
+  onClick?: (opts: { closeToast: () => void }) => void;
+}
+
 export interface IToastContent<T = {}> {
   title?: string;
   message?: string;
   icon?: IIcon['IconProp'];
   closeIcon?: IIcon['IconProp'] | false;
   type?: ToastType;
+  actions?: IToastAction[];
 
   closeToast?: () => void;
 }
 
 export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((props, ref) => {
-  const { title, message, type = 'default', icon, closeIcon, closeToast, css, ...rest } = props;
+  const { title, message, type = 'default', icon, closeIcon, actions = [], closeToast = noop, css, ...rest } = props;
   const { toast: theme } = useTheme();
 
   const showCloseIcon = closeIcon !== false;
@@ -47,6 +56,25 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
           {message}
         </Text>
       )}
+
+      {actions.length
+        ? actions.map(action => {
+            const { title: actionTitle, onClick = noop, ...buttonProps } = action;
+            return (
+              <React.Fragment>
+                <Button
+                  m="5px"
+                  {...buttonProps}
+                  onClick={() => {
+                    onClick({ closeToast });
+                  }}
+                >
+                  {actionTitle}
+                </Button>
+              </React.Fragment>
+            );
+          })
+        : null}
     </Box>
   );
 });

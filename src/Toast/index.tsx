@@ -23,7 +23,18 @@ export interface IToast extends IToastContent, Omit<ToastOptions, 'transition'> 
 }
 
 export function Toast(options: IToast) {
-  const { title, message, icon, closeIcon, attributes = {}, transition = 'zoom', ...toastOptions } = options;
+  const {
+    title,
+    message,
+    icon,
+    closeIcon,
+    attributes = {},
+    actions = [],
+    transition = 'zoom',
+    ...toastOptions
+  } = options;
+
+  const autoClose = options.hasOwnProperty('autoClose') ? options.autoClose : actions.length ? false : undefined;
 
   return ReactToast(
     <ToastContent
@@ -32,10 +43,12 @@ export function Toast(options: IToast) {
       type={options.type}
       icon={icon}
       closeIcon={closeIcon}
+      actions={actions}
       {...attributes}
     />,
     {
       ...toastOptions,
+      autoClose,
       transition: ToastTransitionMap[transition],
     }
   );

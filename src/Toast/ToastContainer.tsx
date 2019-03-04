@@ -29,6 +29,7 @@ export const ToastContainer = (props: IToastContainer) => {
           toastClassName={getClassName(toastStyles())}
           bodyClassName={getClassName(bodyStyles())}
           closeOnClick={false}
+          position="bottom-right"
           {...containerProps}
           // custom close buttons should be defined on the content level
           closeButton={false}
