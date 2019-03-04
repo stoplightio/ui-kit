@@ -11,7 +11,6 @@ import {
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { IBox } from '../Box';
 import { IToastContent, ToastContent } from './ToastContent';
 
 /**
@@ -19,39 +18,52 @@ import { IToastContent, ToastContent } from './ToastContent';
  */
 export interface IToast extends IToastContent, Omit<ToastOptions, 'transition'> {
   transition?: IToastTransition;
-  attributes?: IBox<HTMLElement>;
 }
 
 export function Toast(options: IToast) {
   const {
-    title,
-    message,
-    icon,
-    closeIcon,
-    attributes = {},
     actions = [],
+    type = 'default',
     transition = 'zoom',
-    ...toastOptions
+    onOpen,
+    onClose,
+    toastId,
+    progress,
+    pauseOnHover,
+    pauseOnFocusLoss,
+    closeOnClick,
+    autoClose,
+    position,
+    progressClassName,
+    progressStyle,
+    className,
+    bodyClassName,
+    hideProgressBar,
+    draggable,
+    draggablePercent,
+    ...contentProps
   } = options;
 
-  const autoClose = options.hasOwnProperty('autoClose') ? options.autoClose : actions.length ? false : undefined;
-
-  return ReactToast(
-    <ToastContent
-      title={title}
-      message={message}
-      type={options.type}
-      icon={icon}
-      closeIcon={closeIcon}
-      actions={actions}
-      {...attributes}
-    />,
-    {
-      ...toastOptions,
-      autoClose,
-      transition: ToastTransitionMap[transition],
-    }
-  );
+  return ReactToast(<ToastContent type={type} actions={actions} {...contentProps} />, {
+    type,
+    onOpen,
+    onClose,
+    toastId,
+    progress,
+    pauseOnHover,
+    pauseOnFocusLoss,
+    closeOnClick,
+    position,
+    progressClassName,
+    progressStyle,
+    className,
+    bodyClassName,
+    hideProgressBar,
+    draggable,
+    draggablePercent,
+    autoClose: options.hasOwnProperty('autoClose') ? autoClose : actions.length ? false : undefined,
+    transition: ToastTransitionMap[transition],
+  });
 }
 
 /**

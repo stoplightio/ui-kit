@@ -13,12 +13,12 @@ import { ToastType } from './index';
  * TOAST CONTENT
  */
 
-interface IToastContentProps extends IToastContent, IBox<HTMLElement> {}
-
 interface IToastAction extends Omit<IButton, 'onClick'> {
   title: string;
   onClick?: (opts: { closeToast: () => void }) => void;
 }
+
+interface IToastContentProps extends IToastContent, IBox<HTMLElement> {}
 
 export interface IToastContent<T = {}> {
   title?: string;
