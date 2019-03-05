@@ -62,17 +62,15 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
         ? actions.map(action => {
             const { label, onClick = noop, ...buttonProps } = action;
             return (
-              
-                <Button
-                  m="5px"
-                  {...buttonProps}
-                  onClick={() => {
-                    onClick({ closeToast });
-                  }}
-                >
-                  {label}
-                </Button>
-              
+              <Button
+                m="5px"
+                {...buttonProps}
+                onClick={() => {
+                  onClick({ closeToast });
+                }}
+              >
+                {label}
+              </Button>
             );
           })
         : null}
