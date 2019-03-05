@@ -72,7 +72,7 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
                 >
                   {label}
                 </Button>
-              </React.Fragment>
+              
             );
           })
         : null}
