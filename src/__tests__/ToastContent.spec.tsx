@@ -4,25 +4,17 @@ import 'jest-enzyme';
 import * as React from 'react';
 
 import { Icon, IconLibrary } from '../Icon';
-import { Toast } from '../Toaster/Toast';
+import { ToastContent } from '../Toast';
 
 function expectToast(type: string, iconClassName: string) {
-  const toast = mount(
-    <Toast
-      content={{
-        title: 'Title',
-        body: 'Body',
-      }}
-      type={type}
-    />
-  );
+  const toast = mount(<ToastContent title="title" message="message" type={type} />);
 
   expect(toast.find(Icon).filterWhere((node: any) => node.prop('icon') === iconClassName)).toHaveLength(1);
-  expect(toast.find('b').text()).toEqual('Title');
-  expect(toast.find('p').text()).toEqual('Body');
+  expect(toast.find('b').text()).toEqual('title');
+  expect(toast.find('p').text()).toEqual('message');
 }
 
-describe('Toast', () => {
+describe('ToastContent', () => {
   it('renders error toast', () => {
     const { fas } = _solidIcons;
     IconLibrary.add(fas);

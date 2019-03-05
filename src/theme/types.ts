@@ -224,9 +224,11 @@ export interface ITheme {
     invalidBorder?: string;
   };
 
-  toaster: {
+  toast: {
     toastFg: string;
     toastBg: string;
+    toastBorder?: string;
+
     progressBg: string;
     warningFg: string;
     infoFg: string;

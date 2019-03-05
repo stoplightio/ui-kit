@@ -152,7 +152,7 @@ export const lightTheme: ITheme = {
 
   tooltip: inputTheme,
 
-  toaster: {
+  toast: {
     toastFg: '#111',
     toastBg: '#fff',
     progressBg: '#222',

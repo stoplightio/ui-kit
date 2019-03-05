@@ -2,5 +2,5 @@ import './Dialog';
 import './Image';
 import './Popup';
 import './Tabs';
-import './Toaster';
+import './Toast';
 import './Tooltip';
