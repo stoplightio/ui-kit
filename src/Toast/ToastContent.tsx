@@ -62,7 +62,7 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
         ? actions.map(action => {
             const { label, onClick = noop, ...buttonProps } = action;
             return (
-              <React.Fragment>
+              
                 <Button
                   m="5px"
                   {...buttonProps}
