@@ -48,16 +48,16 @@ storiesOf('Miscellaneous:Toast', module)
             transition: toastKnobs().transition,
             actions: [
               {
-                title: 'Check Dev.Console',
+                label: 'Check Dev.Console',
                 onClick: () => console.log('clicked'),
               },
               {
-                title: 'Close on Click',
+                label: 'Close on Click',
                 onClick: ({ closeToast }) => {
                   closeToast();
                 },
               },
-              { title: 'Disabled Action', disabled: true },
+              { label: 'Disabled Action', disabled: true },
             ],
           })
         }

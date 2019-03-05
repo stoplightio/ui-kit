@@ -1,4 +1,6 @@
 import { Omit } from '@stoplight/types';
+import isNil = require('lodash/isNil');
+import pickBy = require('lodash/pickBy');
 import * as React from 'react';
 import {
   Bounce as ReactTransitionBounce,
@@ -24,7 +26,7 @@ export function Toast(options: IToast) {
   const {
     actions = [],
     type = 'default',
-    transition = 'zoom',
+    transition,
     onOpen,
     onClose,
     toastId,
@@ -44,26 +46,31 @@ export function Toast(options: IToast) {
     ...contentProps
   } = options;
 
-  return ReactToast(<ToastContent type={type} actions={actions} {...contentProps} />, {
-    type,
-    onOpen,
-    onClose,
-    toastId,
-    progress,
-    pauseOnHover,
-    pauseOnFocusLoss,
-    closeOnClick,
-    position,
-    progressClassName,
-    progressStyle,
-    className,
-    bodyClassName,
-    hideProgressBar,
-    draggable,
-    draggablePercent,
-    autoClose: options.hasOwnProperty('autoClose') ? autoClose : actions.length ? false : undefined,
-    transition: ToastTransitionMap[transition],
-  });
+  return ReactToast(
+    <ToastContent type={type} actions={actions} {...contentProps} />,
+    pickBy(
+      {
+        onOpen,
+        onClose,
+        toastId,
+        progress,
+        pauseOnHover,
+        pauseOnFocusLoss,
+        closeOnClick,
+        position,
+        progressClassName,
+        progressStyle,
+        className,
+        bodyClassName,
+        hideProgressBar,
+        draggable,
+        draggablePercent,
+        autoClose: options.hasOwnProperty('autoClose') ? autoClose : actions.length ? false : undefined,
+        transition: transition && ToastTransitionMap[transition],
+      },
+      val => !isNil(val)
+    )
+  );
 }
 
 /**

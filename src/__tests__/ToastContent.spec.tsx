@@ -14,7 +14,7 @@ function expectToast(type: string, iconClassName: string) {
   expect(toast.find('p').text()).toEqual('message');
 }
 
-describe('Toast', () => {
+describe('ToastContent', () => {
   it('renders error toast', () => {
     const { fas } = _solidIcons;
     IconLibrary.add(fas);

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { IBoxCSS } from '../Box';
 import { ITheme, useTheme } from '../theme';
-import { IToastTransition } from './index';
+import { IToastTransition, ToastTransitionMap } from './index';
 
 /*
  * TOAST CONTAINER
@@ -18,7 +18,7 @@ export interface IToastContainer extends Omit<ReactToastContainerProps, 'transit
 
 export const ToastContainer = (props: IToastContainer) => {
   const { toast: theme } = useTheme();
-  const { ...containerProps } = props;
+  const { transition = 'zoom', ...containerProps } = props;
 
   return (
     <ClassNames>
@@ -30,6 +30,7 @@ export const ToastContainer = (props: IToastContainer) => {
           bodyClassName={getClassName(bodyStyles())}
           closeOnClick={false}
           position="bottom-right"
+          transition={ToastTransitionMap[transition]}
           {...containerProps}
           // custom close buttons should be defined on the content level
           closeButton={false}

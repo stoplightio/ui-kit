@@ -5,9 +5,9 @@ import { mount } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 import { toast as ReactToast, ToastContainer as ReactToastContainer } from 'react-toastify';
-import { Toast, ToastContainer, ToastContent } from '../Toast';
+import { IToast, Toast, ToastContainer, ToastContent } from '../Toast';
 
-describe('Toaster', () => {
+describe('ToastContainer', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -18,33 +18,32 @@ describe('Toaster', () => {
     wrapper.unmount();
   });
 
-  describe('toast()', () => {
-    it('delegates to react-toastify', () => {
-      const content = { title: 'title', message: 'message' };
-      const type = 'info';
-      const options: any = { type };
+  describe('Toast()', () => {
+    it('calls react-toastify', () => {
+      const content: IToast = { type: 'info', title: 'title', message: 'message' };
+      Toast(content);
+
+      expect(ReactToast).toHaveBeenCalledTimes(1);
+      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} actions={[]} type="info" />, {});
+    });
+
+    it('renders default (no options)', () => {
+      const content: IToast = { title: 'title', message: 'message' };
+
+      Toast(content);
+
+      expect(ReactToast).toHaveBeenCalledTimes(1);
+      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} actions={[]} type="default" />, {});
+    });
+
+    it('renders default', () => {
+      const content: IToast = { type: 'error', title: 'title', message: 'message' };
+      const options: IToast = { autoClose: false };
+
       Toast({ ...content, ...options });
 
       expect(ReactToast).toHaveBeenCalledTimes(1);
-      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} type={type} />, options);
-    });
-
-    it('renders DEFAULT by default (no options)', () => {
-      const content = { title: 'title', message: 'message' };
-
-      Toast(content);
-
-      expect(ReactToast).toHaveBeenCalledTimes(1);
-      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} type="default" />, undefined);
-    });
-
-    it('renders DEFAULT by default (no type)', () => {
-      const content = { title: 'title', message: 'message' };
-
-      Toast(content);
-
-      expect(ReactToast).toHaveBeenCalledTimes(1);
-      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} type="default" />, {});
+      expect(ReactToast).toHaveBeenCalledWith(<ToastContent {...content} actions={[]} type="error" />, options);
     });
   });
 });
