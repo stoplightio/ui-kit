@@ -3,50 +3,39 @@ import { mount } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 
-import { Icon, IconLibrary } from '../Icon';
+import { IconLibrary } from '../index';
 import { ToastContent } from '../Toast';
 
-function expectToast(type: string, iconClassName: string) {
+function expectToast(type: string) {
   const toast = mount(<ToastContent title="title" message="message" type={type} />);
 
-  expect(toast.find(Icon).filterWhere((node: any) => node.prop('icon') === iconClassName)).toHaveLength(1);
   expect(toast.find('b').text()).toEqual('title');
   expect(toast.find('p').text()).toEqual('message');
 }
 
 describe('ToastContent', () => {
-  it('renders error toast', () => {
+  beforeAll(() => {
     const { fas } = _solidIcons;
     IconLibrary.add(fas);
+  });
 
-    expectToast('error', 'times-circle');
+  it('renders error toast', () => {
+    expectToast('error');
   });
 
   it('renders info toast', () => {
-    const { fas } = _solidIcons;
-    IconLibrary.add(fas);
-
-    expectToast('info', 'info-circle');
+    expectToast('info');
   });
 
   it('renders default toast', () => {
-    const { fas } = _solidIcons;
-    IconLibrary.add(fas);
-
-    expectToast('default', 'lightbulb');
+    expectToast('default');
   });
 
   it('renders success toast', () => {
-    const { fas } = _solidIcons;
-    IconLibrary.add(fas);
-
-    expectToast('success', 'check-circle');
+    expectToast('success');
   });
 
   it('renders warning toast', () => {
-    const { fas } = _solidIcons;
-    IconLibrary.add(fas);
-
-    expectToast('warning', 'exclamation-triangle');
+    expectToast('warning');
   });
 });
