@@ -10,41 +10,45 @@ export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   invalid?: boolean;
 }
 
-export const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelElement, ICheckbox>(
-  (props, ref) => {
-    const { disabled: isDisabled, onChange, invalid, ...rest } = props;
+const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelElement, ICheckbox>(function Checkbox(
+  props,
+  ref
+) {
+  const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
-    const { checkbox: baseTheme } = useTheme();
+  const { checkbox: baseTheme } = useTheme();
 
-    const [checked, setValue] = useState<boolean>(!!props.checked);
-    const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
+  const [checked, setValue] = useState<boolean>(!!props.checked);
+  const isChecked = props.hasOwnProperty('checked') ? !!props.checked : checked;
 
-    const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
-      setValue(target.checked);
-      if (onChange) onChange(target.checked);
-    }, []);
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(({ target }) => {
+    setValue(target.checked);
+    if (onChange) onChange(target.checked);
+  }, []);
 
-    return (
-      // @ts-ignore FIXME issue with border-box in styling
-      <Flex {...rest} as="label" ref={ref} css={checkboxStyles(baseTheme, { isDisabled, isChecked, invalid })}>
-        <Box
-          as="input"
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-          position="absolute"
-          css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+  return (
+    // @ts-ignore FIXME issue with border-box in styling
+    <Flex {...rest} as="label" ref={ref} css={checkboxStyles(baseTheme, { isDisabled, isChecked, invalid })}>
+      <Box
+        as="input"
+        type="checkbox"
+        checked={checked}
+        onChange={handleChange}
+        position="absolute"
+        css={{ clip: 'rect(1px, 1px, 1px, 1px)' }}
+      />
+      <svg aria-hidden="true" viewBox="0 0 512 512" width="10px" height="10px">
+        <path
+          fill="currentColor"
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
         />
-        <svg aria-hidden="true" viewBox="0 0 512 512" width="10px" height="10px">
-          <path
-            fill="currentColor"
-            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-          />
-        </svg>
-      </Flex>
-    );
-  }
-);
+      </svg>
+    </Flex>
+  );
+});
+
+Checkbox.displayName = 'Checkbox';
+export { Checkbox };
 
 export const checkboxStyles = (baseTheme: ITheme['checkbox'], { isChecked, isDisabled, invalid }: ICheckboxStyles) => {
   const invalidTheme = {

@@ -9,13 +9,18 @@ export interface IButton extends IBox<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElement, IButton>((props, ref) => {
+const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElement, IButton>(function Button(
+  props,
+  ref
+) {
   const { as = 'button', css, ...rest } = props;
 
   const { button } = useTheme();
 
   return <Box px={3} py={2} borderRadius={2} {...rest} as={as} ref={ref} css={[buttonStyles(button, props), css]} />;
 });
+
+Button.displayName = 'Button';
 
 export const buttonStyles = (theme: ITheme['button'], { disabled }: IButton = {}): IBoxCSS => {
   return [
@@ -50,3 +55,5 @@ export const buttonStyles = (theme: ITheme['button'], { disabled }: IButton = {}
     },
   ];
 };
+
+export { Button };

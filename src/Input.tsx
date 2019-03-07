@@ -23,7 +23,7 @@ const AutosizeWrapper: React.FunctionComponent<IAutosizeInput> = React.forwardRe
   )
 );
 
-export const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
+const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement, IInput>(function Input(props, ref) {
   const { autosize, onChange = noop, type, invalid, css, ...rest } = props;
 
   const { input: theme } = useTheme();
@@ -57,6 +57,8 @@ export const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInput
   );
 });
 
+Input.displayName = 'Input';
+
 const inputStyles = (baseTheme: ITheme['input'], { disabled, invalid, css }: IInput) => {
   const invalidTheme = {
     fg: baseTheme.invalidFg,
@@ -88,3 +90,5 @@ const inputStyles = (baseTheme: ITheme['input'], { disabled, invalid, css }: IIn
     css,
   ];
 };
+
+export { Input };

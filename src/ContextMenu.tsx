@@ -34,7 +34,7 @@ export interface IContextMenu extends IContextMenuView {
   ) => React.ReactNode | string;
 }
 
-export const ContextMenu: React.FunctionComponent<IContextMenu> = props => {
+const ContextMenu: React.FunctionComponent<IContextMenu> = props => {
   const { id, renderTrigger, ...rest } = props;
 
   const contextTriggerRef = React.useRef<any>(null);
@@ -66,7 +66,7 @@ export interface IContextMenuView {
   onShow?: (event: any) => void;
 }
 
-export const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
+const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
   const { contextMenu: theme } = useTheme();
@@ -129,7 +129,7 @@ export interface IContextMenuItem extends Omit<IBox, 'onClick'> {
   menuItems?: IContextMenuItem[];
 }
 
-export const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
+const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
   const { attributes, data, title, divider, disabled, preventClose, onClick, menuItems = [], ...rest } = props;
   const { contextMenu: theme } = useTheme();
 
@@ -218,3 +218,5 @@ export const contextMenuItemStyles = (
     },
   ];
 };
+
+export { ContextMenu, ContextMenuView, ContextMenuItem };

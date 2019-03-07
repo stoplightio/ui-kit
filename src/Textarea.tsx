@@ -12,33 +12,36 @@ export interface ITextarea extends Omit<IBox<HTMLTextAreaElement>, 'as'> {
   invalid?: boolean;
 }
 
-export const Textarea: React.FunctionComponent<ITextarea> = React.forwardRef<HTMLTextAreaElement, ITextarea>(
-  (props, ref) => {
-    const { autosize, onChange = noop, invalid, css, ...rest } = props;
+const Textarea: React.FunctionComponent<ITextarea> = React.forwardRef<HTMLTextAreaElement, ITextarea>(function Textarea(
+  props,
+  ref
+) {
+  const { autosize, onChange = noop, invalid, css, ...rest } = props;
 
-    const { textarea: theme } = useTheme();
+  const { textarea: theme } = useTheme();
 
-    // TODO: do we want controlled mode here?
-    const [value, setValue] = React.useState<string>(props.value || '');
-    const internalValue = props.hasOwnProperty('value') ? props.value : value;
+  // TODO: do we want controlled mode here?
+  const [value, setValue] = React.useState<string>(props.value || '');
+  const internalValue = props.hasOwnProperty('value') ? props.value : value;
 
-    const handleChange = (event: React.SyntheticEvent<HTMLTextAreaElement>) => {
-      setValue(event.currentTarget.value);
-      onChange(event);
-    };
+  const handleChange = (event: React.SyntheticEvent<HTMLTextAreaElement>) => {
+    setValue(event.currentTarget.value);
+    onChange(event);
+  };
 
-    return (
-      <Box
-        {...rest}
-        as={autosize ? AutosizeTextarea : 'textarea'}
-        ref={ref}
-        value={internalValue}
-        onChange={handleChange}
-        css={[textareaStyles(theme, props), css]}
-      />
-    );
-  }
-);
+  return (
+    <Box
+      {...rest}
+      as={autosize ? AutosizeTextarea : 'textarea'}
+      ref={ref}
+      value={internalValue}
+      onChange={handleChange}
+      css={[textareaStyles(theme, props), css]}
+    />
+  );
+});
+
+Textarea.displayName = 'Textarea';
 
 export const textareaStyles = (baseTheme: ITheme['textarea'], { autosize, disabled, invalid }: ITextarea): IBoxCSS => {
   const invalidTheme = {
@@ -77,3 +80,5 @@ export const textareaStyles = (baseTheme: ITheme['textarea'], { autosize, disabl
     },
   ];
 };
+
+export { Textarea };

@@ -16,7 +16,7 @@ const store = new Store({
   value: 'Input Text',
 });
 
-const CustomInput = forwardRef<HTMLInputElement, IInput>(({ autoFocus, ...props }, ref) => {
+const CustomInput = forwardRef<HTMLInputElement, IInput>(function CustomInput({ autoFocus, ...props }, ref) {
   const [nodeRef] = useAutoFocus<HTMLInputElement>(autoFocus, ref);
 
   return <Input {...props} ref={nodeRef} />;

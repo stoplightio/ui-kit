@@ -8,7 +8,10 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   onChange?: (checked: boolean) => void;
 }
 
-export const Toggle: React.FunctionComponent<IToggle> = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) => {
+const Toggle: React.FunctionComponent<IToggle> = React.forwardRef<HTMLLabelElement, IToggle>(function Toggle(
+  props,
+  ref
+) {
   const { disabled: isDisabled, onChange, css, ...rest } = props;
 
   const { toggle: theme } = useTheme();
@@ -35,6 +38,8 @@ export const Toggle: React.FunctionComponent<IToggle> = React.forwardRef<HTMLLab
     </Flex>
   );
 });
+
+Toggle.displayName = 'Toggle';
 
 interface IToggleStyles {
   isChecked?: boolean;
@@ -89,3 +94,5 @@ const circleStyles = (theme: ITheme['toggle'], { isChecked }: IToggleStyles) => 
     },
   ];
 };
+
+export { Toggle };
