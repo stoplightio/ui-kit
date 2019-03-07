@@ -11,10 +11,7 @@ export interface IDialog extends IBox<HTMLElement> {
   onClickOutside?: React.ReactEventHandler<HTMLElement>;
 }
 
-export const Dialog: React.FunctionComponent<IDialog> = React.forwardRef<HTMLElement, IDialog>(function Dialog(
-  props,
-  ref
-) {
+const Dialog: React.FunctionComponent<IDialog> = React.forwardRef<HTMLElement, IDialog>(function Dialog(props, ref) {
   const { children, show, onClickOutside, onClick, css, ...rest } = props;
 
   const { dialog } = useTheme();
@@ -47,6 +44,8 @@ export const Dialog: React.FunctionComponent<IDialog> = React.forwardRef<HTMLEle
   );
 });
 
+Dialog.displayName = 'Dialog';
+
 export const dialogStyles = (dialog: ITheme['dialog']) => {
   return {
     color: dialog.fg,
@@ -58,3 +57,5 @@ export const dialogStyles = (dialog: ITheme['dialog']) => {
     maxHeight: '95vh',
   };
 };
+
+export { Dialog };

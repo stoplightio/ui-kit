@@ -36,6 +36,8 @@ const Icon: React.FunctionComponent<IIcon> = React.forwardRef<HTMLOrSVGElement, 
   return <Box {...rest} as={FontAwesomeIcon} ref={ref} css={[iconStyles(), css]} />;
 });
 
+Icon.displayName = 'Icon';
+
 const iconStyles = () => [{ background: 'transparent' }];
 
 export { Icon };

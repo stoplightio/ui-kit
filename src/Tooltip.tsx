@@ -14,7 +14,7 @@ export interface ITooltip extends IBox<HTMLDivElement> {
   posY?: 'top' | 'center' | 'bottom';
 }
 
-export const Tooltip: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>(function Tooltip(
+const Tooltip: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>(function Tooltip(
   props,
   ref
 ) {
@@ -32,14 +32,15 @@ export const Tooltip: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLD
   );
 });
 
+Tooltip.displayName = 'Tooltip';
+
 // This is exported mostly to make testing easier :-)
-export const Caret: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>(function Caret(
-  props,
-  ref
-) {
+const Caret: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivElement, ITooltip>(function Caret(props, ref) {
   const { tooltip: theme } = useTheme();
   return <Box position="absolute" style={caretStyles(theme, props)} ref={ref} />;
 });
+
+Caret.displayName = 'Caret';
 
 const tooltipStyles = (
   baseTheme: ITheme['tooltip'],
@@ -223,3 +224,5 @@ const caretCorner = (styles: React.CSSProperties, side1: Side, side2: Side) => {
   styles[opposingBorderWidth(side1)] = 0;
   styles[opposingBorderWidth(side2)] = 0;
 };
+
+export { Tooltip, Caret };

@@ -24,4 +24,6 @@ export const breakStyles = ({ thickness }: IBreak) => [
   },
 ];
 
+Break.displayName = 'Break';
+
 export { Break };

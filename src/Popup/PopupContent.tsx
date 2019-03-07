@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Portal } from '../Portal';
 import { IPopupContentProps } from './types';
 
-export const PopupContent: React.FunctionComponent<IPopupContentProps & { ref?: any }> = React.forwardRef<
+const PopupContent: React.FunctionComponent<IPopupContentProps & { ref?: any }> = React.forwardRef<
   HTMLDivElement,
   IPopupContentProps
 >(function PopupContent(props, ref) {
@@ -19,3 +19,6 @@ export const PopupContent: React.FunctionComponent<IPopupContentProps & { ref?: 
     </Portal>
   );
 });
+
+PopupContent.displayName = 'PopupContent';
+export { PopupContent };

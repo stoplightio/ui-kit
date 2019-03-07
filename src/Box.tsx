@@ -140,6 +140,8 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
   }
 );
 
+Box.displayName = 'Box';
+
 export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
   extends HTMLAttributes<T>,
     sl.IColorProps,

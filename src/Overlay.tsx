@@ -4,7 +4,7 @@ import { ITheme, useTheme } from './theme';
 
 export interface IOverlay extends IBox<HTMLElement> {}
 
-export const Overlay: React.FunctionComponent<IOverlay> = React.forwardRef<HTMLElement, IOverlay>(function Overlay(
+const Overlay: React.FunctionComponent<IOverlay> = React.forwardRef<HTMLElement, IOverlay>(function Overlay(
   props,
   ref
 ) {
@@ -12,6 +12,8 @@ export const Overlay: React.FunctionComponent<IOverlay> = React.forwardRef<HTMLE
 
   return <Box {...props} ref={ref} css={overlayStyles(theme)} />;
 });
+
+Overlay.displayName = 'Overlay';
 
 export const overlayStyles = (theme: ITheme['overlay']): IBoxCSS => {
   return {
@@ -24,3 +26,5 @@ export const overlayStyles = (theme: ITheme['overlay']): IBoxCSS => {
     zIndex: 2 ** 31 - 2, // maximum 32bit int - 1 (offset, so that you can still override the overlay just in case)
   };
 };
+
+export { Overlay };

@@ -26,4 +26,5 @@ export const blockQuoteStyles = (theme: ITheme['blockQuote']) => {
   };
 };
 
+BlockQuote.displayName = 'BlockQuote';
 export { BlockQuote };

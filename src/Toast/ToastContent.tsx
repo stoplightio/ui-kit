@@ -31,7 +31,7 @@ export interface IToastContent<T = {}> {
   closeToast?: () => void;
 }
 
-export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function ToastContent(props, ref) {
+const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function ToastContent(props, ref) {
   const { title, message, type = 'default', icon, closeIcon, actions = [], closeToast = noop, css, ...rest } = props;
   const { toast: theme } = useTheme();
 
@@ -73,6 +73,8 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(fu
   );
 });
 
+ToastContent.displayName = 'ToastContent';
+
 /**
  * STYLE
  */
@@ -88,3 +90,5 @@ export const toastContentStyles = (theme: ITheme['toast']): IBoxCSS => {
     },
   ];
 };
+
+export { ToastContent };

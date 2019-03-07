@@ -12,10 +12,7 @@ export interface ITable extends IBox<HTMLTableElement> {
   isSelected?: boolean;
 }
 
-export const Table: React.FunctionComponent<ITable> = React.forwardRef<HTMLTableElement, ITable>(function Table(
-  props,
-  ref
-) {
+const Table: React.FunctionComponent<ITable> = React.forwardRef<HTMLTableElement, ITable>(function Table(props, ref) {
   const { children, isSelected, css, ...rest } = props;
 
   const { table: theme } = useTheme();
@@ -26,6 +23,8 @@ export const Table: React.FunctionComponent<ITable> = React.forwardRef<HTMLTable
     </Box>
   );
 });
+
+Table.displayName = 'Table';
 
 export const tableStyles = (theme: ITheme['table'], { isSelected }: ITable): IBoxCSS => {
   return [
@@ -51,12 +50,13 @@ export const tableStyles = (theme: ITheme['table'], { isSelected }: ITable): IBo
 
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
-export const TableRow: React.FunctionComponent<ITableRow> = React.forwardRef<HTMLTableRowElement, ITableRow>(
-  function TableRow(props, ref) {
-    const { table: theme } = useTheme();
-    return <Box {...props} as="tr" ref={ref} css={tableRowStyles(theme)} />;
-  }
-);
+const TableRow: React.FunctionComponent<ITableRow> = React.forwardRef<HTMLTableRowElement, ITableRow>(function TableRow(
+  props,
+  ref
+) {
+  const { table: theme } = useTheme();
+  return <Box {...props} as="tr" ref={ref} css={tableRowStyles(theme)} />;
+});
 
 export const tableRowStyles = (theme: ITheme['table']) => {
   return [
@@ -74,6 +74,8 @@ export const tableRowStyles = (theme: ITheme['table']) => {
   ];
 };
 
+TableRow.displayName = 'TableRow';
+
 /**
  * TABLE CELL
  */
@@ -82,13 +84,15 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
   as?: 'th' | 'td';
 }
 
-export const TableCell: React.FunctionComponent<ITableCell> = React.forwardRef<HTMLTableDataCellElement, ITableCell>(
+const TableCell: React.FunctionComponent<ITableCell> = React.forwardRef<HTMLTableDataCellElement, ITableCell>(
   function TableCell(props, ref) {
     const { as = 'td', isSelected, textAlign, ...rest } = props;
     const { table: theme } = useTheme();
     return <Box {...rest} as={as} ref={ref} css={tableCellStyles(theme, { as, isSelected, textAlign })} />;
   }
 );
+
+TableCell.displayName = 'TableCell';
 
 const textAlignPadding = {
   left: '10px 40px 10px 15px',
@@ -117,3 +121,5 @@ export const tableCellStyles = (theme: ITheme['table'], { isSelected, textAlign 
     },
   ];
 };
+
+export { Table, TableRow, TableCell };

@@ -23,7 +23,7 @@ export interface IVariableSizeListProps extends ReactWindow.VariableSizeListProp
   css?: IBoxCSS;
 }
 
-export const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = forwardRef<
+const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
@@ -45,7 +45,9 @@ export const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = forwa
   );
 });
 
-export const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = forwardRef<
+FixedSizeList.displayName = 'FixedSizeList';
+
+const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = forwardRef<
   ReactWindow.VariableSizeList,
   IVariableSizeListProps
 >(function VariableSizeList(props, ref) {
@@ -67,6 +69,8 @@ export const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> =
   );
 });
 
+VariableSizeList.displayName = 'VariableSizeList';
+
 export const scrollListStyles = (theme: ITheme['scrollbar'], css?: IBoxCSS) => {
   return [
     cssx`
@@ -87,3 +91,5 @@ export const scrollListStyles = (theme: ITheme['scrollbar'], css?: IBoxCSS) => {
     css,
   ];
 };
+
+export { FixedSizeList, VariableSizeList };

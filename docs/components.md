@@ -101,7 +101,7 @@ const Alert: FunctionComponent<IAlert> = props => {
 export { Alert };
 ```
 
-In case of a `React.forwardRef`, make sure to use a named function.
+In case of a `React.forwardRef`, make sure to use a named function and to set the component's display name
 
 
 #### Don't
@@ -113,5 +113,8 @@ export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef
 #### Do
 
 ```tsx
-export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<{}>(function BlockQuote(props, ref) {{}}
+const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<{}>(function BlockQuote(props, ref) {{}}
+BlockQuote.displayName = 'BlockQuote';
+
+export { BlockQuote };
 ```
