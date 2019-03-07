@@ -231,11 +231,11 @@ export interface ITheme {
     toastBorder?: string;
 
     progressBg: string;
-    warningFg: string;
-    infoFg: string;
-    defaultFg: string;
-    errorFg: string;
-    successFg: string;
+    warningBg: string;
+    infoBg: string;
+    defaultBg: string;
+    errorBg: string;
+    successBg: string;
   };
 }
 

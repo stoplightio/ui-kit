@@ -38,7 +38,7 @@ const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function 
   const showCloseIcon = closeIcon !== false;
 
   return (
-    <Box {...rest} ref={ref} css={[toastContentStyles(theme), css]}>
+    <Box {...rest} ref={ref} css={[toastContentStyles(props, theme), css]}>
       {showCloseIcon && (
         <Icon icon={closeIcon || 'times'} onClick={closeToast} position="absolute" cursor="pointer" right={10} />
       )}
@@ -78,10 +78,12 @@ ToastContent.displayName = 'ToastContent';
 /**
  * STYLE
  */
-export const toastContentStyles = (theme: ITheme['toast']): IBoxCSS => {
+export const toastContentStyles = (props: IToastContentProps, theme: ITheme['toast']): IBoxCSS => {
+  const type: any = props.type || 'default';
+
   return [
     {
-      background: theme.toastBg,
+      background: theme[`${type}Bg`],
       color: theme.toastFg,
       border: theme.toastBorder && `1px solid ${theme.toastBorder}`,
       boxSizing: 'border-box',

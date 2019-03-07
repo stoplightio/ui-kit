@@ -153,13 +153,13 @@ export const lightTheme: ITheme = {
   tooltip: inputTheme,
 
   toast: {
-    toastFg: '#111',
-    toastBg: '#fff',
-    progressBg: '#222',
-    warningFg: 'orange',
-    infoFg: 'blue',
-    defaultFg: 'gray',
-    errorFg: 'red',
-    successFg: 'green',
+    toastFg: 'rgb(245, 248, 250)',
+    toastBg: '#394b59',
+    progressBg: 'rgb(245, 248, 250)',
+    warningBg: '#d9822b',
+    infoBg: '#137cbd',
+    defaultBg: '#394b59',
+    errorBg: '#db3737',
+    successBg: '#0f9960',
   },
 };
