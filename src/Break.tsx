@@ -7,7 +7,7 @@ export interface IBreak extends IBox<HTMLHRElement | HTMLElement> {
 }
 
 export const Break: React.FunctionComponent<IBreak> = React.forwardRef<HTMLHRElement | HTMLElement, IBreak>(
-  (props, ref) => {
+  function Break(props, ref) {
     const { as = 'hr', thickness = 1, css, ...rest } = props;
 
     return <Box {...rest} as={as} ref={ref} css={[breakStyles({ thickness }), css]} />;

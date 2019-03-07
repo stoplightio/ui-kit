@@ -4,7 +4,10 @@ import { ITheme, useTheme } from './theme';
 
 export interface IOverlay extends IBox<HTMLElement> {}
 
-export const Overlay: React.FunctionComponent<IOverlay> = React.forwardRef<HTMLElement, IOverlay>((props, ref) => {
+export const Overlay: React.FunctionComponent<IOverlay> = React.forwardRef<HTMLElement, IOverlay>(function Overlay(
+  props,
+  ref
+) {
   const { overlay: theme } = useTheme();
 
   return <Box {...props} ref={ref} css={overlayStyles(theme)} />;

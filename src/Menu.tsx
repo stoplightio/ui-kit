@@ -44,7 +44,10 @@ export interface IMenu extends IFlex {
   };
 }
 
-export const Menu: React.FunctionComponent<IMenu> = React.forwardRef<HTMLOrSVGElement, IMenu>((props, ref) => {
+export const Menu: React.FunctionComponent<IMenu> = React.forwardRef<HTMLOrSVGElement, IMenu>(function Menu(
+  props,
+  ref
+) {
   const {
     menuItems,
     posX = 'center',
@@ -127,7 +130,7 @@ export interface IMenuItem extends Pick<IFlex, Exclude<keyof IFlex, 'title'>> {
 }
 
 export const MenuItem: React.FunctionComponent<IMenuItem> = React.forwardRef<HTMLOrSVGElement, IMenuItem>(
-  (props, ref) => {
+  function MenuItem(props, ref) {
     const { icon, title, subtitle, onClick, disabled, ...rest } = props;
 
     const { menu: theme } = useTheme();

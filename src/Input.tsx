@@ -23,7 +23,10 @@ const AutosizeWrapper: React.FunctionComponent<IAutosizeInput> = React.forwardRe
   )
 );
 
-export const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement, IInput>((props, ref) => {
+export const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement, IInput>(function Input(
+  props,
+  ref
+) {
   const { autosize, onChange = noop, type, invalid, css, ...rest } = props;
 
   const { input: theme } = useTheme();

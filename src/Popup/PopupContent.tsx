@@ -6,7 +6,7 @@ import { IPopupContentProps } from './types';
 export const PopupContent: React.FunctionComponent<IPopupContentProps & { ref?: any }> = React.forwardRef<
   HTMLDivElement,
   IPopupContentProps
->((props, ref) => {
+>(function PopupContent(props, ref) {
   const { children, onMouseEnter, onMouseLeave, repaint, style } = props;
 
   React.useEffect(repaint, []);

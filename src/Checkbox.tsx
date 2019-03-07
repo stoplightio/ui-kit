@@ -11,7 +11,7 @@ export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
 }
 
 export const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelElement, ICheckbox>(
-  (props, ref) => {
+  function Checkbox(props, ref) {
     const { disabled: isDisabled, onChange, invalid, ...rest } = props;
 
     const { checkbox: baseTheme } = useTheme();

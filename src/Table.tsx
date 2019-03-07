@@ -12,7 +12,10 @@ export interface ITable extends IBox<HTMLTableElement> {
   isSelected?: boolean;
 }
 
-export const Table: React.FunctionComponent<ITable> = React.forwardRef<HTMLTableElement, ITable>((props, ref) => {
+export const Table: React.FunctionComponent<ITable> = React.forwardRef<HTMLTableElement, ITable>(function Table(
+  props,
+  ref
+) {
   const { children, isSelected, css, ...rest } = props;
 
   const { table: theme } = useTheme();
@@ -49,7 +52,7 @@ export const tableStyles = (theme: ITheme['table'], { isSelected }: ITable): IBo
 export interface ITableRow extends IBox<HTMLTableRowElement> {}
 
 export const TableRow: React.FunctionComponent<ITableRow> = React.forwardRef<HTMLTableRowElement, ITableRow>(
-  (props, ref) => {
+  function TableRow(props, ref) {
     const { table: theme } = useTheme();
     return <Box {...props} as="tr" ref={ref} css={tableRowStyles(theme)} />;
   }
@@ -80,7 +83,7 @@ export interface ITableCell extends Omit<IBox<HTMLTableDataCellElement>, 'as'> {
 }
 
 export const TableCell: React.FunctionComponent<ITableCell> = React.forwardRef<HTMLTableDataCellElement, ITableCell>(
-  (props, ref) => {
+  function TableCell(props, ref) {
     const { as = 'td', isSelected, textAlign, ...rest } = props;
     const { table: theme } = useTheme();
     return <Box {...rest} as={as} ref={ref} css={tableCellStyles(theme, { as, isSelected, textAlign })} />;

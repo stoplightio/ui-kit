@@ -13,7 +13,7 @@ export interface ITextarea extends Omit<IBox<HTMLTextAreaElement>, 'as'> {
 }
 
 export const Textarea: React.FunctionComponent<ITextarea> = React.forwardRef<HTMLTextAreaElement, ITextarea>(
-  (props, ref) => {
+  function Textarea(props, ref) {
     const { autosize, onChange = noop, invalid, css, ...rest } = props;
 
     const { textarea: theme } = useTheme();

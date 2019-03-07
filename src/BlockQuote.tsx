@@ -7,7 +7,7 @@ export interface IBlockQuote extends IBox<HTMLQuoteElement | HTMLElement> {}
 export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<
   HTMLQuoteElement | HTMLElement,
   IBlockQuote
->((props, ref) => {
+>(function BlockQuote(props, ref) {
   const { as = 'blockquote', css, ...rest } = props;
 
   const { blockQuote } = useTheme();

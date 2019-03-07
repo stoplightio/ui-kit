@@ -9,7 +9,10 @@ export interface IButton extends IBox<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElement, IButton>((props, ref) => {
+export const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElement, IButton>(function Button(
+  props,
+  ref
+) {
   const { as = 'button', css, ...rest } = props;
 
   const { button } = useTheme();

@@ -8,7 +8,10 @@ export interface IToggle extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   onChange?: (checked: boolean) => void;
 }
 
-export const Toggle: React.FunctionComponent<IToggle> = React.forwardRef<HTMLLabelElement, IToggle>((props, ref) => {
+export const Toggle: React.FunctionComponent<IToggle> = React.forwardRef<HTMLLabelElement, IToggle>(function Toggle(
+  props,
+  ref
+) {
   const { disabled: isDisabled, onChange, css, ...rest } = props;
 
   const { toggle: theme } = useTheme();

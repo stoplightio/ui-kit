@@ -13,7 +13,10 @@ export interface IFlex<T extends HTMLOrSVGElement = HTMLElement>
     ss.AlignItemsProps,
     ss.JustifyContentProps {}
 
-export const Flex: React.FunctionComponent<IFlex> = React.forwardRef<HTMLOrSVGElement, IFlex>((props, ref) => {
+export const Flex: React.FunctionComponent<IFlex> = React.forwardRef<HTMLOrSVGElement, IFlex>(function Flex(
+  props,
+  ref
+) {
   const { flexBasis, flexFlow, flexDirection, flexWrap, alignItems, justifyContent, css, ...rest } = props;
 
   const styles = [

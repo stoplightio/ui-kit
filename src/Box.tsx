@@ -13,7 +13,7 @@ import { validPropsPicker } from './utils/validPropsPicker';
 export const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<
   HTMLOrSVGElement,
   IBox<HTMLOrSVGElement>
->((props, ref) => {
+>(function Box(props, ref) {
   /** Pull all props out of ...rest so that they don't show up on the rendered <div> as props (noisy) */
   const {
     as = 'div',
