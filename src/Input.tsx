@@ -43,9 +43,11 @@ const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement
 
   return (
     <Box
-      px={3}
-      py={2}
+      p="10px"
       borderRadius={2}
+      overflow="hidden"
+      textOverflow="ellipsis"
+      whiteSpace="nowrap"
       {...rest}
       as={autosize ? AutosizeWrapper : 'input'}
       ref={ref}
