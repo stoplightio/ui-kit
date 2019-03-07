@@ -12,10 +12,7 @@ export interface IEditor extends Omit<IBox, 'onChange'> {
   onChange(code: string): any;
 }
 
-export const Editor: React.FunctionComponent<IEditor> = React.forwardRef<HTMLDivElement, IEditor>(function Editor(
-  props,
-  ref
-) {
+const Editor: React.FunctionComponent<IEditor> = React.forwardRef<HTMLDivElement, IEditor>(function Editor(props, ref) {
   const { autoFocus, language, onChange, value, css, ...rest } = props;
   const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
 
@@ -33,6 +30,8 @@ export const Editor: React.FunctionComponent<IEditor> = React.forwardRef<HTMLDiv
   );
 });
 
+Editor.displayName = 'Editor';
+
 export const codeEditorStyles = () => {
   return [
     ...codeStyles(),
@@ -45,3 +44,5 @@ export const codeEditorStyles = () => {
     },
   ];
 };
+
+export { Editor };

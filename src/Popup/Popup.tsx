@@ -129,6 +129,8 @@ const Popup: React.FunctionComponent<IPopup> = props => {
   );
 };
 
+Popup.displayName = 'Popup';
+
 Popup.defaultProps = {
   padding: 15,
   hideDelay: 200,
