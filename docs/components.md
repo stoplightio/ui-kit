@@ -38,7 +38,7 @@ export interface IAlertProps {
 
 export interface IAlert extends IAlertProps, IBox {}
 
-export const Alert: FunctionComponent<IAlert> = props => {
+const Alert: FunctionComponent<IAlert> = props => {
   const { children, state, ...rest } = props;
   const css = alertStyles({ state });
 
@@ -57,6 +57,9 @@ export const alertStyles = ({ state }: IAlertProps) => {
     },
   ];
 };
+
+export { Alert };
+
 ```
 
 Now, the component can be used as follows
@@ -79,4 +82,36 @@ or some custom style, i.e.
 <Alert fontSize="20px" textTransform="uppercase" state="error">
   error
 </Alert>
+```
+
+Note: in order to let React Dev Tools show the component correctly (instead of an ugly `<Unknown/>`) it is important to
+**not** export and declare the component in the same statement.
+
+#### Don't
+
+```tsx
+export const Alert: FunctionComponent<IAlert> = props => {}
+```
+
+#### Do
+
+```tsx
+const Alert: FunctionComponent<IAlert> = props => {
+
+export { Alert };
+```
+
+In case of a `React.forwardRef`, make sure to use a named function.
+
+
+#### Don't
+
+```tsx
+export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<{}>((props, ref) => {{}}
+```
+
+#### Do
+
+```tsx
+export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<{}>(function BlockQuote(props, ref) {{}}
 ```
