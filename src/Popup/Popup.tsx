@@ -10,7 +10,7 @@ export { IPopupProps, IPopupDefaultProps };
 
 export interface IPopup extends IPopupProps {}
 
-export const Popup: React.FunctionComponent<IPopup> = props => {
+const Popup: React.FunctionComponent<IPopup> = props => {
   const { hideDelay, width, offset, posX, posY, show = false } = props;
 
   const theme = useTheme();
@@ -135,3 +135,5 @@ Popup.defaultProps = {
   posX: 'left',
   posY: 'top',
 } as IPopupDefaultProps;
+
+export { Popup };

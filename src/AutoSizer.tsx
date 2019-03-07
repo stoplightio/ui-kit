@@ -7,7 +7,7 @@ export interface IAutoSizer extends Omit<IBox, 'children'> {
   children: ({ width, height }: { width: React.ReactText; height: React.ReactText }) => React.ReactNode;
 }
 
-export const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
+const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
   const { children, ...rest } = props;
   const [ref, width = '100%', height = '100%'] = useResizeObserver();
 
@@ -17,3 +17,5 @@ export const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
     </Box>
   );
 };
+
+export { AutoSizer };
