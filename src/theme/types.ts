@@ -69,6 +69,7 @@ export interface ITheme {
   button: {
     fg: string;
     bg: string;
+    hoverFg?: string;
     hoverBg: string;
     border?: string;
   };

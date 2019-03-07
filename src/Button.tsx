@@ -33,6 +33,7 @@ export const buttonStyles = (theme: ITheme['button'], { disabled }: IButton = {}
 
       ':hover': {
         backgroundColor: theme.hoverBg,
+        color: theme.hoverFg,
       },
 
       ':active': {
