@@ -172,12 +172,12 @@ const customStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
       border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       minWidth: '147px',
-      minHeight: '30px',
+      minHeight: '35px',
       padding: '0px 5px 0px 10px',
       boxSizing: 'border-box',
       fontSize: '11px',
 
-      borderRadius: '3px',
+      borderRadius: '2px',
       boxShadow: null,
       outline: '0 !important',
 
@@ -239,8 +239,11 @@ const customStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
     }),
     multiValue: (provided: any) => ({
       ...provided,
+      alignItems: 'center',
       color: chipTheme.fg,
       backgroundColor: chipTheme.bg,
+      fontWeight: 500,
+      margin: '0px 5px 0px 0px',
       borderRadius: '3px',
       overflow: 'hidden',
       borderWidth: '1px',

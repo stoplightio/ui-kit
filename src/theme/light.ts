@@ -117,13 +117,13 @@ export const lightTheme: ITheme = {
 
     menu: {
       ...menuTheme,
-      selectedBg: '#B2D4FF',
+      selectedBg: 'rgba(79, 99, 114, 0.47)',
     },
 
     chip: {
-      fg: 'black',
-      bg: 'rgb(245, 248, 250)',
-      border: opacityBorder,
+      fg: 'white',
+      bg: 'rgb(118, 130, 143)',
+      border: 'transparent',
     },
   },
 
