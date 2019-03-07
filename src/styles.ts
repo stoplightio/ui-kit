@@ -11,9 +11,11 @@ import {
   OverflowYProperty,
   TextDecorationColorProperty,
   TextDecorationProperty,
+  TextOverflowProperty,
   TextTransformProperty,
   TransformProperty,
   VisibilityProperty,
+  WhiteSpaceProperty,
 } from 'csstype';
 
 export interface IColorProps {
@@ -104,4 +106,20 @@ export const boxSizing = (props: IBoxSizingProps) => ({
 
 export interface IBoxSizingProps {
   boxSizing?: BoxSizingProperty;
+}
+
+export const textOverflow = (props: ITextOverflowProps) => ({
+  textOverflow: props.textOverflow,
+});
+
+export interface ITextOverflowProps {
+  textOverflow?: TextOverflowProperty;
+}
+
+export const whiteSpace = (props: IWhiteSpaceProps) => ({
+  whiteSpace: props.whiteSpace,
+});
+
+export interface IWhiteSpaceProps {
+  whiteSpace?: WhiteSpaceProperty;
 }
