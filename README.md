@@ -54,7 +54,7 @@ IconLibrary.add(faCaretDown);
 
 ## Helpful Links
 
-- Guideline for "good" Storybook stories: https://blog.hichroma.com/the-delightful-storybook-workflow-b322b76fd07
+- [Guideline for "good" Storybook stories](https://blog.hichroma.com/the-delightful-storybook-workflow-b322b76fd07)
 
 - Emotion
 
