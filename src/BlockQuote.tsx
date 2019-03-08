@@ -4,16 +4,15 @@ import { ITheme, useTheme } from './theme';
 
 export interface IBlockQuote extends IBox<HTMLQuoteElement | HTMLElement> {}
 
-export const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<
-  HTMLQuoteElement | HTMLElement,
-  IBlockQuote
->((props, ref) => {
-  const { as = 'blockquote', css, ...rest } = props;
+const BlockQuote: React.FunctionComponent<IBlockQuote> = React.forwardRef<HTMLQuoteElement | HTMLElement, IBlockQuote>(
+  function BlockQuote(props, ref) {
+    const { as = 'blockquote', css, ...rest } = props;
 
-  const { blockQuote } = useTheme();
+    const { blockQuote } = useTheme();
 
-  return <Box {...rest} as={as} ref={ref} css={[blockQuoteStyles(blockQuote), css]} />;
-});
+    return <Box {...rest} as={as} ref={ref} css={[blockQuoteStyles(blockQuote), css]} />;
+  }
+);
 
 export const blockQuoteStyles = (theme: ITheme['blockQuote']) => {
   return {
@@ -26,3 +25,6 @@ export const blockQuoteStyles = (theme: ITheme['blockQuote']) => {
     borderRadius: 2,
   };
 };
+
+BlockQuote.displayName = 'BlockQuote';
+export { BlockQuote };

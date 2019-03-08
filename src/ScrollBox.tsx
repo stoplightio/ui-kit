@@ -15,7 +15,7 @@ interface IScrollBoxThumb extends IBox<HTMLDivElement> {
 }
 
 const ScrollbarThumb: React.FunctionComponent<IScrollBoxThumb> = React.forwardRef<HTMLDivElement, IScrollBoxThumb>(
-  (props, ref) => {
+  function ScrollbarThumb(props, ref) {
     const { isScrolling, css, ...rest } = props;
 
     const { scrollbar: theme } = useTheme();
@@ -23,6 +23,8 @@ const ScrollbarThumb: React.FunctionComponent<IScrollBoxThumb> = React.forwardRe
     return <Box {...rest} ref={ref} css={[scrollbarStyles(theme, { isScrolling }), css]} />;
   }
 );
+
+ScrollbarThumb.displayName = 'ScrollbarThumb';
 
 const scrollbarStyles = (theme: ITheme['scrollbar'], { isScrolling }: IScrollBoxThumb) => {
   return {
@@ -49,7 +51,7 @@ export interface IScrollBox extends ScrollbarProps {
   scrollTo?: string;
 }
 
-export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox) => {
+const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox) => {
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
   const { scrollTo, children, onUpdate, autoHeight = true, autoHideTimeout = 500, innerRef, ...scrollbarProps } = props;
 
@@ -118,4 +120,6 @@ export const ScrollBox: React.FunctionComponent<IScrollBox> = (props: IScrollBox
   );
 };
 
-export { Scrollbars as IScrollbars };
+ScrollBox.displayName = 'ScrollBox';
+
+export { Scrollbars as IScrollbars, ScrollBox };

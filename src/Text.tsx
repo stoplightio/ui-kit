@@ -8,7 +8,7 @@ export interface IText<T extends HTMLElement = HTMLParagraphElement> extends IBo
   italic?: boolean;
 }
 
-export const Text: React.FunctionComponent<IText> = React.forwardRef<HTMLElement, IText>((props, ref) => {
+const Text: React.FunctionComponent<IText> = React.forwardRef<HTMLElement, IText>(function Text(props, ref) {
   const { as = 'p', leading: lineHeight, casing: textTransform, tracking: letterSpacing, italic, css, ...rest } = props;
 
   return (
@@ -25,6 +25,10 @@ export const Text: React.FunctionComponent<IText> = React.forwardRef<HTMLElement
   );
 });
 
+Text.displayName = 'Text';
+
 export const textStyles = () => ({
   margin: '0',
 });
+
+export { Text };

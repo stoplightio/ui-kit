@@ -31,9 +31,13 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
   symbol?: FaSymbol;
 }
 
-export const Icon: React.FunctionComponent<IIcon> = React.forwardRef<HTMLOrSVGElement, IIcon>((props, ref) => {
+const Icon: React.FunctionComponent<IIcon> = React.forwardRef<HTMLOrSVGElement, IIcon>(function Icon(props, ref) {
   const { css, ...rest } = props;
   return <Box {...rest} as={FontAwesomeIcon} ref={ref} css={[iconStyles(), css]} />;
 });
 
+Icon.displayName = 'Icon';
+
 const iconStyles = () => [{ background: 'transparent' }];
+
+export { Icon };

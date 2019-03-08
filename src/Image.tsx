@@ -7,11 +7,13 @@ export interface IImage extends IBox<HTMLImageElement> {
   responsive?: boolean;
 }
 
-export const Image: React.FunctionComponent<IImage> = React.forwardRef<HTMLImageElement, IImage>((props, ref) => {
+const Image: React.FunctionComponent<IImage> = React.forwardRef<HTMLImageElement, IImage>(function Image(props, ref) {
   const { hidden, responsive, css, ...rest } = props;
 
   return <Box {...rest} as="img" ref={ref} css={imageStyles({ hidden, responsive, css })} />;
 });
+
+Image.displayName = 'Image';
 
 export const imageStyles = ({ hidden, responsive, css }: IImage = {}) => [
   hidden && {
@@ -27,3 +29,5 @@ export const imageStyles = ({ hidden, responsive, css }: IImage = {}) => [
 
   css,
 ];
+
+export { Image };

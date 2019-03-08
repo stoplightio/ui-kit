@@ -4,7 +4,7 @@ import { ITheme, useTheme } from './theme';
 
 export interface ILink extends IBox<HTMLAnchorElement> {}
 
-export const Link: React.FunctionComponent<ILink> = React.forwardRef<HTMLAnchorElement, ILink>((props, ref) => {
+const Link: React.FunctionComponent<ILink> = React.forwardRef<HTMLAnchorElement, ILink>(function Link(props, ref) {
   const { css, ...rest } = props;
 
   const { link } = useTheme();
@@ -48,3 +48,6 @@ export const linkStyles = (theme: ITheme['link'], css: IBoxCSS) => {
     css,
   ];
 };
+
+Link.displayName = 'Link';
+export { Link };

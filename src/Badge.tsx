@@ -19,7 +19,7 @@ export interface IBadge extends IBox<HTMLSpanElement> {
   color?: BadgeColor;
 }
 
-export const Badge: React.FunctionComponent<IBadge> = props => {
+const Badge: React.FunctionComponent<IBadge> = props => {
   const { color = BadgeColor.Default, variant = BadgeVariant.Pill, children, ...restProps } = props;
 
   const { badge: theme } = useTheme();
@@ -66,3 +66,5 @@ const badgeStyles = ({
     },
   ];
 };
+
+export { Badge };

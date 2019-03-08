@@ -59,7 +59,7 @@ export interface ISelectOption {
   value: any;
 }
 
-export const Select: React.FunctionComponent<ISelect> = props => {
+const Select: React.FunctionComponent<ISelect> = props => {
   const {
     multi,
     loading,
@@ -536,3 +536,5 @@ const customStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
 //     overflow: 'hidden',
 //   },
 // };
+
+export { Select };

@@ -31,11 +31,10 @@ export interface IToastContent<T = {}> {
   closeToast?: () => void;
 }
 
-export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((props, ref) => {
+const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function ToastContent(props, ref) {
   const { title, message, type = 'default', icon, closeIcon, actions = [], closeToast = noop, css, ...rest } = props;
   const { toast: theme } = useTheme();
 
-  const showIcon = icon !== false;
   const showCloseIcon = closeIcon !== false;
 
   return (
@@ -44,13 +43,9 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
         <Icon icon={closeIcon || 'times'} onClick={closeToast} position="absolute" cursor="pointer" right={10} />
       )}
 
-      {showIcon && <Icon icon={icon || iconMap[type]} color={theme[`${type}Fg`]} />}
+      {icon && <Icon mr="5px" icon={icon} color={theme[`${type}Fg`]} />}
 
-      {title && (
-        <Text as="b" ml="5px">
-          {title}
-        </Text>
-      )}
+      {title && <Text as="b">{title}</Text>}
 
       {message && (
         <Text mt="5px" maxHeight="120px" overflow="auto">
@@ -78,6 +73,8 @@ export const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>((p
   );
 });
 
+ToastContent.displayName = 'ToastContent';
+
 /**
  * STYLE
  */
@@ -94,13 +91,4 @@ export const toastContentStyles = (theme: ITheme['toast']): IBoxCSS => {
   ];
 };
 
-/**
- * HELPERS
- */
-const iconMap = {
-  info: 'info-circle',
-  warning: 'exclamation-triangle',
-  error: 'times-circle',
-  success: 'check-circle',
-  default: 'lightbulb',
-};
+export { ToastContent };
