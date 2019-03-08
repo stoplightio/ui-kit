@@ -55,32 +55,6 @@ IconLibrary.add(faCaretDown);
 - [Components](./docs/components.md)
   - [Creating a component](./docs/components.md#creating-a-component)
   - [Extending a styled component](./docs/components.md#extending-a-component)
-  - Component List
-    - Badge
-    - BlockQuote
-    - Box
-    - Break
-    - Button
-    - Code Editor
-    - Context Menu
-    - Flex
-    - Heading
-    - Icon
-    - Image
-    - Input
-    - Link
-    - List
-    - Menu
-    - Popup
-    - Portal
-    - ScrollBox
-    - ScrollList
-    - Select
-    - Table
-    - Text
-    - Tabs
-    - Textarea
-    - Toggle
 
 ## Helpful Links
 
