@@ -69,7 +69,7 @@ IconLibrary.add(faCaretDown);
 
 In case you're porting a component from another Stoplight's Library [see the this document for some guidance](./docs/migration.md)
 
-### Anti panic Faq
+### FAQ
 
 1. What are all these `m, mt, mb, pt` properties on all the components I've got?
 
