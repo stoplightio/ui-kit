@@ -2,8 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-Stoplight UI-Kit is a shared component library that contains basic components built using [Emotion](https://emotion.sh)
-and [Styled System](https://styled-system.com) All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
+Stoplight UI-Kit is a shared component library that contains basic components built using [Emotion](https://emotion.sh) and [Styled System](https://styled-system.com) All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
 
 - Explore the components: [Storybook](https://stoplightio.github.io/ui-kit/)
 - View the changelog: [Releases](https://github.com/stoplightio/ui-kit/releases)
@@ -68,7 +67,14 @@ IconLibrary.add(faCaretDown);
 
 ### Migration guide
 
-- [See the relative document](./docs/migration.md)
+In case you're porting a component from another Stoplight's Library [see the this document for some guidance](./docs/migration.md)
+
+### Anti panic Faq
+
+1. What are all these `m, mt, mb, pt` properties on all the components I've got?
+
+    These are properties injected by [styled system](https://jxnblk.com/styled-system/). To get a complete reference of these, please
+    have a look the [reference table](https://styled-system.com/table)
 
 ### Contributing
 
