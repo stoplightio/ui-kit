@@ -2,7 +2,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-Stoplight ui-kit is a shared component library that contains basic components built using styled-components. All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
+Stoplight UI-Kit is a shared component library that contains basic components built using [Emotion](https://emotion.sh)
+and [Styled System](https://styled-system.com) All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
 
 - Explore the components: [Storybook](https://stoplightio.github.io/ui-kit/)
 - View the changelog: [Releases](https://github.com/stoplightio/ui-kit/releases)
@@ -41,11 +42,6 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 IconLibrary.add(faCaretDown);
 ```
 
-
-### Migration guide
-
-- [guide](./docs/migration.md)
-
 ## API Reference
 
 - [Theme](./docs/theme.md)
@@ -69,6 +65,10 @@ IconLibrary.add(faCaretDown);
 
   - [Git Repo](https://github.com/jxnblk/styled-system)
   - [Site](https://jxnblk.com/styled-system/)
+
+### Migration guide
+
+- [See the relative document](./docs/migration.md)
 
 ### Contributing
 
