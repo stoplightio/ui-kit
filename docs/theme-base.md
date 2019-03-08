@@ -1,7 +1,7 @@
 # Theme Base
 
-UI-Kit does not contain any base theme on its own, but there are least 2 ways to exchange the common values for spacing, colors etc.
-They can be used at the same time.
+UI-Kit does not contain any base theme on its own, but there are least 2 ways to exchange the common values for spacing,
+colors etc, which can be used at the same time.
 
 ### Custom theme
 
