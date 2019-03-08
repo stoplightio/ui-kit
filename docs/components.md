@@ -3,27 +3,12 @@
 All components in this library use Emotion to implement styling, and a subset of style functions from styled-system.
 Theming is accomplished via ThemeZones that rely on React's context.
 
-## Creating a component
-
-In most cases you should refer to [Extending a component](#extending-a-component) section.
-A vast amount of components are based on Box, so you won't really need to reinvent the wheel every time.
-If you build a more complex component, such as Toggle, wrap some other React component specific (i.e. Code Editor or Select) or just have a very specific use case, you may prefer not to base the new component on Box.
-There is no general rule how to implement such a component - it's strictly related to a use case.
-It's all about having a common sense here.
-
-Just think what's actually needed, how much customizable it's supposed be etc.
-
-You can refer to:
-
-- [Context Menu](https://github.com/stoplightio/ui-kit/blob/master/src/ContextMenu.tsx)
-- [Code Editor](https://github.com/stoplightio/ui-kit/blob/master/src/CodeEditor.tsx)
-- [Menu](https://github.com/stoplightio/ui-kit/blob/master/src/Menu.tsx)
-- [Select](https://github.com/stoplightio/ui-kit/blob/master/src/Select.tsx)
-- [Toggle](https://github.com/stoplightio/ui-kit/blob/master/src/Toggle.tsx)
 
 ## Extending a component
 
-It's advisable to base off your new component on Box/Flex/Text, which are foundational components for almost all styled components in UI-Kit.
+It's advisable (let's say compulsory) to base off your new component on `Box/Flex/Text`, which are foundational components
+for almost all styled components in UI-Kit.
+
 This will guarantee your props will be properly passed and a ref will be forwarded.
 
 ```typescript jsx
@@ -118,3 +103,23 @@ BlockQuote.displayName = 'BlockQuote';
 
 export { BlockQuote };
 ```
+
+## Creating a component
+
+In most cases you should refer to [Extending a component](#extending-a-component) section.
+A vast amount of components are based on Box, so you won't really need to reinvent the wheel every time.
+If you build a more complex component, such as Toggle, wrap some other React component specific (i.e. Code Editor or Select) or just have a very specific use case, you may prefer not to base the new component on Box.
+
+There is no general rule how to implement such a component - it's strictly related to a use case.
+
+It's all about having a common sense here.
+
+Just think what's actually needed, how much customizable it's supposed be etc.
+
+You can refer to:
+
+- [Context Menu](https://github.com/stoplightio/ui-kit/blob/master/src/ContextMenu.tsx)
+- [Code Editor](https://github.com/stoplightio/ui-kit/blob/master/src/CodeEditor.tsx)
+- [Menu](https://github.com/stoplightio/ui-kit/blob/master/src/Menu.tsx)
+- [Select](https://github.com/stoplightio/ui-kit/blob/master/src/Select.tsx)
+- [Toggle](https://github.com/stoplightio/ui-kit/blob/master/src/Toggle.tsx)
