@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { Box, IBox, IBoxCSS } from './Box';
+import { IBoxCSS } from './Box';
+import { Flex, IFlex } from './Flex';
 import { ITheme, useTheme } from './theme';
 
 // TODO better active styling
 
-export interface IButton extends IBox<HTMLButtonElement> {
+export interface IButton extends IFlex {
   disabled?: boolean;
 }
 
@@ -17,7 +18,18 @@ const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElem
 
   const { button } = useTheme();
 
-  return <Box px={3} py={2} borderRadius={2} {...rest} as={as} ref={ref} css={[buttonStyles(button, props), css]} />;
+  return (
+    <Flex
+      px={3}
+      py={2}
+      borderRadius={2}
+      {...rest}
+      as={as}
+      ref={ref}
+      alignItems="center"
+      css={[buttonStyles(button, props), css]}
+    />
+  );
 });
 
 Button.displayName = 'Button';
@@ -38,6 +50,7 @@ export const buttonStyles = (theme: ITheme['button'], { disabled }: IButton = {}
 
       ':hover': {
         backgroundColor: theme.hoverBg,
+        color: theme.hoverFg,
       },
 
       ':active': {
