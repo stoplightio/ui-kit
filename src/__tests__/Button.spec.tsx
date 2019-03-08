@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 
-import { Box } from '../Box';
 import { Button } from '../Button';
+import { Flex } from '../Flex';
 
 jest.mock('../theme', () => ({
   useTheme: jest.fn().mockReturnValue({
@@ -16,9 +16,9 @@ jest.mock('../theme', () => ({
 }));
 
 describe('Button component', () => {
-  it('renders Box as button', () => {
+  it('renders Flex as button', () => {
     const wrapper = shallow(<Button />).shallow();
-    expect(wrapper).toMatchElement(<Box as="button" />);
+    expect(wrapper).toMatchElement(<Flex as="button" />);
   });
 
   it('can render any tag', () => {
