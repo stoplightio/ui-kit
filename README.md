@@ -42,7 +42,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 IconLibrary.add(faCaretDown);
 ```
 
-## API Reference
+## Docs
 
 - [Theme](./docs/theme.md)
   - [base](./docs/theme-base.md)
