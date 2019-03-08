@@ -152,4 +152,3 @@ export interface ICustomTheme extends DeepPartial<ITheme> {
   base: BaseTheme;
 }
 ```
-
