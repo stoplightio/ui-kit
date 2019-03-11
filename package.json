@@ -46,7 +46,7 @@
     "react-dom": ">=16.8"
   },
   "dependencies": {
-    "@emotion/core": "10.0.7",
+    "@emotion/core": "10.0.10",
     "@emotion/is-prop-valid": "0.7.3",
     "@fortawesome/fontawesome-svg-core": "1.2.15",
     "@fortawesome/react-fontawesome": "0.1.4",
@@ -73,9 +73,7 @@
     "@fortawesome/free-solid-svg-icons": "5.7.2",
     "@sambego/storybook-state": "1.x.x",
     "@stoplight/scripts": "5.0.x",
-    "@stoplight/storybook-config": "1.2.x",
-    "@storybook/addon-info": "4.1.x",
-    "@storybook/addon-options": "4.1.x",
+    "@stoplight/storybook-config": "1.5.0",
     "@types/enzyme": "3.9.x",
     "@types/enzyme-adapter-react-16": "1.0.x",
     "@types/jest": "24.0.x",
@@ -89,6 +87,7 @@
     "@types/react-tabs": "2.3.x",
     "@types/react-textarea-autosize": "4.3.x",
     "@types/react-window": "1.5.x",
+    "emotion-theming": "10.0.9",
     "enzyme": "3.9.x",
     "enzyme-adapter-react-16": "1.10.0",
     "enzyme-to-json": "3.3.x",

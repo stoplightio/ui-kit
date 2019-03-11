@@ -1,8 +1,8 @@
-import { createThemedModule } from '@stoplight/ui-kit';
+import { createThemedModule } from '../src/theme';
 
-const { useTheme, ThemeProvider, ThemeZone } = createThemedModule();
+const { useTheme, ThemeProvider } = createThemedModule();
 
-export { useTheme, ThemeProvider, ThemeZone };
+export { useTheme, ThemeProvider };
 
 export const themes = ['dark', 'light'];
 
