@@ -154,12 +154,11 @@ export const lightTheme: ITheme = {
 
   toast: {
     toastFg: 'rgb(245, 248, 250)',
-    toastBg: '#394b59',
+    toastBg: 'rgb(24, 26, 27)',
     progressBg: 'rgb(245, 248, 250)',
-    warningBg: '#d9822b',
-    infoBg: '#137cbd',
-    defaultBg: '#394b59',
-    errorBg: '#db3737',
-    successBg: '#0f9960',
+    info: '#137cbd',
+    success: '#0f9960',
+    warning: '#d9822b',
+    error: '#db3737',
   },
 };

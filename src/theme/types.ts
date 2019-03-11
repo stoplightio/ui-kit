@@ -228,14 +228,12 @@ export interface ITheme {
   toast: {
     toastFg: string;
     toastBg: string;
-    toastBorder?: string;
 
     progressBg: string;
-    warningBg: string;
-    infoBg: string;
-    defaultBg: string;
-    errorBg: string;
-    successBg: string;
+    info: string;
+    success: string;
+    warning: string;
+    error: string;
   };
 }
 
