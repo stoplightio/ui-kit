@@ -229,7 +229,11 @@ export interface ITheme {
     toastFg: string;
     toastBg: string;
 
+    actionFg: string;
+    actionBg: string;
+
     progressBg: string;
+
     info: string;
     success: string;
     warning: string;

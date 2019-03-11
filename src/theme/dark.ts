@@ -156,7 +156,12 @@ export const darkTheme: ITheme = {
   toast: {
     toastFg: '#f0f0f0',
     toastBg: '#222',
+
+    actionFg: '#f0f0f0',
+    actionBg: 'rgba(138,155,168,0.25)',
+
     progressBg: '#fff',
+
     info: 'blue',
     success: 'green',
     warning: 'orange',

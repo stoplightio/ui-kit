@@ -39,19 +39,23 @@ const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function 
   const showCloseIcon = closeIcon !== false;
 
   const toastActions = actions.map((action, index) => {
-    const { label, onClick = noop, ...buttonProps } = action;
+    const { label, onClick = noop, css: buttonCss = {}, ...buttonProps } = action;
     return (
       <Button
         key={index}
         m="5px"
-        color={theme.toastFg}
-        backgroundColor="rgba(138,155,168,0.25)"
+        color={theme.actionFg}
+        backgroundColor={theme.actionBg}
         border="transparent"
-        {...buttonProps}
-        css={{ ':hover': { backgroundColor: 'rgba(138,155,168,0.15)', ':active': { border: 'transparent' } } }}
+        css={Object.assign(
+          {},
+          { ':hover': { backgroundColor: 'inherit', ':active': { border: 'inherit' } } },
+          buttonCss
+        )}
         onClick={() => {
           onClick({ closeToast });
         }}
+        {...buttonProps}
       >
         {label}
       </Button>
@@ -94,7 +98,7 @@ const ToastContent = React.forwardRef<HTMLElement, IToastContentProps>(function 
           )}
 
           {toastActions.length ? (
-            <Flex flexWrap="wrap" alignItems="center" justifyContent="center">
+            <Flex mt="10px" flexWrap="wrap" alignItems="center" justifyContent="center">
               {toastActions}
             </Flex>
           ) : null}
@@ -110,7 +114,7 @@ ToastContent.displayName = 'ToastContent';
  * STYLE
  */
 export const toastContentStyles = (props: IToastContentProps, theme: ITheme['toast']): IBoxCSS => {
-  const type: any = props.type;
+  const type: IToastContent['type'] = props.type;
 
   return [
     {
@@ -119,7 +123,7 @@ export const toastContentStyles = (props: IToastContentProps, theme: ITheme['toa
       borderLeft: type && `4px solid ${theme[type]}`,
       boxSizing: 'border-box',
       fontSize: '15px',
-      padding: '10px 15px',
+      padding: '15px',
       height: '100%',
     },
   ];

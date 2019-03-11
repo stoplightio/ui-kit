@@ -155,7 +155,12 @@ export const lightTheme: ITheme = {
   toast: {
     toastFg: 'rgb(245, 248, 250)',
     toastBg: 'rgb(24, 26, 27)',
+
+    actionFg: 'rgb(245, 248, 250)',
+    actionBg: 'rgba(138,155,168,0.25)',
+
     progressBg: 'rgb(245, 248, 250)',
+
     info: '#137cbd',
     success: '#0f9960',
     warning: '#d9822b',
