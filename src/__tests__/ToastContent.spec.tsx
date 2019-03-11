@@ -9,8 +9,7 @@ import { ToastContent } from '../Toast';
 function expectToast(type: string) {
   const toast = mount(<ToastContent title="title" message="message" type={type} />);
 
-  expect(toast.find('b').text()).toEqual('title');
-  expect(toast.find('p').text()).toEqual('message');
+  expect(toast.text()).toEqual('titlemessage');
 }
 
 describe('ToastContent', () => {
