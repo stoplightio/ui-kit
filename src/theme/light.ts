@@ -117,13 +117,13 @@ export const lightTheme: ITheme = {
 
     menu: {
       ...menuTheme,
-      selectedBg: '#B2D4FF',
+      selectedBg: 'rgba(79, 99, 114, 0.47)',
     },
 
     chip: {
-      fg: 'black',
-      bg: 'rgb(245, 248, 250)',
-      border: opacityBorder,
+      fg: 'white',
+      bg: 'rgb(118, 130, 143)',
+      border: 'transparent',
     },
   },
 
@@ -153,13 +153,17 @@ export const lightTheme: ITheme = {
   tooltip: inputTheme,
 
   toast: {
-    toastFg: '#111',
-    toastBg: '#fff',
-    progressBg: '#222',
-    warningFg: 'orange',
-    infoFg: 'blue',
-    defaultFg: 'gray',
-    errorFg: 'red',
-    successFg: 'green',
+    toastFg: 'rgb(245, 248, 250)',
+    toastBg: 'rgb(24, 26, 27)',
+
+    actionFg: 'rgb(245, 248, 250)',
+    actionBg: 'rgba(138,155,168,0.25)',
+
+    progressBg: 'rgb(245, 248, 250)',
+
+    info: '#137cbd',
+    success: '#0f9960',
+    warning: '#d9822b',
+    error: '#db3737',
   },
 };
