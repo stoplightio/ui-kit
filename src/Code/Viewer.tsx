@@ -1,3 +1,4 @@
+import 'prismjs';
 import * as React from 'react';
 
 import { Box, IBox } from '../Box';
