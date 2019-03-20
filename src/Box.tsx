@@ -49,6 +49,7 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
       flex,
       alignSelf,
       textAlign,
+      textOverflow,
       position,
       top,
       bottom,
@@ -72,6 +73,7 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
       backgroundColor,
       borderColor,
       transform,
+      whiteSpace,
       visibility,
 
       css,
@@ -114,12 +116,14 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
 
       ss.opacity({ opacity }),
 
+      sl.textOverflow({ textOverflow }),
       sl.transform({ transform }),
       sl.textTransform({ textTransform }),
       sl.textDecoration({ textDecoration, textDecorationColor }),
       sl.cursor({ cursor }),
       sl.visibility({ visibility }),
       sl.overflow({ overflow, overflowX, overflowY }),
+      sl.whiteSpace({ whiteSpace }),
     ];
 
     /** Component provided defaults get pushed on first. */
@@ -147,6 +151,8 @@ export interface IBox<T extends HTMLOrSVGElement = HTMLDivElement>
     sl.IColorProps,
     sl.ITextDecorationProps,
     sl.ITextTransformProps,
+    sl.ITextOverflowProps,
+    sl.IWhiteSpaceProps,
     sl.IVisibilityProps,
     sl.IOverflowProps,
     sl.ICursorProps,

@@ -46,6 +46,9 @@ export const ToastContainer = (props: IToastContainer) => {
 
 const progressStyles = (theme: ITheme['toast']): IBoxCSS => ({
   background: theme.progressBg,
+
+  margin: '0px 10px 5px 10px',
+  borderRadius: '9999px',
 });
 
 const bodyStyles = (): IBoxCSS => ({
@@ -56,4 +59,5 @@ const bodyStyles = (): IBoxCSS => ({
 
 const toastStyles = (): IBoxCSS => ({
   padding: 0,
+  borderRadius: 2,
 });
