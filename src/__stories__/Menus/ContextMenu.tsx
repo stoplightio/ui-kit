@@ -58,7 +58,7 @@ storiesOf('Menus:Context Menu', module)
       renderTrigger={() => 'Right Click Me!'}
       menuItems={[
         { title: 'Menu Item 1', color: 'success', onClick: action('onClick') },
-        { title: 'Menu Item 2', color: 'warning' },
+        { title: 'Menu Item 2', color: 'warning', shortcut: '⌘⌥K' },
         { title: 'Menu Item 3', color: 'error' },
         { divider: true, borderColor: 'fg' },
         {

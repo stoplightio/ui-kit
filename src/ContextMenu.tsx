@@ -115,22 +115,35 @@ const menuStyles = (theme: ITheme['contextMenu'], hasMenuItems: boolean) => {
  * MENUITEM
  */
 
-export interface IContextMenuItem extends Omit<IBox, 'onClick'> {
-  title?: string;
-  data?: Object;
-  divider?: boolean;
-  disabled?: boolean;
-  preventClose?: boolean;
-  onClick?: (
-    event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
-    data: Object,
-    target: HTMLElement
-  ) => void | Function;
-  menuItems?: IContextMenuItem[];
-}
+type ContextMenuTitle = { title?: string } | { title: string; shortcut?: string };
+
+export type IContextMenuItem = ContextMenuTitle &
+  Omit<IBox, 'onClick'> & {
+    data?: Object;
+    divider?: boolean;
+    disabled?: boolean;
+    preventClose?: boolean;
+    onClick?: (
+      event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
+      data: Object,
+      target: HTMLElement
+    ) => void | Function;
+    menuItems?: IContextMenuItem[];
+  };
 
 const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
-  const { attributes, data, title, divider, disabled, preventClose, onClick, menuItems = [], ...rest } = props;
+  const {
+    attributes,
+    data,
+    title,
+    shortcut,
+    divider,
+    disabled,
+    preventClose,
+    onClick,
+    menuItems = [],
+    ...rest
+  } = props;
   const { contextMenu: theme } = useTheme();
 
   const isSubMenu = menuItems.length > 0;
@@ -147,8 +160,9 @@ const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
           disabled={disabled}
           onClick={onClick}
         >
-          <Flex alignItems="center">
+          <Flex alignItems="center" justifyContent="space-around">
             {title ? <Box flex={1}>{title}</Box> : null}
+            {shortcut ? <Box>{shortcut}</Box> : null}
             {isSubMenu ? (
               <Box pl="6px" fontSize="10px">
                 &#9658;
