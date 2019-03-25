@@ -7,21 +7,12 @@ import {
   library,
   PullProp,
   RotateProp,
-  SizeProp,
   Transform,
 } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, IBox } from './Box';
 
-export {
-  IconProp,
-  FlipProp,
-  SizeProp,
-  PullProp,
-  RotateProp,
-  Transform,
-  FaSymbol,
-} from '@fortawesome/fontawesome-svg-core';
+export { IconProp, FlipProp, PullProp, RotateProp, Transform, FaSymbol } from '@fortawesome/fontawesome-svg-core';
 
 export const IconLibrary = library;
 
@@ -34,7 +25,6 @@ export interface IIcon extends IBox<HTMLOrSVGElement> {
   inverse?: boolean;
   listItem?: boolean;
   flip?: FlipProp;
-  size?: SizeProp;
   pull?: PullProp;
   rotation?: RotateProp;
   transform?: string | Transform;
