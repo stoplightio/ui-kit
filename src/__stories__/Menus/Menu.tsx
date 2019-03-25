@@ -6,16 +6,19 @@ import { storiesOf } from '@storybook/react';
 
 import { Icon, Menu } from '../..';
 import { IMenu, IMenuItem } from '../../Menu';
+import { cleanKnobs } from '../_utils';
 
-export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => ({
-  posX: select('posX', ['left', 'center', 'right'], 'right', tabName),
-  posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
-  hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-  offset: {
-    x: number('offset.x', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-    y: number('offset.y', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-  },
-});
+export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => {
+  return cleanKnobs({
+    posX: select('posX', ['left', 'center', 'right'], 'right', tabName),
+    posY: select('posY', ['top', 'bottom'], 'bottom', tabName),
+    hideDelay: number('hideDelay', 200, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+    offset: {
+      x: number('offset.x', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+      y: number('offset.y', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+    },
+  });
+};
 
 storiesOf('Menus:Menu', module)
   .addDecorator(withKnobs)

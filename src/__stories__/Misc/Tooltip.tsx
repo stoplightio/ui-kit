@@ -7,14 +7,17 @@ import { storiesOf } from '@storybook/react';
 import { Button } from '../../Button';
 import { Popup } from '../../Popup';
 import { ITooltip, Tooltip } from '../../Tooltip';
+import { cleanKnobs } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
-export const TooltipKnobs = (tabName = 'Tooltip'): ITooltip => ({
-  ...boxKnobs(),
-  invalid: boolean('invalid', false, tabName),
-  posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
-  posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
-});
+export const TooltipKnobs = (tabName = 'Tooltip'): ITooltip => {
+  return cleanKnobs({
+    ...boxKnobs(),
+    invalid: boolean('invalid', false, tabName),
+    posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
+    posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
+  });
+};
 
 const sometext = `Here is some tooltip text Here is some tooltip text Here is some tooltip text Here is some tooltip text Here is some tooltip text`;
 

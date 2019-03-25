@@ -3,19 +3,22 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Box } from '../../Box';
 import { Toast, ToastContainer } from '../../Toast';
+import { cleanKnobs } from '../_utils';
 
-export const toastKnobs = (tabName = 'Toaster'): any => ({
-  type: select('type', ['info', 'error', 'success', 'warning', 'default'], 'default', tabName),
-  title: text('title', 'Title', tabName),
-  message: text('message', 'Message', tabName),
-  transition: select('transition', ['zoom', 'bounce', 'slide', 'flip'], 'zoom', tabName),
-  position: select(
-    'position',
-    ['top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center'],
-    'bottom-right',
-    tabName
-  ),
-});
+export const toastKnobs = (tabName = 'Toaster'): any => {
+  return cleanKnobs({
+    type: select('type', ['info', 'error', 'success', 'warning', 'default'], 'default', tabName),
+    title: text('title', 'Title', tabName),
+    message: text('message', 'Message', tabName),
+    transition: select('transition', ['zoom', 'bounce', 'slide', 'flip'], 'zoom', tabName),
+    position: select(
+      'position',
+      ['top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center'],
+      'bottom-right',
+      tabName
+    ),
+  });
+};
 
 storiesOf('Miscellaneous:Toast', module)
   .addDecorator(withKnobs)

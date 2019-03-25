@@ -1,3 +1,5 @@
+import pickBy = require('lodash/pickBy');
+
 /**
  * BOX
  */
@@ -108,3 +110,15 @@ export const InlineInputType = [
 ];
 
 export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];
+
+/**
+ * CLEAN KNOBS
+ * use this function for better cleaning of the props, we want to strip out undefined/falsey value (except zero)
+ * empty props normally get passed to the storybook component which messes with default values
+ */
+
+export function cleanKnobs<T = {}>(props: any): Partial<T> {
+  return pickBy(props, (prop: any) => {
+    return prop !== undefined && prop !== null && prop !== '';
+  });
+}

@@ -7,15 +7,18 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
 
 import { IToggle, Toggle } from '../../Toggle';
+import { cleanKnobs } from '../_utils';
 
 const store = new Store({
   checked: false,
 });
 
-export const toggleKnobs = (tabName = 'Toggle'): IToggle => ({
-  disabled: boolean('disabled', false, tabName),
-  checked: boolean('checked', false, tabName),
-});
+export const toggleKnobs = (tabName = 'Toggle'): IToggle => {
+  return cleanKnobs({
+    disabled: boolean('disabled', false, tabName),
+    checked: boolean('checked', false, tabName),
+  });
+};
 
 export const toggleActions = (): IToggle => ({
   onChange: action('onChange'),

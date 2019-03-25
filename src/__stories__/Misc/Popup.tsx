@@ -5,22 +5,25 @@ import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Button, Flex, Icon, Input, Popup, Text } from '../..';
+import { cleanKnobs } from '../_utils';
 
 const TAB_NAME = 'Popup';
 
-export const popupKnobs = (tabName = TAB_NAME): any => ({
-  posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
-  posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
-  offset: {
-    top: number('offset.top', 0, { min: 0 } as NumberOptions, tabName),
-    bottom: number('offset.bottom', 0, { min: 0 } as NumberOptions, tabName),
-    left: number('offset.left', 0, { min: 0 } as NumberOptions, tabName),
-    right: number('offset.right', 0, { min: 0 } as NumberOptions, tabName),
-  },
-  padding: number('padding', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-  width: number('width', 0, { min: 0 } as NumberOptions, tabName),
-  hideDelay: number('hideDelay', 200, { min: 0 } as NumberOptions, tabName),
-});
+export const popupKnobs = (tabName = TAB_NAME): any => {
+  return cleanKnobs({
+    posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
+    posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
+    offset: {
+      top: number('offset.top', 0, { min: 0 } as NumberOptions, tabName),
+      bottom: number('offset.bottom', 0, { min: 0 } as NumberOptions, tabName),
+      left: number('offset.left', 0, { min: 0 } as NumberOptions, tabName),
+      right: number('offset.right', 0, { min: 0 } as NumberOptions, tabName),
+    },
+    padding: number('padding', 0, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+    width: number('width', 0, { min: 0 } as NumberOptions, tabName),
+    hideDelay: number('hideDelay', 200, { min: 0 } as NumberOptions, tabName),
+  });
+};
 
 storiesOf('Miscellaneous:Popup', module)
   .addDecorator(withKnobs)

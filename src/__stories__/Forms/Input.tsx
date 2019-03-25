@@ -9,7 +9,7 @@ import omit = require('lodash/omit');
 import { forwardRef } from 'react';
 import { useAutoFocus } from '../../hooks/useAutoFocus';
 import { IInput, Input } from '../../Input';
-import { AutosizeInputType, InlineInputType } from '../_utils';
+import { AutosizeInputType, cleanKnobs, InlineInputType } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
 const store = new Store({
@@ -22,18 +22,22 @@ const CustomInput = forwardRef<HTMLInputElement, IInput>(function CustomInput({ 
   return <Input {...props} ref={nodeRef} />;
 });
 
-export const inputKnobs = (tabName = 'Input'): IInput => ({
-  ...omit(boxKnobs(), 'opacity'),
-  disabled: boolean('disabled', false, tabName),
-  type: select('type', InlineInputType, 'text', tabName),
-  placeholder: text('placeholder', 'placeholder', tabName),
-  invalid: boolean('invalid', false, tabName),
-});
+export const inputKnobs = (tabName = 'Input'): IInput => {
+  return cleanKnobs({
+    ...omit(boxKnobs(), 'opacity'),
+    disabled: boolean('disabled', false, tabName),
+    type: select('type', InlineInputType, 'text', tabName),
+    placeholder: text('placeholder', 'placeholder', tabName),
+    invalid: boolean('invalid', false, tabName),
+  });
+};
 
-export const autosizeInputKnobs = (tabName = 'Input'): IInput => ({
-  ...inputKnobs(),
-  type: select('type', AutosizeInputType, 'text', tabName),
-});
+export const autosizeInputKnobs = (tabName = 'Input'): IInput => {
+  return cleanKnobs({
+    ...inputKnobs(),
+    type: select('type', AutosizeInputType, 'text', tabName),
+  });
+};
 
 storiesOf('Forms:Input', module)
   .addDecorator(withKnobs)

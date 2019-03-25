@@ -7,29 +7,32 @@ import { storiesOf } from '@storybook/react';
 
 import { Box } from '../../Box';
 import { ISelect, Select } from '../../Select';
+import { cleanKnobs } from '../_utils';
 
-export const selectKnobs = (tabName = 'Select'): ISelect => ({
-  options: [],
-  multi: boolean('multi', false),
-  loading: boolean('loading', false),
-  disabled: boolean('disabled', false),
-  clearable: boolean('clearable', true),
-  searchable: boolean('searchable', true),
-  placeholder: text('placeholder', 'choose...'),
-  loadingMessage: text('loadingMessage', 'loadingMessage'),
-  noOptionsMessage: text('noOptionsMessage', 'no results'),
-  minMenuHeight: number('minMenuHeight', 140),
-  maxMenuHeight: number('maxMenuHeight', 300),
-  menuPlacement: select('menuPlacement', ['auto', 'bottom', 'top'], 'auto'),
-  menuIsOpen: boolean('menuIsOpen', false),
-  blurOnSelect: boolean('blurOnSelect', true),
-  closeOnSelect: boolean('closeOnSelect', true),
-  closeOnScroll: boolean('closeOnScroll', false),
-  hideSelectedOptions: boolean('hideSelectedOptions', false),
-  backspaceRemovesValue: boolean('backspaceRemovesValue', true),
-  onChange: action('onChange'),
-  invalid: boolean('invalid', false),
-});
+export const selectKnobs = (tabName = 'Select'): ISelect => {
+  return cleanKnobs({
+    options: [],
+    multi: boolean('multi', false),
+    loading: boolean('loading', false),
+    disabled: boolean('disabled', false),
+    clearable: boolean('clearable', true),
+    searchable: boolean('searchable', true),
+    placeholder: text('placeholder', 'choose...'),
+    loadingMessage: text('loadingMessage', 'loadingMessage'),
+    noOptionsMessage: text('noOptionsMessage', 'no results'),
+    minMenuHeight: number('minMenuHeight', 140),
+    maxMenuHeight: number('maxMenuHeight', 300),
+    menuPlacement: select('menuPlacement', ['auto', 'bottom', 'top'], 'auto'),
+    menuIsOpen: boolean('menuIsOpen', false),
+    blurOnSelect: boolean('blurOnSelect', true),
+    closeOnSelect: boolean('closeOnSelect', true),
+    closeOnScroll: boolean('closeOnScroll', false),
+    hideSelectedOptions: boolean('hideSelectedOptions', false),
+    backspaceRemovesValue: boolean('backspaceRemovesValue', true),
+    onChange: action('onChange'),
+    invalid: boolean('invalid', false),
+  });
+};
 
 storiesOf('Forms:Select', module)
   .addDecorator(withKnobs)
