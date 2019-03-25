@@ -114,7 +114,7 @@ const menuStyles = (theme: ITheme['contextMenu'], hasMenuItems: boolean) => {
  * MENUITEM
  */
 
-type ContextMenuTitle = { title?: string } | { title: string; shortcut?: string };
+type ContextMenuTitle = { title?: string; shortcut?: never } | { title: string; shortcut?: string };
 
 export type IContextMenuItem = ContextMenuTitle &
   Omit<IBox, 'onClick'> & {
