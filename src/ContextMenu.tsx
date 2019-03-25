@@ -93,7 +93,6 @@ const menuStyles = (theme: ITheme['contextMenu'], hasMenuItems: boolean) => {
       border: theme.border ? `1px solid ${theme.border}` : 'none',
 
       zIndex: 10000,
-      padding: '5px 7px',
       borderRadius: '3px',
       minWidth: '180px',
       maxWidth: '280px',
