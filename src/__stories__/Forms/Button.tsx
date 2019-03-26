@@ -21,7 +21,6 @@ export const buttonKnobs = (tabName = 'Button'): Partial<IButton> => {
 storiesOf('Forms:Button', module)
   .addDecorator(withKnobs)
 
-  .add('aaaisabled', () => <Button>Button Text</Button>)
 
   .add('with defaults', () => {
     return <Button {...buttonKnobs()}>Button Text</Button>;
