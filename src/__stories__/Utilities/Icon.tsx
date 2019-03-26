@@ -43,12 +43,6 @@ export const iconKnobs = (tabName = 'Icon'): any => {
     flip,
     rotation,
     spin: boolean('spin', false, tabName),
-    size: select(
-      'size',
-      ['xs', 'lg', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x'],
-      'sm',
-      tabName
-    ),
     pulse: boolean('pulse', false, tabName),
   };
 
