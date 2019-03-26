@@ -103,7 +103,7 @@ describe('ContextMenuView component', () => {
   });
 
   it('should iterate over menuItems and render ContextMenuItem', () => {
-    const menuItems = [
+    const menuItems: IContextMenuItem[] = [
       {
         key: '1',
         title: 'new file',
@@ -114,16 +114,22 @@ describe('ContextMenuView component', () => {
         title: 'new folder',
         disabled: true,
       },
+      {
+        key: '3',
+        title: 'Hey',
+        shortcut: 'CTRL',
+      },
     ];
 
     const wrapper = shallow(<ContextMenuView id="t" menuItems={menuItems} />);
     const children = wrapper.children();
 
     expect(wrapper).toHaveProp('as', ReactContextMenu);
-    expect(wrapper.find(ContextMenuItem)).toHaveLength(2);
+    expect(wrapper.find(ContextMenuItem)).toHaveLength(3);
     delete menuItems[0].key;
     delete menuItems[1].key;
     expect(children.at(0)).toHaveProp(menuItems[0]);
     expect(children.at(1)).toHaveProp(menuItems[1]);
+    expect(children.at(2)).toHaveProp('shortcut');
   });
 });
