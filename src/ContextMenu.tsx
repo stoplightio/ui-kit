@@ -161,7 +161,11 @@ const ContextMenuItem: React.FunctionComponent<IContextMenuItem> = props => {
         >
           <Flex alignItems="center" justifyContent="space-around">
             {title ? <Box flex={1}>{title}</Box> : null}
-            {shortcut ? <Box>{shortcut}</Box> : null}
+            {shortcut ? (
+              <Box opacity={0.5} fontSize="0.8rem">
+                {shortcut}
+              </Box>
+            ) : null}
             {isSubMenu ? (
               <Box pl="6px" fontSize="10px">
                 &#9658;
