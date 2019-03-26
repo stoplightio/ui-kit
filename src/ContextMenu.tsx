@@ -205,7 +205,7 @@ export const contextMenuItemStyles = (
 ) => {
   return [
     {
-      padding: '5px 7px',
+      padding: '10px 14px',
       fontSize: '14px',
       borderRadius: '2px',
 
