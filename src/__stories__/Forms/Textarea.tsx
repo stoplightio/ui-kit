@@ -4,7 +4,6 @@ import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
-import omit = require('lodash/omit');
 
 import { ITextarea, Textarea } from '../../Textarea';
 import { cleanKnobs } from '../_utils';
@@ -16,7 +15,7 @@ const store = new Store({
 
 export const textareaKnobs = (tabName = 'Textarea'): ITextarea => {
   return cleanKnobs({
-    ...omit(boxKnobs<HTMLTextAreaElement>(), 'opacity'),
+    ...boxKnobs<HTMLTextAreaElement>(),
     autosize: boolean('autosize', false, tabName),
     disabled: boolean('disabled', false, tabName),
     invalid: boolean('invalid', false, tabName),

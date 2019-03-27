@@ -52,6 +52,7 @@
     "@fortawesome/react-fontawesome": "0.1.4",
     "@stoplight/types": "3.1.x",
     "@types/styled-system": "3.2.x",
+    "clean-deep": "^3.0.2",
     "prop-types": "15.7.x",
     "react-contextmenu": "2.10.x",
     "react-custom-scrollbars": "4.2.x",

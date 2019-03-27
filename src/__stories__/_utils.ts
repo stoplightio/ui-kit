@@ -1,4 +1,4 @@
-import pickBy = require('lodash/pickBy');
+const cleanDeep = require('clean-deep');
 
 /**
  * BOX
@@ -118,7 +118,11 @@ export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];
  */
 
 export function cleanKnobs<T = {}>(props: any): Partial<T> {
-  return pickBy(props, (prop: any) => {
-    return prop !== undefined && prop !== null && prop !== '';
+  return cleanDeep({
+    emptyArrays: false,
+    emptyObjects: false,
+    emptyStrings: true,
+    nullValues: true,
+    undefinedValues: true,
   });
 }
