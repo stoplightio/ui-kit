@@ -81,7 +81,6 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
             <Box
               onClick={e => {
                 e.stopPropagation();
-                setIsVisible(false);
               }}
               width="100vw"
               height="100vh"
