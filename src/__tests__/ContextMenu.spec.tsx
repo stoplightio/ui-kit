@@ -6,6 +6,7 @@ import { ContextMenu as ReactContextMenu } from 'react-contextmenu';
 
 import { ITheme } from '../theme';
 
+import { Box } from '../Box';
 import { IContextMenu, IContextMenuItem, IContextMenuView } from '../ContextMenu';
 
 describe('ContextMenu component', () => {
@@ -98,7 +99,7 @@ describe('ContextMenuView component', () => {
   it('should render an empty placeholder element', () => {
     const wrapper = shallow(<ContextMenuView id="t" menuItems={[]} />);
 
-    expect(wrapper).toHaveProp('as', ReactContextMenu);
+    expect(wrapper.find(Box)).toHaveProp('as', ReactContextMenu);
     expect(wrapper.find(ContextMenuItem)).toHaveLength(0);
   });
 
@@ -122,9 +123,9 @@ describe('ContextMenuView component', () => {
     ];
 
     const wrapper = shallow(<ContextMenuView id="t" menuItems={menuItems} />);
-    const children = wrapper.children();
+    const children = wrapper.find(Box).children();
 
-    expect(wrapper).toHaveProp('as', ReactContextMenu);
+    expect(wrapper.find(Box)).toHaveProp('as', ReactContextMenu);
     expect(wrapper.find(ContextMenuItem)).toHaveLength(3);
     delete menuItems[0].key;
     delete menuItems[1].key;
