@@ -81,7 +81,7 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
             width="100vw"
             height="100vh"
             position="absolute"
-            zIndex={Number.MAX_SAFE_INTEGER - 1}
+            zIndex={2 ** 31 - 1}
             opacity={0}
           />
         </Portal>
@@ -89,7 +89,7 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
 
       <Box
         {...viewProps}
-        zIndex={Number.MAX_SAFE_INTEGER}
+        zIndex={2 ** 31}
         as={ReactContextMenu}
         onShow={() => setIsVisible(true)}
         onHide={() => setIsVisible(false)}
