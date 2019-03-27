@@ -2,8 +2,10 @@ import { Dictionary, Omit } from '@stoplight/types';
 import merge = require('lodash/merge');
 import * as React from 'react';
 
+import { configuration } from './configuration';
 import { darkTheme } from './dark';
 import { lightTheme } from './light';
+
 import { BaseTheme, ICustomTheme, ITheme } from './types';
 
 export * from './types';
@@ -48,7 +50,7 @@ export const ThemeProvider: React.FunctionComponent<IThemeProvider<any, any>> = 
   const targetTheme = theme || defaultTheme;
 
   return (
-    <Theme.Provider value={merge({}, baseThemes[targetTheme.base], targetTheme)}>
+    <Theme.Provider value={merge({}, configuration, baseThemes[targetTheme.base], targetTheme)}>
       <ThemeZones.Provider value={zones}>{children}</ThemeZones.Provider>
     </Theme.Provider>
   );

@@ -1,3 +1,5 @@
+import isNil = require('lodash/isNil');
+
 import {
   BackgroundColorProperty,
   BoxSizingProperty,
@@ -17,6 +19,9 @@ import {
   VisibilityProperty,
   WhiteSpaceProperty,
 } from 'csstype';
+
+import * as ss from 'styled-system';
+import { useTheme } from './theme';
 
 /**
  * BOX SIZE
@@ -171,3 +176,46 @@ export interface IWhiteSpaceProps {
 export const whiteSpace = (props: IWhiteSpaceProps) => ({
   whiteSpace: props.whiteSpace,
 });
+
+/**
+ * SPACE
+ * we overwrite styled-system space function to have better space prop priority p > px > pr
+ */
+
+// @ts-ignore missing type
+export const space = ss.mapProps((props: ss.SpaceProps) => ({
+  ...props,
+  // need to pass theme to rule
+  theme: useTheme(),
+  mt: !isNil(props.mt) ? props.mt : props.my,
+  mb: !isNil(props.mb) ? props.mb : props.my,
+  ml: !isNil(props.ml) ? props.ml : props.mx,
+  mr: !isNil(props.mr) ? props.mr : props.mx,
+  pt: !isNil(props.pt) ? props.pt : props.py,
+  pb: !isNil(props.pb) ? props.pb : props.py,
+  pl: !isNil(props.pl) ? props.pl : props.px,
+  pr: !isNil(props.pr) ? props.pr : props.px,
+}))(
+  ss.compose(
+    // @ts-ignore missing type
+    ss.margin,
+    // @ts-ignore missing type
+    ss.marginTop,
+    // @ts-ignore missing type
+    ss.marginBottom,
+    // @ts-ignore missing type
+    ss.marginLeft,
+    // @ts-ignore missing type
+    ss.marginRight,
+    // @ts-ignore missing type
+    ss.padding,
+    // @ts-ignore missing type
+    ss.paddingTop,
+    // @ts-ignore missing type
+    ss.paddingBottom,
+    // @ts-ignore missing type
+    ss.paddingLeft,
+    // @ts-ignore missing type
+    ss.paddingRight
+  )
+);

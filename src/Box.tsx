@@ -88,7 +88,7 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
       ss.borderColor({ borderColor }),
       ss.boxShadow({ boxShadow }),
       sl.boxSizing({ boxSizing }),
-      ss.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
+      sl.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
       ss.flex({ flex }),
       ss.alignSelf({ alignSelf }),
 
