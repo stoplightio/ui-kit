@@ -17,17 +17,25 @@ export const contextMenuKnobs = (tabName = 'ContextMenu') => {
 storiesOf('Menus:Context Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <ContextMenu
-      id="defaultContextMenu"
-      renderTrigger={() => 'trigger'}
-      menuItems={[
-        { title: 'Menu Item 1' },
-        { title: 'Menu Item 2' },
-        { title: 'Menu Item 3' },
-        { divider: true },
-        { title: 'Disabled Menu Item', disabled: true },
-      ]}
-    />
+    <Flex flexDirection="column" alignItems="center">
+      <Button display="block" onClick={() => alert('hey')}>
+        Try to click me while the context menu is opened
+      </Button>
+      <ContextMenu
+        id="defaultContextMenu"
+        renderTrigger={() => 'trigger'}
+        menuItems={[
+          { title: 'Menu Item 1' },
+          { title: 'Menu Item 2' },
+          { title: 'Menu Item 3' },
+          { divider: true },
+          { title: 'Disabled Menu Item', disabled: true },
+        ]}
+      />
+      <Button display="block" onClick={() => alert('hey')}>
+        Try to click me while the context menu is opened
+      </Button>
+    </Flex>
   ))
   .add('block external clicks', () => (
     <Flex flexDirection="column" alignItems="center">
