@@ -6,6 +6,10 @@ import { Box } from '../Box';
 import { Flex, IFlex } from '../Flex';
 
 describe('Flex component', () => {
+  beforeAll(async () => {
+    jest.spyOn(React, 'useContext').mockReturnValue({});
+  });
+
   it('renders Box component', () => {
     const wrapper = shallow(<Flex />).shallow();
     expect(wrapper).toMatchElement(<Box />);

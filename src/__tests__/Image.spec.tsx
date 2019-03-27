@@ -6,6 +6,10 @@ import { Box } from '../Box';
 import { Image } from '../Image';
 
 describe('Image component', () => {
+  beforeAll(async () => {
+    jest.spyOn(React, 'useContext').mockReturnValue({});
+  });
+
   it('renders Box as img', () => {
     const wrapper = shallow(<Image />).shallow();
     expect(wrapper).toMatchElement(<Box as="img" />);

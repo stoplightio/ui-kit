@@ -32,6 +32,8 @@ describe('Dialog component', () => {
       return { Portal: fn };
     });
 
+    jest.spyOn(React, 'useContext').mockReturnValue({});
+
     ({ Overlay, Dialog } = await import('../'));
   });
 
