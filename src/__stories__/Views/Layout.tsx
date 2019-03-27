@@ -25,25 +25,25 @@ const App = () => {
   const theme = useTheme();
 
   return (
-    <Flex flexDirection="column" textAlign="center" p={2} pt={4} position="relative" border="1px solid">
+    <Flex flexDirection="column" textAlign="center" p={7} pt={15} position="relative" border="1px solid">
       <BoxBadge color={theme.link.fg}>Flex Column</BoxBadge>
 
-      <CustomStoryBox p={4}>[zone: none] the default root theme values, with some extra padding</CustomStoryBox>
+      <CustomStoryBox p={15}>[zone: none] the default root theme values, with some extra padding</CustomStoryBox>
 
-      <Flex p={2} pt={4} mt={2} position="relative" backgroundColor="red">
+      <Flex p={7} pt={15} mt={7} position="relative" backgroundColor="red">
         <BoxBadge>Flex Row</BoxBadge>
 
         <ThemeZone name="inner">
-          <CustomStoryBox flex="1" p={3} pt={4} mr={2}>
+          <CustomStoryBox flex="1" p={11} pt={15} mr={7}>
             <Box>[zone: 'inner'] defaults canvas.bg to purple and canvas.fg to white</Box>
-            <Button mt={3}>Go</Button>
+            <Button mt={11}>Go</Button>
           </CustomStoryBox>
         </ThemeZone>
 
         <ThemeZone name="inverted">
-          <CustomStoryBox flex="1" p={3} pt={4}>
+          <CustomStoryBox flex="1" p={11} pt={15}>
             <Box>[zone: 'inverted'] inverts canvas bg and fg</Box>
-            <Button mt={3}>Go</Button>
+            <Button mt={11}>Go</Button>
           </CustomStoryBox>
         </ThemeZone>
       </Flex>
@@ -57,7 +57,7 @@ const BoxBadge: React.FunctionComponent<IBox> = props => (
     position="absolute"
     top={0}
     right={0}
-    px={1}
+    px={4}
     py="1px"
     fontStyle="italic"
     {...props}
