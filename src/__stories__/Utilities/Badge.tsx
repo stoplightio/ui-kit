@@ -5,12 +5,13 @@ import { select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Badge, BadgeColor, BadgeVariant } from '../../Badge';
+import { cleanKnobs } from '../_utils';
 
 export const badgeKnobs = (tabName = 'Badge'): any => {
-  return {
+  return cleanKnobs({
     color: select('color', Object.values(BadgeColor), BadgeColor.Default, tabName),
     variant: select('variant', Object.values(BadgeVariant), BadgeVariant.Pill, tabName),
-  };
+  });
 };
 
 storiesOf('Utilities:Badge', module)

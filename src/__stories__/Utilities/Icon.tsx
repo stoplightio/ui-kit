@@ -7,9 +7,9 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import map = require('lodash/map');
-import omitBy = require('lodash/omitBy');
 
 import { Icon, IconLibrary, IIcon } from '../../Icon';
+import { cleanKnobs } from '../_utils';
 
 const { fab, prefix: brandPrefix, ...brandIcons } = _brandIcons;
 const { far, prefix: regularPrefix, ...regularIcons } = _regularIcons;
@@ -46,7 +46,7 @@ export const iconKnobs = (tabName = 'Icon'): any => {
     pulse: boolean('pulse', false, tabName),
   };
 
-  return omitBy(props, val => !val);
+  return cleanKnobs(props);
 };
 
 storiesOf('Utilities:Icon', module)

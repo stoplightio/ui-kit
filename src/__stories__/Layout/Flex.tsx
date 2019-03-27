@@ -6,16 +6,18 @@ import { storiesOf } from '@storybook/react';
 import * as ss from 'styled-system';
 
 import { Box, Flex, IFlex } from '../../';
-import { AlignItems, FlexDirection, FlexWrap, JustifyContent } from '../_utils';
+import { AlignItems, cleanKnobs, FlexDirection, FlexWrap, JustifyContent } from '../_utils';
 import { boxKnobs } from './Box';
 
-export const flexKnobs = (tabName = 'Flex'): IFlex => ({
-  ...boxKnobs(),
-  alignItems: select('alignItems', AlignItems, '', tabName),
-  justifyContent: select('justifyContent', JustifyContent, '', tabName),
-  flexDirection: select('flexDirection', FlexDirection, '', tabName) as ss.FlexDirectionProps['flexDirection'],
-  flexWrap: select('flexWrap', FlexWrap, '', tabName) as ss.FlexWrapProps['flexWrap'],
-});
+export const flexKnobs = (tabName = 'Flex'): IFlex => {
+  return cleanKnobs({
+    ...boxKnobs(),
+    alignItems: select('alignItems', AlignItems, '', tabName),
+    justifyContent: select('justifyContent', JustifyContent, '', tabName),
+    flexDirection: select('flexDirection', FlexDirection, '', tabName) as ss.FlexDirectionProps['flexDirection'],
+    flexWrap: select('flexWrap', FlexWrap, '', tabName) as ss.FlexWrapProps['flexWrap'],
+  });
+};
 
 storiesOf('Layout:Flex', module)
   .addDecorator(withKnobs)

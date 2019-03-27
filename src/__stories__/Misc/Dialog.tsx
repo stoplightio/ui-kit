@@ -8,12 +8,15 @@ import { storiesOf } from '@storybook/react';
 import { Button } from '../../Button';
 import { Dialog, IDialog } from '../../Dialog';
 import { Heading } from '../../Heading';
+import { cleanKnobs } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
-export const dialogKnobs = (tabName = 'Dialog'): Partial<IDialog> => ({
-  ...boxKnobs(),
-  show: boolean('show', true, tabName),
-});
+export const dialogKnobs = (tabName = 'Dialog'): Partial<IDialog> => {
+  return cleanKnobs({
+    ...boxKnobs(),
+    show: boolean('show', true, tabName),
+  });
+};
 
 storiesOf('Miscellaneous:Dialog', module)
   .addDecorator(withKnobs)

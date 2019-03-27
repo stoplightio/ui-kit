@@ -4,47 +4,51 @@ import { StateDecorator, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
-import omit = require('lodash/omit');
 
 import { ITextarea, Textarea } from '../../Textarea';
+import { cleanKnobs } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
 const store = new Store({
   value: 'TextArea Text',
 });
 
-export const textareaKnobs = (tabName = 'Textarea'): ITextarea => ({
-  ...omit(boxKnobs<HTMLTextAreaElement>(), 'opacity'),
-  autosize: boolean('autosize', false, tabName),
-  disabled: boolean('disabled', false, tabName),
-  invalid: boolean('invalid', false, tabName),
-});
+export const textareaKnobs = (tabName = 'Textarea'): ITextarea => {
+  return cleanKnobs({
+    ...boxKnobs<HTMLTextAreaElement>(),
+    autosize: boolean('autosize', false, tabName),
+    disabled: boolean('disabled', false, tabName),
+    invalid: boolean('invalid', false, tabName),
+  });
+};
 
-export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => ({
-  ...textareaKnobs(tabName),
-  minRows: number(
-    'minRows',
-    0,
-    {
-      min: 0,
-      range: false,
-      max: Infinity,
-      step: 1,
-    },
-    tabName
-  ),
-  maxRows: number(
-    'maxRows',
-    10,
-    {
-      min: 1,
-      range: false,
-      max: Infinity,
-      step: 1,
-    },
-    tabName
-  ),
-});
+export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => {
+  return cleanKnobs({
+    ...textareaKnobs(tabName),
+    minRows: number(
+      'minRows',
+      0,
+      {
+        min: 0,
+        range: false,
+        max: Infinity,
+        step: 1,
+      },
+      tabName
+    ),
+    maxRows: number(
+      'maxRows',
+      10,
+      {
+        min: 1,
+        range: false,
+        max: Infinity,
+        step: 1,
+      },
+      tabName
+    ),
+  });
+};
 
 storiesOf('Forms:Textarea', module)
   .addDecorator(withKnobs)

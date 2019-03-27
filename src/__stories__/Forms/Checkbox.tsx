@@ -6,16 +6,19 @@ import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
 
 import { Checkbox, ICheckbox } from '../../Checkbox';
+import { cleanKnobs } from '../_utils';
 
 const store = new Store<Partial<ICheckbox>>({
   checked: false,
 });
 
-export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => ({
-  disabled: boolean('disabled', false, tabName),
-  checked: boolean('checked', false, tabName),
-  invalid: boolean('invalid', false, tabName),
-});
+export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => {
+  return cleanKnobs({
+    disabled: boolean('disabled', false, tabName),
+    checked: boolean('checked', false, tabName),
+    invalid: boolean('invalid', false, tabName),
+  });
+};
 
 storiesOf('Forms:Checkbox', module)
   .addDecorator(withKnobs)
