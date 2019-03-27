@@ -118,7 +118,7 @@ export const AutosizeInputType = ['text', 'email', 'password', 'search', 'url'];
  */
 
 export function cleanKnobs<T = {}>(props: any): Partial<T> {
-  return cleanDeep({
+  return cleanDeep(props, {
     emptyArrays: false,
     emptyObjects: false,
     emptyStrings: true,
