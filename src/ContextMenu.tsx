@@ -8,6 +8,7 @@ import {
 
 import { Omit } from '@stoplight/types';
 
+import * as ReactDOM from 'react-dom';
 import { Box, Break, Flex, IBox, ITheme, useTheme } from './';
 
 // TODO: allow custom renderMenu
@@ -58,6 +59,7 @@ export { ContextMenuTrigger };
 export interface IContextMenuView {
   id: string;
   className?: string;
+  blockExternalClicks?: boolean;
 
   menuItems?: IContextMenuItem[];
   hideOnLeave?: boolean;
@@ -70,13 +72,41 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { menuItems = [], ...viewProps } = props;
 
   const { contextMenu: theme } = useTheme();
+  const [isVisible, setIsVisible] = React.useState(false);
 
   return (
-    <Box {...viewProps} as={ReactContextMenu} css={menuStyles(theme, menuItems.length > 0)}>
-      {menuItems.map((item, index) => {
-        return <ContextMenuItem key={index} {...item} />;
-      })}
-    </Box>
+    <>
+      {props.blockExternalClicks && isVisible
+        ? ReactDOM.createPortal(
+            <Box
+              onClick={e => {
+                e.stopPropagation();
+                setIsVisible(false);
+              }}
+              width="100vw"
+              height="100vh"
+              position="absolute"
+              zIndex={10000}
+              opacity={0}
+            />,
+            document.body
+          )
+        : null}
+
+      <Box
+        {...viewProps}
+        zIndex={10001}
+        as={ReactContextMenu}
+        onShow={() => setIsVisible(true)}
+        onHide={() => setIsVisible(false)}
+        H
+        css={menuStyles(theme, menuItems.length > 0)}
+      >
+        {menuItems.map((item, index) => {
+          return <ContextMenuItem key={index} {...item} />;
+        })}
+      </Box>
+    </>
   );
 };
 
