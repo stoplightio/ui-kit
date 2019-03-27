@@ -7,9 +7,7 @@ import {
 } from 'react-contextmenu';
 
 import { Omit } from '@stoplight/types';
-
-import * as ReactDOM from 'react-dom';
-import { Box, Break, Flex, IBox, ITheme, useTheme } from './';
+import { Box, Break, Flex, IBox, ITheme, Portal, useTheme } from './';
 
 // TODO: allow custom renderMenu
 // TODO: allow custom renderMenuItem?
@@ -76,21 +74,18 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
 
   return (
     <>
-      {props.blockExternalClicks && isVisible
-        ? ReactDOM.createPortal(
-            <Box
-              onClick={e => {
-                e.stopPropagation();
-              }}
-              width="100vw"
-              height="100vh"
-              position="absolute"
-              zIndex={Number.MAX_SAFE_INTEGER - 1}
-              opacity={0}
-            />,
-            document.body
-          )
-        : null}
+      {props.blockExternalClicks && isVisible ? (
+        <Portal>
+          <Box
+            onClick={e => e.stopPropagation()}
+            width="100vw"
+            height="100vh"
+            position="absolute"
+            zIndex={Number.MAX_SAFE_INTEGER - 1}
+            opacity={0}
+          />
+        </Portal>
+      ) : null}
 
       <Box
         {...viewProps}
