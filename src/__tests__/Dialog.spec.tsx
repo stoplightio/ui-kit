@@ -7,7 +7,7 @@ import { IDialog } from '../Dialog';
 import { IOverlay } from '../Overlay';
 import { ITheme } from '../theme';
 
-let useContextSpy: jest.Mock<{}, any>;
+let useContextSpy: jest.SpyInstance;
 describe('Dialog component', () => {
   let Overlay: React.FunctionComponent<IOverlay>;
   let Dialog: React.FunctionComponent<IDialog>;

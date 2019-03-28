@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Box } from '../Box';
 import { Image } from '../Image';
 
-let useContextSpy: jest.Mock<{}, any>;
+let useContextSpy: jest.SpyInstance;
 describe('Image component', () => {
   beforeAll(async () => {
     useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Box } from '../Box';
 import { Flex, IFlex } from '../Flex';
 
-let useContextSpy: jest.Mock<{}, any>;
+let useContextSpy: jest.SpyInstance;
 describe('Flex component', () => {
   beforeAll(async () => {
     useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});
