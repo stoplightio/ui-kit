@@ -20,8 +20,8 @@ const Button: React.FunctionComponent<IButton> = React.forwardRef<HTMLButtonElem
 
   return (
     <Flex
-      px={3}
-      py={2}
+      px={11}
+      py={7}
       borderRadius={2}
       {...rest}
       as={as}

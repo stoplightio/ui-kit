@@ -90,7 +90,7 @@ storiesOf('Miscellaneous:Popup', module)
       {...popupKnobs()}
       padding={3}
       renderContent={() => (
-        <Box border={`1px solid red`} borderRadius="10px" p={2}>
+        <Box border={`1px solid red`} borderRadius="10px" p={7}>
           This is a tooltip message.
         </Box>
       )}

@@ -22,7 +22,7 @@ storiesOf('Miscellaneous:Dialog', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Dialog {...dialogKnobs()} onClickOutside={action('onClickOutside')}>
-      <Heading py={4} px={5} textAlign="center">
+      <Heading py={15} px={20} textAlign="center">
         Remove file?
       </Heading>
       <Button width="50%">yes</Button>

@@ -5,7 +5,16 @@ import * as React from 'react';
 import { Box } from '../Box';
 import { Flex, IFlex } from '../Flex';
 
+let useContextSpy: jest.SpyInstance;
 describe('Flex component', () => {
+  beforeAll(async () => {
+    useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});
+  });
+
+  afterAll(() => {
+    useContextSpy.mockRestore();
+  });
+
   it('renders Box component', () => {
     const wrapper = shallow(<Flex />).shallow();
     expect(wrapper).toMatchElement(<Box />);
