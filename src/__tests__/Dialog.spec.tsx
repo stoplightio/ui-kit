@@ -7,6 +7,7 @@ import { IDialog } from '../Dialog';
 import { IOverlay } from '../Overlay';
 import { ITheme } from '../theme';
 
+let useContextSpy: jest.Mock<{}, any>;
 describe('Dialog component', () => {
   let Overlay: React.FunctionComponent<IOverlay>;
   let Dialog: React.FunctionComponent<IDialog>;
@@ -32,7 +33,7 @@ describe('Dialog component', () => {
       return { Portal: fn };
     });
 
-    jest.spyOn(React, 'useContext').mockReturnValue({});
+    useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});
 
     ({ Overlay, Dialog } = await import('../'));
   });
@@ -40,6 +41,8 @@ describe('Dialog component', () => {
   afterAll(() => {
     jest.unmock('../theme');
     jest.unmock('../Portal');
+
+    useContextSpy.mockRestore();
   });
 
   it('should render nothing is show is falsy', () => {

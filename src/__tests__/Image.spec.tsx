@@ -5,9 +5,14 @@ import * as React from 'react';
 import { Box } from '../Box';
 import { Image } from '../Image';
 
+let useContextSpy: jest.Mock<{}, any>;
 describe('Image component', () => {
   beforeAll(async () => {
-    jest.spyOn(React, 'useContext').mockReturnValue({});
+    useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});
+  });
+
+  afterAll(() => {
+    useContextSpy.mockRestore();
   });
 
   it('renders Box as img', () => {

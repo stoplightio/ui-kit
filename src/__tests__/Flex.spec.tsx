@@ -5,9 +5,14 @@ import * as React from 'react';
 import { Box } from '../Box';
 import { Flex, IFlex } from '../Flex';
 
+let useContextSpy: jest.Mock<{}, any>;
 describe('Flex component', () => {
   beforeAll(async () => {
-    jest.spyOn(React, 'useContext').mockReturnValue({});
+    useContextSpy = jest.spyOn(React, 'useContext').mockReturnValue({});
+  });
+
+  afterAll(() => {
+    useContextSpy.mockRestore();
   });
 
   it('renders Box component', () => {
