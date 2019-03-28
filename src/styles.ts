@@ -21,7 +21,6 @@ import {
 } from 'csstype';
 
 import * as ss from 'styled-system';
-import { useTheme } from './theme';
 
 /**
  * BOX SIZE
@@ -180,13 +179,12 @@ export const whiteSpace = (props: IWhiteSpaceProps) => ({
 /**
  * SPACE
  * we overwrite styled-system space function to have better space prop priority p > px > pr
+ * NEED TO PASS THEME FOR THIS RULE TO USE OUR PREDEFINED VALUES
  */
 
 // @ts-ignore missing type
 export const space = ss.mapProps((props: ss.SpaceProps) => ({
   ...props,
-  // need to pass theme to rule
-  theme: useTheme(),
   mt: !isNil(props.mt) ? props.mt : props.my,
   mb: !isNil(props.mb) ? props.mb : props.my,
   ml: !isNil(props.ml) ? props.ml : props.mx,

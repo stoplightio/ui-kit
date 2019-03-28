@@ -8,6 +8,7 @@ import * as ss from 'styled-system';
 import flattenDeep = require('lodash/flattenDeep');
 
 import * as sl from './styles';
+import { useTheme } from './theme';
 import { validPropsPicker } from './utils/validPropsPicker';
 
 const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSVGElement, IBox<HTMLOrSVGElement>>(
@@ -80,6 +81,8 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
       ...rest
     } = props;
 
+    const theme = useTheme();
+
     /** Add all the supported styles, passing in the relevant props. */
     const styles: IBoxCSS = [
       sl.color({ color, backgroundColor }),
@@ -88,7 +91,8 @@ const Box: React.FunctionComponent<IBox<HTMLOrSVGElement>> = forwardRef<HTMLOrSV
       ss.borderColor({ borderColor }),
       ss.boxShadow({ boxShadow }),
       sl.boxSizing({ boxSizing }),
-      sl.space({ m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
+      // requires theme
+      sl.space({ theme, m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py }),
       ss.flex({ flex }),
       ss.alignSelf({ alignSelf }),
 
