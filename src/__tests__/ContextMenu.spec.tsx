@@ -2,40 +2,23 @@ import { mount, shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 
-import { ContextMenu as ReactContextMenu } from 'react-contextmenu';
-
-import { ITheme } from '../theme';
+import { ContextMenu as ReactContextMenu, ContextMenuTrigger } from 'react-contextmenu';
 
 import { Box } from '../Box';
-import { IContextMenu, IContextMenuItem, IContextMenuView } from '../ContextMenu';
+import { ContextMenu, ContextMenuItem, ContextMenuView, IContextMenuItem } from '../ContextMenu';
 
-describe('ContextMenu component', () => {
-  let ContextMenu: React.FunctionComponent<IContextMenu>;
-  let ContextMenuView: React.FunctionComponent<IContextMenuView>;
-  let ContextMenuTrigger: React.FunctionComponent<any>;
-
-  const theme: Partial<ITheme> = {
+jest.mock('../theme', () => ({
+  useTheme: jest.fn().mockReturnValue({
     contextMenu: {
       fg: '#000',
       border: '#fff',
       bg: '#111',
       hoverBg: 'red',
     },
-  };
+  }),
+}));
 
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    // @ts-ignore
-    ({ ContextMenu, ContextMenuView, ContextMenuTrigger } = await import('../ContextMenu'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
+describe('ContextMenu component', () => {
   it('should render ContextMenuTrigger and render result of renderTrigger', () => {
     const trigger = 'I am a trigger!';
     const renderTrigger = () => trigger;
@@ -69,33 +52,26 @@ describe('ContextMenu component', () => {
     expect(wrapper.find(ContextMenuView)).toHaveProp('id', id);
     expect(wrapper.find(ContextMenuTrigger)).toHaveProp('id', id);
   });
+
+  it('should call onShow and onHide', () => {
+    const onShow = jest.fn();
+    const onHide = jest.fn();
+    const props = {
+      onShow,
+      onHide,
+    };
+
+    const wrapper = mount(<ContextMenu renderTrigger={() => null} id="uniq-id" {...props} />);
+
+    wrapper.find(ContextMenuView).prop('onShow')!({ event: 'show' });
+    expect(onShow).toHaveBeenCalledWith({ event: 'show' });
+
+    wrapper.find(ContextMenuView).prop('onHide')!({ event: 'hide' });
+    expect(onHide).toHaveBeenCalledWith({ event: 'hide' });
+  });
 });
 
 describe('ContextMenuView component', () => {
-  let ContextMenuView: React.FunctionComponent<IContextMenuView>;
-  let ContextMenuItem: React.FunctionComponent<IContextMenuItem>;
-
-  const theme: Partial<ITheme> = {
-    contextMenu: {
-      fg: '#000',
-      border: '#fff',
-      bg: '#111',
-      hoverBg: 'red',
-    },
-  };
-
-  beforeAll(async () => {
-    jest.mock('../theme', () => ({
-      useTheme: jest.fn().mockReturnValue(theme),
-    }));
-
-    ({ ContextMenuItem, ContextMenuView } = await import('../ContextMenu'));
-  });
-
-  afterAll(() => {
-    jest.unmock('../theme');
-  });
-
   it('should render an empty placeholder element', () => {
     const wrapper = shallow(<ContextMenuView id="t" menuItems={[]} />);
 

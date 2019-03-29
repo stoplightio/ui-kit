@@ -72,6 +72,26 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
   const { contextMenu: theme } = useTheme();
   const [isVisible, setIsVisible] = React.useState(false);
 
+  const onShow = React.useCallback<(event: unknown) => void>(
+    event => {
+      setIsVisible(true);
+      if (props.onShow) {
+        props.onShow(event);
+      }
+    },
+    [setIsVisible, props.onShow]
+  );
+
+  const onHide = React.useCallback<(event: unknown) => void>(
+    event => {
+      setIsVisible(false);
+      if (props.onHide) {
+        props.onHide(event);
+      }
+    },
+    [setIsVisible, props.onHide]
+  );
+
   return (
     <>
       {props.blockExternalClicks && isVisible ? (
@@ -80,8 +100,10 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
             onClick={e => e.stopPropagation()}
             width="100vw"
             height="100vh"
-            position="absolute"
-            zIndex={2 ** 31 - 1}
+            position="fixed"
+            top={0}
+            left={0}
+            zIndex={2 ** 31 - 3}
             opacity={0}
           />
         </Portal>
@@ -89,11 +111,10 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
 
       <Box
         {...viewProps}
-        zIndex={2 ** 31}
+        zIndex={2 ** 31 - 2}
         as={ReactContextMenu}
-        onShow={() => setIsVisible(true)}
-        onHide={() => setIsVisible(false)}
-        H
+        onShow={onShow}
+        onHide={onHide}
         css={menuStyles(theme, menuItems.length > 0)}
       >
         {menuItems.map((item, index) => {
@@ -116,7 +137,6 @@ const menuStyles = (theme: ITheme['contextMenu'], hasMenuItems: boolean) => {
       backgroundColor: theme.bg,
       border: theme.border ? `1px solid ${theme.border}` : 'none',
 
-      zIndex: 10000,
       borderRadius: '3px',
       minWidth: '180px',
       maxWidth: '280px',
