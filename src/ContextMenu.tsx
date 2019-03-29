@@ -93,7 +93,6 @@ const ContextMenuView: React.FunctionComponent<IContextMenuView> = props => {
         as={ReactContextMenu}
         onShow={() => setIsVisible(true)}
         onHide={() => setIsVisible(false)}
-        H
         css={menuStyles(theme, menuItems.length > 0)}
       >
         {menuItems.map((item, index) => {
