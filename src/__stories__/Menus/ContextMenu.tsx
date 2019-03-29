@@ -31,6 +31,8 @@ storiesOf('Menus:Context Menu', module)
           { divider: true },
           { title: 'Disabled Menu Item', disabled: true },
         ]}
+        onShow={action('onShow')}
+        onHide={action('onHide')}
       />
       <Button display="block" onClick={() => alert('hey')}>
         Try to click me while the context menu is opened
@@ -53,6 +55,8 @@ storiesOf('Menus:Context Menu', module)
           { divider: true },
           { title: 'Disabled Menu Item', disabled: true },
         ]}
+        onShow={action('onShow')}
+        onHide={action('onHide')}
       />
       <Button display="block" onClick={() => alert('hey')}>
         Try to click me while the context menu is opened
@@ -81,6 +85,8 @@ storiesOf('Menus:Context Menu', module)
         { divider: true },
         { title: 'Disabled Menu Item', disabled: true },
       ]}
+      onShow={action('onShow')}
+      onHide={action('onHide')}
     />
   ))
   .add('custom items', () => (
@@ -98,6 +104,8 @@ storiesOf('Menus:Context Menu', module)
           fontStyle: 'italic',
         },
       ]}
+      onShow={action('onShow')}
+      onHide={action('onHide')}
     />
   ))
   .add('sub menu', () => (
@@ -158,5 +166,7 @@ storiesOf('Menus:Context Menu', module)
           fontStyle: 'italic',
         },
       ]}
+      onShow={action('onShow')}
+      onHide={action('onHide')}
     />
   ));
