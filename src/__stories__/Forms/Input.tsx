@@ -39,7 +39,7 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => {
   });
 };
 
-storiesOf('Forms:Input', module)
+storiesOf('Forms|Input', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Input {...inputKnobs()} />)
   .add('uncontrolled autofocus', () => <Input {...inputKnobs()} autoFocus />)

@@ -18,7 +18,7 @@ export const dialogKnobs = (tabName = 'Dialog'): Partial<IDialog> => {
   });
 };
 
-storiesOf('Miscellaneous:Dialog', module)
+storiesOf('Miscellaneous|Dialog', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Dialog {...dialogKnobs()} onClickOutside={action('onClickOutside')}>

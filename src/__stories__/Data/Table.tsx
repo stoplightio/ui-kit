@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Table, TableCell, TableRow } from '../../Table';
 
-storiesOf('List & Tables:Table', module)
+storiesOf('List & Tables|Table', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Table>

@@ -21,7 +21,7 @@ export const TooltipKnobs = (tabName = 'Tooltip'): ITooltip => {
 
 const sometext = `Here is some tooltip text Here is some tooltip text Here is some tooltip text Here is some tooltip text Here is some tooltip text`;
 
-storiesOf('Miscellaneous:Tooltip', module)
+storiesOf('Miscellaneous|Tooltip', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Tooltip {...TooltipKnobs()}>

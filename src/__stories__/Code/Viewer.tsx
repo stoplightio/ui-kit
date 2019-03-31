@@ -13,7 +13,7 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): IViewer => ({
   showLineNumbers: boolean('showLineNumbers', false, tabName),
 });
 
-storiesOf('Code:Viewer', module)
+storiesOf('Code|Viewer', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Box maxWidth="500px">

@@ -25,7 +25,7 @@ export const popupKnobs = (tabName = TAB_NAME): any => {
   });
 };
 
-storiesOf('Miscellaneous:Popup', module)
+storiesOf('Miscellaneous|Popup', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box height="500px" width="500px">

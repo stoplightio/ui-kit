@@ -15,7 +15,7 @@ interface ILayoutTheme extends ITheme {
 type Zones = 'inner' | 'inverted';
 const { ThemeZone, useTheme } = createThemedModule<Zones, ILayoutTheme>();
 
-storiesOf('Views:Kitchen Sink', module)
+storiesOf('Views|Kitchen Sink', module)
   .addDecorator(withKnobs)
   .add('Flex and Box', () => <App />);
 

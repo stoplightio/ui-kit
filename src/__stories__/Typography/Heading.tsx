@@ -12,6 +12,6 @@ export const headingKnobs = (tabName = 'Heading'): IHeading => ({
   as: select('as', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], 'h1', tabName),
 });
 
-storiesOf('Typography:Heading', module)
+storiesOf('Typography|Heading', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Heading {...headingKnobs()}>Some Text in a H* tag</Heading>);

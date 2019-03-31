@@ -50,7 +50,7 @@ export const textareaAutosizeKnobs = (tabName = 'Textarea'): ITextarea => {
   });
 };
 
-storiesOf('Forms:Textarea', module)
+storiesOf('Forms|Textarea', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Textarea {...textareaKnobs()} autoFocus />)
   .add('uncontrolled autofocus', () => <Textarea {...textareaKnobs()} autoFocus />)

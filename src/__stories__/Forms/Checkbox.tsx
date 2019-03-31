@@ -20,7 +20,7 @@ export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => {
   });
 };
 
-storiesOf('Forms:Checkbox', module)
+storiesOf('Forms|Checkbox', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => (
     <div>

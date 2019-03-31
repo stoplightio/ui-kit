@@ -15,7 +15,7 @@ export const listKnobs = (tabName = 'List'): Partial<IList> => {
   });
 };
 
-storiesOf('List & Tables:List', module)
+storiesOf('List & Tables|List', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <List {...listKnobs()}>

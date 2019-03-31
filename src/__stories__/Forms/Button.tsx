@@ -16,7 +16,7 @@ export const buttonKnobs = (tabName = 'Button'): Partial<IButton> => {
   });
 };
 
-storiesOf('Forms:Button', module)
+storiesOf('Forms|Button', module)
   .addDecorator(withKnobs)
 
   .add('with defaults', () => {

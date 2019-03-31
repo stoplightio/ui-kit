@@ -21,7 +21,7 @@ export const imageKnobs = (tabName = 'Image'): IImage => {
   });
 };
 
-storiesOf('Miscellaneous:Image', module)
+storiesOf('Miscellaneous|Image', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>)
   .add('with defaults', () => <Image {...imageKnobs()} />)

@@ -16,6 +16,6 @@ export const linkKnobs = (tabName = 'Link'): ILink => {
   });
 };
 
-storiesOf('Typography:Link', module)
+storiesOf('Typography|Link', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Link {...linkKnobs()} />);

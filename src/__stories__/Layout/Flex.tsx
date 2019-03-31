@@ -19,7 +19,7 @@ export const flexKnobs = (tabName = 'Flex'): IFlex => {
   });
 };
 
-storiesOf('Layout:Flex', module)
+storiesOf('Layout|Flex', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Flex {...flexKnobs()} width="500px" border="1px solid blue">

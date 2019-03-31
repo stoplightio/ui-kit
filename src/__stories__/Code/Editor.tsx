@@ -17,7 +17,7 @@ export const codeEditorKnobs = (tabName = 'Code Editor'): IEditor => ({
   onChange: action('onChange'),
 });
 
-storiesOf('Code:Editor', module)
+storiesOf('Code|Editor', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Editor {...codeEditorKnobs()} onChange={action('onChange')} />)
   .addDecorator(StateDecorator(store) as StoryDecorator)

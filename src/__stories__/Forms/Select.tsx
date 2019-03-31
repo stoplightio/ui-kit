@@ -34,7 +34,7 @@ export const selectKnobs = (tabName = 'Select'): ISelect => {
   });
 };
 
-storiesOf('Forms:Select', module)
+storiesOf('Forms|Select', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Box width="40%">

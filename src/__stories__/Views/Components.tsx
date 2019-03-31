@@ -15,7 +15,7 @@ const knobs = () => ({
   disabled: boolean('disabled', false),
 });
 
-storiesOf('Views:Components', module)
+storiesOf('Views|Components', module)
   .addDecorator(withKnobs)
   .add('Form Components', () => <App />);
 

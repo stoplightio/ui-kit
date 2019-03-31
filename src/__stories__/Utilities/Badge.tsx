@@ -14,7 +14,7 @@ export const badgeKnobs = (tabName = 'Badge'): any => {
   });
 };
 
-storiesOf('Utilities:Badge', module)
+storiesOf('Utilities|Badge', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <div>

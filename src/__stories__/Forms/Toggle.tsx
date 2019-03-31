@@ -24,7 +24,7 @@ export const toggleActions = (): IToggle => ({
   onChange: action('onChange'),
 });
 
-storiesOf('Forms:Toggle', module)
+storiesOf('Forms|Toggle', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Toggle {...toggleKnobs()} {...toggleActions} />)
   .add('checked', () => <Toggle {...toggleKnobs()} {...toggleActions} checked={true} />)
