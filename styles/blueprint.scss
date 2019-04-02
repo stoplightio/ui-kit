@@ -96,7 +96,7 @@ $indigo5: #b794f4;
  $pt-text-selection-color: rgba($blue4, 0.6);
 
 @import "~@blueprintjs/core/src/blueprint.scss";
-@import "~@blueprintjs/select/src/blueprint.scss";
+@import "~@blueprintjs/select/src/blueprint-select.scss";
 
 $icon-font-path: "/static/icons";
 @import "~@blueprintjs/icons/src/blueprint-icons.scss";

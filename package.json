@@ -25,7 +25,10 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "build": "sl-scripts build",
+    "build": "yarn build.styles && sl-scripts build",
+    "build.styles": "yarn build.bp && yarn build.tw",
+    "build.bp": "node-sass ./styles/blueprint.scss ./src/styles/blueprint.css --functions ./scripts/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
+    "build.tw": "postcss ./styles/index.css -o ./src/styles/index.css",
     "build.docs": "build-storybook -c .storybook -o docs-auto",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts(?)'",
@@ -40,7 +43,6 @@
     "test.watch": "yarn test --watch"
   },
   "peerDependencies": {
-    "@blueprintjs/core": ">=4.17.11",
     "prismjs": ">=1.16",
     "react": ">=16.8",
     "react-dom": ">=16.8"
@@ -77,6 +79,7 @@
     "@types/react-custom-scrollbars": "4.0.x",
     "@types/react-dom": "16.8.3",
     "@types/react-window": "1.7.x",
+    "autoprefixer": "^9.5.0",
     "enzyme": "3.9.x",
     "enzyme-adapter-react-16": "1.11.2",
     "enzyme-to-json": "3.3.x",
@@ -85,13 +88,14 @@
     "lodash": "4.17.11",
     "node-sass": "^4.11.0",
     "node-sass-package-importer": "^5.3.1",
+    "postcss-cli": "^6.1.2",
+    "postcss-import": "^12.0.1",
     "prettier": "1.16.x",
     "prismjs": "1.15.x",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "sass-inline-svg": "^1.2.0",
-    "tailwind": "^4.0.0",
-    "tailwindcss": "^0.7.4",
+    "tailwindcss": "^1.0.0-beta.4",
     "ts-jest": "24.0.x",
     "tslint": "5.15.0",
     "tslint-config-prettier": "1.18.x",
