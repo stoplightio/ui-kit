@@ -110,7 +110,7 @@ const Select: React.FunctionComponent<ISelect> = props => {
     onMenuScrollToBottom: onScrollToBottom,
     ...selectProps,
     // CUSTOM STYLES
-    styles: customStyles(theme, invalid),
+    styles: selectProps.styles || selectStyles(theme, invalid),
   };
 
   if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
@@ -134,7 +134,7 @@ const Select: React.FunctionComponent<ISelect> = props => {
  * override color related
  */
 
-const customStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
+export const selectStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
   if (!baseTheme) {
     return {};
   }
