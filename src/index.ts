@@ -8,4 +8,5 @@ export * from './Card';
 export * from './Checkbox';
 export * from './Menu';
 export * from './Overlay';
+export * from './Radio';
 export * from './ScrollList';
