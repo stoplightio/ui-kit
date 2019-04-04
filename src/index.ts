@@ -9,4 +9,5 @@ export * from './Checkbox';
 export * from './Menu';
 export * from './Overlay';
 export * from './Radio';
+export * from './Tag';
 export * from './ScrollList';
