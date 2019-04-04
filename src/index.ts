@@ -7,4 +7,5 @@ export * from './Callout';
 export * from './Card';
 export * from './Checkbox';
 export * from './Menu';
+export * from './Overlay';
 export * from './ScrollList';
