@@ -3,5 +3,6 @@
  * Library users will need to `import { Select } from '@stoplight/ui-kit/Code` them specifically.
  */
 
-export * from './Image';
+export * from './Callout';
+export * from './Card';
 export * from './ScrollList';
