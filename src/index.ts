@@ -6,4 +6,5 @@
 export * from './Callout';
 export * from './Card';
 export * from './Checkbox';
+export * from './Menu';
 export * from './ScrollList';
