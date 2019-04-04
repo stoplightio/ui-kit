@@ -10,4 +10,5 @@ export * from './Menu';
 export * from './Overlay';
 export * from './Radio';
 export * from './Tag';
+export * from './Tooltip';
 export * from './ScrollList';
