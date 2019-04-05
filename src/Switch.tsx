@@ -2,7 +2,7 @@ import { ISwitchProps as BPSwitchProps, Switch as BPSwitch } from '@blueprintjs/
 import * as React from 'react';
 
 /**
- * Switch
+ * SWITCH
  */
 interface ISwitchProps extends BPSwitchProps {}
 

@@ -12,6 +12,7 @@ import * as React from 'react';
  * MENU
  */
 interface IMenuProps extends BPMenuProps {}
+
 const Menu: React.FunctionComponent<IMenuProps> = props => {
   return <BPMenu {...props} />;
 };
@@ -21,6 +22,7 @@ const Menu: React.FunctionComponent<IMenuProps> = props => {
  */
 
 interface IMenuItemProps extends BPMenuItemProps {}
+
 const MenuItem: React.FunctionComponent<IMenuItemProps> = props => {
   return <BPMenuItem {...props} />;
 };
@@ -30,6 +32,7 @@ const MenuItem: React.FunctionComponent<IMenuItemProps> = props => {
  */
 
 interface IMenuDividerProps extends BPMenuDividerProps {}
+
 const MenuDivider: React.FunctionComponent<IMenuDividerProps> = props => {
   return <BPMenuDivider {...props} />;
 };
