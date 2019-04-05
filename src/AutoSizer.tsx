@@ -2,11 +2,14 @@ import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import useResizeObserver from 'use-resize-observer';
 
-export interface IAutoSizer extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+/**
+ * AUTOSIZER
+ */
+interface IAutoSizerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   children: ({ width, height }: { width: React.ReactText; height: React.ReactText }) => React.ReactNode;
 }
 
-const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
+const AutoSizer: React.FunctionComponent<IAutoSizerProps> = props => {
   const { children, ...rest } = props;
 
   // useResizeObserver does not use generics and the typings aren't complete
@@ -23,4 +26,7 @@ const AutoSizer: React.FunctionComponent<IAutoSizer> = props => {
   );
 };
 
-export { AutoSizer };
+/**
+ * EXPORTS
+ */
+export { AutoSizer, IAutoSizerProps };
