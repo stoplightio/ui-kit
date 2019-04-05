@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Icon as BPIcon, IIconProps as BPIconProps } from '@blueprintjs/core';
+import { Icon as BPIcon, IIconProps } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon, Props as FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ import { FontAwesomeIcon, Props as FontAwesomeIconProps } from '@fortawesome/rea
 const FaIconLibrary = library;
 
 interface IFaIconProps extends FontAwesomeIconProps {}
-const FaIcon: React.FunctionComponent<IFaIconProps> = props => {
+const FaIcon: React.FunctionComponent<IFaIconProps> = (props: IFaIconProps) => {
   return <FontAwesomeIcon {...props} />;
 };
 
@@ -23,9 +23,8 @@ export { IFaIconProps, FaIcon, FaIconLibrary };
  * BLUEPRINT ICON
  */
 
-interface IIcon extends BPIconProps {}
-const Icon: React.FunctionComponent<IFaIconProps> = props => {
+const Icon: React.FunctionComponent<IIconProps> = (props: IIconProps) => {
   return <BPIcon {...props} />;
 };
 
-export { Icon, IIcon, IconNames };
+export { Icon, IIconProps, IconNames };

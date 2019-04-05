@@ -62,7 +62,7 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
 
     setValidations(
       compact(
-        validationDescription.tests.map(t => {
+        validationDescription.tests.map((t: any) => {
           const params: any = t.params || {};
           if (validationDescription.type === 'string') {
             if (t.name === 'min') {
@@ -70,7 +70,11 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
             } else if (t.name === 'max') {
               return `at most ${params.max} letters`;
             }
+
+            return null;
           }
+
+          return null;
         })
       )
     );
