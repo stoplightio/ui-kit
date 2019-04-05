@@ -1,1 +1,1 @@
-export { IButtonProps, Button } from '@blueprintjs/core';
+export { Button, IButtonProps } from '@blueprintjs/core';

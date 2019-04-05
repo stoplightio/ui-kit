@@ -1,9 +1,15 @@
 import { ITextProps as BPTextareaProps, Text as BPTextarea } from '@blueprintjs/core';
 import * as React from 'react';
 
-interface ITextarea extends BPTextareaProps {}
-const Textarea: React.FunctionComponent<ITextarea> = props => {
+/**
+ * TEXTAREA
+ */
+interface ITextareaProps extends BPTextareaProps {}
+const Textarea: React.FunctionComponent<ITextareaProps> = props => {
   return <BPTextarea {...props} />;
 };
 
-export { ITextarea, Textarea };
+/**
+ * EXPORTS
+ */
+export { ITextareaProps, Textarea };

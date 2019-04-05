@@ -1,9 +1,16 @@
 import { IRadioProps as BPRadioProps, Radio as BPRadio } from '@blueprintjs/core';
 import * as React from 'react';
 
-interface IRadio extends BPRadioProps {}
-const Radio: React.FunctionComponent<IRadio> = props => {
+/**
+ * RADIO
+ */
+interface IRadioProps extends BPRadioProps {}
+
+const Radio: React.FunctionComponent<IRadioProps> = props => {
   return <BPRadio {...props} />;
 };
 
-export { IRadio, Radio };
+/**
+ * EXPORTS
+ */
+export { IRadioProps, Radio };

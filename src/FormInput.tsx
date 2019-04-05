@@ -7,13 +7,16 @@ import * as React from 'react';
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
 
-export interface IFormInputProps {
+/**
+ * FORM INPUT
+ */
+interface IFormInputProps {
   value: IInputGroupProps['value'];
   onEnter?: Function;
   schema?: yup.Schema<any>;
 }
 
-export const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HTMLInputProps> = ({
+const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HTMLInputProps> = ({
   onEnter,
   schema,
   value,
@@ -48,7 +51,11 @@ const iconPadding: Dictionary<string, Size> = {
   large: '11px',
 };
 
-export interface IFormInputValidationProps {
+/**
+ * FORM INPUT VALIDATIONS
+ */
+
+interface IFormInputValidationProps {
   value: IInputGroupProps['value'];
   schema: yup.Schema<any>;
   size: Size;
@@ -121,3 +128,8 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
     </Tooltip>
   );
 };
+
+/**
+ * EXPORTS
+ */
+export { FormInput, IFormInputProps, IFormInputValidationProps };

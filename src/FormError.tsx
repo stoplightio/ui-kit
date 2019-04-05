@@ -1,15 +1,18 @@
 import { Callout } from '@blueprintjs/core';
 import * as React from 'react';
 
-export interface IFormError {
+/**
+ * FORM ERROR
+ */
+interface IFormError {
   message: string;
 }
 
-export interface IFormErrorProps {
+interface IFormErrorProps {
   errors?: ReadonlyArray<IFormError>;
 }
 
-export const FormError: React.FunctionComponent<IFormErrorProps> = ({ errors }) => {
+const FormError: React.FunctionComponent<IFormErrorProps> = ({ errors }) => {
   if (!errors || !errors.length) return null;
 
   return (
@@ -20,3 +23,8 @@ export const FormError: React.FunctionComponent<IFormErrorProps> = ({ errors }) 
     </Callout>
   );
 };
+
+/**
+ * EXPORTS
+ */
+export { FormError, IFormError, IFormErrorProps };

@@ -1,9 +1,16 @@
 import { Callout as BPCallout, ICalloutProps as BPCalloutProps } from '@blueprintjs/core';
 import * as React from 'react';
 
-interface ICallout extends BPCalloutProps {}
-const Callout: React.FunctionComponent<ICallout> = props => {
+/**
+ * CALLOUT
+ */
+interface ICalloutProps extends BPCalloutProps {}
+
+const Callout: React.FunctionComponent<ICalloutProps> = props => {
   return <BPCallout {...props} />;
 };
 
-export { ICallout, Callout };
+/**
+ * EXPORTS
+ */
+export { Callout, ICalloutProps };

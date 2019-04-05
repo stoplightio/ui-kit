@@ -9,14 +9,12 @@ import {
 import * as React from 'react';
 
 /**
- * MENU CONTAINER
+ * MENU
  */
 interface IMenuProps extends BPMenuProps {}
 const Menu: React.FunctionComponent<IMenuProps> = props => {
   return <BPMenu {...props} />;
 };
-
-export { IMenuProps, Menu };
 
 /**
  * MENU ITEM
@@ -27,8 +25,6 @@ const MenuItem: React.FunctionComponent<IMenuItemProps> = props => {
   return <BPMenuItem {...props} />;
 };
 
-export { IMenuItemProps, MenuItem };
-
 /**
  * MENU DIVIDER
  */
@@ -38,4 +34,7 @@ const MenuDivider: React.FunctionComponent<IMenuDividerProps> = props => {
   return <BPMenuDivider {...props} />;
 };
 
-export { IMenuDividerProps, MenuDivider };
+/**
+ * EXPORTS
+ */
+export { IMenuDividerProps, IMenuItemProps, IMenuProps, MenuDivider, MenuItem, Menu };

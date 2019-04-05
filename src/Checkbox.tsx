@@ -1,9 +1,16 @@
 import { Checkbox as BPCheckbox, ICheckboxProps as BPCheckboxProps } from '@blueprintjs/core';
 import * as React from 'react';
 
-interface ICheckbox extends BPCheckboxProps {}
-const Checkbox: React.FunctionComponent<ICheckbox> = props => {
+/**
+ * CHECKBOX
+ */
+interface ICheckboxProps extends BPCheckboxProps {}
+
+const Checkbox: React.FunctionComponent<ICheckboxProps> = props => {
   return <BPCheckbox {...props} />;
 };
 
-export { ICheckbox, Checkbox };
+/**
+ * EXPORTS
+ */
+export { Checkbox, ICheckboxProps };
