@@ -276,27 +276,31 @@ export const selectStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
       padding: '0px',
     }),
     option: (
-      provided: any,
-      { isFocused, isMulti, isSelected }: { isFocused: boolean; isMulti: boolean; isSelected: boolean }
-    ) => ({
-      ...provided,
+      provided: React.CSSProperties,
+      { isMulti, isSelected }: Partial<{ isMulti: boolean; isSelected: boolean }>
+    ) => {
+      return {
+        ...provided,
 
-      padding: '5px 7px',
-      fontSize: '14px',
-      borderRadius: '2px',
+        padding: '5px 7px',
+        fontSize: '14px',
+        borderRadius: '2px',
 
-      cursor: isMulti || !isSelected ? 'pointer' : 'default',
+        cursor: isMulti || !isSelected ? 'pointer' : 'default',
 
-      // isFocus for somereason points to an internal hover state
-      color: menuTheme.fg,
-      backgroundColor: isSelected ? menuTheme.selectedBg : isFocused ? menuTheme.hoverBg : 'transparent',
-
-      // provide some affordance on touch devices
-      ':active': {
         color: menuTheme.fg,
-        backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.hoverBg,
-      },
-    }),
+        backgroundColor: isSelected ? menuTheme.selectedBg : 'transparent',
+
+        // provide some affordance on touch devices
+        ':active': {
+          backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.hoverBg,
+        },
+
+        ':hover': {
+          backgroundColor: isSelected ? menuTheme.selectedBg : menuTheme.hoverBg,
+        },
+      };
+    },
     placeholder: (provided: any) => ({
       ...provided,
       color: theme.fg,
