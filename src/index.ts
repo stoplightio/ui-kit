@@ -15,6 +15,7 @@ export * from './Overlay';
 export * from './Popover';
 export * from './Radio';
 export * from './Switch';
+export * from './Table';
 export * from './Tag';
 export * from './Textarea';
 // export * from './ScrollList';
