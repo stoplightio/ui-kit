@@ -25,10 +25,10 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "build": "yarn build.styles && sl-scripts build",
+    "build": "yarn build.styles && sl-scripts build && cp -a ./styles/. ./dist/styles",
     "build.styles": "yarn build.bp && yarn build.tw",
-    "build.bp": "node-sass ./styles/blueprint.scss ./src/styles/blueprint.css --functions ./scripts/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
-    "build.tw": "postcss ./styles/index.css -o ./src/styles/index.css",
+    "build.bp": "node-sass ./styles/blueprint.scss ./styles/blueprint.css --functions ./scripts/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
+    "build.tw": "postcss ./styles/tailwind.css -o ./styles/index.css",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts(?)'",
     "lint.fix": "yarn lint --fix",
@@ -67,7 +67,7 @@
     "@fortawesome/free-solid-svg-icons": "5.8.1",
     "@sambego/storybook-state": "1.x.x",
     "@stoplight/scripts": "5.1.x",
-    "@stoplight/storybook-config": "1.4.x",
+    "@stoplight/storybook-config": "file:.yalc/@stoplight/storybook-config",
     "@storybook/addon-info": "5.0.x",
     "@storybook/addon-options": "5.0.x",
     "@types/classnames": "^2.2.7",
