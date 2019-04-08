@@ -1710,7 +1710,7 @@
     tslib "1.9.3"
     typedoc "0.14.2"
 
-"@stoplight/storybook-config@1.4.x":
+"@stoplight/storybook-config@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@stoplight/storybook-config/-/storybook-config-1.4.0.tgz#db277dffec9e77a36c80febb6a05ee11fe771ab3"
   integrity sha512-N+2Xkh7r1XAppPC0vSZVQTWTQz14kG7ooTlwgchSLhuQQjUQvlH8fR39szxQpxKXOcs5foeGRVSpkym0AFc/aQ==
