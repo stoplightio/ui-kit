@@ -25,10 +25,10 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "build": "yarn build.styles && sl-scripts build && cp -a ./styles/. ./dist/styles",
-    "build.styles": "yarn build.bp && yarn build.tw",
-    "build.bp": "node-sass ./styles/blueprint.scss ./styles/blueprint.css --functions ./scripts/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
-    "build.tw": "postcss ./styles/tailwind.css -o ./styles/index.css",
+    "build": "rm -rf build && sl-scripts build && yarn build.styles",
+    "build.styles": "yarn build.bp && yarn build.tw && mkdir -p dist && cat ./build/blueprint.css ./build/tailwind.css > ./dist/ui-kit.css && cp ./styles/_variables.scss ./dist/",
+    "build.bp": "node-sass ./styles/blueprint.scss ./build/blueprint.css --functions ./scripts/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
+    "build.tw": "postcss ./styles/tailwind.css -o ./build/tailwind.css",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts(?)'",
     "lint.fix": "yarn lint --fix",
