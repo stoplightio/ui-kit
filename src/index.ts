@@ -19,3 +19,6 @@ export * from './Table';
 export * from './Tag';
 export * from './Textarea';
 // export * from './ScrollList';
+
+// export some useful blueprint utils
+export { Classes } from '@blueprintjs/core';
