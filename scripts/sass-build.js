@@ -24,18 +24,25 @@ fs.writeFile(path.resolve(cwd, './src/styles/common/_defaults.scss'), content, f
   if (err) {
     return console.log(err);
   }
-
   console.log('./src/styles/common/_defaults.scss updated!');
-});
 
-// CREATE CSS FILE
-fs.readFile(path.resolve(cwd, './src/styles/index.scss'), function(err, data) {
-  if (err) {
-    throw err;
-  }
+  // CREATE COMPILED CSS FILE
+  fs.readFile(path.resolve(cwd, './src/styles/index.scss'), function(err, data) {
+    if (err) {
+      throw err;
+    }
 
-  content = data.toString('utf-8');
+    content = data.toString('utf-8');
 
-  // convert data write to file
-  ScssToCss({ scss: content, includePaths: [path.resolve(cwd, './src/*')] });
+    // convert data write to file
+    ScssToCss({
+      scss: content,
+      importers: ['package'],
+      postCSS: ['postcss-import', 'tailwind', 'autoprefixer'],
+      includePaths: [path.resolve(cwd, './src/styles')],
+      // config,
+    }).then(res => {
+      console.log({ res });
+    });
+  });
 });

@@ -12,7 +12,7 @@ type IImporter = (url: string, prev?: string) => void | 'js' | 'package';
 
 const Importers = {
   js: require('../../../scripts/sass-js-importer'),
-  package: require('node-sass-package-importer'),
+  package: require('node-sass-package-importer')(),
 };
 
 /**
@@ -22,9 +22,9 @@ const Importers = {
 type IPostCSSPlugin = postcss.AcceptedPlugin | 'postcss-import' | 'tailwind' | 'autoprefixer';
 
 const PostCSSPlugins = {
-  'postcss-import': require('postcss-import'),
-  autoprefixer: require('autoprefixer'),
-  tailwind: require('tailwindcss'),
+  'postcss-import': () => require('postcss-import'),
+  autoprefixer: () => require('autoprefixer'),
+  tailwind: (config: string | any) => require('tailwindcss')(config),
 };
 
 /**
@@ -40,14 +40,12 @@ interface IScssToCss {
   includePaths?: string[];
 }
 
-const ScssToCss = ({ scss, importers = [], postCSS = [], includePaths = [], config = {} }: IScssToCss) => {
-  const resolvePaths = [...includePaths, path.resolve(cwd, './node_modules/@stoplight/ui-kit/src/.')];
+const ScssToCss = async ({ scss, importers = [], postCSS = [], includePaths = [], config = {} }: IScssToCss) => {
+  const resolvePaths = [...includePaths, path.resolve(cwd, '/node_modules/@stoplight/ui-kit/src/styles')];
   const scssImporters = importers.map(importer => Importers[importer as any] || importer);
-  const postCSSPlugins = postCSS.map(plugin => PostCSSPlugins[plugin as any] || plugin);
+  const postCSSPlugins = postCSS.map(plugin => PostCSSPlugins[plugin as any](config) || plugin);
 
-  console.log({ resolvePaths });
-
-  nodeSass.render(
+  return nodeSass.render(
     {
       data: scss,
       includePaths: resolvePaths,
@@ -59,11 +57,11 @@ const ScssToCss = ({ scss, importers = [], postCSS = [], includePaths = [], conf
         return err;
       }
 
-      let css = res.css.toString('utf-8');
+      const css = res.css.toString('utf-8');
 
       try {
         if (postCSSPlugins.length) {
-          css = postcss(postCSSPlugins)
+          return postcss(postCSSPlugins)
             .process(css, { from: '' })
             .then(result => {
               return result.css;
