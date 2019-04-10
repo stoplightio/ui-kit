@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { StateDecorator, Store } from '@sambego/storybook-state';
+import { State, Store } from '@sambego/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
-import { storiesOf, StoryDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 
 import { IToggle, Toggle } from '../../Toggle';
 import { cleanKnobs } from '../_utils';
@@ -28,14 +28,15 @@ storiesOf('Forms|Toggle', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Toggle {...toggleKnobs()} {...toggleActions} />)
   .add('checked', () => <Toggle {...toggleKnobs()} {...toggleActions} checked={true} />)
-  .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled', () => (
-    <Toggle
-      id="2"
-      {...toggleKnobs()}
-      checked={store.get('checked')}
-      onChange={(checked?: boolean) => {
-        store.set({ checked });
-      }}
-    />
+    <State store={store}>
+      <Toggle
+        id="2"
+        {...toggleKnobs()}
+        checked={store.get('checked')}
+        onChange={(checked?: boolean) => {
+          store.set({ checked });
+        }}
+      />
+    </State>
   ));

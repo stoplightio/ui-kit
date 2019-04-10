@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { StateDecorator, Store } from '@sambego/storybook-state';
+import { State, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
-import { storiesOf, StoryDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 
 import { ITextarea, Textarea } from '../../Textarea';
 import { cleanKnobs } from '../_utils';
@@ -56,12 +56,13 @@ storiesOf('Forms|Textarea', module)
   .add('uncontrolled autofocus', () => <Textarea {...textareaKnobs()} autoFocus />)
   .add('autosize', () => <Textarea {...textareaAutosizeKnobs()} autosize />)
   .add('autosize autofocus', () => <Textarea {...textareaAutosizeKnobs()} autosize autoFocus />)
-  .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled set', () => <Textarea {...textareaKnobs()} value="not-editable" />)
   .add('controlled store', () => (
-    <Textarea
-      {...textareaKnobs()}
-      value={store.get('value')}
-      onChange={(event: React.SyntheticEvent<HTMLTextAreaElement>) => store.set({ value: event.currentTarget.value })}
-    />
+    <State store={store}>
+      <Textarea
+        {...textareaKnobs()}
+        value={store.get('value')}
+        onChange={(event: React.SyntheticEvent<HTMLTextAreaElement>) => store.set({ value: event.currentTarget.value })}
+      />
+    </State>
   ));
