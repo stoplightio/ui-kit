@@ -4,7 +4,7 @@ import { boolean, NumberOptions, withKnobs } from '@storybook/addon-knobs';
 import { number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
-import { Box, Button, Flex, Icon, Input, Popup, Text } from '../..';
+import { Box, Button, Flex, IBox, Icon, ICustomTheme, Input, Popup, Text, ThemeZone, useTheme } from '../..';
 import { cleanKnobs } from '../_utils';
 
 const TAB_NAME = 'Popup';
@@ -25,18 +25,30 @@ export const popupKnobs = (tabName = TAB_NAME): any => {
   });
 };
 
+const PopupContent: React.FunctionComponent<IBox> = ({ children, ...props }) => {
+  const theme = useTheme() as ICustomTheme & { canvas: any };
+
+  return (
+    <Box backgroundColor={theme.canvas.bg} color={theme.canvas.fg} {...props}>
+      {children}
+    </Box>
+  );
+};
+
 storiesOf('Miscellaneous|Popup', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
-    <Box height="500px" width="500px">
-      {storyFn()}
-    </Box>
+    <ThemeZone name="app">
+      <Box height="500px" width="500px">
+        {storyFn()}
+      </Box>
+    </ThemeZone>
   ))
   .add('with defaults', () => (
     <Popup
       {...popupKnobs()}
       renderTrigger={() => <Box as="span">With Defaults</Box>}
-      renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+      renderContent={() => <PopupContent>{text('content', 'here is the popup content')}</PopupContent>}
     />
   ))
   .add('with icon', () => (
@@ -49,7 +61,7 @@ storiesOf('Miscellaneous|Popup', module)
           </Box>
         );
       }}
-      renderContent={() => <Box as="span">Globe</Box>}
+      renderContent={() => <PopupContent as="span">Globe</PopupContent>}
     />
   ))
   .add('with controlled mode', () => (
@@ -57,7 +69,7 @@ storiesOf('Miscellaneous|Popup', module)
       {...popupKnobs()}
       show={boolean('show', false, TAB_NAME)}
       renderTrigger={() => <Box as="span">I am controlled, so hovering is no-op!</Box>}
-      renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+      renderContent={() => <PopupContent>{text('content', 'here is the popup content')}</PopupContent>}
     />
   ))
   .add('inside Flexbox', () => (
@@ -69,19 +81,19 @@ storiesOf('Miscellaneous|Popup', module)
             {'<Flex> flex=1'}
           </Flex>
         )}
-        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+        renderContent={() => <PopupContent>{text('content', 'here is the popup content')}</PopupContent>}
       />
       <Popup
         {...popupKnobs()}
         renderTrigger={() => (
           <Input type="text" value="<Input> flex=2" onChange={() => void 0} flex="2" invalid={true} />
         )}
-        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+        renderContent={() => <PopupContent>{text('content', 'here is the popup content')}</PopupContent>}
       />
       <Popup
         {...popupKnobs()}
         renderTrigger={() => <Button backgroundColor="green">{'<Button> no flex'}</Button>}
-        renderContent={() => <Box>{text('content', 'here is the popup content')}</Box>}
+        renderContent={() => <PopupContent>{text('content', 'here is the popup content')}</PopupContent>}
       />
     </Flex>
   ))
@@ -90,9 +102,9 @@ storiesOf('Miscellaneous|Popup', module)
       {...popupKnobs()}
       padding={3}
       renderContent={() => (
-        <Box border={`1px solid red`} borderRadius="10px" p={7}>
+        <PopupContent border={`1px solid red`} borderRadius="10px" p={7}>
           This is a tooltip message.
-        </Box>
+        </PopupContent>
       )}
       renderTrigger={() => (
         <Flex width="100%" alignItems="center">
