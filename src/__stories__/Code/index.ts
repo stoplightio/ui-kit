@@ -1,2 +1,2 @@
-import './Editor';
-import './Viewer';
+import './CodeEditor';
+import './CodeViewer';

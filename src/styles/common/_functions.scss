@@ -1,0 +1,18 @@
+/*
+ * FUNCTIONS
+ * some useful get functions with safe gaurds
+ */
+
+// adds a safe gaurd in case map is not a map
+@function map-safe-get($map: (), $key: '""', $default: '""') {
+  @return if(type-of($map) == map, map-get($map, $key), $default);
+}
+
+// loops through and returns the value the key list path or the default
+@function map-deep-get($map, $keys, $default: '""') {
+  @each $key in $keys {
+    $map: map-safe-get($map, $key, $default);
+  }
+
+  @return $map;
+}

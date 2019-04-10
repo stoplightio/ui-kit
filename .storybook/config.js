@@ -1,8 +1,7 @@
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
-import '../styles/blueprint.scss';
-import '../styles/index.css';
+import '../src/styles/index.scss';
 
 addDecorator(
   withOptions({
@@ -21,7 +20,7 @@ addDecorator(
 );
 
 function loadStories() {
-  require('../src/__stories__/Button');
+  require('@project/stories');
 }
 
 configure(loadStories, module);

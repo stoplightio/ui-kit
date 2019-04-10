@@ -1,0 +1,120 @@
+$sl-code-editor-comment: map-deep-get($sl-code-editor, (comment));
+$sl-code-editor-primary: map-deep-get($sl-code-editor, (primary));
+$sl-code-editor-secondary: map-deep-get($sl-code-editor, (secondary));
+$sl-code-editor-operator: map-deep-get($sl-code-editor, (operator));
+$sl-code-editor-keyword: map-deep-get($sl-code-editor, (keyword));
+$sl-code-editor-function: map-deep-get($sl-code-editor, (function));
+$sl-code-editor-variable: map-deep-get($sl-code-editor, (variable));
+$sl-code-editor-regex: map-deep-get($sl-code-editor, (regex));
+$sl-code-editor-punctuation: map-deep-get($sl-code-editor, (punc));
+
+.#{$ns}-code-editor {
+  font-family: 'monospace';
+  white-space: pre-wrap;
+  counter-reset: line;
+  border-radius: 5px;
+  padding: 15px 20px 15px 18px;
+
+  &.showLineNumbers {
+    padding: 10px 20px 10px 0;
+  }
+
+  &.isInline {
+    padding: 3px 4px;
+    margin: 0 2px;
+    border-radius: 2px;
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+
+  .line-number {
+    padding-left: 40px;
+    position: relative;
+    width: calc(100% - 40px);
+    display: block;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      user-select: none;
+      opacity: 0.3;
+      text-align: right;
+      min-width: 25px;
+      position: absolute;
+      left: 0;
+      counter-increment: line;
+      content: counter(line);
+    }
+  }
+
+  .token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: $sl-code-editor-comment;
+    }
+
+    &.punctuation {
+      color: $sl-code-editor-punctuation;
+    }
+
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.symbol,
+    &.deleted {
+      color: $sl-code-editor-primary;
+    }
+
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+      color: $sl-code-editor-secondary;
+    }
+
+    &.operator,
+    &.entity,
+    &.url {
+      color: $sl-code-editor-operator;
+    }
+
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+      color: $sl-code-editor-keyword;
+    }
+
+    &.function {
+      color: $sl-code-editor-function;
+    }
+
+    &.variable {
+      color: $sl-code-editor-variable;
+    }
+
+    &.regex,
+    &.important {
+      color: $sl-code-editor-regex;
+    }
+
+    &.important,
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.entity {
+      cursor: help;
+    }
+  }
+}

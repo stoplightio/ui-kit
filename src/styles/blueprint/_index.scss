@@ -1,0 +1,102 @@
+/*
+ * THIS FILE IS A REMAPPING OF THE BLUEPRINT NAMED VARIABLES TO OUR TAILWIND GENERATED ONES
+ * THIS FILE SHOULD NOT NEED TO UPDATED DIRECTLY
+ */
+
+/*
+ * FONT SIZES
+ */
+$pt-font-family-monospace: $sl-font-family-monospace;
+$pt-border-radius: $sl-border-radius;
+$pt-font-size: $sl-font-base;
+$pt-font-size-large: $sl-font-lg;
+$pt-font-size-small: $sl-font-sm;
+
+/*
+ * COLORS
+ * @import "@blueprintjs/core/lib/scss/variables";
+ */
+
+$black: $sl-black;
+$white: $sl-white;
+
+$dark-gray1: $sl-dark-grey-darker;
+$dark-gray2: $sl-dark-grey-dark;
+$dark-gray3: $sl-dark-grey-base;
+$dark-gray4: $sl-dark-grey-light;
+$dark-gray5: $sl-dark-grey-lighter;
+
+$gray1: $sl-gray-darker;
+$gray2: $sl-gray-dark;
+$gray3: $sl-gray-base;
+$gray4: $sl-gray-light;
+$gray5: $sl-gray-lighter;
+
+$light-gray1: $sl-light-grey-darker;
+$light-gray2: $sl-light-grey-dark;
+$light-gray3: $sl-light-grey-base;
+$light-gray4: $sl-light-grey-light;
+$light-gray5: $sl-light-grey-lighter;
+
+$blue1: $sl-info-darker;
+$blue2: $sl-info-dark;
+$blue3: $sl-info-base;
+$blue4: $sl-info-light;
+$blue5: $sl-info-lighter;
+
+$green1: $sl-success-darker;
+$green2: $sl-success-dark;
+$green3: $sl-success-base;
+$green4: $sl-success-light;
+$green5: $sl-success-lighter;
+
+$orange1: $sl-warning-darker;
+$orange2: $sl-warning-dark;
+$orange3: $sl-warning-base;
+$orange4: $sl-warning-light;
+$orange5: $sl-warning-lighter;
+
+$red1: $sl-danger-darker;
+$red2: $sl-danger-dark;
+$red3: $sl-danger-base;
+$red4: $sl-danger-light;
+$red5: $sl-danger-lighter;
+
+$indigo1: $sl-secondary-darker;
+$indigo2: $sl-secondary-dark;
+$indigo3: $sl-secondary-base;
+$indigo4: $sl-secondary-light;
+$indigo5: $sl-secondary-lighter;
+
+/*
+ * COMPUTED VARS
+ * we probably don't want to expose/change these?
+ */
+
+$pt-text-color: $dark-gray1;
+$pt-text-color-muted: $gray1;
+$pt-text-color-disabled: rgba($pt-text-color-muted, 0.5);
+$pt-heading-color: $pt-text-color;
+$pt-link-color: $blue2;
+$pt-dark-text-color: $light-gray5;
+$pt-dark-text-color-muted: $gray5;
+$pt-dark-text-color-disabled: rgba($pt-dark-text-color-muted, 0.5);
+$pt-dark-heading-color: $pt-dark-text-color;
+$pt-dark-link-color: $blue5;
+$pt-text-selection-color: rgba($blue4, 0.6);
+
+$pt-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9);
+$pt-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+$pt-transition-duration: 50ms;
+
+/*
+ * BLUEPRINT CORE
+ */
+
+@import '~@blueprintjs/core/src/blueprint.scss';
+
+/*
+ * BLUEPRINT ICONS
+ */
+$icon-font-path: '/static/icons';
+@import '~@blueprintjs/icons/src/blueprint-icons.scss';

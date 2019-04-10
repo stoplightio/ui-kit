@@ -1,0 +1,79 @@
+/*
+ * THIS FILE IS A MAPPING OF OUR TAILWIND CONFIG TO OUR SCSS VARIABLES, WITH SOME AUTO GENERATED DEFAULTS
+ * THIS FILE SHOULD NOT NEED TO BE UPDATED DIRECTLY
+ */
+
+/*
+ * NAMESPACE
+ * if $ns changed make sure to update process.env.BLUEPRINT_NAMESPACE
+ */
+$ns: 'bp3';
+
+/*
+ * COLORS
+ */
+$sl-transparent: map-deep-get($sl-config, (colors, transparent));
+$sl-black: map-deep-get($sl-config, (colors, black));
+$sl-white: map-deep-get($sl-config, (colors, white));
+
+$sl-dark-grey-darker: map-deep-get($sl-config, (colors, dark-grey, darker));
+$sl-dark-grey-dark: map-deep-get($sl-config, (colors, dark-grey, dark));
+$sl-dark-grey-base: map-deep-get($sl-config, (colors, dark-grey, base));
+$sl-dark-grey-light: map-deep-get($sl-config, (colors, dark-grey, light));
+$sl-dark-grey-lighter: map-deep-get($sl-config, (colors, dark-grey, lighter));
+
+$sl-gray-darker: map-deep-get($sl-config, (colors, gray, darker));
+$sl-gray-dark: map-deep-get($sl-config, (colors, gray, dark));
+$sl-gray-base: map-deep-get($sl-config, (colors, gray, base));
+$sl-gray-light: map-deep-get($sl-config, (colors, gray, light));
+$sl-gray-lighter: map-deep-get($sl-config, (colors, gray, lighter));
+
+$sl-light-grey-darker: map-deep-get($sl-config, (colors, light-grey, darker));
+$sl-light-grey-dark: map-deep-get($sl-config, (colors, light-grey, dark));
+$sl-light-grey-base: map-deep-get($sl-config, (colors, light-grey, base));
+$sl-light-grey-light: map-deep-get($sl-config, (colors, light-grey, light));
+$sl-light-grey-lighter: map-deep-get($sl-config, (colors, light-grey, lighter));
+
+$sl-info-darker: map-deep-get($sl-config, (colors, info, darker));
+$sl-info-dark: map-deep-get($sl-config, (colors, info, dark));
+$sl-info-base: map-deep-get($sl-config, (colors, info, base));
+$sl-info-light: map-deep-get($sl-config, (colors, info, light));
+$sl-info-lighter: map-deep-get($sl-config, (colors, info, lighter));
+
+$sl-success-darker: map-deep-get($sl-config, (colors, success, darker));
+$sl-success-dark: map-deep-get($sl-config, (colors, success, dark));
+$sl-success-base: map-deep-get($sl-config, (colors, success, base));
+$sl-success-light: map-deep-get($sl-config, (colors, success, light));
+$sl-success-lighter: map-deep-get($sl-config, (colors, success, lighter));
+
+$sl-warning-darker: map-deep-get($sl-config, (colors, warning, darker));
+$sl-warning-dark: map-deep-get($sl-config, (colors, warning, dark));
+$sl-warning-base: map-deep-get($sl-config, (colors, warning, base));
+$sl-warning-light: map-deep-get($sl-config, (colors, warning, light));
+$sl-warning-lighter: map-deep-get($sl-config, (colors, warning, lighter));
+
+$sl-danger-darker: map-deep-get($sl-config, (colors, danger, darker));
+$sl-danger-dark: map-deep-get($sl-config, (colors, danger, dark));
+$sl-danger-base: map-deep-get($sl-config, (colors, danger, base));
+$sl-danger-light: map-deep-get($sl-config, (colors, danger, light));
+$sl-danger-lighter: map-deep-get($sl-config, (colors, danger, lighter));
+
+$sl-secondary-darker: map-deep-get($sl-config, (colors, secondary, darker));
+$sl-secondary-dark: map-deep-get($sl-config, (colors, secondary, dark));
+$sl-secondary-base: map-deep-get($sl-config, (colors, secondary, base));
+$sl-secondary-light: map-deep-get($sl-config, (colors, secondary, light));
+$sl-secondary-lighter: map-deep-get($sl-config, (colors, secondary, lighter));
+
+/*
+ * FONT
+ */
+$sl-font-sm: map-deep-get($sl-config, (fontSize, sm));
+$sl-font-base: map-deep-get($sl-config, (fontSize, base));
+$sl-font-lg: map-deep-get($sl-config, (fontSize, lg));
+$sl-font-family-monospace: map-deep-get($sl-config, (fontFamily, mono));
+
+/*
+ * BORDERS
+ */
+
+$sl-border-radius: map-deep-get($sl-config, (borderRadius, default));
