@@ -14,7 +14,7 @@ export const contextMenuKnobs = (tabName = 'ContextMenu') => {
   };
 };
 
-storiesOf('Menus:Context Menu', module)
+storiesOf('Menus|Context Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Flex flexDirection="column" alignItems="center">

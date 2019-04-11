@@ -18,14 +18,18 @@ export const dialogKnobs = (tabName = 'Dialog'): Partial<IDialog> => {
   });
 };
 
-storiesOf('Miscellaneous:Dialog', module)
+storiesOf('Miscellaneous|Dialog', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Dialog {...dialogKnobs()} onClickOutside={action('onClickOutside')}>
       <Heading py={15} px={20} textAlign="center">
         Remove file?
       </Heading>
-      <Button width="50%">yes</Button>
-      <Button width="50%">no</Button>
+      <Button width="50%" display="inline-block">
+        yes
+      </Button>
+      <Button width="50%" display="inline-block">
+        no
+      </Button>
     </Dialog>
   ));

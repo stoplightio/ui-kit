@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { StateDecorator, Store } from '@sambego/storybook-state';
+import { State, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean, select, text } from '@storybook/addon-knobs/react';
-import { storiesOf, StoryDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import omit = require('lodash/omit');
 
 import { forwardRef } from 'react';
@@ -39,7 +39,7 @@ export const autosizeInputKnobs = (tabName = 'Input'): IInput => {
   });
 };
 
-storiesOf('Forms:Input', module)
+storiesOf('Forms|Input', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => <Input {...inputKnobs()} />)
   .add('uncontrolled autofocus', () => <Input {...inputKnobs()} autoFocus />)
@@ -48,12 +48,13 @@ storiesOf('Forms:Input', module)
   .add('with controlled autofocus', () => (
     <CustomInput {...inputKnobs()} autoFocus={boolean('autoFocus', true, 'Input')} />
   ))
-  .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled set', () => <Input {...inputKnobs()} value="not editable" />)
   .add('controlled store', () => (
-    <Input
-      {...inputKnobs()}
-      value={store.get('value')}
-      onChange={(event: React.SyntheticEvent<HTMLInputElement>) => store.set({ value: event.currentTarget.value })}
-    />
+    <State store={store}>
+      <Input
+        {...inputKnobs()}
+        value={store.get('value')}
+        onChange={(event: React.SyntheticEvent<HTMLInputElement>) => store.set({ value: event.currentTarget.value })}
+      />
+    </State>
   ));

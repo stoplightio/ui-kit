@@ -49,7 +49,7 @@ export const iconKnobs = (tabName = 'Icon'): any => {
   return cleanKnobs(props);
 };
 
-storiesOf('Utilities:Icon', module)
+storiesOf('Utilities|Icon', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <div style={{ fontSize: 40 }}>

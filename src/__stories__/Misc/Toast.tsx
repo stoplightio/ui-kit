@@ -20,7 +20,7 @@ export const toastKnobs = (tabName = 'Toaster'): any => {
   });
 };
 
-storiesOf('Miscellaneous:Toast', module)
+storiesOf('Miscellaneous|Toast', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Box>

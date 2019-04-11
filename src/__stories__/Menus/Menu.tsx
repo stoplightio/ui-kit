@@ -20,7 +20,7 @@ export const menuKnobs = (tabName = 'Menu'): Partial<IMenu> => {
   });
 };
 
-storiesOf('Menus:Menu', module)
+storiesOf('Menus|Menu', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
     <Menu

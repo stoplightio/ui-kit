@@ -28,7 +28,7 @@ const Row: React.FunctionComponent<any> = ({ index, style, key }) => (
 
 const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
-storiesOf('List & Tables:FixedSizeList', module)
+storiesOf('List & Tables|FixedSizeList', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box css={{ outline: '2px solid currentColor' }} width="500px">
@@ -38,7 +38,7 @@ storiesOf('List & Tables:FixedSizeList', module)
   .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>)
   .add('memoized', () => <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>);
 
-storiesOf('List & Tables:VariableSizeList', module)
+storiesOf('List & Tables|VariableSizeList', module)
   .addDecorator(withKnobs)
   .addDecorator(storyFn => (
     <Box css={{ outline: '2px solid currentColor' }} width="500px">

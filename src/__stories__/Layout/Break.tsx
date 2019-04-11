@@ -11,6 +11,6 @@ export const breakKnobs = (tabName = 'Break'): IBreak => ({
   thickness: number('thickness', 10, { min: 0, max: Infinity, step: 1, range: false }, tabName),
 });
 
-storiesOf('Layout:Break', module)
+storiesOf('Layout|Break', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <Break {...boxKnobs()} {...breakKnobs()} minWidth="500px" />);

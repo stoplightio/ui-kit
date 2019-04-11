@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from '../../Tabs';
 
-storiesOf('Miscellaneous:Tabs', module)
+storiesOf('Miscellaneous|Tabs', module)
   .addDecorator(storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>)
   .add('with defaults', () => (
     <Tabs>

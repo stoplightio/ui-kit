@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { StateDecorator, Store } from '@sambego/storybook-state';
+import { State, Store } from '@sambego/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
-import { storiesOf, StoryDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 
 import { Checkbox, ICheckbox } from '../../Checkbox';
 import { cleanKnobs } from '../_utils';
@@ -20,7 +20,7 @@ export const checkboxKnobs = (tabName = 'Checkbox'): Partial<ICheckbox> => {
   });
 };
 
-storiesOf('Forms:Checkbox', module)
+storiesOf('Forms|Checkbox', module)
   .addDecorator(withKnobs)
   .add('uncontrolled', () => (
     <div>
@@ -28,14 +28,15 @@ storiesOf('Forms:Checkbox', module)
     </div>
   ))
   .add('checked', () => <Checkbox id="2" {...checkboxKnobs()} checked={true} />)
-  .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('controlled', () => (
-    <Checkbox
-      id="3"
-      {...checkboxKnobs()}
-      checked={store.get('checked')}
-      onChange={(checked: boolean) => {
-        store.set({ checked });
-      }}
-    />
+    <State store={store}>
+      <Checkbox
+        id="3"
+        {...checkboxKnobs()}
+        checked={store.get('checked')}
+        onChange={(checked: boolean) => {
+          store.set({ checked });
+        }}
+      />
+    </State>
   ));
