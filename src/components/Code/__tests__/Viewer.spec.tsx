@@ -1,9 +1,10 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { astToReact } from '../_utils/astToReact';
-import { parseCode } from '../_utils/parseCode';
-import { Viewer } from '../CodeViewer';
+import { astToReact } from '../utils/astToReact';
+import { parseCode } from '../utils/parseCode';
+
+import { CodeViewer } from '../CodeViewer';
 
 jest.mock('../utils/astToReact');
 jest.mock('../utils/parseCode');
@@ -19,7 +20,7 @@ describe('Code Viewer component', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = shallow(<Viewer language={language} value={code} inline />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} inline />);
     expect(wrapper).toHaveText(code);
     expect(wrapper).toHaveProp('as', 'code');
 
@@ -30,7 +31,7 @@ describe('Code Viewer component', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = shallow(<Viewer language={language} value={code} />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveProp('as', 'pre');
   });
 
@@ -39,7 +40,7 @@ describe('Code Viewer component', () => {
     const language = 'json';
     (parseCode as jest.Mock).mockReturnValue(null);
 
-    const wrapper = shallow(<Viewer language={language} value={code} />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
     expect(parseCode).toHaveBeenCalledWith(code, language, false);
@@ -47,7 +48,7 @@ describe('Code Viewer component', () => {
 
   it('does not try to map ast nodes to react nodes if parsing failed', () => {
     (parseCode as jest.Mock).mockReturnValue(null);
-    shallow(<Viewer language="javascript" value="foo()" />);
+    shallow(<CodeViewer language="javascript" value="foo()" />);
 
     expect(astToReact).not.toHaveBeenCalled();
   });

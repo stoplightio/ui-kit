@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import * as Classes from '../../index';
 
-import { astToReact } from './_utils/astToReact';
-import { parseCode } from './_utils/parseCode';
+import { astToReact } from './utils/astToReact';
+import { parseCode } from './utils/parseCode';
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',

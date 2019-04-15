@@ -7,7 +7,7 @@ import * as Classes from '../../index';
 import 'prismjs/components/';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
 
-import { highlightCode } from './_utils/highlightCode';
+import { highlightCode } from './utils/highlightCode';
 
 /**
  * CODE EDITOR
