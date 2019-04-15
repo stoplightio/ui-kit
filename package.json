@@ -25,9 +25,9 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "build": "sl-scripts build",
+    "build": "sl-scripts build && yarn build.scss",
     "build.styles": "yarn build.scss",
-    "build.scss": "ts-node ./scripts/sass-build.js",
+    "build.scss": "ts-node ./scripts/sass-build.js && cp -r ./src/styles/ ./dist && cp ./src/components/_index.scss ./dist/components/ && mkdir -p ./dist/components/Code/styles/ && cp ./src/components/Code/styles/_variables.js ./dist/components/Code/styles/",
     "commit": "git-cz",
     "lint": "tslint -c tslint.json 'src/**/*.ts(?)'",
     "lint.fix": "yarn lint --fix",

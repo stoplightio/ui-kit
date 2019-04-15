@@ -45,35 +45,31 @@ const ScssToCss = async ({ scss, importers = [], postCSS = [], includePaths = []
   const scssImporters = importers.map(importer => Importers[importer as any] || importer);
   const postCSSPlugins = postCSS.map(plugin => PostCSSPlugins[plugin as any](config) || plugin);
 
-  return nodeSass.render(
-    {
+  let res;
+  let css = '';
+
+  try {
+    res = nodeSass.renderSync({
       data: scss,
       includePaths: resolvePaths,
       importer: scssImporters,
-    },
-    (err, res) => {
-      if (err) {
-        console.error(`error compiling the css: ${err}`);
-        return err;
+    });
+
+    css = res.css.toString('utf-8');
+
+    try {
+      if (postCSSPlugins.length) {
+        css = (await postcss(postCSSPlugins).process(css, { from: '' })).css;
       }
-
-      const css = res.css.toString('utf-8');
-
-      try {
-        if (postCSSPlugins.length) {
-          return postcss(postCSSPlugins)
-            .process(css, { from: '' })
-            .then(result => {
-              return result.css;
-            });
-        }
-      } catch (e) {
-        console.error(`issue post processing the css: ${e}`);
-      }
-
-      return css;
+    } catch (e) {
+      console.error(`issue post processing the css: ${e}`);
     }
-  );
+  } catch (err) {
+    console.error(`error compiling the css: ${err}`);
+    throw err;
+  }
+
+  return css;
 };
 
 /**
