@@ -1,17 +1,18 @@
 import * as React from 'react';
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Box, Button, Checkbox, Flex, Icon, IconLibrary, Input, Textarea, Toggle } from '../../';
 import { Select } from '../../Select';
+import { Variant } from '../../types';
 
 IconLibrary.add(faPlus);
 
 const knobs = () => ({
-  invalid: boolean('invalid', false),
+  variant: select('variant', Object.values(Variant), Variant.Default),
   disabled: boolean('disabled', false),
 });
 

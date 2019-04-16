@@ -7,6 +7,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Box } from '../../Box';
 import { ISelect, Select } from '../../Select';
+import { Variant } from '../../types';
 import { cleanKnobs } from '../_utils';
 
 export const selectKnobs = (tabName = 'Select'): ISelect => {
@@ -30,7 +31,7 @@ export const selectKnobs = (tabName = 'Select'): ISelect => {
     hideSelectedOptions: boolean('hideSelectedOptions', false),
     backspaceRemovesValue: boolean('backspaceRemovesValue', true),
     onChange: action('onChange'),
-    invalid: boolean('invalid', false),
+    variant: select('variant', Object.values(Variant), Variant.Default),
   });
 };
 

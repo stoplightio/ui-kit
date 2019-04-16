@@ -4,6 +4,7 @@ import * as React from 'react';
 // import { Box } from '../Box';
 import { useTheme } from '../theme';
 import { Caret, Tooltip } from '../Tooltip';
+import { Variant } from '../types';
 
 jest.mock('../theme', () => ({
   useTheme: jest.fn().mockReturnValue({
@@ -105,14 +106,25 @@ describe('Tooltip component', () => {
         ])
       );
     });
-    it('uses "invalid" styling if "invalid" prop is applied', () => {
-      const wrapper = mount(<Tooltip invalid={true} />);
+    it('uses "invalid" styling if "invalid" variant is applied', () => {
+      const wrapper = mount(<Tooltip variant={Variant.Invalid} />);
       const theme = useTheme();
       expect(wrapper.childAt(0)).toHaveProp('css');
       expect(wrapper.childAt(0).prop('css')).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ color: theme.tooltip!.invalidFg }),
           expect.objectContaining({ backgroundColor: theme.tooltip!.invalidBg }),
+        ])
+      );
+    });
+    it('uses "warning" styling if "warning" variant is applied', () => {
+      const wrapper = mount(<Tooltip variant={Variant.Warning} />);
+      const theme = useTheme();
+      expect(wrapper.childAt(0)).toHaveProp('css');
+      expect(wrapper.childAt(0).prop('css')).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ color: theme.tooltip!.warningBg }),
+          expect.objectContaining({ backgroundColor: theme.tooltip!.warningFg }),
         ])
       );
     });

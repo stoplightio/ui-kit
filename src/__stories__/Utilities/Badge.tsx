@@ -10,7 +10,7 @@ import { cleanKnobs } from '../_utils';
 export const badgeKnobs = (tabName = 'Badge'): any => {
   return cleanKnobs({
     color: select('color', Object.values(BadgeColor), BadgeColor.Default, tabName),
-    variant: select('variant', Object.values(BadgeVariant), BadgeVariant.Pill, tabName),
+    variant: select('getVariant', Object.values(BadgeVariant), BadgeVariant.Pill, tabName),
   });
 };
 
