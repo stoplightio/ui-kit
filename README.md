@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-Stoplight UI-Kit is a shared component library that contains basic components built using [Emotion](https://emotion.sh) and [Styled System](https://styled-system.com) All components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
+Stoplight UI-Kit is a shared component library that contains basic components built using [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and [SCSS](https://sass-lang.com/guide) All custom components should support overridable theming from a theme object, and also come with default styling from our prepackaged theme.
 
 - Explore the components: [Storybook](https://stoplightio.github.io/ui-kit/)
 - View the changelog: [Releases](https://github.com/stoplightio/ui-kit/releases)
@@ -11,107 +11,96 @@ Stoplight UI-Kit is a shared component library that contains basic components bu
 
 ```bash
 # latest stable + required dependencies
-yarn add @stoplight/ui-kit react react-dom lodash
+yarn add @stoplight/ui-kit
 ```
 
-### Usage
+## Important Commands
 
-Storybook is a good reference of usage.
+- `yarn storybook`: Starts the storybook playground
+- `yarn build`: Builds the package.
+- `yarn build.styles`: Builds and copies over the appropriate scss related files to dist.
+- `yarn build.tw`: Generates the tailwind scss file from the config (needs to be rerun everytime `tailwind.config` is updated).
+- `yarn build.bp`: Generates the blueprint icons scss file (should not need to run often)
 
-#### Icons
+## Important Files/Folders
 
-Icon component requires external icon sets that are not provided with UI-Kit.
-The installation process is described [here](https://www.npmjs.com/package/@fortawesome/react-fontawesome#installation).
+#### [./src/styles/blueprint](./src/styles/blueprint)
 
-Once installed, an icon set can me imported as follows:
+- [\_base.scss](./src/styles/blueprint/_base.scss):
+  Contains a remapping of stoplight variables to blueprint variables. This file should rarely be edited directly and require minimal maintenance. Any updates to variables in here should be updated through [\_variables.scss](./src/styles/common/_variables.scss)
 
-```tsx
-import { IconLibrary } from '@stoplight/ui-kit';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+- [\_icons.scss](./src/styles/blueprint/_icons.scss): Auto generated file of blueprint icon fonts. Created with the `yarn build.bp` command and should not be updated directly
 
-IconLibrary.add(fas);
-```
+- [icons directory](./src/styles/blueprint/icons): Icon fonts used by \_icons.scss
 
-You can also import a single icon
+#### [./src/styles/tailwind](./src/styles/tailwind)
 
-```ts
-import { IconLibrary } from '@stoplight/ui-kit';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
+- [\_base.scss](./src/styles/tailwind/_base.scss): Auto generated tailwind classnames that utilize our stoplight scss variables. This file should NEVER be updated directly and is created using `yarn build.tw`
 
-IconLibrary.add(faCaretDown);
-```
+- [tailwind.config.js](./src/styles/tailwind/tailwind.config.js): Tailwind config object. Note two special features. A few properties, like colors, map to scss [utility function](./src/styles/common/_utils.scss) strings so that we can properly convert to our scss theme variable during the compile process. And the inclusing of a `.dark` plugin that adds extra dark classes so we can do things like `className="text-success dark:text-danger"`
 
-## Docs
+#### [./src/styles/common](./src/styles/common)
 
-- [Theme](./docs/theme.md)
-  - [base](./docs/theme-base.md)
-  - [components](./docs/theme-components.md)
-  - [zones](docs/theme-zone.md)
-- [Components](./docs/components.md)
-  - [Creating a component](./docs/components.md#creating-a-component)
-  - [Extending a styled component](./docs/components.md#extending-a-component)
+- [\_variables.scss](./src/styles/common/_variables.scss): Contains three major variables used for style consistency:
 
-## Helpful Links
+  - `$sl-defaults`: app wide defaults, this where we define defaults for things we might want an end consumer to overwrite. This should never be used outside of this file. Notice that it extends the defaults/variables from specific components like "code"
 
-- [Guideline for "good" Storybook stories](https://blog.hichroma.com/the-delightful-storybook-workflow-b322b76fd07)
+  - `$sl-config`: This is an empy variable with a default value of `()`, think of it as an empty representation of what a consumer might pass to ui-kit. It is needed since scss `map-merge` does not deep merge, so we cannot explicity overwrite `$sl-defaults`. For more information on this see [example usage below](#example-usage). This should never be used elsewhere within this repo
 
-- Emotion
+  - `$sl-variables`: A map that equals a deep merge of consumer passed in `$sl-config` and internally defined `$sl-defaults`. This is the actual variable map that our theme with be using. and should only every be used in [\_theme]()./src/styles/common/\_theme.scss)
 
-    - [Git Repo](https://github.com/emotion-js/emotion)
-    - [Documentation](https://emotion.sh/docs/introduction)
+- [\_theme.scss](./src/styles/common/_theme.scss): Contains our SCSS Theme `$sl-theme`!! Includes any values that we think might be valuable to other components. Notice that colors uses `$sl-variables` because we allow that value to be overwritten by a consumer. It's set up in such a way that that we will have complete control over how these properties behave. (colors can be changed but font sizes for example cannot). The theme will also include any fields from \$sl-variables that are not explicity defined in the main `$sl-theme` map. So for example, although `code-editor` does not appear in `$sl-theme` directly it's still included because we extend the fields \$sl-variables that are missing. `$sl-theme` should never be used directly outside of [\_utils](./src/styles/common/_utils.scss)
 
-- Styled System
+- [\_utils.scss](./src/styles/common/_utils.scss): Has some helpful theme utils as well as contains the theme itself. If at anypoint when writting a scss class you want to reference a value from the them, import \_utils and use the `get-theme(path...)` function! There are also a few other helpful functions for specific theme properties and functions relating to maps since the native scss functionality is lacking.
 
-  - [Git Repo](https://github.com/jxnblk/styled-system)
-  - [Site](https://jxnblk.com/styled-system/)
+#### [./src/styles/ui-kit.scss](./src/styles/ui-kit.scss): This is the scss file that will be imported by the end consumer and contains everything else!
 
-### Migration guide
+## Creating a Component
 
-In case you're porting a component from another Stoplight's Library [see the this document for some guidance](./docs/migration.md)
+1. Add a folder with you component name to the `./src/components` directory
+2. Add a `{Component}.tsx` under `./src/components/{component}`
+3. Add a `__tests__` folder under `./src/components/{component}`
+4. If this component requires special styling or a unique class name create `./src/components/{component}/styles/_base.scss` and `./src/components/{component}/styles/class.ts` respectively
 
-### FAQ
+   - Rules for styling:
+     - **Class Name**: If the component does not follow under one of the blueprint class names, create one for this component using the name space variable, we need to use namespacing so we keep our classes unique, the NS variable will always be the same
+     ```javascript
+     const NS = process.env.BLUEPRINT_NAMESPACE || 'bp3';
+     export const CODE_EDITOR = `${NS}-code-editor`;
+     ```
+     -**SCSS**: Every component using custom scss should support both light an dark styling. Dark selectors will look something like `.{$ns}-dark .{$ns}-code-editor` look at [tailwind](./src/styles/tailwind/_base.scss) for examples on how this is done. If a component requires themable variables (think really just colors), they should be defined in an adjacent file named `_variables.scss`. The variables should NEVER be used directly. Instead they get injected back into the theme and should be used by using the `get-theme` function in your `_base.scss`. Lastly avoid created separate variables for light and dark. So don't create `$sl-var: red` and `$sl-var-dark: blue`, instead be creative and use different shades of the same color. So `$sl-var: red` then do something like `.{$ns}-dark .{$ns}-code-editor (color: lighten($sl-var, 10%))`
 
-1. What are all these `m, mt, mb, pt` properties on all the components I've got?
+5. If this component requires specific types or utils include them in this component folder as well. We want to keep everything really independent
 
-    These are properties injected by [styled system](https://jxnblk.com/styled-system/). To get a complete reference of these, please
-    have a look the [reference table](https://styled-system.com/table)
+## Example Usage
 
-### Contributing
-
-1. Clone repo
-2. Create / checkout `feature/{name}`, `chore/{name}`, or `fix/{name}` branch
-3. Install deps: `yarn setup`
-4. Make your changes
-5. Run tests: `yarn test.prod`
-6. Stage relevant files to git
-7. Commit: `yarn commit`. _NOTE: Commits that don't follow the [conventional](https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional) format will be rejected. `yarn commit` creates this format for you, or you can put it together manually and then do a regular `git commit`._
-8. Push: `git push`
-9. Open PR targeting the `develop` branch
-
-Run the storybook server to explore components:
+Want to use ui-kit in another repo? Simple.
 
 ```bash
-yarn storybook
+# latest stable + required dependencies
+yarn add @stoplight/ui-kit
 ```
 
-### Linking to another package
+Then in your main `scss` file
 
-```bash
-# install dependencies
-yarn setup
+```scss
+/*main.scss*/
+@import '~@stoplight/ui-kit/src/styles/ui-kit';
+```
 
-# create a dist build
-yarn build
+Lastly make sure compile your scss to css during your build process. This can be done using the scss-loader in webpack, or even just straight node-sass if so desired.
 
-# change to the dist directory
-cd dist
+Okay its working, but you decided you're really not a fan of the theming :( well luckily its easily overwrittable to whatever you want! In the same file as your import include an `$sl-config` variable ABOVE the import. If its after the import it wont work. Compile after as you normally would as see the updates.
 
-# setup the yarn link
-yarn link
+```scss
+/*main.scss*/
+$sl-config: (
+  colors: (
+    info: rgba(10, 25, 40, 1),
+    primary: yellow,
+    secondary: #805ad5,
+  ),
+);
 
-# change to your other package
-cd ../another/package
-
-# link ui-kit
-yarn link "@stoplight/ui-kit"
+@import '~@stoplight/ui-kit/src/styles/ui-kit';
 ```
