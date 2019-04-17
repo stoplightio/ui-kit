@@ -1,0 +1,105 @@
+/*
+ * THIS FILE IS A REMAPPING OF THE BLUEPRINT VARIABLES TO OUR STOPLIGHT ONES
+ * THIS FILE SHOULD NOT NEED TO UPDATED DIRECTLY
+ */
+
+/*
+ * NAMESPACE
+ * if updated process.env.BLUEPRINT_NAMESPACE needs to be updated as well
+ * https://blueprintjs.com/docs/#core/classes.namespacing
+ */
+$ns: get-theme(namespace) !default;
+
+/*
+ * FONT SIZES
+ */
+$pt-font-family-monospace: get-font-family(mono);
+$pt-border-radius: get-border-radius(default);
+$pt-font-size: get-font-size(base);
+$pt-font-size-large: get-font-size(lg);
+$pt-font-size-small: get-font-size(sm);
+
+/*
+ * COLORS
+ * @import "@blueprintjs/core/lib/scss/variables";
+ */
+
+$black: get-color(black);
+$white: get-color(white);
+
+$gray: get-color(gray, 6);
+
+$gray1: darken($gray, 20%);
+$gray2: darken($gray, 10%);
+$gray3: $gray;
+$gray4: lighten($gray, 10%);
+$gray5: lighten($gray, 20%);
+
+$dark-gray: darken($gray, 30%);
+$dark-gray1: darken($dark-gray, 10%);
+$dark-gray2: darken($dark-gray, 5%);
+$dark-gray3: $dark-gray;
+$dark-gray4: lighten($dark-gray, 5%);
+$dark-gray5: lighten($dark-gray, 10%);
+
+$light-gray: lighten($gray, 30%);
+$light-gray1: darken($light-gray, 10%);
+$light-gray2: darken($light-gray, 5%);
+$light-gray3: $light-gray;
+$light-gray4: lighten($light-gray, 5%);
+$light-gray5: lighten($light-gray, 10%);
+
+$blue: get-color(info, 6);
+$blue1: darken($blue, 20%);
+$blue2: darken($blue, 10%);
+$blue3: $blue;
+$blue4: lighten($blue, 10%);
+$blue5: lighten($blue, 20%);
+
+$green: get-color(success, 6);
+$green1: darken($green, 20%);
+$green2: darken($green, 10%);
+$green3: $green;
+$green4: lighten($green, 10%);
+$green5: lighten($green, 20%);
+
+$orange: get-color(warning, 6);
+$orange1: darken($orange, 20%);
+$orange2: darken($orange, 10%);
+$orange3: $orange;
+$orange4: lighten($orange, 10%);
+$orange5: lighten($orange, 20%);
+
+$red: get-color(danger, 6);
+$red1: darken($red, 20%);
+$red2: darken($red, 10%);
+$red3: $red;
+$red4: lighten($red, 10%);
+$red5: lighten($red, 20%);
+
+/*
+  * COMPUTED VARS
+  * we probably don't want to expose/change these?
+  */
+
+$pt-text-color: $dark-gray1;
+$pt-text-color-muted: $gray1;
+$pt-text-color-disabled: rgba($pt-text-color-muted, 0.5);
+$pt-heading-color: $pt-text-color;
+$pt-link-color: $blue2;
+$pt-dark-text-color: $light-gray5;
+$pt-dark-text-color-muted: $gray5;
+$pt-dark-text-color-disabled: rgba($pt-dark-text-color-muted, 0.5);
+$pt-dark-heading-color: $pt-dark-text-color;
+$pt-dark-link-color: $blue5;
+$pt-text-selection-color: rgba($blue4, 0.6);
+
+$pt-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9);
+$pt-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+$pt-transition-duration: 50ms;
+
+/*
+ * BLUEPRINT
+ */
+
+@import '~@blueprintjs/core/src/blueprint.scss';

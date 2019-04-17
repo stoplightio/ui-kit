@@ -1,84 +1,48 @@
+function getScssTheme(...path) {
+  return `get-theme(${path.join(' , ')})`;
+}
+
+function getScssThemeColors(color) {
+  return {
+    default: getScssTheme('colors', color, 5),
+    1: getScssTheme('colors', color, 1),
+    2: getScssTheme('colors', color, 2),
+    3: getScssTheme('colors', color, 3),
+    4: getScssTheme('colors', color, 4),
+    5: getScssTheme('colors', color, 5),
+    6: getScssTheme('colors', color, 6),
+    7: getScssTheme('colors', color, 7),
+    8: getScssTheme('colors', color, 8),
+    9: getScssTheme('colors', color, 9),
+  };
+}
+
 module.exports = {
   prefix: '',
   important: false,
   separator: ':',
   theme: {
     colors: {
-      transparent: 'transparent',
+      transparent: getScssTheme('colors', 'transparent'),
 
-      black: '#10161A',
-      white: '#fff',
+      black: getScssTheme('colors', 'black'),
+      white: getScssTheme('colors', 'white'),
+      gray: getScssTheme('colors', 'gray'),
 
-      'dark-grey': {
-        darker: '#182026',
-        dark: '#202b33',
-        base: '#293742',
-        light: '#30404d',
-        lighter: '#394b59',
-      },
+      lighten: getScssThemeColors('lighten'),
+      darken: getScssThemeColors('darken'),
 
-      gray: {
-        darker: '#5c7080',
-        dark: '#738694',
-        base: '#8a9ba8',
-        light: '#a7b6c2',
-        lighter: '#bfccd6',
-      },
+      info: getScssThemeColors('info'),
+      success: getScssThemeColors('success'),
+      warning: getScssThemeColors('warning'),
+      danger: getScssThemeColors('danger'),
 
-      'light-grey': {
-        darker: '#ced9e0',
-        dark: '#d8e1e8',
-        base: '#e1e8ed',
-        light: '#ebf1f5',
-        lighter: '#f5f8fa',
-      },
-
-      info: {
-        darker: '#2c5282',
-        dark: '#2b6cb0',
-        base: '#3182ce',
-        light: '#4299e1',
-        lighter: '#63b3ed',
-      },
-
-      success: {
-        darker: '#276749',
-        dark: '#2f855a',
-        base: '#38a169',
-        light: '#48bb78',
-        lighter: '#68d391',
-      },
-
-      warning: {
-        darker: '#9c4221',
-        dark: '#c05621',
-        base: '#dd6b20',
-        light: '#ed8936',
-        lighter: '#f6ad55',
-      },
-
-      danger: {
-        darker: '#9b2c2c',
-        dark: '#c53030',
-        base: '#e53e3e',
-        light: '#f56565',
-        lighter: '#fc8181',
-      },
-
-      primary: theme => theme('colors').info,
-
-      secondary: {
-        darker: '#553c9a',
-        dark: '#6b46c1',
-        base: '#805ad5',
-        light: '#9f7aea',
-        lighter: '#b794f4',
-      },
+      primary: getScssThemeColors('primary'),
+      secondary: getScssThemeColors('secondary'),
     },
     spacing: {
       px: '1px',
       '0': '0',
-      '1/2': '0.125rem',
       '1': '0.25rem',
       '2': '0.5rem',
       '3': '0.75rem',
@@ -88,14 +52,10 @@ module.exports = {
       '8': '2rem',
       '10': '2.5rem',
       '12': '3rem',
-      '14': '3.5rem',
       '16': '4rem',
-      '18': '4.5rem',
       '20': '5rem',
       '24': '6rem',
-      '28': '7rem',
       '32': '8rem',
-      '36': '9rem',
       '40': '10rem',
       '48': '12rem',
       '56': '14rem',
@@ -104,7 +64,7 @@ module.exports = {
     screens: {
       // sm: '640px',
       // md: '768px',
-      // lg: '1024px',
+      lg: '1300px',
       // xl: '1280px',
     },
     fontFamily: {
@@ -126,16 +86,16 @@ module.exports = {
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
     },
     fontSize: {
-      xs: '10px',
-      sm: '12px',
-      base: '14px',
-      lg: '16px',
-      xl: '20px',
-      '2xl': '24px',
-      '3xl': '28px',
-      '4xl': '32px',
-      '5xl': '40px',
-      '6xl': '50px',
+      xs: getScssTheme('fontSize, xs'),
+      sm: getScssTheme('fontSize', 'sm'),
+      base: getScssTheme('fontSize', 'base'),
+      lg: getScssTheme('fontSize', 'lg'),
+      xl: getScssTheme('fontSize', 'xl'),
+      '2xl': getScssTheme('fontSize', '2xl'),
+      '3xl': getScssTheme('fontSize', '3xl'),
+      '4xl': getScssTheme('fontSize', '4xl'),
+      '5xl': getScssTheme('fontSize', '5xl'),
+      '6xl': getScssTheme('fontSize', '6xl'),
     },
     fontWeight: {
       hairline: 100,
@@ -194,11 +154,11 @@ module.exports = {
       default: theme('colors.gray.300', 'currentColor'),
     }),
     borderRadius: {
-      none: '0',
-      sm: '1px',
-      default: '3px',
-      lg: '5px',
-      full: '9999px',
+      none: getScssTheme('borderRadius', 'none'),
+      sm: getScssTheme('borderRadius', 'sm'),
+      default: getScssTheme('borderRadius', 'default'),
+      lg: getScssTheme('borderRadius', 'lg'),
+      full: getScssTheme('borderRadius', 'full'),
     },
     cursor: {
       auto: 'auto',
@@ -272,14 +232,12 @@ module.exports = {
       top: 'top',
     },
     boxShadow: {
-      default: '0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06)',
-      md: '0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)',
-      lg: '0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)',
-      xl: '0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04)',
-      '2xl': '0 25px 50px -12px rgba(0, 0, 0, .25)',
-      inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-      outline: '0 0 0 3px rgba(66,153,225,0.5)',
-      none: 'none',
+      default: getScssTheme('boxShadow', 'default'),
+      md: getScssTheme('boxShadow', 'md'),
+      lg: getScssTheme('boxShadow', 'lg'),
+      inner: getScssTheme('boxShadow', 'inner'),
+      outline: getScssTheme('boxShadow', 'outline'),
+      none: getScssTheme('boxShadow', 'none'),
     },
     zIndex: {
       auto: 'auto',
@@ -341,7 +299,7 @@ module.exports = {
     borderStyle: [],
     borderWidth: [],
     cursor: [],
-    display: [],
+    display: ['responsive'],
     flexDirection: [],
     flexWrap: [],
     alignItems: [],
@@ -374,7 +332,7 @@ module.exports = {
     position: [],
     inset: [],
     resize: [],
-    boxShadow: ['hover', 'focus'],
+    boxShadow: ['hover', 'focus', 'dark'],
     fill: [],
     stroke: [],
     tableLayout: [],
@@ -399,7 +357,9 @@ module.exports = {
     function({ addUtilities, addComponents, addVariant, e, prefix, config }) {
       addVariant('dark', ({ modifySelectors, separator, container }) => {
         container.walkRules(rule => {
-          rule.selector = `.bp3-dark .${e(`dark${separator}${rule.selector.slice(1)}`)}`;
+          rule.selector = `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(
+            `dark${separator}${rule.selector.slice(1)}`
+          )}`;
         });
       });
     },

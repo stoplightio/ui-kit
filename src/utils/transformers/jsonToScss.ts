@@ -3,6 +3,7 @@ const Json = require('@stoplight/json');
 const isArray = require('lodash/isArray');
 const isEmpty = require('lodash/isEmpty');
 const isPlainObject = require('lodash/isPlainObject');
+const prettier = require('prettier');
 
 /**
  * JSON TO SCSS
@@ -30,12 +31,14 @@ const parseValue = (value: any): any => {
   return value;
 };
 
-const JsonToScss = (json: any): string => {
+const JsonToScss = (json: any, opts: { default?: boolean; prettier?: boolean } = {}): string => {
   const parsed = Json.safeParse(json);
 
-  return Object.keys(parsed)
-    .map(key => `$${key}: ${parseValue(json[key])};`)
+  const scss = Object.keys(parsed)
+    .map(key => `$${key}: ${parseValue(json[key])}${opts.default ? ' !default' : ''};`)
     .join('\n');
+
+  return opts.prettier ? prettier.format(scss, { parser: 'scss' }) : scss;
 };
 
 /**

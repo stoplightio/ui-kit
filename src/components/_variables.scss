@@ -1,0 +1,5 @@
+@import './Code/styles/variables';
+
+$sl-component-defaults: (
+  code-editor: $sl-code-editor,
+) !default;

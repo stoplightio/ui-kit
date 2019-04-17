@@ -18,3 +18,5 @@ export * from './Switch/Switch';
 export * from './Table/Table';
 export * from './Tag/Tag';
 export * from './Textarea/Textarea';
+
+export * from './classes';

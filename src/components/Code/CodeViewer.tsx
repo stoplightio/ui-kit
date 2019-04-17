@@ -2,7 +2,7 @@ import * as cn from 'classnames';
 import 'prismjs';
 import * as React from 'react';
 
-import * as Classes from '../../index';
+import { CLASSES } from '../../index';
 
 import { astToReact } from './utils/astToReact';
 import { parseCode } from './utils/parseCode';
@@ -34,7 +34,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   if (inline) {
     return (
       <code
-        className={cn(Classes.BLUEPRINT.RUNNING_TEXT, Classes.BLUEPRINT.CODE_BLOCK, Classes.CODE_EDITOR, className, {
+        className={cn(CLASSES.RUNNING_TEXT, CLASSES.CODE_BLOCK, CLASSES.CODE_EDITOR, className, {
           isInline: inline,
           showLineNumbers,
         })}
@@ -49,7 +49,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 
   return (
     <pre
-      className={cn(Classes.BLUEPRINT.RUNNING_TEXT, Classes.BLUEPRINT.CODE_BLOCK, Classes.CODE_EDITOR, className, {
+      className={cn(CLASSES.RUNNING_TEXT, CLASSES.CODE_BLOCK, CLASSES.CODE_EDITOR, className, {
         isInline: inline,
         showLineNumbers,
       })}

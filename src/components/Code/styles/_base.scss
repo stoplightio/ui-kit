@@ -1,12 +1,16 @@
-$sl-code-editor-comment: map-deep-get($sl-code-editor, (comment));
-$sl-code-editor-primary: map-deep-get($sl-code-editor, (primary));
-$sl-code-editor-secondary: map-deep-get($sl-code-editor, (secondary));
-$sl-code-editor-operator: map-deep-get($sl-code-editor, (operator));
-$sl-code-editor-keyword: map-deep-get($sl-code-editor, (keyword));
-$sl-code-editor-function: map-deep-get($sl-code-editor, (function));
-$sl-code-editor-variable: map-deep-get($sl-code-editor, (variable));
-$sl-code-editor-regex: map-deep-get($sl-code-editor, (regex));
-$sl-code-editor-punctuation: map-deep-get($sl-code-editor, (punc));
+/*
+ * TODO add dark scss (should use shades of the variable colors, not separate ones)
+*/
+
+$comment: get-theme(code-editor, comment);
+$primary: get-theme(code-editor, primary);
+$secondary: get-theme(code-editor, secondary);
+$operator: get-theme(code-editor, operator);
+$keyword: get-theme(code-editor, keyword);
+$function: get-theme(code-editor, function);
+$variable: get-theme(code-editor, variable);
+$regex: get-theme(code-editor, regex);
+$punctuation: get-theme(code-editor, punc);
 
 .#{$ns}-code-editor {
   font-family: 'monospace';
@@ -54,11 +58,11 @@ $sl-code-editor-punctuation: map-deep-get($sl-code-editor, (punc));
     &.prolog,
     &.doctype,
     &.cdata {
-      color: $sl-code-editor-comment;
+      color: $comment;
     }
 
     &.punctuation {
-      color: $sl-code-editor-punctuation;
+      color: $punctuation;
     }
 
     &.property,
@@ -67,7 +71,7 @@ $sl-code-editor-punctuation: map-deep-get($sl-code-editor, (punc));
     &.number,
     &.symbol,
     &.deleted {
-      color: $sl-code-editor-primary;
+      color: $primary;
     }
 
     &.selector,
@@ -76,32 +80,32 @@ $sl-code-editor-punctuation: map-deep-get($sl-code-editor, (punc));
     &.char,
     &.builtin,
     &.inserted {
-      color: $sl-code-editor-secondary;
+      color: $secondary;
     }
 
     &.operator,
     &.entity,
     &.url {
-      color: $sl-code-editor-operator;
+      color: $operator;
     }
 
     &.atrule,
     &.attr-value,
     &.keyword {
-      color: $sl-code-editor-keyword;
+      color: $keyword;
     }
 
     &.function {
-      color: $sl-code-editor-function;
+      color: $function;
     }
 
     &.variable {
-      color: $sl-code-editor-variable;
+      color: $variable;
     }
 
     &.regex,
     &.important {
-      color: $sl-code-editor-regex;
+      color: $regex;
     }
 
     &.important,
