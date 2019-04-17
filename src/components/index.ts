@@ -16,6 +16,7 @@ export * from './Popover/Popover';
 export * from './Radio/Radio';
 export * from './Switch/Switch';
 export * from './Table/Table';
+export * from './Tabs/Tabs';
 export * from './Tag/Tag';
 export * from './Textarea/Textarea';
 
