@@ -27,7 +27,7 @@ module.exports = {
 
       black: getScssTheme('colors', 'black'),
       white: getScssTheme('colors', 'white'),
-      gray: getScssTheme('colors', 'gray'),
+      gray: getScssThemeColors('colors', 'gray'),
 
       lighten: getScssThemeColors('lighten'),
       darken: getScssThemeColors('darken'),
@@ -151,7 +151,7 @@ module.exports = {
     },
     borderColor: theme => ({
       ...theme('colors'),
-      default: theme('colors.gray.300', 'currentColor'),
+      default: theme('colors').gray[300],
     }),
     borderRadius: {
       none: getScssTheme('borderRadius', 'none'),

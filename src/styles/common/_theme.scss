@@ -1,6 +1,13 @@
 @import './variables';
 
 /*
+ * NAMESPACE
+ * if updated process.env.BLUEPRINT_NAMESPACE needs to be updated as well
+ * https://blueprintjs.com/docs/#core/classes.namespacing
+ */
+$ns: map-deep-get($sl-variables, namespace) !default;
+
+/*
  * THEME
  * accessible to all component scss through importing ./utils then using get-theme(colors, lighten, 1) or other helpers
  * any value we want overwritable by the consumer needs to be an external variable defined in ./_variables $sl-defaults then referenced here
@@ -195,4 +202,44 @@ $sl-theme: (
       )
     );
   }
+}
+
+/*
+ * UTILITIES
+ * some helpful functions to access the theme
+ */
+
+// returns the value at this theme path
+@function get-theme($keys...) {
+  @return map-deep-get($sl-theme, $keys...);
+}
+
+// returns color at this path from theme
+@function get-color($keys...) {
+  @return map-deep-get($sl-theme, colors, $keys...);
+}
+
+// returns fontSize at this path from theme
+@function get-font-size($keys...) {
+  @return map-deep-get($sl-theme, fontSize, $keys...);
+}
+
+// returns borderRadius at this path from theme
+@function get-border-radius($keys...) {
+  @return map-deep-get($sl-theme, borderRadius, $keys...);
+}
+
+// returns boxShadow at this path from theme
+@function get-box-shadow($keys...) {
+  @return map-deep-get($sl-theme, boxShadow, $keys...);
+}
+
+// returns fontFamily at this path from theme
+@function get-font-family($keys...) {
+  @return map-deep-get($sl-theme, fontFamily, $keys...);
+}
+
+// returns fontWeight at this path from theme
+@function get-font-weight($keys...) {
+  @return map-deep-get($sl-theme, fontWeight, $keys...);
 }

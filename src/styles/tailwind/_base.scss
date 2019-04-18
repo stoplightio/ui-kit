@@ -640,8 +640,44 @@ video {
   background-color: get-theme(colors, white);
 }
 
+.bg-gray-1 {
+  background-color: get-theme(colors, colors, 1);
+}
+
+.bg-gray-2 {
+  background-color: get-theme(colors, colors, 2);
+}
+
+.bg-gray-3 {
+  background-color: get-theme(colors, colors, 3);
+}
+
+.bg-gray-4 {
+  background-color: get-theme(colors, colors, 4);
+}
+
+.bg-gray-5 {
+  background-color: get-theme(colors, colors, 5);
+}
+
+.bg-gray-6 {
+  background-color: get-theme(colors, colors, 6);
+}
+
+.bg-gray-7 {
+  background-color: get-theme(colors, colors, 7);
+}
+
+.bg-gray-8 {
+  background-color: get-theme(colors, colors, 8);
+}
+
+.bg-gray-9 {
+  background-color: get-theme(colors, colors, 9);
+}
+
 .bg-gray {
-  background-color: get-theme(colors, gray);
+  background-color: get-theme(colors, colors, 5);
 }
 
 .bg-lighten-1 {
@@ -976,8 +1012,44 @@ video {
   background-color: get-theme(colors, white);
 }
 
+.hover\:bg-gray-1:hover {
+  background-color: get-theme(colors, colors, 1);
+}
+
+.hover\:bg-gray-2:hover {
+  background-color: get-theme(colors, colors, 2);
+}
+
+.hover\:bg-gray-3:hover {
+  background-color: get-theme(colors, colors, 3);
+}
+
+.hover\:bg-gray-4:hover {
+  background-color: get-theme(colors, colors, 4);
+}
+
+.hover\:bg-gray-5:hover {
+  background-color: get-theme(colors, colors, 5);
+}
+
+.hover\:bg-gray-6:hover {
+  background-color: get-theme(colors, colors, 6);
+}
+
+.hover\:bg-gray-7:hover {
+  background-color: get-theme(colors, colors, 7);
+}
+
+.hover\:bg-gray-8:hover {
+  background-color: get-theme(colors, colors, 8);
+}
+
+.hover\:bg-gray-9:hover {
+  background-color: get-theme(colors, colors, 9);
+}
+
 .hover\:bg-gray:hover {
-  background-color: get-theme(colors, gray);
+  background-color: get-theme(colors, colors, 5);
 }
 
 .hover\:bg-lighten-1:hover {
@@ -1312,8 +1384,44 @@ video {
   background-color: get-theme(colors, white);
 }
 
+.focus\:bg-gray-1:focus {
+  background-color: get-theme(colors, colors, 1);
+}
+
+.focus\:bg-gray-2:focus {
+  background-color: get-theme(colors, colors, 2);
+}
+
+.focus\:bg-gray-3:focus {
+  background-color: get-theme(colors, colors, 3);
+}
+
+.focus\:bg-gray-4:focus {
+  background-color: get-theme(colors, colors, 4);
+}
+
+.focus\:bg-gray-5:focus {
+  background-color: get-theme(colors, colors, 5);
+}
+
+.focus\:bg-gray-6:focus {
+  background-color: get-theme(colors, colors, 6);
+}
+
+.focus\:bg-gray-7:focus {
+  background-color: get-theme(colors, colors, 7);
+}
+
+.focus\:bg-gray-8:focus {
+  background-color: get-theme(colors, colors, 8);
+}
+
+.focus\:bg-gray-9:focus {
+  background-color: get-theme(colors, colors, 9);
+}
+
 .focus\:bg-gray:focus {
-  background-color: get-theme(colors, gray);
+  background-color: get-theme(colors, colors, 5);
 }
 
 .focus\:bg-lighten-1:focus {
@@ -1648,8 +1756,44 @@ video {
   background-color: get-theme(colors, white);
 }
 
+.bp3-dark .dark\:bg-gray-1 {
+  background-color: get-theme(colors, colors, 1);
+}
+
+.bp3-dark .dark\:bg-gray-2 {
+  background-color: get-theme(colors, colors, 2);
+}
+
+.bp3-dark .dark\:bg-gray-3 {
+  background-color: get-theme(colors, colors, 3);
+}
+
+.bp3-dark .dark\:bg-gray-4 {
+  background-color: get-theme(colors, colors, 4);
+}
+
+.bp3-dark .dark\:bg-gray-5 {
+  background-color: get-theme(colors, colors, 5);
+}
+
+.bp3-dark .dark\:bg-gray-6 {
+  background-color: get-theme(colors, colors, 6);
+}
+
+.bp3-dark .dark\:bg-gray-7 {
+  background-color: get-theme(colors, colors, 7);
+}
+
+.bp3-dark .dark\:bg-gray-8 {
+  background-color: get-theme(colors, colors, 8);
+}
+
+.bp3-dark .dark\:bg-gray-9 {
+  background-color: get-theme(colors, colors, 9);
+}
+
 .bp3-dark .dark\:bg-gray {
-  background-color: get-theme(colors, gray);
+  background-color: get-theme(colors, colors, 5);
 }
 
 .bp3-dark .dark\:bg-lighten-1 {
@@ -2056,8 +2200,44 @@ video {
   border-color: get-theme(colors, white);
 }
 
+.border-gray-1 {
+  border-color: get-theme(colors, colors, 1);
+}
+
+.border-gray-2 {
+  border-color: get-theme(colors, colors, 2);
+}
+
+.border-gray-3 {
+  border-color: get-theme(colors, colors, 3);
+}
+
+.border-gray-4 {
+  border-color: get-theme(colors, colors, 4);
+}
+
+.border-gray-5 {
+  border-color: get-theme(colors, colors, 5);
+}
+
+.border-gray-6 {
+  border-color: get-theme(colors, colors, 6);
+}
+
+.border-gray-7 {
+  border-color: get-theme(colors, colors, 7);
+}
+
+.border-gray-8 {
+  border-color: get-theme(colors, colors, 8);
+}
+
+.border-gray-9 {
+  border-color: get-theme(colors, colors, 9);
+}
+
 .border-gray {
-  border-color: get-theme(colors, gray);
+  border-color: get-theme(colors, colors, 5);
 }
 
 .border-lighten-1 {
@@ -2392,8 +2572,44 @@ video {
   border-color: get-theme(colors, white);
 }
 
+.hover\:border-gray-1:hover {
+  border-color: get-theme(colors, colors, 1);
+}
+
+.hover\:border-gray-2:hover {
+  border-color: get-theme(colors, colors, 2);
+}
+
+.hover\:border-gray-3:hover {
+  border-color: get-theme(colors, colors, 3);
+}
+
+.hover\:border-gray-4:hover {
+  border-color: get-theme(colors, colors, 4);
+}
+
+.hover\:border-gray-5:hover {
+  border-color: get-theme(colors, colors, 5);
+}
+
+.hover\:border-gray-6:hover {
+  border-color: get-theme(colors, colors, 6);
+}
+
+.hover\:border-gray-7:hover {
+  border-color: get-theme(colors, colors, 7);
+}
+
+.hover\:border-gray-8:hover {
+  border-color: get-theme(colors, colors, 8);
+}
+
+.hover\:border-gray-9:hover {
+  border-color: get-theme(colors, colors, 9);
+}
+
 .hover\:border-gray:hover {
-  border-color: get-theme(colors, gray);
+  border-color: get-theme(colors, colors, 5);
 }
 
 .hover\:border-lighten-1:hover {
@@ -2728,8 +2944,44 @@ video {
   border-color: get-theme(colors, white);
 }
 
+.focus\:border-gray-1:focus {
+  border-color: get-theme(colors, colors, 1);
+}
+
+.focus\:border-gray-2:focus {
+  border-color: get-theme(colors, colors, 2);
+}
+
+.focus\:border-gray-3:focus {
+  border-color: get-theme(colors, colors, 3);
+}
+
+.focus\:border-gray-4:focus {
+  border-color: get-theme(colors, colors, 4);
+}
+
+.focus\:border-gray-5:focus {
+  border-color: get-theme(colors, colors, 5);
+}
+
+.focus\:border-gray-6:focus {
+  border-color: get-theme(colors, colors, 6);
+}
+
+.focus\:border-gray-7:focus {
+  border-color: get-theme(colors, colors, 7);
+}
+
+.focus\:border-gray-8:focus {
+  border-color: get-theme(colors, colors, 8);
+}
+
+.focus\:border-gray-9:focus {
+  border-color: get-theme(colors, colors, 9);
+}
+
 .focus\:border-gray:focus {
-  border-color: get-theme(colors, gray);
+  border-color: get-theme(colors, colors, 5);
 }
 
 .focus\:border-lighten-1:focus {
@@ -3064,8 +3316,44 @@ video {
   border-color: get-theme(colors, white);
 }
 
+.bp3-dark .dark\:border-gray-1 {
+  border-color: get-theme(colors, colors, 1);
+}
+
+.bp3-dark .dark\:border-gray-2 {
+  border-color: get-theme(colors, colors, 2);
+}
+
+.bp3-dark .dark\:border-gray-3 {
+  border-color: get-theme(colors, colors, 3);
+}
+
+.bp3-dark .dark\:border-gray-4 {
+  border-color: get-theme(colors, colors, 4);
+}
+
+.bp3-dark .dark\:border-gray-5 {
+  border-color: get-theme(colors, colors, 5);
+}
+
+.bp3-dark .dark\:border-gray-6 {
+  border-color: get-theme(colors, colors, 6);
+}
+
+.bp3-dark .dark\:border-gray-7 {
+  border-color: get-theme(colors, colors, 7);
+}
+
+.bp3-dark .dark\:border-gray-8 {
+  border-color: get-theme(colors, colors, 8);
+}
+
+.bp3-dark .dark\:border-gray-9 {
+  border-color: get-theme(colors, colors, 9);
+}
+
 .bp3-dark .dark\:border-gray {
-  border-color: get-theme(colors, gray);
+  border-color: get-theme(colors, colors, 5);
 }
 
 .bp3-dark .dark\:border-lighten-1 {
@@ -6431,8 +6719,44 @@ video {
   color: get-theme(colors, white);
 }
 
+.text-gray-1 {
+  color: get-theme(colors, colors, 1);
+}
+
+.text-gray-2 {
+  color: get-theme(colors, colors, 2);
+}
+
+.text-gray-3 {
+  color: get-theme(colors, colors, 3);
+}
+
+.text-gray-4 {
+  color: get-theme(colors, colors, 4);
+}
+
+.text-gray-5 {
+  color: get-theme(colors, colors, 5);
+}
+
+.text-gray-6 {
+  color: get-theme(colors, colors, 6);
+}
+
+.text-gray-7 {
+  color: get-theme(colors, colors, 7);
+}
+
+.text-gray-8 {
+  color: get-theme(colors, colors, 8);
+}
+
+.text-gray-9 {
+  color: get-theme(colors, colors, 9);
+}
+
 .text-gray {
-  color: get-theme(colors, gray);
+  color: get-theme(colors, colors, 5);
 }
 
 .text-lighten-1 {
@@ -6767,8 +7091,44 @@ video {
   color: get-theme(colors, white);
 }
 
+.hover\:text-gray-1:hover {
+  color: get-theme(colors, colors, 1);
+}
+
+.hover\:text-gray-2:hover {
+  color: get-theme(colors, colors, 2);
+}
+
+.hover\:text-gray-3:hover {
+  color: get-theme(colors, colors, 3);
+}
+
+.hover\:text-gray-4:hover {
+  color: get-theme(colors, colors, 4);
+}
+
+.hover\:text-gray-5:hover {
+  color: get-theme(colors, colors, 5);
+}
+
+.hover\:text-gray-6:hover {
+  color: get-theme(colors, colors, 6);
+}
+
+.hover\:text-gray-7:hover {
+  color: get-theme(colors, colors, 7);
+}
+
+.hover\:text-gray-8:hover {
+  color: get-theme(colors, colors, 8);
+}
+
+.hover\:text-gray-9:hover {
+  color: get-theme(colors, colors, 9);
+}
+
 .hover\:text-gray:hover {
-  color: get-theme(colors, gray);
+  color: get-theme(colors, colors, 5);
 }
 
 .hover\:text-lighten-1:hover {
@@ -7103,8 +7463,44 @@ video {
   color: get-theme(colors, white);
 }
 
+.focus\:text-gray-1:focus {
+  color: get-theme(colors, colors, 1);
+}
+
+.focus\:text-gray-2:focus {
+  color: get-theme(colors, colors, 2);
+}
+
+.focus\:text-gray-3:focus {
+  color: get-theme(colors, colors, 3);
+}
+
+.focus\:text-gray-4:focus {
+  color: get-theme(colors, colors, 4);
+}
+
+.focus\:text-gray-5:focus {
+  color: get-theme(colors, colors, 5);
+}
+
+.focus\:text-gray-6:focus {
+  color: get-theme(colors, colors, 6);
+}
+
+.focus\:text-gray-7:focus {
+  color: get-theme(colors, colors, 7);
+}
+
+.focus\:text-gray-8:focus {
+  color: get-theme(colors, colors, 8);
+}
+
+.focus\:text-gray-9:focus {
+  color: get-theme(colors, colors, 9);
+}
+
 .focus\:text-gray:focus {
-  color: get-theme(colors, gray);
+  color: get-theme(colors, colors, 5);
 }
 
 .focus\:text-lighten-1:focus {
@@ -7439,8 +7835,44 @@ video {
   color: get-theme(colors, white);
 }
 
+.bp3-dark .dark\:text-gray-1 {
+  color: get-theme(colors, colors, 1);
+}
+
+.bp3-dark .dark\:text-gray-2 {
+  color: get-theme(colors, colors, 2);
+}
+
+.bp3-dark .dark\:text-gray-3 {
+  color: get-theme(colors, colors, 3);
+}
+
+.bp3-dark .dark\:text-gray-4 {
+  color: get-theme(colors, colors, 4);
+}
+
+.bp3-dark .dark\:text-gray-5 {
+  color: get-theme(colors, colors, 5);
+}
+
+.bp3-dark .dark\:text-gray-6 {
+  color: get-theme(colors, colors, 6);
+}
+
+.bp3-dark .dark\:text-gray-7 {
+  color: get-theme(colors, colors, 7);
+}
+
+.bp3-dark .dark\:text-gray-8 {
+  color: get-theme(colors, colors, 8);
+}
+
+.bp3-dark .dark\:text-gray-9 {
+  color: get-theme(colors, colors, 9);
+}
+
 .bp3-dark .dark\:text-gray {
-  color: get-theme(colors, gray);
+  color: get-theme(colors, colors, 5);
 }
 
 .bp3-dark .dark\:text-lighten-1 {

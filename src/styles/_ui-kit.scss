@@ -6,13 +6,49 @@
 @import './common/utils';
 
 /*
+ * THEME
+ * contains theme and helper functions
+ */
+
+@import './common/theme';
+
+/*
   * COMPONENTS
   */
 @import '../components/base';
 
 /*
-  * EXTERNAL SCSS DEPS
-  * tailwind requires that the consumer uses the tailwindcss POSTCSS plugin
-  */
+//   * EXTERNAL SCSS DEPS
+//   * tailwind requires that the consumer uses the tailwindcss POSTCSS plugin
+//   */
 @import './blueprint/base';
 @import './tailwind/base';
+
+// some extra custom styling we want to apply
+body,
+html {
+  height: 100%;
+}
+
+.root {
+  background-color: 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
+}
+
+a {
+  color: get-color(blue, 6);
+}
+
+.#{$ns}-label {
+  font-weight: get-font-weight(semibold);
+}
+
+.#{$ns}-select-popover .#{$ns}-menu {
+  max-width: 400px;
+  max-height: 300px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.#{$ns}-select-popover .#{$ns}-menu .#{$ns}-menu-item-label {
+  font-size: 10px;
+}

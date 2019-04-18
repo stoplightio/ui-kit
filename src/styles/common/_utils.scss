@@ -1,42 +1,4 @@
 /*
- * UTILITIES
- * some helpful functions to access the theme
- */
-
-// import theme for proper usage of the get functions
-@import './theme';
-
-// returns the value at this theme path
-@function get-theme($keys...) {
-  @return map-deep-get($sl-theme, $keys...);
-}
-
-// returns color at this path from theme
-@function get-color($keys...) {
-  @return map-deep-get($sl-theme, colors, $keys...);
-}
-
-// returns fontSize at this path from theme
-@function get-font-size($keys...) {
-  @return map-deep-get($sl-theme, fontSize, $keys...);
-}
-
-// returns borderRadius at this path from theme
-@function get-border-radius($keys...) {
-  @return map-deep-get($sl-theme, borderRadius, $keys...);
-}
-
-// returns boxShadow at this path from theme
-@function get-box-shadow($keys...) {
-  @return map-deep-get($sl-theme, boxShadow, $keys...);
-}
-
-// returns fontFamily at this path from theme
-@function get-font-family($keys...) {
-  @return map-deep-get($sl-theme, fontFamily, $keys...);
-}
-
-/*
  * HELPER FUNCTIONS
  * some useful map functions with safe gaurds
  * https://www.sitepoint.com/extra-map-functions-sass/

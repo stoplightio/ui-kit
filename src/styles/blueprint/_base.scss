@@ -4,13 +4,6 @@
  */
 
 /*
- * NAMESPACE
- * if updated process.env.BLUEPRINT_NAMESPACE needs to be updated as well
- * https://blueprintjs.com/docs/#core/classes.namespacing
- */
-$ns: get-theme(namespace) !default;
-
-/*
  * FONT SIZES
  */
 $pt-font-family-monospace: get-font-family(mono);
