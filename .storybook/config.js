@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
 import '../src/styles/_ui-kit.scss';
+import { ThemeContainer } from '../src/components';
 
 addDecorator(
   withOptions({
@@ -22,5 +24,7 @@ addDecorator(
 function loadStories() {
   require('@project/stories');
 }
+
+addDecorator(story => <ThemeContainer>{story()}</ThemeContainer>);
 
 configure(loadStories, module);

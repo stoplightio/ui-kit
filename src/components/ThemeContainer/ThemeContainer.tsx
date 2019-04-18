@@ -6,16 +6,16 @@ import * as React from 'react';
  */
 
 interface IThemeContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  namespace: string;
+  namespace?: string;
   dark?: boolean;
 }
 
 const ThemeContainer: React.FunctionComponent<IThemeContainerProps> = props => {
   const { namespace, dark, children } = props;
 
-  const ns = namespace || process.env.BLUEPRINT_NAMESPACE || 'bp3';
+  const bp_namespace = process.env.BLUEPRINT_NAMESPACE || 'bp3';
 
-  return <div className={cn(ns, `${ns}-tw`, dark && `${ns}-dark`)}>{children}</div>;
+  return <div className={cn(namespace, bp_namespace, dark && `${bp_namespace}-dark`)}>{children}</div>;
 };
 
 /**

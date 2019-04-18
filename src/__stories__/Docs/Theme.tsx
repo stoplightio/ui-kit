@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button, ThemeContainer } from '../../components';
 import { CodeViewer } from '../../components/Code';
 
-import './_example.scss';
+import './_theme-overwrite.scss';
 
 export default () => (
   <div className="m-20">
@@ -13,13 +13,11 @@ export default () => (
       ABOVE the import, then replace with whatever values. Example below:
     </div>
     <CodeViewer
-      value={`
-/*main.scss*/
+      value={`/*main.scss*/
 
 $sl-config: (
-  namespace: new-theme
   colors: (
-    primary: red,
+    success: red,
   ),
 );
 
@@ -27,8 +25,9 @@ $sl-config: (
 `}
     />
 
-    <ThemeContainer namespace="new-theme">
-      <Button intent="primary">primarry is red!</Button>
+    {/* we are using the namespace prop so we don't overwrite the them in our other stories */}
+    <ThemeContainer namespace="namespace">
+      <Button intent="success">success is red</Button>
     </ThemeContainer>
   </div>
 );
