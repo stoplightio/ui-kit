@@ -13,7 +13,7 @@ $regex: get-theme(code-editor, regex);
 $punctuation: get-theme(code-editor, punc);
 
 .#{$ns}-code-editor {
-  font-family: 'monospace';
+  font-family: monospace;
   white-space: pre-wrap;
   counter-reset: line;
   border-radius: 5px;

@@ -11,7 +11,6 @@ export * from './Checkbox/Checkbox';
 export * from './ContextMenu/ContextMenu';
 export * from './Icon/Icon';
 export * from './Menu/Menu';
-export * from './Overlay/Overlay';
 export * from './Popover/Popover';
 export * from './Radio/Radio';
 export * from './Switch/Switch';
@@ -19,5 +18,6 @@ export * from './Table/Table';
 export * from './Tabs/Tabs';
 export * from './Tag/Tag';
 export * from './Textarea/Textarea';
+export * from './ThemeContainer/ThemeContainer';
 
 export * from './classes';

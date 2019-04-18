@@ -13,16 +13,16 @@
 @import './common/theme';
 
 /*
+  * EXTERNAL SCSS DEPS
+  */
+@import './tailwind/base';
+@import './blueprint/base';
+
+/*
   * COMPONENTS
   */
 @import '../components/base';
-
-/*
-//   * EXTERNAL SCSS DEPS
-//   * tailwind requires that the consumer uses the tailwindcss POSTCSS plugin
-//   */
-@import './blueprint/base';
-@import './tailwind/base';
+@debug get-color(info, 6);
 
 // some extra custom styling we want to apply
 body,
@@ -34,8 +34,8 @@ html {
   background-color: 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
 }
 
-a {
-  color: get-color(blue, 6);
+#{ns} a {
+  color: get-color(info, 6);
 }
 
 .#{$ns}-label {

@@ -1,0 +1,8 @@
+$sl-config: (
+  namespace: 'new-theme',
+  colors: (
+    primary: red,
+  ),
+);
+
+@import '../../styles/ui-kit';

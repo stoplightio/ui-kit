@@ -1,7 +1,7 @@
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
-import '../src/styles/_index.scss';
+import '../src/styles/_ui-kit.scss';
 
 addDecorator(
   withOptions({
