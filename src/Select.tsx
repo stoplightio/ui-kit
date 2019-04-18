@@ -8,6 +8,8 @@ import { Props } from 'react-select/lib/Select';
 
 import { Omit } from '@stoplight/types';
 import { ITheme, useTheme } from './theme';
+import { Variant } from './types';
+import { getVariant } from './utils/getVariant';
 
 // renamed some props from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-select/lib/Select.d.t
 export interface ISelectBaseProps {
@@ -35,7 +37,7 @@ export interface ISelectBaseProps {
   closeOnScroll?: boolean;
 
   allowCreate?: boolean;
-  invalid?: boolean;
+  variant?: Variant;
 }
 
 export interface ISelectProps
@@ -83,7 +85,7 @@ const Select: React.FunctionComponent<ISelect> = props => {
     noOptionsMessage = 'No Options',
 
     allowCreate = false,
-    invalid = false,
+    variant = Variant.Default,
 
     ...selectProps
   } = props;
@@ -110,7 +112,7 @@ const Select: React.FunctionComponent<ISelect> = props => {
     onMenuScrollToBottom: onScrollToBottom,
     ...selectProps,
     // CUSTOM STYLES
-    styles: selectProps.styles || selectStyles(theme, invalid),
+    styles: selectProps.styles || selectStyles(theme, variant),
   };
 
   if ('loadOptions' in props && ('onCreateOption' in props || allowCreate)) {
@@ -134,21 +136,14 @@ const Select: React.FunctionComponent<ISelect> = props => {
  * override color related
  */
 
-export const selectStyles = (baseTheme: ITheme['select'], invalid: boolean) => {
+export const selectStyles = (baseTheme: ITheme['select'], variant: Variant) => {
   if (!baseTheme) {
     return {};
   }
 
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-  };
-
   const { chip: chipTheme, menu: menuTheme } = baseTheme;
 
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   return {
     clearIndicator: (provided: any, { isDisabled }: { isDisabled: boolean }) => ({

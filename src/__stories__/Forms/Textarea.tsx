@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 import { State, Store } from '@sambego/storybook-state';
-import { withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
 import { boolean, number } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { ITextarea, Textarea } from '../../Textarea';
+import { Variant } from '../../types';
 import { cleanKnobs } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
@@ -18,7 +19,7 @@ export const textareaKnobs = (tabName = 'Textarea'): ITextarea => {
     ...boxKnobs<HTMLTextAreaElement>(),
     autosize: boolean('autosize', false, tabName),
     disabled: boolean('disabled', false, tabName),
-    invalid: boolean('invalid', false, tabName),
+    variant: select('variant', Object.values(Variant), Variant.Default, tabName),
   });
 };
 

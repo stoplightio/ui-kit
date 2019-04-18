@@ -1,5 +1,3 @@
-/* @jsx jsx */
-import { jsx } from '@emotion/core';
 import * as React from 'react';
 
 const capitalize = require('lodash/capitalize');
@@ -7,9 +5,11 @@ const capitalize = require('lodash/capitalize');
 import { Box, IBox, IBoxCSS } from './Box';
 import { Flex } from './Flex';
 import { ITheme, useTheme } from './theme';
+import { Variant } from './types';
+import { getVariant } from './utils/getVariant';
 
 export interface ITooltip extends IBox<HTMLDivElement> {
-  invalid?: boolean;
+  variant?: Variant;
   posX?: 'left' | 'center' | 'right';
   posY?: 'top' | 'center' | 'bottom';
 }
@@ -18,7 +18,7 @@ const Tooltip: React.FunctionComponent<ITooltip> = React.forwardRef<HTMLDivEleme
   props,
   ref
 ) {
-  const { children, posX, posY, invalid, css, ...rest } = props;
+  const { children, posX, posY, variant, css, ...rest } = props;
 
   const { tooltip: theme } = useTheme();
 
@@ -44,16 +44,9 @@ Caret.displayName = 'Caret';
 
 const tooltipStyles = (
   baseTheme: ITheme['tooltip'],
-  { invalid, posX = 'left', posY = 'top', css }: ITooltip
+  { variant, posX = 'left', posY = 'top', css }: ITooltip
 ): IBoxCSS => {
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-  };
-
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   const margin: React.CSSProperties = {};
   if (posY !== 'center') {
@@ -78,15 +71,8 @@ const tooltipStyles = (
   ];
 };
 
-const contentStyles = (baseTheme: ITheme['tooltip'], { invalid }: ITooltip): IBoxCSS => {
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-  };
-
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+const contentStyles = (baseTheme: ITheme['tooltip'], { variant }: ITooltip): IBoxCSS => {
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   return [
     {
@@ -99,16 +85,9 @@ const contentStyles = (baseTheme: ITheme['tooltip'], { invalid }: ITooltip): IBo
 
 const caretStyles = (
   baseTheme: ITheme['tooltip'],
-  { invalid, posX = 'left', posY = 'top' }: ITooltip
+  { variant, posX = 'left', posY = 'top' }: ITooltip
 ): React.CSSProperties => {
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-  };
-
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   const s: React.CSSProperties = {};
   s.width = `${sz}px`;

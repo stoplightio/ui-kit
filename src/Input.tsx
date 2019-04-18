@@ -6,10 +6,12 @@ import AutosizeInput from 'react-input-autosize';
 
 import { Box, IBox } from './Box';
 import { ITheme, useTheme } from './theme';
+import { Variant } from './types';
+import { getVariant } from './utils/getVariant';
 
 export interface IInput extends Omit<IBox<HTMLInputElement>, 'as'> {
   autosize?: boolean;
-  invalid?: boolean;
+  variant?: Variant;
 }
 
 export interface IAutosizeInput {
@@ -61,15 +63,8 @@ const Input: React.FunctionComponent<IInput> = React.forwardRef<HTMLInputElement
 
 Input.displayName = 'Input';
 
-const inputStyles = (baseTheme: ITheme['input'], { disabled, invalid, css }: IInput) => {
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-  };
-
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+const inputStyles = (baseTheme: ITheme['input'], { disabled, variant, css }: IInput) => {
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   return [
     {

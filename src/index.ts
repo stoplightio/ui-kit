@@ -31,3 +31,4 @@ export * from './Toggle';
 export * from './Tooltip';
 
 export * from './theme';
+export * from './types';

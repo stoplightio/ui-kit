@@ -1,19 +1,20 @@
 import * as React from 'react';
 
 import { select, withKnobs } from '@storybook/addon-knobs';
-import { boolean, text } from '@storybook/addon-knobs/react';
+import { text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import { Button } from '../../Button';
 import { Popup } from '../../Popup';
 import { ITooltip, Tooltip } from '../../Tooltip';
+import { Variant } from '../../types';
 import { cleanKnobs } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
 export const TooltipKnobs = (tabName = 'Tooltip'): ITooltip => {
   return cleanKnobs({
     ...boxKnobs(),
-    invalid: boolean('invalid', false, tabName),
+    variant: select('variant', Object.values(Variant), Variant.Default, tabName),
     posX: select('posX', ['left', 'center', 'right'], 'left', tabName),
     posY: select('posY', ['top', 'center', 'bottom'], 'top', tabName),
   });

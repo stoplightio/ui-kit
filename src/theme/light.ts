@@ -13,6 +13,9 @@ const inputTheme: ITheme['input'] = {
   invalidFg: 'red',
   invalidBg: 'rgb(248, 222, 220)',
   invalidBorder: 'red',
+  warningFg: '#6b6b00',
+  warningBg: '#fffbe8',
+  warningBorder: '#c3c300',
 };
 
 const buttonTheme: ITheme['button'] = {
@@ -30,6 +33,10 @@ const checkboxTheme: ITheme['checkbox'] = {
   invalidBg: 'rgb(248, 222, 220)',
   invalidChecked: 'rgb(248, 222, 220)',
   invalidBorder: 'red',
+  warningFg: '#6b6b00',
+  warningBg: '#fffbe8',
+  warningChecked: '#fffbe8',
+  warningBorder: '#c3c300',
 };
 
 const menuTheme: ITheme['menu'] = {

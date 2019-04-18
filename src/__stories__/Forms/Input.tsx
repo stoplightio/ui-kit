@@ -9,6 +9,7 @@ import omit = require('lodash/omit');
 import { forwardRef } from 'react';
 import { useAutoFocus } from '../../hooks/useAutoFocus';
 import { IInput, Input } from '../../Input';
+import { Variant } from '../../types';
 import { AutosizeInputType, cleanKnobs, InlineInputType } from '../_utils';
 import { boxKnobs } from '../Layout/Box';
 
@@ -28,7 +29,7 @@ export const inputKnobs = (tabName = 'Input'): IInput => {
     disabled: boolean('disabled', false, tabName),
     type: select('type', InlineInputType, 'text', tabName),
     placeholder: text('placeholder', 'placeholder', tabName),
-    invalid: boolean('invalid', false, tabName),
+    variant: select('variant', Object.values(Variant), Variant.Default, tabName),
   });
 };
 

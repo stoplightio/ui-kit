@@ -83,6 +83,10 @@ export interface ITheme {
     invalidBg?: string;
     invalidBorder?: string;
     invalidChecked?: string;
+    warningFg?: string;
+    warningBg?: string;
+    warningBorder?: string;
+    warningChecked?: string;
   };
 
   contextMenu: {
@@ -112,6 +116,9 @@ export interface ITheme {
     invalidFg?: string;
     invalidBg?: string;
     invalidBorder?: string;
+    warningFg?: string;
+    warningBg?: string;
+    warningBorder?: string;
   };
 
   code: {
@@ -166,6 +173,9 @@ export interface ITheme {
     invalidFg?: string;
     invalidBg?: string;
     invalidBorder?: string;
+    warningFg?: string;
+    warningBg?: string;
+    warningBorder?: string;
 
     chip: {
       fg: string;
@@ -198,6 +208,9 @@ export interface ITheme {
     invalidFg?: string;
     invalidBg?: string;
     invalidBorder?: string;
+    warningFg?: string;
+    warningBg?: string;
+    warningBorder?: string;
   };
 
   tabs: {
@@ -223,6 +236,9 @@ export interface ITheme {
     invalidFg?: string;
     invalidBg?: string;
     invalidBorder?: string;
+    warningFg?: string;
+    warningBg?: string;
+    warningBorder?: string;
   };
 
   toast: {

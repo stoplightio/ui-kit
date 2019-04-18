@@ -2,19 +2,21 @@ import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import { ChangeEventHandler, useCallback, useState } from 'react';
 
-import { Box, Flex, IBox, ITheme, useTheme } from './';
+import { Box, Flex, IBox, IBoxCSS, ITheme, useTheme } from './';
+import { Variant } from './types';
+import { getVariant } from './utils/getVariant';
 
 export interface ICheckbox extends Omit<IBox<HTMLLabelElement>, 'as|onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
-  invalid?: boolean;
+  variant?: Variant;
 }
 
 const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelElement, ICheckbox>(function Checkbox(
   props,
   ref
 ) {
-  const { disabled: isDisabled, onChange, invalid, ...rest } = props;
+  const { disabled: isDisabled, onChange, variant, ...rest } = props;
 
   const { checkbox: baseTheme } = useTheme();
 
@@ -27,8 +29,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelE
   }, []);
 
   return (
-    // @ts-ignore FIXME issue with border-box in styling
-    <Flex {...rest} as="label" ref={ref} css={checkboxStyles(baseTheme, { isDisabled, isChecked, invalid })}>
+    <Flex {...rest} as="label" ref={ref} css={checkboxStyles(baseTheme, { isDisabled, isChecked, variant })}>
       <Box
         as="input"
         type="checkbox"
@@ -50,16 +51,11 @@ const Checkbox: React.FunctionComponent<ICheckbox> = React.forwardRef<HTMLLabelE
 Checkbox.displayName = 'Checkbox';
 export { Checkbox };
 
-export const checkboxStyles = (baseTheme: ITheme['checkbox'], { isChecked, isDisabled, invalid }: ICheckboxStyles) => {
-  const invalidTheme = {
-    fg: baseTheme.invalidFg,
-    bg: baseTheme.invalidBg,
-    border: baseTheme.invalidBorder,
-    checked: baseTheme.invalidChecked,
-  };
-
-  const theme = { ...baseTheme };
-  if (invalid) Object.assign(theme, invalidTheme);
+export const checkboxStyles = (
+  baseTheme: ITheme['checkbox'],
+  { isChecked, isDisabled, variant }: ICheckboxStyles
+): IBoxCSS => {
+  const theme = { ...baseTheme, ...getVariant(baseTheme, variant) };
 
   return [
     {
@@ -97,5 +93,5 @@ export const checkboxStyles = (baseTheme: ITheme['checkbox'], { isChecked, isDis
 interface ICheckboxStyles {
   isChecked: boolean;
   isDisabled: boolean;
-  invalid: boolean;
+  variant?: Variant;
 }
