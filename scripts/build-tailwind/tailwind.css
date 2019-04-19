@@ -3,4 +3,6 @@
  * TO UPDATE ONE OF THESE VALUES, UPDATE THE TAILWIND.CONFIG.JS AND RUN "YARN BUILD.TW"
  */
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
