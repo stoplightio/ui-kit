@@ -25,7 +25,7 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "build": "sl-scripts build && yarn build.styles",
+    "build": "sl-scripts build && yarn build.styles && mv dist/src/styles dist && rm -rf dist/src",
     "build.styles": "yarn build.bp && yarn build.tw && copyfiles src \"./src/**/*.scss\" ./dist && copyfiles \"./src/styles/blueprint/icons/*\" ./dist",
     "build.bp": "node-sass ./scripts/build-blueprint-icons/blueprint-icons.scss ./src/styles/blueprint/_icons.scss --functions ./scripts/build-blueprint-icons/sass-inline-svg.js --importer node_modules/node-sass-package-importer/dist/cli.js",
     "build.tw": "postcss ./scripts/build-tailwind/tailwind.css -o ./src/styles/tailwind/_base.scss -c ./sripts/tailwind-build/postcss.config.js",
