@@ -24,21 +24,25 @@ module.exports = {
   theme: {
     colors: {
       transparent: getScssTheme('colors', 'transparent'),
+      lighten: getScssThemeColors('lighten'),
+      darken: getScssThemeColors('darken'),
 
       black: getScssTheme('colors', 'black'),
       white: getScssTheme('colors', 'white'),
       gray: getScssThemeColors('gray'),
 
-      lighten: getScssThemeColors('lighten'),
-      darken: getScssThemeColors('darken'),
+      red: getScssThemeColors('red'),
+      orange: getScssThemeColors('orange'),
+      green: getScssThemeColors('green'),
+      blue: getScssThemeColors('blue'),
+      purple: getScssThemeColors('purple'),
 
-      info: getScssThemeColors('info'),
-      success: getScssThemeColors('success'),
-      warning: getScssThemeColors('warning'),
-      danger: getScssThemeColors('danger'),
-
-      primary: getScssThemeColors('primary'),
-      secondary: getScssThemeColors('secondary'),
+      // add so we have primary/info/etc classnames
+      primary: getScssTheme('colors', 'blue', 5),
+      info: getScssTheme('colors', 'blue', 5),
+      success: getScssTheme('colors', 'green', 5),
+      warning: getScssTheme('colors', 'orange', 5),
+      danger: getScssTheme('colors', 'red', 5),
     },
     spacing: {
       px: '1px',
@@ -151,7 +155,7 @@ module.exports = {
     },
     borderColor: theme => ({
       ...theme('colors'),
-      default: theme('colors').gray[300],
+      default: theme('colors').gray[3],
     }),
     borderRadius: {
       none: getScssTheme('borderRadius', 'none'),
