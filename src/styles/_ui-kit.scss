@@ -15,14 +15,13 @@
 /*
   * EXTERNAL SCSS DEPS
   */
-@import './tailwind/base';
 @import './blueprint/base';
+@import './tailwind/base';
 
 /*
   * COMPONENTS
   */
 @import '../components/base';
-@debug get-color(info, 6);
 
 // some extra custom styling we want to apply
 body,
