@@ -1,4 +1,4 @@
-import { Card as BPCard, Elevation as CardElevation, ICardProps as BPCardProps } from '@blueprintjs/core';
+import { Card as BPCard, ICardProps as BPCardProps } from '@blueprintjs/core';
 import * as React from 'react';
 
 /**
@@ -13,4 +13,4 @@ const Card: React.FunctionComponent<ICardProps> = props => {
 /**
  * EXPORTS
  */
-export { Card, CardElevation, ICardProps };
+export { Card, ICardProps };

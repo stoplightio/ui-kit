@@ -2,15 +2,15 @@ import { HTMLTable as BPTable, IHTMLTableProps as BPTableProps } from '@blueprin
 import * as React from 'react';
 
 /**
- * TABLE
+ * HTML TABLE
  */
-interface ITableProps extends BPTableProps {}
+interface IHTMLTableProps extends BPTableProps {}
 
-const Table: React.FunctionComponent<ITableProps> = props => {
+const HTMLTable: React.FunctionComponent<IHTMLTableProps> = props => {
   return <BPTable {...props} />;
 };
 
 /**
  * EXPORTS
  */
-export { ITableProps, Table };
+export { IHTMLTableProps, HTMLTable };

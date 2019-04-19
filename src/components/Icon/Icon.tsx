@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Icon as BPIcon, IIconProps as BPIconProps } from '@blueprintjs/core';
-import { IconNames } from '@blueprintjs/icons';
+import { IconName, IconNames } from '@blueprintjs/icons';
 import { FontAwesomeIcon, Props as FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
 
 // TODO NOT SURE IF WE WANT TO SUPPORT BOTH
@@ -27,4 +27,4 @@ const Icon: React.FunctionComponent<IIconProps> = (props: IIconProps) => {
 /**
  * EXPORTS
  */
-export { Icon, IconNames, IIconProps, IFaIconProps, FaIcon };
+export { Icon, IconNames, IconName, IIconProps, IFaIconProps, FaIcon };
