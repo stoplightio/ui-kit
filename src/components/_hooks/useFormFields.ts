@@ -7,12 +7,14 @@ export function useFormFields<T extends string>(
   const [variables, _updateVariables] = useImmer(defaultValues);
 
   function updateVariable(key: string, value: string) {
+    // @ts-ignore
     _updateVariables(draft => {
       draft[key] = value;
     });
   }
 
   function updateVariables(value: Dictionary<string, T>) {
+    // @ts-ignore
     _updateVariables(() => {
       return value;
     });
