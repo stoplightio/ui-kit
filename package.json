@@ -151,7 +151,8 @@
     ]
   },
   "release": {
-    "extends": "@stoplight/scripts/release"
+    "extends": "@stoplight/scripts/release",
+    "branch": "v2"
   },
   "prettier": {
     "printWidth": 120,
