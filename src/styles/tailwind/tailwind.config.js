@@ -303,7 +303,7 @@ module.exports = {
     borderStyle: [],
     borderWidth: [],
     cursor: [],
-    display: ['responsive'],
+    display: ['responsive', 'group-hover'],
     flexDirection: [],
     flexWrap: [],
     alignItems: [],
