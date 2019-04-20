@@ -5,9 +5,9 @@
 const NS = process.env.BLUEPRINT_NAMESPACE || 'bp3';
 
 import { Classes as BLUEPRINT } from '@blueprintjs/core';
-import { CODE_EDITOR } from './Code/styles/class';
 
 /**
  * EXPORTS
  */
-export const CLASSES = { NS, CODE_EDITOR, ...BLUEPRINT };
+
+export const Classes = { NS, ...BLUEPRINT, CODE_EDITOR: `${NS}-code-editor` };

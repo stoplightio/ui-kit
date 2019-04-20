@@ -13,15 +13,17 @@
 @import './common/theme';
 
 /*
-  * EXTERNAL SCSS DEPS
-  */
+ * EXTERNAL SCSS DEPS
+ */
+
 @import './blueprint/base';
 @import './tailwind/base';
 
 /*
-  * COMPONENTS
-  */
-@import '../components/base';
+ * COMPONENTS
+ */
+
+@import './components/base';
 
 // some extra custom styling we want to apply
 body,
