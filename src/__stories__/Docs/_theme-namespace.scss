@@ -1,20 +1,20 @@
-/**applied with <ThemeContainer namespace="namespace-1">*/
-.namespace-1 {
-  $sl-config: (
-    colors: (
-      success: blue,
-    ),
-  );
+// /**applied with <ThemeContainer namespace="namespace-1">*/
+// .namespace-1 {
+//   $sl-config: (
+//     colors: (
+//       success: blue,
+//     ),
+//   );
 
-  @import '../../styles/ui-kit';
-}
+//   @import '../../../styles/ui-kit';
+// }
 
-.namespace-2 {
-  $sl-config: (
-    colors: (
-      success: red,
-    ),
-  );
+// .namespace-2 {
+//   $sl-config: (
+//     colors: (
+//       success: red,
+//     ),
+//   );
 
-  @import '../../styles/ui-kit';
-}
+//   @import '../../../styles/ui-kit';
+// }

@@ -1,0 +1,29 @@
+.#{$ns}-scroll-thumb {
+  background-color: rgba(16, 22, 26, 0.3);
+  border-radius: 5px;
+  cursor: grab;
+  opacity: 1;
+  transition: opacity 0.3s;
+
+  &.static {
+    opacity: 0 !important;
+  }
+}
+
+.#{$ns}-scroll-track {
+  background: transparent;
+  position: absolute;
+  cursor: pointer;
+
+  &.vertical {
+    top: 2px;
+    right: 2px;
+    bottom: 10px;
+  }
+
+  &.horizontal {
+    right: 10px;
+    bottom: 2px;
+    left: 2px;
+  }
+}

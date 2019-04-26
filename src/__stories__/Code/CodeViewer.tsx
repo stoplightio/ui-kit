@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeViewer, ICodeViewerProps } from '../../components/Code/CodeViewer';
+import { CodeViewer, ICodeViewerProps } from '../../CodeViewer';
 
 export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
   language: text('language', 'javascript', tabName),

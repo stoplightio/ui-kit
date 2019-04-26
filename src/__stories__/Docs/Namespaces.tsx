@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { Button, ThemeContainer } from '../../components';
-import { CodeViewer } from '../../components/Code';
+import { Button, CodeViewer, ThemeContainer } from '../..';
 
 import './_theme-namespace.scss';
 

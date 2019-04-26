@@ -5,7 +5,7 @@ import { text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeEditor, ICodeEditorProps } from '../../components/Code/CodeEditor';
+import { CodeEditor, ICodeEditorProps } from '../../CodeEditor';
 
 const store = new Store({
   value: 'stoplight.uiKit();',
