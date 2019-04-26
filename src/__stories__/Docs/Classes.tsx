@@ -3,7 +3,7 @@ import * as React from 'react';
 import map = require('lodash/map');
 import range = require('lodash/range');
 
-import * as UI from '../../components';
+import { HTMLTable } from '../../components';
 
 const ColorRows = ({ color }: { color: string }) => (
   <tr>
@@ -34,7 +34,7 @@ export default () => (
         <Code>border-color</Code>. To use a shade of a color incluide the shade <Code>text-color-1</Code>
       </div>
 
-      <UI.Table condensed={true}>
+      <HTMLTable condensed={true}>
         <thead>
           <tr>
             <th>Colors</th>
@@ -68,7 +68,7 @@ export default () => (
             </td>
           </tr>
         </tbody>
-      </UI.Table>
+      </HTMLTable>
       <div className="w-5 h-5 bg-red" />
     </div>
 
