@@ -25,7 +25,7 @@ const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<H
     const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
 
     return (
-      <div className={cn(Classes.RUNNING_TEXT, Classes.CODE_BLOCK, Classes.CODE_EDITOR, className)} {...rest}>
+      <div className={cn(Classes.CODE_BLOCK, Classes.CODE_EDITOR, className)} {...rest}>
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
           // @ts-ignore FIXME type erorr
