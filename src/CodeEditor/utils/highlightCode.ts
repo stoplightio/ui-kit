@@ -10,5 +10,12 @@ import 'prismjs/components/prism-yaml';
 
 export const highlightCode = (code: string, language: string) => {
   const langDef = Prism.languages[language];
-  return langDef ? Prism.highlight(code, langDef, '') : code;
+  if (!code || !langDef) return code;
+
+  try {
+    return Prism.highlight(code, langDef, '');
+  } catch (error) {
+    console.log('Error highlighting code:', error, code);
+    return code;
+  }
 };
