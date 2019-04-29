@@ -15,7 +15,7 @@ const ThemeContainer: React.FunctionComponent<IThemeContainerProps> = props => {
 
   const bp_namespace = process.env.BLUEPRINT_NAMESPACE || 'bp3';
 
-  return <div className={cn(namespace, bp_namespace, dark && `${bp_namespace}-dark`)}>{children}</div>;
+  return <div className={cn(namespace, bp_namespace, dark && `${bp_namespace}-dark`, 'h-full w-full')}>{children}</div>;
 };
 
 /**
