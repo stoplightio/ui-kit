@@ -27,8 +27,8 @@ export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeLi
  * COMPONENTS
  */
 
-const Row: React.FunctionComponent<any> = ({ index, style, key }) => (
-  <div key={key} style={style} className="flex items-center border-b">
+const Row: React.FunctionComponent<any> = ({ index, style }) => (
+  <div style={style} className="flex items-center border-b">
     Item {index}
   </div>
 );
