@@ -33,7 +33,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   if (inline) {
     return (
       <code
-        className={cn(Classes.RUNNING_TEXT, Classes.CODE_BLOCK, Classes.CODE_EDITOR, className, {
+        className={cn(Classes.CODE_EDITOR, className, {
           isInline: inline,
           showLineNumbers,
         })}
@@ -48,7 +48,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 
   return (
     <pre
-      className={cn(Classes.RUNNING_TEXT, Classes.CODE_BLOCK, Classes.CODE_EDITOR, className, {
+      className={cn(Classes.CODE_EDITOR, className, {
         isInline: inline,
         showLineNumbers,
       })}
