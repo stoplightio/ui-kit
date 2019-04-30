@@ -1,8 +1,9 @@
-import * as cn from 'classnames';
 import * as React from 'react';
+import Scrollbars from 'react-custom-scrollbars';
 import * as ReactWindow from 'react-window';
 
-import { AutoSizer, Classes } from '../index';
+import { ListProps } from 'react-window';
+import { AutoSizer } from '../';
 
 /**
  * FIXED SIZE LIST
@@ -12,62 +13,52 @@ interface IFixedSizeListProps extends ReactWindow.FixedSizeListProps {
   autoHideTimeout?: number;
 }
 
+type RefFunction<T> = (instance: T | null) => void;
+
+const CustomScrollbars = React.forwardRef<
+  HTMLDivElement,
+  Pick<ListProps, 'style'> & { onScroll: React.UIEventHandler }
+>(({ onScroll, style, children }, ref) => {
+  const handleRef = React.useCallback(scrollbarsRef => {
+    if (scrollbarsRef) {
+      (ref as RefFunction<HTMLDivElement>)(scrollbarsRef.view);
+    } else {
+      (ref as RefFunction<HTMLDivElement>)(null);
+    }
+  }, []);
+
+  return (
+    <Scrollbars
+      ref={handleRef}
+      style={{ ...style, overflow: 'hidden' }}
+      onScroll={onScroll}
+      autoHide
+      autoHideTimeout={1000}
+      autoHideDuration={200}
+    >
+      {children}
+    </Scrollbars>
+  );
+});
+
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, autoHideTimeout = 500, ...rest } = props;
+  const { className, children, ...rest } = props;
 
-  const [scrollOffset, setScrollOffset] = React.useState<null | number>(null);
-  const [scrollHeight, setScrollHeight] = React.useState<null | number>(null);
-  const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
-
-  const outerRef = React.useRef(null);
-
-  // wrap in outer div to hide native scrollbars
   return (
     <AutoSizer>
       {({ width: listWidth, height: listHeight }) => (
-        <div className="relative overflow-hidden" style={{ height: listHeight, width: listWidth }}>
-          <ReactWindow.FixedSizeList
-            {...rest}
-            className={cn(className)}
-            style={{ marginRight: -15 }}
-            height={listHeight}
-            width={listWidth + 15}
-            outerRef={outerRef}
-            onScroll={() => {
-              if (outerRef.current) {
-                // @ts-ignore says current can be null despite the check
-                setScrollHeight(outerRef.current.scrollWidth);
-                // @ts-ignore
-                setScrollOffset(outerRef.current.scrollTop);
-              }
-
-              if (isScrolling !== null) {
-                clearTimeout(isScrolling as number);
-              }
-
-              setIsScrolling(
-                setTimeout(() => {
-                  setIsScrolling(null);
-                }, autoHideTimeout)
-              );
-            }}
-          />
-          <div className={cn(Classes.SCROLL_TRACK, 'vertical')} style={{ width: 6 }}>
-            <div
-              className={cn(Classes.SCROLL_THUMB, !isScrolling && 'static')}
-              style={{
-                display: 'block',
-                position: 'relative',
-                height: scrollHeight ? scrollHeight - 12 : 0,
-                width: '6px',
-                transform: `translateY(${scrollOffset}px)`,
-              }}
-            />
-          </div>
-        </div>
+        <ReactWindow.FixedSizeList
+          {...rest}
+          height={listHeight}
+          width={listWidth}
+          outerRef={ref}
+          outerElementType={CustomScrollbars}
+        >
+          {children}
+        </ReactWindow.FixedSizeList>
       )}
     </AutoSizer>
   );
@@ -86,19 +77,20 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
   ReactWindow.VariableSizeList,
   IVariableSizeListProps
 >(function VariableSizeList(props, ref) {
-  const { className, ...rest } = props;
+  const { className, children, ...rest } = props;
 
   return (
     <AutoSizer>
       {({ width: listWidth, height: listHeight }) => (
         <ReactWindow.VariableSizeList
           {...rest}
-          ref={ref}
-          className={cn(className)}
-          style={{ marginRight: -15 }}
           height={listHeight}
-          width={listWidth + 15}
-        />
+          width={listWidth}
+          outerRef={ref}
+          outerElementType={CustomScrollbars}
+        >
+          {children}
+        </ReactWindow.VariableSizeList>
       )}
     </AutoSizer>
   );
