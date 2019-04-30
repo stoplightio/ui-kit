@@ -4,7 +4,6 @@ import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollb
 
 import { Classes } from '../';
 import { useScrollToHash } from './hooks';
-import { getScrollTransform, getThumbDimension } from './utils';
 
 /**
  * SCROLL CONTAINER
@@ -18,67 +17,42 @@ interface IScrollContainer extends ScrollbarProps {
 
   // can scroll to an anchor/id
   scrollTo?: string;
-
   // include shadows to indicate more scroll
   shadows?: boolean;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
-  // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
-  const {
-    scrollTo,
-    children,
-    onUpdate,
-    autoHideTimeout = 500,
-    shadows = true,
-    innerRef,
-    style,
-    ...scrollbarProps
-  } = props;
-
+  // can scroll to an anchor/id
+  useScrollToHash(props.scrollTo);
   // we want to show the bottom shadow when the component is loaded
-  const [showShadowOnMount, setShowShadowOnMount] = React.useState<boolean>(shadows);
-  const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
+  const [showShadowOnMount, setShowShadowOnMount] = React.useState(props.shadows);
 
-  useScrollToHash(scrollTo);
-
+  const { scrollTo, children, shadows = true, innerRef, onScroll, style, ...scrollbarProps } = props;
   const scrollbars = innerRef || React.useRef<Scrollbars>(null);
-  const position = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
-  const { clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth } = position;
+  const scrollPosition = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
+  const { scrollTop, scrollHeight, clientHeight } = scrollPosition;
 
-  const thumbHorizontal = getThumbDimension({ scroll: scrollWidth, client: clientWidth }) || 0;
-  const thumbVertical = getThumbDimension({ scroll: scrollHeight, client: clientHeight }) || 0;
+  const shadowTop = shadows && scrollTop;
+  const shadowBottom = showShadowOnMount || (shadows && scrollHeight && scrollHeight - scrollTop !== clientHeight);
 
   return (
     <Scrollbars
       {...scrollbarProps}
-      style={style}
       ref={scrollbars}
-      autoHideTimeout={autoHideTimeout}
-      onUpdate={onUpdate}
+      autoHide
+      autoHideTimeout={1000}
+      autoHideDuration={300}
       onScroll={(e: any) => {
+        if (onScroll) onScroll(e);
+
+        // after intial scroll the ref will be set and we can use that to calculate shadows
         setShowShadowOnMount(false);
-
-        if (isScrolling !== null) {
-          clearTimeout(isScrolling as number);
-        }
-
-        setIsScrolling(
-          setTimeout(() => {
-            setIsScrolling(null);
-          }, autoHideTimeout)
-        );
       }}
+      // overide to offset the native scroll bars
       renderView={({ style }: any) => {
-        // overide to offset the native scroll bars
         return (
           <div
-            className={cn(
-              Classes.SCROLL_CONTAINER,
-              shadows && scrollTop && 'shadow-top',
-              ((shadows && scrollHeight && scrollHeight - scrollTop !== clientHeight) || showShadowOnMount) &&
-                'shadow-bottom'
-            )}
+            className={cn(Classes.SCROLL_CONTAINER, shadowTop && 'shadow-top', shadowBottom && 'shadow-bottom')}
             style={{
               ...style,
               marginRight: '-15px',
@@ -87,35 +61,30 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
           />
         );
       }}
-      // Custom component overrides
-      renderTrackHorizontal={hTrackProps => <div {...hTrackProps} className={cn(Classes.SCROLL_TRACK, 'horizontal')} />}
-      renderThumbHorizontal={({ ref: hThumbRef, style: hThumbStyle = {}, ...hThumbRest }) => (
+      renderTrackHorizontal={({ style }) => (
         <div
-          {...hThumbRest}
-          ref={hThumbRef}
-          className={cn(Classes.SCROLL_THUMB, !isScrolling && 'static')}
           style={{
-            ...hThumbStyle,
-            height: '6px',
-            width: thumbHorizontal,
-            transform: `translateX(${getScrollTransform(clientWidth, scrollWidth, scrollLeft, thumbHorizontal)}px)`,
+            ...style,
+            borderRadius: 3,
+            right: 10,
+            bottom: 2,
+            left: 2,
           }}
         />
       )}
-      renderTrackVertical={vTrackProps => <div {...vTrackProps} className={cn(Classes.SCROLL_TRACK, 'vertical')} />}
-      renderThumbVertical={({ ref: vThumbRef, style: vThumbStyle = {}, ...vThumbRest }) => (
+      renderThumbHorizontal={hThumbProps => <div {...hThumbProps} className="bg-darken-5 dark:bg-darken-8 rounded" />}
+      renderTrackVertical={({ style }) => (
         <div
-          {...vThumbRest}
-          ref={vThumbRef}
-          className={cn(Classes.SCROLL_THUMB, !isScrolling && 'static')}
           style={{
-            ...vThumbStyle,
-            height: thumbVertical,
-            width: '6px',
-            transform: `translateY(${getScrollTransform(clientHeight, scrollHeight, scrollTop, thumbVertical)}px)`,
+            ...style,
+            borderRadius: 3,
+            bottom: 10,
+            right: 2,
+            top: 2,
           }}
         />
       )}
+      renderThumbVertical={vThumbProps => <div {...vThumbProps} className="bg-darken-5 dark:bg-darken-8 rounded" />}
     >
       {children}
     </Scrollbars>

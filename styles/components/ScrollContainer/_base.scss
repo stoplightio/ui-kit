@@ -39,34 +39,8 @@ $sl-shadow-bottom: 0 -20px 10px -8px inset;
 
 .#{$ns}-scroll-thumb {
   background-color: get-color(darken, 6);
-  border-radius: 5px;
-  cursor: grab;
-  opacity: 1;
-  transition: opacity 0.3s;
-
-  &.static {
-    opacity: 0 !important;
-  }
 
   .#{$ns}-dark & {
     color: get-color(darken, 8);
-  }
-}
-
-.#{$ns}-scroll-track {
-  background: transparent;
-  position: absolute;
-  cursor: pointer;
-
-  &.vertical {
-    top: 2px;
-    right: 2px;
-    bottom: 10px;
-  }
-
-  &.horizontal {
-    right: 10px;
-    bottom: 2px;
-    left: 2px;
   }
 }
