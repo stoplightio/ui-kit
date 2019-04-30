@@ -15,11 +15,15 @@ export const codeEditorKnobs = (tabName = 'Code Editor'): ICodeEditorProps => ({
   language: text('language', 'javascript', tabName),
   value: text('value', 'const defaultValue = stoplight.io();', tabName),
   onChange: action('onChange'),
+  placeholder: text('placeholder', 'placeholder...', tabName),
 });
 
 storiesOf('Code:Editor', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />)
+  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />);
+
+storiesOf('Code:Editor', module)
+  .addDecorator(withKnobs)
   .addDecorator(StateDecorator(store) as StoryDecorator)
   .add('with store', () => (
     <CodeEditor {...codeEditorKnobs()} value={store.get('value')} onChange={(value: string) => store.set({ value })} />

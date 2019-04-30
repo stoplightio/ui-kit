@@ -15,101 +15,107 @@ $punctuation: get-theme(code-editor, punc);
 .#{$ns}-code-editor {
   counter-reset: line;
 
-  &.isInline {
-    margin: 0 2px;
-    border-radius: 2px;
+  &.placeholder {
+    color: get-color(darken, 6) !important;
   }
 
-  .namespace {
-    opacity: 0.7;
-  }
-
-  .line-number {
-    padding-left: 40px;
-    position: relative;
-    width: calc(100% - 40px);
-    display: block;
-
-    &::before {
-      content: '';
-      display: inline-block;
-      user-select: none;
-      opacity: 0.3;
-      text-align: right;
-      min-width: 25px;
-      position: absolute;
-      left: 0;
-      counter-increment: line;
-      content: counter(line);
-    }
-  }
-
-  .token {
-    &.comment,
-    &.prolog,
-    &.doctype,
-    &.cdata {
-      color: $comment;
+  &:not(.placeholder) {
+    &.isInline {
+      margin: 0 2px;
+      border-radius: 2px;
     }
 
-    &.punctuation {
-      color: $punctuation;
+    .namespace {
+      opacity: 0.7;
     }
 
-    &.property,
-    &.tag,
-    &.boolean,
-    &.number,
-    &.symbol,
-    &.deleted {
-      color: $primary;
+    .line-number {
+      padding-left: 40px;
+      position: relative;
+      width: calc(100% - 40px);
+      display: block;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        user-select: none;
+        opacity: 0.3;
+        text-align: right;
+        min-width: 25px;
+        position: absolute;
+        left: 0;
+        counter-increment: line;
+        content: counter(line);
+      }
     }
 
-    &.selector,
-    &.attr-name,
-    &.string,
-    &.char,
-    &.builtin,
-    &.inserted {
-      color: $secondary;
-    }
+    .token {
+      &.comment,
+      &.prolog,
+      &.doctype,
+      &.cdata {
+        color: $comment;
+      }
 
-    &.operator,
-    &.entity,
-    &.url {
-      color: $operator;
-    }
+      &.punctuation {
+        color: $punctuation;
+      }
 
-    &.atrule,
-    &.attr-value,
-    &.keyword {
-      color: $keyword;
-    }
+      &.property,
+      &.tag,
+      &.boolean,
+      &.number,
+      &.symbol,
+      &.deleted {
+        color: $primary;
+      }
 
-    &.function {
-      color: $function;
-    }
+      &.selector,
+      &.attr-name,
+      &.string,
+      &.char,
+      &.builtin,
+      &.inserted {
+        color: $secondary;
+      }
 
-    &.variable {
-      color: $variable;
-    }
+      &.operator,
+      &.entity,
+      &.url {
+        color: $operator;
+      }
 
-    &.regex,
-    &.important {
-      color: $regex;
-    }
+      &.atrule,
+      &.attr-value,
+      &.keyword {
+        color: $keyword;
+      }
 
-    &.important,
-    &.bold {
-      font-weight: bold;
-    }
+      &.function {
+        color: $function;
+      }
 
-    &.italic {
-      font-style: italic;
-    }
+      &.variable {
+        color: $variable;
+      }
 
-    &.entity {
-      cursor: help;
+      &.regex,
+      &.important {
+        color: $regex;
+      }
+
+      &.important,
+      &.bold {
+        font-weight: bold;
+      }
+
+      &.italic {
+        font-style: italic;
+      }
+
+      &.entity {
+        cursor: help;
+      }
     }
   }
 }
