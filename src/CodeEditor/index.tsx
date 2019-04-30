@@ -24,12 +24,13 @@ const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<H
     const highlight = React.useCallback(code => (language ? highlightCode(code, language) : code), [language]);
 
     return (
-      <div className={cn('bp3-code-editor', !value && 'placeholder', className)} {...rest}>
+      <div className={cn('bp3-code-editor', className)} {...rest}>
+        {!value && <span className="absolute text-darken-6">{placeholder}</span>}
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
           // @ts-ignore FIXME type erorr
           ref={ref}
-          value={value || placeholder}
+          value={value}
           onValueChange={onChange}
           highlight={highlight}
         />
