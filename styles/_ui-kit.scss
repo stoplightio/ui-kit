@@ -2,28 +2,31 @@
  * UTILS
  * contains theme and helper functions
  */
-
 @import './common/utils';
 
 /*
  * THEME
  * contains theme and helper functions
  */
-
 @import './common/theme';
 
 /*
- * EXTERNAL SCSS DEPS
+ * BLUEPRINT
+ * containe blueprint styles and icons
  */
-
 @import './blueprint/base';
-@import './tailwind/base';
 
 /*
  * COMPONENTS
+ * contains styles for our home grown components
  */
-
 @import './components/base';
+
+/*
+ * TAILWIND
+ * contains tailwind generated classes
+ */
+@import './tailwind/base';
 
 // some extra custom styling we want to apply
 body,
@@ -51,4 +54,33 @@ html,
 
 .#{$ns}-select-popover .#{$ns}-menu .#{$ns}-menu-item-label {
   font-size: 10px;
+}
+
+// tailwind sets fontsize on headers to base so reset to chrome defaults
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+h3 {
+  font-size: 1.17rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 0.83rem;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 0.67;
+  font-weight: bold;
 }

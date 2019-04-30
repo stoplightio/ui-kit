@@ -12,6 +12,10 @@ export const Classes = {
   ...BPClasses,
   NS,
   CODE_EDITOR: `${NS}-code-editor`,
+  SIMPLE_TAB: `${NS}-simple-tab`,
+  SIMPLE_TAB_LIST: `${NS}-simple-tab-list`,
+  SIMPLE_TAB_PANEL: `${NS}-simple-tab-panel`,
+  SCROLL_CONTAINER: `${NS}-scroll-container`,
   SCROLL_TRACK: `${NS}-scroll-track`,
   SCROLL_THUMB: `${NS}-scroll-thumb`,
 };

@@ -3492,111 +3492,111 @@
 }
 
 .font-hairline {
-  font-weight: 100;
+  font-weight: get-theme(fontWeight , hairline);
 }
 
 .font-thin {
-  font-weight: 200;
+  font-weight: get-theme(fontWeight , thin);
 }
 
 .font-light {
-  font-weight: 300;
+  font-weight: get-theme(fontWeight , light);
 }
 
 .font-normal {
-  font-weight: 400;
+  font-weight: get-theme(fontWeight , normal);
 }
 
 .font-medium {
-  font-weight: 500;
+  font-weight: get-theme(fontWeight , medium);
 }
 
 .font-semibold {
-  font-weight: 600;
+  font-weight: get-theme(fontWeight , semibold);
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: get-theme(fontWeight , bold);
 }
 
 .font-extrabold {
-  font-weight: 800;
+  font-weight: get-theme(fontWeight , extrabold);
 }
 
 .font-black {
-  font-weight: 900;
+  font-weight: get-theme(fontWeight , black);
 }
 
 .hover\:font-hairline:hover {
-  font-weight: 100;
+  font-weight: get-theme(fontWeight , hairline);
 }
 
 .hover\:font-thin:hover {
-  font-weight: 200;
+  font-weight: get-theme(fontWeight , thin);
 }
 
 .hover\:font-light:hover {
-  font-weight: 300;
+  font-weight: get-theme(fontWeight , light);
 }
 
 .hover\:font-normal:hover {
-  font-weight: 400;
+  font-weight: get-theme(fontWeight , normal);
 }
 
 .hover\:font-medium:hover {
-  font-weight: 500;
+  font-weight: get-theme(fontWeight , medium);
 }
 
 .hover\:font-semibold:hover {
-  font-weight: 600;
+  font-weight: get-theme(fontWeight , semibold);
 }
 
 .hover\:font-bold:hover {
-  font-weight: 700;
+  font-weight: get-theme(fontWeight , bold);
 }
 
 .hover\:font-extrabold:hover {
-  font-weight: 800;
+  font-weight: get-theme(fontWeight , extrabold);
 }
 
 .hover\:font-black:hover {
-  font-weight: 900;
+  font-weight: get-theme(fontWeight , black);
 }
 
 .focus\:font-hairline:focus {
-  font-weight: 100;
+  font-weight: get-theme(fontWeight , hairline);
 }
 
 .focus\:font-thin:focus {
-  font-weight: 200;
+  font-weight: get-theme(fontWeight , thin);
 }
 
 .focus\:font-light:focus {
-  font-weight: 300;
+  font-weight: get-theme(fontWeight , light);
 }
 
 .focus\:font-normal:focus {
-  font-weight: 400;
+  font-weight: get-theme(fontWeight , normal);
 }
 
 .focus\:font-medium:focus {
-  font-weight: 500;
+  font-weight: get-theme(fontWeight , medium);
 }
 
 .focus\:font-semibold:focus {
-  font-weight: 600;
+  font-weight: get-theme(fontWeight , semibold);
 }
 
 .focus\:font-bold:focus {
-  font-weight: 700;
+  font-weight: get-theme(fontWeight , bold);
 }
 
 .focus\:font-extrabold:focus {
-  font-weight: 800;
+  font-weight: get-theme(fontWeight , extrabold);
 }
 
 .focus\:font-black:focus {
-  font-weight: 900;
+  font-weight: get-theme(fontWeight , black);
 }
 
 .h-0 {
