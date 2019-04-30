@@ -2,8 +2,6 @@ import { Omit } from '@stoplight/types';
 import * as cn from 'classnames';
 import * as React from 'react';
 
-import { Classes } from '../classes';
-
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
 
 import { highlightCode } from './utils/highlightCode';
@@ -13,18 +11,20 @@ import { highlightCode } from './utils/highlightCode';
  */
 interface ICodeEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   value: string;
-  language: string;
-  autoFocus?: boolean;
   onChange(code: string): any;
+  language?: string;
+  autoFocus?: boolean;
 }
 
 const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<HTMLDivElement, ICodeEditorProps>(
   function Editor(props, ref) {
-    const { autoFocus, language, onChange, value, className, ...rest } = props;
-    const highlight = React.useCallback(() => highlightCode(value, language), [value, language]);
+    const { autoFocus, language, onChange, value, placeholder, className, ...rest } = props;
+
+    // Highlight code on change
+    const highlight = React.useCallback(code => (language ? highlightCode(code, language) : code), [language]);
 
     return (
-      <div className={cn(Classes.CODE_BLOCK, Classes.CODE_EDITOR, className)} {...rest}>
+      <div className={cn('bp3-code-editor', className)} {...rest}>
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
           // @ts-ignore FIXME type erorr
