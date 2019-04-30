@@ -18,14 +18,14 @@ interface ICodeEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
 
 const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<HTMLDivElement, ICodeEditorProps>(
   function Editor(props, ref) {
-    const { autoFocus, language, onChange, value, placeholder = 'placeholder...', className, ...rest } = props;
+    const { autoFocus, language, onChange, value, placeholder, className, ...rest } = props;
 
     // Highlight code on change
     const highlight = React.useCallback(code => (language ? highlightCode(code, language) : code), [language]);
 
     return (
       <div className={cn('bp3-code-editor', className)} {...rest}>
-        {!value && <span className="absolute text-darken-6">{placeholder}</span>}
+        {!value && placeholder && <span className="absolute text-darken-6">{placeholder}</span>}
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
           // @ts-ignore FIXME type erorr
