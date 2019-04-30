@@ -1,5 +1,44 @@
+$sl-shadow-color: get-color(darken, 6);
+$sl-shadow-color-dark: get-color(darken, 9);
+
+$sl-shadow-top: 0 10px 10px -12px inset;
+$sl-shadow-bottom: 0 -20px 10px -8px inset;
+
+.#{$ns}-scroll-container {
+  transition: box-shadow 0.5s ease-in-out;
+  box-shadow: $sl-shadow-top rgba(0, 0, 0, 0), $sl-shadow-bottom rgba(0, 0, 0, 0);
+
+  &.shadow-top {
+    box-shadow: $sl-shadow-top $sl-shadow-color, $sl-shadow-bottom rgba(0, 0, 0, 0);
+  }
+
+  &.shadow-bottom {
+    box-shadow: $sl-shadow-top rgba(0, 0, 0, 0), $sl-shadow-bottom $sl-shadow-color;
+
+    &.shadow-top {
+      box-shadow: $sl-shadow-top $sl-shadow-color, $sl-shadow-bottom $sl-shadow-color;
+    }
+  }
+
+  .#{$ns}-dark & {
+    box-shadow: $sl-shadow-top $sl-shadow-color-dark, $sl-shadow-bottom $sl-shadow-color-dark;
+
+    &.shadow-top {
+      box-shadow: $sl-shadow-top $sl-shadow-color-dark, $sl-shadow-bottom rgba(0, 0, 0, 0);
+    }
+
+    &.shadow-bottom {
+      box-shadow: $sl-shadow-top rgba(0, 0, 0, 0), $sl-shadow-bottom $sl-shadow-color-dark;
+
+      &.shadow-top {
+        box-shadow: $sl-shadow-top $sl-shadow-color-dark, $sl-shadow-bottom $sl-shadow-color-dark;
+      }
+    }
+  }
+}
+
 .#{$ns}-scroll-thumb {
-  background-color: rgba(16, 22, 26, 0.3);
+  background-color: get-color(darken, 6);
   border-radius: 5px;
   cursor: grab;
   opacity: 1;
@@ -7,6 +46,10 @@
 
   &.static {
     opacity: 0 !important;
+  }
+
+  .#{$ns}-dark & {
+    color: get-color(darken, 8);
   }
 }
 

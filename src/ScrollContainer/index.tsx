@@ -18,13 +18,28 @@ interface IScrollContainer extends ScrollbarProps {
 
   // can scroll to an anchor/id
   scrollTo?: string;
+
+  // include shadows to indicate more scroll
+  shadows?: boolean;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
   // pull out scrollTo so they are not in scrollbarProps (don't want them spread onto <Scrollbars /> component)
-  const { scrollTo, children, onUpdate, autoHideTimeout = 500, innerRef, style, ...scrollbarProps } = props;
+  const {
+    scrollTo,
+    children,
+    onUpdate,
+    autoHideTimeout = 500,
+    shadows = true,
+    innerRef,
+    style,
+    ...scrollbarProps
+  } = props;
 
+  // we want to show the bottom shadow when the component is loaded
+  const [showShadowOnMount, setShowShadowOnMount] = React.useState<boolean>(shadows);
   const [isScrolling, setIsScrolling] = React.useState<null | number | NodeJS.Timer>(null);
+
   useScrollToHash(scrollTo);
 
   const scrollbars = innerRef || React.useRef<Scrollbars>(null);
@@ -42,6 +57,8 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
       autoHideTimeout={autoHideTimeout}
       onUpdate={onUpdate}
       onScroll={(e: any) => {
+        setShowShadowOnMount(false);
+
         if (isScrolling !== null) {
           clearTimeout(isScrolling as number);
         }
@@ -56,6 +73,12 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
         // overide to offset the native scroll bars
         return (
           <div
+            className={cn(
+              Classes.SCROLL_CONTAINER,
+              shadows && scrollTop && 'shadow-top',
+              ((shadows && scrollHeight && scrollHeight - scrollTop !== clientHeight) || showShadowOnMount) &&
+                'shadow-bottom'
+            )}
             style={{
               ...style,
               marginRight: '-15px',
