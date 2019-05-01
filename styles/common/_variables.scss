@@ -18,6 +18,7 @@ $sl-defaults: (
     transparent: transparent,
     black: #10161a,
     white: #fff,
+    disabled: rgba(#394b59, 0.5),
     lighten: (
       1: rgba(255, 255, 255, 0.02),
       2: rgba(255, 255, 255, 0.05),

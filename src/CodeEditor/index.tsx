@@ -25,7 +25,7 @@ const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<H
 
     return (
       <div className={cn('bp3-code-editor', className)} {...rest}>
-        {!value && placeholder && <span className="absolute text-darken-6">{placeholder}</span>}
+        {!value && placeholder && <span className="absolute text-disabled">{placeholder}</span>}
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
           // @ts-ignore FIXME type erorr

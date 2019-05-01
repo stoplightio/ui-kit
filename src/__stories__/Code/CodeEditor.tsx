@@ -20,7 +20,11 @@ export const codeEditorKnobs = (tabName = 'Code Editor'): ICodeEditorProps => ({
 
 storiesOf('Code:Editor', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />);
+  .add('with defaults', () => (
+    <>
+      <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />
+    </>
+  ));
 
 storiesOf('Code:Editor', module)
   .addDecorator(withKnobs)

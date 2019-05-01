@@ -105,6 +105,10 @@
   background-color: get-theme(colors , darken , 5);
 }
 
+.bg-disabled {
+  background-color: get-theme(colors , disabled);
+}
+
 .bg-black {
   background-color: get-theme(colors , black);
 }
@@ -455,6 +459,10 @@
 
 .hover\:bg-darken:hover {
   background-color: get-theme(colors , darken , 5);
+}
+
+.hover\:bg-disabled:hover {
+  background-color: get-theme(colors , disabled);
 }
 
 .hover\:bg-black:hover {
@@ -809,6 +817,10 @@
   background-color: get-theme(colors , darken , 5);
 }
 
+.focus\:bg-disabled:focus {
+  background-color: get-theme(colors , disabled);
+}
+
 .focus\:bg-black:focus {
   background-color: get-theme(colors , black);
 }
@@ -1159,6 +1171,10 @@
 
 .bp3-dark .dark\:bg-darken {
   background-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark\:bg-disabled {
+  background-color: get-theme(colors , disabled);
 }
 
 .bp3-dark .dark\:bg-black {
@@ -1585,6 +1601,10 @@
   border-color: get-theme(colors , darken , 5);
 }
 
+.border-disabled {
+  border-color: get-theme(colors , disabled);
+}
+
 .border-black {
   border-color: get-theme(colors , black);
 }
@@ -1935,6 +1955,10 @@
 
 .hover\:border-darken:hover {
   border-color: get-theme(colors , darken , 5);
+}
+
+.hover\:border-disabled:hover {
+  border-color: get-theme(colors , disabled);
 }
 
 .hover\:border-black:hover {
@@ -2289,6 +2313,10 @@
   border-color: get-theme(colors , darken , 5);
 }
 
+.focus\:border-disabled:focus {
+  border-color: get-theme(colors , disabled);
+}
+
 .focus\:border-black:focus {
   border-color: get-theme(colors , black);
 }
@@ -2639,6 +2667,10 @@
 
 .bp3-dark .dark\:border-darken {
   border-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark\:border-disabled {
+  border-color: get-theme(colors , disabled);
 }
 
 .bp3-dark .dark\:border-black {
@@ -6080,6 +6112,10 @@
   color: get-theme(colors , darken , 5);
 }
 
+.text-disabled {
+  color: get-theme(colors , disabled);
+}
+
 .text-black {
   color: get-theme(colors , black);
 }
@@ -6430,6 +6466,10 @@
 
 .hover\:text-darken:hover {
   color: get-theme(colors , darken , 5);
+}
+
+.hover\:text-disabled:hover {
+  color: get-theme(colors , disabled);
 }
 
 .hover\:text-black:hover {
@@ -6784,6 +6824,10 @@
   color: get-theme(colors , darken , 5);
 }
 
+.focus\:text-disabled:focus {
+  color: get-theme(colors , disabled);
+}
+
 .focus\:text-black:focus {
   color: get-theme(colors , black);
 }
@@ -7134,6 +7178,10 @@
 
 .bp3-dark .dark\:text-darken {
   color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark\:text-disabled {
+  color: get-theme(colors , disabled);
 }
 
 .bp3-dark .dark\:text-black {

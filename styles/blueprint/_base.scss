@@ -34,11 +34,11 @@ $dark-gray3: #293742;
 $dark-gray4: #30404d;
 $dark-gray5: #394b59;
 
-$gray1: #5c7080;
-$gray2: #738694;
-$gray3: #8a9ba8;
-$gray4: #a7b6c2;
-$gray5: #bfccd6;
+$gray1: get-color(gray, 7);
+$gray2: get-color(gray, 6);
+$gray3: get-color(gray, 6);
+$gray4: get-color(gray, 5);
+$gray5: get-color(gray, 4);
 
 $light-gray1: #ced9e0;
 $light-gray2: #d8e1e8;
@@ -82,7 +82,7 @@ $indigo5: get-color(purple, 4);
 
 $pt-text-color: $dark-gray1;
 $pt-text-color-muted: $gray1;
-$pt-text-color-disabled: rgba($pt-text-color-muted, 0.5);
+$pt-text-color-disabled: get-color(disabled);
 $pt-heading-color: $pt-text-color;
 $pt-link-color: $blue2;
 $pt-dark-text-color: $light-gray5;

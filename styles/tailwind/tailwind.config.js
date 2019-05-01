@@ -26,6 +26,7 @@ module.exports = {
       transparent: getScssTheme('colors', 'transparent'),
       lighten: getScssThemeColors('lighten'),
       darken: getScssThemeColors('darken'),
+      disabled: getScssTheme('colors', 'disabled'),
 
       black: getScssTheme('colors', 'black'),
       white: getScssTheme('colors', 'white'),
