@@ -23,6 +23,7 @@ module.exports = {
   separator: ':',
   theme: {
     colors: {
+      inherit: 'inherit',
       transparent: getScssTheme('colors', 'transparent'),
       lighten: getScssThemeColors('lighten'),
       darken: getScssThemeColors('darken'),
@@ -294,12 +295,12 @@ module.exports = {
   variants: {
     appearance: [],
     backgroundAttachment: [],
-    backgroundColor: ['hover', 'focus', 'dark'],
+    backgroundColor: ['hover', 'focus', 'active', 'dark'],
     backgroundPosition: [],
     backgroundRepeat: [],
     backgroundSize: [],
     borderCollapse: [],
-    borderColor: ['hover', 'focus', 'dark'],
+    borderColor: ['hover', 'focus', 'active', 'dark'],
     borderRadius: [],
     borderStyle: [],
     borderWidth: [],
@@ -342,7 +343,7 @@ module.exports = {
     stroke: [],
     tableLayout: [],
     textAlign: [],
-    textColor: ['hover', 'focus', 'dark'],
+    textColor: ['hover', 'focus', 'active', 'dark'],
     fontSize: [],
     fontStyle: [],
     textTransform: [],

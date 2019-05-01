@@ -21,6 +21,10 @@
   background-attachment: scroll;
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-transparent {
   background-color: get-theme(colors , transparent);
 }
@@ -375,6 +379,10 @@
 
 .bg-danger {
   background-color: get-theme(colors , red , 5);
+}
+
+.hover\:bg-inherit:hover {
+  background-color: inherit;
 }
 
 .hover\:bg-transparent:hover {
@@ -733,6 +741,10 @@
   background-color: get-theme(colors , red , 5);
 }
 
+.focus\:bg-inherit:focus {
+  background-color: inherit;
+}
+
 .focus\:bg-transparent:focus {
   background-color: get-theme(colors , transparent);
 }
@@ -1087,6 +1099,370 @@
 
 .focus\:bg-danger:focus {
   background-color: get-theme(colors , red , 5);
+}
+
+.active\:bg-inherit:active {
+  background-color: inherit;
+}
+
+.active\:bg-transparent:active {
+  background-color: get-theme(colors , transparent);
+}
+
+.active\:bg-lighten-1:active {
+  background-color: get-theme(colors , lighten , 1);
+}
+
+.active\:bg-lighten-2:active {
+  background-color: get-theme(colors , lighten , 2);
+}
+
+.active\:bg-lighten-3:active {
+  background-color: get-theme(colors , lighten , 3);
+}
+
+.active\:bg-lighten-4:active {
+  background-color: get-theme(colors , lighten , 4);
+}
+
+.active\:bg-lighten-5:active {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.active\:bg-lighten-6:active {
+  background-color: get-theme(colors , lighten , 6);
+}
+
+.active\:bg-lighten-7:active {
+  background-color: get-theme(colors , lighten , 7);
+}
+
+.active\:bg-lighten-8:active {
+  background-color: get-theme(colors , lighten , 8);
+}
+
+.active\:bg-lighten-9:active {
+  background-color: get-theme(colors , lighten , 9);
+}
+
+.active\:bg-lighten:active {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.active\:bg-darken-1:active {
+  background-color: get-theme(colors , darken , 1);
+}
+
+.active\:bg-darken-2:active {
+  background-color: get-theme(colors , darken , 2);
+}
+
+.active\:bg-darken-3:active {
+  background-color: get-theme(colors , darken , 3);
+}
+
+.active\:bg-darken-4:active {
+  background-color: get-theme(colors , darken , 4);
+}
+
+.active\:bg-darken-5:active {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.active\:bg-darken-6:active {
+  background-color: get-theme(colors , darken , 6);
+}
+
+.active\:bg-darken-7:active {
+  background-color: get-theme(colors , darken , 7);
+}
+
+.active\:bg-darken-8:active {
+  background-color: get-theme(colors , darken , 8);
+}
+
+.active\:bg-darken-9:active {
+  background-color: get-theme(colors , darken , 9);
+}
+
+.active\:bg-darken:active {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.active\:bg-disabled:active {
+  background-color: get-theme(colors , disabled);
+}
+
+.active\:bg-black:active {
+  background-color: get-theme(colors , black);
+}
+
+.active\:bg-white:active {
+  background-color: get-theme(colors , white);
+}
+
+.active\:bg-gray-1:active {
+  background-color: get-theme(colors , gray , 1);
+}
+
+.active\:bg-gray-2:active {
+  background-color: get-theme(colors , gray , 2);
+}
+
+.active\:bg-gray-3:active {
+  background-color: get-theme(colors , gray , 3);
+}
+
+.active\:bg-gray-4:active {
+  background-color: get-theme(colors , gray , 4);
+}
+
+.active\:bg-gray-5:active {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.active\:bg-gray-6:active {
+  background-color: get-theme(colors , gray , 6);
+}
+
+.active\:bg-gray-7:active {
+  background-color: get-theme(colors , gray , 7);
+}
+
+.active\:bg-gray-8:active {
+  background-color: get-theme(colors , gray , 8);
+}
+
+.active\:bg-gray-9:active {
+  background-color: get-theme(colors , gray , 9);
+}
+
+.active\:bg-gray:active {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.active\:bg-red-1:active {
+  background-color: get-theme(colors , red , 1);
+}
+
+.active\:bg-red-2:active {
+  background-color: get-theme(colors , red , 2);
+}
+
+.active\:bg-red-3:active {
+  background-color: get-theme(colors , red , 3);
+}
+
+.active\:bg-red-4:active {
+  background-color: get-theme(colors , red , 4);
+}
+
+.active\:bg-red-5:active {
+  background-color: get-theme(colors , red , 5);
+}
+
+.active\:bg-red-6:active {
+  background-color: get-theme(colors , red , 6);
+}
+
+.active\:bg-red-7:active {
+  background-color: get-theme(colors , red , 7);
+}
+
+.active\:bg-red-8:active {
+  background-color: get-theme(colors , red , 8);
+}
+
+.active\:bg-red-9:active {
+  background-color: get-theme(colors , red , 9);
+}
+
+.active\:bg-red:active {
+  background-color: get-theme(colors , red , 5);
+}
+
+.active\:bg-orange-1:active {
+  background-color: get-theme(colors , orange , 1);
+}
+
+.active\:bg-orange-2:active {
+  background-color: get-theme(colors , orange , 2);
+}
+
+.active\:bg-orange-3:active {
+  background-color: get-theme(colors , orange , 3);
+}
+
+.active\:bg-orange-4:active {
+  background-color: get-theme(colors , orange , 4);
+}
+
+.active\:bg-orange-5:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.active\:bg-orange-6:active {
+  background-color: get-theme(colors , orange , 6);
+}
+
+.active\:bg-orange-7:active {
+  background-color: get-theme(colors , orange , 7);
+}
+
+.active\:bg-orange-8:active {
+  background-color: get-theme(colors , orange , 8);
+}
+
+.active\:bg-orange-9:active {
+  background-color: get-theme(colors , orange , 9);
+}
+
+.active\:bg-orange:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.active\:bg-green-1:active {
+  background-color: get-theme(colors , green , 1);
+}
+
+.active\:bg-green-2:active {
+  background-color: get-theme(colors , green , 2);
+}
+
+.active\:bg-green-3:active {
+  background-color: get-theme(colors , green , 3);
+}
+
+.active\:bg-green-4:active {
+  background-color: get-theme(colors , green , 4);
+}
+
+.active\:bg-green-5:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.active\:bg-green-6:active {
+  background-color: get-theme(colors , green , 6);
+}
+
+.active\:bg-green-7:active {
+  background-color: get-theme(colors , green , 7);
+}
+
+.active\:bg-green-8:active {
+  background-color: get-theme(colors , green , 8);
+}
+
+.active\:bg-green-9:active {
+  background-color: get-theme(colors , green , 9);
+}
+
+.active\:bg-green:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.active\:bg-blue-1:active {
+  background-color: get-theme(colors , blue , 1);
+}
+
+.active\:bg-blue-2:active {
+  background-color: get-theme(colors , blue , 2);
+}
+
+.active\:bg-blue-3:active {
+  background-color: get-theme(colors , blue , 3);
+}
+
+.active\:bg-blue-4:active {
+  background-color: get-theme(colors , blue , 4);
+}
+
+.active\:bg-blue-5:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.active\:bg-blue-6:active {
+  background-color: get-theme(colors , blue , 6);
+}
+
+.active\:bg-blue-7:active {
+  background-color: get-theme(colors , blue , 7);
+}
+
+.active\:bg-blue-8:active {
+  background-color: get-theme(colors , blue , 8);
+}
+
+.active\:bg-blue-9:active {
+  background-color: get-theme(colors , blue , 9);
+}
+
+.active\:bg-blue:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.active\:bg-purple-1:active {
+  background-color: get-theme(colors , purple , 1);
+}
+
+.active\:bg-purple-2:active {
+  background-color: get-theme(colors , purple , 2);
+}
+
+.active\:bg-purple-3:active {
+  background-color: get-theme(colors , purple , 3);
+}
+
+.active\:bg-purple-4:active {
+  background-color: get-theme(colors , purple , 4);
+}
+
+.active\:bg-purple-5:active {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.active\:bg-purple-6:active {
+  background-color: get-theme(colors , purple , 6);
+}
+
+.active\:bg-purple-7:active {
+  background-color: get-theme(colors , purple , 7);
+}
+
+.active\:bg-purple-8:active {
+  background-color: get-theme(colors , purple , 8);
+}
+
+.active\:bg-purple-9:active {
+  background-color: get-theme(colors , purple , 9);
+}
+
+.active\:bg-purple:active {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.active\:bg-primary:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.active\:bg-info:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.active\:bg-success:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.active\:bg-warning:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.active\:bg-danger:active {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark\:bg-inherit {
+  background-color: inherit;
 }
 
 .bp3-dark .dark\:bg-transparent {
@@ -1517,6 +1893,10 @@
   border-collapse: separate;
 }
 
+.border-inherit {
+  border-color: inherit;
+}
+
 .border-transparent {
   border-color: get-theme(colors , transparent);
 }
@@ -1871,6 +2251,10 @@
 
 .border-danger {
   border-color: get-theme(colors , red , 5);
+}
+
+.hover\:border-inherit:hover {
+  border-color: inherit;
 }
 
 .hover\:border-transparent:hover {
@@ -2229,6 +2613,10 @@
   border-color: get-theme(colors , red , 5);
 }
 
+.focus\:border-inherit:focus {
+  border-color: inherit;
+}
+
 .focus\:border-transparent:focus {
   border-color: get-theme(colors , transparent);
 }
@@ -2583,6 +2971,370 @@
 
 .focus\:border-danger:focus {
   border-color: get-theme(colors , red , 5);
+}
+
+.active\:border-inherit:active {
+  border-color: inherit;
+}
+
+.active\:border-transparent:active {
+  border-color: get-theme(colors , transparent);
+}
+
+.active\:border-lighten-1:active {
+  border-color: get-theme(colors , lighten , 1);
+}
+
+.active\:border-lighten-2:active {
+  border-color: get-theme(colors , lighten , 2);
+}
+
+.active\:border-lighten-3:active {
+  border-color: get-theme(colors , lighten , 3);
+}
+
+.active\:border-lighten-4:active {
+  border-color: get-theme(colors , lighten , 4);
+}
+
+.active\:border-lighten-5:active {
+  border-color: get-theme(colors , lighten , 5);
+}
+
+.active\:border-lighten-6:active {
+  border-color: get-theme(colors , lighten , 6);
+}
+
+.active\:border-lighten-7:active {
+  border-color: get-theme(colors , lighten , 7);
+}
+
+.active\:border-lighten-8:active {
+  border-color: get-theme(colors , lighten , 8);
+}
+
+.active\:border-lighten-9:active {
+  border-color: get-theme(colors , lighten , 9);
+}
+
+.active\:border-lighten:active {
+  border-color: get-theme(colors , lighten , 5);
+}
+
+.active\:border-darken-1:active {
+  border-color: get-theme(colors , darken , 1);
+}
+
+.active\:border-darken-2:active {
+  border-color: get-theme(colors , darken , 2);
+}
+
+.active\:border-darken-3:active {
+  border-color: get-theme(colors , darken , 3);
+}
+
+.active\:border-darken-4:active {
+  border-color: get-theme(colors , darken , 4);
+}
+
+.active\:border-darken-5:active {
+  border-color: get-theme(colors , darken , 5);
+}
+
+.active\:border-darken-6:active {
+  border-color: get-theme(colors , darken , 6);
+}
+
+.active\:border-darken-7:active {
+  border-color: get-theme(colors , darken , 7);
+}
+
+.active\:border-darken-8:active {
+  border-color: get-theme(colors , darken , 8);
+}
+
+.active\:border-darken-9:active {
+  border-color: get-theme(colors , darken , 9);
+}
+
+.active\:border-darken:active {
+  border-color: get-theme(colors , darken , 5);
+}
+
+.active\:border-disabled:active {
+  border-color: get-theme(colors , disabled);
+}
+
+.active\:border-black:active {
+  border-color: get-theme(colors , black);
+}
+
+.active\:border-white:active {
+  border-color: get-theme(colors , white);
+}
+
+.active\:border-gray-1:active {
+  border-color: get-theme(colors , gray , 1);
+}
+
+.active\:border-gray-2:active {
+  border-color: get-theme(colors , gray , 2);
+}
+
+.active\:border-gray-3:active {
+  border-color: get-theme(colors , gray , 3);
+}
+
+.active\:border-gray-4:active {
+  border-color: get-theme(colors , gray , 4);
+}
+
+.active\:border-gray-5:active {
+  border-color: get-theme(colors , gray , 5);
+}
+
+.active\:border-gray-6:active {
+  border-color: get-theme(colors , gray , 6);
+}
+
+.active\:border-gray-7:active {
+  border-color: get-theme(colors , gray , 7);
+}
+
+.active\:border-gray-8:active {
+  border-color: get-theme(colors , gray , 8);
+}
+
+.active\:border-gray-9:active {
+  border-color: get-theme(colors , gray , 9);
+}
+
+.active\:border-gray:active {
+  border-color: get-theme(colors , gray , 5);
+}
+
+.active\:border-red-1:active {
+  border-color: get-theme(colors , red , 1);
+}
+
+.active\:border-red-2:active {
+  border-color: get-theme(colors , red , 2);
+}
+
+.active\:border-red-3:active {
+  border-color: get-theme(colors , red , 3);
+}
+
+.active\:border-red-4:active {
+  border-color: get-theme(colors , red , 4);
+}
+
+.active\:border-red-5:active {
+  border-color: get-theme(colors , red , 5);
+}
+
+.active\:border-red-6:active {
+  border-color: get-theme(colors , red , 6);
+}
+
+.active\:border-red-7:active {
+  border-color: get-theme(colors , red , 7);
+}
+
+.active\:border-red-8:active {
+  border-color: get-theme(colors , red , 8);
+}
+
+.active\:border-red-9:active {
+  border-color: get-theme(colors , red , 9);
+}
+
+.active\:border-red:active {
+  border-color: get-theme(colors , red , 5);
+}
+
+.active\:border-orange-1:active {
+  border-color: get-theme(colors , orange , 1);
+}
+
+.active\:border-orange-2:active {
+  border-color: get-theme(colors , orange , 2);
+}
+
+.active\:border-orange-3:active {
+  border-color: get-theme(colors , orange , 3);
+}
+
+.active\:border-orange-4:active {
+  border-color: get-theme(colors , orange , 4);
+}
+
+.active\:border-orange-5:active {
+  border-color: get-theme(colors , orange , 5);
+}
+
+.active\:border-orange-6:active {
+  border-color: get-theme(colors , orange , 6);
+}
+
+.active\:border-orange-7:active {
+  border-color: get-theme(colors , orange , 7);
+}
+
+.active\:border-orange-8:active {
+  border-color: get-theme(colors , orange , 8);
+}
+
+.active\:border-orange-9:active {
+  border-color: get-theme(colors , orange , 9);
+}
+
+.active\:border-orange:active {
+  border-color: get-theme(colors , orange , 5);
+}
+
+.active\:border-green-1:active {
+  border-color: get-theme(colors , green , 1);
+}
+
+.active\:border-green-2:active {
+  border-color: get-theme(colors , green , 2);
+}
+
+.active\:border-green-3:active {
+  border-color: get-theme(colors , green , 3);
+}
+
+.active\:border-green-4:active {
+  border-color: get-theme(colors , green , 4);
+}
+
+.active\:border-green-5:active {
+  border-color: get-theme(colors , green , 5);
+}
+
+.active\:border-green-6:active {
+  border-color: get-theme(colors , green , 6);
+}
+
+.active\:border-green-7:active {
+  border-color: get-theme(colors , green , 7);
+}
+
+.active\:border-green-8:active {
+  border-color: get-theme(colors , green , 8);
+}
+
+.active\:border-green-9:active {
+  border-color: get-theme(colors , green , 9);
+}
+
+.active\:border-green:active {
+  border-color: get-theme(colors , green , 5);
+}
+
+.active\:border-blue-1:active {
+  border-color: get-theme(colors , blue , 1);
+}
+
+.active\:border-blue-2:active {
+  border-color: get-theme(colors , blue , 2);
+}
+
+.active\:border-blue-3:active {
+  border-color: get-theme(colors , blue , 3);
+}
+
+.active\:border-blue-4:active {
+  border-color: get-theme(colors , blue , 4);
+}
+
+.active\:border-blue-5:active {
+  border-color: get-theme(colors , blue , 5);
+}
+
+.active\:border-blue-6:active {
+  border-color: get-theme(colors , blue , 6);
+}
+
+.active\:border-blue-7:active {
+  border-color: get-theme(colors , blue , 7);
+}
+
+.active\:border-blue-8:active {
+  border-color: get-theme(colors , blue , 8);
+}
+
+.active\:border-blue-9:active {
+  border-color: get-theme(colors , blue , 9);
+}
+
+.active\:border-blue:active {
+  border-color: get-theme(colors , blue , 5);
+}
+
+.active\:border-purple-1:active {
+  border-color: get-theme(colors , purple , 1);
+}
+
+.active\:border-purple-2:active {
+  border-color: get-theme(colors , purple , 2);
+}
+
+.active\:border-purple-3:active {
+  border-color: get-theme(colors , purple , 3);
+}
+
+.active\:border-purple-4:active {
+  border-color: get-theme(colors , purple , 4);
+}
+
+.active\:border-purple-5:active {
+  border-color: get-theme(colors , purple , 5);
+}
+
+.active\:border-purple-6:active {
+  border-color: get-theme(colors , purple , 6);
+}
+
+.active\:border-purple-7:active {
+  border-color: get-theme(colors , purple , 7);
+}
+
+.active\:border-purple-8:active {
+  border-color: get-theme(colors , purple , 8);
+}
+
+.active\:border-purple-9:active {
+  border-color: get-theme(colors , purple , 9);
+}
+
+.active\:border-purple:active {
+  border-color: get-theme(colors , purple , 5);
+}
+
+.active\:border-primary:active {
+  border-color: get-theme(colors , blue , 5);
+}
+
+.active\:border-info:active {
+  border-color: get-theme(colors , blue , 5);
+}
+
+.active\:border-success:active {
+  border-color: get-theme(colors , green , 5);
+}
+
+.active\:border-warning:active {
+  border-color: get-theme(colors , orange , 5);
+}
+
+.active\:border-danger:active {
+  border-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark\:border-inherit {
+  border-color: inherit;
 }
 
 .bp3-dark .dark\:border-transparent {
@@ -6028,6 +6780,10 @@
   text-align: justify;
 }
 
+.text-inherit {
+  color: inherit;
+}
+
 .text-transparent {
   color: get-theme(colors , transparent);
 }
@@ -6382,6 +7138,10 @@
 
 .text-danger {
   color: get-theme(colors , red , 5);
+}
+
+.hover\:text-inherit:hover {
+  color: inherit;
 }
 
 .hover\:text-transparent:hover {
@@ -6740,6 +7500,10 @@
   color: get-theme(colors , red , 5);
 }
 
+.focus\:text-inherit:focus {
+  color: inherit;
+}
+
 .focus\:text-transparent:focus {
   color: get-theme(colors , transparent);
 }
@@ -7094,6 +7858,370 @@
 
 .focus\:text-danger:focus {
   color: get-theme(colors , red , 5);
+}
+
+.active\:text-inherit:active {
+  color: inherit;
+}
+
+.active\:text-transparent:active {
+  color: get-theme(colors , transparent);
+}
+
+.active\:text-lighten-1:active {
+  color: get-theme(colors , lighten , 1);
+}
+
+.active\:text-lighten-2:active {
+  color: get-theme(colors , lighten , 2);
+}
+
+.active\:text-lighten-3:active {
+  color: get-theme(colors , lighten , 3);
+}
+
+.active\:text-lighten-4:active {
+  color: get-theme(colors , lighten , 4);
+}
+
+.active\:text-lighten-5:active {
+  color: get-theme(colors , lighten , 5);
+}
+
+.active\:text-lighten-6:active {
+  color: get-theme(colors , lighten , 6);
+}
+
+.active\:text-lighten-7:active {
+  color: get-theme(colors , lighten , 7);
+}
+
+.active\:text-lighten-8:active {
+  color: get-theme(colors , lighten , 8);
+}
+
+.active\:text-lighten-9:active {
+  color: get-theme(colors , lighten , 9);
+}
+
+.active\:text-lighten:active {
+  color: get-theme(colors , lighten , 5);
+}
+
+.active\:text-darken-1:active {
+  color: get-theme(colors , darken , 1);
+}
+
+.active\:text-darken-2:active {
+  color: get-theme(colors , darken , 2);
+}
+
+.active\:text-darken-3:active {
+  color: get-theme(colors , darken , 3);
+}
+
+.active\:text-darken-4:active {
+  color: get-theme(colors , darken , 4);
+}
+
+.active\:text-darken-5:active {
+  color: get-theme(colors , darken , 5);
+}
+
+.active\:text-darken-6:active {
+  color: get-theme(colors , darken , 6);
+}
+
+.active\:text-darken-7:active {
+  color: get-theme(colors , darken , 7);
+}
+
+.active\:text-darken-8:active {
+  color: get-theme(colors , darken , 8);
+}
+
+.active\:text-darken-9:active {
+  color: get-theme(colors , darken , 9);
+}
+
+.active\:text-darken:active {
+  color: get-theme(colors , darken , 5);
+}
+
+.active\:text-disabled:active {
+  color: get-theme(colors , disabled);
+}
+
+.active\:text-black:active {
+  color: get-theme(colors , black);
+}
+
+.active\:text-white:active {
+  color: get-theme(colors , white);
+}
+
+.active\:text-gray-1:active {
+  color: get-theme(colors , gray , 1);
+}
+
+.active\:text-gray-2:active {
+  color: get-theme(colors , gray , 2);
+}
+
+.active\:text-gray-3:active {
+  color: get-theme(colors , gray , 3);
+}
+
+.active\:text-gray-4:active {
+  color: get-theme(colors , gray , 4);
+}
+
+.active\:text-gray-5:active {
+  color: get-theme(colors , gray , 5);
+}
+
+.active\:text-gray-6:active {
+  color: get-theme(colors , gray , 6);
+}
+
+.active\:text-gray-7:active {
+  color: get-theme(colors , gray , 7);
+}
+
+.active\:text-gray-8:active {
+  color: get-theme(colors , gray , 8);
+}
+
+.active\:text-gray-9:active {
+  color: get-theme(colors , gray , 9);
+}
+
+.active\:text-gray:active {
+  color: get-theme(colors , gray , 5);
+}
+
+.active\:text-red-1:active {
+  color: get-theme(colors , red , 1);
+}
+
+.active\:text-red-2:active {
+  color: get-theme(colors , red , 2);
+}
+
+.active\:text-red-3:active {
+  color: get-theme(colors , red , 3);
+}
+
+.active\:text-red-4:active {
+  color: get-theme(colors , red , 4);
+}
+
+.active\:text-red-5:active {
+  color: get-theme(colors , red , 5);
+}
+
+.active\:text-red-6:active {
+  color: get-theme(colors , red , 6);
+}
+
+.active\:text-red-7:active {
+  color: get-theme(colors , red , 7);
+}
+
+.active\:text-red-8:active {
+  color: get-theme(colors , red , 8);
+}
+
+.active\:text-red-9:active {
+  color: get-theme(colors , red , 9);
+}
+
+.active\:text-red:active {
+  color: get-theme(colors , red , 5);
+}
+
+.active\:text-orange-1:active {
+  color: get-theme(colors , orange , 1);
+}
+
+.active\:text-orange-2:active {
+  color: get-theme(colors , orange , 2);
+}
+
+.active\:text-orange-3:active {
+  color: get-theme(colors , orange , 3);
+}
+
+.active\:text-orange-4:active {
+  color: get-theme(colors , orange , 4);
+}
+
+.active\:text-orange-5:active {
+  color: get-theme(colors , orange , 5);
+}
+
+.active\:text-orange-6:active {
+  color: get-theme(colors , orange , 6);
+}
+
+.active\:text-orange-7:active {
+  color: get-theme(colors , orange , 7);
+}
+
+.active\:text-orange-8:active {
+  color: get-theme(colors , orange , 8);
+}
+
+.active\:text-orange-9:active {
+  color: get-theme(colors , orange , 9);
+}
+
+.active\:text-orange:active {
+  color: get-theme(colors , orange , 5);
+}
+
+.active\:text-green-1:active {
+  color: get-theme(colors , green , 1);
+}
+
+.active\:text-green-2:active {
+  color: get-theme(colors , green , 2);
+}
+
+.active\:text-green-3:active {
+  color: get-theme(colors , green , 3);
+}
+
+.active\:text-green-4:active {
+  color: get-theme(colors , green , 4);
+}
+
+.active\:text-green-5:active {
+  color: get-theme(colors , green , 5);
+}
+
+.active\:text-green-6:active {
+  color: get-theme(colors , green , 6);
+}
+
+.active\:text-green-7:active {
+  color: get-theme(colors , green , 7);
+}
+
+.active\:text-green-8:active {
+  color: get-theme(colors , green , 8);
+}
+
+.active\:text-green-9:active {
+  color: get-theme(colors , green , 9);
+}
+
+.active\:text-green:active {
+  color: get-theme(colors , green , 5);
+}
+
+.active\:text-blue-1:active {
+  color: get-theme(colors , blue , 1);
+}
+
+.active\:text-blue-2:active {
+  color: get-theme(colors , blue , 2);
+}
+
+.active\:text-blue-3:active {
+  color: get-theme(colors , blue , 3);
+}
+
+.active\:text-blue-4:active {
+  color: get-theme(colors , blue , 4);
+}
+
+.active\:text-blue-5:active {
+  color: get-theme(colors , blue , 5);
+}
+
+.active\:text-blue-6:active {
+  color: get-theme(colors , blue , 6);
+}
+
+.active\:text-blue-7:active {
+  color: get-theme(colors , blue , 7);
+}
+
+.active\:text-blue-8:active {
+  color: get-theme(colors , blue , 8);
+}
+
+.active\:text-blue-9:active {
+  color: get-theme(colors , blue , 9);
+}
+
+.active\:text-blue:active {
+  color: get-theme(colors , blue , 5);
+}
+
+.active\:text-purple-1:active {
+  color: get-theme(colors , purple , 1);
+}
+
+.active\:text-purple-2:active {
+  color: get-theme(colors , purple , 2);
+}
+
+.active\:text-purple-3:active {
+  color: get-theme(colors , purple , 3);
+}
+
+.active\:text-purple-4:active {
+  color: get-theme(colors , purple , 4);
+}
+
+.active\:text-purple-5:active {
+  color: get-theme(colors , purple , 5);
+}
+
+.active\:text-purple-6:active {
+  color: get-theme(colors , purple , 6);
+}
+
+.active\:text-purple-7:active {
+  color: get-theme(colors , purple , 7);
+}
+
+.active\:text-purple-8:active {
+  color: get-theme(colors , purple , 8);
+}
+
+.active\:text-purple-9:active {
+  color: get-theme(colors , purple , 9);
+}
+
+.active\:text-purple:active {
+  color: get-theme(colors , purple , 5);
+}
+
+.active\:text-primary:active {
+  color: get-theme(colors , blue , 5);
+}
+
+.active\:text-info:active {
+  color: get-theme(colors , blue , 5);
+}
+
+.active\:text-success:active {
+  color: get-theme(colors , green , 5);
+}
+
+.active\:text-warning:active {
+  color: get-theme(colors , orange , 5);
+}
+
+.active\:text-danger:active {
+  color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark\:text-inherit {
+  color: inherit;
 }
 
 .bp3-dark .dark\:text-transparent {
