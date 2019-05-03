@@ -21,42 +21,57 @@ interface IScrollContainer extends ScrollbarProps {
   shadows?: boolean;
 }
 
-const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
+const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
+  scrollTo,
+  children,
+  shadows = true,
+  innerRef,
+  style,
+  onUpdate,
+  ...scrollbarProps
+}) => {
   // can scroll to an anchor/id
-  useScrollToHash(props.scrollTo);
-  // we want to show the bottom shadow when the component is loaded
-  const [showShadowOnMount, setShowShadowOnMount] = React.useState(props.shadows);
+  useScrollToHash(scrollTo);
 
-  const { scrollTo, children, shadows = true, innerRef, onScroll, style, ...scrollbarProps } = props;
-  const scrollbars = innerRef || React.useRef<Scrollbars>(null);
-  const scrollPosition = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
-  const { scrollTop, scrollHeight, clientHeight } = scrollPosition;
+  const [state, setState] = React.useState({ shadowTop: 0, shadowBottom: 0 });
 
-  const shadowTop = shadows && scrollTop;
-  const shadowBottom = showShadowOnMount || (shadows && scrollHeight && scrollHeight - scrollTop !== clientHeight);
+  const handleUpdate = React.useCallback(
+    (values: positionValues) => {
+      if (onUpdate) {
+        onUpdate(values);
+      }
+
+      if (shadows) {
+        const { scrollTop, scrollHeight, clientHeight } = values;
+        const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
+        const bottomScrollTop = scrollHeight - clientHeight;
+        const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
+
+        setState({ shadowTop: shadowTopOpacity, shadowBottom: shadowBottomOpacity });
+      }
+    },
+    [shadows, onUpdate]
+  );
 
   return (
     <Scrollbars
       {...scrollbarProps}
-      ref={scrollbars}
+      onUpdate={handleUpdate}
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
-      onScroll={(e: any) => {
-        if (onScroll) onScroll(e);
-
-        // after intial scroll the ref will be set and we can use that to calculate shadows
-        setShowShadowOnMount(false);
-      }}
-      // overide to offset the native scroll bars
-      renderView={({ style }: any) => {
+      renderView={({ style }) => {
         return (
           <div
-            className={cn(Classes.SCROLL_CONTAINER, shadowTop && 'shadow-top', shadowBottom && 'shadow-bottom')}
+            className={cn(
+              Classes.SCROLL_CONTAINER,
+              state.shadowTop && 'shadow-top',
+              state.shadowBottom && 'shadow-bottom'
+            )}
             style={{
               ...style,
-              marginRight: '-15px',
-              marginBottom: '-15px',
+              margin: '-15px', // offset the native scroll bars
+              padding: '15px', // reset negaitve margins
             }}
           />
         );
