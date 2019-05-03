@@ -1,3 +1,4 @@
+import { Omit } from '@stoplight/types';
 import * as cn from 'classnames';
 import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
@@ -8,9 +9,8 @@ import { useScrollToHash } from './hooks';
 /**
  * SCROLL CONTAINER
  */
-interface IScrollContainer extends ScrollbarProps {
-  innerRef?: React.RefObject<Scrollbars>;
-
+interface IScrollContainer extends Omit<ScrollbarProps, 'ref'> {
+  ref?: (ref: React.RefObject<Scrollbars> | null) => void;
   autoHeight?: boolean;
   autoHideTimeout?: number;
   onUpdate?: (values: positionValues) => void;
@@ -21,32 +21,38 @@ interface IScrollContainer extends ScrollbarProps {
   shadows?: boolean;
 }
 
-const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
+const ScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>((props, ref) => {
+  const { scrollTo, children, shadows = true, onScroll, ...scrollbarProps } = props;
+
   // can scroll to an anchor/id
   useScrollToHash(props.scrollTo);
-  // we want to show the bottom shadow when the component is loaded
-  const [showShadowOnMount, setShowShadowOnMount] = React.useState(props.shadows);
 
-  const { scrollTo, children, shadows = true, innerRef, onScroll, style, ...scrollbarProps } = props;
-  const scrollbars = innerRef || React.useRef<Scrollbars>(null);
-  const scrollPosition = (scrollbars.current && scrollbars.current.getValues()) || ({} as positionValues);
-  const { scrollTop, scrollHeight, clientHeight } = scrollPosition;
+  const [scrollbars, setScrollbars] = React.useState<Scrollbars | null>(null);
+  const [shadowTop, setShadowTop] = React.useState<boolean | number>(false);
+  const [shadowBottom, setShadowBottom] = React.useState<boolean | number>(shadows);
 
-  const shadowTop = shadows && scrollTop;
-  const shadowBottom = showShadowOnMount || (shadows && scrollHeight && scrollHeight - scrollTop !== clientHeight);
+  const getRef = React.useCallback(scrollbarsRef => {
+    setScrollbars(scrollbarsRef);
+    if (typeof ref === 'function') return ref(scrollbarsRef || null);
+  }, []);
 
   return (
     <Scrollbars
       {...scrollbarProps}
-      ref={scrollbars}
+      ref={getRef}
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
       onScroll={(e: any) => {
         if (onScroll) onScroll(e);
 
-        // after intial scroll the ref will be set and we can use that to calculate shadows
-        setShowShadowOnMount(false);
+        if (shadows) {
+          const scrollPosition = (scrollbars && scrollbars.getValues()) || ({} as positionValues);
+          const { scrollTop, scrollHeight, clientHeight } = scrollPosition;
+
+          setShadowTop(!!scrollTop);
+          setShadowBottom(scrollHeight && scrollHeight - scrollTop !== clientHeight);
+        }
       }}
       // overide to offset the native scroll bars
       renderView={({ style }: any) => {
@@ -89,11 +95,11 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = props => {
       {children}
     </Scrollbars>
   );
-};
+});
 
 ScrollContainer.displayName = 'ScrollContainer';
 
 /**
  * EXPORTS
  */
-export { IScrollContainer, ScrollContainer };
+export { IScrollContainer, ScrollContainer, Scrollbars };

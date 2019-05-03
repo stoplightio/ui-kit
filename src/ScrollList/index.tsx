@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Scrollbars from 'react-custom-scrollbars';
+// import Scrollbars from 'react-custom-scrollbars';
 import * as ReactWindow from 'react-window';
 
 import { ListProps } from 'react-window';
 import { AutoSizer } from '../';
+
+import { ScrollContainer } from '../ScrollContainer';
 
 /**
  * FIXED SIZE LIST
@@ -28,16 +30,9 @@ const CustomScrollbars = React.forwardRef<
   }, []);
 
   return (
-    <Scrollbars
-      ref={handleRef}
-      style={{ ...style, overflow: 'hidden' }}
-      onScroll={onScroll}
-      autoHide
-      autoHideTimeout={1000}
-      autoHideDuration={200}
-    >
+    <ScrollContainer ref={handleRef} style={{ ...style, overflow: 'hidden' }} onScroll={onScroll}>
       {children}
-    </Scrollbars>
+    </ScrollContainer>
   );
 });
 
