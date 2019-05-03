@@ -1,5 +1,6 @@
 const path = require('path');
 const PackageImporter = require('node-sass-package-importer');
+const inliner = require('sass-inline-svg');
 
 const cwd = process.cwd();
 
@@ -47,11 +48,20 @@ module.exports = ({ config }) => {
           plugins: loader => [require('postcss-import'), require('autoprefixer')],
         },
       },
+      'resolve-url-loader',
       {
         loader: 'sass-loader',
         options: {
           sourceMap: true,
           importer: [PackageImporter()],
+          functions: {
+            'svg-icon': inliner(path.resolve('dist', 'styles', 'icons'), {
+              // run through SVGO first
+              optimize: true,
+              // minimal "uri" encoding is smaller than base64
+              encodingFormat: 'uri',
+            }),
+          },
         },
       },
     ],

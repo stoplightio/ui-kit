@@ -3,8 +3,8 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { Button } from '../../';
+import { Checkbox } from '../../';
 
-storiesOf('Button', module)
+storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <Button icon="add" text="Hello" className="m-24" />);
+  .add('with defaults', () => <Checkbox />);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
-import '../styles/_ui-kit.scss';
+import '../src/styles/_ui-kit.scss';
 import { ThemeContainer } from '../src/';
 
 addDecorator(
