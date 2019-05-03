@@ -1,4 +1,3 @@
-import { Omit } from '@stoplight/types';
 import * as cn from 'classnames';
 import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
@@ -9,8 +8,7 @@ import { useScrollToHash } from './hooks';
 /**
  * SCROLL CONTAINER
  */
-interface IScrollContainer extends Omit<ScrollbarProps, 'ref'> {
-  ref?: (ref: React.RefObject<Scrollbars> | null) => void;
+interface IScrollContainer extends ScrollbarProps {
   autoHeight?: boolean;
   autoHideTimeout?: number;
   onUpdate?: (values: positionValues) => void;
@@ -21,48 +19,56 @@ interface IScrollContainer extends Omit<ScrollbarProps, 'ref'> {
   shadows?: boolean;
 }
 
-const ScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>((props, ref) => {
-  const { scrollTo, children, shadows = true, onScroll, ...scrollbarProps } = props;
-
+const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
+  scrollTo,
+  children,
+  shadows = true,
+  style,
+  onUpdate,
+  ...scrollbarProps
+}) => {
   // can scroll to an anchor/id
-  useScrollToHash(props.scrollTo);
+  useScrollToHash(scrollTo);
 
-  const [scrollbars, setScrollbars] = React.useState<Scrollbars | null>(null);
-  const [shadowTop, setShadowTop] = React.useState<boolean | number>(false);
-  const [shadowBottom, setShadowBottom] = React.useState<boolean | number>(shadows);
+  const [state, setState] = React.useState({ shadowTop: 0, shadowBottom: 0 });
 
-  const getRef = React.useCallback(scrollbarsRef => {
-    setScrollbars(scrollbarsRef);
-    if (typeof ref === 'function') return ref(scrollbarsRef || null);
-  }, []);
+  const handleUpdate = React.useCallback(
+    (values: positionValues) => {
+      if (onUpdate) {
+        onUpdate(values);
+      }
+
+      if (shadows) {
+        const { scrollTop, scrollHeight, clientHeight } = values;
+        const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
+        const bottomScrollTop = scrollHeight - clientHeight;
+        const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
+
+        setState({ shadowTop: shadowTopOpacity, shadowBottom: shadowBottomOpacity });
+      }
+    },
+    [shadows, onUpdate]
+  );
 
   return (
     <Scrollbars
       {...scrollbarProps}
-      ref={getRef}
+      onUpdate={handleUpdate}
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
-      onScroll={(e: any) => {
-        if (onScroll) onScroll(e);
-
-        if (shadows) {
-          const scrollPosition = (scrollbars && scrollbars.getValues()) || ({} as positionValues);
-          const { scrollTop, scrollHeight, clientHeight } = scrollPosition;
-
-          setShadowTop(!!scrollTop);
-          setShadowBottom(scrollHeight && scrollHeight - scrollTop !== clientHeight);
-        }
-      }}
-      // overide to offset the native scroll bars
-      renderView={({ style }: any) => {
+      renderView={({ style }) => {
         return (
           <div
-            className={cn(Classes.SCROLL_CONTAINER, shadowTop && 'shadow-top', shadowBottom && 'shadow-bottom')}
+            className={cn(
+              Classes.SCROLL_CONTAINER,
+              state.shadowTop && 'shadow-top',
+              state.shadowBottom && 'shadow-bottom'
+            )}
             style={{
               ...style,
-              marginRight: '-15px',
-              marginBottom: '-15px',
+              margin: '-15px', // offset the native scroll bars
+              padding: '15px', // reset negaitve margins
             }}
           />
         );
@@ -95,11 +101,11 @@ const ScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>((prop
       {children}
     </Scrollbars>
   );
-});
+};
 
 ScrollContainer.displayName = 'ScrollContainer';
 
 /**
  * EXPORTS
  */
-export { IScrollContainer, ScrollContainer, Scrollbars };
+export { IScrollContainer, ScrollContainer };

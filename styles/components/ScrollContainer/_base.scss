@@ -1,8 +1,8 @@
 $sl-shadow-color: get-color(darken, 6);
 $sl-shadow-color-dark: get-color(darken, 9);
 
-$sl-shadow-top: 0 10px 10px -12px inset;
-$sl-shadow-bottom: 0 -20px 10px -8px inset;
+$sl-shadow-top: 0 15px 10px 0px inset;
+$sl-shadow-bottom: 0 -20px 10px -5px inset;
 
 .#{$ns}-scroll-container {
   transition: box-shadow 0.5s ease-in-out;
