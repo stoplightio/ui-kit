@@ -1,5 +1,5 @@
+import { Omit } from '@stoplight/types';
 import * as React from 'react';
-// import Scrollbars from 'react-custom-scrollbars';
 import * as ReactWindow from 'react-window';
 
 import { ListProps } from 'react-window';
@@ -8,12 +8,8 @@ import { AutoSizer } from '../';
 import { ScrollContainer } from '../ScrollContainer';
 
 /**
- * FIXED SIZE LIST
+ * HELPERS
  */
-interface IFixedSizeListProps extends ReactWindow.FixedSizeListProps {
-  className?: string;
-  autoHideTimeout?: number;
-}
 
 type RefFunction<T> = (instance: T | null) => void;
 
@@ -36,19 +32,29 @@ const CustomScrollbars = React.forwardRef<
   );
 });
 
+/**
+ * FIXED SIZE LIST
+ */
+interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
+  className?: string;
+  autoHideTimeout?: number;
+  height?: number | string;
+  width?: number | string;
+}
+
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, ...rest } = props;
+  const { className, children, height, width, ...rest } = props;
 
   return (
     <AutoSizer>
       {({ width: listWidth, height: listHeight }) => (
         <ReactWindow.FixedSizeList
           {...rest}
-          height={listHeight}
-          width={listWidth}
+          height={height || listHeight}
+          width={width || listWidth}
           outerRef={ref}
           outerElementType={CustomScrollbars}
         >
@@ -64,8 +70,10 @@ FixedSizeList.displayName = 'FixedSizeList';
 /**
  * VARIABLE SIZE LIST
  */
-interface IVariableSizeListProps extends ReactWindow.VariableSizeListProps {
+interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
   className?: string;
+  height?: number | string;
+  width?: number | string;
 }
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<

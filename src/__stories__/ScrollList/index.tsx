@@ -36,7 +36,7 @@ const Row: React.FunctionComponent<any> = ({ index, style }) => (
 const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
 const Decorator: any = (storyFn: any) => (
-  <div style={{ outline: '2px solid currentColor', width: 400, height: 700, margin: 50 }}>{storyFn()}</div>
+  <div style={{ outline: '1px solid currentColor', width: 400, height: 700, margin: 50 }}>{storyFn()}</div>
 );
 
 /**
