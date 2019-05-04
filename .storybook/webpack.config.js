@@ -55,7 +55,7 @@ module.exports = ({ config }) => {
           sourceMap: true,
           importer: [PackageImporter()],
           functions: {
-            'svg-icon': inliner(path.resolve('dist', 'styles', 'icons'), {
+            'svg-icon': inliner(path.resolve('src', 'styles', 'icons'), {
               // run through SVGO first
               optimize: true,
               // minimal "uri" encoding is smaller than base64

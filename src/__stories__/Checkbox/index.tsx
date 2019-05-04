@@ -7,4 +7,8 @@ import { Checkbox } from '../../';
 
 storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
-  .add('with defaults', () => <Checkbox />);
+  .add('with defaults', () => (
+    <div className="p-40">
+      <Checkbox />
+    </div>
+  ));
