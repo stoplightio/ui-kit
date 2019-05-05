@@ -1,3 +1,4 @@
+import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
 
@@ -15,7 +16,13 @@ const CustomScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>
 /**
  * FIXED SIZE LIST
  */
-interface IFixedSizeListProps extends ReactWindow.FixedSizeListProps {}
+interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
+  className?: string;
+  autoHideTimeout?: number;
+  height?: number | string;
+  width?: number | string;
+  shadows?: boolean;
+}
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
@@ -45,7 +52,12 @@ FixedSizeList.displayName = 'FixedSizeList';
 /**
  * VARIABLE SIZE LIST
  */
-interface IVariableSizeListProps extends ReactWindow.VariableSizeListProps {}
+interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
+  className?: string;
+  height?: number | string;
+  width?: number | string;
+  shadows?: boolean;
+}
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
   ReactWindow.VariableSizeList,

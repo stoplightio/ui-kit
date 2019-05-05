@@ -23,7 +23,7 @@ interface IScrollContainer extends ScrollbarProps {
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   scrollTo,
   children,
-  shadows = true,
+  shadows,
   onUpdate,
   forwardedRef,
   ...scrollbarProps
