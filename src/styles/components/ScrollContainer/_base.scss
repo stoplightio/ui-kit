@@ -1,3 +1,11 @@
+.#{$ns}-scroll-container {
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64+ */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
 .#{$ns}-scroll-thumb {
   background-color: get-color(darken, 6);
 

@@ -17,4 +17,5 @@ export const Classes = {
   SIMPLE_TAB_PANEL: `${NS}-simple-tab-panel`,
   SCROLL_TRACK: `${NS}-scroll-track`,
   SCROLL_THUMB: `${NS}-scroll-thumb`,
+  SCROLL_CONTAINER: `${NS}-scroll-container`,
 };

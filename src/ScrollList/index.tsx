@@ -1,46 +1,21 @@
-import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
 
-import { ListProps } from 'react-window';
 import { AutoSizer } from '../';
-
-import { ScrollContainer } from '../ScrollContainer';
+import { IScrollContainer, ScrollContainer } from '../ScrollContainer';
 
 /**
  * HELPERS
  */
 
-type RefFunction<T> = (instance: T | null) => void;
-
-const CustomScrollbars = React.forwardRef<
-  HTMLDivElement,
-  Pick<ListProps, 'style'> & { onScroll: React.UIEventHandler }
->(({ onScroll, style, children }, ref) => {
-  const handleRef = React.useCallback(scrollbarsRef => {
-    if (scrollbarsRef) {
-      (ref as RefFunction<HTMLDivElement>)(scrollbarsRef.view);
-    } else {
-      (ref as RefFunction<HTMLDivElement>)(null);
-    }
-  }, []);
-
-  return (
-    <ScrollContainer ref={handleRef} style={{ ...style, overflow: 'hidden' }} onScroll={onScroll}>
-      {children}
-    </ScrollContainer>
-  );
-});
+const CustomScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>(({ style, ...props }, ref) => (
+  <ScrollContainer {...props} style={{ ...style, overflow: 'hidden' }} forwardedRef={ref} />
+));
 
 /**
  * FIXED SIZE LIST
  */
-interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
-  className?: string;
-  autoHideTimeout?: number;
-  height?: number | string;
-  width?: number | string;
-}
+interface IFixedSizeListProps extends ReactWindow.FixedSizeListProps {}
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
@@ -56,7 +31,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
           height={height || listHeight}
           width={width || listWidth}
           outerRef={ref}
-          outerElementType={CustomScrollbars}
+          outerElementType={CustomScrollContainer}
         >
           {children}
         </ReactWindow.FixedSizeList>
@@ -70,11 +45,7 @@ FixedSizeList.displayName = 'FixedSizeList';
 /**
  * VARIABLE SIZE LIST
  */
-interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
-  className?: string;
-  height?: number | string;
-  width?: number | string;
-}
+interface IVariableSizeListProps extends ReactWindow.VariableSizeListProps {}
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
   ReactWindow.VariableSizeList,
@@ -90,7 +61,7 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
           height={listHeight}
           width={listWidth}
           outerRef={ref}
-          outerElementType={CustomScrollbars}
+          outerElementType={ScrollContainer}
         >
           {children}
         </ReactWindow.VariableSizeList>

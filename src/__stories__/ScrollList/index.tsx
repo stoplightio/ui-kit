@@ -28,15 +28,16 @@ export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeLi
  */
 
 const Row: React.FunctionComponent<any> = ({ index, style }) => (
-  <div style={style} className="flex items-center border-b">
-    Item {index}
+  <div style={style} className="flex items-center border-b px-4">
+    <div className="flex-1">{index}.</div>
+    <div>Item</div>
   </div>
 );
 
 const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
 const Decorator: any = (storyFn: any) => (
-  <div style={{ outline: '1px solid currentColor', width: 400, height: 700, margin: 50 }}>{storyFn()}</div>
+  <div style={{ outline: '1px solid currentColor', width: 400, height: 300, margin: 50 }}>{storyFn()}</div>
 );
 
 /**

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
+import { Classes } from '../classes';
 import { useScrollToHash } from './hooks';
 
 /**
@@ -15,14 +16,16 @@ interface IScrollContainer extends ScrollbarProps {
   scrollTo?: string;
   // include shadows to indicate more scroll
   shadows?: boolean;
+
+  forwardedRef?: any;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   scrollTo,
   children,
   shadows = true,
-  style,
   onUpdate,
+  forwardedRef,
   ...scrollbarProps
 }) => {
   // can scroll to an anchor/id
@@ -50,23 +53,37 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
     [shadowOpacity, shadows, onUpdate]
   );
 
+  const refSetter = React.useCallback(
+    scrollbarsRef => {
+      if (!forwardedRef) return;
+
+      if (scrollbarsRef) {
+        forwardedRef(scrollbarsRef.view);
+      } else {
+        forwardedRef(null);
+      }
+    },
+    [forwardedRef]
+  );
+
   return (
     <Scrollbars
       {...scrollbarProps}
+      ref={refSetter}
       onUpdate={handleUpdate}
+      hideTracksWhenNotNeeded
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
       renderView={({ style }) => {
         return (
           <div
+            className={Classes.SCROLL_CONTAINER}
             style={{
               ...style,
-              margin: '-15px', // offset the native scroll bars
-              padding: '15px', // reset negaitve margins
-              boxShadow: `0 13px 10px 0 inset rgba(0, 0, 0, ${shadowOpacity.top}), 0 -13px 10px 0 inset rgba(0, 0, 0, ${
-                shadowOpacity.bottom
-              })`,
+              boxShadow: `inset 0 8px 8px -8px rgba(0, 0, 0, ${
+                shadowOpacity.top
+              }), inset 0 -8px 8px -8px rgba(0, 0, 0, ${shadowOpacity.bottom})`,
             }}
           />
         );
