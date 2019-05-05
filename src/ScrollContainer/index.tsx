@@ -1,8 +1,6 @@
-import * as cn from 'classnames';
 import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
-import { Classes } from '../';
 import { useScrollToHash } from './hooks';
 
 /**
@@ -30,7 +28,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   // can scroll to an anchor/id
   useScrollToHash(scrollTo);
 
-  const [state, setState] = React.useState({ shadowTop: 0, shadowBottom: 0 });
+  const [shadowOpacity, setShadowOpactity] = React.useState({ top: 0, bottom: 0 });
 
   const handleUpdate = React.useCallback(
     (values: positionValues) => {
@@ -44,10 +42,12 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
         const bottomScrollTop = scrollHeight - clientHeight;
         const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
 
-        setState({ shadowTop: shadowTopOpacity, shadowBottom: shadowBottomOpacity });
+        if (shadowTopOpacity !== shadowOpacity.top || shadowBottomOpacity !== shadowOpacity.bottom) {
+          setShadowOpactity({ top: shadowTopOpacity, bottom: shadowBottomOpacity });
+        }
       }
     },
-    [shadows, onUpdate]
+    [shadowOpacity, shadows, onUpdate]
   );
 
   return (
@@ -60,15 +60,13 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       renderView={({ style }) => {
         return (
           <div
-            className={cn(
-              Classes.SCROLL_CONTAINER,
-              state.shadowTop && 'shadow-top',
-              state.shadowBottom && 'shadow-bottom'
-            )}
             style={{
               ...style,
               margin: '-15px', // offset the native scroll bars
               padding: '15px', // reset negaitve margins
+              boxShadow: `0 13px 10px 0 inset rgba(0, 0, 0, ${shadowOpacity.top}), 0 -13px 10px 0 inset rgba(0, 0, 0, ${
+                shadowOpacity.bottom
+              })`,
             }}
           />
         );
