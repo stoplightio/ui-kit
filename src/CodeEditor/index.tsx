@@ -24,7 +24,7 @@ const CodeEditor: React.FunctionComponent<ICodeEditorProps> = React.forwardRef<H
     const highlight = React.useCallback(code => (language ? highlightCode(code, language) : code), [language]);
 
     return (
-      <div className={cn('bp3-code-editor', className)} {...rest}>
+      <div className={cn('bp3-code-editor relative', className)} {...rest}>
         {!value && placeholder && <span className="absolute text-disabled">{placeholder}</span>}
         <ReactSimpleCodeEditor
           autoFocus={autoFocus}
