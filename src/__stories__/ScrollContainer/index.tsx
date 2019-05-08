@@ -1,16 +1,28 @@
 import * as React from 'react';
 
+import { action } from '@storybook/addon-actions';
+import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { ScrollContainer } from '../../ScrollContainer';
+import { IScrollContainer, ScrollContainer } from '../../ScrollContainer';
 
-storiesOf('ScrollContainer', module).add('default', () => (
-  <div className="border" style={{ width: '50%', margin: '50px auto', height: 500 }}>
-    <ScrollContainer>
-      <ScrollContent />
-    </ScrollContainer>
-  </div>
-));
+export const scrollContainerKnobs = (): IScrollContainer => ({
+  autoHeight: boolean('autoHeight', false),
+  autoHideTimeout: number('autoHideTimeout', 0),
+  onUpdate: action('onUpdate'),
+  scrollTo: text('scrollTo', ''),
+  shadows: boolean('shadows', true),
+});
+
+storiesOf('ScrollContainer', module)
+  .addDecorator(withKnobs)
+  .add('default', () => (
+    <div className="border" style={{ width: '50%', margin: '50px auto', height: 500 }}>
+      <ScrollContainer {...scrollContainerKnobs()}>
+        <ScrollContent />
+      </ScrollContainer>
+    </div>
+  ));
 
 const ScrollContent = () => {
   return (

@@ -31,7 +31,17 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   // can scroll to an anchor/id
   useScrollToHash(scrollTo);
 
-  const [shadowOpacity, setShadowOpactity] = React.useState({ top: 0, bottom: 0 });
+  // Used to add/remove box shadow styling as we scroll
+  const divContainerRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Used to set the value of the divContainerRef and forwardedRef
+  const refSetter = React.useCallback(scrollbarsRef => {
+    divContainerRef.current = scrollbarsRef ? scrollbarsRef.view : null;
+
+    if (forwardedRef) {
+      forwardedRef(scrollbarsRef ? scrollbarsRef.view : null);
+    }
+  }, []);
 
   const handleUpdate = React.useCallback(
     (values: positionValues) => {
@@ -39,31 +49,16 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
         onUpdate(values);
       }
 
-      if (shadows) {
+      if (shadows && divContainerRef.current) {
         const { scrollTop, scrollHeight, clientHeight } = values;
         const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
         const bottomScrollTop = scrollHeight - clientHeight;
         const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
 
-        if (shadowTopOpacity !== shadowOpacity.top || shadowBottomOpacity !== shadowOpacity.bottom) {
-          setShadowOpactity({ top: shadowTopOpacity, bottom: shadowBottomOpacity });
-        }
+        divContainerRef.current.style.boxShadow = `inset 0 6px 6px -8px rgba(0, 0, 0, ${shadowTopOpacity}), inset 0 -6px 6px -8px rgba(0, 0, 0, ${shadowBottomOpacity})`;
       }
     },
-    [shadowOpacity, shadows, onUpdate]
-  );
-
-  const refSetter = React.useCallback(
-    scrollbarsRef => {
-      if (!forwardedRef) return;
-
-      if (scrollbarsRef) {
-        forwardedRef(scrollbarsRef.view);
-      } else {
-        forwardedRef(null);
-      }
-    },
-    [forwardedRef]
+    [shadows, onUpdate]
   );
 
   return (
@@ -75,19 +70,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
-      renderView={({ style }) => {
-        return (
-          <div
-            className={Classes.SCROLL_CONTAINER}
-            style={{
-              ...style,
-              boxShadow: `inset 0 8px 8px -8px rgba(0, 0, 0, ${
-                shadowOpacity.top
-              }), inset 0 -8px 8px -8px rgba(0, 0, 0, ${shadowOpacity.bottom})`,
-            }}
-          />
-        );
-      }}
+      renderView={({ style }) => <div className={Classes.SCROLL_CONTAINER} style={style} />}
       renderTrackHorizontal={({ style }) => (
         <div
           style={{
