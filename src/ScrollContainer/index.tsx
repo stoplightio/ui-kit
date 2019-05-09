@@ -70,7 +70,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       autoHide
       autoHideTimeout={1000}
       autoHideDuration={300}
-      renderView={({ style }) => <div className={Classes.SCROLL_CONTAINER} style={style} />}
+      renderView={({ style }) => (
+        <div className={Classes.SCROLL_CONTAINER} style={{ ...style, marginBottom: 0, marginRight: 0 }} />
+      )}
       renderTrackHorizontal={({ style }) => (
         <div
           style={{
@@ -88,7 +90,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           style={{
             ...style,
             borderRadius: 3,
-            bottom: 10,
+            bottom: 2,
             right: 2,
             top: 2,
           }}
