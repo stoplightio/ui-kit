@@ -9,41 +9,40 @@ import { IScrollContainer, ScrollContainer } from '../ScrollContainer';
  * HELPERS
  */
 
-const CustomScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer>(({ style, ...props }, ref) => (
-  <ScrollContainer {...props} style={{ ...style, overflow: 'hidden' }} forwardedRef={ref} />
-));
+const CustomScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer & { listHeight: number }>(
+  ({ style, listHeight, ...props }, ref) => (
+    <ScrollContainer {...props} style={{ ...style, overflow: 'hidden' }} maxHeight={listHeight} forwardedRef={ref} />
+  )
+);
 
 /**
  * FIXED SIZE LIST
  */
 interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
   className?: string;
-  autoHideTimeout?: number;
   height?: number | string;
-  width?: number | string;
-  shadows?: boolean;
+  maxRows?: number;
 }
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, height, width, ...rest } = props;
+  const { className, children, height, itemSize, itemCount, maxRows, ...rest } = props;
+  const listHeight = (maxRows ? Math.min(itemCount, maxRows) : itemCount) * itemSize;
 
   return (
-    <AutoSizer>
-      {({ width: listWidth, height: listHeight }) => (
-        <ReactWindow.FixedSizeList
-          {...rest}
-          height={height || listHeight}
-          width={width || listWidth}
-          outerRef={ref}
-          outerElementType={CustomScrollContainer}
-        >
-          {children}
-        </ReactWindow.FixedSizeList>
-      )}
-    </AutoSizer>
+    <ReactWindow.FixedSizeList
+      {...rest}
+      itemSize={itemSize}
+      itemCount={itemCount}
+      height={listHeight}
+      width="100%"
+      outerRef={ref}
+      outerElementType={outerElemProps => <CustomScrollContainer listHeight={listHeight} {...outerElemProps} />}
+    >
+      {children}
+    </ReactWindow.FixedSizeList>
   );
 });
 
@@ -56,7 +55,6 @@ interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps,
   className?: string;
   height?: number | string;
   width?: number | string;
-  shadows?: boolean;
 }
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<

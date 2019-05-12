@@ -2,69 +2,50 @@ import * as React from 'react';
 import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
 
 import { Classes } from '../classes';
-import { useScrollToHash } from './hooks';
+import { useCalculateHeight, useSetRef, useUpdateShadows } from './hooks';
 
 /**
  * SCROLL CONTAINER
  */
 interface IScrollContainer extends ScrollbarProps {
-  autoHeight?: boolean;
   autoHideTimeout?: number;
   onUpdate?: (values: positionValues) => void;
+  forwardedRef?: any;
 
-  // can scroll to an anchor/id
-  scrollTo?: string;
   // include shadows to indicate more scroll
   shadows?: boolean;
-
-  forwardedRef?: any;
+  // include to set max height, else grows to children height
+  maxHeight?: number;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
-  scrollTo,
   children,
   shadows = true,
+  maxHeight,
   onUpdate,
   forwardedRef,
+  style = {},
   ...scrollbarProps
 }) => {
-  // can scroll to an anchor/id
-  useScrollToHash(scrollTo);
-
   // Used to add/remove box shadow styling as we scroll
   const divContainerRef = React.useRef<HTMLDivElement | null>(null);
+  // used to calculate height if parent div has no height
+  const childrenRef = React.useRef<HTMLDivElement | null>(null);
+
+  // use to to dynamically calulate height based on the minimum of either the children content, maxHeight prop or parent div
+  const [height, setHeight] = React.useState(0);
+  useCalculateHeight(setHeight, divContainerRef, childrenRef, maxHeight);
 
   // Used to set the value of the divContainerRef and forwardedRef
-  const refSetter = React.useCallback(scrollbarsRef => {
-    divContainerRef.current = scrollbarsRef ? scrollbarsRef.view : null;
-
-    if (forwardedRef) {
-      forwardedRef(scrollbarsRef ? scrollbarsRef.view : null);
-    }
-  }, []);
-
-  const handleUpdate = React.useCallback(
-    (values: positionValues) => {
-      if (onUpdate) {
-        onUpdate(values);
-      }
-
-      if (shadows && divContainerRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = values;
-        const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
-        const bottomScrollTop = scrollHeight - clientHeight;
-        const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
-
-        divContainerRef.current.style.boxShadow = `inset 0 6px 6px -8px rgba(0, 0, 0, ${shadowTopOpacity}), inset 0 -6px 6px -8px rgba(0, 0, 0, ${shadowBottomOpacity})`;
-      }
-    },
-    [shadows, onUpdate]
-  );
+  const ref = useSetRef(divContainerRef, forwardedRef);
+  // used to set and update shadows on container div
+  const handleUpdate = useUpdateShadows(divContainerRef, onUpdate, shadows);
 
   return (
     <Scrollbars
       {...scrollbarProps}
-      ref={refSetter}
+      style={{ ...style, height }}
+      ref={ref}
       onUpdate={handleUpdate}
       hideTracksWhenNotNeeded
       autoHide
@@ -96,7 +77,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       )}
       renderThumbVertical={vThumbProps => <div {...vThumbProps} className="bg-darken-5 dark:bg-darken-8 rounded" />}
     >
-      {children}
+      <div ref={childrenRef}>{children}</div>
     </Scrollbars>
   );
 };

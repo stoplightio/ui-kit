@@ -20,6 +20,7 @@ export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVaria
 
 export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeListProps, 'children'> => ({
   ...variableSizeListKnobs(tabName),
+  maxRows: number('maxRows', 5, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
@@ -37,7 +38,7 @@ const Row: React.FunctionComponent<any> = ({ index, style }) => (
 const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
 const Decorator: any = (storyFn: any) => (
-  <div style={{ outline: '1px solid currentColor', width: 400, height: 300, margin: 50 }}>{storyFn()}</div>
+  <div style={{ outline: '1px solid currentColor', margin: 50 }}>{storyFn()}</div>
 );
 
 /**
