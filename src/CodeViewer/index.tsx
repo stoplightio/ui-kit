@@ -48,7 +48,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 
   return (
     <pre
-      className={cn(Classes.CODE_EDITOR, className, {
+      className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
         isInline: inline,
         showLineNumbers,
       })}
