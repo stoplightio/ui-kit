@@ -31,10 +31,25 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
 
     const holderElement = scrollbar.current.holderElement;
     const parentElement = holderElement.parentElement || {};
+    const siblingElements = parentElement.children || [];
     const contentElement = scrollbar.current.contentElement;
     const childElement = contentElement.firstElementChild || {};
 
-    const height = min(compact([parentElement.clientHeight, childElement.clientHeight, maxHeight]));
+    // compute remaining height allowed in this div by subtracting sibling elements
+    let remainingParentHeight = parentElement.clientHeight || 0;
+    for (const child of siblingElements) {
+      if (child === holderElement) continue;
+
+      // margin is not included in offset height so find separately
+      const childStyle = (window.getComputedStyle ? getComputedStyle(child, null) : child.currentStyle) || {};
+      const pxToNum = (px?: string) => (px ? Number(px.replace('px', '')) : 0);
+
+      remainingParentHeight -= child.offsetHeight || 0;
+      remainingParentHeight -= pxToNum(childStyle.marginTop) || 0;
+      remainingParentHeight -= pxToNum(childStyle.marginBottom) || 0;
+    }
+
+    const height = min(compact([remainingParentHeight, childElement.clientHeight, maxHeight]));
 
     holderElement.style.height = `${height}px`;
 

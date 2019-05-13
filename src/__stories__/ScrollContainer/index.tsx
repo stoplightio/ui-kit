@@ -27,6 +27,16 @@ storiesOf('ScrollContainer', module)
         <ScrollContent />
       </ScrollContainer>
     </div>
+  ))
+  .add('fill remaining', () => (
+    <div className="border-2" style={{ maxHeight: 500, margin: 50 }}>
+      <div style={{ height: 250, margin: 20, background: 'pink' }}>
+        remaining content should only fill the rest of the space
+      </div>
+      <ScrollContainer {...scrollContainerKnobs()}>
+        <ScrollContent />
+      </ScrollContainer>
+    </div>
   ));
 
 const ScrollContent = () => {
