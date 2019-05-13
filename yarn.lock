@@ -2686,11 +2686,6 @@ acorn@^6.0.1, acorn@^6.0.5:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-add-px-to-style@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/add-px-to-style/-/add-px-to-style-1.0.0.tgz#d0c135441fa8014a8137904531096f67f28f263a"
-  integrity sha1-0ME1RB+oAUqBN5BFMQlvZ/KPJjo=
-
 address@1.0.3, address@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
@@ -4401,6 +4396,11 @@ cmd-shim@^2.0.2, cmd-shim@~2.0.2:
     graceful-fs "^4.1.2"
     mkdirp "~0.5.0"
 
+cnbuilder@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/cnbuilder/-/cnbuilder-1.0.14.tgz#849f323f0b054b084b35560e40ef446ef9eea8a4"
+  integrity sha512-Lna83KYpzRZjp/Kox64m4McIY1GfC9iD587kEKOPXFj6cyM2EToElEQkBbaTBkp3UY1Svi8Q3oj+++/1VCXORA==
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -5420,15 +5420,6 @@ dom-converter@^0.2:
   integrity sha512-gd3ypIPfOMr9h5jIKq8E3sHOTCjeirnl0WK5ZdS1AW0Odt0b1PaWaHdJ4Qk4klv+YB9aJBS7mESXjFoDQPu6DA==
   dependencies:
     utila "~0.4"
-
-dom-css@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/dom-css/-/dom-css-2.1.0.tgz#fdbc2d5a015d0a3e1872e11472bbd0e7b9e6a202"
-  integrity sha1-/bwtWgFdCj4YcuEUcrvQ57nmogI=
-  dependencies:
-    add-px-to-style "1.0.0"
-    prefix-style "2.0.1"
-    to-camel-case "1.0.0"
 
 "dom-helpers@^2.4.0 || ^3.0.0", dom-helpers@^3.4.0:
   version "3.4.0"
@@ -11141,11 +11132,6 @@ postcss@^6.0.14, postcss@^6.0.9:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-prefix-style@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/prefix-style/-/prefix-style-2.0.1.tgz#66bba9a870cfda308a5dc20e85e9120932c95a06"
-  integrity sha1-ZrupqHDP2jCKXcIOhekSCTLJWgY=
-
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -11448,7 +11434,7 @@ qw@~1.0.1:
   resolved "https://registry.yarnpkg.com/qw/-/qw-1.0.1.tgz#efbfdc740f9ad054304426acb183412cc8b996d4"
   integrity sha1-77/cdA+a0FQwRCassYNBLMi5ltQ=
 
-raf@^3.1.0, raf@^3.4.0:
+raf@^3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
@@ -11550,15 +11536,6 @@ react-color@^2.17.0:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-custom-scrollbars@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-custom-scrollbars/-/react-custom-scrollbars-4.2.1.tgz#830fd9502927e97e8a78c2086813899b2a8b66db"
-  integrity sha1-gw/ZUCkn6X6KeMIIaBOJmyqLZts=
-  dependencies:
-    dom-css "^2.0.0"
-    prop-types "^15.5.10"
-    raf "^3.1.0"
-
 react-day-picker@^7.3.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.3.0.tgz#59b6d4e19d274650c79dcf49fbcce2637313467d"
@@ -11633,6 +11610,14 @@ react-draggable@^3.1.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.2.1.tgz#45d09a9a227988dc85674b23ab3c75b6e820dae5"
   integrity sha512-r+3Bs9InID2lyIEbR8UIRVtpn4jgu1ArFEZgIy8vibJjijLSdNLX7rH9U68BBVD4RD9v44RXbaK4EHLyKXzNQw==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
+react-draggable@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.0.tgz#2ed7ea3f92e7d742d747f9e6324860606cd4d997"
+  integrity sha512-U7/jD0tAW4T0S7DCPK0kkKLyL0z61sC/eqU+NUfDjnq+JtBKaYKDHpsK2wazctiA4alEzCXUnzkREoxppOySVw==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -11747,6 +11732,14 @@ react-resize-detector@^3.2.1:
     lodash-es "^4.17.11"
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.1"
+
+react-scrollbars-custom@^4.0.0-alpha.13:
+  version "4.0.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/react-scrollbars-custom/-/react-scrollbars-custom-4.0.0-alpha.13.tgz#9fbb2c4a398b631eee8d7686c190ea1158ee8e86"
+  integrity sha512-gwP41UPi9Kpkvw9CY62S4mAuoQBIctFxBubVA9rGE4BzKyoJSNkKnxe4nmkonXpdF/tJJUK4oIAUuzVYj/G14g==
+  dependencies:
+    cnbuilder "^1.0.14"
+    react-draggable "^3.3.0"
 
 react-select@^2.3.0:
   version "2.4.3"
@@ -13790,22 +13783,10 @@ to-arraybuffer@^1.0.0:
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
   integrity sha1-fSKbH8xjfkZsoIEYCDanqr/4P0M=
 
-to-camel-case@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/to-camel-case/-/to-camel-case-1.0.0.tgz#1a56054b2f9d696298ce66a60897322b6f423e46"
-  integrity sha1-GlYFSy+daWKYzmamCJcyK29CPkY=
-  dependencies:
-    to-space-case "^1.0.0"
-
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
   integrity sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=
-
-to-no-case@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/to-no-case/-/to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a"
-  integrity sha1-xyKQcWTvaxeBMsjmmTAhLRtKoWo=
 
 to-object-path@^0.3.0:
   version "0.3.0"
@@ -13831,13 +13812,6 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
-
-to-space-case@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/to-space-case/-/to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17"
-  integrity sha1-sFLar7Gysp3HcM6gFj5ewOvJ/Bc=
-  dependencies:
-    to-no-case "^1.0.0"
 
 toggle-selection@^1.0.6:
   version "1.0.6"

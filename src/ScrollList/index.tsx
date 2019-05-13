@@ -2,17 +2,25 @@ import { Omit } from '@stoplight/types';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
 
-import { AutoSizer } from '../';
-import { IScrollContainer, ScrollContainer } from '../ScrollContainer';
+import noop = require('lodash/noop');
+import { ScrollContainer } from '../ScrollContainer';
 
 /**
  * HELPERS
  */
 
-const CustomScrollContainer = React.forwardRef<HTMLDivElement, IScrollContainer & { listHeight: number }>(
-  ({ style, listHeight, ...props }, ref) => (
-    <ScrollContainer {...props} style={{ ...style, overflow: 'hidden' }} maxHeight={listHeight} forwardedRef={ref} />
-  )
+const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSizeListProps & { listHeight: number }>(
+  ({ listHeight, onScroll = noop, children }, ref) => {
+    return (
+      <ScrollContainer
+        // @ts-ignore typings on onScroll are not right?
+        onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
+        maxHeight={listHeight}
+      >
+        {children}
+      </ScrollContainer>
+    );
+  }
 );
 
 /**
@@ -53,8 +61,9 @@ FixedSizeList.displayName = 'FixedSizeList';
  */
 interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
   className?: string;
-  height?: number | string;
-  width?: number | string;
+  height: number | string;
+  width: number | string;
+  shadows?: boolean;
 }
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
@@ -64,19 +73,9 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
   const { className, children, ...rest } = props;
 
   return (
-    <AutoSizer>
-      {({ width: listWidth, height: listHeight }) => (
-        <ReactWindow.VariableSizeList
-          {...rest}
-          height={listHeight}
-          width={listWidth}
-          outerRef={ref}
-          outerElementType={ScrollContainer}
-        >
-          {children}
-        </ReactWindow.VariableSizeList>
-      )}
-    </AutoSizer>
+    <ReactWindow.VariableSizeList {...rest} outerRef={ref} outerElementType={ScrollContainer}>
+      {children}
+    </ReactWindow.VariableSizeList>
   );
 });
 

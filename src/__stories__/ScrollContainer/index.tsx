@@ -1,14 +1,11 @@
 import * as React from 'react';
 
-import { action } from '@storybook/addon-actions';
 import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { IScrollContainer, ScrollContainer } from '../../ScrollContainer';
 
 export const scrollContainerKnobs = (): IScrollContainer => ({
-  autoHideTimeout: number('autoHideTimeout', 0),
-  onUpdate: action('onUpdate'),
   shadows: boolean('shadows', true),
 });
 
@@ -34,7 +31,7 @@ storiesOf('ScrollContainer', module)
 
 const ScrollContent = () => {
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 40 }}>
       <h1>
         This is the primary heading and there should only be one of these per page
         sadassadasdsdasdaslkdmaslkdmasldkmalskdmasldmasldkamsldkamsdlkasmdlkamsdlkmsadlksamdlksamdlaskdmasldkmsakdmasldkmasdkmalskdmlaskdm
