@@ -28,11 +28,22 @@ storiesOf('ScrollContainer', module)
       </ScrollContainer>
     </div>
   ))
-  .add('fill remaining', () => (
+  .add('sibling elem, fill remaining', () => (
     <div className="border-2" style={{ maxHeight: 500, margin: 50 }}>
       <div style={{ height: 250, margin: 20, background: 'pink' }}>
         remaining content should only fill the rest of the space
       </div>
+      <ScrollContainer {...scrollContainerKnobs()}>
+        <ScrollContent />
+      </ScrollContainer>
+    </div>
+  ))
+
+  // TODO FIXME
+  .add('sibling text, fill remaining', () => (
+    <div className="border-2" style={{ maxHeight: 500, margin: 50 }}>
+      This edgecase does not work, when the div contains text directly next to the scroll container the height is
+      incorrect
       <ScrollContainer {...scrollContainerKnobs()}>
         <ScrollContent />
       </ScrollContainer>
