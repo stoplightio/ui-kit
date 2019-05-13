@@ -4,9 +4,9 @@
   position: relative;
   list-style: none;
   cursor: pointer;
-  padding: 8px 15px;
+  padding: 7px 15px;
   z-index: 2;
-  font-weight: get-font-weight(bold);
+  font-weight: get-font-weight(medium);
   border-width: 1px;
   margin-left: -1px;
 
@@ -15,7 +15,7 @@
 
   &.selected-tab {
     cursor: default;
-    color: get-color(black);
+    color: get-color(gray, 6);
     border-bottom-color: get-color(white);
     background-color: get-color(white);
   }
@@ -55,7 +55,6 @@
 .#{$ns}-simple-tab-panel {
   border-width: 1px;
   display: none;
-  padding: 25px;
   border-radius: get-border-radius(default);
 
   &#react-tabs-1 {

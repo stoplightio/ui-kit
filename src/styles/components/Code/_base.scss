@@ -1,19 +1,15 @@
-/*
- * TODO add dark scss (should use shades of the variable colors, not separate ones)
-*/
-
-$comment: get-theme(code-editor, comment);
-$primary: get-theme(code-editor, primary);
-$secondary: get-theme(code-editor, secondary);
-$operator: get-theme(code-editor, operator);
-$keyword: get-theme(code-editor, keyword);
-$function: get-theme(code-editor, function);
-$variable: get-theme(code-editor, variable);
-$regex: get-theme(code-editor, regex);
-$punctuation: get-theme(code-editor, punc);
-
 .#{$ns}-code-editor {
+  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+  background: var(--code-bg);
+  color: var(--code-fg);
   counter-reset: line;
+  line-height: 1.5;
+  hyphens: none;
+  direction: ltr;
+
+  ::selection {
+    background: var(--code-selection-bg);
+  }
 
   &.isInline {
     margin: 0 2px;
@@ -34,71 +30,16 @@ $punctuation: get-theme(code-editor, punc);
       content: '';
       display: inline-block;
       user-select: none;
-      opacity: 0.3;
-      text-align: right;
-      min-width: 25px;
+      opacity: 0.4;
+      min-width: 35px;
       position: absolute;
-      left: 0;
+      left: 5px;
       counter-increment: line;
       content: counter(line);
     }
   }
 
   .token {
-    &.comment,
-    &.prolog,
-    &.doctype,
-    &.cdata {
-      color: $comment;
-    }
-
-    &.punctuation {
-      color: $punctuation;
-    }
-
-    &.property,
-    &.tag,
-    &.boolean,
-    &.number,
-    &.symbol,
-    &.deleted {
-      color: $primary;
-    }
-
-    &.selector,
-    &.attr-name,
-    &.string,
-    &.char,
-    &.builtin,
-    &.inserted {
-      color: $secondary;
-    }
-
-    &.operator,
-    &.entity,
-    &.url {
-      color: $operator;
-    }
-
-    &.atrule,
-    &.attr-value,
-    &.keyword {
-      color: $keyword;
-    }
-
-    &.function {
-      color: $function;
-    }
-
-    &.variable {
-      color: $variable;
-    }
-
-    &.regex,
-    &.important {
-      color: $regex;
-    }
-
     &.important,
     &.bold {
       font-weight: bold;
@@ -110,6 +51,85 @@ $punctuation: get-theme(code-editor, punc);
 
     &.entity {
       cursor: help;
+    }
+  }
+
+  // Colors
+
+  .token {
+    &.punctuation,
+    &.hexcode {
+      color: var(--code-punctuation);
+    }
+
+    &.function,
+    &.operator {
+      color: var(--code-function);
+    }
+
+    &.atrule,
+    &.keyword {
+      color: var(--code-keyword);
+
+      > .token.property,
+      > .token.property + .token.punctuation,
+      > .token.property + .token.punctuation + .token.number + .token.unit,
+      > .token.number,
+      > .token.unit {
+        color: var(--code-keyword);
+      }
+    }
+
+    &.attr-value,
+    &.string {
+      color: var(--code-value);
+    }
+
+    &.unit,
+    &.symbol,
+    &.url,
+    &.property-line {
+      color: var(--code-primary);
+    }
+
+    &.tag
+    &.deleted {
+      color: var(--code-tag);
+    }
+
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: var(--code-comment);
+    }
+
+    &.property,
+    &.attr-name,
+    &.char,
+    &.builtin,
+    &.inserted,
+    &.entity {
+      color: var(--code-secondary);
+    }
+
+    &.number,
+    &.selector {
+      color: var(--code-selector);
+    }
+
+    &.rule,
+    &.regex,
+    &.variable {
+      color: var(--code-rule);
+    }
+
+    &.important {
+      color: var(--code-important);
+    }
+
+    &.boolean {
+      color: var(--code-boolean);
     }
   }
 }

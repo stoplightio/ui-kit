@@ -10,7 +10,6 @@ import { Classes } from '../classes';
  * SCROLL CONTAINER
  */
 interface IScrollContainer extends ScrollbarProps {
-  forwardedRef?: any;
   maxHeight?: number;
   shadows?: boolean;
 }
@@ -123,8 +122,8 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           marginBottom: 2,
         },
       }}
-      thumbXProps={{ onDragEnd: handleDragEnd }}
-      thumbYProps={{ onDragEnd: handleDragEnd }}
+      thumbXProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
+      thumbYProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
       ref={scrollbar}
       onScrollStart={showTracks}
       onScrollStop={hideTracks}

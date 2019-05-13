@@ -1,5 +1,4 @@
 @import './utils';
-@import '../components/variables';
 
 /*
  * CONFIG TO BE PASSED IN BY THE CONSUMER
@@ -109,9 +108,6 @@ $sl-defaults: (
     ),
   ),
 );
-
-// add the component variables to defaults
-$sl-defaults: map-extend($sl-defaults, $sl-component-defaults, true);
 
 /*
  * RESOLVED VARIABLES USED IN ./theme.scss
