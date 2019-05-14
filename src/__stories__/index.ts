@@ -1,6 +1,9 @@
+import './Docs';
+
 import './Checkbox';
 import './Code';
-import './Docs';
+
+import './AutoSizer';
 import './ScrollContainer';
 import './ScrollList';
 import './SimpleTabs';
