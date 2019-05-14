@@ -100,7 +100,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       const bottomScrollTop = scrollHeight - clientHeight;
       const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
 
-      scrollbar.current.wrapperElement.style.boxShadow = `inset 0 6px 6px -8px rgba(0, 0, 0, ${shadowTopOpacity}), inset 0 -6px 6px -8px rgba(0, 0, 0, ${shadowBottomOpacity})`;
+      scrollbar.current.wrapperElement.style.boxShadow = `rgba(221, 221, 221, ${shadowTopOpacity}) 0px 6px 6px -6px inset, rgba(221, 221, 221, ${shadowBottomOpacity}) 0px -6px 6px -6px inset`;
     },
     [scrollbar, shadows]
   );
