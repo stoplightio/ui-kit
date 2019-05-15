@@ -1,106 +1,124 @@
 import * as React from 'react';
-import Scrollbars, { positionValues, ScrollbarProps } from 'react-custom-scrollbars';
+import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
 
 import { Classes } from '../classes';
-import { useScrollToHash } from './hooks';
+import { AutoSizer } from '../index';
 
 /**
  * SCROLL CONTAINER
  */
 interface IScrollContainer extends ScrollbarProps {
-  autoHeight?: boolean;
-  autoHideTimeout?: number;
-  onUpdate?: (values: positionValues) => void;
-
-  // can scroll to an anchor/id
-  scrollTo?: string;
-  // include shadows to indicate more scroll
   shadows?: boolean;
-
-  forwardedRef?: any;
+  autosize?: boolean;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
-  scrollTo,
+  id,
   children,
   shadows = true,
-  onUpdate,
-  forwardedRef,
-  ...scrollbarProps
+  autosize = true,
+  ...props
 }) => {
-  // can scroll to an anchor/id
-  useScrollToHash(scrollTo);
+  const [dragEndTimeout, setDragEndTimeout] = React.useState<any>(null);
 
-  // Used to add/remove box shadow styling as we scroll
-  const divContainerRef = React.useRef<HTMLDivElement | null>(null);
+  const scrollbar = React.useRef<any | null>(null);
 
-  // Used to set the value of the divContainerRef and forwardedRef
-  const refSetter = React.useCallback(scrollbarsRef => {
-    divContainerRef.current = scrollbarsRef ? scrollbarsRef.view : null;
+  const handleDragEnd = React.useCallback(() => {
+    setDragEndTimeout(window.setTimeout(hideTracks, 500));
+  }, [dragEndTimeout]);
 
-    if (forwardedRef) {
-      forwardedRef(scrollbarsRef ? scrollbarsRef.view : null);
+  const showTracks = React.useCallback(() => {
+    if (!scrollbar.current) return;
+
+    scrollbar.current.trackXElement.style.opacity = 1;
+    scrollbar.current.trackYElement.style.opacity = 1;
+
+    if (!dragEndTimeout) return;
+
+    window.clearTimeout(dragEndTimeout);
+    setDragEndTimeout(null);
+  }, [scrollbar, dragEndTimeout]);
+
+  const hideTracks = React.useCallback(() => {
+    if (
+      !scrollbar.current ||
+      scrollbar.current.trackXElement.classList.contains('dragging') ||
+      scrollbar.current.trackYElement.classList.contains('dragging')
+    ) {
+      return;
     }
-  }, []);
 
-  const handleUpdate = React.useCallback(
-    (values: positionValues) => {
-      if (onUpdate) {
-        onUpdate(values);
-      }
+    scrollbar.current.trackXElement.style.opacity = 0;
+    scrollbar.current.trackYElement.style.opacity = 0;
 
-      if (shadows && divContainerRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = values;
-        const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
-        const bottomScrollTop = scrollHeight - clientHeight;
-        const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
+    if (!dragEndTimeout) return;
 
-        divContainerRef.current.style.boxShadow = `rgba(221, 221, 221, ${shadowTopOpacity}) 0px 6px 6px -6px inset, rgba(221, 221, 221, ${shadowBottomOpacity}) 0px -6px 6px -6px inset`;
-      }
+    window.clearTimeout(dragEndTimeout);
+    setDragEndTimeout(null);
+  }, [scrollbar, dragEndTimeout]);
+
+  const updateShadows = React.useCallback(
+    (scrollValues: any) => {
+      if (!scrollbar.current || !shadows) return;
+
+      const { scrollTop, scrollHeight, clientHeight } = scrollValues;
+      const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
+      const bottomScrollTop = scrollHeight - clientHeight;
+      const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
+
+      scrollbar.current.wrapperElement.style.boxShadow = `rgba(221, 221, 221, ${shadowTopOpacity}) 0px 6px 6px -6px inset, rgba(221, 221, 221, ${shadowBottomOpacity}) 0px -6px 6px -6px inset`;
     },
-    [shadows, onUpdate]
+    [scrollbar, shadows]
   );
 
-  return (
-    <Scrollbars
-      {...scrollbarProps}
-      ref={refSetter}
-      onUpdate={handleUpdate}
-      hideTracksWhenNotNeeded
-      autoHide
-      autoHideTimeout={1000}
-      autoHideDuration={300}
-      renderView={({ style }) => (
-        <div className={Classes.SCROLL_CONTAINER} style={{ ...style, marginBottom: 0, marginRight: 0 }} />
-      )}
-      renderTrackHorizontal={({ style }) => (
-        <div
-          style={{
-            ...style,
-            borderRadius: 3,
-            right: 10,
-            bottom: 2,
-            left: 2,
-          }}
-        />
-      )}
-      renderThumbHorizontal={hThumbProps => <div {...hThumbProps} className="bg-darken-5 dark:bg-darken-8 rounded" />}
-      renderTrackVertical={({ style }) => (
-        <div
-          style={{
-            ...style,
-            borderRadius: 3,
-            bottom: 2,
-            right: 2,
-            top: 2,
-          }}
-        />
-      )}
-      renderThumbVertical={vThumbProps => <div {...vThumbProps} className="bg-darken-5 dark:bg-darken-8 rounded" />}
+  const ScrollElem = (
+    <Scrollbar
+      {...props}
+      wrapperProps={{
+        className: Classes.SCROLL_CONTAINER,
+        style: { position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, overflow: 'hidden' },
+      }}
+      trackYProps={{
+        onMouseOver: showTracks,
+        onMouseOut: hideTracks,
+        style: {
+          opacity: 0,
+          cursor: 'pointer',
+          background: 'inherit',
+          transition: 'opacity 0.2s',
+          width: 7,
+          marginRight: 4,
+        },
+      }}
+      trackXProps={{
+        onMouseOver: showTracks,
+        onMouseOut: hideTracks,
+        style: {
+          opacity: 0,
+          cursor: 'pointer',
+          background: 'inherit',
+          transition: 'opacity 0.2s',
+          height: 7,
+          marginBottom: 4,
+        },
+      }}
+      thumbXProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
+      thumbYProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
+      ref={scrollbar}
+      onScrollStart={showTracks}
+      onScrollStop={hideTracks}
+      onUpdate={updateShadows}
+      scrollDetectionThreshold={500}
     >
       {children}
-    </Scrollbars>
+    </Scrollbar>
   );
+
+  if (autosize) {
+    return <AutoSizer>{({ height, width }) => <div style={{ height, width }}>{ScrollElem}</div>}</AutoSizer>;
+  }
+
+  return ScrollElem;
 };
 
 ScrollContainer.displayName = 'ScrollContainer';

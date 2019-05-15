@@ -1,25 +1,18 @@
 import * as React from 'react';
 
 import { Omit } from '@stoplight/types';
-import { number, select, withKnobs } from '@storybook/addon-knobs';
+import { number, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { areEqual } from 'react-window';
-import { FixedSizeList, IFixedSizeListProps, IVariableSizeListProps, VariableSizeList } from '../../ScrollList';
+import { FixedSizeList, IFixedSizeListProps } from '../../ScrollList';
 
 /**
  * KNOBS
  */
 
-export const variableSizeListKnobs = (tabName = 'VariableSizeList'): Omit<IVariableSizeListProps, 'children'> => ({
-  itemSize: () => 0,
-  // @ts-ignore doesn't list typings
-  direction: select('direction', ['vertical', 'horizontal'], 'vertical', tabName),
-  itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
-});
-
 export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeListProps, 'children'> => ({
-  ...variableSizeListKnobs(tabName),
+  itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
@@ -36,29 +29,29 @@ const Row: React.FunctionComponent<any> = ({ index, style }) => (
 
 const MemoizedRow = React.memo(props => <Row {...props} />, areEqual);
 
-const Decorator: any = (storyFn: any) => (
-  <div style={{ outline: '1px solid currentColor', width: 400, height: 300, margin: 50 }}>{storyFn()}</div>
-);
-
 /**
  * STORIES
  */
 storiesOf('ScrollList-FixedSizeList', module)
   .addDecorator(withKnobs)
-  .addDecorator(Decorator)
-  .add('with defaults', () => <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>)
-  .add('memoized', () => <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>);
+  .add('grow to container height', () => (
+    <div style={{ outline: '1px solid currentColor', height: '50vh', margin: 50 }}>
+      <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>
+    </div>
+  ))
 
-storiesOf('ScrollList-VariableSizeList', module)
-  .addDecorator(withKnobs)
-  .addDecorator(Decorator)
-  .add('with defaults', () => (
-    <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
-      {Row}
-    </VariableSizeList>
+  .add('maxRows', () => (
+    <div style={{ outline: '1px solid currentColor', margin: 50 }}>
+      <FixedSizeList
+        {...fixedSizeListKnobs()}
+        maxRows={number('maxRows', 5, { min: 0, max: Infinity, range: false, step: 1 }, 'FixedSizeList')}
+      >
+        {Row}
+      </FixedSizeList>
+    </div>
   ))
   .add('memoized', () => (
-    <VariableSizeList {...variableSizeListKnobs()} itemSize={index => Math.max(20, index * 10)}>
-      {MemoizedRow}
-    </VariableSizeList>
+    <div style={{ outline: '1px solid currentColor', height: '50vh', margin: 50 }}>
+      <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>
+    </div>
   ));
