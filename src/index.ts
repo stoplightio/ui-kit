@@ -22,12 +22,7 @@ export * from './FormInput';
 // export * from './ScrollBox';
 // export * from './ScrollBox';
 export * from './ThemeContainer';
-
-/**
- * AUTOSIZER
- */
-
-export { default as AutoSizer } from 'react-virtualized-auto-sizer';
+export * from './AutoSizer';
 
 /**
  * BLUEPRINT CORE
