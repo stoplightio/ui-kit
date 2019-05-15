@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { boolean, number, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { IScrollContainer, ScrollContainer } from '../../ScrollContainer';
@@ -12,24 +12,21 @@ export const scrollContainerKnobs = (): IScrollContainer => ({
 storiesOf('ScrollContainer', module)
   .addDecorator(withKnobs)
   .add('default autogrow', () => (
-    <ScrollContainer {...scrollContainerKnobs()}>
-      <ScrollContent />
-    </ScrollContainer>
-  ))
-  .add('max-height prop', () => (
-    <ScrollContainer maxHeight={number('maxHeight', 400)} {...scrollContainerKnobs()}>
-      <ScrollContent />
-    </ScrollContainer>
+    <div className="border" style={{ height: '98vh' }}>
+      <ScrollContainer {...scrollContainerKnobs()}>
+        <ScrollContent />
+      </ScrollContainer>
+    </div>
   ))
   .add('container max-height', () => (
-    <div className="border" style={{ maxHeight: 150 }}>
+    <div className="border" style={{ height: '98vh', maxHeight: 500 }}>
       <ScrollContainer {...scrollContainerKnobs()}>
         <ScrollContent />
       </ScrollContainer>
     </div>
   ))
   .add('sibling elem, fill remaining', () => (
-    <div className="border-2" style={{ maxHeight: 500, margin: 50 }}>
+    <div className="border-2 flex flex-col" style={{ height: '98vh', maxHeight: 500, margin: 50 }}>
       <div style={{ height: 250, margin: 20, background: 'pink' }}>
         remaining content should only fill the rest of the space
       </div>
@@ -40,8 +37,8 @@ storiesOf('ScrollContainer', module)
   ))
 
   // TODO FIXME
-  .add('sibling text, fill remaining', () => (
-    <div className="border-2" style={{ maxHeight: 500, margin: 50 }}>
+  .add('broken: sibling text, fill remaining', () => (
+    <div className="border-2" style={{ height: '98vh', maxHeight: 500, margin: 50 }}>
       This edgecase does not work, when the div contains text directly next to the scroll container the height is
       incorrect
       <ScrollContainer {...scrollContainerKnobs()}>

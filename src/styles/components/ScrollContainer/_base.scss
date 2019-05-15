@@ -5,11 +5,3 @@
     display: none; /* Chrome, Safari, Opera */
   }
 }
-
-.#{$ns}-scroll-thumb {
-  background-color: get-color(darken, 6);
-
-  .#{$ns}-dark & {
-    color: get-color(darken, 8);
-  }
-}

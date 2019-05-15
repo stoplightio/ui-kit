@@ -1,61 +1,27 @@
 import * as React from 'react';
 import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
 
-import compact = require('lodash/compact');
-import min = require('lodash/min');
-
 import { Classes } from '../classes';
+import { AutoSizer } from '../index';
 
 /**
  * SCROLL CONTAINER
  */
 interface IScrollContainer extends ScrollbarProps {
-  maxHeight?: number;
   shadows?: boolean;
+  autosize?: boolean;
 }
 
 const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
+  id,
   children,
   shadows = true,
-  maxHeight,
+  autosize = true,
   ...props
 }) => {
-  const [height, setHeight] = React.useState<number | null>(null);
   const [dragEndTimeout, setDragEndTimeout] = React.useState<any>(null);
 
   const scrollbar = React.useRef<any | null>(null);
-
-  // dynamically grow or shrink content from prop, children, or parent
-  React.useEffect(() => {
-    if (!scrollbar.current) return;
-
-    const holderElement = scrollbar.current.holderElement;
-    const parentElement = holderElement.parentElement || {};
-    const siblingElements = parentElement.children || [];
-    const contentElement = scrollbar.current.contentElement;
-    const childElement = contentElement.firstElementChild || {};
-
-    // compute remaining height allowed in this div by subtracting sibling elements
-    let remainingParentHeight = parentElement.clientHeight || 0;
-    for (const child of siblingElements) {
-      if (child === holderElement) continue;
-
-      // margin is not included in offset height so find separately
-      const childStyle = (window.getComputedStyle ? getComputedStyle(child, null) : child.currentStyle) || {};
-      const pxToNum = (px?: string) => (px ? Number(px.replace('px', '')) : 0);
-
-      remainingParentHeight -= child.offsetHeight || 0;
-      remainingParentHeight -= pxToNum(childStyle.marginTop) || 0;
-      remainingParentHeight -= pxToNum(childStyle.marginBottom) || 0;
-    }
-
-    const height = min(compact([remainingParentHeight, childElement.clientHeight, maxHeight]));
-
-    holderElement.style.height = `${height}px`;
-
-    // need to store height in state so the component rerenders
-    setHeight(height);
-  }, [height]);
 
   const handleDragEnd = React.useCallback(() => {
     setDragEndTimeout(window.setTimeout(hideTracks, 500));
@@ -105,8 +71,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
     [scrollbar, shadows]
   );
 
-  // wrap in a container div to auto adust the height
-  return (
+  const ScrollElem = (
     <Scrollbar
       {...props}
       wrapperProps={{
@@ -121,8 +86,8 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           cursor: 'pointer',
           background: 'inherit',
           transition: 'opacity 0.2s',
-          width: 8,
-          marginRight: 2,
+          width: 7,
+          marginRight: 4,
         },
       }}
       trackXProps={{
@@ -133,8 +98,8 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           cursor: 'pointer',
           background: 'inherit',
           transition: 'opacity 0.2s',
-          height: 8,
-          marginBottom: 2,
+          height: 7,
+          marginBottom: 4,
         },
       }}
       thumbXProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
@@ -148,6 +113,12 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       {children}
     </Scrollbar>
   );
+
+  if (autosize) {
+    return <AutoSizer>{({ height, width }) => <div style={{ height, width }}>{ScrollElem}</div>}</AutoSizer>;
+  }
+
+  return ScrollElem;
 };
 
 ScrollContainer.displayName = 'ScrollContainer';
