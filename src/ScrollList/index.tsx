@@ -7,23 +7,22 @@ import min = require('lodash/min');
 import noop = require('lodash/noop');
 
 import { AutoSizer } from '../AutoSizer';
-import { ScrollContainer } from '../ScrollContainer';
+// import { ScrollContainer } from '../ScrollContainer';
 
 /**
  * HELPERS
  */
 
-const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSizeListProps & { listHeight: number }>(
+export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSizeListProps & { listHeight: number }>(
   ({ onScroll = noop, children, style, className }, ref) => {
     return (
       <div ref={ref} style={style} className="SrollList-Scrollbars">
-        <ScrollContainer
+        {/* <ScrollContainer
           // @ts-ignore typings on onScroll are not right?
           onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
-          autosize={false}
-        >
-          <div className={cn('ScrollList-Content relative', className)}>{children}</div>
-        </ScrollContainer>
+        > */}
+        <div className={cn('ScrollList-Content relative', className)}>{children}</div>
+        {/* </ScrollContainer> */}
       </div>
     );
   }
@@ -41,7 +40,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, itemSize, itemCount, maxRows, ...rest } = props;
+  const { className, children, itemSize, itemCount, maxRows, style, ...rest } = props;
   const listHeight = (min([itemCount, maxRows]) as number) * itemSize;
 
   return (
@@ -54,8 +53,12 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
             itemCount={itemCount}
             height={min([height, listHeight]) as number}
             width={width}
+            // className gets passed to ScrollList-Content
+            className={className}
+            // style gets passed to SrollList-Scrollbars
+            style={style}
             outerRef={ref}
-            outerElementType={outerElemProps => <CustomScrollContainer {...outerElemProps} className={className} />}
+            outerElementType={CustomScrollContainer}
           >
             {children}
           </ReactWindow.FixedSizeList>
