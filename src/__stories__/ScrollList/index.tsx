@@ -39,12 +39,22 @@ storiesOf('ScrollList-FixedSizeList', module)
       <FixedSizeList {...fixedSizeListKnobs()}>{Row}</FixedSizeList>
     </div>
   ))
-
   .add('maxRows', () => (
     <div style={{ outline: '1px solid currentColor', margin: 50 }}>
       <FixedSizeList
         {...fixedSizeListKnobs()}
         maxRows={number('maxRows', 5, { min: 0, max: Infinity, range: false, step: 1 }, 'FixedSizeList')}
+      >
+        {Row}
+      </FixedSizeList>
+    </div>
+  ))
+  .add('scrollTo', () => (
+    <div style={{ outline: '1px solid currentColor', margin: 50 }}>
+      <FixedSizeList
+        {...fixedSizeListKnobs()}
+        maxRows={number('maxRows', 5, { min: 0, max: Infinity, range: false, step: 1 }, 'FixedSizeList')}
+        scrollToItem={number('scrollToItem', 0, { min: 0, max: Infinity, range: false, step: 1 }, 'FixedSizeList')}
       >
         {Row}
       </FixedSizeList>

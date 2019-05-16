@@ -35,14 +35,21 @@ export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSize
 interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
   className?: string;
   maxRows?: number;
+  scrollToItem?: number;
 }
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, itemSize, itemCount, maxRows, style, ...rest } = props;
+  const { className, children, itemSize, itemCount, maxRows, style, scrollToItem, ...rest } = props;
   const listHeight = (min([itemCount, maxRows]) as number) * itemSize;
+
+  const listRef: React.Ref<any> = React.useRef();
+
+  React.useEffect(() => {
+    if (listRef.current && typeof scrollToItem === 'number') listRef.current.scrollToItem(scrollToItem);
+  }, [listRef, scrollToItem]);
 
   return (
     <div style={{ height: maxRows ? listHeight : '100%' }} className="ScrollList-Container">
@@ -59,7 +66,8 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
             // style gets passed to SrollList-Scrollbars
             style={style}
             outerRef={ref}
-            outerElementType={CustomScrollContainer}
+            ref={listRef}
+            // outerElementType={CustomScrollContainer}
           >
             {children}
           </ReactWindow.FixedSizeList>
