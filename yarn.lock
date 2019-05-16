@@ -12066,10 +12066,10 @@ react-resize-detector@^3.2.1:
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.1"
 
-react-scrollbars-custom@^4.0.0-alpha.13:
-  version "4.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/react-scrollbars-custom/-/react-scrollbars-custom-4.0.0-alpha.13.tgz#9fbb2c4a398b631eee8d7686c190ea1158ee8e86"
-  integrity sha512-gwP41UPi9Kpkvw9CY62S4mAuoQBIctFxBubVA9rGE4BzKyoJSNkKnxe4nmkonXpdF/tJJUK4oIAUuzVYj/G14g==
+react-scrollbars-custom@4.0.0-alpha.14:
+  version "4.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/react-scrollbars-custom/-/react-scrollbars-custom-4.0.0-alpha.14.tgz#7b65925580b3c2572fa09d9d1f99e0a966bef985"
+  integrity sha512-4twoX31NbB6mpkrEijNYExX5+H8rpcts+tpJw2hjfWTJI5AQx9Lwt8imQQxV7nJsdVoESGeSk/+dtaqXRzIJew==
   dependencies:
     cnbuilder "^1.0.14"
     react-draggable "^3.3.0"

@@ -50,7 +50,7 @@
     "@stoplight/types": "4.1.x",
     "classnames": "^2.2.6",
     "immer": "^2.0.0",
-    "react-scrollbars-custom": "^4.0.0-alpha.13",
+    "react-scrollbars-custom": "4.0.0-alpha.14",
     "prismjs": "1.16.x",
     "react-simple-code-editor": "0.9.10",
     "react-tabs": "^3.0.0",
