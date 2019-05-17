@@ -80,13 +80,13 @@
   &.#{$ns}-dark,
   .#{$ns}-dark & {
     color: get-color(gray, 5);
-    background-color: get-color(gray, 8);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #293742;
+    border-color: rgba(16, 22, 26, 0.4);
 
     &.selected-tab {
       color: white;
-      background-color: get-color(gray, 7);
-      border-bottom-color: get-color(gray, 7);
+      background-color: #30404c;
+      border-bottom-color: #30404c;
 
       &:hover {
         color: white;
@@ -109,7 +109,7 @@
   background-color: white;
 
   .#{$ns}-dark & {
-    background-color: get-color(gray, 7);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #30404c;
+    border-color: rgba(16, 22, 26, 0.4);
   }
 }
