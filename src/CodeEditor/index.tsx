@@ -1,5 +1,5 @@
 import { Omit } from '@stoplight/types';
-import * as cn from 'classnames';
+import cn from 'classnames';
 import * as React from 'react';
 
 import ReactSimpleCodeEditor from 'react-simple-code-editor';

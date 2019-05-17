@@ -19,9 +19,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   autosize = true,
   ...props
 }) => {
-  const [dragEndTimeout, setDragEndTimeout] = React.useState<any>(null);
+  const [dragEndTimeout, setDragEndTimeout] = React.useState<number | NodeJS.Timer | null>(null);
 
-  const scrollbar = React.useRef<any | null>(null);
+  const scrollbar = React.useRef<any>(null);
 
   const handleDragEnd = React.useCallback(() => {
     setDragEndTimeout(window.setTimeout(hideTracks, 500));
@@ -35,7 +35,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
 
     if (!dragEndTimeout) return;
 
-    window.clearTimeout(dragEndTimeout);
+    window.clearTimeout(dragEndTimeout as number);
     setDragEndTimeout(null);
   }, [scrollbar, dragEndTimeout]);
 
@@ -53,7 +53,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
 
     if (!dragEndTimeout) return;
 
-    window.clearTimeout(dragEndTimeout);
+    window.clearTimeout(dragEndTimeout as number);
     setDragEndTimeout(null);
   }, [scrollbar, dragEndTimeout]);
 
