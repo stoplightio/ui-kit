@@ -6,23 +6,27 @@
 
 Copyright 2017-present Palantir Technologies, Inc. All rights reserved.
 Licensed under the Apache License, Version 2.0.
-
 */
-@font-face {
-  font-family: 'Icons16';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/icons-16.eot?#iefix') format('embedded-opentype'), url('../fonts/icons-16.woff') format('woff'),
-    url('../fonts/icons-16.ttf') format('truetype');
-}
 
-@font-face {
-  font-family: 'Icons20';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/icons-20.eot?#iefix') format('embedded-opentype'), url('../fonts/icons-20.woff') format('woff'),
-    url('../fonts/icons-20.ttf') format('truetype');
-}
+// NOTE: commented out for now because it significantly complicates build process in projects using ui-kit
+// these are mostly used by blueprint for checkboxes, most icons are svg now
+// if attempt to get fonts back, make sure app-gen3 builds
+
+// @font-face {
+//   font-family: 'Icons16';
+//   font-weight: normal;
+//   font-style: normal;
+//   src: url('../fonts/icons-16.eot?#iefix') format('embedded-opentype'), url('../fonts/icons-16.woff') format('woff'),
+//     url('../fonts/icons-16.ttf') format('truetype');
+// }
+
+// @font-face {
+//   font-family: 'Icons20';
+//   font-weight: normal;
+//   font-style: normal;
+//   src: url('../fonts/icons-20.eot?#iefix') format('embedded-opentype'), url('../fonts/icons-20.woff') format('woff'),
+//     url('../fonts/icons-20.ttf') format('truetype');
+// }
 
 /*
  * Copyright 2017 Palantir Technologies, Inc. All rights reserved.
