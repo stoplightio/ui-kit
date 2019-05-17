@@ -1,19 +1,27 @@
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { ScrollBox } from '../ScrollBox';
+import { ScrollContainer } from '../';
+import { AutoSizer } from '../../AutoSizer';
 
-describe('ScrollBox', () => {
-  it('scrollsTo scrolls to proper element', () => {
-    const wrapper = mount(
-      <ScrollBox scrollTo="sub-heading2">
+describe('ScrollContainer', () => {
+  it('renders with autosizer', () => {
+    const wrapper = shallow(
+      <ScrollContainer>
         <ScrollContent />
-      </ScrollBox>
+      </ScrollContainer>
     );
 
-    const elem = wrapper.find('#sub-heading2');
+    expect(wrapper.find(AutoSizer)).toExist();
+  });
+  it('renders without autosizer', () => {
+    const wrapper = shallow(
+      <ScrollContainer autosize={false}>
+        <ScrollContent />
+      </ScrollContainer>
+    );
 
-    expect(elem.getDOMNode().scrollTop).toBe(0);
+    expect(wrapper.find(AutoSizer)).not.toExist();
   });
 });
 

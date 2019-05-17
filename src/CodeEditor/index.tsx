@@ -21,7 +21,7 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
   const { autoFocus, language, onChange, value, placeholder, className, padding, style, ...rest } = props;
 
   // Highlight code on change
-  const highlight = React.useCallback(code => (language ? highlightCode(code, language) : code), [language]);
+  const highlight = React.useCallback((code: string) => (language ? highlightCode(code, language) : code), [language]);
 
   return (
     <ReactSimpleCodeEditor

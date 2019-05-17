@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
-import { CodeEditor } from '../CodeEditor';
+import { CodeEditor } from '..';
 
 describe('Code Editor component', () => {
   it('calls onChange on code change', () => {
