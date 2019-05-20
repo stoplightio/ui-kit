@@ -9,7 +9,7 @@ import { TabList as ReactTabList, TabListProps as ISimpleTabListProps } from 're
  */
 const SimpleTabList: React.FunctionComponent<ISimpleTabListProps> & { tabsRole: string } = props => {
   const { children, className, ...rest } = props;
-  return React.createElement(ReactTabList, { className: cn(Classes.SIMPLE_TAB_LIST), ...rest }, children);
+  return React.createElement(ReactTabList, { className: cn(Classes.SIMPLE_TAB_LIST, className), ...rest }, children);
 };
 
 SimpleTabList.tabsRole = 'TabList';
