@@ -1,7 +1,5 @@
 import { HTMLInputProps, Icon, IInputGroupProps, InputGroup, Position, Tooltip } from '@blueprintjs/core';
 import { Dictionary } from '@stoplight/types';
-import cn from 'classnames';
-import { compact } from 'lodash';
 import * as React from 'react';
 
 // TODO: should probably use ajv and json schema
@@ -62,68 +60,26 @@ interface IFormInputValidationProps {
 }
 
 const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = ({ value, schema, size }) => {
-  const [validations, setValidations] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
-    const validationDescription = schema.describe();
-
-    setValidations(
-      compact(
-        validationDescription.tests.map((t: any) => {
-          const params: any = t.params || {};
-          if (validationDescription.type === 'string') {
-            if (t.name === 'min') {
-              return `at least ${params.min} letters`;
-            } else if (t.name === 'max') {
-              return `at most ${params.max} letters`;
-            }
-
-            return null;
-          }
-
-          return null;
-        })
-      )
-    );
-  }, [schema]);
-
-  const [validationError, setValidationError] = React.useState(false);
+  const [validation, setValidation] = React.useState<null | string>(null);
   async function validate() {
     try {
       await schema.validateSync(value);
     } catch (e) {
-      setValidationError(true);
+      setValidation(e.message || 'input is invalid');
     }
   }
 
   React.useEffect(() => {
-    setValidationError(false);
+    setValidation(null);
     validate();
   });
 
-  if (!validations || !validations.length) return null;
+  if (!validation) return null;
 
   return (
-    <Tooltip
-      content={
-        <>
-          {validations.map((v, i) => (
-            <div key={i}>{v}</div>
-          ))}
-        </>
-      }
-      position={Position.BOTTOM_RIGHT}
-      intent={validationError ? 'warning' : 'success'}
-    >
+    <Tooltip content={<div>{validation}</div>} position={Position.BOTTOM_RIGHT} intent="danger">
       <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
-        <Icon
-          icon={validationError ? 'circle' : 'tick-circle'}
-          className={cn({
-            'text-gray-3 dark:text-gray-6': validationError,
-          })}
-          iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD}
-          intent={validationError ? 'none' : 'success'}
-        />
+        <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
     </Tooltip>
   );
