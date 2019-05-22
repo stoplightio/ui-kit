@@ -17,6 +17,7 @@ export * from './classes';
  */
 export * from './CodeEditor';
 export * from './CodeViewer';
+export * from './FormButton';
 export * from './FormError';
 export * from './FormInput';
 // export * from './ScrollBox';

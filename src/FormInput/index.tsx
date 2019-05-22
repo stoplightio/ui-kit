@@ -1,8 +1,7 @@
 import { HTMLInputProps, Icon, IInputGroupProps, InputGroup, Position, Tooltip } from '@blueprintjs/core';
 import { Dictionary } from '@stoplight/types';
-import cn from 'classnames';
-import { compact } from 'lodash';
 import * as React from 'react';
+import { useValidateSchema } from '../_hooks/useValidateSchema';
 
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
@@ -62,68 +61,24 @@ interface IFormInputValidationProps {
 }
 
 const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = ({ value, schema, size }) => {
-  const [validations, setValidations] = React.useState<string[]>([]);
+  const errors = useValidateSchema(schema, value, { abortEarly: false });
 
-  React.useEffect(() => {
-    const validationDescription = schema.describe();
-
-    setValidations(
-      compact(
-        validationDescription.tests.map((t: any) => {
-          const params: any = t.params || {};
-          if (validationDescription.type === 'string') {
-            if (t.name === 'min') {
-              return `at least ${params.min} letters`;
-            } else if (t.name === 'max') {
-              return `at most ${params.max} letters`;
-            }
-
-            return null;
-          }
-
-          return null;
-        })
-      )
-    );
-  }, [schema]);
-
-  const [validationError, setValidationError] = React.useState(false);
-  async function validate() {
-    try {
-      await schema.validateSync(value);
-    } catch (e) {
-      setValidationError(true);
-    }
-  }
-
-  React.useEffect(() => {
-    setValidationError(false);
-    validate();
-  });
-
-  if (!validations || !validations.length) return null;
+  if (!errors) return null;
 
   return (
     <Tooltip
       content={
-        <>
-          {validations.map((v, i) => (
-            <div key={i}>{v}</div>
+        <ul>
+          {errors.map((error, index) => (
+            <li key={index}>• {error}</li>
           ))}
-        </>
+        </ul>
       }
       position={Position.BOTTOM_RIGHT}
-      intent={validationError ? 'warning' : 'success'}
+      intent="danger"
     >
       <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
-        <Icon
-          icon={validationError ? 'circle' : 'tick-circle'}
-          className={cn({
-            'text-gray-3 dark:text-gray-6': validationError,
-          })}
-          iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD}
-          intent={validationError ? 'none' : 'success'}
-        />
+        <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
     </Tooltip>
   );
