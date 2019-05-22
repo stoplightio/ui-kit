@@ -4,6 +4,7 @@ import * as React from 'react';
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
 
+import { useValidateSchema } from '../_hooks/useValidateSchema';
 import { Button, IButtonProps } from '../index';
 
 /**
@@ -25,30 +26,10 @@ const FormButton: React.FunctionComponent<IFormButton> = ({
   onClick = _noop,
   ...buttonProps
 }) => {
-  const [isValid, setIsValid] = React.useState<boolean>(false);
+  const errors = useValidateSchema(schema, data);
+  const handleClick = React.useCallback(() => onClick(data), [onClick, data]);
 
-  async function validate() {
-    if (!schema) return;
-    try {
-      await schema.validateSync(data);
-    } catch (e) {
-      setIsValid(false);
-    }
-  }
-
-  React.useEffect(() => {
-    setIsValid(true);
-    validate();
-  }, [data, schema]);
-
-  return (
-    <Button
-      disabled={!isValid || loading || disabled}
-      loading={loading}
-      onClick={() => onClick(data)}
-      {...buttonProps}
-    />
-  );
+  return <Button disabled={!!errors || loading || disabled} loading={loading} onClick={handleClick} {...buttonProps} />;
 };
 
 /**

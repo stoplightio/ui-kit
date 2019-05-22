@@ -1,6 +1,7 @@
 import { HTMLInputProps, Icon, IInputGroupProps, InputGroup, Position, Tooltip } from '@blueprintjs/core';
 import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
+import { useValidateSchema } from '../_hooks/useValidateSchema';
 
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
@@ -60,24 +61,22 @@ interface IFormInputValidationProps {
 }
 
 const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = ({ value, schema, size }) => {
-  const [validation, setValidation] = React.useState<null | string>(null);
-  async function validate() {
-    try {
-      await schema.validateSync(value);
-    } catch (e) {
-      setValidation(e.message || 'input is invalid');
-    }
-  }
+  const errors = useValidateSchema(schema, value, { abortEarly: false });
 
-  React.useEffect(() => {
-    setValidation(null);
-    validate();
-  });
-
-  if (!validation) return null;
+  if (!errors) return null;
 
   return (
-    <Tooltip content={<div>{validation}</div>} position={Position.BOTTOM_RIGHT} intent="danger">
+    <Tooltip
+      content={
+        <ul>
+          {errors.map((error, index) => (
+            <li key={index}>• {error}</li>
+          ))}
+        </ul>
+      }
+      position={Position.BOTTOM_RIGHT}
+      intent="danger"
+    >
       <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
         <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
