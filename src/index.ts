@@ -22,6 +22,7 @@ export * from './FormError';
 export * from './FormInput';
 // export * from './ScrollBox';
 // export * from './ScrollBox';
+export * from './SecretInput';
 export * from './ThemeContainer';
 export * from './AutoSizer';
 
