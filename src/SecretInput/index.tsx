@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { Button, IInputGroupProps, InputGroup, Tooltip } from '@blueprintjs/core';
+import { Button, HTMLInputProps, IInputGroupProps, InputGroup, Tooltip } from '@blueprintjs/core';
 
-export interface ISecretInputProps extends IInputGroupProps {
+type SecretInputProps = {
   selectOnFocus?: boolean;
-}
+} & IInputGroupProps &
+  HTMLInputProps;
 
-export const SecretInput = ({ selectOnFocus = false, ...props }: ISecretInputProps) => {
+export const SecretInput = ({ selectOnFocus = false, ...props }: SecretInputProps) => {
   const [visible, setVisible] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
