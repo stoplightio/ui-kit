@@ -15,7 +15,7 @@ export const useValidateSchema = (schema?: yup.Schema<any>, value?: any, validat
     } catch (e) {
       setValidationErrors(e.errors || ['Input is invalid']);
     }
-  }, [value, schema, validateOpts]);
+  }, [value, schema]);
 
   return validationErrors;
 };
