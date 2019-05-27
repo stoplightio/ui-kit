@@ -35,14 +35,15 @@ export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSize
 interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
   className?: string;
   maxRows?: number;
+  addOffset?: boolean;
 }
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, itemSize, itemCount, maxRows, style, ...rest } = props;
-  const listHeight = (min([itemCount, maxRows]) as number) * itemSize;
+  const { className, addOffset, children, itemSize, itemCount, maxRows, style, ...rest } = props;
+  const listHeight = (min([itemCount, maxRows]) as number) * itemSize + (addOffset ? itemSize / 2 : 0);
 
   return (
     <div style={{ height: maxRows ? listHeight : '100%' }} className="ScrollList-Container">
