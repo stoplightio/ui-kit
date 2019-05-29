@@ -7,8 +7,8 @@ import { Icon } from '../..';
 import { Dropdown, IDropdown } from '../../Dropdown/Dropdown';
 import { Select } from '../../Select';
 
-export const dropdownKnobs = (tabName = 'Code Viewer'): Partial<IDropdown> => ({
-  items: array('items', ['foo', 'bar', 'baz'], tabName),
+export const dropdownKnobs = (tabName = 'Dropdown'): Partial<IDropdown> => ({
+  items: array('items', ['foo', 'bar', 'baz'], ',', tabName),
   filterable: boolean('filterable', false, tabName),
   maxRows: number('maxRows', 10, { min: 1, max: Infinity, range: false, step: 1 }, tabName),
   itemSize: number('itemSize', 30, { min: 1, max: Infinity, range: false, step: 1 }, tabName),

@@ -22,6 +22,10 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
 }) => {
   const itemListRenderer = React.useCallback<ItemListRenderer<string>>(
     ({ filteredItems, renderItem }) => {
+      if (filteredItems.length === 0) {
+        return <span className="inline-block px-5 py-3">No results found</span>;
+      }
+
       return (
         <Menu className="Dropdown__select">
           <FixedSizeList
