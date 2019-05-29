@@ -1,4 +1,5 @@
 import { Omit } from '@stoplight/types';
+import cn from 'classnames';
 import * as React from 'react';
 import { Menu, MenuItem } from '..';
 import { FixedSizeList } from '../ScrollList';
@@ -18,6 +19,8 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
   maxRows = 10,
   itemSize = 30,
   activeItem,
+  className,
+  popoverProps,
   ...props
 }) => {
   const itemListRenderer = React.useCallback<ItemListRenderer<string>>(
@@ -29,6 +32,7 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
       return (
         <Menu className="Dropdown__select">
           <FixedSizeList
+            className={className}
             maxRows={maxRows}
             itemSize={itemSize}
             itemCount={filteredItems.length}
@@ -49,7 +53,10 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
       items,
       itemRenderer,
       itemListRenderer,
-      popoverProps: { portalClassName: 'Dropdown__popover', ...props.popoverProps },
+      popoverProps: {
+        ...popoverProps,
+        portalClassName: cn('Dropdown__popover', popoverProps ? popoverProps.portalClassName : ''),
+      },
       ...props,
     },
     children
