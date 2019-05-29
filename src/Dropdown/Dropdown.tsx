@@ -7,15 +7,37 @@ import { ISelectProps, ItemListRenderer, ItemRenderer, Select } from '../Select'
 export interface IDropdown extends Omit<ISelectProps<string>, 'itemRenderer'> {
   baseComponent: new (props: ISelectProps<string>) => Select<string>;
   itemRenderer?: ISelectProps<string>['itemRenderer'];
+  itemSize?: number;
+  maxRows?: number;
 }
 
 export const Dropdown: React.FunctionComponent<IDropdown> = ({
   children,
   baseComponent,
   items,
+  maxRows = 10,
+  itemSize = 30,
   activeItem,
   ...props
 }) => {
+  const itemListRenderer = React.useCallback<ItemListRenderer<string>>(
+    ({ filteredItems, renderItem }) => {
+      return (
+        <Menu className="Dropdown__select">
+          <FixedSizeList
+            maxRows={maxRows}
+            itemSize={itemSize}
+            itemCount={filteredItems.length}
+            itemData={{ filteredItems, renderItem }}
+          >
+            {Item}
+          </FixedSizeList>
+        </Menu>
+      );
+    },
+    [maxRows, itemSize]
+  );
+
   return React.createElement(
     baseComponent as React.ComponentClass<ISelectProps<string>>,
     {
@@ -34,21 +56,6 @@ Dropdown.displayName = 'Dropdown';
 const itemRenderer: ItemRenderer<string> = (value, { handleClick, modifiers }) => (
   <MenuItem active={modifiers.active} key={value} onClick={handleClick} text={value} />
 );
-
-const itemListRenderer: ItemListRenderer<string> = ({ filteredItems, renderItem }) => {
-  return (
-    <Menu className="Dropdown__select">
-      <FixedSizeList
-        maxRows={10}
-        itemSize={30}
-        itemCount={filteredItems.length}
-        itemData={{ filteredItems, renderItem }}
-      >
-        {Item}
-      </FixedSizeList>
-    </Menu>
-  );
-};
 
 const Item = (props: any) => {
   const { data, index, style } = props;

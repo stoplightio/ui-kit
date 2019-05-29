@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { array, boolean, withKnobs } from '@storybook/addon-knobs';
+import { array, boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
@@ -10,6 +10,8 @@ import { Select } from '../../Select';
 export const dropdownKnobs = (tabName = 'Code Viewer'): Partial<IDropdown> => ({
   items: array('items', ['foo', 'bar', 'baz'], tabName),
   filterable: boolean('filterable', false, tabName),
+  maxRows: number('maxRows', 10, { min: 1, max: Infinity, range: false, step: 1 }, tabName),
+  itemSize: number('itemSize', 30, { min: 1, max: Infinity, range: false, step: 1 }, tabName),
 });
 
 const ItemSelector = Select.ofType<string>();
