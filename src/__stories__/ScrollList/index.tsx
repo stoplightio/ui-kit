@@ -14,6 +14,7 @@ import { FixedSizeList, IFixedSizeListProps } from '../../ScrollList';
 export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeListProps, 'children'> => ({
   itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+  offset: number('offset', 0, { min: Infinity, max: Infinity, range: false, step: 1 }, tabName),
 });
 
 /**
