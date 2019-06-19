@@ -1,3 +1,6 @@
+@import 'theme-light';
+@import 'theme-dark';
+
 .#{$ns}-code-editor {
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
   background: var(--code-bg);
@@ -6,6 +9,8 @@
   line-height: 1.5;
   hyphens: none;
   direction: ltr;
+
+  @include lightCodeTheme();
 
   ::selection {
     background: var(--code-selection-bg);
@@ -131,5 +136,9 @@
     &.boolean {
       color: var(--code-boolean);
     }
+  }
+
+  .#{$ns}-dark & {
+    @include darkCodeTheme();
   }
 }

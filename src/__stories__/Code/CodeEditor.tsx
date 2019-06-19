@@ -24,6 +24,11 @@ storiesOf('Code:Editor', module)
     <>
       <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />
     </>
+  ))
+  .add('dark', () => (
+    <div className="bp3-dark">
+      <CodeEditor {...codeEditorKnobs()} onChange={action('onChange')} />
+    </div>
   ));
 
 storiesOf('Code:Editor', module)
