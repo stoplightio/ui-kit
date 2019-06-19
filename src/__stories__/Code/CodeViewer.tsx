@@ -15,4 +15,9 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
 storiesOf('Code:Viewer', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => <CodeViewer {...codeViewerKnobs()} />)
+  .add('dark', () => (
+    <div className="bp3-dark">
+      <CodeViewer {...codeViewerKnobs()} />
+    </div>
+  ))
   .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />);
