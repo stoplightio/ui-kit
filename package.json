@@ -50,8 +50,8 @@
     "@stoplight/types": "4.1.x",
     "classnames": "^2.2.6",
     "immer": "^2.0.0",
-    "react-scrollbars-custom": "4.0.0-alpha.14",
     "prismjs": "1.16.x",
+    "react-scrollbars-custom": "4.0.0-alpha.14",
     "react-simple-code-editor": "0.9.10",
     "react-tabs": "^3.0.0",
     "react-virtualized-auto-sizer": "^1.0.2",
@@ -121,7 +121,7 @@
     "tslint-plugin-prettier": "2.0.x",
     "tslint-react": "4.0.x",
     "tslint-react-hooks": "2.0.x",
-    "typescript": "3.4.5",
+    "typescript": "3.5.2",
     "webpack": "4.31.x"
   },
   "lint-staged": {
