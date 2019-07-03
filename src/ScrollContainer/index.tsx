@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
 
+import omit = require('lodash/omit');
+
 import { Classes } from '../classes';
 import { AutoSizer } from '../index';
 
@@ -19,25 +21,16 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
   autosize = true,
   ...props
 }) => {
-  const [dragEndTimeout, setDragEndTimeout] = React.useState<number | NodeJS.Timer | null>(null);
-
   const scrollbar = React.useRef<any>(null);
-
-  const handleDragEnd = React.useCallback(() => {
-    setDragEndTimeout(window.setTimeout(hideTracks, 500));
-  }, [dragEndTimeout]);
 
   const showTracks = React.useCallback(() => {
     if (!scrollbar.current) return;
 
     scrollbar.current.trackXElement.style.opacity = 1;
     scrollbar.current.trackYElement.style.opacity = 1;
-
-    if (!dragEndTimeout) return;
-
-    window.clearTimeout(dragEndTimeout as number);
-    setDragEndTimeout(null);
-  }, [scrollbar, dragEndTimeout]);
+    scrollbar.current.trackXElement.style.transition = 'opacity 0s';
+    scrollbar.current.trackYElement.style.transition = 'opacity 0s';
+  }, [scrollbar]);
 
   const hideTracks = React.useCallback(() => {
     if (
@@ -50,12 +43,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
 
     scrollbar.current.trackXElement.style.opacity = 0;
     scrollbar.current.trackYElement.style.opacity = 0;
-
-    if (!dragEndTimeout) return;
-
-    window.clearTimeout(dragEndTimeout as number);
-    setDragEndTimeout(null);
-  }, [scrollbar, dragEndTimeout]);
+    scrollbar.current.trackXElement.style.transition = 'opacity 1s';
+    scrollbar.current.trackYElement.style.transition = 'opacity 1s';
+  }, [scrollbar]);
 
   const updateShadows = React.useCallback(
     (scrollValues: any) => {
@@ -71,6 +61,12 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
     [scrollbar, shadows]
   );
 
+  const thumbRenderer = React.useCallback((props: any) => {
+    const { elementRef, style, className } = props;
+    const styles = omit(style, ['background', 'borderRadius']);
+    return <div className={`${className} bg-darken-5 dark:bg-darken-8`} style={styles} ref={elementRef} />;
+  }, []);
+
   const ScrollElem = (
     <Scrollbar
       {...props}
@@ -79,36 +75,36 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
         style: { position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, overflow: 'hidden' },
       }}
       trackYProps={{
-        onMouseOver: showTracks,
-        onMouseOut: hideTracks,
         style: {
           opacity: 0,
           cursor: 'pointer',
           background: 'inherit',
-          transition: 'opacity 0.2s',
           width: 7,
           marginRight: 4,
+          borderRadius: 0,
         },
       }}
       trackXProps={{
-        onMouseOver: showTracks,
-        onMouseOut: hideTracks,
         style: {
           opacity: 0,
           cursor: 'pointer',
           background: 'inherit',
-          transition: 'opacity 0.2s',
           height: 7,
           marginBottom: 4,
+          borderRadius: 0,
         },
       }}
-      thumbXProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
-      thumbYProps={{ onDragEnd: handleDragEnd, className: 'bg-darken-5 dark:bg-darken-8 rounded' }}
+      thumbXProps={{
+        renderer: thumbRenderer,
+      }}
+      thumbYProps={{
+        renderer: thumbRenderer,
+      }}
       ref={scrollbar}
-      onScrollStart={showTracks}
-      onScrollStop={hideTracks}
       onUpdate={updateShadows}
       scrollDetectionThreshold={500}
+      onMouseOver={showTracks}
+      onMouseOut={hideTracks}
     >
       {children}
     </Scrollbar>
