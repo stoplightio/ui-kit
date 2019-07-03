@@ -1,7 +1,8 @@
+import cn from 'classnames';
+import { omit } from 'lodash';
 import * as React from 'react';
 import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
-
-import omit = require('lodash/omit');
+import { ScrollbarThumbProps } from 'react-scrollbars-custom/dist/types/ScrollbarThumb';
 
 import { Classes } from '../classes';
 import { AutoSizer } from '../index';
@@ -43,8 +44,8 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
 
     scrollbar.current.trackXElement.style.opacity = 0;
     scrollbar.current.trackYElement.style.opacity = 0;
-    scrollbar.current.trackXElement.style.transition = 'opacity 1s';
-    scrollbar.current.trackYElement.style.transition = 'opacity 1s';
+    scrollbar.current.trackXElement.style.transition = 'opacity 0.8s';
+    scrollbar.current.trackYElement.style.transition = 'opacity 0.8s';
   }, [scrollbar]);
 
   const updateShadows = React.useCallback(
@@ -61,11 +62,14 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
     [scrollbar, shadows]
   );
 
-  const thumbRenderer = React.useCallback((props: any) => {
-    const { elementRef, style, className } = props;
-    const styles = omit(style, ['background', 'borderRadius']);
-    return <div className={`${className} bg-darken-5 dark:bg-darken-8`} style={styles} ref={elementRef} />;
-  }, []);
+  const thumbRenderer = React.useCallback(
+    (props: Pick<ScrollbarThumbProps, Exclude<keyof ScrollbarThumbProps, 'axis'>>) => {
+      const { elementRef, style, className } = props;
+      const styles = omit(style, ['background', 'borderRadius']);
+      return <div className={cn(className, 'bg-darken-5 dark:bg-darken-8')} style={styles} ref={elementRef} />;
+    },
+    []
+  );
 
   const ScrollElem = (
     <Scrollbar
