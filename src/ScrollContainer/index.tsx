@@ -66,7 +66,16 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
     (props: Pick<ScrollbarThumbProps, Exclude<keyof ScrollbarThumbProps, 'axis'>>) => {
       const { elementRef, style, className } = props;
       const styles = omit(style, ['background', 'borderRadius']);
-      return <div className={cn(className, 'bg-darken-5 dark:bg-darken-8')} style={styles} ref={elementRef} />;
+      return (
+        <div
+          className={cn(
+            className,
+            'bg-darken-5 hover:bg-darken-6 active:bg-darken-7 dark:bg-lighten-4 dark:bg-lighten-5:hover'
+          )}
+          style={styles}
+          ref={elementRef}
+        />
+      );
     },
     []
   );
