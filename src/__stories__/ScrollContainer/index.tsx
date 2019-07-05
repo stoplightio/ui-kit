@@ -35,6 +35,13 @@ storiesOf('ScrollContainer', module)
       </ScrollContainer>
     </div>
   ))
+  .add('dark', () => (
+    <div className="border bp3-dark bg-gray-8 p-10" style={{ height: '98vh', maxHeight: 500 }}>
+      <ScrollContainer {...scrollContainerKnobs()}>
+        <ScrollContent />
+      </ScrollContainer>
+    </div>
+  ))
 
   // TODO FIXME
   .add('broken: sibling text, fill remaining', () => (

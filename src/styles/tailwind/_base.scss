@@ -1821,6 +1821,726 @@
   background-color: get-theme(colors , red , 5);
 }
 
+.bp3-dark .dark-hover\:bg-inherit:hover {
+  background-color: inherit;
+}
+
+.bp3-dark .dark-hover\:bg-transparent:hover {
+  background-color: get-theme(colors , transparent);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-1:hover {
+  background-color: get-theme(colors , lighten , 1);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-2:hover {
+  background-color: get-theme(colors , lighten , 2);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-3:hover {
+  background-color: get-theme(colors , lighten , 3);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-4:hover {
+  background-color: get-theme(colors , lighten , 4);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-5:hover {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-6:hover {
+  background-color: get-theme(colors , lighten , 6);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-7:hover {
+  background-color: get-theme(colors , lighten , 7);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-8:hover {
+  background-color: get-theme(colors , lighten , 8);
+}
+
+.bp3-dark .dark-hover\:bg-lighten-9:hover {
+  background-color: get-theme(colors , lighten , 9);
+}
+
+.bp3-dark .dark-hover\:bg-lighten:hover {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.bp3-dark .dark-hover\:bg-darken-1:hover {
+  background-color: get-theme(colors , darken , 1);
+}
+
+.bp3-dark .dark-hover\:bg-darken-2:hover {
+  background-color: get-theme(colors , darken , 2);
+}
+
+.bp3-dark .dark-hover\:bg-darken-3:hover {
+  background-color: get-theme(colors , darken , 3);
+}
+
+.bp3-dark .dark-hover\:bg-darken-4:hover {
+  background-color: get-theme(colors , darken , 4);
+}
+
+.bp3-dark .dark-hover\:bg-darken-5:hover {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark-hover\:bg-darken-6:hover {
+  background-color: get-theme(colors , darken , 6);
+}
+
+.bp3-dark .dark-hover\:bg-darken-7:hover {
+  background-color: get-theme(colors , darken , 7);
+}
+
+.bp3-dark .dark-hover\:bg-darken-8:hover {
+  background-color: get-theme(colors , darken , 8);
+}
+
+.bp3-dark .dark-hover\:bg-darken-9:hover {
+  background-color: get-theme(colors , darken , 9);
+}
+
+.bp3-dark .dark-hover\:bg-darken:hover {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark-hover\:bg-disabled:hover {
+  background-color: get-theme(colors , disabled);
+}
+
+.bp3-dark .dark-hover\:bg-black:hover {
+  background-color: get-theme(colors , black);
+}
+
+.bp3-dark .dark-hover\:bg-white:hover {
+  background-color: get-theme(colors , white);
+}
+
+.bp3-dark .dark-hover\:bg-gray-1:hover {
+  background-color: get-theme(colors , gray , 1);
+}
+
+.bp3-dark .dark-hover\:bg-gray-2:hover {
+  background-color: get-theme(colors , gray , 2);
+}
+
+.bp3-dark .dark-hover\:bg-gray-3:hover {
+  background-color: get-theme(colors , gray , 3);
+}
+
+.bp3-dark .dark-hover\:bg-gray-4:hover {
+  background-color: get-theme(colors , gray , 4);
+}
+
+.bp3-dark .dark-hover\:bg-gray-5:hover {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.bp3-dark .dark-hover\:bg-gray-6:hover {
+  background-color: get-theme(colors , gray , 6);
+}
+
+.bp3-dark .dark-hover\:bg-gray-7:hover {
+  background-color: get-theme(colors , gray , 7);
+}
+
+.bp3-dark .dark-hover\:bg-gray-8:hover {
+  background-color: get-theme(colors , gray , 8);
+}
+
+.bp3-dark .dark-hover\:bg-gray-9:hover {
+  background-color: get-theme(colors , gray , 9);
+}
+
+.bp3-dark .dark-hover\:bg-gray:hover {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.bp3-dark .dark-hover\:bg-red-1:hover {
+  background-color: get-theme(colors , red , 1);
+}
+
+.bp3-dark .dark-hover\:bg-red-2:hover {
+  background-color: get-theme(colors , red , 2);
+}
+
+.bp3-dark .dark-hover\:bg-red-3:hover {
+  background-color: get-theme(colors , red , 3);
+}
+
+.bp3-dark .dark-hover\:bg-red-4:hover {
+  background-color: get-theme(colors , red , 4);
+}
+
+.bp3-dark .dark-hover\:bg-red-5:hover {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark-hover\:bg-red-6:hover {
+  background-color: get-theme(colors , red , 6);
+}
+
+.bp3-dark .dark-hover\:bg-red-7:hover {
+  background-color: get-theme(colors , red , 7);
+}
+
+.bp3-dark .dark-hover\:bg-red-8:hover {
+  background-color: get-theme(colors , red , 8);
+}
+
+.bp3-dark .dark-hover\:bg-red-9:hover {
+  background-color: get-theme(colors , red , 9);
+}
+
+.bp3-dark .dark-hover\:bg-red:hover {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark-hover\:bg-orange-1:hover {
+  background-color: get-theme(colors , orange , 1);
+}
+
+.bp3-dark .dark-hover\:bg-orange-2:hover {
+  background-color: get-theme(colors , orange , 2);
+}
+
+.bp3-dark .dark-hover\:bg-orange-3:hover {
+  background-color: get-theme(colors , orange , 3);
+}
+
+.bp3-dark .dark-hover\:bg-orange-4:hover {
+  background-color: get-theme(colors , orange , 4);
+}
+
+.bp3-dark .dark-hover\:bg-orange-5:hover {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-hover\:bg-orange-6:hover {
+  background-color: get-theme(colors , orange , 6);
+}
+
+.bp3-dark .dark-hover\:bg-orange-7:hover {
+  background-color: get-theme(colors , orange , 7);
+}
+
+.bp3-dark .dark-hover\:bg-orange-8:hover {
+  background-color: get-theme(colors , orange , 8);
+}
+
+.bp3-dark .dark-hover\:bg-orange-9:hover {
+  background-color: get-theme(colors , orange , 9);
+}
+
+.bp3-dark .dark-hover\:bg-orange:hover {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-hover\:bg-green-1:hover {
+  background-color: get-theme(colors , green , 1);
+}
+
+.bp3-dark .dark-hover\:bg-green-2:hover {
+  background-color: get-theme(colors , green , 2);
+}
+
+.bp3-dark .dark-hover\:bg-green-3:hover {
+  background-color: get-theme(colors , green , 3);
+}
+
+.bp3-dark .dark-hover\:bg-green-4:hover {
+  background-color: get-theme(colors , green , 4);
+}
+
+.bp3-dark .dark-hover\:bg-green-5:hover {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-hover\:bg-green-6:hover {
+  background-color: get-theme(colors , green , 6);
+}
+
+.bp3-dark .dark-hover\:bg-green-7:hover {
+  background-color: get-theme(colors , green , 7);
+}
+
+.bp3-dark .dark-hover\:bg-green-8:hover {
+  background-color: get-theme(colors , green , 8);
+}
+
+.bp3-dark .dark-hover\:bg-green-9:hover {
+  background-color: get-theme(colors , green , 9);
+}
+
+.bp3-dark .dark-hover\:bg-green:hover {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-hover\:bg-blue-1:hover {
+  background-color: get-theme(colors , blue , 1);
+}
+
+.bp3-dark .dark-hover\:bg-blue-2:hover {
+  background-color: get-theme(colors , blue , 2);
+}
+
+.bp3-dark .dark-hover\:bg-blue-3:hover {
+  background-color: get-theme(colors , blue , 3);
+}
+
+.bp3-dark .dark-hover\:bg-blue-4:hover {
+  background-color: get-theme(colors , blue , 4);
+}
+
+.bp3-dark .dark-hover\:bg-blue-5:hover {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-hover\:bg-blue-6:hover {
+  background-color: get-theme(colors , blue , 6);
+}
+
+.bp3-dark .dark-hover\:bg-blue-7:hover {
+  background-color: get-theme(colors , blue , 7);
+}
+
+.bp3-dark .dark-hover\:bg-blue-8:hover {
+  background-color: get-theme(colors , blue , 8);
+}
+
+.bp3-dark .dark-hover\:bg-blue-9:hover {
+  background-color: get-theme(colors , blue , 9);
+}
+
+.bp3-dark .dark-hover\:bg-blue:hover {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-hover\:bg-purple-1:hover {
+  background-color: get-theme(colors , purple , 1);
+}
+
+.bp3-dark .dark-hover\:bg-purple-2:hover {
+  background-color: get-theme(colors , purple , 2);
+}
+
+.bp3-dark .dark-hover\:bg-purple-3:hover {
+  background-color: get-theme(colors , purple , 3);
+}
+
+.bp3-dark .dark-hover\:bg-purple-4:hover {
+  background-color: get-theme(colors , purple , 4);
+}
+
+.bp3-dark .dark-hover\:bg-purple-5:hover {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.bp3-dark .dark-hover\:bg-purple-6:hover {
+  background-color: get-theme(colors , purple , 6);
+}
+
+.bp3-dark .dark-hover\:bg-purple-7:hover {
+  background-color: get-theme(colors , purple , 7);
+}
+
+.bp3-dark .dark-hover\:bg-purple-8:hover {
+  background-color: get-theme(colors , purple , 8);
+}
+
+.bp3-dark .dark-hover\:bg-purple-9:hover {
+  background-color: get-theme(colors , purple , 9);
+}
+
+.bp3-dark .dark-hover\:bg-purple:hover {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.bp3-dark .dark-hover\:bg-primary:hover {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-hover\:bg-info:hover {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-hover\:bg-success:hover {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-hover\:bg-warning:hover {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-hover\:bg-danger:hover {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark-active\:bg-inherit:active {
+  background-color: inherit;
+}
+
+.bp3-dark .dark-active\:bg-transparent:active {
+  background-color: get-theme(colors , transparent);
+}
+
+.bp3-dark .dark-active\:bg-lighten-1:active {
+  background-color: get-theme(colors , lighten , 1);
+}
+
+.bp3-dark .dark-active\:bg-lighten-2:active {
+  background-color: get-theme(colors , lighten , 2);
+}
+
+.bp3-dark .dark-active\:bg-lighten-3:active {
+  background-color: get-theme(colors , lighten , 3);
+}
+
+.bp3-dark .dark-active\:bg-lighten-4:active {
+  background-color: get-theme(colors , lighten , 4);
+}
+
+.bp3-dark .dark-active\:bg-lighten-5:active {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.bp3-dark .dark-active\:bg-lighten-6:active {
+  background-color: get-theme(colors , lighten , 6);
+}
+
+.bp3-dark .dark-active\:bg-lighten-7:active {
+  background-color: get-theme(colors , lighten , 7);
+}
+
+.bp3-dark .dark-active\:bg-lighten-8:active {
+  background-color: get-theme(colors , lighten , 8);
+}
+
+.bp3-dark .dark-active\:bg-lighten-9:active {
+  background-color: get-theme(colors , lighten , 9);
+}
+
+.bp3-dark .dark-active\:bg-lighten:active {
+  background-color: get-theme(colors , lighten , 5);
+}
+
+.bp3-dark .dark-active\:bg-darken-1:active {
+  background-color: get-theme(colors , darken , 1);
+}
+
+.bp3-dark .dark-active\:bg-darken-2:active {
+  background-color: get-theme(colors , darken , 2);
+}
+
+.bp3-dark .dark-active\:bg-darken-3:active {
+  background-color: get-theme(colors , darken , 3);
+}
+
+.bp3-dark .dark-active\:bg-darken-4:active {
+  background-color: get-theme(colors , darken , 4);
+}
+
+.bp3-dark .dark-active\:bg-darken-5:active {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark-active\:bg-darken-6:active {
+  background-color: get-theme(colors , darken , 6);
+}
+
+.bp3-dark .dark-active\:bg-darken-7:active {
+  background-color: get-theme(colors , darken , 7);
+}
+
+.bp3-dark .dark-active\:bg-darken-8:active {
+  background-color: get-theme(colors , darken , 8);
+}
+
+.bp3-dark .dark-active\:bg-darken-9:active {
+  background-color: get-theme(colors , darken , 9);
+}
+
+.bp3-dark .dark-active\:bg-darken:active {
+  background-color: get-theme(colors , darken , 5);
+}
+
+.bp3-dark .dark-active\:bg-disabled:active {
+  background-color: get-theme(colors , disabled);
+}
+
+.bp3-dark .dark-active\:bg-black:active {
+  background-color: get-theme(colors , black);
+}
+
+.bp3-dark .dark-active\:bg-white:active {
+  background-color: get-theme(colors , white);
+}
+
+.bp3-dark .dark-active\:bg-gray-1:active {
+  background-color: get-theme(colors , gray , 1);
+}
+
+.bp3-dark .dark-active\:bg-gray-2:active {
+  background-color: get-theme(colors , gray , 2);
+}
+
+.bp3-dark .dark-active\:bg-gray-3:active {
+  background-color: get-theme(colors , gray , 3);
+}
+
+.bp3-dark .dark-active\:bg-gray-4:active {
+  background-color: get-theme(colors , gray , 4);
+}
+
+.bp3-dark .dark-active\:bg-gray-5:active {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.bp3-dark .dark-active\:bg-gray-6:active {
+  background-color: get-theme(colors , gray , 6);
+}
+
+.bp3-dark .dark-active\:bg-gray-7:active {
+  background-color: get-theme(colors , gray , 7);
+}
+
+.bp3-dark .dark-active\:bg-gray-8:active {
+  background-color: get-theme(colors , gray , 8);
+}
+
+.bp3-dark .dark-active\:bg-gray-9:active {
+  background-color: get-theme(colors , gray , 9);
+}
+
+.bp3-dark .dark-active\:bg-gray:active {
+  background-color: get-theme(colors , gray , 5);
+}
+
+.bp3-dark .dark-active\:bg-red-1:active {
+  background-color: get-theme(colors , red , 1);
+}
+
+.bp3-dark .dark-active\:bg-red-2:active {
+  background-color: get-theme(colors , red , 2);
+}
+
+.bp3-dark .dark-active\:bg-red-3:active {
+  background-color: get-theme(colors , red , 3);
+}
+
+.bp3-dark .dark-active\:bg-red-4:active {
+  background-color: get-theme(colors , red , 4);
+}
+
+.bp3-dark .dark-active\:bg-red-5:active {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark-active\:bg-red-6:active {
+  background-color: get-theme(colors , red , 6);
+}
+
+.bp3-dark .dark-active\:bg-red-7:active {
+  background-color: get-theme(colors , red , 7);
+}
+
+.bp3-dark .dark-active\:bg-red-8:active {
+  background-color: get-theme(colors , red , 8);
+}
+
+.bp3-dark .dark-active\:bg-red-9:active {
+  background-color: get-theme(colors , red , 9);
+}
+
+.bp3-dark .dark-active\:bg-red:active {
+  background-color: get-theme(colors , red , 5);
+}
+
+.bp3-dark .dark-active\:bg-orange-1:active {
+  background-color: get-theme(colors , orange , 1);
+}
+
+.bp3-dark .dark-active\:bg-orange-2:active {
+  background-color: get-theme(colors , orange , 2);
+}
+
+.bp3-dark .dark-active\:bg-orange-3:active {
+  background-color: get-theme(colors , orange , 3);
+}
+
+.bp3-dark .dark-active\:bg-orange-4:active {
+  background-color: get-theme(colors , orange , 4);
+}
+
+.bp3-dark .dark-active\:bg-orange-5:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-active\:bg-orange-6:active {
+  background-color: get-theme(colors , orange , 6);
+}
+
+.bp3-dark .dark-active\:bg-orange-7:active {
+  background-color: get-theme(colors , orange , 7);
+}
+
+.bp3-dark .dark-active\:bg-orange-8:active {
+  background-color: get-theme(colors , orange , 8);
+}
+
+.bp3-dark .dark-active\:bg-orange-9:active {
+  background-color: get-theme(colors , orange , 9);
+}
+
+.bp3-dark .dark-active\:bg-orange:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-active\:bg-green-1:active {
+  background-color: get-theme(colors , green , 1);
+}
+
+.bp3-dark .dark-active\:bg-green-2:active {
+  background-color: get-theme(colors , green , 2);
+}
+
+.bp3-dark .dark-active\:bg-green-3:active {
+  background-color: get-theme(colors , green , 3);
+}
+
+.bp3-dark .dark-active\:bg-green-4:active {
+  background-color: get-theme(colors , green , 4);
+}
+
+.bp3-dark .dark-active\:bg-green-5:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-active\:bg-green-6:active {
+  background-color: get-theme(colors , green , 6);
+}
+
+.bp3-dark .dark-active\:bg-green-7:active {
+  background-color: get-theme(colors , green , 7);
+}
+
+.bp3-dark .dark-active\:bg-green-8:active {
+  background-color: get-theme(colors , green , 8);
+}
+
+.bp3-dark .dark-active\:bg-green-9:active {
+  background-color: get-theme(colors , green , 9);
+}
+
+.bp3-dark .dark-active\:bg-green:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-active\:bg-blue-1:active {
+  background-color: get-theme(colors , blue , 1);
+}
+
+.bp3-dark .dark-active\:bg-blue-2:active {
+  background-color: get-theme(colors , blue , 2);
+}
+
+.bp3-dark .dark-active\:bg-blue-3:active {
+  background-color: get-theme(colors , blue , 3);
+}
+
+.bp3-dark .dark-active\:bg-blue-4:active {
+  background-color: get-theme(colors , blue , 4);
+}
+
+.bp3-dark .dark-active\:bg-blue-5:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-active\:bg-blue-6:active {
+  background-color: get-theme(colors , blue , 6);
+}
+
+.bp3-dark .dark-active\:bg-blue-7:active {
+  background-color: get-theme(colors , blue , 7);
+}
+
+.bp3-dark .dark-active\:bg-blue-8:active {
+  background-color: get-theme(colors , blue , 8);
+}
+
+.bp3-dark .dark-active\:bg-blue-9:active {
+  background-color: get-theme(colors , blue , 9);
+}
+
+.bp3-dark .dark-active\:bg-blue:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-active\:bg-purple-1:active {
+  background-color: get-theme(colors , purple , 1);
+}
+
+.bp3-dark .dark-active\:bg-purple-2:active {
+  background-color: get-theme(colors , purple , 2);
+}
+
+.bp3-dark .dark-active\:bg-purple-3:active {
+  background-color: get-theme(colors , purple , 3);
+}
+
+.bp3-dark .dark-active\:bg-purple-4:active {
+  background-color: get-theme(colors , purple , 4);
+}
+
+.bp3-dark .dark-active\:bg-purple-5:active {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.bp3-dark .dark-active\:bg-purple-6:active {
+  background-color: get-theme(colors , purple , 6);
+}
+
+.bp3-dark .dark-active\:bg-purple-7:active {
+  background-color: get-theme(colors , purple , 7);
+}
+
+.bp3-dark .dark-active\:bg-purple-8:active {
+  background-color: get-theme(colors , purple , 8);
+}
+
+.bp3-dark .dark-active\:bg-purple-9:active {
+  background-color: get-theme(colors , purple , 9);
+}
+
+.bp3-dark .dark-active\:bg-purple:active {
+  background-color: get-theme(colors , purple , 5);
+}
+
+.bp3-dark .dark-active\:bg-primary:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-active\:bg-info:active {
+  background-color: get-theme(colors , blue , 5);
+}
+
+.bp3-dark .dark-active\:bg-success:active {
+  background-color: get-theme(colors , green , 5);
+}
+
+.bp3-dark .dark-active\:bg-warning:active {
+  background-color: get-theme(colors , orange , 5);
+}
+
+.bp3-dark .dark-active\:bg-danger:active {
+  background-color: get-theme(colors , red , 5);
+}
+
 .bg-bottom {
   background-position: bottom;
 }
