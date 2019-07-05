@@ -93,7 +93,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           cursor: 'pointer',
           background: 'inherit',
           width: 7,
-          marginRight: 4,
+          marginRight: 0,
           borderRadius: 0,
         },
       }}
@@ -103,7 +103,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           cursor: 'pointer',
           background: 'inherit',
           height: 7,
-          marginBottom: 4,
+          marginBottom: 0,
           borderRadius: 0,
         },
       }}
