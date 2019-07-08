@@ -315,7 +315,7 @@ module.exports = {
   variants: {
     appearance: [],
     backgroundAttachment: [],
-    backgroundColor: ['hover', 'focus', 'active', 'dark'],
+    backgroundColor: ['hover', 'focus', 'active', 'dark', 'dark-hover', 'dark-active'],
     backgroundPosition: [],
     backgroundRepeat: [],
     backgroundSize: [],
@@ -388,6 +388,16 @@ module.exports = {
           )}`;
         });
       });
+      addVariant('dark-hover', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(`dark-hover${separator}${className}`)}:hover`;
+        })
+      })
+      addVariant('dark-active', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(`dark-active${separator}${className}`)}:active`;
+        })
+      })
     },
   ],
 };
