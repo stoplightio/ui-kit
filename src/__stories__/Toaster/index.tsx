@@ -27,6 +27,9 @@ storiesOf('Toaster', module)
     };
 
     function showToast() {
+      // I found I had to re-run these or else they wouldn't be up-to-date. 
+      // Also, Storybook doesn't let you use hooks, and frankly... I don't really know how knobs work.
+      // If there's a better way I don't know it yet.
       action = {
         icon: text('action.icon', 'airplane') as IconName,
         text: text('action.text', 'Action Text'),
