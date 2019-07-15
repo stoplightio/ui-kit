@@ -92,8 +92,6 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
             {...rest}
             height={height}
             width={width}
-            // className gets passed to ScrollList-Content
-            // style gets passed to ScrollList-Scrollbars
             outerRef={ref}
             outerElementType={CustomScrollContainer}
           >
