@@ -5,7 +5,7 @@ import { number, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import { areEqual } from 'react-window';
-import { FixedSizeList, IFixedSizeListProps } from '../../ScrollList';
+import { FixedSizeList, IFixedSizeListProps, VariableSizeList } from '../../ScrollList';
 
 /**
  * KNOBS
@@ -53,5 +53,15 @@ storiesOf('ScrollList-FixedSizeList', module)
   .add('memoized', () => (
     <div style={{ outline: '1px solid currentColor', height: '50vh', margin: 50 }}>
       <FixedSizeList {...fixedSizeListKnobs()}>{MemoizedRow}</FixedSizeList>
+    </div>
+  ));
+
+storiesOf('ScrollList-VariableSizeList', module)
+  .addDecorator(withKnobs)
+  .add('memoized', () => (
+    <div style={{ outline: '1px solid currentColor', height: '50vh', margin: 50 }}>
+      <VariableSizeList {...fixedSizeListKnobs('VariableSizeList')} itemSize={index => Math.max(index, 4) * 10}>
+        {MemoizedRow}
+      </VariableSizeList>
     </div>
   ));

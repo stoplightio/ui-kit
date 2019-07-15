@@ -74,31 +74,46 @@ FixedSizeList.displayName = 'FixedSizeList';
 /**
  * VARIABLE SIZE LIST
  */
-// interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
-//   className?: string;
-//   height: number | string;
-//   width: number | string;
-//   shadows?: boolean;
-// }
+interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
+  className?: string;
+}
 
-// const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
-//   ReactWindow.VariableSizeList,
-//   IVariableSizeListProps
-// >(function VariableSizeList(props, ref) {
-//   const { className, children, ...rest } = props;
+const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
+  ReactWindow.VariableSizeList,
+  IVariableSizeListProps
+>(function VariableSizeList(props, ref) {
+  const { children, ...rest } = props;
 
-//   return (
-//     <ReactWindow.VariableSizeList {...rest} outerRef={ref} outerElementType={ScrollContainer}>
-//       {children}
-//     </ReactWindow.VariableSizeList>
-//   );
-// });
+  return (
+    <div className="ScrollList-Container h-full">
+      <AutoSizer>
+        {({ height, width }) => (
+          <ReactWindow.VariableSizeList
+            {...rest}
+            height={height}
+            width={width}
+            outerRef={ref}
+            outerElementType={CustomScrollContainer}
+          >
+            {children}
+          </ReactWindow.VariableSizeList>
+        )}
+      </AutoSizer>
+    </div>
+  );
+});
 
-// VariableSizeList.displayName = 'VariableSizeList';
+VariableSizeList.displayName = 'VariableSizeList';
 
 /**
  * EXPORTS
  */
-export { areEqual, shouldComponentUpdate, ListItemKeySelector, FixedSizeList as IFixedSizeList } from 'react-window';
+export {
+  areEqual,
+  shouldComponentUpdate,
+  ListItemKeySelector,
+  FixedSizeList as IFixedSizeList,
+  VariableSizeList as IVariableSizeList,
+} from 'react-window';
 
-export { IFixedSizeListProps, FixedSizeList };
+export { IFixedSizeListProps, FixedSizeList, IVariableSizeListProps, VariableSizeList };
