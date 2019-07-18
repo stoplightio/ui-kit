@@ -35,13 +35,14 @@ export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSize
 interface IFixedSizeListProps extends Omit<ReactWindow.FixedSizeListProps, 'height' | 'width'> {
   className?: string;
   maxRows?: number;
+  instanceRef?: React.Ref<ReactWindow.FixedSizeList>;
 }
 
 const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwardRef<
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, itemSize, itemCount, maxRows, style, ...rest } = props;
+  const { className, children, itemSize, itemCount, instanceRef, maxRows, style, ...rest } = props;
   const listHeight = (min([itemCount, maxRows]) as number) * itemSize;
 
   return (
@@ -50,6 +51,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
         {({ height, width }) => (
           <ReactWindow.FixedSizeList
             {...rest}
+            ref={instanceRef}
             itemSize={itemSize}
             itemCount={itemCount}
             height={min([height, listHeight]) as number}
@@ -76,13 +78,14 @@ FixedSizeList.displayName = 'FixedSizeList';
  */
 interface IVariableSizeListProps extends Omit<ReactWindow.VariableSizeListProps, 'height' | 'width'> {
   className?: string;
+  instanceRef?: React.Ref<ReactWindow.VariableSizeList>;
 }
 
 const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.forwardRef<
   ReactWindow.VariableSizeList,
   IVariableSizeListProps
 >(function VariableSizeList(props, ref) {
-  const { children, ...rest } = props;
+  const { children, instanceRef, ...rest } = props;
 
   return (
     <div className="ScrollList-Container h-full">
@@ -90,6 +93,7 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
         {({ height, width }) => (
           <ReactWindow.VariableSizeList
             {...rest}
+            ref={instanceRef}
             height={height}
             width={width}
             outerRef={ref}
