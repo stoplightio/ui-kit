@@ -14,7 +14,7 @@ const SimpleTab: React.FunctionComponent<ISimpleTabProps> & { tabsRole: string }
       disabledClassName: cn(disabledClassName, 'disabled-tab'),
       ...rest,
     },
-    children
+    children,
   );
 };
 

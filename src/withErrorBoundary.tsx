@@ -19,7 +19,7 @@ export interface IErrorBoundary {
 export function withErrorBoundary<T extends IErrorBoundary>(
   WrappedComponent: React.ComponentType<Omit<T, 'FallbackComponent'>>,
   props?: Array<keyof T>,
-  displayName?: string
+  displayName?: string,
 ) {
   return class ErrorBoundary extends React.PureComponent<T, { error: Error | null }> {
     public state = {

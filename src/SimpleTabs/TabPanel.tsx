@@ -16,7 +16,7 @@ const SimpleTabPanel: React.FunctionComponent<ISimpleTabPanelProps> & { tabsRole
       selectedClassName: cn('block', selectedClassName),
       ...rest,
     },
-    children
+    children,
   );
 };
 

@@ -11,7 +11,7 @@ function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
         ...child.properties,
         className: child.properties && (child.properties.className || []).join(' '),
       },
-      child.children && child.children.map(astToReact(depth + 1))
+      child.children && child.children.map(astToReact(depth + 1)),
     );
   }
 

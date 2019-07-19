@@ -2593,6 +2593,14 @@
   background-repeat: repeat-y;
 }
 
+.bg-repeat-round {
+  background-repeat: round;
+}
+
+.bg-repeat-space {
+  background-repeat: space;
+}
+
 .bg-auto {
   background-size: auto;
 }
@@ -4729,6 +4737,106 @@
   border-left-width: 1px;
 }
 
+.bp3-dark .dark\:border-0 {
+  border-width: 0;
+}
+
+.bp3-dark .dark\:border-2 {
+  border-width: 2px;
+}
+
+.bp3-dark .dark\:border-4 {
+  border-width: 4px;
+}
+
+.bp3-dark .dark\:border-8 {
+  border-width: 8px;
+}
+
+.bp3-dark .dark\:border {
+  border-width: 1px;
+}
+
+.bp3-dark .dark\:border-t-0 {
+  border-top-width: 0;
+}
+
+.bp3-dark .dark\:border-r-0 {
+  border-right-width: 0;
+}
+
+.bp3-dark .dark\:border-b-0 {
+  border-bottom-width: 0;
+}
+
+.bp3-dark .dark\:border-l-0 {
+  border-left-width: 0;
+}
+
+.bp3-dark .dark\:border-t-2 {
+  border-top-width: 2px;
+}
+
+.bp3-dark .dark\:border-r-2 {
+  border-right-width: 2px;
+}
+
+.bp3-dark .dark\:border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.bp3-dark .dark\:border-l-2 {
+  border-left-width: 2px;
+}
+
+.bp3-dark .dark\:border-t-4 {
+  border-top-width: 4px;
+}
+
+.bp3-dark .dark\:border-r-4 {
+  border-right-width: 4px;
+}
+
+.bp3-dark .dark\:border-b-4 {
+  border-bottom-width: 4px;
+}
+
+.bp3-dark .dark\:border-l-4 {
+  border-left-width: 4px;
+}
+
+.bp3-dark .dark\:border-t-8 {
+  border-top-width: 8px;
+}
+
+.bp3-dark .dark\:border-r-8 {
+  border-right-width: 8px;
+}
+
+.bp3-dark .dark\:border-b-8 {
+  border-bottom-width: 8px;
+}
+
+.bp3-dark .dark\:border-l-8 {
+  border-left-width: 8px;
+}
+
+.bp3-dark .dark\:border-t {
+  border-top-width: 1px;
+}
+
+.bp3-dark .dark\:border-r {
+  border-right-width: 1px;
+}
+
+.bp3-dark .dark\:border-b {
+  border-bottom-width: 1px;
+}
+
+.bp3-dark .dark\:border-l {
+  border-left-width: 1px;
+}
+
 .cursor-auto {
   cursor: auto;
 }
@@ -5014,11 +5122,11 @@
 }
 
 .order-first {
-  order: -1;
+  order: -9999;
 }
 
 .order-last {
-  order: 999;
+  order: 9999;
 }
 
 .order-none {
@@ -9448,6 +9556,20 @@
           user-select: text;
 }
 
+.select-all {
+  -webkit-user-select: all;
+     -moz-user-select: all;
+      -ms-user-select: all;
+          user-select: all;
+}
+
+.select-auto {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
+}
+
 .align-baseline {
   vertical-align: baseline;
 }
@@ -10420,11 +10542,11 @@ video {
   }
 
   .lg\:order-first {
-    order: -1;
+    order: -9999;
   }
 
   .lg\:order-last {
-    order: 999;
+    order: 9999;
   }
 
   .lg\:order-none {

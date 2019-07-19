@@ -1,6 +1,6 @@
-import { Omit } from '@stoplight/types';
 import cn from 'classnames';
 import * as React from 'react';
+
 import { Menu, MenuItem } from '..';
 import { FixedSizeList } from '../ScrollList';
 import { ISelectProps, ItemListRenderer, ItemRenderer, Select } from '../Select';
@@ -43,7 +43,7 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
         </Menu>
       );
     },
-    [maxRows, itemSize]
+    [maxRows, itemSize],
   );
 
   return React.createElement(
@@ -59,7 +59,7 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
       },
       ...props,
     },
-    children
+    children,
   );
 };
 Dropdown.displayName = 'Dropdown';

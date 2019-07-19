@@ -323,7 +323,7 @@ module.exports = {
     borderColor: ['hover', 'focus', 'active', 'dark'],
     borderRadius: [],
     borderStyle: [],
-    borderWidth: [],
+    borderWidth: ['dark'],
     cursor: [],
     display: ['responsive', 'group-hover'],
     flexDirection: [],
@@ -391,13 +391,15 @@ module.exports = {
       addVariant('dark-hover', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(`dark-hover${separator}${className}`)}:hover`;
-        })
-      })
+        });
+      });
       addVariant('dark-active', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
-          return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(`dark-active${separator}${className}`)}:active`;
-        })
-      })
+          return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(
+            `dark-active${separator}${className}`
+          )}:active`;
+        });
+      });
     },
   ],
 };
