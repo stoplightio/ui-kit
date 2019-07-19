@@ -53,9 +53,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
       if (!scrollbar.current || !shadows) return;
 
       const { scrollTop, scrollHeight, clientHeight } = scrollValues;
-      const shadowTopOpacity = (1 / 20) * Math.min(scrollTop, 20);
+      const shadowTopOpacity = (1 / 20) * scrollTop;
       const bottomScrollTop = scrollHeight - clientHeight;
-      const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
+      const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop));
       const darkMode = window.document.getElementsByClassName('bp3-dark').length > 0;
       scrollbar.current.wrapperElement.style.boxShadow = `rgba(${
         darkMode ? `44, 44, 44` : `221, 221, 221`
@@ -74,7 +74,7 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
         <div
           className={cn(
             className,
-            'bg-darken-5 hover:bg-darken-6 active:bg-darken-7 dark:bg-lighten-4 dark-hover:bg-lighten-5 dark-active:bg-lighten-6',
+            'bg-darken-4 hover:bg-darken-6 active:bg-darken-7 dark:bg-lighten-4 dark-hover:bg-lighten-5 dark-active:bg-lighten-6',
           )}
           style={styles}
           ref={elementRef}
@@ -99,6 +99,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           width: 7,
           marginRight: 0,
           borderRadius: 0,
+          top: 0,
+          bottom: 0,
+          height: '100%',
         },
       }}
       trackXProps={{
@@ -109,6 +112,9 @@ const ScrollContainer: React.FunctionComponent<IScrollContainer> = ({
           height: 7,
           marginBottom: 0,
           borderRadius: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
         },
       }}
       thumbXProps={{
