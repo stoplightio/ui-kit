@@ -1,4 +1,3 @@
-import { Omit } from '@stoplight/types';
 import * as cn from 'classnames';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
@@ -26,7 +25,7 @@ export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSize
         </ScrollContainer>
       </div>
     );
-  }
+  },
 );
 
 /**

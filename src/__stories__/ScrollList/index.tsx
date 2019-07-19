@@ -1,11 +1,9 @@
-import * as React from 'react';
-
-import { Omit } from '@stoplight/types';
 import { number, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-
+import * as React from 'react';
 import { areEqual } from 'react-window';
-import { FixedSizeList, IFixedSizeListProps, VariableSizeList } from '../../ScrollList';
+
+import { FixedSizeList, IFixedSizeListProps, IVariableSizeListProps, VariableSizeList } from '../../ScrollList';
 
 /**
  * KNOBS
@@ -14,6 +12,13 @@ import { FixedSizeList, IFixedSizeListProps, VariableSizeList } from '../../Scro
 export const fixedSizeListKnobs = (tabName = 'FixedSizeList'): Omit<IFixedSizeListProps, 'children'> => ({
   itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
   itemSize: number('itemSize', 50, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+});
+
+export const variableSizedListKnobs = (
+  tabName = 'FixedSizeList',
+): Omit<IVariableSizeListProps, 'children' | 'itemSize'> => ({
+  itemCount: number('itemCount', 20, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
+  overscanCount: number('overscanCount', 10, { min: 0, max: Infinity, range: false, step: 1 }, tabName),
 });
 
 /**
@@ -60,7 +65,7 @@ storiesOf('ScrollList-VariableSizeList', module)
   .addDecorator(withKnobs)
   .add('memoized', () => (
     <div style={{ outline: '1px solid currentColor', height: '50vh', margin: 50 }}>
-      <VariableSizeList {...fixedSizeListKnobs('VariableSizeList')} itemSize={index => Math.max(index, 4) * 10}>
+      <VariableSizeList {...variableSizedListKnobs('VariableSizeList')} itemSize={index => Math.max(index, 4) * 10}>
         {MemoizedRow}
       </VariableSizeList>
     </div>

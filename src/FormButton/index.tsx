@@ -1,4 +1,3 @@
-import { Omit } from '@stoplight/types';
 import _noop = require('lodash/noop');
 import * as React from 'react';
 // TODO: should probably use ajv and json schema

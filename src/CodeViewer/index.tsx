@@ -52,7 +52,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
         isInline: inline,
         showLineNumbers,
       })}
-      {...rest as React.HTMLAttributes<HTMLPreElement>}
+      {...(rest as React.HTMLAttributes<HTMLPreElement>)}
     >
       {markup ? markup.map(astToReact()) : value}
     </pre>

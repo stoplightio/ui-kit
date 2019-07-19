@@ -2,7 +2,7 @@ import { Dictionary } from '@stoplight/types';
 import { useImmer } from 'use-immer';
 
 export function useFormFields<T extends string>(
-  defaultValues: Dictionary<string, T>
+  defaultValues: Dictionary<string, T>,
 ): [Dictionary<string, T>, (key: T, value: string) => void, (value: Dictionary<string, T>) => void] {
   const [variables, _updateVariables] = useImmer(defaultValues);
 

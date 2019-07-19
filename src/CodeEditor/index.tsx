@@ -1,7 +1,5 @@
-import { Omit } from '@stoplight/types';
 import cn from 'classnames';
 import * as React from 'react';
-
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
 
 import { highlightCode } from './utils/highlightCode';

@@ -19,7 +19,7 @@ const ItemSelector = Select.ofType<string>();
 storiesOf('Dropdown', module)
   .addDecorator(withKnobs)
   .add('with defaults', () => (
-    <Dropdown baseComponent={ItemSelector} {...dropdownKnobs() as IDropdown} onItemSelect={action('onItemSelect')}>
+    <Dropdown baseComponent={ItemSelector} {...(dropdownKnobs() as IDropdown)} onItemSelect={action('onItemSelect')}>
       <div className="flex items-center justify-center cursor-pointer text-xl p-2">
         Open
         <Icon className="pl-1 -mr-2" icon="caret-down" iconSize={14} />

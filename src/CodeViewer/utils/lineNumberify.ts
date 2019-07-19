@@ -33,7 +33,7 @@ function flattenCodeTree(tree: ASTNode[], className: string[] = []): ASTNode[] {
         createLineElement({
           children: [node],
           className,
-        })
+        }),
       );
     } else if (node.children) {
       const classNames = className.concat(node.properties!.className);
@@ -66,7 +66,7 @@ export function lineNumberify(codeTree: ASTNode[]) {
             createLineElement({
               children: [newChild],
               className: node.properties!.className,
-            })
+            }),
           );
           newTree.push(createLineElement({ children, lineNumber }));
         } else if (i === splitValue.length - 1) {
@@ -84,7 +84,7 @@ export function lineNumberify(codeTree: ASTNode[]) {
                 children: [newChild],
                 lineNumber,
                 className: node.properties!.className,
-              })
+              }),
             );
           }
         } else {
@@ -93,7 +93,7 @@ export function lineNumberify(codeTree: ASTNode[]) {
               children: [newChild],
               lineNumber,
               className: node.properties!.className,
-            })
+            }),
           );
         }
       });
@@ -110,7 +110,7 @@ export function lineNumberify(codeTree: ASTNode[]) {
         createLineElement({
           children,
           lineNumber: newTree.length + 1,
-        })
+        }),
       );
     }
   }

@@ -9,7 +9,7 @@ describe('ScrollContainer', () => {
     const wrapper = shallow(
       <ScrollContainer>
         <ScrollContent />
-      </ScrollContainer>
+      </ScrollContainer>,
     );
 
     expect(wrapper.find(AutoSizer)).toExist();
@@ -18,7 +18,7 @@ describe('ScrollContainer', () => {
     const wrapper = shallow(
       <ScrollContainer autosize={false}>
         <ScrollContent />
-      </ScrollContainer>
+      </ScrollContainer>,
     );
 
     expect(wrapper.find(AutoSizer)).not.toExist();
