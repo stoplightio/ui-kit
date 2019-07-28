@@ -50,13 +50,13 @@
     "@stoplight/types": "^9.1.2",
     "classnames": "^2.2.6",
     "immer": "^3.1",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.17.1",
     "react-scrollbars-custom": "~4.0.16",
-    "react-simple-code-editor": "~0.9.13",
+    "react-simple-code-editor": "~0.9.14",
     "react-tabs": "^3.0.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "~1.8.5",
-    "refractor": "^2.9.0",
+    "refractor": "^2.10.0",
     "use-immer": "~0.3.2",
     "yup": "^0.27.0"
   },
@@ -80,10 +80,10 @@
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.136",
     "@types/node-sass": "^4.11.0",
-    "@types/prettier": "^1.16.4",
+    "@types/prettier": "^1.18.0",
     "@types/prismjs": "^1.16.0",
     "@types/react": "~16.8.23",
-    "@types/react-dom": "~16.8.4",
+    "@types/react-dom": "~16.8.5",
     "@types/react-tabs": "^2.3.1",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.0",
@@ -122,7 +122,7 @@
     "tslint-react": "^4.0.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "3.5.3",
-    "webpack": "~4.36.1"
+    "webpack": "~4.38.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
