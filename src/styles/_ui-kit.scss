@@ -39,6 +39,14 @@ html,
   background-color: 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
 }
 
+a {
+  // simple reset when using link in random places like around a <Card />
+  &.reset {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
 #{ns} a {
   color: get-color(info, 6);
 }
