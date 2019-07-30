@@ -6,7 +6,7 @@ import min = require('lodash/min');
 import noop = require('lodash/noop');
 
 import { AutoSizer } from '../AutoSizer';
-import { ScrollbarRef, ScrollContainer } from '../ScrollContainer';
+import { ScrollContainer } from '../ScrollContainer';
 
 /**
  * HELPERS
@@ -17,7 +17,7 @@ export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSize
     return (
       <div style={style} className="ScrollList-Scrollbars">
         <ScrollContainer
-          ref={ref as ScrollbarRef}
+          ref={ref}
           // @ts-ignore typings on onScroll are not right?
           onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
           autosize={false}
