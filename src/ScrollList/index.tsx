@@ -15,8 +15,9 @@ import { ScrollContainer } from '../ScrollContainer';
 export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSizeListProps & { listHeight: number }>(
   ({ onScroll = noop, children, style, className }, ref) => {
     return (
-      <div ref={ref} style={style} className="ScrollList-Scrollbars">
+      <div style={style} className="ScrollList-Scrollbars">
         <ScrollContainer
+          ref={ref}
           // @ts-ignore typings on onScroll are not right?
           onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
           autosize={false}
