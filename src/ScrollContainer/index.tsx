@@ -13,7 +13,7 @@ import { AutoSizer } from '../index';
 export type ScrollbarRefInstance = HTMLDivElement | Scrollbar | null;
 export type ScrollbarRef = (instance: ScrollbarRefInstance) => void;
 
-interface IScrollContainer extends ScrollbarProps {
+interface IScrollContainer extends Omit<ScrollbarProps, 'ref'> {
   shadows?: boolean;
   autosize?: boolean;
 }
@@ -21,12 +21,15 @@ interface IScrollContainer extends ScrollbarProps {
 const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>(
   ({ id, children, shadows = true, autosize = true, ...props }, scrollbarRef) => {
     const scrollbar = React.useRef<any>(null);
-    const scrollbarCallback: ScrollbarRef = (ref: ScrollbarRefInstance) => {
-      scrollbar.current = ref;
-      if (typeof scrollbarRef === 'function') {
-        (scrollbarRef as ScrollbarRef)(ref);
-      }
-    };
+    const scrollbarCallback = React.useCallback<ScrollbarRef>(
+      ref => {
+        scrollbar.current = ref;
+        if (typeof scrollbarRef === 'function') {
+          scrollbarRef(ref);
+        }
+      },
+      [scrollbarRef],
+    );
 
     const showTracks = React.useCallback(() => {
       if (!scrollbar.current) return;
