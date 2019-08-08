@@ -3,6 +3,52 @@
  * TO UPDATE ONE OF THESE VALUES, UPDATE THE TAILWIND.CONFIG.JS AND RUN "YARN BUILD.TW"
  */
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+.focus\:sr-only:focus {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -4633,6 +4679,10 @@
   border-style: dotted;
 }
 
+.border-double {
+  border-style: double;
+}
+
 .border-none {
   border-style: none;
 }
@@ -5491,6 +5541,10 @@
   margin: 1px;
 }
 
+.-m-px {
+  margin: -1px;
+}
+
 .-m-1 {
   margin: -0.25rem;
 }
@@ -5767,6 +5821,16 @@
 .mx-px {
   margin-left: 1px;
   margin-right: 1px;
+}
+
+.-my-px {
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.-mx-px {
+  margin-left: -1px;
+  margin-right: -1px;
 }
 
 .-my-1 {
@@ -6273,6 +6337,22 @@
 
 .ml-px {
   margin-left: 1px;
+}
+
+.-mt-px {
+  margin-top: -1px;
+}
+
+.-mr-px {
+  margin-right: -1px;
+}
+
+.-mb-px {
+  margin-bottom: -1px;
+}
+
+.-ml-px {
+  margin-left: -1px;
 }
 
 .-mt-1 {
@@ -7431,6 +7511,3606 @@
 
 .pl-px {
   padding-left: 1px;
+}
+
+.placeholder-inherit::-webkit-input-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit::-moz-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit:-ms-input-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit::-ms-input-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit::placeholder {
+  color: inherit;
+}
+
+.placeholder-transparent::-webkit-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.placeholder-transparent::-moz-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.placeholder-transparent:-ms-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.placeholder-transparent::-ms-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.placeholder-transparent::placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.placeholder-lighten-1::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.placeholder-lighten-1::-moz-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.placeholder-lighten-1:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.placeholder-lighten-1::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.placeholder-lighten-1::placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.placeholder-lighten-2::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.placeholder-lighten-2::-moz-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.placeholder-lighten-2:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.placeholder-lighten-2::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.placeholder-lighten-2::placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.placeholder-lighten-3::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.placeholder-lighten-3::-moz-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.placeholder-lighten-3:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.placeholder-lighten-3::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.placeholder-lighten-3::placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.placeholder-lighten-4::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.placeholder-lighten-4::-moz-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.placeholder-lighten-4:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.placeholder-lighten-4::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.placeholder-lighten-4::placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.placeholder-lighten-5::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten-5::-moz-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten-5:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten-5::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten-5::placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten-6::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.placeholder-lighten-6::-moz-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.placeholder-lighten-6:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.placeholder-lighten-6::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.placeholder-lighten-6::placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.placeholder-lighten-7::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.placeholder-lighten-7::-moz-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.placeholder-lighten-7:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.placeholder-lighten-7::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.placeholder-lighten-7::placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.placeholder-lighten-8::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.placeholder-lighten-8::-moz-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.placeholder-lighten-8:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.placeholder-lighten-8::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.placeholder-lighten-8::placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.placeholder-lighten-9::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.placeholder-lighten-9::-moz-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.placeholder-lighten-9:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.placeholder-lighten-9::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.placeholder-lighten-9::placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.placeholder-lighten::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten::-moz-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-lighten::placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.placeholder-darken-1::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.placeholder-darken-1::-moz-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.placeholder-darken-1:-ms-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.placeholder-darken-1::-ms-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.placeholder-darken-1::placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.placeholder-darken-2::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.placeholder-darken-2::-moz-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.placeholder-darken-2:-ms-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.placeholder-darken-2::-ms-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.placeholder-darken-2::placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.placeholder-darken-3::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.placeholder-darken-3::-moz-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.placeholder-darken-3:-ms-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.placeholder-darken-3::-ms-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.placeholder-darken-3::placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.placeholder-darken-4::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.placeholder-darken-4::-moz-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.placeholder-darken-4:-ms-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.placeholder-darken-4::-ms-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.placeholder-darken-4::placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.placeholder-darken-5::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken-5::-moz-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken-5:-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken-5::-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken-5::placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken-6::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.placeholder-darken-6::-moz-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.placeholder-darken-6:-ms-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.placeholder-darken-6::-ms-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.placeholder-darken-6::placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.placeholder-darken-7::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.placeholder-darken-7::-moz-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.placeholder-darken-7:-ms-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.placeholder-darken-7::-ms-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.placeholder-darken-7::placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.placeholder-darken-8::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.placeholder-darken-8::-moz-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.placeholder-darken-8:-ms-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.placeholder-darken-8::-ms-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.placeholder-darken-8::placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.placeholder-darken-9::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.placeholder-darken-9::-moz-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.placeholder-darken-9:-ms-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.placeholder-darken-9::-ms-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.placeholder-darken-9::placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.placeholder-darken::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken::-moz-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken:-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken::-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-darken::placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.placeholder-disabled::-webkit-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.placeholder-disabled::-moz-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.placeholder-disabled:-ms-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.placeholder-disabled::-ms-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.placeholder-disabled::placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.placeholder-black::-webkit-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.placeholder-black::-moz-placeholder {
+  color: get-theme(colors , black);
+}
+
+.placeholder-black:-ms-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.placeholder-black::-ms-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.placeholder-black::placeholder {
+  color: get-theme(colors , black);
+}
+
+.placeholder-white::-webkit-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.placeholder-white::-moz-placeholder {
+  color: get-theme(colors , white);
+}
+
+.placeholder-white:-ms-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.placeholder-white::-ms-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.placeholder-white::placeholder {
+  color: get-theme(colors , white);
+}
+
+.placeholder-gray-1::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.placeholder-gray-1::-moz-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.placeholder-gray-1:-ms-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.placeholder-gray-1::-ms-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.placeholder-gray-1::placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.placeholder-gray-2::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.placeholder-gray-2::-moz-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.placeholder-gray-2:-ms-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.placeholder-gray-2::-ms-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.placeholder-gray-2::placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.placeholder-gray-3::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.placeholder-gray-3::-moz-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.placeholder-gray-3:-ms-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.placeholder-gray-3::-ms-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.placeholder-gray-3::placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.placeholder-gray-4::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.placeholder-gray-4::-moz-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.placeholder-gray-4:-ms-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.placeholder-gray-4::-ms-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.placeholder-gray-4::placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.placeholder-gray-5::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray-5::-moz-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray-5:-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray-5::-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray-5::placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray-6::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.placeholder-gray-6::-moz-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.placeholder-gray-6:-ms-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.placeholder-gray-6::-ms-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.placeholder-gray-6::placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.placeholder-gray-7::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.placeholder-gray-7::-moz-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.placeholder-gray-7:-ms-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.placeholder-gray-7::-ms-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.placeholder-gray-7::placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.placeholder-gray-8::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.placeholder-gray-8::-moz-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.placeholder-gray-8:-ms-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.placeholder-gray-8::-ms-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.placeholder-gray-8::placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.placeholder-gray-9::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.placeholder-gray-9::-moz-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.placeholder-gray-9:-ms-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.placeholder-gray-9::-ms-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.placeholder-gray-9::placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.placeholder-gray::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray::-moz-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray:-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray::-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-gray::placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.placeholder-red-1::-webkit-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.placeholder-red-1::-moz-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.placeholder-red-1:-ms-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.placeholder-red-1::-ms-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.placeholder-red-1::placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.placeholder-red-2::-webkit-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.placeholder-red-2::-moz-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.placeholder-red-2:-ms-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.placeholder-red-2::-ms-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.placeholder-red-2::placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.placeholder-red-3::-webkit-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.placeholder-red-3::-moz-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.placeholder-red-3:-ms-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.placeholder-red-3::-ms-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.placeholder-red-3::placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.placeholder-red-4::-webkit-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.placeholder-red-4::-moz-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.placeholder-red-4:-ms-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.placeholder-red-4::-ms-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.placeholder-red-4::placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.placeholder-red-5::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red-5::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red-5:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red-5::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red-5::placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red-6::-webkit-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.placeholder-red-6::-moz-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.placeholder-red-6:-ms-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.placeholder-red-6::-ms-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.placeholder-red-6::placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.placeholder-red-7::-webkit-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.placeholder-red-7::-moz-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.placeholder-red-7:-ms-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.placeholder-red-7::-ms-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.placeholder-red-7::placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.placeholder-red-8::-webkit-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.placeholder-red-8::-moz-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.placeholder-red-8:-ms-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.placeholder-red-8::-ms-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.placeholder-red-8::placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.placeholder-red-9::-webkit-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.placeholder-red-9::-moz-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.placeholder-red-9:-ms-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.placeholder-red-9::-ms-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.placeholder-red-9::placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.placeholder-red::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-red::placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-orange-1::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.placeholder-orange-1::-moz-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.placeholder-orange-1:-ms-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.placeholder-orange-1::-ms-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.placeholder-orange-1::placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.placeholder-orange-2::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.placeholder-orange-2::-moz-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.placeholder-orange-2:-ms-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.placeholder-orange-2::-ms-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.placeholder-orange-2::placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.placeholder-orange-3::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.placeholder-orange-3::-moz-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.placeholder-orange-3:-ms-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.placeholder-orange-3::-ms-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.placeholder-orange-3::placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.placeholder-orange-4::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.placeholder-orange-4::-moz-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.placeholder-orange-4:-ms-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.placeholder-orange-4::-ms-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.placeholder-orange-4::placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.placeholder-orange-5::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange-5::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange-5:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange-5::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange-5::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange-6::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.placeholder-orange-6::-moz-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.placeholder-orange-6:-ms-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.placeholder-orange-6::-ms-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.placeholder-orange-6::placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.placeholder-orange-7::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.placeholder-orange-7::-moz-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.placeholder-orange-7:-ms-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.placeholder-orange-7::-ms-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.placeholder-orange-7::placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.placeholder-orange-8::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.placeholder-orange-8::-moz-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.placeholder-orange-8:-ms-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.placeholder-orange-8::-ms-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.placeholder-orange-8::placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.placeholder-orange-9::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.placeholder-orange-9::-moz-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.placeholder-orange-9:-ms-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.placeholder-orange-9::-ms-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.placeholder-orange-9::placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.placeholder-orange::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-orange::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-green-1::-webkit-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.placeholder-green-1::-moz-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.placeholder-green-1:-ms-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.placeholder-green-1::-ms-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.placeholder-green-1::placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.placeholder-green-2::-webkit-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.placeholder-green-2::-moz-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.placeholder-green-2:-ms-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.placeholder-green-2::-ms-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.placeholder-green-2::placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.placeholder-green-3::-webkit-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.placeholder-green-3::-moz-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.placeholder-green-3:-ms-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.placeholder-green-3::-ms-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.placeholder-green-3::placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.placeholder-green-4::-webkit-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.placeholder-green-4::-moz-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.placeholder-green-4:-ms-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.placeholder-green-4::-ms-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.placeholder-green-4::placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.placeholder-green-5::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green-5::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green-5:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green-5::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green-5::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green-6::-webkit-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.placeholder-green-6::-moz-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.placeholder-green-6:-ms-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.placeholder-green-6::-ms-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.placeholder-green-6::placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.placeholder-green-7::-webkit-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.placeholder-green-7::-moz-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.placeholder-green-7:-ms-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.placeholder-green-7::-ms-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.placeholder-green-7::placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.placeholder-green-8::-webkit-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.placeholder-green-8::-moz-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.placeholder-green-8:-ms-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.placeholder-green-8::-ms-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.placeholder-green-8::placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.placeholder-green-9::-webkit-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.placeholder-green-9::-moz-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.placeholder-green-9:-ms-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.placeholder-green-9::-ms-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.placeholder-green-9::placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.placeholder-green::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-green::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-blue-1::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.placeholder-blue-1::-moz-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.placeholder-blue-1:-ms-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.placeholder-blue-1::-ms-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.placeholder-blue-1::placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.placeholder-blue-2::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.placeholder-blue-2::-moz-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.placeholder-blue-2:-ms-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.placeholder-blue-2::-ms-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.placeholder-blue-2::placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.placeholder-blue-3::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.placeholder-blue-3::-moz-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.placeholder-blue-3:-ms-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.placeholder-blue-3::-ms-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.placeholder-blue-3::placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.placeholder-blue-4::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.placeholder-blue-4::-moz-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.placeholder-blue-4:-ms-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.placeholder-blue-4::-ms-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.placeholder-blue-4::placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.placeholder-blue-5::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue-5::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue-5:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue-5::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue-5::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue-6::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.placeholder-blue-6::-moz-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.placeholder-blue-6:-ms-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.placeholder-blue-6::-ms-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.placeholder-blue-6::placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.placeholder-blue-7::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.placeholder-blue-7::-moz-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.placeholder-blue-7:-ms-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.placeholder-blue-7::-ms-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.placeholder-blue-7::placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.placeholder-blue-8::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.placeholder-blue-8::-moz-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.placeholder-blue-8:-ms-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.placeholder-blue-8::-ms-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.placeholder-blue-8::placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.placeholder-blue-9::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.placeholder-blue-9::-moz-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.placeholder-blue-9:-ms-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.placeholder-blue-9::-ms-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.placeholder-blue-9::placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.placeholder-blue::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-blue::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-purple-1::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.placeholder-purple-1::-moz-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.placeholder-purple-1:-ms-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.placeholder-purple-1::-ms-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.placeholder-purple-1::placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.placeholder-purple-2::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.placeholder-purple-2::-moz-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.placeholder-purple-2:-ms-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.placeholder-purple-2::-ms-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.placeholder-purple-2::placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.placeholder-purple-3::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.placeholder-purple-3::-moz-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.placeholder-purple-3:-ms-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.placeholder-purple-3::-ms-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.placeholder-purple-3::placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.placeholder-purple-4::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.placeholder-purple-4::-moz-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.placeholder-purple-4:-ms-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.placeholder-purple-4::-ms-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.placeholder-purple-4::placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.placeholder-purple-5::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple-5::-moz-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple-5:-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple-5::-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple-5::placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple-6::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.placeholder-purple-6::-moz-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.placeholder-purple-6:-ms-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.placeholder-purple-6::-ms-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.placeholder-purple-6::placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.placeholder-purple-7::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.placeholder-purple-7::-moz-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.placeholder-purple-7:-ms-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.placeholder-purple-7::-ms-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.placeholder-purple-7::placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.placeholder-purple-8::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.placeholder-purple-8::-moz-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.placeholder-purple-8:-ms-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.placeholder-purple-8::-ms-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.placeholder-purple-8::placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.placeholder-purple-9::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.placeholder-purple-9::-moz-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.placeholder-purple-9:-ms-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.placeholder-purple-9::-ms-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.placeholder-purple-9::placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.placeholder-purple::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple::-moz-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple:-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple::-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-purple::placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.placeholder-primary::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-primary::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-primary:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-primary::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-primary::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-info::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-info::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-info:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-info::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-info::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.placeholder-success::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-success::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-success:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-success::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-success::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.placeholder-warning::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-warning::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-warning:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-warning::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-warning::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.placeholder-danger::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-danger::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-danger:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-danger::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.placeholder-danger::placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-inherit:focus::-webkit-input-placeholder {
+  color: inherit;
+}
+
+.focus\:placeholder-inherit:focus::-moz-placeholder {
+  color: inherit;
+}
+
+.focus\:placeholder-inherit:focus:-ms-input-placeholder {
+  color: inherit;
+}
+
+.focus\:placeholder-inherit:focus::-ms-input-placeholder {
+  color: inherit;
+}
+
+.focus\:placeholder-inherit:focus::placeholder {
+  color: inherit;
+}
+
+.focus\:placeholder-transparent:focus::-webkit-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.focus\:placeholder-transparent:focus::-moz-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.focus\:placeholder-transparent:focus:-ms-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.focus\:placeholder-transparent:focus::-ms-input-placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.focus\:placeholder-transparent:focus::placeholder {
+  color: get-theme(colors , transparent);
+}
+
+.focus\:placeholder-lighten-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.focus\:placeholder-lighten-1:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.focus\:placeholder-lighten-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.focus\:placeholder-lighten-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.focus\:placeholder-lighten-1:focus::placeholder {
+  color: get-theme(colors , lighten , 1);
+}
+
+.focus\:placeholder-lighten-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.focus\:placeholder-lighten-2:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.focus\:placeholder-lighten-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.focus\:placeholder-lighten-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.focus\:placeholder-lighten-2:focus::placeholder {
+  color: get-theme(colors , lighten , 2);
+}
+
+.focus\:placeholder-lighten-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.focus\:placeholder-lighten-3:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.focus\:placeholder-lighten-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.focus\:placeholder-lighten-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.focus\:placeholder-lighten-3:focus::placeholder {
+  color: get-theme(colors , lighten , 3);
+}
+
+.focus\:placeholder-lighten-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.focus\:placeholder-lighten-4:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.focus\:placeholder-lighten-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.focus\:placeholder-lighten-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.focus\:placeholder-lighten-4:focus::placeholder {
+  color: get-theme(colors , lighten , 4);
+}
+
+.focus\:placeholder-lighten-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten-5:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten-5:focus::placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.focus\:placeholder-lighten-6:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.focus\:placeholder-lighten-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.focus\:placeholder-lighten-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.focus\:placeholder-lighten-6:focus::placeholder {
+  color: get-theme(colors , lighten , 6);
+}
+
+.focus\:placeholder-lighten-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.focus\:placeholder-lighten-7:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.focus\:placeholder-lighten-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.focus\:placeholder-lighten-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.focus\:placeholder-lighten-7:focus::placeholder {
+  color: get-theme(colors , lighten , 7);
+}
+
+.focus\:placeholder-lighten-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.focus\:placeholder-lighten-8:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.focus\:placeholder-lighten-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.focus\:placeholder-lighten-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.focus\:placeholder-lighten-8:focus::placeholder {
+  color: get-theme(colors , lighten , 8);
+}
+
+.focus\:placeholder-lighten-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.focus\:placeholder-lighten-9:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.focus\:placeholder-lighten-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.focus\:placeholder-lighten-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.focus\:placeholder-lighten-9:focus::placeholder {
+  color: get-theme(colors , lighten , 9);
+}
+
+.focus\:placeholder-lighten:focus::-webkit-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten:focus::-moz-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten:focus:-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten:focus::-ms-input-placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-lighten:focus::placeholder {
+  color: get-theme(colors , lighten , 5);
+}
+
+.focus\:placeholder-darken-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.focus\:placeholder-darken-1:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.focus\:placeholder-darken-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.focus\:placeholder-darken-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.focus\:placeholder-darken-1:focus::placeholder {
+  color: get-theme(colors , darken , 1);
+}
+
+.focus\:placeholder-darken-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.focus\:placeholder-darken-2:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.focus\:placeholder-darken-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.focus\:placeholder-darken-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.focus\:placeholder-darken-2:focus::placeholder {
+  color: get-theme(colors , darken , 2);
+}
+
+.focus\:placeholder-darken-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.focus\:placeholder-darken-3:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.focus\:placeholder-darken-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.focus\:placeholder-darken-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.focus\:placeholder-darken-3:focus::placeholder {
+  color: get-theme(colors , darken , 3);
+}
+
+.focus\:placeholder-darken-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.focus\:placeholder-darken-4:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.focus\:placeholder-darken-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.focus\:placeholder-darken-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.focus\:placeholder-darken-4:focus::placeholder {
+  color: get-theme(colors , darken , 4);
+}
+
+.focus\:placeholder-darken-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken-5:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken-5:focus::placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.focus\:placeholder-darken-6:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.focus\:placeholder-darken-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.focus\:placeholder-darken-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.focus\:placeholder-darken-6:focus::placeholder {
+  color: get-theme(colors , darken , 6);
+}
+
+.focus\:placeholder-darken-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.focus\:placeholder-darken-7:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.focus\:placeholder-darken-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.focus\:placeholder-darken-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.focus\:placeholder-darken-7:focus::placeholder {
+  color: get-theme(colors , darken , 7);
+}
+
+.focus\:placeholder-darken-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.focus\:placeholder-darken-8:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.focus\:placeholder-darken-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.focus\:placeholder-darken-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.focus\:placeholder-darken-8:focus::placeholder {
+  color: get-theme(colors , darken , 8);
+}
+
+.focus\:placeholder-darken-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.focus\:placeholder-darken-9:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.focus\:placeholder-darken-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.focus\:placeholder-darken-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.focus\:placeholder-darken-9:focus::placeholder {
+  color: get-theme(colors , darken , 9);
+}
+
+.focus\:placeholder-darken:focus::-webkit-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken:focus::-moz-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken:focus:-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken:focus::-ms-input-placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-darken:focus::placeholder {
+  color: get-theme(colors , darken , 5);
+}
+
+.focus\:placeholder-disabled:focus::-webkit-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.focus\:placeholder-disabled:focus::-moz-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.focus\:placeholder-disabled:focus:-ms-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.focus\:placeholder-disabled:focus::-ms-input-placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.focus\:placeholder-disabled:focus::placeholder {
+  color: get-theme(colors , disabled);
+}
+
+.focus\:placeholder-black:focus::-webkit-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.focus\:placeholder-black:focus::-moz-placeholder {
+  color: get-theme(colors , black);
+}
+
+.focus\:placeholder-black:focus:-ms-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.focus\:placeholder-black:focus::-ms-input-placeholder {
+  color: get-theme(colors , black);
+}
+
+.focus\:placeholder-black:focus::placeholder {
+  color: get-theme(colors , black);
+}
+
+.focus\:placeholder-white:focus::-webkit-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.focus\:placeholder-white:focus::-moz-placeholder {
+  color: get-theme(colors , white);
+}
+
+.focus\:placeholder-white:focus:-ms-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.focus\:placeholder-white:focus::-ms-input-placeholder {
+  color: get-theme(colors , white);
+}
+
+.focus\:placeholder-white:focus::placeholder {
+  color: get-theme(colors , white);
+}
+
+.focus\:placeholder-gray-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.focus\:placeholder-gray-1:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.focus\:placeholder-gray-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.focus\:placeholder-gray-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.focus\:placeholder-gray-1:focus::placeholder {
+  color: get-theme(colors , gray , 1);
+}
+
+.focus\:placeholder-gray-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.focus\:placeholder-gray-2:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.focus\:placeholder-gray-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.focus\:placeholder-gray-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.focus\:placeholder-gray-2:focus::placeholder {
+  color: get-theme(colors , gray , 2);
+}
+
+.focus\:placeholder-gray-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.focus\:placeholder-gray-3:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.focus\:placeholder-gray-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.focus\:placeholder-gray-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.focus\:placeholder-gray-3:focus::placeholder {
+  color: get-theme(colors , gray , 3);
+}
+
+.focus\:placeholder-gray-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.focus\:placeholder-gray-4:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.focus\:placeholder-gray-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.focus\:placeholder-gray-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.focus\:placeholder-gray-4:focus::placeholder {
+  color: get-theme(colors , gray , 4);
+}
+
+.focus\:placeholder-gray-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray-5:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray-5:focus::placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.focus\:placeholder-gray-6:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.focus\:placeholder-gray-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.focus\:placeholder-gray-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.focus\:placeholder-gray-6:focus::placeholder {
+  color: get-theme(colors , gray , 6);
+}
+
+.focus\:placeholder-gray-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.focus\:placeholder-gray-7:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.focus\:placeholder-gray-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.focus\:placeholder-gray-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.focus\:placeholder-gray-7:focus::placeholder {
+  color: get-theme(colors , gray , 7);
+}
+
+.focus\:placeholder-gray-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.focus\:placeholder-gray-8:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.focus\:placeholder-gray-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.focus\:placeholder-gray-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.focus\:placeholder-gray-8:focus::placeholder {
+  color: get-theme(colors , gray , 8);
+}
+
+.focus\:placeholder-gray-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.focus\:placeholder-gray-9:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.focus\:placeholder-gray-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.focus\:placeholder-gray-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.focus\:placeholder-gray-9:focus::placeholder {
+  color: get-theme(colors , gray , 9);
+}
+
+.focus\:placeholder-gray:focus::-webkit-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray:focus::-moz-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray:focus:-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray:focus::-ms-input-placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-gray:focus::placeholder {
+  color: get-theme(colors , gray , 5);
+}
+
+.focus\:placeholder-red-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.focus\:placeholder-red-1:focus::-moz-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.focus\:placeholder-red-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.focus\:placeholder-red-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.focus\:placeholder-red-1:focus::placeholder {
+  color: get-theme(colors , red , 1);
+}
+
+.focus\:placeholder-red-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.focus\:placeholder-red-2:focus::-moz-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.focus\:placeholder-red-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.focus\:placeholder-red-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.focus\:placeholder-red-2:focus::placeholder {
+  color: get-theme(colors , red , 2);
+}
+
+.focus\:placeholder-red-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.focus\:placeholder-red-3:focus::-moz-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.focus\:placeholder-red-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.focus\:placeholder-red-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.focus\:placeholder-red-3:focus::placeholder {
+  color: get-theme(colors , red , 3);
+}
+
+.focus\:placeholder-red-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.focus\:placeholder-red-4:focus::-moz-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.focus\:placeholder-red-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.focus\:placeholder-red-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.focus\:placeholder-red-4:focus::placeholder {
+  color: get-theme(colors , red , 4);
+}
+
+.focus\:placeholder-red-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red-5:focus::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red-5:focus::placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.focus\:placeholder-red-6:focus::-moz-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.focus\:placeholder-red-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.focus\:placeholder-red-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.focus\:placeholder-red-6:focus::placeholder {
+  color: get-theme(colors , red , 6);
+}
+
+.focus\:placeholder-red-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.focus\:placeholder-red-7:focus::-moz-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.focus\:placeholder-red-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.focus\:placeholder-red-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.focus\:placeholder-red-7:focus::placeholder {
+  color: get-theme(colors , red , 7);
+}
+
+.focus\:placeholder-red-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.focus\:placeholder-red-8:focus::-moz-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.focus\:placeholder-red-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.focus\:placeholder-red-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.focus\:placeholder-red-8:focus::placeholder {
+  color: get-theme(colors , red , 8);
+}
+
+.focus\:placeholder-red-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.focus\:placeholder-red-9:focus::-moz-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.focus\:placeholder-red-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.focus\:placeholder-red-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.focus\:placeholder-red-9:focus::placeholder {
+  color: get-theme(colors , red , 9);
+}
+
+.focus\:placeholder-red:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red:focus::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-red:focus::placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-orange-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.focus\:placeholder-orange-1:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.focus\:placeholder-orange-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.focus\:placeholder-orange-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.focus\:placeholder-orange-1:focus::placeholder {
+  color: get-theme(colors , orange , 1);
+}
+
+.focus\:placeholder-orange-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.focus\:placeholder-orange-2:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.focus\:placeholder-orange-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.focus\:placeholder-orange-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.focus\:placeholder-orange-2:focus::placeholder {
+  color: get-theme(colors , orange , 2);
+}
+
+.focus\:placeholder-orange-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.focus\:placeholder-orange-3:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.focus\:placeholder-orange-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.focus\:placeholder-orange-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.focus\:placeholder-orange-3:focus::placeholder {
+  color: get-theme(colors , orange , 3);
+}
+
+.focus\:placeholder-orange-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.focus\:placeholder-orange-4:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.focus\:placeholder-orange-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.focus\:placeholder-orange-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.focus\:placeholder-orange-4:focus::placeholder {
+  color: get-theme(colors , orange , 4);
+}
+
+.focus\:placeholder-orange-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange-5:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange-5:focus::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.focus\:placeholder-orange-6:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.focus\:placeholder-orange-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.focus\:placeholder-orange-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.focus\:placeholder-orange-6:focus::placeholder {
+  color: get-theme(colors , orange , 6);
+}
+
+.focus\:placeholder-orange-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.focus\:placeholder-orange-7:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.focus\:placeholder-orange-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.focus\:placeholder-orange-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.focus\:placeholder-orange-7:focus::placeholder {
+  color: get-theme(colors , orange , 7);
+}
+
+.focus\:placeholder-orange-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.focus\:placeholder-orange-8:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.focus\:placeholder-orange-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.focus\:placeholder-orange-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.focus\:placeholder-orange-8:focus::placeholder {
+  color: get-theme(colors , orange , 8);
+}
+
+.focus\:placeholder-orange-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.focus\:placeholder-orange-9:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.focus\:placeholder-orange-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.focus\:placeholder-orange-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.focus\:placeholder-orange-9:focus::placeholder {
+  color: get-theme(colors , orange , 9);
+}
+
+.focus\:placeholder-orange:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-orange:focus::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-green-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.focus\:placeholder-green-1:focus::-moz-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.focus\:placeholder-green-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.focus\:placeholder-green-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.focus\:placeholder-green-1:focus::placeholder {
+  color: get-theme(colors , green , 1);
+}
+
+.focus\:placeholder-green-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.focus\:placeholder-green-2:focus::-moz-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.focus\:placeholder-green-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.focus\:placeholder-green-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.focus\:placeholder-green-2:focus::placeholder {
+  color: get-theme(colors , green , 2);
+}
+
+.focus\:placeholder-green-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.focus\:placeholder-green-3:focus::-moz-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.focus\:placeholder-green-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.focus\:placeholder-green-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.focus\:placeholder-green-3:focus::placeholder {
+  color: get-theme(colors , green , 3);
+}
+
+.focus\:placeholder-green-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.focus\:placeholder-green-4:focus::-moz-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.focus\:placeholder-green-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.focus\:placeholder-green-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.focus\:placeholder-green-4:focus::placeholder {
+  color: get-theme(colors , green , 4);
+}
+
+.focus\:placeholder-green-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green-5:focus::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green-5:focus::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.focus\:placeholder-green-6:focus::-moz-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.focus\:placeholder-green-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.focus\:placeholder-green-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.focus\:placeholder-green-6:focus::placeholder {
+  color: get-theme(colors , green , 6);
+}
+
+.focus\:placeholder-green-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.focus\:placeholder-green-7:focus::-moz-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.focus\:placeholder-green-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.focus\:placeholder-green-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.focus\:placeholder-green-7:focus::placeholder {
+  color: get-theme(colors , green , 7);
+}
+
+.focus\:placeholder-green-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.focus\:placeholder-green-8:focus::-moz-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.focus\:placeholder-green-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.focus\:placeholder-green-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.focus\:placeholder-green-8:focus::placeholder {
+  color: get-theme(colors , green , 8);
+}
+
+.focus\:placeholder-green-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.focus\:placeholder-green-9:focus::-moz-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.focus\:placeholder-green-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.focus\:placeholder-green-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.focus\:placeholder-green-9:focus::placeholder {
+  color: get-theme(colors , green , 9);
+}
+
+.focus\:placeholder-green:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green:focus::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-green:focus::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-blue-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.focus\:placeholder-blue-1:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.focus\:placeholder-blue-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.focus\:placeholder-blue-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.focus\:placeholder-blue-1:focus::placeholder {
+  color: get-theme(colors , blue , 1);
+}
+
+.focus\:placeholder-blue-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.focus\:placeholder-blue-2:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.focus\:placeholder-blue-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.focus\:placeholder-blue-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.focus\:placeholder-blue-2:focus::placeholder {
+  color: get-theme(colors , blue , 2);
+}
+
+.focus\:placeholder-blue-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.focus\:placeholder-blue-3:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.focus\:placeholder-blue-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.focus\:placeholder-blue-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.focus\:placeholder-blue-3:focus::placeholder {
+  color: get-theme(colors , blue , 3);
+}
+
+.focus\:placeholder-blue-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.focus\:placeholder-blue-4:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.focus\:placeholder-blue-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.focus\:placeholder-blue-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.focus\:placeholder-blue-4:focus::placeholder {
+  color: get-theme(colors , blue , 4);
+}
+
+.focus\:placeholder-blue-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue-5:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue-5:focus::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.focus\:placeholder-blue-6:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.focus\:placeholder-blue-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.focus\:placeholder-blue-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.focus\:placeholder-blue-6:focus::placeholder {
+  color: get-theme(colors , blue , 6);
+}
+
+.focus\:placeholder-blue-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.focus\:placeholder-blue-7:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.focus\:placeholder-blue-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.focus\:placeholder-blue-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.focus\:placeholder-blue-7:focus::placeholder {
+  color: get-theme(colors , blue , 7);
+}
+
+.focus\:placeholder-blue-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.focus\:placeholder-blue-8:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.focus\:placeholder-blue-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.focus\:placeholder-blue-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.focus\:placeholder-blue-8:focus::placeholder {
+  color: get-theme(colors , blue , 8);
+}
+
+.focus\:placeholder-blue-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.focus\:placeholder-blue-9:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.focus\:placeholder-blue-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.focus\:placeholder-blue-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.focus\:placeholder-blue-9:focus::placeholder {
+  color: get-theme(colors , blue , 9);
+}
+
+.focus\:placeholder-blue:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-blue:focus::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-purple-1:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.focus\:placeholder-purple-1:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.focus\:placeholder-purple-1:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.focus\:placeholder-purple-1:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.focus\:placeholder-purple-1:focus::placeholder {
+  color: get-theme(colors , purple , 1);
+}
+
+.focus\:placeholder-purple-2:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.focus\:placeholder-purple-2:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.focus\:placeholder-purple-2:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.focus\:placeholder-purple-2:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.focus\:placeholder-purple-2:focus::placeholder {
+  color: get-theme(colors , purple , 2);
+}
+
+.focus\:placeholder-purple-3:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.focus\:placeholder-purple-3:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.focus\:placeholder-purple-3:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.focus\:placeholder-purple-3:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.focus\:placeholder-purple-3:focus::placeholder {
+  color: get-theme(colors , purple , 3);
+}
+
+.focus\:placeholder-purple-4:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.focus\:placeholder-purple-4:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.focus\:placeholder-purple-4:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.focus\:placeholder-purple-4:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.focus\:placeholder-purple-4:focus::placeholder {
+  color: get-theme(colors , purple , 4);
+}
+
+.focus\:placeholder-purple-5:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple-5:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple-5:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple-5:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple-5:focus::placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple-6:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.focus\:placeholder-purple-6:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.focus\:placeholder-purple-6:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.focus\:placeholder-purple-6:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.focus\:placeholder-purple-6:focus::placeholder {
+  color: get-theme(colors , purple , 6);
+}
+
+.focus\:placeholder-purple-7:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.focus\:placeholder-purple-7:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.focus\:placeholder-purple-7:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.focus\:placeholder-purple-7:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.focus\:placeholder-purple-7:focus::placeholder {
+  color: get-theme(colors , purple , 7);
+}
+
+.focus\:placeholder-purple-8:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.focus\:placeholder-purple-8:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.focus\:placeholder-purple-8:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.focus\:placeholder-purple-8:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.focus\:placeholder-purple-8:focus::placeholder {
+  color: get-theme(colors , purple , 8);
+}
+
+.focus\:placeholder-purple-9:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.focus\:placeholder-purple-9:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.focus\:placeholder-purple-9:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.focus\:placeholder-purple-9:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.focus\:placeholder-purple-9:focus::placeholder {
+  color: get-theme(colors , purple , 9);
+}
+
+.focus\:placeholder-purple:focus::-webkit-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple:focus::-moz-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple:focus:-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple:focus::-ms-input-placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-purple:focus::placeholder {
+  color: get-theme(colors , purple , 5);
+}
+
+.focus\:placeholder-primary:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-primary:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-primary:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-primary:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-primary:focus::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-info:focus::-webkit-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-info:focus::-moz-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-info:focus:-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-info:focus::-ms-input-placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-info:focus::placeholder {
+  color: get-theme(colors , blue , 5);
+}
+
+.focus\:placeholder-success:focus::-webkit-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-success:focus::-moz-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-success:focus:-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-success:focus::-ms-input-placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-success:focus::placeholder {
+  color: get-theme(colors , green , 5);
+}
+
+.focus\:placeholder-warning:focus::-webkit-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-warning:focus::-moz-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-warning:focus:-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-warning:focus::-ms-input-placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-warning:focus::placeholder {
+  color: get-theme(colors , orange , 5);
+}
+
+.focus\:placeholder-danger:focus::-webkit-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-danger:focus::-moz-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-danger:focus:-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-danger:focus::-ms-input-placeholder {
+  color: get-theme(colors , red , 5);
+}
+
+.focus\:placeholder-danger:focus::placeholder {
+  color: get-theme(colors , red , 5);
 }
 
 .pointer-events-none {
@@ -10346,6 +14026,14 @@ html {
   border-color: get-theme(colors , gray , 3);
 }
 
+/*
+ * Ensure horizontal rules are visible by default
+ */
+
+hr {
+  border-width: 1px;
+}
+
 /**
  * Undo the `border-style: none` reset that Normalize applies to images so that
  * our `border-{width}` utilities have the expected effect.
@@ -10366,32 +14054,27 @@ textarea {
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.5;
+  color: #a0aec0;
 }
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
-  color: inherit;
-  opacity: 0.5;
+  color: #a0aec0;
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.5;
+  color: #a0aec0;
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.5;
+  color: #a0aec0;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: inherit;
-  opacity: 0.5;
+  color: #a0aec0;
 }
 
 button,
@@ -10489,6 +14172,52 @@ video {
 }
 
 @media (min-width: 1300px) {
+  .lg\:sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .lg\:not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .lg\:focus\:sr-only:focus {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .lg\:focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -10619,5 +14348,3605 @@ video {
 
   .lg\:order-none {
     order: 0;
+  }
+
+  .lg\:placeholder-inherit::-webkit-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:placeholder-inherit::-moz-placeholder {
+    color: inherit;
+  }
+
+  .lg\:placeholder-inherit:-ms-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:placeholder-inherit::-ms-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:placeholder-inherit::placeholder {
+    color: inherit;
+  }
+
+  .lg\:placeholder-transparent::-webkit-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:placeholder-transparent::-moz-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:placeholder-transparent:-ms-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:placeholder-transparent::-ms-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:placeholder-transparent::placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:placeholder-lighten-1::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:placeholder-lighten-1::-moz-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:placeholder-lighten-1:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:placeholder-lighten-1::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:placeholder-lighten-1::placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:placeholder-lighten-2::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:placeholder-lighten-2::-moz-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:placeholder-lighten-2:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:placeholder-lighten-2::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:placeholder-lighten-2::placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:placeholder-lighten-3::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:placeholder-lighten-3::-moz-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:placeholder-lighten-3:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:placeholder-lighten-3::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:placeholder-lighten-3::placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:placeholder-lighten-4::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:placeholder-lighten-4::-moz-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:placeholder-lighten-4:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:placeholder-lighten-4::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:placeholder-lighten-4::placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:placeholder-lighten-5::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten-5::-moz-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten-5:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten-5::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten-5::placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten-6::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:placeholder-lighten-6::-moz-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:placeholder-lighten-6:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:placeholder-lighten-6::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:placeholder-lighten-6::placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:placeholder-lighten-7::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:placeholder-lighten-7::-moz-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:placeholder-lighten-7:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:placeholder-lighten-7::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:placeholder-lighten-7::placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:placeholder-lighten-8::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:placeholder-lighten-8::-moz-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:placeholder-lighten-8:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:placeholder-lighten-8::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:placeholder-lighten-8::placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:placeholder-lighten-9::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:placeholder-lighten-9::-moz-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:placeholder-lighten-9:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:placeholder-lighten-9::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:placeholder-lighten-9::placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:placeholder-lighten::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten::-moz-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-lighten::placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:placeholder-darken-1::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:placeholder-darken-1::-moz-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:placeholder-darken-1:-ms-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:placeholder-darken-1::-ms-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:placeholder-darken-1::placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:placeholder-darken-2::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:placeholder-darken-2::-moz-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:placeholder-darken-2:-ms-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:placeholder-darken-2::-ms-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:placeholder-darken-2::placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:placeholder-darken-3::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:placeholder-darken-3::-moz-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:placeholder-darken-3:-ms-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:placeholder-darken-3::-ms-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:placeholder-darken-3::placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:placeholder-darken-4::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:placeholder-darken-4::-moz-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:placeholder-darken-4:-ms-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:placeholder-darken-4::-ms-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:placeholder-darken-4::placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:placeholder-darken-5::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken-5::-moz-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken-5:-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken-5::-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken-5::placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken-6::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:placeholder-darken-6::-moz-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:placeholder-darken-6:-ms-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:placeholder-darken-6::-ms-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:placeholder-darken-6::placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:placeholder-darken-7::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:placeholder-darken-7::-moz-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:placeholder-darken-7:-ms-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:placeholder-darken-7::-ms-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:placeholder-darken-7::placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:placeholder-darken-8::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:placeholder-darken-8::-moz-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:placeholder-darken-8:-ms-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:placeholder-darken-8::-ms-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:placeholder-darken-8::placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:placeholder-darken-9::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:placeholder-darken-9::-moz-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:placeholder-darken-9:-ms-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:placeholder-darken-9::-ms-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:placeholder-darken-9::placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:placeholder-darken::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken::-moz-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken:-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken::-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-darken::placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:placeholder-disabled::-webkit-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:placeholder-disabled::-moz-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:placeholder-disabled:-ms-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:placeholder-disabled::-ms-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:placeholder-disabled::placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:placeholder-black::-webkit-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:placeholder-black::-moz-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:placeholder-black:-ms-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:placeholder-black::-ms-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:placeholder-black::placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:placeholder-white::-webkit-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:placeholder-white::-moz-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:placeholder-white:-ms-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:placeholder-white::-ms-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:placeholder-white::placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:placeholder-gray-1::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:placeholder-gray-1::-moz-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:placeholder-gray-1:-ms-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:placeholder-gray-1::-ms-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:placeholder-gray-1::placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:placeholder-gray-2::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:placeholder-gray-2::-moz-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:placeholder-gray-2:-ms-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:placeholder-gray-2::-ms-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:placeholder-gray-2::placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:placeholder-gray-3::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:placeholder-gray-3::-moz-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:placeholder-gray-3:-ms-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:placeholder-gray-3::-ms-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:placeholder-gray-3::placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:placeholder-gray-4::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:placeholder-gray-4::-moz-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:placeholder-gray-4:-ms-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:placeholder-gray-4::-ms-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:placeholder-gray-4::placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:placeholder-gray-5::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray-5::-moz-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray-5:-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray-5::-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray-5::placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray-6::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:placeholder-gray-6::-moz-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:placeholder-gray-6:-ms-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:placeholder-gray-6::-ms-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:placeholder-gray-6::placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:placeholder-gray-7::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:placeholder-gray-7::-moz-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:placeholder-gray-7:-ms-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:placeholder-gray-7::-ms-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:placeholder-gray-7::placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:placeholder-gray-8::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:placeholder-gray-8::-moz-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:placeholder-gray-8:-ms-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:placeholder-gray-8::-ms-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:placeholder-gray-8::placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:placeholder-gray-9::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:placeholder-gray-9::-moz-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:placeholder-gray-9:-ms-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:placeholder-gray-9::-ms-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:placeholder-gray-9::placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:placeholder-gray::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray::-moz-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray:-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray::-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-gray::placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:placeholder-red-1::-webkit-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:placeholder-red-1::-moz-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:placeholder-red-1:-ms-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:placeholder-red-1::-ms-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:placeholder-red-1::placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:placeholder-red-2::-webkit-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:placeholder-red-2::-moz-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:placeholder-red-2:-ms-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:placeholder-red-2::-ms-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:placeholder-red-2::placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:placeholder-red-3::-webkit-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:placeholder-red-3::-moz-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:placeholder-red-3:-ms-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:placeholder-red-3::-ms-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:placeholder-red-3::placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:placeholder-red-4::-webkit-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:placeholder-red-4::-moz-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:placeholder-red-4:-ms-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:placeholder-red-4::-ms-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:placeholder-red-4::placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:placeholder-red-5::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red-5::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red-5:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red-5::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red-5::placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red-6::-webkit-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:placeholder-red-6::-moz-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:placeholder-red-6:-ms-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:placeholder-red-6::-ms-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:placeholder-red-6::placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:placeholder-red-7::-webkit-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:placeholder-red-7::-moz-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:placeholder-red-7:-ms-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:placeholder-red-7::-ms-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:placeholder-red-7::placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:placeholder-red-8::-webkit-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:placeholder-red-8::-moz-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:placeholder-red-8:-ms-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:placeholder-red-8::-ms-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:placeholder-red-8::placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:placeholder-red-9::-webkit-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:placeholder-red-9::-moz-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:placeholder-red-9:-ms-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:placeholder-red-9::-ms-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:placeholder-red-9::placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:placeholder-red::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-red::placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-orange-1::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:placeholder-orange-1::-moz-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:placeholder-orange-1:-ms-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:placeholder-orange-1::-ms-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:placeholder-orange-1::placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:placeholder-orange-2::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:placeholder-orange-2::-moz-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:placeholder-orange-2:-ms-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:placeholder-orange-2::-ms-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:placeholder-orange-2::placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:placeholder-orange-3::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:placeholder-orange-3::-moz-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:placeholder-orange-3:-ms-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:placeholder-orange-3::-ms-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:placeholder-orange-3::placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:placeholder-orange-4::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:placeholder-orange-4::-moz-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:placeholder-orange-4:-ms-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:placeholder-orange-4::-ms-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:placeholder-orange-4::placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:placeholder-orange-5::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange-5::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange-5:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange-5::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange-5::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange-6::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:placeholder-orange-6::-moz-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:placeholder-orange-6:-ms-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:placeholder-orange-6::-ms-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:placeholder-orange-6::placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:placeholder-orange-7::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:placeholder-orange-7::-moz-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:placeholder-orange-7:-ms-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:placeholder-orange-7::-ms-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:placeholder-orange-7::placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:placeholder-orange-8::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:placeholder-orange-8::-moz-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:placeholder-orange-8:-ms-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:placeholder-orange-8::-ms-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:placeholder-orange-8::placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:placeholder-orange-9::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:placeholder-orange-9::-moz-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:placeholder-orange-9:-ms-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:placeholder-orange-9::-ms-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:placeholder-orange-9::placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:placeholder-orange::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-orange::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-green-1::-webkit-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:placeholder-green-1::-moz-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:placeholder-green-1:-ms-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:placeholder-green-1::-ms-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:placeholder-green-1::placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:placeholder-green-2::-webkit-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:placeholder-green-2::-moz-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:placeholder-green-2:-ms-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:placeholder-green-2::-ms-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:placeholder-green-2::placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:placeholder-green-3::-webkit-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:placeholder-green-3::-moz-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:placeholder-green-3:-ms-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:placeholder-green-3::-ms-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:placeholder-green-3::placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:placeholder-green-4::-webkit-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:placeholder-green-4::-moz-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:placeholder-green-4:-ms-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:placeholder-green-4::-ms-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:placeholder-green-4::placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:placeholder-green-5::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green-5::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green-5:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green-5::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green-5::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green-6::-webkit-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:placeholder-green-6::-moz-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:placeholder-green-6:-ms-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:placeholder-green-6::-ms-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:placeholder-green-6::placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:placeholder-green-7::-webkit-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:placeholder-green-7::-moz-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:placeholder-green-7:-ms-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:placeholder-green-7::-ms-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:placeholder-green-7::placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:placeholder-green-8::-webkit-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:placeholder-green-8::-moz-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:placeholder-green-8:-ms-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:placeholder-green-8::-ms-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:placeholder-green-8::placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:placeholder-green-9::-webkit-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:placeholder-green-9::-moz-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:placeholder-green-9:-ms-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:placeholder-green-9::-ms-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:placeholder-green-9::placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:placeholder-green::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-green::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-blue-1::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:placeholder-blue-1::-moz-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:placeholder-blue-1:-ms-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:placeholder-blue-1::-ms-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:placeholder-blue-1::placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:placeholder-blue-2::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:placeholder-blue-2::-moz-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:placeholder-blue-2:-ms-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:placeholder-blue-2::-ms-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:placeholder-blue-2::placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:placeholder-blue-3::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:placeholder-blue-3::-moz-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:placeholder-blue-3:-ms-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:placeholder-blue-3::-ms-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:placeholder-blue-3::placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:placeholder-blue-4::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:placeholder-blue-4::-moz-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:placeholder-blue-4:-ms-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:placeholder-blue-4::-ms-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:placeholder-blue-4::placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:placeholder-blue-5::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue-5::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue-5:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue-5::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue-5::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue-6::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:placeholder-blue-6::-moz-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:placeholder-blue-6:-ms-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:placeholder-blue-6::-ms-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:placeholder-blue-6::placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:placeholder-blue-7::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:placeholder-blue-7::-moz-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:placeholder-blue-7:-ms-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:placeholder-blue-7::-ms-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:placeholder-blue-7::placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:placeholder-blue-8::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:placeholder-blue-8::-moz-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:placeholder-blue-8:-ms-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:placeholder-blue-8::-ms-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:placeholder-blue-8::placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:placeholder-blue-9::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:placeholder-blue-9::-moz-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:placeholder-blue-9:-ms-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:placeholder-blue-9::-ms-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:placeholder-blue-9::placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:placeholder-blue::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-blue::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-purple-1::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:placeholder-purple-1::-moz-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:placeholder-purple-1:-ms-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:placeholder-purple-1::-ms-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:placeholder-purple-1::placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:placeholder-purple-2::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:placeholder-purple-2::-moz-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:placeholder-purple-2:-ms-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:placeholder-purple-2::-ms-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:placeholder-purple-2::placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:placeholder-purple-3::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:placeholder-purple-3::-moz-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:placeholder-purple-3:-ms-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:placeholder-purple-3::-ms-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:placeholder-purple-3::placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:placeholder-purple-4::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:placeholder-purple-4::-moz-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:placeholder-purple-4:-ms-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:placeholder-purple-4::-ms-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:placeholder-purple-4::placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:placeholder-purple-5::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple-5::-moz-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple-5:-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple-5::-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple-5::placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple-6::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:placeholder-purple-6::-moz-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:placeholder-purple-6:-ms-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:placeholder-purple-6::-ms-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:placeholder-purple-6::placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:placeholder-purple-7::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:placeholder-purple-7::-moz-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:placeholder-purple-7:-ms-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:placeholder-purple-7::-ms-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:placeholder-purple-7::placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:placeholder-purple-8::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:placeholder-purple-8::-moz-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:placeholder-purple-8:-ms-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:placeholder-purple-8::-ms-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:placeholder-purple-8::placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:placeholder-purple-9::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:placeholder-purple-9::-moz-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:placeholder-purple-9:-ms-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:placeholder-purple-9::-ms-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:placeholder-purple-9::placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:placeholder-purple::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple::-moz-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple:-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple::-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-purple::placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:placeholder-primary::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-primary::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-primary:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-primary::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-primary::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-info::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-info::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-info:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-info::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-info::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:placeholder-success::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-success::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-success:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-success::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-success::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:placeholder-warning::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-warning::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-warning:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-warning::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-warning::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:placeholder-danger::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-danger::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-danger:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-danger::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:placeholder-danger::placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::-webkit-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::-moz-placeholder {
+    color: inherit;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus:-ms-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::-ms-input-placeholder {
+    color: inherit;
+  }
+
+  .lg\:focus\:placeholder-inherit:focus::placeholder {
+    color: inherit;
+  }
+
+  .lg\:focus\:placeholder-transparent:focus::-webkit-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:focus\:placeholder-transparent:focus::-moz-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:focus\:placeholder-transparent:focus:-ms-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:focus\:placeholder-transparent:focus::-ms-input-placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:focus\:placeholder-transparent:focus::placeholder {
+    color: get-theme(colors , transparent);
+  }
+
+  .lg\:focus\:placeholder-lighten-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:focus\:placeholder-lighten-1:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:focus\:placeholder-lighten-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:focus\:placeholder-lighten-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:focus\:placeholder-lighten-1:focus::placeholder {
+    color: get-theme(colors , lighten , 1);
+  }
+
+  .lg\:focus\:placeholder-lighten-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:focus\:placeholder-lighten-2:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:focus\:placeholder-lighten-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:focus\:placeholder-lighten-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:focus\:placeholder-lighten-2:focus::placeholder {
+    color: get-theme(colors , lighten , 2);
+  }
+
+  .lg\:focus\:placeholder-lighten-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:focus\:placeholder-lighten-3:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:focus\:placeholder-lighten-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:focus\:placeholder-lighten-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:focus\:placeholder-lighten-3:focus::placeholder {
+    color: get-theme(colors , lighten , 3);
+  }
+
+  .lg\:focus\:placeholder-lighten-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:focus\:placeholder-lighten-4:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:focus\:placeholder-lighten-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:focus\:placeholder-lighten-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:focus\:placeholder-lighten-4:focus::placeholder {
+    color: get-theme(colors , lighten , 4);
+  }
+
+  .lg\:focus\:placeholder-lighten-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten-5:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten-5:focus::placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:focus\:placeholder-lighten-6:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:focus\:placeholder-lighten-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:focus\:placeholder-lighten-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:focus\:placeholder-lighten-6:focus::placeholder {
+    color: get-theme(colors , lighten , 6);
+  }
+
+  .lg\:focus\:placeholder-lighten-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:focus\:placeholder-lighten-7:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:focus\:placeholder-lighten-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:focus\:placeholder-lighten-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:focus\:placeholder-lighten-7:focus::placeholder {
+    color: get-theme(colors , lighten , 7);
+  }
+
+  .lg\:focus\:placeholder-lighten-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:focus\:placeholder-lighten-8:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:focus\:placeholder-lighten-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:focus\:placeholder-lighten-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:focus\:placeholder-lighten-8:focus::placeholder {
+    color: get-theme(colors , lighten , 8);
+  }
+
+  .lg\:focus\:placeholder-lighten-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:focus\:placeholder-lighten-9:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:focus\:placeholder-lighten-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:focus\:placeholder-lighten-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:focus\:placeholder-lighten-9:focus::placeholder {
+    color: get-theme(colors , lighten , 9);
+  }
+
+  .lg\:focus\:placeholder-lighten:focus::-webkit-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten:focus::-moz-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten:focus:-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten:focus::-ms-input-placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-lighten:focus::placeholder {
+    color: get-theme(colors , lighten , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:focus\:placeholder-darken-1:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:focus\:placeholder-darken-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:focus\:placeholder-darken-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:focus\:placeholder-darken-1:focus::placeholder {
+    color: get-theme(colors , darken , 1);
+  }
+
+  .lg\:focus\:placeholder-darken-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:focus\:placeholder-darken-2:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:focus\:placeholder-darken-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:focus\:placeholder-darken-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:focus\:placeholder-darken-2:focus::placeholder {
+    color: get-theme(colors , darken , 2);
+  }
+
+  .lg\:focus\:placeholder-darken-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:focus\:placeholder-darken-3:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:focus\:placeholder-darken-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:focus\:placeholder-darken-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:focus\:placeholder-darken-3:focus::placeholder {
+    color: get-theme(colors , darken , 3);
+  }
+
+  .lg\:focus\:placeholder-darken-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:focus\:placeholder-darken-4:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:focus\:placeholder-darken-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:focus\:placeholder-darken-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:focus\:placeholder-darken-4:focus::placeholder {
+    color: get-theme(colors , darken , 4);
+  }
+
+  .lg\:focus\:placeholder-darken-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-5:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-5:focus::placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:focus\:placeholder-darken-6:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:focus\:placeholder-darken-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:focus\:placeholder-darken-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:focus\:placeholder-darken-6:focus::placeholder {
+    color: get-theme(colors , darken , 6);
+  }
+
+  .lg\:focus\:placeholder-darken-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:focus\:placeholder-darken-7:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:focus\:placeholder-darken-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:focus\:placeholder-darken-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:focus\:placeholder-darken-7:focus::placeholder {
+    color: get-theme(colors , darken , 7);
+  }
+
+  .lg\:focus\:placeholder-darken-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:focus\:placeholder-darken-8:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:focus\:placeholder-darken-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:focus\:placeholder-darken-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:focus\:placeholder-darken-8:focus::placeholder {
+    color: get-theme(colors , darken , 8);
+  }
+
+  .lg\:focus\:placeholder-darken-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:focus\:placeholder-darken-9:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:focus\:placeholder-darken-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:focus\:placeholder-darken-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:focus\:placeholder-darken-9:focus::placeholder {
+    color: get-theme(colors , darken , 9);
+  }
+
+  .lg\:focus\:placeholder-darken:focus::-webkit-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken:focus::-moz-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken:focus:-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken:focus::-ms-input-placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-darken:focus::placeholder {
+    color: get-theme(colors , darken , 5);
+  }
+
+  .lg\:focus\:placeholder-disabled:focus::-webkit-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:focus\:placeholder-disabled:focus::-moz-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:focus\:placeholder-disabled:focus:-ms-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:focus\:placeholder-disabled:focus::-ms-input-placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:focus\:placeholder-disabled:focus::placeholder {
+    color: get-theme(colors , disabled);
+  }
+
+  .lg\:focus\:placeholder-black:focus::-webkit-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:focus\:placeholder-black:focus::-moz-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:focus\:placeholder-black:focus:-ms-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:focus\:placeholder-black:focus::-ms-input-placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:focus\:placeholder-black:focus::placeholder {
+    color: get-theme(colors , black);
+  }
+
+  .lg\:focus\:placeholder-white:focus::-webkit-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:focus\:placeholder-white:focus::-moz-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:focus\:placeholder-white:focus:-ms-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:focus\:placeholder-white:focus::-ms-input-placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:focus\:placeholder-white:focus::placeholder {
+    color: get-theme(colors , white);
+  }
+
+  .lg\:focus\:placeholder-gray-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:focus\:placeholder-gray-1:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:focus\:placeholder-gray-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:focus\:placeholder-gray-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:focus\:placeholder-gray-1:focus::placeholder {
+    color: get-theme(colors , gray , 1);
+  }
+
+  .lg\:focus\:placeholder-gray-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:focus\:placeholder-gray-2:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:focus\:placeholder-gray-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:focus\:placeholder-gray-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:focus\:placeholder-gray-2:focus::placeholder {
+    color: get-theme(colors , gray , 2);
+  }
+
+  .lg\:focus\:placeholder-gray-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:focus\:placeholder-gray-3:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:focus\:placeholder-gray-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:focus\:placeholder-gray-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:focus\:placeholder-gray-3:focus::placeholder {
+    color: get-theme(colors , gray , 3);
+  }
+
+  .lg\:focus\:placeholder-gray-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:focus\:placeholder-gray-4:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:focus\:placeholder-gray-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:focus\:placeholder-gray-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:focus\:placeholder-gray-4:focus::placeholder {
+    color: get-theme(colors , gray , 4);
+  }
+
+  .lg\:focus\:placeholder-gray-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray-5:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray-5:focus::placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:focus\:placeholder-gray-6:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:focus\:placeholder-gray-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:focus\:placeholder-gray-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:focus\:placeholder-gray-6:focus::placeholder {
+    color: get-theme(colors , gray , 6);
+  }
+
+  .lg\:focus\:placeholder-gray-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:focus\:placeholder-gray-7:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:focus\:placeholder-gray-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:focus\:placeholder-gray-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:focus\:placeholder-gray-7:focus::placeholder {
+    color: get-theme(colors , gray , 7);
+  }
+
+  .lg\:focus\:placeholder-gray-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:focus\:placeholder-gray-8:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:focus\:placeholder-gray-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:focus\:placeholder-gray-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:focus\:placeholder-gray-8:focus::placeholder {
+    color: get-theme(colors , gray , 8);
+  }
+
+  .lg\:focus\:placeholder-gray-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:focus\:placeholder-gray-9:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:focus\:placeholder-gray-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:focus\:placeholder-gray-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:focus\:placeholder-gray-9:focus::placeholder {
+    color: get-theme(colors , gray , 9);
+  }
+
+  .lg\:focus\:placeholder-gray:focus::-webkit-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray:focus::-moz-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray:focus:-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray:focus::-ms-input-placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-gray:focus::placeholder {
+    color: get-theme(colors , gray , 5);
+  }
+
+  .lg\:focus\:placeholder-red-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:focus\:placeholder-red-1:focus::-moz-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:focus\:placeholder-red-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:focus\:placeholder-red-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:focus\:placeholder-red-1:focus::placeholder {
+    color: get-theme(colors , red , 1);
+  }
+
+  .lg\:focus\:placeholder-red-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:focus\:placeholder-red-2:focus::-moz-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:focus\:placeholder-red-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:focus\:placeholder-red-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:focus\:placeholder-red-2:focus::placeholder {
+    color: get-theme(colors , red , 2);
+  }
+
+  .lg\:focus\:placeholder-red-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:focus\:placeholder-red-3:focus::-moz-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:focus\:placeholder-red-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:focus\:placeholder-red-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:focus\:placeholder-red-3:focus::placeholder {
+    color: get-theme(colors , red , 3);
+  }
+
+  .lg\:focus\:placeholder-red-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:focus\:placeholder-red-4:focus::-moz-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:focus\:placeholder-red-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:focus\:placeholder-red-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:focus\:placeholder-red-4:focus::placeholder {
+    color: get-theme(colors , red , 4);
+  }
+
+  .lg\:focus\:placeholder-red-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red-5:focus::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red-5:focus::placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:focus\:placeholder-red-6:focus::-moz-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:focus\:placeholder-red-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:focus\:placeholder-red-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:focus\:placeholder-red-6:focus::placeholder {
+    color: get-theme(colors , red , 6);
+  }
+
+  .lg\:focus\:placeholder-red-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:focus\:placeholder-red-7:focus::-moz-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:focus\:placeholder-red-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:focus\:placeholder-red-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:focus\:placeholder-red-7:focus::placeholder {
+    color: get-theme(colors , red , 7);
+  }
+
+  .lg\:focus\:placeholder-red-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:focus\:placeholder-red-8:focus::-moz-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:focus\:placeholder-red-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:focus\:placeholder-red-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:focus\:placeholder-red-8:focus::placeholder {
+    color: get-theme(colors , red , 8);
+  }
+
+  .lg\:focus\:placeholder-red-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:focus\:placeholder-red-9:focus::-moz-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:focus\:placeholder-red-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:focus\:placeholder-red-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:focus\:placeholder-red-9:focus::placeholder {
+    color: get-theme(colors , red , 9);
+  }
+
+  .lg\:focus\:placeholder-red:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red:focus::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-red:focus::placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:focus\:placeholder-orange-1:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:focus\:placeholder-orange-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:focus\:placeholder-orange-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:focus\:placeholder-orange-1:focus::placeholder {
+    color: get-theme(colors , orange , 1);
+  }
+
+  .lg\:focus\:placeholder-orange-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:focus\:placeholder-orange-2:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:focus\:placeholder-orange-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:focus\:placeholder-orange-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:focus\:placeholder-orange-2:focus::placeholder {
+    color: get-theme(colors , orange , 2);
+  }
+
+  .lg\:focus\:placeholder-orange-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:focus\:placeholder-orange-3:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:focus\:placeholder-orange-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:focus\:placeholder-orange-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:focus\:placeholder-orange-3:focus::placeholder {
+    color: get-theme(colors , orange , 3);
+  }
+
+  .lg\:focus\:placeholder-orange-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:focus\:placeholder-orange-4:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:focus\:placeholder-orange-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:focus\:placeholder-orange-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:focus\:placeholder-orange-4:focus::placeholder {
+    color: get-theme(colors , orange , 4);
+  }
+
+  .lg\:focus\:placeholder-orange-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-5:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-5:focus::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:focus\:placeholder-orange-6:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:focus\:placeholder-orange-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:focus\:placeholder-orange-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:focus\:placeholder-orange-6:focus::placeholder {
+    color: get-theme(colors , orange , 6);
+  }
+
+  .lg\:focus\:placeholder-orange-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:focus\:placeholder-orange-7:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:focus\:placeholder-orange-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:focus\:placeholder-orange-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:focus\:placeholder-orange-7:focus::placeholder {
+    color: get-theme(colors , orange , 7);
+  }
+
+  .lg\:focus\:placeholder-orange-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:focus\:placeholder-orange-8:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:focus\:placeholder-orange-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:focus\:placeholder-orange-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:focus\:placeholder-orange-8:focus::placeholder {
+    color: get-theme(colors , orange , 8);
+  }
+
+  .lg\:focus\:placeholder-orange-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:focus\:placeholder-orange-9:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:focus\:placeholder-orange-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:focus\:placeholder-orange-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:focus\:placeholder-orange-9:focus::placeholder {
+    color: get-theme(colors , orange , 9);
+  }
+
+  .lg\:focus\:placeholder-orange:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-orange:focus::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-green-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:focus\:placeholder-green-1:focus::-moz-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:focus\:placeholder-green-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:focus\:placeholder-green-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:focus\:placeholder-green-1:focus::placeholder {
+    color: get-theme(colors , green , 1);
+  }
+
+  .lg\:focus\:placeholder-green-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:focus\:placeholder-green-2:focus::-moz-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:focus\:placeholder-green-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:focus\:placeholder-green-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:focus\:placeholder-green-2:focus::placeholder {
+    color: get-theme(colors , green , 2);
+  }
+
+  .lg\:focus\:placeholder-green-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:focus\:placeholder-green-3:focus::-moz-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:focus\:placeholder-green-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:focus\:placeholder-green-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:focus\:placeholder-green-3:focus::placeholder {
+    color: get-theme(colors , green , 3);
+  }
+
+  .lg\:focus\:placeholder-green-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:focus\:placeholder-green-4:focus::-moz-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:focus\:placeholder-green-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:focus\:placeholder-green-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:focus\:placeholder-green-4:focus::placeholder {
+    color: get-theme(colors , green , 4);
+  }
+
+  .lg\:focus\:placeholder-green-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green-5:focus::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green-5:focus::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:focus\:placeholder-green-6:focus::-moz-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:focus\:placeholder-green-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:focus\:placeholder-green-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:focus\:placeholder-green-6:focus::placeholder {
+    color: get-theme(colors , green , 6);
+  }
+
+  .lg\:focus\:placeholder-green-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:focus\:placeholder-green-7:focus::-moz-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:focus\:placeholder-green-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:focus\:placeholder-green-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:focus\:placeholder-green-7:focus::placeholder {
+    color: get-theme(colors , green , 7);
+  }
+
+  .lg\:focus\:placeholder-green-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:focus\:placeholder-green-8:focus::-moz-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:focus\:placeholder-green-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:focus\:placeholder-green-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:focus\:placeholder-green-8:focus::placeholder {
+    color: get-theme(colors , green , 8);
+  }
+
+  .lg\:focus\:placeholder-green-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:focus\:placeholder-green-9:focus::-moz-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:focus\:placeholder-green-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:focus\:placeholder-green-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:focus\:placeholder-green-9:focus::placeholder {
+    color: get-theme(colors , green , 9);
+  }
+
+  .lg\:focus\:placeholder-green:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green:focus::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-green:focus::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:focus\:placeholder-blue-1:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:focus\:placeholder-blue-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:focus\:placeholder-blue-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:focus\:placeholder-blue-1:focus::placeholder {
+    color: get-theme(colors , blue , 1);
+  }
+
+  .lg\:focus\:placeholder-blue-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:focus\:placeholder-blue-2:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:focus\:placeholder-blue-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:focus\:placeholder-blue-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:focus\:placeholder-blue-2:focus::placeholder {
+    color: get-theme(colors , blue , 2);
+  }
+
+  .lg\:focus\:placeholder-blue-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:focus\:placeholder-blue-3:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:focus\:placeholder-blue-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:focus\:placeholder-blue-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:focus\:placeholder-blue-3:focus::placeholder {
+    color: get-theme(colors , blue , 3);
+  }
+
+  .lg\:focus\:placeholder-blue-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:focus\:placeholder-blue-4:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:focus\:placeholder-blue-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:focus\:placeholder-blue-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:focus\:placeholder-blue-4:focus::placeholder {
+    color: get-theme(colors , blue , 4);
+  }
+
+  .lg\:focus\:placeholder-blue-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-5:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-5:focus::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:focus\:placeholder-blue-6:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:focus\:placeholder-blue-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:focus\:placeholder-blue-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:focus\:placeholder-blue-6:focus::placeholder {
+    color: get-theme(colors , blue , 6);
+  }
+
+  .lg\:focus\:placeholder-blue-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:focus\:placeholder-blue-7:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:focus\:placeholder-blue-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:focus\:placeholder-blue-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:focus\:placeholder-blue-7:focus::placeholder {
+    color: get-theme(colors , blue , 7);
+  }
+
+  .lg\:focus\:placeholder-blue-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:focus\:placeholder-blue-8:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:focus\:placeholder-blue-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:focus\:placeholder-blue-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:focus\:placeholder-blue-8:focus::placeholder {
+    color: get-theme(colors , blue , 8);
+  }
+
+  .lg\:focus\:placeholder-blue-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:focus\:placeholder-blue-9:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:focus\:placeholder-blue-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:focus\:placeholder-blue-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:focus\:placeholder-blue-9:focus::placeholder {
+    color: get-theme(colors , blue , 9);
+  }
+
+  .lg\:focus\:placeholder-blue:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-blue:focus::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-1:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:focus\:placeholder-purple-1:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:focus\:placeholder-purple-1:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:focus\:placeholder-purple-1:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:focus\:placeholder-purple-1:focus::placeholder {
+    color: get-theme(colors , purple , 1);
+  }
+
+  .lg\:focus\:placeholder-purple-2:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:focus\:placeholder-purple-2:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:focus\:placeholder-purple-2:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:focus\:placeholder-purple-2:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:focus\:placeholder-purple-2:focus::placeholder {
+    color: get-theme(colors , purple , 2);
+  }
+
+  .lg\:focus\:placeholder-purple-3:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:focus\:placeholder-purple-3:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:focus\:placeholder-purple-3:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:focus\:placeholder-purple-3:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:focus\:placeholder-purple-3:focus::placeholder {
+    color: get-theme(colors , purple , 3);
+  }
+
+  .lg\:focus\:placeholder-purple-4:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:focus\:placeholder-purple-4:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:focus\:placeholder-purple-4:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:focus\:placeholder-purple-4:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:focus\:placeholder-purple-4:focus::placeholder {
+    color: get-theme(colors , purple , 4);
+  }
+
+  .lg\:focus\:placeholder-purple-5:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-5:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-5:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-5:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-5:focus::placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple-6:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:focus\:placeholder-purple-6:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:focus\:placeholder-purple-6:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:focus\:placeholder-purple-6:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:focus\:placeholder-purple-6:focus::placeholder {
+    color: get-theme(colors , purple , 6);
+  }
+
+  .lg\:focus\:placeholder-purple-7:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:focus\:placeholder-purple-7:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:focus\:placeholder-purple-7:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:focus\:placeholder-purple-7:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:focus\:placeholder-purple-7:focus::placeholder {
+    color: get-theme(colors , purple , 7);
+  }
+
+  .lg\:focus\:placeholder-purple-8:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:focus\:placeholder-purple-8:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:focus\:placeholder-purple-8:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:focus\:placeholder-purple-8:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:focus\:placeholder-purple-8:focus::placeholder {
+    color: get-theme(colors , purple , 8);
+  }
+
+  .lg\:focus\:placeholder-purple-9:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:focus\:placeholder-purple-9:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:focus\:placeholder-purple-9:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:focus\:placeholder-purple-9:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:focus\:placeholder-purple-9:focus::placeholder {
+    color: get-theme(colors , purple , 9);
+  }
+
+  .lg\:focus\:placeholder-purple:focus::-webkit-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple:focus::-moz-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple:focus:-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple:focus::-ms-input-placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-purple:focus::placeholder {
+    color: get-theme(colors , purple , 5);
+  }
+
+  .lg\:focus\:placeholder-primary:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-primary:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-primary:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-primary:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-primary:focus::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-info:focus::-webkit-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-info:focus::-moz-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-info:focus:-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-info:focus::-ms-input-placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-info:focus::placeholder {
+    color: get-theme(colors , blue , 5);
+  }
+
+  .lg\:focus\:placeholder-success:focus::-webkit-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-success:focus::-moz-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-success:focus:-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-success:focus::-ms-input-placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-success:focus::placeholder {
+    color: get-theme(colors , green , 5);
+  }
+
+  .lg\:focus\:placeholder-warning:focus::-webkit-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-warning:focus::-moz-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-warning:focus:-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-warning:focus::-ms-input-placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-warning:focus::placeholder {
+    color: get-theme(colors , orange , 5);
+  }
+
+  .lg\:focus\:placeholder-danger:focus::-webkit-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-danger:focus::-moz-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-danger:focus:-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-danger:focus::-ms-input-placeholder {
+    color: get-theme(colors , red , 5);
+  }
+
+  .lg\:focus\:placeholder-danger:focus::placeholder {
+    color: get-theme(colors , red , 5);
   }
 }
