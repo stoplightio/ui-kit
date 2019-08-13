@@ -74,7 +74,7 @@ module.exports = {
     screens: {
       sm: { max: '767px' }, // mobile
       md: { max: '1007px' }, // tablet
-      lg: { min: '1008px' }, // desktop
+      // lg: { min: '1008px' }, // desktop is the default
       print: { raw: 'print' },
     },
     fontFamily: {
@@ -377,7 +377,7 @@ module.exports = {
     letterSpacing: [],
     userSelect: [],
     verticalAlign: [],
-    visibility: ['group-hover'],
+    visibility: ['responsive', 'group-hover'],
     whitespace: ['responsive'],
     wordBreak: ['responsive'],
     width: ['responsive'],
