@@ -32,3 +32,15 @@ export * from './AutoSizer';
 
 // @ts-ignore we redefine classes above which conflicts with the classes export in blueprint
 export * from '@blueprintjs/core';
+
+/**
+ * React Autosize Input
+ *
+ * There is a bug with Blueprint's EditableText component causing Chrome & Electron to get into an infinite loop while calculating the input's width. We should use react-autosize-input instead.
+ *
+ * See the following:
+ *
+ * https://github.com/palantir/blueprint/issues/2021
+ * https://github.com/stoplightio/studio/issues/76
+ */
+export { default as AutosizeInput, AutosizeInputProps } from 'react-input-autosize';
