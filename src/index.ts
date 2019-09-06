@@ -43,4 +43,4 @@ export * from '@blueprintjs/core';
  * https://github.com/palantir/blueprint/issues/2021
  * https://github.com/stoplightio/studio/issues/76
  */
-export * from 'react-input-autosize';
+export { default as AutosizeInput, AutosizeInputProps } from 'react-input-autosize';
