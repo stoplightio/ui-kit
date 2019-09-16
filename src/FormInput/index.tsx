@@ -1,4 +1,12 @@
-import { HTMLInputProps, Icon, IInputGroupProps, InputGroup, Position, Tooltip } from '@blueprintjs/core';
+import {
+  HTMLInputProps,
+  Icon,
+  IInputGroupProps,
+  InputGroup,
+  ITooltipProps,
+  Position,
+  Tooltip,
+} from '@blueprintjs/core';
 import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
 import { useValidateSchema } from '../_hooks/useValidateSchema';
@@ -13,12 +21,16 @@ interface IFormInputProps {
   value: IInputGroupProps['value'];
   onEnter?: Function;
   schema?: yup.Schema<any>;
+  errors?: string[];
+  validationTooltipProps?: Partial<ITooltipProps>;
 }
 
 const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HTMLInputProps> = ({
   onEnter,
   schema,
   value,
+  errors,
+  validationTooltipProps,
   ...props
 }) => {
   function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -37,7 +49,15 @@ const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HT
       value={value}
       autoComplete="off"
       onKeyPress={handleEnter}
-      rightElement={schema ? <FormInputValidation value={value} schema={schema} size={size} /> : undefined}
+      rightElement={
+        <FormInputValidation
+          value={value}
+          schema={schema}
+          size={size}
+          errors={errors}
+          tooltipProps={validationTooltipProps}
+        />
+      }
       {...props}
     />
   );
@@ -56,26 +76,38 @@ const iconPadding: Dictionary<string, Size> = {
 
 interface IFormInputValidationProps {
   value: IInputGroupProps['value'];
-  schema: yup.Schema<any>;
   size: Size;
+  schema?: yup.Schema<any>;
+  errors?: string[];
+  tooltipProps?: Partial<ITooltipProps>;
 }
 
-const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = ({ value, schema, size }) => {
-  const errors = useValidateSchema(schema, value, { abortEarly: false });
-
-  if (!errors) return null;
+const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = ({
+  value,
+  schema,
+  size,
+  errors = [],
+  tooltipProps,
+}) => {
+  const errs = useValidateSchema(schema, value, { abortEarly: false }).concat(errors);
+  if (!errs.length) return null;
 
   return (
     <Tooltip
       content={
-        <ul>
-          {errors.map((error, index) => (
-            <li key={index}>• {error}</li>
-          ))}
-        </ul>
+        errs.length > 1 ? (
+          <ul>
+            {errs.map((error, index) => (
+              <li key={index}>• {error}</li>
+            ))}
+          </ul>
+        ) : (
+          errs[0]
+        )
       }
       position={Position.BOTTOM_RIGHT}
       intent="danger"
+      {...tooltipProps}
     >
       <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
         <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
