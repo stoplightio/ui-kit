@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Button } from '@blueprintjs/core';
 import { withKnobs } from '@storybook/addon-knobs';
 import { StudioContents } from '../../__fixtures__/table-of-contents/studio';
-import { Provider } from '../../Provider';
 import { TableOfContents } from '../../TableOfContents';
 
 const styles = {
@@ -20,18 +19,12 @@ storiesOf('TableOfContents', module)
   .add('studio', () => {
     return (
       <div style={styles}>
-        <Provider>
-          <TableOfContents className="h-full" contents={StudioContents} />
-        </Provider>
+        <TableOfContents className="h-full" contents={StudioContents} />
       </div>
     );
   })
   .add('mobile', () => {
-    return (
-      <Provider>
-        <MobileStory />
-      </Provider>
-    );
+    return <MobileStory />;
   });
 
 const MobileStory = () => {

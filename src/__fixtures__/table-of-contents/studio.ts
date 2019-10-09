@@ -1,4 +1,4 @@
-import { IContentsNode } from '../../types';
+import { IContentsNode } from '../../TableOfContents/types';
 
 export const StudioContents: IContentsNode[] = [
   {

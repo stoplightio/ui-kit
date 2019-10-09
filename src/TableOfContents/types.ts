@@ -1,13 +1,6 @@
 import { IconName } from '@blueprintjs/icons';
 import { NodeType } from '@stoplight/types';
 
-export interface IDeserializedSrn {
-  service: string;
-  org: string;
-  project: string;
-  uri: string;
-}
-
 export interface IContentsNode {
   name: string;
   depth: number;
