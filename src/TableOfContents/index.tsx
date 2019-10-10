@@ -66,6 +66,7 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
               } else {
                 return (
                   <TableOfContentsItem
+                    key={index}
                     item={item}
                     onClick={e => {
                       if (isDivider) {
@@ -139,7 +140,7 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
       }}
       onClick={onClick}
     >
-      <div className={className}>
+      <div className={cn('-ml-px', className)}>
         {item.icon && <Icon className="mr-1" icon={item.icon} iconSize={12} />}
         <span className="TableOfContentsItem__name flex-1 truncate">{item.name}</span>
         {isGroup && <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />}

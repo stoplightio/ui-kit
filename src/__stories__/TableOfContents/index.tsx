@@ -33,6 +33,13 @@ storiesOf('TableOfContents', module)
       </div>
     );
   })
+  .add('studio without rowRenderer', () => {
+    return (
+      <div style={styles}>
+        <TableOfContents className="h-full" contents={StudioContents} />
+      </div>
+    );
+  })
   .add('mobile', () => {
     return <MobileStory />;
   });
