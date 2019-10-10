@@ -19,7 +19,17 @@ storiesOf('TableOfContents', module)
   .add('studio', () => {
     return (
       <div style={styles}>
-        <TableOfContents className="h-full" contents={StudioContents} />
+        <TableOfContents
+          className="h-full"
+          contents={StudioContents}
+          rowRenderer={(item, DefaultRow) => {
+            return (
+              <a href={item.href}>
+                <DefaultRow item={item} />
+              </a>
+            );
+          }}
+        />
       </div>
     );
   })
@@ -39,6 +49,13 @@ const MobileStory = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         enableDrawer={1000}
+        rowRenderer={(item, DefaultRow) => {
+          return (
+            <a href={item.href}>
+              <DefaultRow item={item} />
+            </a>
+          );
+        }}
       />
     </div>
   );

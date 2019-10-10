@@ -1,4 +1,4 @@
-import { Button, Drawer } from '@blueprintjs/core';
+import { Button, Drawer, Icon } from '@blueprintjs/core';
 import cn from 'classnames';
 import * as React from 'react';
 import { useIsMobile } from '../_hooks/useIsMobile';
@@ -8,7 +8,7 @@ import { IContentsNode } from './types';
 export interface ITableOfContents {
   // Precomputed list of nodes instead of items. This is useful if you want to customize the ordering of the tree.
   contents: IContentsNode[];
-  rowRenderer?: (item: IContentsNode, DefaultRow: React.FC<{ item: IContentsNode }>) => void;
+  rowRenderer?: (item: IContentsNode, DefaultRow: React.FC<ITableOfContentsItem>) => React.ReactElement;
 
   // Padding that will be used for (default: 10)
   padding?: string;
@@ -61,23 +61,26 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
               const isDivider = item.type === 'divider';
               const isExpanded = expanded[index];
 
-              return (
-                <TableOfContentsItem
-                  item={item}
-                  isExpanded={isExpanded}
-                  onClick={e => {
-                    if (isDivider) {
+              if (rowRenderer) {
+                return rowRenderer(item, TableOfContentsItem);
+              } else {
+                return (
+                  <TableOfContentsItem
+                    item={item}
+                    onClick={e => {
+                      if (isDivider) {
+                        e.preventDefault();
+                        return;
+                      }
+
+                      if (!isGroup) return;
+
                       e.preventDefault();
-                      return;
-                    }
-
-                    if (!isGroup) return;
-
-                    e.preventDefault();
-                    setExpanded({ ...expanded, [String(index)]: !isExpanded });
-                  }}
-                />
-              );
+                      setExpanded({ ...expanded, [String(index)]: !isExpanded });
+                    }}
+                  />
+                );
+              }
             })}
           </div>
         </ScrollContainer>
@@ -105,8 +108,8 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
 
 interface ITableOfContentsItem {
   item: IContentsNode;
-  isExpanded: boolean;
-  onClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  isExpanded?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ item, isExpanded, onClick }) => {
@@ -114,6 +117,13 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
   const isGroup = item.type === 'group';
   const isDivider = item.type === 'divider';
   const isActive = item.isActive;
+
+  const className = cn('TableOfContentsItem__inner relative flex items-center border border-transparent border-r-0', {
+    'dark-hover:bg-lighten-2 hover:bg-darken-2 cursor-pointer': !isDivider,
+    'text-gray-5 dark:text-gray-5': isDivider || (isChild && !isActive),
+    'text-primary bg-white border-darken-3 dark:bg-lighten-2 dark:border-lighten-4': isActive,
+    'dark:text-white': !isDivider && !isChild && !isActive,
+  });
 
   return (
     <div
@@ -129,7 +139,11 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
       }}
       onClick={onClick}
     >
-      {item}
+      <div className={className}>
+        {item.icon && <Icon className="mr-1" icon={item.icon} iconSize={12} />}
+        <span className="TableOfContentsItem__name flex-1 truncate">{item.name}</span>
+        {isGroup && <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />}
+      </div>
     </div>
   );
 };
