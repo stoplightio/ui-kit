@@ -44,7 +44,7 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
   const isMobile = useIsMobile(enableDrawer);
 
   const comp = (
-    <div className={cn('TableOfContents bg-gray-1 dark:bg-transparent flex justify-end h-full', className)}>
+    <div className={cn('TableOfContents bg-gray-1 dark:bg-transparent flex justify-end h-full border-r', className)}>
       <div className="w-full">
         <ScrollContainer>
           <div className={cn('TableOfContents__inner ml-auto', `py-${padding}`)}>
@@ -141,7 +141,7 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
       onClick={onClick}
     >
       <div className={cn('-ml-px', className)}>
-        {item.icon && <Icon className="mr-1" icon={item.icon} iconSize={12} />}
+        {item.icon && <Icon className="mr-3" icon={item.icon} iconSize={12} />}
         <span className="TableOfContentsItem__name flex-1 truncate">{item.name}</span>
         {isGroup && <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />}
       </div>
