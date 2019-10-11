@@ -60,27 +60,24 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
               const isGroup = item.type === 'group';
               const isDivider = item.type === 'divider';
               const isExpanded = expanded[index];
+              const onClick = (e: React.MouseEvent) => {
+                if (isDivider) {
+                  e.preventDefault();
+                  return;
+                }
+
+                if (!isGroup) return;
+
+                e.preventDefault();
+                setExpanded({ ...expanded, [String(index)]: !isExpanded });
+              };
 
               if (rowRenderer) {
-                return rowRenderer(item, TableOfContentsItem);
+                return rowRenderer(item, props => (
+                  <TableOfContentsItem {...props} onClick={onClick} isExpanded={isExpanded} />
+                ));
               } else {
-                return (
-                  <TableOfContentsItem
-                    key={index}
-                    item={item}
-                    onClick={e => {
-                      if (isDivider) {
-                        e.preventDefault();
-                        return;
-                      }
-
-                      if (!isGroup) return;
-
-                      e.preventDefault();
-                      setExpanded({ ...expanded, [String(index)]: !isExpanded });
-                    }}
-                  />
-                );
+                return <TableOfContentsItem key={index} item={item} onClick={onClick} isExpanded={isExpanded} />;
               }
             })}
           </div>
