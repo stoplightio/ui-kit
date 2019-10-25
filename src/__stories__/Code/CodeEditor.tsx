@@ -1,6 +1,6 @@
 import { StateDecorator, Store } from '@sambego/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { text } from '@storybook/addon-knobs/react';
 import { storiesOf, StoryDecorator } from '@storybook/react';
 import * as React from 'react';
@@ -16,6 +16,7 @@ export const codeEditorKnobs = (tabName = 'Code Editor'): ICodeEditorProps => ({
   value: text('value', 'const defaultValue = stoplight.io();', tabName),
   onChange: action('onChange'),
   placeholder: text('placeholder', 'placeholder...', tabName),
+  showLineNumbers: boolean('showLineNumbers', false, tabName),
 });
 
 storiesOf('Code:Editor', module)

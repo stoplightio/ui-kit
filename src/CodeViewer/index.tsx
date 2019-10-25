@@ -3,8 +3,7 @@ import 'prismjs';
 import * as React from 'react';
 
 import { Classes } from '../classes';
-import { astToReact } from './utils/astToReact';
-import { parseCode } from './utils/parseCode';
+import { highlightCode } from '../CodeEditor/utils/highlightCode';
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',
@@ -28,7 +27,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   className,
   ...rest
 }) => {
-  const lang = (language && languageMaps[language]) || language;
+  const lang = (language && languageMaps[language]) || language || '';
 
   if (inline) {
     return (
@@ -44,18 +43,16 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
     );
   }
 
-  const markup = parseCode(value, lang, showLineNumbers);
+  const code = highlightCode(value, lang, showLineNumbers);
 
   return (
     <pre
       className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
         isInline: inline,
-        showLineNumbers,
       })}
       {...(rest as React.HTMLAttributes<HTMLPreElement>)}
-    >
-      {markup ? markup.map(astToReact()) : value}
-    </pre>
+      {...{ dangerouslySetInnerHTML: { __html: code } }}
+    />
   );
 };
 
