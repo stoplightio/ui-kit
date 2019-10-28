@@ -51,7 +51,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
         isInline: inline,
       })}
       {...(rest as React.HTMLAttributes<HTMLPreElement>)}
-      {...{ dangerouslySetInnerHTML: { __html: code } }}
+      dangerouslySetInnerHTML={{ __html: code }}
     />
   );
 };
