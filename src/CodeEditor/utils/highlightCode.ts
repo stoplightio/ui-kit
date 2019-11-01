@@ -8,18 +8,26 @@ import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-yaml';
 
-export const highlightCode = (code: string, language: string, showLineNumbers?: boolean) => {
+export const highlightCode = (code: string = '', language: string, showLineNumbers?: boolean) => {
   const langDef = Prism.languages[language];
-  if (!code || !langDef) return code;
+  if (!code || !langDef) {
+    if (showLineNumbers) {
+      return `<span class="line-number"></span>${code}`;
+    }
+
+    return code;
+  }
 
   try {
     const result = Prism.highlight(code, langDef, language);
 
     if (showLineNumbers) {
-      return result
-        .split('\n')
-        .map(line => `<span class="line-number"></span>${line}`)
-        .join('\n');
+      const splitOnNewLines = result.split('\n');
+      if (splitOnNewLines.length) {
+        return splitOnNewLines.map(line => `<span class="line-number"></span>${line}`).join('\n');
+      }
+
+      return `<span class="line-number"></span>${splitOnNewLines[0]}`;
     }
 
     return result;

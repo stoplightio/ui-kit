@@ -29,6 +29,8 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 }) => {
   const lang = (language && languageMaps[language]) || language || '';
 
+  const code = React.useMemo(() => highlightCode(value, lang, showLineNumbers), [value, lang, showLineNumbers]);
+
   if (inline) {
     return (
       <code
@@ -37,18 +39,16 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
           showLineNumbers,
         })}
         {...rest}
-      >
-        {value}
-      </code>
+        dangerouslySetInnerHTML={{ __html: code }}
+      />
     );
   }
-
-  const code = highlightCode(value, lang, showLineNumbers);
 
   return (
     <pre
       className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
         isInline: inline,
+        showLineNumbers,
       })}
       {...(rest as React.HTMLAttributes<HTMLPreElement>)}
       dangerouslySetInnerHTML={{ __html: code }}
