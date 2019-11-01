@@ -42,7 +42,7 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
       // @ts-ignore FIXME type error
       ref={ref}
       className={cn(className, 'bp3-code-editor', {
-        showLineNumbers,
+        'line-numbers': showLineNumbers,
       })}
       style={style}
       placeholder={placeholder}

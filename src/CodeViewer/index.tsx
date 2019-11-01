@@ -36,7 +36,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
       <code
         className={cn(Classes.CODE_EDITOR, className, {
           isInline: inline,
-          showLineNumbers,
+          'line-numbers': showLineNumbers,
         })}
         {...rest}
         dangerouslySetInnerHTML={{ __html: code }}
@@ -48,7 +48,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
     <pre
       className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
         isInline: inline,
-        showLineNumbers,
+        'line-numbers': showLineNumbers,
       })}
       {...(rest as React.HTMLAttributes<HTMLPreElement>)}
       dangerouslySetInnerHTML={{ __html: code }}
