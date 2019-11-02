@@ -25,8 +25,11 @@
     opacity: 0.7;
   }
 
-  textarea {
-    padding-left: 35px !important;
+  &.line-numbers {
+    textarea {
+      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
+      margin-left: 35px !important;
+    }
   }
 
   .line-number {
