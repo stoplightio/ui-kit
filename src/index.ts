@@ -17,11 +17,10 @@ export * from './classes';
  */
 export * from './CodeEditor';
 export * from './CodeViewer';
+export * from './FAIcon';
 export * from './FormButton';
 export * from './FormError';
 export * from './FormInput';
-// export * from './ScrollBox';
-// export * from './ScrollBox';
 export * from './SecretInput';
 export * from './ThemeContainer';
 export * from './AutoSizer';

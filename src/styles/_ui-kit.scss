@@ -1,43 +1,9 @@
-/*
- * UTILS
- * contains theme and helper functions
- */
 @import './common/utils';
-
-/*
- * THEME
- * contains theme and helper functions
- */
 @import './common/theme';
 
-/*
- * BLUEPRINT
- * containe blueprint styles and icons
- */
-@import './blueprint/variables';
-@import './blueprint/base';
-@import './blueprint/icons';
-
-/*
- * COMPONENTS
- * contains styles for our home grown components
- */
-@import './components/base';
-
-/*
- * TAILWIND
- * contains tailwind generated classes
- */
-@import './tailwind/base';
-
-// some extra custom styling we want to apply
-body,
-html,
-.root {
-  height: 100%;
-  font-size: get-font-size(base);
-  background-color: 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
-}
+@import './blueprint';
+@import './components';
+@import './tailwind';
 
 a {
   // simple reset when using link in random places like around a <Card />

@@ -59,7 +59,7 @@ module.exports = {
       '10': '2.5rem',
       '12': '3rem',
       '16': '4rem',
-      '18': '4.462rem', // 58px at standard 13px page font size
+      '18': '4.285714286rem', // 60px at standard 14px page font size
       '20': '5rem',
       '24': '6rem',
       '32': '8rem',
@@ -79,6 +79,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'Rubik',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
@@ -380,8 +381,8 @@ module.exports = {
     visibility: ['responsive', 'group-hover'],
     whitespace: ['responsive'],
     wordBreak: ['responsive'],
-    width: ['responsive'],
-    zIndex: [],
+    width: ['responsive', 'hover'],
+    zIndex: ['hover'],
   },
   corePlugins: {},
   plugins: [

@@ -18,10 +18,10 @@ $sl-theme: (
   namespace: map-deep-get($sl-variables, namespace),
   colors: map-deep-get($sl-variables, colors),
   fontSize: (
-    xs: 9px,
-    sm: 11px,
-    base: 13px,
-    lg: 15px,
+    xs: 10px,
+    sm: 12px,
+    base: 14px,
+    lg: 16px,
     xl: 18px,
     2xl: 22px,
     3xl: 26px,
@@ -46,6 +46,7 @@ $sl-theme: (
   ),
   fontFamily: (
     sans: (
+      'Rubik',
       -apple-system,
       BlinkMacSystemFont,
       'Segoe UI',
@@ -53,6 +54,7 @@ $sl-theme: (
       'Helvetica Neue',
       Arial,
       'Noto Sans',
+      "Icons16", // support inline Palantir icons
       sans-serif,
       'Apple Color Emoji',
       'Segoe UI Emoji',

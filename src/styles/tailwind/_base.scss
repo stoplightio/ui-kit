@@ -4924,10 +4924,12 @@
 }
 
 .flex {
+  display: -webkit-box;
   display: flex;
 }
 
 .inline-flex {
+  display: -webkit-inline-box;
   display: inline-flex;
 }
 
@@ -4960,10 +4962,12 @@
 }
 
 .group:hover .group-hover\:flex {
+  display: -webkit-box;
   display: flex;
 }
 
 .group:hover .group-hover\:inline-flex {
+  display: -webkit-inline-box;
   display: inline-flex;
 }
 
@@ -4984,19 +4988,27 @@
 }
 
 .flex-row {
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
 }
 
 .flex-row-reverse {
-  flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+          flex-direction: row-reverse;
 }
 
 .flex-col {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
 }
 
 .flex-col-reverse {
-  flex-direction: column-reverse;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+          flex-direction: column-reverse;
 }
 
 .flex-wrap {
@@ -5012,23 +5024,28 @@
 }
 
 .items-start {
-  align-items: flex-start;
+  -webkit-box-align: start;
+          align-items: flex-start;
 }
 
 .items-end {
-  align-items: flex-end;
+  -webkit-box-align: end;
+          align-items: flex-end;
 }
 
 .items-center {
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .items-baseline {
-  align-items: baseline;
+  -webkit-box-align: baseline;
+          align-items: baseline;
 }
 
 .items-stretch {
-  align-items: stretch;
+  -webkit-box-align: stretch;
+          align-items: stretch;
 }
 
 .self-auto {
@@ -5052,19 +5069,23 @@
 }
 
 .justify-start {
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
 }
 
 .justify-end {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
 }
 
 .justify-center {
-  justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 .justify-between {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 .justify-around {
@@ -5092,27 +5113,33 @@
 }
 
 .flex-1 {
-  flex: 1 1 0%;
+  -webkit-box-flex: 1;
+          flex: 1 1 0%;
 }
 
 .flex-auto {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
 }
 
 .flex-initial {
-  flex: 0 1 auto;
+  -webkit-box-flex: 0;
+          flex: 0 1 auto;
 }
 
 .flex-none {
-  flex: none;
+  -webkit-box-flex: 0;
+          flex: none;
 }
 
 .flex-grow-0 {
-  flex-grow: 0;
+  -webkit-box-flex: 0;
+          flex-grow: 0;
 }
 
 .flex-grow {
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
 }
 
 .flex-shrink-0 {
@@ -5124,63 +5151,78 @@
 }
 
 .order-1 {
-  order: 1;
+  -webkit-box-ordinal-group: 2;
+          order: 1;
 }
 
 .order-2 {
-  order: 2;
+  -webkit-box-ordinal-group: 3;
+          order: 2;
 }
 
 .order-3 {
-  order: 3;
+  -webkit-box-ordinal-group: 4;
+          order: 3;
 }
 
 .order-4 {
-  order: 4;
+  -webkit-box-ordinal-group: 5;
+          order: 4;
 }
 
 .order-5 {
-  order: 5;
+  -webkit-box-ordinal-group: 6;
+          order: 5;
 }
 
 .order-6 {
-  order: 6;
+  -webkit-box-ordinal-group: 7;
+          order: 6;
 }
 
 .order-7 {
-  order: 7;
+  -webkit-box-ordinal-group: 8;
+          order: 7;
 }
 
 .order-8 {
-  order: 8;
+  -webkit-box-ordinal-group: 9;
+          order: 8;
 }
 
 .order-9 {
-  order: 9;
+  -webkit-box-ordinal-group: 10;
+          order: 9;
 }
 
 .order-10 {
-  order: 10;
+  -webkit-box-ordinal-group: 11;
+          order: 10;
 }
 
 .order-11 {
-  order: 11;
+  -webkit-box-ordinal-group: 12;
+          order: 11;
 }
 
 .order-12 {
-  order: 12;
+  -webkit-box-ordinal-group: 13;
+          order: 12;
 }
 
 .order-first {
-  order: -9999;
+  -webkit-box-ordinal-group: -9998;
+          order: -9999;
 }
 
 .order-last {
-  order: 9999;
+  -webkit-box-ordinal-group: 10000;
+          order: 9999;
 }
 
 .order-none {
-  order: 0;
+  -webkit-box-ordinal-group: 1;
+          order: 0;
 }
 
 .float-right {
@@ -5202,7 +5244,7 @@
 }
 
 .font-sans {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .font-serif {
@@ -5366,7 +5408,7 @@
 }
 
 .h-18 {
-  height: 4.462rem;
+  height: 4.285714286rem;
 }
 
 .h-20 {
@@ -5514,7 +5556,7 @@
 }
 
 .m-18 {
-  margin: 4.462rem;
+  margin: 4.285714286rem;
 }
 
 .m-20 {
@@ -5748,13 +5790,13 @@
 }
 
 .my-18 {
-  margin-top: 4.462rem;
-  margin-bottom: 4.462rem;
+  margin-top: 4.285714286rem;
+  margin-bottom: 4.285714286rem;
 }
 
 .mx-18 {
-  margin-left: 4.462rem;
-  margin-right: 4.462rem;
+  margin-left: 4.285714286rem;
+  margin-right: 4.285714286rem;
 }
 
 .my-20 {
@@ -6234,19 +6276,19 @@
 }
 
 .mt-18 {
-  margin-top: 4.462rem;
+  margin-top: 4.285714286rem;
 }
 
 .mr-18 {
-  margin-right: 4.462rem;
+  margin-right: 4.285714286rem;
 }
 
 .mb-18 {
-  margin-bottom: 4.462rem;
+  margin-bottom: 4.285714286rem;
 }
 
 .ml-18 {
-  margin-left: 4.462rem;
+  margin-left: 4.285714286rem;
 }
 
 .mt-20 {
@@ -7060,7 +7102,7 @@
 }
 
 .p-18 {
-  padding: 4.462rem;
+  padding: 4.285714286rem;
 }
 
 .p-20 {
@@ -7218,13 +7260,13 @@
 }
 
 .py-18 {
-  padding-top: 4.462rem;
-  padding-bottom: 4.462rem;
+  padding-top: 4.285714286rem;
+  padding-bottom: 4.285714286rem;
 }
 
 .px-18 {
-  padding-left: 4.462rem;
-  padding-right: 4.462rem;
+  padding-left: 4.285714286rem;
+  padding-right: 4.285714286rem;
 }
 
 .py-20 {
@@ -7514,19 +7556,19 @@
 }
 
 .pt-18 {
-  padding-top: 4.462rem;
+  padding-top: 4.285714286rem;
 }
 
 .pr-18 {
-  padding-right: 4.462rem;
+  padding-right: 4.285714286rem;
 }
 
 .pb-18 {
-  padding-bottom: 4.462rem;
+  padding-bottom: 4.285714286rem;
 }
 
 .pl-18 {
-  padding-left: 4.462rem;
+  padding-left: 4.285714286rem;
 }
 
 .pt-20 {
@@ -13630,7 +13672,7 @@
 }
 
 .w-18 {
-  width: 4.462rem;
+  width: 4.285714286rem;
 }
 
 .w-20 {
@@ -13733,6 +13775,154 @@
   width: 100vw;
 }
 
+.hover\:w-0:hover {
+  width: 0;
+}
+
+.hover\:w-1:hover {
+  width: 0.25rem;
+}
+
+.hover\:w-2:hover {
+  width: 0.5rem;
+}
+
+.hover\:w-3:hover {
+  width: 0.75rem;
+}
+
+.hover\:w-4:hover {
+  width: 1rem;
+}
+
+.hover\:w-5:hover {
+  width: 1.25rem;
+}
+
+.hover\:w-6:hover {
+  width: 1.5rem;
+}
+
+.hover\:w-8:hover {
+  width: 2rem;
+}
+
+.hover\:w-10:hover {
+  width: 2.5rem;
+}
+
+.hover\:w-12:hover {
+  width: 3rem;
+}
+
+.hover\:w-16:hover {
+  width: 4rem;
+}
+
+.hover\:w-18:hover {
+  width: 4.285714286rem;
+}
+
+.hover\:w-20:hover {
+  width: 5rem;
+}
+
+.hover\:w-24:hover {
+  width: 6rem;
+}
+
+.hover\:w-32:hover {
+  width: 8rem;
+}
+
+.hover\:w-40:hover {
+  width: 10rem;
+}
+
+.hover\:w-48:hover {
+  width: 12rem;
+}
+
+.hover\:w-56:hover {
+  width: 14rem;
+}
+
+.hover\:w-64:hover {
+  width: 16rem;
+}
+
+.hover\:w-80:hover {
+  width: 20rem;
+}
+
+.hover\:w-96:hover {
+  width: 24rem;
+}
+
+.hover\:w-128:hover {
+  width: 32rem;
+}
+
+.hover\:w-auto:hover {
+  width: auto;
+}
+
+.hover\:w-px:hover {
+  width: 1px;
+}
+
+.hover\:w-1\/2:hover {
+  width: 50%;
+}
+
+.hover\:w-1\/3:hover {
+  width: 33.33333%;
+}
+
+.hover\:w-2\/3:hover {
+  width: 66.66667%;
+}
+
+.hover\:w-1\/4:hover {
+  width: 25%;
+}
+
+.hover\:w-3\/4:hover {
+  width: 75%;
+}
+
+.hover\:w-1\/5:hover {
+  width: 20%;
+}
+
+.hover\:w-2\/5:hover {
+  width: 40%;
+}
+
+.hover\:w-3\/5:hover {
+  width: 60%;
+}
+
+.hover\:w-4\/5:hover {
+  width: 80%;
+}
+
+.hover\:w-1\/6:hover {
+  width: 16.66667%;
+}
+
+.hover\:w-5\/6:hover {
+  width: 83.33333%;
+}
+
+.hover\:w-full:hover {
+  width: 100%;
+}
+
+.hover\:w-screen:hover {
+  width: 100vw;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -13758,6 +13948,34 @@
 }
 
 .z-auto {
+  z-index: auto;
+}
+
+.hover\:z-0:hover {
+  z-index: 0;
+}
+
+.hover\:z-10:hover {
+  z-index: 10;
+}
+
+.hover\:z-20:hover {
+  z-index: 20;
+}
+
+.hover\:z-30:hover {
+  z-index: 30;
+}
+
+.hover\:z-40:hover {
+  z-index: 40;
+}
+
+.hover\:z-50:hover {
+  z-index: 50;
+}
+
+.hover\:z-auto:hover {
   z-index: auto;
 }
 
@@ -14152,6 +14370,7 @@ h3,
 h4,
 h5,
 h6,
+hr,
 figure,
 p,
 pre {
@@ -14229,7 +14448,7 @@ html {
  */
 
 hr {
-  border-width: 1px;
+  border-top-width: 1px;
 }
 
 /**
@@ -14250,23 +14469,19 @@ textarea {
   resize: vertical;
 }
 
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #a0aec0;
 }
 
-input::-moz-placeholder,
-textarea::-moz-placeholder {
+input::-moz-placeholder, textarea::-moz-placeholder {
   color: #a0aec0;
 }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: #a0aec0;
 }
 
-input::-ms-input-placeholder,
-textarea::-ms-input-placeholder {
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
   color: #a0aec0;
 }
 
@@ -14429,10 +14644,12 @@ video {
   }
 
   .sm\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .sm\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -14465,10 +14682,12 @@ video {
   }
 
   .group:hover .sm\:group-hover\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .group:hover .sm\:group-hover\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -14489,19 +14708,27 @@ video {
   }
 
   .sm\:flex-row {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
   }
 
   .sm\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+            flex-direction: row-reverse;
   }
 
   .sm\:flex-col {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 
   .sm\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
   }
 
   .sm\:flex-wrap {
@@ -14517,39 +14744,48 @@ video {
   }
 
   .sm\:items-start {
-    align-items: flex-start;
+    -webkit-box-align: start;
+            align-items: flex-start;
   }
 
   .sm\:items-end {
-    align-items: flex-end;
+    -webkit-box-align: end;
+            align-items: flex-end;
   }
 
   .sm\:items-center {
-    align-items: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 
   .sm\:items-baseline {
-    align-items: baseline;
+    -webkit-box-align: baseline;
+            align-items: baseline;
   }
 
   .sm\:items-stretch {
-    align-items: stretch;
+    -webkit-box-align: stretch;
+            align-items: stretch;
   }
 
   .sm\:justify-start {
-    justify-content: flex-start;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
   }
 
   .sm\:justify-end {
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
   }
 
   .sm\:justify-center {
-    justify-content: center;
+    -webkit-box-pack: center;
+            justify-content: center;
   }
 
   .sm\:justify-between {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
   }
 
   .sm\:justify-around {
@@ -14557,79 +14793,98 @@ video {
   }
 
   .sm\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-box-flex: 1;
+            flex: 1 1 0%;
   }
 
   .sm\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+            flex: 1 1 auto;
   }
 
   .sm\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
   }
 
   .sm\:flex-none {
-    flex: none;
+    -webkit-box-flex: 0;
+            flex: none;
   }
 
   .sm\:order-1 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
 
   .sm\:order-2 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
 
   .sm\:order-3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
 
   .sm\:order-4 {
-    order: 4;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
 
   .sm\:order-5 {
-    order: 5;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
 
   .sm\:order-6 {
-    order: 6;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
 
   .sm\:order-7 {
-    order: 7;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
 
   .sm\:order-8 {
-    order: 8;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
 
   .sm\:order-9 {
-    order: 9;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
 
   .sm\:order-10 {
-    order: 10;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
 
   .sm\:order-11 {
-    order: 11;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
 
   .sm\:order-12 {
-    order: 12;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
 
   .sm\:order-first {
-    order: -9999;
+    -webkit-box-ordinal-group: -9998;
+            order: -9999;
   }
 
   .sm\:order-last {
-    order: 9999;
+    -webkit-box-ordinal-group: 10000;
+            order: 9999;
   }
 
   .sm\:order-none {
-    order: 0;
+    -webkit-box-ordinal-group: 1;
+            order: 0;
   }
 
   .sm\:h-0 {
@@ -14677,7 +14932,7 @@ video {
   }
 
   .sm\:h-18 {
-    height: 4.462rem;
+    height: 4.285714286rem;
   }
 
   .sm\:h-20 {
@@ -14781,7 +15036,7 @@ video {
   }
 
   .sm\:m-18 {
-    margin: 4.462rem;
+    margin: 4.285714286rem;
   }
 
   .sm\:m-20 {
@@ -15015,13 +15270,13 @@ video {
   }
 
   .sm\:my-18 {
-    margin-top: 4.462rem;
-    margin-bottom: 4.462rem;
+    margin-top: 4.285714286rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .sm\:mx-18 {
-    margin-left: 4.462rem;
-    margin-right: 4.462rem;
+    margin-left: 4.285714286rem;
+    margin-right: 4.285714286rem;
   }
 
   .sm\:my-20 {
@@ -15501,19 +15756,19 @@ video {
   }
 
   .sm\:mt-18 {
-    margin-top: 4.462rem;
+    margin-top: 4.285714286rem;
   }
 
   .sm\:mr-18 {
-    margin-right: 4.462rem;
+    margin-right: 4.285714286rem;
   }
 
   .sm\:mb-18 {
-    margin-bottom: 4.462rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .sm\:ml-18 {
-    margin-left: 4.462rem;
+    margin-left: 4.285714286rem;
   }
 
   .sm\:mt-20 {
@@ -16097,7 +16352,7 @@ video {
   }
 
   .sm\:p-18 {
-    padding: 4.462rem;
+    padding: 4.285714286rem;
   }
 
   .sm\:p-20 {
@@ -16255,13 +16510,13 @@ video {
   }
 
   .sm\:py-18 {
-    padding-top: 4.462rem;
-    padding-bottom: 4.462rem;
+    padding-top: 4.285714286rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .sm\:px-18 {
-    padding-left: 4.462rem;
-    padding-right: 4.462rem;
+    padding-left: 4.285714286rem;
+    padding-right: 4.285714286rem;
   }
 
   .sm\:py-20 {
@@ -16551,19 +16806,19 @@ video {
   }
 
   .sm\:pt-18 {
-    padding-top: 4.462rem;
+    padding-top: 4.285714286rem;
   }
 
   .sm\:pr-18 {
-    padding-right: 4.462rem;
+    padding-right: 4.285714286rem;
   }
 
   .sm\:pb-18 {
-    padding-bottom: 4.462rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .sm\:pl-18 {
-    padding-left: 4.462rem;
+    padding-left: 4.285714286rem;
   }
 
   .sm\:pt-20 {
@@ -20519,7 +20774,7 @@ video {
   }
 
   .sm\:w-18 {
-    width: 4.462rem;
+    width: 4.285714286rem;
   }
 
   .sm\:w-20 {
@@ -20621,6 +20876,154 @@ video {
   .sm\:w-screen {
     width: 100vw;
   }
+
+  .sm\:hover\:w-0:hover {
+    width: 0;
+  }
+
+  .sm\:hover\:w-1:hover {
+    width: 0.25rem;
+  }
+
+  .sm\:hover\:w-2:hover {
+    width: 0.5rem;
+  }
+
+  .sm\:hover\:w-3:hover {
+    width: 0.75rem;
+  }
+
+  .sm\:hover\:w-4:hover {
+    width: 1rem;
+  }
+
+  .sm\:hover\:w-5:hover {
+    width: 1.25rem;
+  }
+
+  .sm\:hover\:w-6:hover {
+    width: 1.5rem;
+  }
+
+  .sm\:hover\:w-8:hover {
+    width: 2rem;
+  }
+
+  .sm\:hover\:w-10:hover {
+    width: 2.5rem;
+  }
+
+  .sm\:hover\:w-12:hover {
+    width: 3rem;
+  }
+
+  .sm\:hover\:w-16:hover {
+    width: 4rem;
+  }
+
+  .sm\:hover\:w-18:hover {
+    width: 4.285714286rem;
+  }
+
+  .sm\:hover\:w-20:hover {
+    width: 5rem;
+  }
+
+  .sm\:hover\:w-24:hover {
+    width: 6rem;
+  }
+
+  .sm\:hover\:w-32:hover {
+    width: 8rem;
+  }
+
+  .sm\:hover\:w-40:hover {
+    width: 10rem;
+  }
+
+  .sm\:hover\:w-48:hover {
+    width: 12rem;
+  }
+
+  .sm\:hover\:w-56:hover {
+    width: 14rem;
+  }
+
+  .sm\:hover\:w-64:hover {
+    width: 16rem;
+  }
+
+  .sm\:hover\:w-80:hover {
+    width: 20rem;
+  }
+
+  .sm\:hover\:w-96:hover {
+    width: 24rem;
+  }
+
+  .sm\:hover\:w-128:hover {
+    width: 32rem;
+  }
+
+  .sm\:hover\:w-auto:hover {
+    width: auto;
+  }
+
+  .sm\:hover\:w-px:hover {
+    width: 1px;
+  }
+
+  .sm\:hover\:w-1\/2:hover {
+    width: 50%;
+  }
+
+  .sm\:hover\:w-1\/3:hover {
+    width: 33.33333%;
+  }
+
+  .sm\:hover\:w-2\/3:hover {
+    width: 66.66667%;
+  }
+
+  .sm\:hover\:w-1\/4:hover {
+    width: 25%;
+  }
+
+  .sm\:hover\:w-3\/4:hover {
+    width: 75%;
+  }
+
+  .sm\:hover\:w-1\/5:hover {
+    width: 20%;
+  }
+
+  .sm\:hover\:w-2\/5:hover {
+    width: 40%;
+  }
+
+  .sm\:hover\:w-3\/5:hover {
+    width: 60%;
+  }
+
+  .sm\:hover\:w-4\/5:hover {
+    width: 80%;
+  }
+
+  .sm\:hover\:w-1\/6:hover {
+    width: 16.66667%;
+  }
+
+  .sm\:hover\:w-5\/6:hover {
+    width: 83.33333%;
+  }
+
+  .sm\:hover\:w-full:hover {
+    width: 100%;
+  }
+
+  .sm\:hover\:w-screen:hover {
+    width: 100vw;
+  }
 }
 
 @media (max-width: 1007px) {
@@ -20683,10 +21086,12 @@ video {
   }
 
   .md\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .md\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -20719,10 +21124,12 @@ video {
   }
 
   .group:hover .md\:group-hover\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .group:hover .md\:group-hover\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -20743,19 +21150,27 @@ video {
   }
 
   .md\:flex-row {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
   }
 
   .md\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+            flex-direction: row-reverse;
   }
 
   .md\:flex-col {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 
   .md\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
   }
 
   .md\:flex-wrap {
@@ -20771,39 +21186,48 @@ video {
   }
 
   .md\:items-start {
-    align-items: flex-start;
+    -webkit-box-align: start;
+            align-items: flex-start;
   }
 
   .md\:items-end {
-    align-items: flex-end;
+    -webkit-box-align: end;
+            align-items: flex-end;
   }
 
   .md\:items-center {
-    align-items: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 
   .md\:items-baseline {
-    align-items: baseline;
+    -webkit-box-align: baseline;
+            align-items: baseline;
   }
 
   .md\:items-stretch {
-    align-items: stretch;
+    -webkit-box-align: stretch;
+            align-items: stretch;
   }
 
   .md\:justify-start {
-    justify-content: flex-start;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
   }
 
   .md\:justify-end {
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
   }
 
   .md\:justify-center {
-    justify-content: center;
+    -webkit-box-pack: center;
+            justify-content: center;
   }
 
   .md\:justify-between {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
   }
 
   .md\:justify-around {
@@ -20811,79 +21235,98 @@ video {
   }
 
   .md\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-box-flex: 1;
+            flex: 1 1 0%;
   }
 
   .md\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+            flex: 1 1 auto;
   }
 
   .md\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
   }
 
   .md\:flex-none {
-    flex: none;
+    -webkit-box-flex: 0;
+            flex: none;
   }
 
   .md\:order-1 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
 
   .md\:order-2 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
 
   .md\:order-3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
 
   .md\:order-4 {
-    order: 4;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
 
   .md\:order-5 {
-    order: 5;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
 
   .md\:order-6 {
-    order: 6;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
 
   .md\:order-7 {
-    order: 7;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
 
   .md\:order-8 {
-    order: 8;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
 
   .md\:order-9 {
-    order: 9;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
 
   .md\:order-10 {
-    order: 10;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
 
   .md\:order-11 {
-    order: 11;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
 
   .md\:order-12 {
-    order: 12;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
 
   .md\:order-first {
-    order: -9999;
+    -webkit-box-ordinal-group: -9998;
+            order: -9999;
   }
 
   .md\:order-last {
-    order: 9999;
+    -webkit-box-ordinal-group: 10000;
+            order: 9999;
   }
 
   .md\:order-none {
-    order: 0;
+    -webkit-box-ordinal-group: 1;
+            order: 0;
   }
 
   .md\:h-0 {
@@ -20931,7 +21374,7 @@ video {
   }
 
   .md\:h-18 {
-    height: 4.462rem;
+    height: 4.285714286rem;
   }
 
   .md\:h-20 {
@@ -21035,7 +21478,7 @@ video {
   }
 
   .md\:m-18 {
-    margin: 4.462rem;
+    margin: 4.285714286rem;
   }
 
   .md\:m-20 {
@@ -21269,13 +21712,13 @@ video {
   }
 
   .md\:my-18 {
-    margin-top: 4.462rem;
-    margin-bottom: 4.462rem;
+    margin-top: 4.285714286rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .md\:mx-18 {
-    margin-left: 4.462rem;
-    margin-right: 4.462rem;
+    margin-left: 4.285714286rem;
+    margin-right: 4.285714286rem;
   }
 
   .md\:my-20 {
@@ -21755,19 +22198,19 @@ video {
   }
 
   .md\:mt-18 {
-    margin-top: 4.462rem;
+    margin-top: 4.285714286rem;
   }
 
   .md\:mr-18 {
-    margin-right: 4.462rem;
+    margin-right: 4.285714286rem;
   }
 
   .md\:mb-18 {
-    margin-bottom: 4.462rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .md\:ml-18 {
-    margin-left: 4.462rem;
+    margin-left: 4.285714286rem;
   }
 
   .md\:mt-20 {
@@ -22351,7 +22794,7 @@ video {
   }
 
   .md\:p-18 {
-    padding: 4.462rem;
+    padding: 4.285714286rem;
   }
 
   .md\:p-20 {
@@ -22509,13 +22952,13 @@ video {
   }
 
   .md\:py-18 {
-    padding-top: 4.462rem;
-    padding-bottom: 4.462rem;
+    padding-top: 4.285714286rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .md\:px-18 {
-    padding-left: 4.462rem;
-    padding-right: 4.462rem;
+    padding-left: 4.285714286rem;
+    padding-right: 4.285714286rem;
   }
 
   .md\:py-20 {
@@ -22805,19 +23248,19 @@ video {
   }
 
   .md\:pt-18 {
-    padding-top: 4.462rem;
+    padding-top: 4.285714286rem;
   }
 
   .md\:pr-18 {
-    padding-right: 4.462rem;
+    padding-right: 4.285714286rem;
   }
 
   .md\:pb-18 {
-    padding-bottom: 4.462rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .md\:pl-18 {
-    padding-left: 4.462rem;
+    padding-left: 4.285714286rem;
   }
 
   .md\:pt-20 {
@@ -26773,7 +27216,7 @@ video {
   }
 
   .md\:w-18 {
-    width: 4.462rem;
+    width: 4.285714286rem;
   }
 
   .md\:w-20 {
@@ -26875,6 +27318,154 @@ video {
   .md\:w-screen {
     width: 100vw;
   }
+
+  .md\:hover\:w-0:hover {
+    width: 0;
+  }
+
+  .md\:hover\:w-1:hover {
+    width: 0.25rem;
+  }
+
+  .md\:hover\:w-2:hover {
+    width: 0.5rem;
+  }
+
+  .md\:hover\:w-3:hover {
+    width: 0.75rem;
+  }
+
+  .md\:hover\:w-4:hover {
+    width: 1rem;
+  }
+
+  .md\:hover\:w-5:hover {
+    width: 1.25rem;
+  }
+
+  .md\:hover\:w-6:hover {
+    width: 1.5rem;
+  }
+
+  .md\:hover\:w-8:hover {
+    width: 2rem;
+  }
+
+  .md\:hover\:w-10:hover {
+    width: 2.5rem;
+  }
+
+  .md\:hover\:w-12:hover {
+    width: 3rem;
+  }
+
+  .md\:hover\:w-16:hover {
+    width: 4rem;
+  }
+
+  .md\:hover\:w-18:hover {
+    width: 4.285714286rem;
+  }
+
+  .md\:hover\:w-20:hover {
+    width: 5rem;
+  }
+
+  .md\:hover\:w-24:hover {
+    width: 6rem;
+  }
+
+  .md\:hover\:w-32:hover {
+    width: 8rem;
+  }
+
+  .md\:hover\:w-40:hover {
+    width: 10rem;
+  }
+
+  .md\:hover\:w-48:hover {
+    width: 12rem;
+  }
+
+  .md\:hover\:w-56:hover {
+    width: 14rem;
+  }
+
+  .md\:hover\:w-64:hover {
+    width: 16rem;
+  }
+
+  .md\:hover\:w-80:hover {
+    width: 20rem;
+  }
+
+  .md\:hover\:w-96:hover {
+    width: 24rem;
+  }
+
+  .md\:hover\:w-128:hover {
+    width: 32rem;
+  }
+
+  .md\:hover\:w-auto:hover {
+    width: auto;
+  }
+
+  .md\:hover\:w-px:hover {
+    width: 1px;
+  }
+
+  .md\:hover\:w-1\/2:hover {
+    width: 50%;
+  }
+
+  .md\:hover\:w-1\/3:hover {
+    width: 33.33333%;
+  }
+
+  .md\:hover\:w-2\/3:hover {
+    width: 66.66667%;
+  }
+
+  .md\:hover\:w-1\/4:hover {
+    width: 25%;
+  }
+
+  .md\:hover\:w-3\/4:hover {
+    width: 75%;
+  }
+
+  .md\:hover\:w-1\/5:hover {
+    width: 20%;
+  }
+
+  .md\:hover\:w-2\/5:hover {
+    width: 40%;
+  }
+
+  .md\:hover\:w-3\/5:hover {
+    width: 60%;
+  }
+
+  .md\:hover\:w-4\/5:hover {
+    width: 80%;
+  }
+
+  .md\:hover\:w-1\/6:hover {
+    width: 16.66667%;
+  }
+
+  .md\:hover\:w-5\/6:hover {
+    width: 83.33333%;
+  }
+
+  .md\:hover\:w-full:hover {
+    width: 100%;
+  }
+
+  .md\:hover\:w-screen:hover {
+    width: 100vw;
+  }
 }
 
 @media print {
@@ -26937,10 +27528,12 @@ video {
   }
 
   .print\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .print\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -26973,10 +27566,12 @@ video {
   }
 
   .group:hover .print\:group-hover\:flex {
+    display: -webkit-box;
     display: flex;
   }
 
   .group:hover .print\:group-hover\:inline-flex {
+    display: -webkit-inline-box;
     display: inline-flex;
   }
 
@@ -26997,19 +27592,27 @@ video {
   }
 
   .print\:flex-row {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
   }
 
   .print\:flex-row-reverse {
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+            flex-direction: row-reverse;
   }
 
   .print\:flex-col {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 
   .print\:flex-col-reverse {
-    flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
   }
 
   .print\:flex-wrap {
@@ -27025,39 +27628,48 @@ video {
   }
 
   .print\:items-start {
-    align-items: flex-start;
+    -webkit-box-align: start;
+            align-items: flex-start;
   }
 
   .print\:items-end {
-    align-items: flex-end;
+    -webkit-box-align: end;
+            align-items: flex-end;
   }
 
   .print\:items-center {
-    align-items: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 
   .print\:items-baseline {
-    align-items: baseline;
+    -webkit-box-align: baseline;
+            align-items: baseline;
   }
 
   .print\:items-stretch {
-    align-items: stretch;
+    -webkit-box-align: stretch;
+            align-items: stretch;
   }
 
   .print\:justify-start {
-    justify-content: flex-start;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
   }
 
   .print\:justify-end {
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
   }
 
   .print\:justify-center {
-    justify-content: center;
+    -webkit-box-pack: center;
+            justify-content: center;
   }
 
   .print\:justify-between {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
   }
 
   .print\:justify-around {
@@ -27065,79 +27677,98 @@ video {
   }
 
   .print\:flex-1 {
-    flex: 1 1 0%;
+    -webkit-box-flex: 1;
+            flex: 1 1 0%;
   }
 
   .print\:flex-auto {
-    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+            flex: 1 1 auto;
   }
 
   .print\:flex-initial {
-    flex: 0 1 auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
   }
 
   .print\:flex-none {
-    flex: none;
+    -webkit-box-flex: 0;
+            flex: none;
   }
 
   .print\:order-1 {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
 
   .print\:order-2 {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
 
   .print\:order-3 {
-    order: 3;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
 
   .print\:order-4 {
-    order: 4;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
 
   .print\:order-5 {
-    order: 5;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
 
   .print\:order-6 {
-    order: 6;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
 
   .print\:order-7 {
-    order: 7;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
 
   .print\:order-8 {
-    order: 8;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
 
   .print\:order-9 {
-    order: 9;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
 
   .print\:order-10 {
-    order: 10;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
 
   .print\:order-11 {
-    order: 11;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
 
   .print\:order-12 {
-    order: 12;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
 
   .print\:order-first {
-    order: -9999;
+    -webkit-box-ordinal-group: -9998;
+            order: -9999;
   }
 
   .print\:order-last {
-    order: 9999;
+    -webkit-box-ordinal-group: 10000;
+            order: 9999;
   }
 
   .print\:order-none {
-    order: 0;
+    -webkit-box-ordinal-group: 1;
+            order: 0;
   }
 
   .print\:h-0 {
@@ -27185,7 +27816,7 @@ video {
   }
 
   .print\:h-18 {
-    height: 4.462rem;
+    height: 4.285714286rem;
   }
 
   .print\:h-20 {
@@ -27289,7 +27920,7 @@ video {
   }
 
   .print\:m-18 {
-    margin: 4.462rem;
+    margin: 4.285714286rem;
   }
 
   .print\:m-20 {
@@ -27523,13 +28154,13 @@ video {
   }
 
   .print\:my-18 {
-    margin-top: 4.462rem;
-    margin-bottom: 4.462rem;
+    margin-top: 4.285714286rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .print\:mx-18 {
-    margin-left: 4.462rem;
-    margin-right: 4.462rem;
+    margin-left: 4.285714286rem;
+    margin-right: 4.285714286rem;
   }
 
   .print\:my-20 {
@@ -28009,19 +28640,19 @@ video {
   }
 
   .print\:mt-18 {
-    margin-top: 4.462rem;
+    margin-top: 4.285714286rem;
   }
 
   .print\:mr-18 {
-    margin-right: 4.462rem;
+    margin-right: 4.285714286rem;
   }
 
   .print\:mb-18 {
-    margin-bottom: 4.462rem;
+    margin-bottom: 4.285714286rem;
   }
 
   .print\:ml-18 {
-    margin-left: 4.462rem;
+    margin-left: 4.285714286rem;
   }
 
   .print\:mt-20 {
@@ -28605,7 +29236,7 @@ video {
   }
 
   .print\:p-18 {
-    padding: 4.462rem;
+    padding: 4.285714286rem;
   }
 
   .print\:p-20 {
@@ -28763,13 +29394,13 @@ video {
   }
 
   .print\:py-18 {
-    padding-top: 4.462rem;
-    padding-bottom: 4.462rem;
+    padding-top: 4.285714286rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .print\:px-18 {
-    padding-left: 4.462rem;
-    padding-right: 4.462rem;
+    padding-left: 4.285714286rem;
+    padding-right: 4.285714286rem;
   }
 
   .print\:py-20 {
@@ -29059,19 +29690,19 @@ video {
   }
 
   .print\:pt-18 {
-    padding-top: 4.462rem;
+    padding-top: 4.285714286rem;
   }
 
   .print\:pr-18 {
-    padding-right: 4.462rem;
+    padding-right: 4.285714286rem;
   }
 
   .print\:pb-18 {
-    padding-bottom: 4.462rem;
+    padding-bottom: 4.285714286rem;
   }
 
   .print\:pl-18 {
-    padding-left: 4.462rem;
+    padding-left: 4.285714286rem;
   }
 
   .print\:pt-20 {
@@ -33027,7 +33658,7 @@ video {
   }
 
   .print\:w-18 {
-    width: 4.462rem;
+    width: 4.285714286rem;
   }
 
   .print\:w-20 {
@@ -33127,6 +33758,154 @@ video {
   }
 
   .print\:w-screen {
+    width: 100vw;
+  }
+
+  .print\:hover\:w-0:hover {
+    width: 0;
+  }
+
+  .print\:hover\:w-1:hover {
+    width: 0.25rem;
+  }
+
+  .print\:hover\:w-2:hover {
+    width: 0.5rem;
+  }
+
+  .print\:hover\:w-3:hover {
+    width: 0.75rem;
+  }
+
+  .print\:hover\:w-4:hover {
+    width: 1rem;
+  }
+
+  .print\:hover\:w-5:hover {
+    width: 1.25rem;
+  }
+
+  .print\:hover\:w-6:hover {
+    width: 1.5rem;
+  }
+
+  .print\:hover\:w-8:hover {
+    width: 2rem;
+  }
+
+  .print\:hover\:w-10:hover {
+    width: 2.5rem;
+  }
+
+  .print\:hover\:w-12:hover {
+    width: 3rem;
+  }
+
+  .print\:hover\:w-16:hover {
+    width: 4rem;
+  }
+
+  .print\:hover\:w-18:hover {
+    width: 4.285714286rem;
+  }
+
+  .print\:hover\:w-20:hover {
+    width: 5rem;
+  }
+
+  .print\:hover\:w-24:hover {
+    width: 6rem;
+  }
+
+  .print\:hover\:w-32:hover {
+    width: 8rem;
+  }
+
+  .print\:hover\:w-40:hover {
+    width: 10rem;
+  }
+
+  .print\:hover\:w-48:hover {
+    width: 12rem;
+  }
+
+  .print\:hover\:w-56:hover {
+    width: 14rem;
+  }
+
+  .print\:hover\:w-64:hover {
+    width: 16rem;
+  }
+
+  .print\:hover\:w-80:hover {
+    width: 20rem;
+  }
+
+  .print\:hover\:w-96:hover {
+    width: 24rem;
+  }
+
+  .print\:hover\:w-128:hover {
+    width: 32rem;
+  }
+
+  .print\:hover\:w-auto:hover {
+    width: auto;
+  }
+
+  .print\:hover\:w-px:hover {
+    width: 1px;
+  }
+
+  .print\:hover\:w-1\/2:hover {
+    width: 50%;
+  }
+
+  .print\:hover\:w-1\/3:hover {
+    width: 33.33333%;
+  }
+
+  .print\:hover\:w-2\/3:hover {
+    width: 66.66667%;
+  }
+
+  .print\:hover\:w-1\/4:hover {
+    width: 25%;
+  }
+
+  .print\:hover\:w-3\/4:hover {
+    width: 75%;
+  }
+
+  .print\:hover\:w-1\/5:hover {
+    width: 20%;
+  }
+
+  .print\:hover\:w-2\/5:hover {
+    width: 40%;
+  }
+
+  .print\:hover\:w-3\/5:hover {
+    width: 60%;
+  }
+
+  .print\:hover\:w-4\/5:hover {
+    width: 80%;
+  }
+
+  .print\:hover\:w-1\/6:hover {
+    width: 16.66667%;
+  }
+
+  .print\:hover\:w-5\/6:hover {
+    width: 83.33333%;
+  }
+
+  .print\:hover\:w-full:hover {
+    width: 100%;
+  }
+
+  .print\:hover\:w-screen:hover {
     width: 100vw;
   }
 }
