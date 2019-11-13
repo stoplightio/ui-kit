@@ -1,5 +1,4 @@
 import { IconName } from '@blueprintjs/icons';
-import { NodeType } from '@stoplight/types';
 
 export interface IContentsNode {
   name: string;
@@ -10,5 +9,5 @@ export interface IContentsNode {
   icon?: IconName;
 }
 
-export type IconMapType = NodeType | 'group' | 'divider' | 'item';
+export type IconMapType = 'group' | 'divider' | 'item';
 export type NodeIconMapping = { [type in IconMapType]?: IconName };
