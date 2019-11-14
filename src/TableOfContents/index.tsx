@@ -6,7 +6,6 @@ import { ScrollContainer } from '../ScrollContainer';
 import { IContentsNode } from './types';
 
 export interface ITableOfContents {
-  // Precomputed list of nodes instead of items. This is useful if you want to customize the ordering of the tree.
   contents: IContentsNode[];
   rowRenderer?: (item: IContentsNode, DefaultRow: React.FC<ITableOfContentsItem>) => React.ReactElement;
 
@@ -38,13 +37,12 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
 }) => {
   const contents = _contents;
 
-  // TODO (CL): Should we store expanded state in local storage?
   const [expanded, setExpanded] = React.useState({});
 
   const isMobile = useIsMobile(enableDrawer);
 
   const comp = (
-    <div className={cn('TableOfContents bg-gray-1 dark:bg-transparent flex justify-end h-full border-r', className)}>
+    <div className={cn('TableOfContents bg-gray-1 dark:bg-transparent flex justify-end h-full', className)}>
       <div className="w-full">
         <ScrollContainer>
           <div className={cn('TableOfContents__inner ml-auto', `py-${padding}`)}>
