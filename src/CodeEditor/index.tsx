@@ -13,20 +13,37 @@ interface ICodeEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
   padding?: number | string;
   language?: string;
   autoFocus?: boolean;
+  showLineNumbers?: boolean;
 }
 
 const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((props, ref) => {
-  const { autoFocus, language, onChange, value, placeholder, className, padding, style, ...rest } = props;
+  const {
+    autoFocus,
+    language,
+    onChange,
+    value,
+    placeholder,
+    className,
+    padding,
+    style,
+    showLineNumbers,
+    ...rest
+  } = props;
 
   // Highlight code on change
-  const highlight = React.useCallback((code: string) => (language ? highlightCode(code, language) : code), [language]);
+  const highlight = React.useCallback((code: string) => highlightCode(code, language || '', showLineNumbers), [
+    language,
+    showLineNumbers,
+  ]);
 
   return (
     <ReactSimpleCodeEditor
       {...rest}
       // @ts-ignore FIXME type error
       ref={ref}
-      className={cn(className, 'bp3-code-editor')}
+      className={cn(className, 'bp3-code-editor', {
+        'line-numbers': showLineNumbers,
+      })}
       style={style}
       placeholder={placeholder}
       autoFocus={autoFocus}

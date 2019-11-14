@@ -25,20 +25,23 @@
     opacity: 0.7;
   }
 
+  &.line-numbers {
+    textarea {
+      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
+      margin-left: 35px !important;
+    }
+  }
+
   .line-number {
-    padding-left: 40px;
     position: relative;
-    width: calc(100% - 40px);
-    display: block;
+    width: 35px;
+    display: inline-block;
+    left: 5px;
+    opacity: 0.4;
+    user-select: none;
 
     &::before {
       content: '';
-      display: inline-block;
-      user-select: none;
-      opacity: 0.4;
-      min-width: 35px;
-      position: absolute;
-      left: 5px;
       counter-increment: line;
       content: counter(line);
     }
@@ -97,8 +100,7 @@
       color: var(--code-primary);
     }
 
-    &.tag
-    &.deleted {
+    &.tag &.deleted {
       color: var(--code-tag);
     }
 
