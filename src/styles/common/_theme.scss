@@ -18,9 +18,9 @@ $sl-theme: (
   namespace: map-deep-get($sl-variables, namespace),
   colors: map-deep-get($sl-variables, colors),
   fontSize: (
-    xs: 10px,
-    sm: 12px,
-    base: 14px,
+    xs: 9px,
+    sm: 11px,
+    base: 13px,
     lg: 16px,
     xl: 18px,
     2xl: 22px,
