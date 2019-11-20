@@ -4,10 +4,9 @@ export interface IContentsNode {
   name: string;
   depth: number;
   isActive?: boolean;
+  disabled?: boolean;
   href?: string;
-  type?: 'divider' | 'group' | 'item';
+  type?: 'divider' | 'item';
   icon?: IconName;
+  onClick?: (e: React.MouseEvent) => void;
 }
-
-export type IconMapType = 'group' | 'divider' | 'item';
-export type NodeIconMapping = { [type in IconMapType]?: IconName };
