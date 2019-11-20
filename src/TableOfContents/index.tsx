@@ -1,6 +1,8 @@
 import { Button, Drawer, Icon } from '@blueprintjs/core';
 import cn from 'classnames';
+import { get, noop } from 'lodash';
 import * as React from 'react';
+
 import { useIsMobile } from '../_hooks/useIsMobile';
 import { ScrollContainer } from '../ScrollContainer';
 import { IContentsNode } from './types';
@@ -25,18 +27,15 @@ export interface ITableOfContents {
 }
 
 export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
-  contents: _contents,
-  rowRenderer,
   className,
   padding = '10',
   title,
+  contents,
+  onClose = noop,
   isOpen = false,
-  // tslint:disable-next-line: no-empty
-  onClose = () => {},
   enableDrawer = true,
+  rowRenderer = (item, DefaultRow) => <DefaultRow item={item} />,
 }) => {
-  const contents = _contents;
-
   const [expanded, setExpanded] = React.useState({});
 
   const isMobile = useIsMobile(enableDrawer);
@@ -47,36 +46,40 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
         <ScrollContainer>
           <div className={cn('TableOfContents__inner ml-auto', `py-${padding}`)}>
             {contents.map((item, index) => {
+              // Check if we should show this item
               if (item.depth > 0) {
-                // Check if we should show this item
                 const parentIndex = findParentIndex(item.depth, contents.slice(0, index));
                 if (parentIndex > -1 && !expanded[parentIndex]) {
                   return null;
                 }
               }
 
-              const isGroup = item.type === 'group';
-              const isDivider = item.type === 'divider';
               const isExpanded = expanded[index];
-              const onClick = (e: React.MouseEvent) => {
-                if (isDivider) {
-                  e.preventDefault();
-                  return;
-                }
+              const hasChildren = item.depth > get(contents[index + 1], 'depth');
 
-                if (!isGroup) return;
+              return rowRenderer(item, props => (
+                <TableOfContentsItem
+                  key={index}
+                  item={item}
+                  isExpanded={isExpanded}
+                  hasChildren={hasChildren}
+                  {...props}
+                  onClick={(e: React.MouseEvent) => {
+                    if (item.disabled) {
+                      e.preventDefault();
+                      return;
+                    }
 
-                e.preventDefault();
-                setExpanded({ ...expanded, [String(index)]: !isExpanded });
-              };
+                    if (item.onClick) {
+                      item.onClick(e);
+                    }
 
-              if (rowRenderer) {
-                return rowRenderer(item, props => (
-                  <TableOfContentsItem {...props} onClick={onClick} isExpanded={isExpanded} />
-                ));
-              } else {
-                return <TableOfContentsItem key={index} item={item} onClick={onClick} isExpanded={isExpanded} />;
-              }
+                    if (hasChildren) {
+                      setExpanded({ ...expanded, [index]: !isExpanded });
+                    }
+                  }}
+                />
+              ));
             })}
           </div>
         </ScrollContainer>
@@ -105,30 +108,39 @@ export const TableOfContents: React.FunctionComponent<ITableOfContents> = ({
 interface ITableOfContentsItem {
   item: IContentsNode;
   isExpanded?: boolean;
+  hasChildren?: boolean;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ item, isExpanded, onClick }) => {
-  const isChild = item.type !== 'group' && item.depth > 0;
-  const isGroup = item.type === 'group';
+const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({
+  item,
+  onClick,
+  isExpanded,
+  hasChildren,
+}) => {
+  const isChild = item.depth > 0;
   const isDivider = item.type === 'divider';
   const isActive = item.isActive;
+  const isDisabled = item.disabled;
 
-  const className = cn('TableOfContentsItem__inner relative flex items-center border border-transparent border-r-0', {
-    'dark-hover:bg-lighten-2 hover:bg-darken-2 cursor-pointer': !isDivider,
-    'text-gray-5 dark:text-gray-5': isDivider || (isChild && !isActive),
-    'text-primary bg-white border-darken-3 dark:bg-lighten-2 dark:border-lighten-4': isActive,
-    'dark:text-white': !isDivider && !isChild && !isActive,
-  });
+  const className = cn(
+    'TableOfContentsItem__inner relative flex items-center',
+    isDisabled
+      ? 'cursor-disabled text-gray-4'
+      : {
+          'text-gray-5': isDivider || (isChild && !isActive),
+          'dark:text-white': !isDivider && !isChild && !isActive,
+          'dark-hover:bg-lighten-2 hover:bg-darken-2 cursor-pointer': item.onClick || item.href,
+          'text-primary bg-white border-darken-3 dark:bg-lighten-2 dark:border-lighten-4': isActive,
+        },
+  );
 
   return (
     <div
-      className={cn('TableOfContentsItem border-transparent', {
-        'border-l': !isActive && !isGroup,
+      className={cn('TableOfContentsItem', {
         'TableOfContentsItem--active': isActive,
-        'TableOfContentsItem--group': isGroup,
         'TableOfContentsItem--divider': isDivider,
-        'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
+        'TableOfContentsItem--child': isChild,
       })}
       style={{
         marginLeft: item.depth * 16,
@@ -138,7 +150,9 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
       <div className={cn('-ml-px', className)}>
         {item.icon && <Icon className="mr-3" icon={item.icon} iconSize={12} />}
         <span className="TableOfContentsItem__name flex-1 truncate">{item.name}</span>
-        {isGroup && <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />}
+        {hasChildren && (
+          <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />
+        )}
       </div>
     </div>
   );
@@ -150,7 +164,7 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
 function findParentIndex(currentDepth: number, contents: IContentsNode[]) {
   for (let index = contents.length - 1; index >= 0; index--) {
     if (contents[index].depth === currentDepth - 1) {
-      return String(index);
+      return index;
     }
   }
 
