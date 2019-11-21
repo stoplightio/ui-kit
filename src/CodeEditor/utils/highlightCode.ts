@@ -14,6 +14,7 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-objectivec';
 import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-powershell';
