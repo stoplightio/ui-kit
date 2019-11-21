@@ -15,6 +15,7 @@ import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-objectivec';
 import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-rest';
 import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-yaml';
