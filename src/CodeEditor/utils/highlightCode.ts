@@ -16,6 +16,7 @@ import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-objectivec';
+import 'prismjs/components/prism-ocaml';
 import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-powershell';
 import 'prismjs/components/prism-protobuf';
