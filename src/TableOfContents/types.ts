@@ -5,6 +5,7 @@ export interface IContentsNode {
   depth: number;
   isActive?: boolean;
   href?: string;
+  meta?: string;
   type?: 'divider' | 'group' | 'item';
   icon?: IconName;
 }
