@@ -138,7 +138,7 @@ const TableOfContentsItem: React.FunctionComponent<ITableOfContentsItem> = ({ it
       <div className={cn('-ml-px', className)}>
         {item.icon && <Icon className="mr-3" icon={item.icon} iconSize={12} />}
         <span className="TableOfContentsItem__name flex-1 truncate">{item.name}</span>
-        {item.meta && <span className="text-sm text-left text-gray font-medium">v{item.meta}</span>}
+        {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
         {isGroup && <Icon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />}
       </div>
     </div>
