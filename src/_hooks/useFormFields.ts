@@ -1,5 +1,5 @@
-import { Dictionary } from '@stoplight/types';
 import { useImmer } from 'use-immer';
+import { Dictionary } from '../types';
 
 export function useFormFields<T extends string>(
   defaultValues: Dictionary<string, T>,

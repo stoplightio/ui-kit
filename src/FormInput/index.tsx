@@ -7,12 +7,12 @@ import {
   Position,
   Tooltip,
 } from '@blueprintjs/core';
-import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
 import { useValidateSchema } from '../_hooks/useValidateSchema';
 
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
+import { Dictionary } from '../types';
 
 /**
  * FORM INPUT
