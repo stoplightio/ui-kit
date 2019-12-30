@@ -48,7 +48,6 @@
     "@blueprintjs/icons": "^3.13.0",
     "@blueprintjs/select": "^3.11.2",
     "classnames": "^2.2.6",
-    "immer": "^5.1",
     "prismjs": "^1.17.1",
     "react-input-autosize": "^2.2.2",
     "react-scrollbars-custom": "~4.0.21",
@@ -56,8 +55,6 @@
     "react-tabs": "^3.1.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "~1.8.5",
-    "refractor": "^2.10.0",
-    "use-immer": "~0.3.5",
     "yup": "^0.28.0"
   },
   "devDependencies": {

@@ -8541,11 +8541,6 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
-immer@^5.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-5.1.0.tgz#38d9eba40dbb0389b7ae7b8b99e4661df0cf89e3"
-  integrity sha512-t6gyFtTcokCuI0tX9KQZJQAkIjSqo/nTeJnwojfty69EzrorZbywwhZ8qNNlF+faajHeRnhOvM2F40KHLFCghQ==
-
 immutable@^4.0.0-rc.9:
   version "4.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
@@ -14041,7 +14036,7 @@ reflect.ownkeys@^0.2.0:
   resolved "https://registry.yarnpkg.com/reflect.ownkeys/-/reflect.ownkeys-0.2.0.tgz#749aceec7f3fdf8b63f927a04809e90c5c0b3460"
   integrity sha1-dJrO7H8/34tj+SegSAnpDFwLNGA=
 
-refractor@^2.10.0, refractor@^2.4.1:
+refractor@^2.4.1:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/refractor/-/refractor-2.10.0.tgz#4cc7efc0028a87924a9b31d82d129dec831a287b"
   integrity sha512-maW2ClIkm9IYruuFYGTqKzj+m31heq92wlheW4h7bOstP+gf8bocmMec+j7ljLcaB1CAID85LMB3moye31jH1g==
@@ -16318,11 +16313,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-use-immer@~0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/use-immer/-/use-immer-0.3.5.tgz#e9aa5a4e82ef7eab4fced977d4daa1c3ef466725"
-  integrity sha512-0CNaJ/CtnF8/OmM4NBG7R0rhWMMQtgXPmWbakv8CK5z8dXeMaBYValFDXpkjBnToknjKJZuEPcoUZYd0rnQL2Q==
 
 use@^3.1.0:
   version "3.1.1"
