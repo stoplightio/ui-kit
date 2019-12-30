@@ -1,7 +1,7 @@
-import { Dictionary } from '@stoplight/types';
 import * as React from 'react';
 
 import { Callout } from '../';
+import { Dictionary } from '../types';
 
 /**
  * FORM ERROR
