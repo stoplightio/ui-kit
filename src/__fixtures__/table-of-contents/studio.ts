@@ -17,6 +17,7 @@ export const StudioContents: IContentsNode[] = [
     depth: 0,
     // icon: 'github',
     href: '/projects/username/github',
+    meta: 'v1.0.0',
   },
   {
     name: 'Stoplight Next',
@@ -34,12 +35,15 @@ export const StudioContents: IContentsNode[] = [
     depth: 0,
     // icon: 'github',
     href: '/projects/sendgrid/github',
+    meta: 'v2.0.0',
   },
   {
     name: 'Stoplight Next',
     depth: 0,
     // icon: 'gitlab',
+    icon: 'star',
     href: '/projects/sendgrid/stoplight-next',
+    meta: 'v1.0.0',
   },
   {
     name: 'XYZ Corp',
