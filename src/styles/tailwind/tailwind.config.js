@@ -62,6 +62,7 @@ module.exports = {
       '18': '4.285714286rem', // 60px at standard 14px page font size
       '20': '5rem',
       '24': '6rem',
+      '28': '7rem',
       '32': '8rem',
       '40': '10rem',
       '48': '12rem',
@@ -79,7 +80,6 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Rubik',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
@@ -321,7 +321,7 @@ module.exports = {
   variants: {
     appearance: [],
     backgroundAttachment: [],
-    backgroundColor: ['hover', 'focus', 'active', 'dark', 'dark-hover', 'dark-active'],
+    backgroundColor: ['hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
     backgroundPosition: [],
     backgroundRepeat: [],
     backgroundSize: [],
@@ -348,7 +348,7 @@ module.exports = {
     lineHeight: [],
     listStylePosition: [],
     listStyleType: [],
-    margin: ['responsive'],
+    margin: ['responsive', 'group-hover'],
     maxHeight: [],
     maxWidth: [],
     minHeight: [],
@@ -369,7 +369,7 @@ module.exports = {
     stroke: [],
     tableLayout: [],
     textAlign: ['responsive'],
-    textColor: ['hover', 'focus', 'active', 'dark'],
+    textColor: ['hover', 'focus', 'active', 'dark', 'group-hover'],
     fontSize: ['responsive'],
     fontStyle: [],
     textTransform: [],

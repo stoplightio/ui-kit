@@ -32,7 +32,7 @@ export const FAIcon = ({ icon, className, size, style }: IIcon) => {
 
   return (
     <i
-      className={cn(className, prefix, `fa-${name}`, {
+      className={cn(className, 'Icon', prefix, `fa-${name}`, {
         [`fa-${size}`]: size,
       })}
       style={style}

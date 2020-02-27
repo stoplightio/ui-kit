@@ -4,11 +4,11 @@
 
 $black: #10161a !default;
 
-$dark-gray1: get-color(darkgray, 1);
-$dark-gray2: get-color(darkgray, 2);
-$dark-gray3: get-color(darkgray, 3);
-$dark-gray4: get-color(darkgray, 4);
-$dark-gray5: get-color(darkgray, 5);
+$dark-gray1: get-color(gray, 9);
+$dark-gray2: get-color(gray, 8);
+$dark-gray3: get-color(gray, 8);
+$dark-gray4: get-color(gray, 7);
+$dark-gray5: get-color(gray, 7);
 
 $gray1: get-color(gray, 7);
 $gray2: get-color(gray, 6);
@@ -16,11 +16,11 @@ $gray3: get-color(gray, 6);
 $gray4: get-color(gray, 5);
 $gray5: get-color(gray, 4);
 
-$light-gray1: get-color(lightgray, 1);
-$light-gray2: get-color(lightgray, 2);
-$light-gray3: get-color(lightgray, 3);
-$light-gray4: get-color(lightgray, 4);
-$light-gray5: get-color(lightgray, 5);
+$light-gray1: get-color(gray, 3);
+$light-gray2: get-color(gray, 2);
+$light-gray3: get-color(gray, 2);
+$light-gray4: get-color(gray, 1);
+$light-gray5: get-color(gray, 1);
 
 $white: #ffffff !default;
 

@@ -1,4 +1,4 @@
-import _noop = require('lodash/noop');
+import { noop } from 'lodash';
 import * as React from 'react';
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
@@ -22,7 +22,7 @@ const FormButton: React.FunctionComponent<IFormButton> = ({
   data,
   loading,
   disabled,
-  onClick = _noop,
+  onClick = noop,
   ...buttonProps
 }) => {
   const errors = useValidateSchema(schema, data);

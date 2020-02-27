@@ -1,4 +1,4 @@
-import _isEqual = require('lodash/isEqual');
+import { isEqual } from 'lodash';
 import * as React from 'react';
 
 const FallbackComponent: FallbackComponent = ({ error }) => {
@@ -31,12 +31,12 @@ export function withErrorBoundary<T extends IErrorBoundary>(
     public componentDidUpdate(prevProps: Readonly<T>) {
       if (this.state.error !== null) {
         if (!props || !props.length) {
-          if (!_isEqual(this.props, prevProps)) {
+          if (!isEqual(this.props, prevProps)) {
             this.setState({ error: null });
           }
         } else {
           for (const prop of props) {
-            if (!_isEqual(this.props[prop], prevProps[prop])) {
+            if (!isEqual(this.props[prop], prevProps[prop])) {
               this.setState({ error: null });
             }
           }

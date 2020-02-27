@@ -2,14 +2,14 @@
  * BLUEPRINT BASE
  */
 
- @import "blueprint/variables";
+@import 'blueprint/variables';
 
- @import '~@blueprintjs/core/src/typography';
- @import '~@blueprintjs/core/src/accessibility/focus-states';
+@import '~@blueprintjs/core/src/typography';
+@import '~@blueprintjs/core/src/accessibility/focus-states';
 
- @import '~@blueprintjs/core/src/components/index';
+@import '~@blueprintjs/core/src/components/index';
 
- /**
+/**
   * BLUEPRINT SELECT
   */
 

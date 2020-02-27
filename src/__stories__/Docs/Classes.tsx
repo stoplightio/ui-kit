@@ -1,7 +1,5 @@
+import { map, range } from 'lodash';
 import * as React from 'react';
-
-import map = require('lodash/map');
-import range = require('lodash/range');
 
 import { HTMLTable } from '../../';
 

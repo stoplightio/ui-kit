@@ -1,9 +1,7 @@
 import * as cn from 'classnames';
+import { noop } from 'lodash';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
-
-import min = require('lodash/min');
-import noop = require('lodash/noop');
 
 import { AutoSizer } from '../AutoSizer';
 import { ScrollContainer } from '../ScrollContainer';
@@ -43,7 +41,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
   const { className, children, itemSize, itemCount, instanceRef, maxRows, style, ...rest } = props;
-  const listHeight = (min([itemCount, maxRows]) as number) * itemSize;
+  const listHeight = Math.min(itemCount, maxRows || Infinity) * itemSize;
 
   return (
     <div style={{ height: maxRows ? listHeight : '100%' }} className="ScrollList-Container">
@@ -54,7 +52,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
             ref={instanceRef}
             itemSize={itemSize}
             itemCount={itemCount}
-            height={min([height, listHeight]) as number}
+            height={Math.min(height, listHeight)}
             width={width}
             // className gets passed to ScrollList-Content
             className={className}
