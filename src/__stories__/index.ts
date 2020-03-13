@@ -12,3 +12,5 @@ import './SimpleTabs';
 import './Toaster';
 
 import './TableOfContents';
+
+import './RowsInput';

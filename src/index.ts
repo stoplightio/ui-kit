@@ -25,6 +25,7 @@ export * from './FormInput';
 export * from './SecretInput';
 export * from './ThemeContainer';
 export * from './AutoSizer';
+export * from './RowsInput';
 
 /**
  * BLUEPRINT CORE
