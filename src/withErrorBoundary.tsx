@@ -26,7 +26,8 @@ export function withErrorBoundary<T extends IErrorBoundary>(
       error: null,
     };
 
-    public static displayName = displayName;
+    public static displayName =
+      displayName || `withErrorBoundary(${WrappedComponent.displayName || WrappedComponent.name || 'Anonymous'})`;
 
     public componentDidUpdate(prevProps: Readonly<T>) {
       if (this.state.error !== null) {
