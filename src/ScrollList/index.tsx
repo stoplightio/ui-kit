@@ -10,22 +10,24 @@ import { ScrollContainer } from '../ScrollContainer';
  * HELPERS
  */
 
-export const CustomScrollContainer = React.forwardRef<HTMLDivElement, IFixedSizeListProps & { listHeight: number }>(
-  ({ onScroll = noop, children, style, className }, ref) => {
-    return (
-      <div style={style} className="ScrollList-Scrollbars">
-        <ScrollContainer
-          ref={ref}
-          // @ts-ignore typings on onScroll are not right?
-          onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
-          autosize={false}
-        >
-          <div className={cn('ScrollList-Content relative', className)}>{children}</div>
-        </ScrollContainer>
-      </div>
-    );
-  },
-);
+export const CustomScrollContainer = React.forwardRef<
+  HTMLDivElement,
+  IFixedSizeListProps & { listHeight: number; scrollbarWidth?: number }
+>(({ onScroll = noop, children, style, className, scrollbarWidth = 9 }, ref) => {
+  return (
+    <div style={style} className="ScrollList-Scrollbars">
+      <ScrollContainer
+        ref={ref}
+        // @ts-ignore typings on onScroll are not right?
+        onScroll={scrollValues => onScroll({ currentTarget: scrollValues })}
+        autosize={false}
+        scrollbarWidth={scrollbarWidth}
+      >
+        <div className={cn('ScrollList-Content relative', className)}>{children}</div>
+      </ScrollContainer>
+    </div>
+  );
+});
 
 /**
  * FIXED SIZE LIST
