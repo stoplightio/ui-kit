@@ -3,28 +3,15 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:12
     steps:
       - checkout
-      - run:
-          name: Download cc-test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
       - run: yarn
-      - run:
-          name: cc-before
-          command: |
-            ./cc-test-reporter before-build
       - run: yarn test.prod
-      - run:
-          name: cc-after
-          command: |
-            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
 
   build:
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:12
     steps:
       - checkout
       - run: yarn
@@ -32,7 +19,7 @@ jobs:
 
   release:
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:12
     steps:
       - checkout
       - run: yarn
@@ -50,7 +37,10 @@ workflows:
       - release:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - alpha
+                - beta
           requires:
             - test
             - build
