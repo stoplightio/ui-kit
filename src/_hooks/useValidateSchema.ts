@@ -5,9 +5,9 @@ import * as yup from 'yup';
 const noError: string[] = [];
 const unknownError = ['Input is invalid'];
 
-export function useValidateSchema(
-  schema?: yup.Schema<any>,
-  value?: any,
+export function useValidateSchema<T>(
+  schema?: yup.Schema<T>,
+  value?: T,
   { abortEarly, recursive, context }: yup.ValidateOptions = {},
 ): string[] {
   const [errors, setErrors] = React.useState<string[]>(noError);
