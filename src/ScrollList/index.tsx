@@ -13,7 +13,7 @@ import { ScrollContainer } from '../ScrollContainer';
 export const CustomScrollContainer = React.forwardRef<
   HTMLDivElement,
   IFixedSizeListProps & { listHeight: number; scrollbarWidth?: number }
->(({ onScroll = noop, children, style, className, scrollbarWidth = 9 }, ref) => {
+>(({ onScroll = noop, children, style, className, scrollbarWidth = 8 }, ref) => {
   return (
     <div style={style} className="ScrollList-Scrollbars">
       <ScrollContainer
