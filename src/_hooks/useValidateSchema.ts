@@ -1,16 +1,30 @@
 import * as React from 'react';
 import * as yup from 'yup';
 
-export function useValidateSchema(schema?: yup.Schema<any>, value?: any, validateOpts?: yup.ValidateOptions): string[] {
-  return React.useMemo(() => {
-    if (!schema) return [];
+const noError: string[] = [];
+const unknownError = ['Unknown error'];
 
-    try {
-      schema.validateSync(value, validateOpts);
-    } catch (e) {
-      return e.errors || ['Input is invalid'];
+export function useValidateSchema<T>(
+  schema?: yup.Schema<T>,
+  value?: T,
+  { abortEarly, recursive }: yup.ValidateOptions = {},
+): string[] {
+  const [errors, setErrors] = React.useState<string[]>(noError);
+
+  React.useEffect(() => {
+    if (!schema) {
+      setErrors(noError);
+      return;
     }
+    schema
+      .validate(value, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
+      .then(() => {
+        setErrors(noError);
+      })
+      .catch(e => {
+        setErrors(e.errors || unknownError);
+      });
+  }, [schema, value, abortEarly, recursive]);
 
-    return [];
-  }, [schema, value, validateOpts]);
+  return errors;
 }
