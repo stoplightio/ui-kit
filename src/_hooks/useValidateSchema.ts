@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as yup from 'yup';
 
 const noError: string[] = [];
-const unknownError = ['Input is invalid'];
+const unknownError = ['Unknown error'];
 
 export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
