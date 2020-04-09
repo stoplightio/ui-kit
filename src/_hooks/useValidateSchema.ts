@@ -1,4 +1,3 @@
-import { isEqual } from 'lodash';
 import * as React from 'react';
 import * as yup from 'yup';
 
@@ -8,36 +7,24 @@ const unknownError = ['Input is invalid'];
 export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
   value?: T,
-  { abortEarly, recursive, context }: yup.ValidateOptions = {},
+  { abortEarly, recursive }: yup.ValidateOptions = {},
 ): string[] {
   const [errors, setErrors] = React.useState<string[]>(noError);
-  const memoizedSchema = useDeepCompareMemoize(schema);
-  const memoizedContext = useDeepCompareMemoize(context);
 
   React.useEffect(() => {
-    if (!memoizedSchema) {
+    if (!schema) {
       setErrors(noError);
       return;
     }
-    memoizedSchema
-      .validate(value, { strict: true, abortEarly, recursive, context: memoizedContext }) // to avoid taking a useEffect dependency on validateOpts that is an object
+    schema
+      .validate(value, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
       .then(() => {
         setErrors(noError);
       })
       .catch(e => {
         setErrors(e.errors || unknownError);
       });
-  }, [memoizedSchema, value, abortEarly, recursive, memoizedContext]);
+  }, [schema, value, abortEarly, recursive]);
 
   return errors;
-}
-
-function useDeepCompareMemoize<T>(value: T) {
-  const ref = React.useRef<T>();
-
-  if (!isEqual(value, ref.current)) {
-    ref.current = value;
-  }
-
-  return ref.current;
 }
