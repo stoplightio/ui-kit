@@ -21,9 +21,6 @@
   "files": [
     "**/*"
   ],
-  "engines": {
-    "node": ">=8.3.0"
-  },
   "scripts": {
     "build": "sl-scripts build --sourcemap && yarn build.styles",
     "build.styles": "yarn build.tw && copyfiles -u 1 \"./src/styles/**/*\" ./dist",
