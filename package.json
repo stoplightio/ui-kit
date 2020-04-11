@@ -36,7 +36,8 @@
     "release.dryRun": "sl-scripts release --dry-run --debug",
     "storybook": "start-storybook -p 9001",
     "test": "jest",
-    "test.prod": "yarn lint && yarn test --coverage --no-cache --runInBand",
+    "type-check": "tsc --noEmit",
+    "test.prod": "yarn lint && yarn type-check && yarn test --runInBand",
     "test.update": "yarn test --updateSnapshot",
     "test.watch": "yarn test --watch"
   },
@@ -117,11 +118,11 @@
     "react-dom": "~16.12.0",
     "resolve-url-loader": "^3.1.1",
     "sass-inline-svg": "^1.2.3",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^8.0.2",
     "tailwindcss": "^1.2.0",
     "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
-    "typescript": "3.7.5",
+    "typescript": "3.8.3",
     "webpack": "~4.42.1"
   },
   "lint-staged": {

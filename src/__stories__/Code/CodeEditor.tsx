@@ -34,6 +34,7 @@ storiesOf('Code:Editor', module)
 
 storiesOf('Code:Editor', module)
   .addDecorator(withKnobs)
+  // @ts-ignore
   .addDecorator(StateDecorator(store))
   .add('with store', () => (
     <CodeEditor {...codeEditorKnobs()} value={store.get('value')} onChange={(value: string) => store.set({ value })} />
