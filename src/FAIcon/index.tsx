@@ -26,6 +26,7 @@ export const FAIcon = ({ icon, className, size, style }: IIcon) => {
     prefix = icon.prefix || prefix;
     name = icon.iconName;
   } else {
+    // eslint-disable-next-line no-console
     console.warn('Invalid icon prop provided to Icon component', icon);
     name = 'exclamation';
   }

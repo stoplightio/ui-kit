@@ -1,3 +1,4 @@
+// eslint-disable-next-line simple-import-sort/sort
 import * as Prism from 'prismjs';
 
 import 'prismjs/components/prism-bash';
@@ -51,7 +52,8 @@ export const highlightCode = (code: string = '', language: string, showLineNumbe
 
     return result;
   } catch (error) {
-    console.log('Error highlighting code:', error, code);
+    // eslint-disable-next-line no-console
+    console.error('Error highlighting code:', error, code);
     return code;
   }
 };

@@ -1,7 +1,9 @@
-import { mount } from 'enzyme';
 import 'jest-enzyme';
+
+import { mount } from 'enzyme';
 import * as React from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
+
 import { CodeEditor } from '..';
 
 describe('Code Editor component', () => {

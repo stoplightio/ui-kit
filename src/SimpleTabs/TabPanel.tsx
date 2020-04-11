@@ -1,6 +1,7 @@
 import * as cn from 'classnames';
 import * as React from 'react';
 import { TabPanel, TabPanelProps as ISimpleTabPanelProps } from 'react-tabs';
+
 import { Classes } from '../classes';
 
 /**

@@ -5,7 +5,7 @@ export const useIsMobile = (enableDrawer: boolean | number) => {
 
   const updateLayout = React.useCallback(() => {
     setIsMobile(checkMobile(enableDrawer));
-  }, []);
+  }, [enableDrawer]);
 
   React.useEffect(() => {
     window.addEventListener('resize', updateLayout);
@@ -18,11 +18,9 @@ export const useIsMobile = (enableDrawer: boolean | number) => {
 };
 
 export const checkMobile = (enableDrawer: boolean | number) => {
-  if (enableDrawer === true) {
-    enableDrawer = 768;
-  } else if (enableDrawer === false) {
+  if (enableDrawer === false) {
     return false;
   }
 
-  return typeof window !== 'undefined' && window.innerWidth < enableDrawer;
+  return typeof window !== 'undefined' && window.innerWidth < 768;
 };

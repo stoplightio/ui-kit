@@ -1,5 +1,6 @@
-import * as cn from 'classnames';
 import 'prismjs';
+
+import * as cn from 'classnames';
 import * as React from 'react';
 
 import { Classes } from '../classes';

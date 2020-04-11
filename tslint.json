@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "tslint-config-stoplight",
-    "tslint-react-hooks"
-  ],
-  "rules": {
-    "no-shadowed-variable": false
-  }
-}

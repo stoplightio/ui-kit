@@ -1,4 +1,5 @@
 import { ReactHTML } from 'react';
+
 import { Dictionary } from '../types';
 
 export type ASTNode = Partial<{

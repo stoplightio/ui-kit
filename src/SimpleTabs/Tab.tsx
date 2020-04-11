@@ -1,6 +1,7 @@
 import * as cn from 'classnames';
 import * as React from 'react';
 import { Tab, TabProps as ISimpleTabProps } from 'react-tabs';
+
 import { Classes } from '../classes';
 
 const SimpleTab: React.FunctionComponent<ISimpleTabProps> & { tabsRole: string } = props => {

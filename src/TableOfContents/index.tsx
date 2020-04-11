@@ -1,6 +1,7 @@
 import { Button, Drawer, Icon } from '@blueprintjs/core';
 import cn from 'classnames';
 import * as React from 'react';
+
 import { useIsMobile } from '../_hooks/useIsMobile';
 import { ScrollContainer } from '../ScrollContainer';
 import { IContentsNode } from './types';

@@ -1,6 +1,8 @@
-import { mount } from 'enzyme';
 import 'jest-enzyme';
+
+import { mount } from 'enzyme';
 import * as React from 'react';
+
 import { CodeViewer } from '..';
 
 describe('Code Viewer component', () => {

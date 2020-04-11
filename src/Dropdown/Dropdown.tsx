@@ -43,7 +43,7 @@ export const Dropdown: React.FunctionComponent<IDropdown> = ({
         </Menu>
       );
     },
-    [maxRows, itemSize],
+    [className, maxRows, itemSize],
   );
 
   return React.createElement(

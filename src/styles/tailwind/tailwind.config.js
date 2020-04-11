@@ -386,11 +386,11 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [
-    function({ addUtilities, addComponents, addVariant, e, prefix, config }) {
-      addVariant('dark', ({ modifySelectors, separator, container }) => {
+    function ({ addVariant, e }) {
+      addVariant('dark', ({ separator, container }) => {
         container.walkRules(rule => {
           rule.selector = `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(
-            `dark${separator}${rule.selector.slice(1)}`
+            `dark${separator}${rule.selector.slice(1)}`,
           )}`;
         });
       });
@@ -402,7 +402,7 @@ module.exports = {
       addVariant('dark-active', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${process.env.BLUEPRINT_NAMESPACE || 'bp3'}-dark .${e(
-            `dark-active${separator}${className}`
+            `dark-active${separator}${className}`,
           )}:active`;
         });
       });

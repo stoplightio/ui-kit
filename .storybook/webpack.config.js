@@ -1,7 +1,7 @@
 const path = require('path');
 const defaultConfig = require('@stoplight/storybook-config/webpack.config');
 const inliner = require('sass-inline-svg');
-const {last} = require('lodash');
+const { last } = require('lodash');
 
 const cwd = process.cwd();
 
@@ -16,7 +16,7 @@ module.exports = (baseConfig, env, config) => {
     {
       optimize: true,
       encodingFormat: 'uri',
-    }
+    },
   );
 
   return config;

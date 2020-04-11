@@ -1,8 +1,8 @@
+import './_theme-namespace.scss';
+
 import * as React from 'react';
 
 import { Button, CodeViewer, ThemeContainer } from '../..';
-
-import './_theme-namespace.scss';
 
 export default () => (
   <div className="m-20">

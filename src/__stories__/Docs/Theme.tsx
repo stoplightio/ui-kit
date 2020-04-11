@@ -1,8 +1,8 @@
+import './_theme-overwrite.scss';
+
 import * as React from 'react';
 
 import { Button, CodeViewer, ThemeContainer } from '../../';
-
-import './_theme-overwrite.scss';
 
 export default () => (
   <div className="m-20">

@@ -1,7 +1,6 @@
-import * as React from 'react';
-
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import * as React from 'react';
 
 import { IScrollContainer, ScrollContainer } from '../../ScrollContainer';
 

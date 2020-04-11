@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@stoplight/scripts/tsconfig.json",
+  "extends": "@stoplight/scripts",
   // target all ts files
   "include": ["src"]
 }

@@ -1,8 +1,7 @@
-import * as React from 'react';
-import * as yup from 'yup';
-
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import * as React from 'react';
+import * as yup from 'yup';
 
 import { FormInput } from '../../';
 
@@ -31,10 +30,7 @@ const FormInputContainer: React.FC<{ schema: yup.StringSchema }> = ({ schema }) 
   );
 };
 
-const exampleSyncSchema = yup
-  .string()
-  .min(3, 'waaay too short')
-  .max(5, 'waaay too long');
+const exampleSyncSchema = yup.string().min(3, 'waaay too short').max(5, 'waaay too long');
 
 const exampleAsyncSchema = yup.string().test('oddchars', 'The number of characters must be odd', value => {
   return new Promise(resolve => {

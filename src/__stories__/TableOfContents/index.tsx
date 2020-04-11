@@ -1,8 +1,8 @@
+import { Button } from '@blueprintjs/core';
+import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { Button } from '@blueprintjs/core';
-import { withKnobs } from '@storybook/addon-knobs';
 import { StudioContents } from '../../__fixtures__/table-of-contents/studio';
 import { TableOfContents } from '../../TableOfContents';
 

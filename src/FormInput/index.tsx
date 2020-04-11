@@ -8,10 +8,10 @@ import {
   Tooltip,
 } from '@blueprintjs/core';
 import * as React from 'react';
-import { useValidateSchema } from '../_hooks/useValidateSchema';
-
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
+
+import { useValidateSchema } from '../_hooks/useValidateSchema';
 import { Dictionary } from '../types';
 
 /**
