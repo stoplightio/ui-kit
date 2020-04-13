@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
 import { ScrollbarThumbProps } from 'react-scrollbars-custom/dist/types/ScrollbarThumb';
 
-import { Classes } from '../classes';
 import { AutoSizer } from '../index';
 
 /**
@@ -65,9 +64,9 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
         const shadowBottomOpacity = (1 / 20) * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop));
         const darkMode = window.document.getElementsByClassName('bp3-dark').length > 0;
         scrollbar.current.wrapperElement.style.boxShadow = `rgba(${
-          darkMode ? `44, 44, 44` : `221, 221, 221`
+          darkMode ? `21, 21, 21` : `215, 215, 215`
         }, ${shadowTopOpacity}) 0px 7px 8px -7px inset, rgba(${
-          darkMode ? `44, 44, 44` : `221, 221, 221`
+          darkMode ? `21, 21, 21` : `215, 215, 215`
         }, ${shadowBottomOpacity}) 0px -7px 8px -7px inset`;
       },
       [scrollbar, shadows],
@@ -95,7 +94,7 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
       <Scrollbar
         {...props}
         wrapperProps={{
-          className: Classes.SCROLL_CONTAINER,
+          className: 'relative',
           style: { position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, overflow: 'hidden' },
         }}
         trackYProps={{
@@ -141,7 +140,11 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
     );
 
     if (autosize) {
-      return <AutoSizer>{({ height, width }) => <div style={{ height, width }}>{ScrollElem}</div>}</AutoSizer>;
+      return (
+        <AutoSizer className="relative">
+          {({ height, width }) => <div style={{ height, width }}>{ScrollElem}</div>}
+        </AutoSizer>
+      );
     }
 
     return ScrollElem;
