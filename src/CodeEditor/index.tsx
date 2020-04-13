@@ -2,6 +2,7 @@ import cn from 'classnames';
 import * as React from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
 
+import { Classes } from '../classes';
 import { highlightCode } from './utils/highlightCode';
 
 /**
@@ -41,8 +42,8 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
       {...rest}
       // @ts-ignore FIXME type error
       ref={ref}
-      className={cn(className, 'bp3-code-editor', {
-        'line-numbers': showLineNumbers,
+      className={cn(Classes.CODE_EDITOR, className, {
+        [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
       })}
       style={style}
       placeholder={placeholder}

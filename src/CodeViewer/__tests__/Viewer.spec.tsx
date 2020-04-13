@@ -12,7 +12,7 @@ describe('Code Viewer component', () => {
 
     const wrapper = mount(<CodeViewer language={language} value={code} inline />);
     expect(wrapper).toHaveHTML(
-      `<code class="bp3-code-editor isInline"><span class="token punctuation">{</span><span class="token punctuation">}</span></code>`,
+      `<code class="CodeEditor CodeEditor--inline"><span class="token punctuation">{</span><span class="token punctuation">}</span></code>`,
     );
   });
 
@@ -22,14 +22,14 @@ describe('Code Viewer component', () => {
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveHTML(
-      `<pre class="bp3-code-editor language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></pre>`,
+      `<pre class="CodeEditor language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></pre>`,
     );
   });
 
   it('renders parsed markup if possible', () => {
     const code = 'function';
     const language = 'javascript';
-    const html = `<pre class="bp3-code-editor language-javascript"><span class="token keyword">function</span></pre>`;
+    const html = `<pre class="CodeEditor language-javascript"><span class="token keyword">function</span></pre>`;
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveHTML(html);

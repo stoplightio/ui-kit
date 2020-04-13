@@ -5,3 +5,9 @@
     display: none; /* Chrome, Safari, Opera */
   }
 }
+
+.ScrollbarsCustom-Content {
+  > div {
+    position: relative;
+  }
+}
