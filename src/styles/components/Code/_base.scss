@@ -1,8 +1,20 @@
 @import 'theme-light';
 @import 'theme-dark';
 
-.#{$ns}-code-editor {
+.CodeEditor {
   @include lightCodeTheme;
+
+  &--inline {
+    margin: 0 2px;
+    border-radius: 2px;
+  }
+
+  &--line-numbers {
+    textarea {
+      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
+      margin-left: 35px !important;
+    }
+  }
 
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
   background: var(--code-bg);
@@ -12,24 +24,14 @@
   hyphens: none;
   direction: ltr;
 
+  .bp3-dark,
+  data[theme='dark'] & {
+    @include darkCodeTheme;
+  }
+
+  &::selection,
   ::selection {
     background: var(--code-selection-bg);
-  }
-
-  &.isInline {
-    margin: 0 2px;
-    border-radius: 2px;
-  }
-
-  .namespace {
-    opacity: 0.7;
-  }
-
-  &.line-numbers {
-    textarea {
-      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
-      margin-left: 35px !important;
-    }
   }
 
   .line-number {
@@ -47,6 +49,8 @@
     }
   }
 
+  // Tokens
+
   .token {
     &.important,
     &.bold {
@@ -60,22 +64,34 @@
     &.entity {
       cursor: help;
     }
-  }
 
-  // Colors
+    .namespace {
+      color: var(--code-namespace);
+    }
 
-  .token {
-    &.punctuation,
-    &.hexcode {
+    &.hexcode,
+    &.selector {
+      color: var(--code-selector);
+    }
+
+    &.punctuation {
       color: var(--code-punctuation);
     }
 
     &.function,
-    &.operator {
+    &.builtin {
       color: var(--code-function);
     }
 
-    &.atrule,
+    &.char,
+    &.constant {
+      color: var(--code-constant);
+    }
+
+    &.operator {
+      color: var(--code-operator);
+    }
+
     &.keyword {
       color: var(--code-keyword);
 
@@ -88,47 +104,62 @@
       }
     }
 
-    &.attr-value,
-    &.string {
+    &.attr-value {
       color: var(--code-value);
+    }
+
+    &.string {
+      color: var(--code-string);
     }
 
     &.unit,
     &.symbol,
-    &.url,
     &.property-line {
-      color: var(--code-primary);
+      color: var(--code-symbol);
     }
 
-    &.tag &.deleted {
+    &.url {
+      color: var(--code-url);
+    }
+
+    &.tag,
+    &.deleted {
       color: var(--code-tag);
     }
 
     &.comment,
     &.prolog,
-    &.doctype,
     &.cdata {
       color: var(--code-comment);
+      font-style: italic;
+    }
+
+    &.doctype {
+      color: var(--code-doctype);
+      font-style: italic;
     }
 
     &.property,
     &.attr-name,
-    &.char,
-    &.builtin,
-    &.inserted,
-    &.entity {
-      color: var(--code-secondary);
+    &.atrule,
+    &.key,
+    &.inserted {
+      color: var(--code-property);
     }
 
-    &.number,
-    &.selector {
-      color: var(--code-selector);
+    &.entity,
+    &.class-name {
+      color: var(--code-entity);
+    }
+
+    &.number {
+      color: var(--code-number);
     }
 
     &.rule,
     &.regex,
     &.variable {
-      color: var(--code-rule);
+      color: var(--code-variable);
     }
 
     &.important {
@@ -138,9 +169,5 @@
     &.boolean {
       color: var(--code-boolean);
     }
-  }
-
-  .#{$ns}-dark & {
-    @include darkCodeTheme;
   }
 }
