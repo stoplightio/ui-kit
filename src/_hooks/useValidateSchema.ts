@@ -7,7 +7,7 @@ const unknownError = ['Unknown error'];
 export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
   value?: T,
-  { abortEarly, recursive }: yup.ValidateOptions = {},
+  { abortEarly }: yup.ValidateOptions = {},
 ): string[] {
   const [errors, setErrors] = React.useState<string[]>(noError);
 
@@ -17,14 +17,14 @@ export function useValidateSchema<T>(
       return;
     }
     schema
-      .validate(value, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
+      .validate(value, { strict: true, abortEarly: abortEarly ?? true }) // to avoid taking a useEffect dependency on validateOpts that is an object
       .then(() => {
         setErrors(noError);
       })
       .catch(e => {
         setErrors(e.errors || unknownError);
       });
-  }, [schema, value, abortEarly, recursive]);
+  }, [schema, value, abortEarly]);
 
   return errors;
 }
