@@ -9,8 +9,9 @@ export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
   value?: T,
   { abortEarly, recursive }: yup.ValidateOptions = {},
+  debounceDelay: number = 500,
 ) {
-  const [debouncedValue] = useDebounce(value, 500);
+  const [debouncedValue] = useDebounce(value, debounceDelay);
   const isStale = debouncedValue != value;
 
   const [errors, setErrors] = React.useState<string[]>(noError);
