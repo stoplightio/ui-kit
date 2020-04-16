@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDebounce } from 'use-debounce';
 import * as yup from 'yup';
 
 const noError: string[] = [];
@@ -9,6 +10,8 @@ export function useValidateSchema<T>(
   value?: T,
   { abortEarly, recursive }: yup.ValidateOptions = {},
 ) {
+  const [debouncedValue] = useDebounce(value, 500);
+
   const [errors, setErrors] = React.useState<string[]>(noError);
 
   React.useEffect(() => {
@@ -17,14 +20,14 @@ export function useValidateSchema<T>(
       return;
     }
     schema
-      .validate(value, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
+      .validate(debouncedValue, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
       .then(() => {
         setErrors(noError);
       })
       .catch(e => {
         setErrors(e.errors || unknownError);
       });
-  }, [schema, value, abortEarly, recursive]);
+  }, [schema, debouncedValue, abortEarly, recursive]);
 
   return { errors };
 }
