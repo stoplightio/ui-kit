@@ -13,10 +13,9 @@ import { Button, IButtonProps } from '../index';
 type OwnProps<T> = {
   schema?: yup.Schema<T>;
   data?: T;
-  onClick?: () => void;
 };
 
-type IFormButtonProps<T> = Omit<IButtonProps, 'type' | 'onClick'> & OwnProps<T>;
+type IFormButtonProps<T> = Omit<IButtonProps, 'type'> & OwnProps<T>;
 
 function FormButton<T>({ schema, data, loading, disabled, onClick, ...buttonProps }: IFormButtonProps<T>) {
   const [{ errors, isValidating }] = useValidateSchema(schema, data);
