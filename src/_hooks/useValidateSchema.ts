@@ -8,7 +8,7 @@ const unknownError = ['Unknown error'];
 export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
   value?: T,
-  { abortEarly, recursive }: yup.ValidateOptions = {},
+  { abortEarly }: yup.ValidateOptions = {},
   debounceDelay: number = 500,
 ) {
   const [debouncedValue] = useDebounce(value, debounceDelay);
@@ -24,11 +24,11 @@ export function useValidateSchema<T>(
     setIsValidating(true);
 
     schema
-      .validate(debouncedValue, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
+      .validate(debouncedValue, { strict: true, abortEarly: abortEarly ?? true }) // to avoid taking a useEffect dependency on validateOpts that is an object
       .then(() => setErrors(noError))
       .catch(e => setErrors(e.errors || unknownError))
       .finally(() => setIsValidating(false));
-  }, [schema, debouncedValue, abortEarly, recursive]);
+  }, [schema, debouncedValue, abortEarly]);
 
   return [{ errors, isValidating }];
 }
