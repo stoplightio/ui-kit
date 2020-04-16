@@ -12,24 +12,23 @@ export function useValidateSchema<T>(
   debounceDelay: number = 500,
 ) {
   const [debouncedValue] = useDebounce(value, debounceDelay);
-  const isStale = debouncedValue != value;
-
   const [errors, setErrors] = React.useState<string[]>(noError);
+  const [isValidating, setIsValidating] = React.useState(false);
 
   React.useEffect(() => {
     if (!schema) {
       setErrors(noError);
       return;
     }
+
+    setIsValidating(true);
+
     schema
       .validate(debouncedValue, { strict: true, abortEarly, recursive }) // to avoid taking a useEffect dependency on validateOpts that is an object
-      .then(() => {
-        setErrors(noError);
-      })
-      .catch(e => {
-        setErrors(e.errors || unknownError);
-      });
+      .then(() => setErrors(noError))
+      .catch(e => setErrors(e.errors || unknownError))
+      .finally(() => setIsValidating(false));
   }, [schema, debouncedValue, abortEarly, recursive]);
 
-  return { errors, isStale };
+  return { errors, isValidating };
 }

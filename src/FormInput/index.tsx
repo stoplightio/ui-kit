@@ -90,10 +90,10 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
   errors = [],
   tooltipProps,
 }) => {
-  const { errors: validationErrors, isStale } = useValidateSchema(schema, value, { abortEarly: false });
+  const { errors: validationErrors, isValidating } = useValidateSchema(schema, value, { abortEarly: false });
   const errs = [...validationErrors, ...errors];
 
-  if (isStale) {
+  if (isValidating) {
     return (
       <Tooltip content="Validating..." position={Position.BOTTOM_RIGHT}>
         <div tabIndex={-1} style={{ height: iconHeight[size], display: 'flex', alignItems: 'center' }} className="mr-2">
