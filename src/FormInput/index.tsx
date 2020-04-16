@@ -64,10 +64,10 @@ const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HT
 };
 
 type Size = 'small' | 'default' | 'large';
-const iconPadding: Dictionary<string, Size> = {
-  small: '1px 6px',
-  default: '6px',
-  large: '11px',
+const iconHeight: Dictionary<string, Size> = {
+  small: '24px',
+  default: '30px',
+  large: '40px',
 };
 
 /**
@@ -110,7 +110,7 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
       intent="danger"
       {...tooltipProps}
     >
-      <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
+      <div tabIndex={-1} style={{ height: iconHeight[size] }} className="mr-2">
         <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
     </Tooltip>
