@@ -42,9 +42,7 @@ const ExampleContainer: React.FC = () => {
           schema={field2Schema}
         />
       </FormGroup>
-      <FormButton onClick={() => alert('hey')} data={totalData} schema={totalSchema}>
-        Submit
-      </FormButton>
+      <FormButton onClick={() => alert('hey')} data={totalData} schema={totalSchema} text="Submit" />
     </div>
   );
 };

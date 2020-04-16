@@ -5,6 +5,7 @@ import {
   InputGroup,
   ITooltipProps,
   Position,
+  Spinner,
   Tooltip,
 } from '@blueprintjs/core';
 import * as React from 'react';
@@ -64,10 +65,10 @@ const FormInput: React.FunctionComponent<IInputGroupProps & IFormInputProps & HT
 };
 
 type Size = 'small' | 'default' | 'large';
-const iconPadding: Dictionary<string, Size> = {
-  small: '1px 6px',
-  default: '6px',
-  large: '11px',
+const iconHeight: Dictionary<string, Size> = {
+  small: '24px',
+  default: '30px',
+  large: '40px',
 };
 
 /**
@@ -89,7 +90,19 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
   errors = [],
   tooltipProps,
 }) => {
-  const errs = useValidateSchema(schema, value, { abortEarly: false }).concat(errors);
+  const [{ errors: validationErrors, isValidating }] = useValidateSchema(schema, value, { abortEarly: false });
+  const errs = [...validationErrors, ...errors];
+
+  if (isValidating) {
+    return (
+      <Tooltip content="Validating..." position={Position.BOTTOM_RIGHT}>
+        <div tabIndex={-1} style={{ height: iconHeight[size], display: 'flex', alignItems: 'center' }} className="mr-2">
+          <Spinner size={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent={errs.length ? 'danger' : 'primary'} />
+        </div>
+      </Tooltip>
+    );
+  }
+
   if (!errs.length) return null;
 
   return (
@@ -109,8 +122,8 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
       intent="danger"
       {...tooltipProps}
     >
-      <div tabIndex={-1} style={{ padding: iconPadding[size] }}>
-        <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
+      <div tabIndex={-1} style={{ height: iconHeight[size], display: 'flex', alignItems: 'center' }} className="mr-2">
+        <Icon icon="issue" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
     </Tooltip>
   );

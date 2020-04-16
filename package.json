@@ -55,6 +55,7 @@
     "react-tabs": "^3.1.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "~1.8.5",
+    "use-debounce": "^3.4.1",
     "yup": "^0.28.3"
   },
   "devDependencies": {
@@ -124,8 +125,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint.fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "husky": {

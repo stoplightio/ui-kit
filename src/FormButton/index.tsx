@@ -1,4 +1,3 @@
-import { noop } from 'lodash';
 import * as React from 'react';
 // TODO: should probably use ajv and json schema
 import * as yup from 'yup';
@@ -11,34 +10,27 @@ import { Button, IButtonProps } from '../index';
  * button that is disabled if the schema doesn't pass validation
  * TODO, add tooltip to explain why its disabled?
  */
-interface IFormButton extends Omit<IButtonProps, 'type' | 'onClick'> {
-  schema?: yup.Schema<any>;
-  data?: any;
-  onClick?: (data: any) => void;
-}
+type OwnProps<T> = {
+  schema?: yup.Schema<T>;
+  data?: T;
+};
 
-const FormButton: React.FunctionComponent<IFormButton> = ({
-  schema,
-  data,
-  loading,
-  disabled,
-  onClick = noop,
-  ...buttonProps
-}) => {
-  const errors = useValidateSchema(schema, data);
-  const handleClick = React.useCallback(() => onClick(data), [onClick, data]);
+type IFormButtonProps<T> = Omit<IButtonProps, 'type'> & OwnProps<T>;
+
+function FormButton<T>({ schema, data, loading, disabled, onClick, ...buttonProps }: IFormButtonProps<T>) {
+  const [{ errors, isValidating }] = useValidateSchema(schema, data);
 
   return (
     <Button
-      disabled={errors.length > 0 || loading || disabled}
+      disabled={errors.length > 0 || isValidating || loading || disabled}
       loading={loading}
-      onClick={handleClick}
+      onClick={onClick}
       {...buttonProps}
     />
   );
-};
+}
 
 /**
  * EXPORTS
  */
-export { IFormButton, FormButton };
+export { FormButton };

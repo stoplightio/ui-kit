@@ -9,11 +9,13 @@ storiesOf('FormInput', module)
   .addDecorator(withKnobs)
   .add('with synchronous validation', () => (
     <div className="p-40">
+      <p>The number of characters must be odd</p>
       <FormInputContainer schema={exampleSyncSchema} />
     </div>
   ))
   .add('with async validation', () => (
     <div className="p-40">
+      <p>The number of characters must be odd</p>
       <FormInputContainer schema={exampleAsyncSchema} />
     </div>
   ));
