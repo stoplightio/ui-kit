@@ -125,8 +125,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint.fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "husky": {
