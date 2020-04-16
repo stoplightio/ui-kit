@@ -25,12 +25,12 @@ const FormButton: React.FunctionComponent<IFormButton> = ({
   onClick = noop,
   ...buttonProps
 }) => {
-  const { errors } = useValidateSchema(schema, data);
+  const { errors, isStale } = useValidateSchema(schema, data);
   const handleClick = React.useCallback(() => onClick(data), [onClick, data]);
 
   return (
     <Button
-      disabled={errors.length > 0 || loading || disabled}
+      disabled={errors.length > 0 || isStale || loading || disabled}
       loading={loading}
       onClick={handleClick}
       {...buttonProps}

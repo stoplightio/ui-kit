@@ -11,6 +11,7 @@ export function useValidateSchema<T>(
   { abortEarly, recursive }: yup.ValidateOptions = {},
 ) {
   const [debouncedValue] = useDebounce(value, 500);
+  const isStale = debouncedValue != value;
 
   const [errors, setErrors] = React.useState<string[]>(noError);
 
@@ -29,5 +30,5 @@ export function useValidateSchema<T>(
       });
   }, [schema, debouncedValue, abortEarly, recursive]);
 
-  return { errors };
+  return { errors, isStale };
 }

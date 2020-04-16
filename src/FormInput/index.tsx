@@ -89,8 +89,19 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
   errors = [],
   tooltipProps,
 }) => {
-  const { errors: validationErrors } = useValidateSchema(schema, value, { abortEarly: false });
+  const { errors: validationErrors, isStale } = useValidateSchema(schema, value, { abortEarly: false });
   const errs = [...validationErrors, ...errors];
+
+  if (isStale && errs.length) {
+    return (
+      <Tooltip content="Validating..." position={Position.BOTTOM_RIGHT}>
+        <div tabIndex={-1} style={{ height: iconHeight[size] }} className="mr-2">
+          <Icon icon="outdated" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
+        </div>
+      </Tooltip>
+    );
+  }
+
   if (!errs.length) return null;
 
   return (
@@ -111,7 +122,7 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
       {...tooltipProps}
     >
       <div tabIndex={-1} style={{ height: iconHeight[size] }} className="mr-2">
-        <Icon icon="circle" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
+        <Icon icon="issue" iconSize={size === 'small' ? 12 : Icon.SIZE_STANDARD} intent="danger" />
       </div>
     </Tooltip>
   );
