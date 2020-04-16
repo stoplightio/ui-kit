@@ -19,7 +19,7 @@ type OwnProps<T> = {
 type IFormButtonProps<T> = Omit<IButtonProps, 'type' | 'onClick'> & OwnProps<T>;
 
 function FormButton<T>({ schema, data, loading, disabled, onClick, ...buttonProps }: IFormButtonProps<T>) {
-  const { errors, isValidating } = useValidateSchema(schema, data);
+  const [{ errors, isValidating }] = useValidateSchema(schema, data);
 
   return (
     <Button

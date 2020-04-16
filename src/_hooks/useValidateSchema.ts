@@ -30,5 +30,5 @@ export function useValidateSchema<T>(
       .finally(() => setIsValidating(false));
   }, [schema, debouncedValue, abortEarly, recursive]);
 
-  return { errors, isValidating };
+  return [{ errors, isValidating }];
 }

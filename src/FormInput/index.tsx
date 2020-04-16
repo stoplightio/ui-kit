@@ -90,7 +90,7 @@ const FormInputValidation: React.FunctionComponent<IFormInputValidationProps> = 
   errors = [],
   tooltipProps,
 }) => {
-  const { errors: validationErrors, isValidating } = useValidateSchema(schema, value, { abortEarly: false });
+  const [{ errors: validationErrors, isValidating }] = useValidateSchema(schema, value, { abortEarly: false });
   const errs = [...validationErrors, ...errors];
 
   if (isValidating) {
