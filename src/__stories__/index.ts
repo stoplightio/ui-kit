@@ -2,6 +2,7 @@ import './Docs';
 import './Checkbox';
 import './Code';
 import './Dropdown';
+import './FormButton';
 import './FormInput';
 import './AutoSizer';
 import './ScrollContainer';
