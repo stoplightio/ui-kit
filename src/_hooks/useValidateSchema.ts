@@ -8,7 +8,7 @@ export function useValidateSchema<T>(
   schema?: yup.Schema<T>,
   value?: T,
   { abortEarly, recursive }: yup.ValidateOptions = {},
-): string[] {
+) {
   const [errors, setErrors] = React.useState<string[]>(noError);
 
   React.useEffect(() => {
@@ -26,5 +26,5 @@ export function useValidateSchema<T>(
       });
   }, [schema, value, abortEarly, recursive]);
 
-  return errors;
+  return { errors };
 }

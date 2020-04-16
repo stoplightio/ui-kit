@@ -25,7 +25,7 @@ const FormButton: React.FunctionComponent<IFormButton> = ({
   onClick = noop,
   ...buttonProps
 }) => {
-  const errors = useValidateSchema(schema, data);
+  const { errors } = useValidateSchema(schema, data);
   const handleClick = React.useCallback(() => onClick(data), [onClick, data]);
 
   return (
