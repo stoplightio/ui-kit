@@ -17,7 +17,7 @@ export function useValidateSchema<T>(
       return;
     }
     schema
-      .validate(value, { strict: true, abortEarly }) // to avoid taking a useEffect dependency on validateOpts that is an object
+      .validate(value, { strict: true, abortEarly: abortEarly ?? true }) // to avoid taking a useEffect dependency on validateOpts that is an object
       .then(() => {
         setErrors(noError);
       })
