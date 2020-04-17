@@ -24,8 +24,9 @@
   hyphens: none;
   direction: ltr;
 
-  .bp3-dark,
-  data[theme='dark'] & {
+
+  .#{$ns}-dark &,
+  [data-theme="dark"] & {
     @include darkCodeTheme;
   }
 
