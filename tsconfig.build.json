@@ -9,7 +9,6 @@
   "exclude": ["**/__*__/**"],
 
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "commonjs"
+    "outDir": "dist"
   }
 }
