@@ -42,7 +42,11 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
   ReactWindow.FixedSizeList,
   IFixedSizeListProps
 >(function FixedSizeList(props, ref) {
-  const { className, children, itemSize, itemCount, instanceRef, maxRows, style, autoSize, ...rest } = props;
+  let { className, children, itemSize, itemCount, instanceRef, maxRows, style, autoSize, ...rest } = props;
+  if (isNaN(itemCount)) {
+    itemCount = 0;
+  }
+
   const listHeight = Math.min(itemCount, maxRows || Infinity) * itemSize;
 
   const renderList = ({ height, width }: { height?: number; width?: number } = {}) => {
@@ -52,7 +56,7 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
         ref={instanceRef}
         itemSize={itemSize}
         itemCount={itemCount}
-        height={height ? Math.min(height, listHeight) : listHeight}
+        height={(height ? Math.min(height, listHeight) : listHeight) || 0}
         width={width || '100%'}
         // className gets passed to ScrollList-Content
         className={className}
@@ -87,7 +91,11 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
   ReactWindow.VariableSizeList,
   IVariableSizeListProps
 >(function VariableSizeList(props, ref) {
-  const { children, instanceRef, ...rest } = props;
+  let { children, instanceRef, itemCount, ...rest } = props;
+
+  if (isNaN(itemCount)) {
+    itemCount = 0;
+  }
 
   return (
     <AutoSizer>
@@ -97,6 +105,7 @@ const VariableSizeList: React.FunctionComponent<IVariableSizeListProps> = React.
           ref={instanceRef}
           height={height}
           width={width}
+          itemCount={itemCount}
           outerRef={ref}
           outerElementType={CustomScrollContainer}
         >
