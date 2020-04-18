@@ -1,8 +1,5 @@
 {
   "extends": "@stoplight/scripts",
   // target all ts files
-  "include": ["src"],
-  "compilerOptions": {
-    "module": "ES2015"
-  }
+  "include": ["src"]
 }
