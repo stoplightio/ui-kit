@@ -142,7 +142,11 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
     if (autosize) {
       return (
         <AutoSizer className="relative">
-          {({ height, width }) => <div style={{ height, width }}>{ScrollElem}</div>}
+          {({ height, width }) => (
+            <div style={{ height: height - 1, width: width - 1 }} className="overflow-hidden">
+              {ScrollElem}
+            </div>
+          )}
         </AutoSizer>
       );
     }
