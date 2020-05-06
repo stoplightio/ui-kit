@@ -74,112 +74,113 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
 let renderWithScroll = false;
 const useRenderWithScroll = () => {
   const [, setTick] = React.useState(0);
-  const update = React.useEffect(() => {
+  return React.useEffect(() => {
     if (!renderWithScroll) {
       renderWithScroll = true;
       setTick(1);
     }
   }, []);
-  return update;
 };
 
-export function TableOfContents<T extends TableOfContentsItem = TableOfContentsItem>({
+function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsItem>({
+  className,
   contents,
   rowRenderer,
-  className,
   forceStateStyle,
+}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowRenderer' | 'forceStateStyle'>) {
+  const [expanded, setExpanded] = React.useState({});
+
+  return (
+    <div className={className}>
+      {contents.map((item, index) => {
+        const depth = item.depth || 0;
+
+        if (depth > 0) {
+          // Check if we should show this item
+          const parentIndex = findParentIndex(depth, contents.slice(0, index));
+          if (parentIndex > -1 && !expanded[parentIndex]) {
+            return null;
+          }
+        }
+
+        const isGroup = item.type === 'group';
+        const isDivider = item.type === 'divider';
+        const isExpanded = expanded[index];
+        const onClick = (e: React.MouseEvent) => {
+          if (item.isDisabled) {
+            e.preventDefault();
+            return;
+          }
+          if (item.onClick) {
+            item.onClick();
+          }
+
+          if (isDivider) {
+            e.preventDefault();
+            return;
+          }
+
+          if (!isGroup) return;
+
+          e.preventDefault();
+          setExpanded({ ...expanded, [String(index)]: !isExpanded });
+        };
+
+        let elem;
+        if (rowRenderer) {
+          elem = rowRenderer({
+            item,
+            key: index,
+            getProps: computeTableOfContentsItemProps,
+            DefaultRow: props => (
+              <TableOfContentsItemInner
+                {...props}
+                forceStateStyle={forceStateStyle}
+                onClick={onClick}
+                isExpanded={isExpanded}
+              />
+            ),
+          });
+        }
+
+        if (!elem) {
+          elem = (
+            <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
+              <TableOfContentsItemInner
+                key={index}
+                item={item}
+                forceStateStyle={forceStateStyle}
+                onClick={onClick}
+                isExpanded={isExpanded}
+              />
+            </div>
+          );
+        }
+
+        return elem;
+      })}
+    </div>
+  );
+}
+
+export function TableOfContents<T extends TableOfContentsItem = TableOfContentsItem>({
+  className,
   padding = '4',
   title,
   isOpen = false,
-  // enableDrawer = true,
   onClose = () => {},
   withScroller,
   filter,
   onChangeFilter,
+  ...innerProps
 }: ITableOfContents<T>) {
   useRenderWithScroll();
 
-  const [expanded, setExpanded] = React.useState({});
-
   const isMobile = false; // useIsMobile(enableDrawer);
 
-  const hasFilter = Boolean(filter !== undefined && onChangeFilter);
+  const hasFilter = filter !== undefined && onChangeFilter;
 
-  // has to be in a function because of the conditional ssr logic below where we render without scroll container
-  // in ssr, and with scroll container on client (useRenderWithScroll hook above)
-  const toc = () => {
-    return (
-      <div className={cn(hasFilter ? `pb-${padding}` : `py-${padding}`)}>
-        {contents.map((item, index) => {
-          const depth = item.depth || 0;
-
-          if (depth > 0) {
-            // Check if we should show this item
-            const parentIndex = findParentIndex(depth, contents.slice(0, index));
-            if (parentIndex > -1 && !expanded[parentIndex]) {
-              return null;
-            }
-          }
-
-          const isGroup = item.type === 'group';
-          const isDivider = item.type === 'divider';
-          const isExpanded = expanded[index];
-          const onClick = (e: React.MouseEvent) => {
-            if (item.isDisabled) {
-              e.preventDefault();
-              return;
-            }
-            if (item.onClick) {
-              item.onClick();
-            }
-
-            if (isDivider) {
-              e.preventDefault();
-              return;
-            }
-
-            if (!isGroup) return;
-
-            e.preventDefault();
-            setExpanded({ ...expanded, [String(index)]: !isExpanded });
-          };
-
-          let elem;
-          if (rowRenderer) {
-            elem = rowRenderer({
-              item,
-              key: index,
-              getProps: computeTableOfContentsItemProps,
-              DefaultRow: props => (
-                <TableOfContentsItemInner
-                  {...props}
-                  forceStateStyle={forceStateStyle}
-                  onClick={onClick}
-                  isExpanded={isExpanded}
-                />
-              ),
-            });
-          }
-
-          if (!elem) {
-            elem = (
-              <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
-                <TableOfContentsItemInner
-                  key={index}
-                  item={item}
-                  forceStateStyle={forceStateStyle}
-                  onClick={onClick}
-                  isExpanded={isExpanded}
-                />
-              </div>
-            );
-          }
-
-          return elem;
-        })}
-      </div>
-    );
-  };
+  const toc = <TableOfContentsInner className={cn(hasFilter ? `pb-${padding}` : `py-${padding}`)} {...innerProps} />;
 
   const containerClassName = cn('TableOfContents', className);
   const comp = (
@@ -191,15 +192,12 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
           className={`m-${padding}`}
           value={filter}
           autoFocus
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            // NOTE: hasFilter checks that this is defined, so i'm not sure why TS doesn't refine it 🤷
-            onChangeFilter && onChangeFilter(event.currentTarget.value);
-          }}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeFilter?.(event.currentTarget.value)}
         />
       )}
 
       <div className={containerClassName}>
-        {renderWithScroll && withScroller ? <ScrollContainer>{toc()}</ScrollContainer> : toc()}
+        {renderWithScroll && withScroller ? <ScrollContainer>{toc}</ScrollContainer> : toc}
       </div>
     </>
   );
