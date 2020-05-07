@@ -22,6 +22,7 @@ export * from './FormButton';
 export * from './FormError';
 export * from './FormInput';
 export * from './SecretInput';
+export * from './TableOfContents';
 export * from './ThemeContainer';
 export * from './AutoSizer';
 

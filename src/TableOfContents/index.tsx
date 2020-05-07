@@ -134,6 +134,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
             getProps: computeTableOfContentsItemProps,
             DefaultRow: props => (
               <TableOfContentsItemInner
+                key={index}
                 {...props}
                 forceStateStyle={forceStateStyle}
                 onClick={onClick}
