@@ -19,7 +19,7 @@ interface IScrollContainer extends Omit<ScrollbarProps, 'ref'> {
 }
 
 const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>(
-  ({ id, children, shadows = true, autosize = true, ...props }, scrollbarRef) => {
+  ({ id, children, shadows = true, autosize = true, scrollbarWidth = 6, ...props }, scrollbarRef) => {
     const scrollbar = React.useRef<any>(null);
     const scrollbarCallback = React.useCallback<ScrollbarRef>(
       ref => {
@@ -103,7 +103,7 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
             opacity: 0,
             cursor: 'pointer',
             background: 'inherit',
-            width: 6,
+            width: scrollbarWidth,
             marginRight: 0,
             borderRadius: 0,
             top: 0,
@@ -116,7 +116,7 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
             opacity: 0,
             cursor: 'pointer',
             background: 'inherit',
-            height: 6,
+            height: scrollbarWidth,
             marginBottom: 0,
             borderRadius: 0,
             left: 0,
