@@ -133,13 +133,14 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
             key: index,
             getProps: computeTableOfContentsItemProps,
             DefaultRow: props => (
-              <TableOfContentsItemInner
-                key={index}
-                {...props}
-                forceStateStyle={forceStateStyle}
-                onClick={onClick}
-                isExpanded={isExpanded}
-              />
+              <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
+                <TableOfContentsItemInner
+                  {...props}
+                  forceStateStyle={forceStateStyle}
+                  isExpanded={isExpanded}
+                  onClick={onClick}
+                />
+              </div>
             ),
           });
         }
@@ -151,7 +152,6 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
                 key={index}
                 item={item}
                 forceStateStyle={forceStateStyle}
-                onClick={onClick}
                 isExpanded={isExpanded}
               />
             </div>
@@ -263,6 +263,7 @@ const computeTableOfContentsItemProps = ({
 
 const TableOfContentsItemInner = ({
   item,
+  onClick,
   isSelected: _isSelected,
   isActive: _isActive,
   isDisabled: _isDisabled,
@@ -299,7 +300,7 @@ const TableOfContentsItemInner = ({
   const className = cn(
     'TableOfContentsItem__inner relative flex flex-col justify-center border-transparent border-l-4',
     {
-      'cursor-pointer': item.onClick && !showSkeleton && !isDisabled,
+      'cursor-pointer': (item.onClick || onClick) && !showSkeleton && !isDisabled,
       'cursor-not-allowed': isDisabled,
       'dark-hover:bg-lighten-2 hover:bg-darken-2':
         !isDisabled && !isDivider && !isSelected && !isActive && !showSkeleton,
