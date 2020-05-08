@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { StudioContents } from '../../__fixtures__/table-of-contents/studio';
+import { studioContents } from '../../__fixtures__/table-of-contents/studio';
 import { TableOfContents } from '../../TableOfContents';
 
 const styles = {
@@ -21,10 +21,10 @@ storiesOf('TableOfContents', module)
       <div style={styles}>
         <TableOfContents
           className="h-full"
-          contents={StudioContents}
-          rowRenderer={(item, DefaultRow) => {
+          contents={studioContents}
+          rowRenderer={({ item, DefaultRow }) => {
             return (
-              <a href={item.href}>
+              <a href={item.to}>
                 <DefaultRow item={item} />
               </a>
             );
@@ -36,7 +36,7 @@ storiesOf('TableOfContents', module)
   .add('studio without rowRenderer', () => {
     return (
       <div style={styles}>
-        <TableOfContents className="h-full" contents={StudioContents} />
+        <TableOfContents className="h-full" contents={studioContents} />
       </div>
     );
   })
@@ -51,14 +51,14 @@ const MobileStory = () => {
       <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
       <TableOfContents
         className="h-full"
-        contents={StudioContents}
+        contents={studioContents}
         title={'Mobile Support'}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         enableDrawer={1000}
-        rowRenderer={(item, DefaultRow) => {
+        rowRenderer={({ item, DefaultRow }) => {
           return (
-            <a href={item.href}>
+            <a href={item.to}>
               <DefaultRow item={item} />
             </a>
           );
