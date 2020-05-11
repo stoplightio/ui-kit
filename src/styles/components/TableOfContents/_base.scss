@@ -9,7 +9,7 @@
   }
 
   &__inner {
-    padding: 6px 12px 6px;
+    padding: 6px 22px 6px;
     margin-top: 1px;
     margin-bottom: 1px;
   }
@@ -26,18 +26,25 @@
     }
   }
 
+  &--child {
+    .TableOfContentsItem__inner {
+      padding-left: 15px;
+    }
+  }
+
   &--divider {
     &:first-child {
       margin-top: -5px;
     }
 
     &:not(:first-child) {
-      margin-top: 5px;
+      margin-top: 12px;
     }
 
     .TableOfContentsItem__name {
       line-height: 1.2;
       text-transform: uppercase;
+      font-size: 12px;
     }
   }
 }
