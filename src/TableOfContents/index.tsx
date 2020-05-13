@@ -17,6 +17,7 @@ export type TableOfContentsItem = {
   type?: 'divider' | 'group' | 'item';
   icon?: FAIconProp;
   activeIcon?: FAIconProp;
+  iconColor?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
   showSkeleton?: boolean;
@@ -256,7 +257,7 @@ const computeTableOfContentsItemProps = ({
       'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
     }),
     style: {
-      marginLeft: depth * 15,
+      marginLeft: depth * 24,
     },
   };
 };
@@ -308,8 +309,8 @@ const TableOfContentsItemInner = ({
       'text-gray-7 dark:text-white': isActive,
       'border-primary text-blue-6': isSelected,
 
-      'text-gray-6 dark:text-gray-6 tracking-wide text-sm font-semibold h-12': isDivider,
-      'text-gray-6 dark:text-gray-5': !isDivider && !isSelected && !isActive,
+      'text-gray-6 dark:text-gray-6 font-semibold h-10': isDivider,
+      'text-gray-5 dark:text-gray-5 hover:text-gray-6': !isDivider && !isSelected && !isActive,
     },
   );
 
@@ -356,7 +357,7 @@ const TableOfContentsItemInner = ({
         {loadingElem}
         {actionElem}
         {isGroup && (
-          <FAIcon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />
+          <FAIcon className="TableOfContentsItem__icon" icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']} />
         )}
       </div>
       {item.footer}
