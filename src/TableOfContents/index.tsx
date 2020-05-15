@@ -35,16 +35,24 @@ export type ITableOfContentsLink = TableOfContentsItem & {
   isExternalLink?: boolean;
 };
 
+export type RowRendererType<T extends TableOfContentsItem> = (props: {
+  item: T;
+  key: number | string;
+  getProps: (
+    node: ITableOfContentsNode,
+  ) => {
+    onClick: ((e: React.MouseEvent<any, MouseEvent>) => void) | undefined;
+    style: React.CSSProperties;
+    className: string;
+  };
+  DefaultRow: React.FC<ITableOfContentsNode<T>>;
+}) => React.ReactElement | undefined;
+
 export interface ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem> {
   contents: T[];
 
   // Caller should return undefined if they don't want to provide custom elem
-  rowRenderer?: (props: {
-    item: T;
-    key: number | string;
-    getProps: typeof computeTableOfContentsItemProps;
-    DefaultRow: React.FC<ITableOfContentsNode<T>>;
-  }) => React.ReactElement | undefined;
+  rowRenderer?: RowRendererType<T>;
 
   // Padding that will be used for (default: 10)
   padding?: string;
@@ -232,12 +240,12 @@ interface ITableOfContentsNode<T extends TableOfContentsItem = TableOfContentsIt
   onClick?: (e: React.MouseEvent<any, MouseEvent>) => void;
 }
 
-const computeTableOfContentsItemProps = ({
+const computeTableOfContentsItemProps = <T extends TableOfContentsItem>({
   item,
   isSelected: _isSelected,
   isActive: _isActive,
   onClick,
-}: ITableOfContentsNode) => {
+}: ITableOfContentsNode<T>) => {
   const depth = item.depth || 0;
   const isChild = item.type !== 'group' && depth > 0;
   const isGroup = item.type === 'group';
