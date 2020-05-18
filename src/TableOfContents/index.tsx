@@ -53,7 +53,7 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
   /**
    * HTML data-test attribute to be set on the container div.
    */
-  'data-test': string;
+  'data-test'?: string;
 
   // force items to render with active or selected if either is true.
   // for example if forceStateStyle=active, then if an item isSelected or isActive is true, will render with active styling
