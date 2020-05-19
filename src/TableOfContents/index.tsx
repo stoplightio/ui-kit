@@ -50,6 +50,11 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
   padding?: string;
   className?: string;
 
+  /**
+   * HTML data-test attribute to be set on the container div.
+   */
+  'data-test'?: string;
+
   // force items to render with active or selected if either is true.
   // for example if forceStateStyle=active, then if an item isSelected or isActive is true, will render with active styling
   forceStateStyle?: 'active' | 'selected';
@@ -167,6 +172,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
 
 export function TableOfContents<T extends TableOfContentsItem = TableOfContentsItem>({
   className,
+  'data-test': dataTest,
   padding = '4',
   title,
   isOpen = false,
@@ -198,7 +204,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
         />
       )}
 
-      <div className={containerClassName}>
+      <div className={containerClassName} data-test={dataTest}>
         {renderWithScroll && withScroller ? <ScrollContainer>{toc}</ScrollContainer> : toc}
       </div>
     </>
