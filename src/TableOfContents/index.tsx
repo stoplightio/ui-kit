@@ -1,5 +1,6 @@
 import { Button, Drawer, InputGroup } from '@blueprintjs/core';
 import cn from 'classnames';
+import { flatMap } from 'lodash';
 import * as React from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
@@ -103,6 +104,18 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
   forceStateStyle,
 }: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowRenderer' | 'forceStateStyle'>) {
   const [expanded, setExpanded] = React.useState({});
+
+  // expand ancestors of active items by default
+  React.useEffect(() => {
+    const activeItems = contents.filter(item => item.isActive);
+    const itemsToExpand = flatMap(activeItems, item =>
+      findAncestorIndices(item.depth ?? 0, contents.slice(0, contents.indexOf(item))),
+    );
+    setExpanded(current => ({
+      ...current,
+      ...Object.fromEntries(itemsToExpand.map(index => [index, true])),
+    }));
+  }, [contents]);
 
   return (
     <div className={className}>
@@ -382,12 +395,24 @@ const TableOfContentsItemInner = ({
 /**
  * Traverses contents backwards to find the first index with a lower depth
  */
-function findParentIndex(currentDepth: number, contents: TableOfContentsItem[]) {
+function findParentIndex(currentDepth: number, contents: TableOfContentsItem[]): number {
   for (let index = contents.length - 1; index >= 0; index--) {
     if (contents[index].depth === currentDepth - 1) {
-      return String(index);
+      return index;
     }
   }
 
   return -1;
+}
+
+function findAncestorIndices(currentDepth: number, precedingContents: TableOfContentsItem[]): number[] {
+  const parentIndex = findParentIndex(currentDepth, precedingContents);
+  if (parentIndex === -1) {
+    return [];
+  }
+
+  return [
+    ...findAncestorIndices(precedingContents[parentIndex].depth ?? 0, precedingContents.slice(0, parentIndex)),
+    parentIndex,
+  ];
 }
