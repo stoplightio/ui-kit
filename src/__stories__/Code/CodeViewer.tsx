@@ -19,4 +19,11 @@ storiesOf('Code:Viewer', module)
       <CodeViewer {...codeViewerKnobs()} />
     </div>
   ))
-  .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />);
+  .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />)
+  .add('xss', () => (
+    <CodeViewer
+      className="overflow-auto MV_block"
+      value={`<div>Hello world!</div>\n<img src=\"asd\" onerror=\"alert('dont do this')\" />`}
+      showLineNumbers={false}
+    />
+  ));
