@@ -53,10 +53,11 @@ export const studioContents: ITableOfContentsLink[] = [
     to: '/reference/petstore/openapi.v1.yaml/components/schemas/Pets',
   },
   {
-    name: 'Info for a specific pet',
+    name: 'Info for a specific pet [active item]',
     depth: 1,
     type: 'item',
     to: '/reference/petstore/openapi.v1.yaml/paths/~1pets~1{petId}/get',
+    isActive: true,
   },
   {
     name: 'List all pets',
