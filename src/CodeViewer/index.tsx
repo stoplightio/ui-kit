@@ -4,9 +4,9 @@ import * as React from 'react';
 
 import { Classes } from '../classes';
 import { highlightCode } from '../CodeEditor/utils/highlightCode';
-import { createSanitizer } from './sanitize';
+import { createSanitize } from './createSanitize';
 
-const sanitizer = createSanitizer({ ALLOWED_TAGS: ['span'] });
+const sanitize = createSanitize({ ALLOWED_TAGS: ['span'] });
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',
@@ -32,7 +32,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 }) => {
   const lang = (language && languageMaps[language]) || language || '';
 
-  const code = React.useMemo(() => sanitizer(highlightCode(value, lang, showLineNumbers)), [
+  const code = React.useMemo(() => sanitize(highlightCode(value, lang, showLineNumbers)), [
     value,
     lang,
     showLineNumbers,

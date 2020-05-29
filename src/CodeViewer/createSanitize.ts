@@ -1,7 +1,6 @@
 import * as DOMPurify from 'dompurify';
-import { sanitize } from 'dompurify';
 
-export const createSanitizer = (sanitizeConfig: DOMPurify.Config) => {
+export const createSanitize = (sanitizeConfig: DOMPurify.Config) => {
   let domEnv: Window;
 
   if (DOMPurify.isSupported) {
