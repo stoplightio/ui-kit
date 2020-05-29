@@ -23,7 +23,8 @@ storiesOf('Code:Viewer', module)
   .add('xss', () => (
     <CodeViewer
       className="overflow-auto MV_block"
-      value={`<div>Hello world!</div>\n<img src=\"asd\" onerror=\"alert('dont do this')\" />`}
+      value={`Hello, I am some *Markdown*\n<p>I contain some *evil* HTML!</p>\n<img src="asd" onerror="alert('evil code!')" />`}
+      language="markdown"
       showLineNumbers={false}
     />
   ));

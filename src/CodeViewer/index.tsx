@@ -6,17 +6,7 @@ import { Classes } from '../classes';
 import { highlightCode } from '../CodeEditor/utils/highlightCode';
 import { createSanitizer } from './sanitize';
 
-const sanitizer = createSanitizer();
-const innerSanitizer = createSanitizer();
-
-// escape instead of remove if possible
-const sanitizeConfig = { ALLOWED_TAGS: ['span'] };
-sanitizer.addHook('beforeSanitizeElements', node => {
-  const sanitized = innerSanitizer.sanitize(node.outerHTML, sanitizeConfig);
-  if (sanitized.trim().length === 0 && node.parentElement && node.ownerDocument) {
-    node.parentElement.insertBefore(node.ownerDocument.createTextNode(node.outerHTML || ''), node);
-  }
-});
+const sanitizer = createSanitizer({ ALLOWED_TAGS: ['span'] });
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',
@@ -42,7 +32,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 }) => {
   const lang = (language && languageMaps[language]) || language || '';
 
-  const code = React.useMemo(() => sanitizer.sanitize(highlightCode(value, lang, showLineNumbers), sanitizeConfig), [
+  const code = React.useMemo(() => sanitizer(highlightCode(value, lang, showLineNumbers)), [
     value,
     lang,
     showLineNumbers,
