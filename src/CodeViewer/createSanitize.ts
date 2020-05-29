@@ -1,6 +1,6 @@
 import * as DOMPurify from 'dompurify';
 
-export const createSanitize = (sanitizeConfig: DOMPurify.Config) => {
+export const createSanitize = (sanitizeConfig: Omit<DOMPurify.Config, 'RETURN_DOM_FRAGMENT' | 'RETURN_DOM'>) => {
   let domEnv: Window;
 
   if (DOMPurify.isSupported) {
@@ -27,5 +27,5 @@ export const createSanitize = (sanitizeConfig: DOMPurify.Config) => {
     }
   });
 
-  return (source: string) => sanitizer.sanitize(source, sanitizeConfig) as string;
+  return (source: string) => sanitizer.sanitize(source, sanitizeConfig);
 };
