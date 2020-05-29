@@ -17,13 +17,32 @@ export const createSanitize = (sanitizeConfig: Omit<DOMPurify.Config, 'RETURN_DO
   }
 
   const sanitizer = DOMPurify(domEnv);
-  const innerSanitizer = DOMPurify(domEnv);
 
   // escape instead of remove if possible
   sanitizer.addHook('beforeSanitizeElements', node => {
-    const sanitized = innerSanitizer.sanitize(node.outerHTML, sanitizeConfig);
-    if (((sanitized as unknown) as string).trim().length === 0 && node.parentElement && node.ownerDocument) {
-      node.parentElement.insertBefore(node.ownerDocument.createTextNode(node.outerHTML || ''), node);
+    // Text Nodes are OK, we can leave them alone.
+    if (node.nodeType === node.TEXT_NODE) return;
+
+    // Element Nodes are BAD...
+    if (node.nodeType === node.ELEMENT_NODE) {
+      // unless they are <span class="token ...">TEXT_NODE</span>
+      // Note: node.children returns only element nodes. spans containing only text nodes
+      // will still satisfy the condition node.children.length === 0
+      if (node.tagName === 'SPAN' && node.classList.contains('token') && node.children?.length === 0) {
+        return;
+      }
+      // We need to stringify element nodes, starting at the BOTTOM so that <span class="token"> nodes aren't
+      // stringified. Therefore, we check if this is a leaf node.
+      if (node.children?.length === 0) {
+        // Because TypeScript, we need to assert the following properties are present.
+        if (node.parentElement && node.ownerDocument && node.outerHTML) {
+          // We replace this node with a text node containing HTML-escaped text
+          console.log(`node.outerHTML:[${node.outerHTML}]`);
+          const textNode = node.ownerDocument.createTextNode(node.outerHTML);
+          node.parentElement.insertBefore(textNode || '', node);
+          node.remove();
+        }
+      }
     }
   });
 

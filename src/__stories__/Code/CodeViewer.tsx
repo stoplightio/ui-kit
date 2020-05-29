@@ -1,4 +1,4 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
@@ -20,23 +20,22 @@ storiesOf('Code:Viewer', module)
     </div>
   ))
   .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />)
-  .add('xss', () => (
-    <div>
-      <CodeViewer
-        className="overflow-auto MV_block"
-        value={
-          'Hello, I am some *Markdown*\n<p>I contain some *evil* HTML!</p>\n<img src="asd" onerror="alert(\'evil code!\')" />"'
-        }
-        language="markdown"
-        showLineNumbers={false}
-      />
-      <CodeViewer
-        className="overflow-auto MV_block"
-        value={
-          'Hello, I am some *HTML*\n<p>I contain some *legit* HTML markup here!</p>\nHere\'s how you can use span-tags: <span>Content here</span>". Oh no, it disappeared :('
-        }
-        language="text"
-        showLineNumbers={false}
-      />
-    </div>
-  ));
+  .add('xss', () => {
+    const props = {
+      language: select('language', { text: 'text', markdown: 'markdown', markup: 'markup' }, 'text'),
+    };
+
+    return (
+      <div>
+        <CodeViewer
+          className="overflow-auto MV_block"
+          value={`Hello, I am some *Markdown*
+<p>I contain some *evil* HTML!</p>
+<img src="asd" onerror="alert('evil code!')"/>
+<span/><span> <-- These "/" get messed up when language='text' :/`}
+          showLineNumbers={false}
+          {...props}
+        />
+      </div>
+    );
+  });
