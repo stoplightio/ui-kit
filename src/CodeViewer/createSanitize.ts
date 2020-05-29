@@ -27,5 +27,5 @@ export const createSanitize = (sanitizeConfig: DOMPurify.Config) => {
     }
   });
 
-  return (source: string) => sanitizer.sanitize(source, sanitizeConfig);
+  return (source: string) => sanitizer.sanitize(source, sanitizeConfig) as string;
 };
