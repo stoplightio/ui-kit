@@ -1,5 +1,4 @@
 import * as refractor from 'refractor/core';
-import markdown = require('refractor/lang/markdown');
 
 import { parseCode } from '../parseCode';
 
@@ -57,7 +56,7 @@ describe('parseCode util', () => {
     const code = 'foo()';
     const language = 'javscript';
     const result = { type: 'element', tagName: 'span', children: [], properties: {} };
-    refractor.highlight.mockReturnValue(result);
+    (refractor.highlight as jest.Mock).mockReturnValue(result);
 
     expect(parseCode(code, language)).toBe(result);
     expect(refractor.highlight).toHaveBeenCalledWith(code, language);
@@ -66,7 +65,7 @@ describe('parseCode util', () => {
   it('fall backs to plain text parsing if refractor highlighting fails', () => {
     const code = 'foo()';
     const language = 'javscript';
-    refractor.highlight.mockImplementation(() => {
+    (refractor.highlight as jest.Mock).mockImplementation(() => {
       throw new Error();
     });
 
