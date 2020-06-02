@@ -86,6 +86,7 @@
     "@types/react-tabs": "^2.3.1",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.1",
+    "@types/refractor": "^2.8.0",
     "@types/yup": "~0.26.27",
     "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",

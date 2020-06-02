@@ -1,9 +1,9 @@
 import { createElement, ReactNode } from 'react';
-import { ASTNode } from '../types';
+import { RefractorNode } from 'refractor/core';
 
 // based on https://github.com/rexxars/react-lowlight/blob/master/src/mapChildren.js
-function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
-  if (child.tagName) {
+function mapChild(child: RefractorNode, i: number, depth: number): ReactNode {
+  if ('tagName' in child) {
     return createElement(
       child.tagName,
       {
@@ -19,7 +19,7 @@ function mapChild(child: ASTNode, i: number, depth: number): ReactNode {
 }
 
 export function astToReact(depth: number = 0) {
-  return function mapChildrenWithDepth(child: ASTNode, i: number) {
+  return function mapChildrenWithDepth(child: RefractorNode, i: number) {
     return mapChild(child, i, depth);
   };
 }

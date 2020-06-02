@@ -15,8 +15,8 @@ export * from './classes';
 /**
  * COMPONENTS
  */
-export * from './CodeEditor';
-export * from './CodeViewer';
+export * from './Code/CodeEditor';
+export * from './Code/CodeViewer';
 export * from './FormButton';
 export * from './FormError';
 export * from './FormInput';

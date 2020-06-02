@@ -12,7 +12,7 @@ const languageMaps: { [from: string]: string } = {
 /**
  * CODE VIEWER
  */
-interface ICodeViewerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ICodeViewerProps extends React.HTMLAttributes<HTMLPreElement> {
   value: string;
   language?: string;
   showLineNumbers?: boolean;
@@ -51,7 +51,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
         isInline: inline,
         showLineNumbers,
       })}
-      {...(rest as React.HTMLAttributes<HTMLPreElement>)}
+      {...rest}
     >
       {markup ? markup.map(astToReact()) : value}
     </pre>

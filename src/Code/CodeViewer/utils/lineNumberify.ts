@@ -1,5 +1,5 @@
 // based on https://github.com/FormidableLabs/prism-react-renderer
-import { ASTNode } from '../types';
+import { AST, RefractorNode } from 'refractor/core';
 
 const newLineRegex = /\n/g;
 function getNewLines(str: string) {
@@ -11,22 +11,22 @@ function createLineElement({
   lineNumber,
   className,
 }: {
-  children: ASTNode[];
+  children: RefractorNode[];
   lineNumber?: number;
   className?: string[];
-}): ASTNode {
+}): AST.Element {
   return {
     type: 'element',
     tagName: 'span',
     properties: {
-      className: lineNumber === undefined ? className : ['line-number'],
+      className: lineNumber === void 0 ? className : ['line-number'],
     },
     children,
   };
 }
 
-function flattenCodeTree(tree: ASTNode[], className: string[] = []): ASTNode[] {
-  const newTree: ASTNode[] = [];
+function flattenCodeTree(tree: RefractorNode[], className: string[] = []): AST.Element[] {
+  const newTree: AST.Element[] = [];
   for (const node of tree) {
     if (node.type === 'text') {
       newTree.push(
@@ -35,8 +35,8 @@ function flattenCodeTree(tree: ASTNode[], className: string[] = []): ASTNode[] {
           className,
         }),
       );
-    } else if (node.children) {
-      const classNames = className.concat(node.properties!.className);
+    } else if (node.children && node.properties.className !== void 0) {
+      const classNames = className.concat(node.properties.className);
       newTree.push(...flattenCodeTree(node.children, classNames));
     }
   }
@@ -44,7 +44,7 @@ function flattenCodeTree(tree: ASTNode[], className: string[] = []): ASTNode[] {
   return newTree;
 }
 
-export function lineNumberify(codeTree: ASTNode[]) {
+export function lineNumberify(codeTree: RefractorNode[]): RefractorNode[] {
   const tree = flattenCodeTree(codeTree);
   const newTree = [];
   let lastLineBreakIndex = -1;
@@ -52,14 +52,14 @@ export function lineNumberify(codeTree: ASTNode[]) {
 
   while (index < tree.length) {
     const node = tree[index];
-    const value = node.children![0].value!;
+    const value = (node.children![0] as AST.Text).value!;
     const newLines = getNewLines(value);
 
     if (newLines) {
       const splitValue = value.split('\n');
       splitValue.forEach((text, i) => {
         const lineNumber = newTree.length + 1;
-        const newChild = { type: 'text', value: `${text}\n` };
+        const newChild: AST.Text = { type: 'text', value: `${text}\n` };
 
         if (i === 0) {
           const children = tree.slice(lastLineBreakIndex + 1, index).concat(
@@ -72,7 +72,7 @@ export function lineNumberify(codeTree: ASTNode[]) {
         } else if (i === splitValue.length - 1) {
           const stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children![0];
           if (stringChild) {
-            const lastLineInPreviousSpan = { type: 'text', value: `${text}` };
+            const lastLineInPreviousSpan: AST.Text = { type: 'text', value: `${text}` };
             const newElem = createLineElement({
               children: [lastLineInPreviousSpan],
               className: node.properties!.className,
