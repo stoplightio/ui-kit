@@ -1,7 +1,7 @@
 import * as cn from 'classnames';
 import * as React from 'react';
 
-import { Classes } from '../../classes';
+import { Classes } from '../classes';
 import { astToReact } from './utils/astToReact';
 import { parseCode } from './utils/parseCode';
 

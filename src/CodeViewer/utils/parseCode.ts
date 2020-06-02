@@ -22,6 +22,7 @@ refractor.register(require('refractor/lang/php'));
 refractor.register(require('refractor/lang/powershell'));
 refractor.register(require('refractor/lang/protobuf'));
 refractor.register(require('refractor/lang/python'));
+refractor.register(require('refractor/lang/ruby'));
 refractor.register(require('refractor/lang/sql'));
 refractor.register(require('refractor/lang/swift'));
 refractor.register(require('refractor/lang/typescript'));
