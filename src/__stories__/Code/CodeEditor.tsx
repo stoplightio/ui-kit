@@ -4,7 +4,7 @@ import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { CodeEditor, ICodeEditorProps } from '../../CodeEditor';
+import { CodeEditor, ICodeEditorProps } from '../../Code/CodeEditor';
 
 const store = new Store({
   value: 'stoplight.uiKit();',

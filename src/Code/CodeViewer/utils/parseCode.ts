@@ -1,5 +1,5 @@
-// @ts-ignore
-import * as refractor from 'refractor';
+import * as refractor from 'refractor/core';
+import '../../CodeEditor/utils/languages';
 import { lineNumberify } from './lineNumberify';
 
 function parsePlainText(code: string) {

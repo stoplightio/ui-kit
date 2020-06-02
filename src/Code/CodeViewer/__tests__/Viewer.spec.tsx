@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { CodeViewer } from '..';
+import { CodeViewer } from '../index';
 import { astToReact } from '../utils/astToReact';
 import { parseCode } from '../utils/parseCode';
 

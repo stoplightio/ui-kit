@@ -1,12 +1,13 @@
-// @ts-ignore
-import * as refractor from 'refractor';
+import * as refractor from 'refractor/core';
+import markdown = require('refractor/lang/markdown');
+
 import { parseCode } from '../parseCode';
 
-jest.mock('refractor');
+jest.mock('refractor/core');
 
 describe('parseCode util', () => {
   afterEach(() => {
-    refractor.highlight.mockReset();
+    (refractor.highlight as jest.Mock).mockReset();
   });
 
   it('produces basic AST of if language is falsy', () => {
