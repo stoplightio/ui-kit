@@ -36,24 +36,22 @@ export type ITableOfContentsLink = TableOfContentsItem & {
   isExternalLink?: boolean;
 };
 
-export type RowRendererType<T extends TableOfContentsItem> = (props: {
+export type RowComponentProps<T extends TableOfContentsItem> = {
   item: T;
-  key: number | string;
-  getProps: (
-    node: ITableOfContentsNode,
-  ) => {
-    onClick: ((e: React.MouseEvent<any, MouseEvent>) => void) | undefined;
-    style: React.CSSProperties;
-    className: string;
-  };
-  DefaultRow: React.FC<ITableOfContentsNode<T>>;
-}) => React.ReactElement | undefined;
+  index: number;
+  isExpanded: boolean;
+  toggleExpanded: () => void;
+};
+
+export type RowComponentType<T extends TableOfContentsItem> = React.ComponentType<RowComponentProps<T>>;
 
 export interface ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem> {
   contents: T[];
 
-  // Caller should return undefined if they don't want to provide custom elem
-  rowRenderer?: RowRendererType<T>;
+  /**
+   * Optionally customize how a row is rendered. Defaults to `DefaultRow`.
+   */
+  rowComponent?: RowComponentType<T>;
 
   // Padding that will be used for (default: 10)
   padding?: string;
@@ -63,10 +61,6 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
    * HTML data-test attribute to be set on the container div.
    */
   'data-test'?: string;
-
-  // force items to render with active or selected if either is true.
-  // for example if forceStateStyle=active, then if an item isSelected or isActive is true, will render with active styling
-  forceStateStyle?: 'active' | 'selected';
 
   // Title of project
   title?: string;
@@ -100,9 +94,8 @@ const useRenderWithScroll = () => {
 function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsItem>({
   className,
   contents,
-  rowRenderer,
-  forceStateStyle,
-}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowRenderer' | 'forceStateStyle'>) {
+  rowComponent: RowComponent = DefaultRow,
+}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowComponent'>) {
   const [expanded, setExpanded] = React.useState({});
 
   // expand ancestors of active items by default
@@ -130,62 +123,17 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
           }
         }
 
-        const isGroup = item.type === 'group';
-        const isDivider = item.type === 'divider';
         const isExpanded = expanded[index];
-        const onClick = (e: React.MouseEvent) => {
-          if (item.isDisabled) {
-            e.preventDefault();
-            return;
-          }
-          if (item.onClick) {
-            item.onClick();
-          }
 
-          if (isDivider) {
-            e.preventDefault();
-            return;
-          }
-
-          if (!isGroup) return;
-
-          e.preventDefault();
-          setExpanded({ ...expanded, [String(index)]: !isExpanded });
-        };
-
-        let elem;
-        if (rowRenderer) {
-          elem = rowRenderer({
-            item,
-            key: index,
-            getProps: computeTableOfContentsItemProps,
-            DefaultRow: props => (
-              <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
-                <TableOfContentsItemInner
-                  {...props}
-                  forceStateStyle={forceStateStyle}
-                  isExpanded={isExpanded}
-                  onClick={onClick}
-                />
-              </div>
-            ),
-          });
-        }
-
-        if (!elem) {
-          elem = (
-            <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
-              <TableOfContentsItemInner
-                key={index}
-                item={item}
-                forceStateStyle={forceStateStyle}
-                isExpanded={isExpanded}
-              />
-            </div>
-          );
-        }
-
-        return elem;
+        return (
+          <RowComponent
+            key={index}
+            item={item}
+            index={index}
+            isExpanded={isExpanded}
+            toggleExpanded={() => setExpanded({ ...expanded, [String(index)]: !isExpanded })}
+          />
+        );
       })}
     </div>
   );
@@ -249,29 +197,20 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   return comp;
 }
 
-interface ITableOfContentsNode<T extends TableOfContentsItem = TableOfContentsItem> {
-  item: T;
-  isSelected?: boolean;
-  isActive?: boolean;
-  forceStateStyle?: 'active' | 'selected';
-  isExpanded?: boolean;
-  isDisabled?: boolean;
-  onClick?: (e: React.MouseEvent<any, MouseEvent>) => void;
-}
-
 const computeTableOfContentsItemProps = <T extends TableOfContentsItem>({
   item,
-  isSelected: _isSelected,
-  isActive: _isActive,
   onClick,
-}: ITableOfContentsNode<T>) => {
+}: {
+  item: T;
+  onClick: ((e: React.MouseEvent) => void) | undefined;
+}) => {
   const depth = item.depth || 0;
   const isChild = item.type !== 'group' && depth > 0;
   const isGroup = item.type === 'group';
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
-  const isSelected = !showSkeleton && (_isSelected || item.isSelected);
-  const isActive = !showSkeleton && (_isActive || item.isActive);
+  const isSelected = !showSkeleton && item.isSelected;
+  const isActive = !showSkeleton && item.isActive;
 
   return {
     onClick: showSkeleton ? undefined : onClick,
@@ -289,34 +228,18 @@ const computeTableOfContentsItemProps = <T extends TableOfContentsItem>({
   };
 };
 
-const TableOfContentsItemInner = ({
-  item,
-  onClick,
-  isSelected: _isSelected,
-  isActive: _isActive,
-  isDisabled: _isDisabled,
-  forceStateStyle,
-  isExpanded,
-}: ITableOfContentsNode) => {
+export const DefaultRow: RowComponentType<any> = ({ item, isExpanded, toggleExpanded }) => {
   const isGroup = item.type === 'group';
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
-  let isSelected = _isSelected || item.isSelected;
-  let isActive = _isActive || item.isActive;
-  const isDisabled = _isDisabled || item.isDisabled;
+  let isSelected = item.isSelected;
+  let isActive = item.isActive;
+  const isDisabled = item.isDisabled;
 
   let icon = item.icon;
   if (isActive || isSelected) {
     if (item.activeIcon) {
       icon = item.activeIcon;
-    }
-
-    if (forceStateStyle === 'active') {
-      isActive = true;
-      isSelected = false;
-    } else if (forceStateStyle === 'selected') {
-      isActive = false;
-      isSelected = true;
     }
   }
 
@@ -325,10 +248,32 @@ const TableOfContentsItemInner = ({
     isSelected = false;
   }
 
+  const onClick = showSkeleton
+    ? undefined
+    : (e: React.MouseEvent) => {
+        if (item.isDisabled) {
+          e.preventDefault();
+          return;
+        }
+        if (item.onClick) {
+          item.onClick();
+        }
+
+        if (isDivider) {
+          e.preventDefault();
+          return;
+        }
+
+        if (!isGroup) return;
+
+        e.preventDefault();
+        toggleExpanded();
+      };
+
   const className = cn(
     'TableOfContentsItem__inner relative flex flex-col justify-center border-transparent border-l-4',
     {
-      'cursor-pointer': (item.onClick || onClick) && !showSkeleton && !isDisabled,
+      'cursor-pointer': onClick && !isDisabled,
       'cursor-not-allowed': isDisabled,
       'dark-hover:bg-lighten-2 hover:bg-darken-2':
         !isDisabled && !isDivider && !isSelected && !isActive && !showSkeleton,
@@ -367,27 +312,32 @@ const TableOfContentsItemInner = ({
   }
 
   return (
-    <div className={cn('-ml-px', className, { 'opacity-75': isDisabled })}>
-      <div className="flex flex-row items-center">
-        {icon && (
-          <FAIcon
-            className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
-            icon={icon}
-          />
-        )}
+    <div {...computeTableOfContentsItemProps({ item, onClick })}>
+      <div className={cn('-ml-px', className, { 'opacity-75': isDisabled })}>
+        <div className="flex flex-row items-center">
+          {icon && (
+            <FAIcon
+              className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
+              icon={icon}
+            />
+          )}
 
-        <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
-          {item.name}
-        </span>
+          <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
+            {item.name}
+          </span>
 
-        {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
-        {loadingElem}
-        {actionElem}
-        {isGroup && (
-          <FAIcon className="TableOfContentsItem__icon" icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']} />
-        )}
+          {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
+          {loadingElem}
+          {actionElem}
+          {isGroup && (
+            <FAIcon
+              className="TableOfContentsItem__icon"
+              icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']}
+            />
+          )}
+        </div>
+        {item.footer}
       </div>
-      {item.footer}
     </div>
   );
 };
