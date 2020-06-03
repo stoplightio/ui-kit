@@ -212,20 +212,13 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
   const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
-  let isSelected = item.isSelected;
-  let isActive = item.isActive;
+  const isSelected = item.isSelected && !showSkeleton;
+  const isActive = item.isActive && !showSkeleton;
   const isDisabled = item.isDisabled;
 
   let icon = item.icon;
-  if (isActive || isSelected) {
-    if (item.activeIcon) {
-      icon = item.activeIcon;
-    }
-  }
-
-  if (showSkeleton) {
-    isActive = false;
-    isSelected = false;
+  if (item.activeIcon && (isActive || isSelected)) {
+    icon = item.activeIcon;
   }
 
   const onClick = showSkeleton
@@ -269,36 +262,31 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
       'dark:text-white bg-darken-2 dark:bg-lighten-2': isSelected || isActive,
       'text-gray-7 dark:text-white': isActive,
       'border-primary text-blue-6': isSelected,
-
       'text-gray-6 dark:text-gray-6 font-semibold h-10': isDivider,
       'text-gray-5 dark:text-gray-5 hover:text-gray-6': !isDivider && !isSelected && !isActive,
     },
   );
 
-  let loadingElem;
-  if (item.isLoading) {
-    loadingElem = <FAIcon icon={['far', 'spinner-third']} className="fa-spin text-gray-7 ml-2" />;
-  }
+  const loadingElem = item.isLoading ? (
+    <FAIcon icon={['far', 'spinner-third']} className="fa-spin text-gray-7 ml-2" />
+  ) : null;
 
-  let actionElem;
-  if (item.action) {
-    actionElem = (
-      <Button
-        icon={
-          item.action.icon ? (
-            <FAIcon icon={item.action.icon} className={cn({ 'text-gray-5': !item.action.isActive })} />
-          ) : undefined
-        }
-        text={item.action.name}
-        onClick={showSkeleton ? undefined : item.action.onClick}
-        active={item.action.isActive}
-        intent={item.action.isActive ? 'primary' : undefined}
-        className="ml-2"
-        minimal
-        small
-      />
-    );
-  }
+  const actionElem = item.action ? (
+    <Button
+      icon={
+        item.action.icon ? (
+          <FAIcon icon={item.action.icon} className={cn({ 'text-gray-5': !item.action.isActive })} />
+        ) : undefined
+      }
+      text={item.action.name}
+      onClick={showSkeleton ? undefined : item.action.onClick}
+      active={item.action.isActive}
+      intent={item.action.isActive ? 'primary' : undefined}
+      className="ml-2"
+      minimal
+      small
+    />
+  ) : null;
 
   return (
     <div onClick={onClick} className={outerClassName} style={{ marginLeft: (item.depth ?? 0) * 24 }}>
