@@ -197,39 +197,9 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   return comp;
 }
 
-const computeTableOfContentsItemProps = <T extends TableOfContentsItem>({
-  item,
-  onClick,
-}: {
-  item: T;
-  onClick: ((e: React.MouseEvent) => void) | undefined;
-}) => {
-  const depth = item.depth || 0;
-  const isChild = item.type !== 'group' && depth > 0;
+export function DefaultRow<T extends TableOfContentsItem>({ item, isExpanded, toggleExpanded }: RowComponentProps<T>) {
   const isGroup = item.type === 'group';
-  const isDivider = item.type === 'divider';
-  const showSkeleton = item.showSkeleton;
-  const isSelected = !showSkeleton && item.isSelected;
-  const isActive = !showSkeleton && item.isActive;
-
-  return {
-    onClick: showSkeleton ? undefined : onClick,
-    className: cn('TableOfContentsItem border-transparent', item.className, {
-      'border-l': !isGroup,
-      'TableOfContentsItem--selected': isActive,
-      'TableOfContentsItem--active': isSelected,
-      'TableOfContentsItem--group': isGroup,
-      'TableOfContentsItem--divider': isDivider,
-      'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
-    }),
-    style: {
-      marginLeft: depth * 24,
-    },
-  };
-};
-
-export const DefaultRow: RowComponentType<any> = ({ item, isExpanded, toggleExpanded }) => {
-  const isGroup = item.type === 'group';
+  const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
   let isSelected = item.isSelected;
@@ -270,7 +240,16 @@ export const DefaultRow: RowComponentType<any> = ({ item, isExpanded, toggleExpa
         toggleExpanded();
       };
 
-  const className = cn(
+  const outerClassName = cn('TableOfContentsItem border-transparent', item.className, {
+    'border-l': !isGroup,
+    'TableOfContentsItem--selected': isActive,
+    'TableOfContentsItem--active': isSelected,
+    'TableOfContentsItem--group': isGroup,
+    'TableOfContentsItem--divider': isDivider,
+    'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
+  });
+
+  const innerClassName = cn(
     'TableOfContentsItem__inner relative flex flex-col justify-center border-transparent border-l-4',
     {
       'cursor-pointer': onClick && !isDisabled,
@@ -312,8 +291,8 @@ export const DefaultRow: RowComponentType<any> = ({ item, isExpanded, toggleExpa
   }
 
   return (
-    <div {...computeTableOfContentsItemProps({ item, onClick })}>
-      <div className={cn('-ml-px', className, { 'opacity-75': isDisabled })}>
+    <div onClick={onClick} className={outerClassName} style={{ marginLeft: (item.depth ?? 0) * 24 }}>
+      <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
         <div className="flex flex-row items-center">
           {icon && (
             <FAIcon
@@ -340,7 +319,7 @@ export const DefaultRow: RowComponentType<any> = ({ item, isExpanded, toggleExpa
       </div>
     </div>
   );
-};
+}
 
 /**
  * Traverses contents backwards to find the first index with a lower depth
