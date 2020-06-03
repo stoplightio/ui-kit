@@ -1,6 +1,6 @@
 import { Button, Drawer, InputGroup } from '@blueprintjs/core';
 import cn from 'classnames';
-import { flatMap } from 'lodash';
+import { flatMap, range } from 'lodash';
 import * as React from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
@@ -98,6 +98,16 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
 }: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowComponent'>) {
   const [expanded, setExpanded] = React.useState({});
 
+  // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
+  const toggleExpandedFunctions = React.useMemo(() => {
+    return range(contents.length).map(i => () =>
+      setExpanded(current => ({
+        ...current,
+        [i]: !current[i],
+      })),
+    );
+  }, [contents.length]);
+
   // expand ancestors of active items by default
   React.useEffect(() => {
     const activeItems = contents.filter(item => item.isActive);
@@ -131,7 +141,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
             item={item}
             index={index}
             isExpanded={isExpanded}
-            toggleExpanded={() => setExpanded({ ...expanded, [String(index)]: !isExpanded })}
+            toggleExpanded={toggleExpandedFunctions[index]}
           />
         );
       })}
@@ -197,7 +207,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   return comp;
 }
 
-export function DefaultRow<T extends TableOfContentsItem>({ item, isExpanded, toggleExpanded }: RowComponentProps<T>) {
+function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggleExpanded }: RowComponentProps<T>) {
   const isGroup = item.type === 'group';
   const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
@@ -320,6 +330,9 @@ export function DefaultRow<T extends TableOfContentsItem>({ item, isExpanded, to
     </div>
   );
 }
+DefaultRowImpl.displayName = 'DefaultRow';
+
+export const DefaultRow = React.memo(DefaultRowImpl);
 
 /**
  * Traverses contents backwards to find the first index with a lower depth
