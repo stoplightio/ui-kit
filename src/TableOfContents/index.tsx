@@ -26,6 +26,7 @@ export type TableOfContentsItem = {
     icon?: FAIconProp;
     name?: string;
     isActive?: boolean;
+    hidden?: boolean;
     onClick: any;
   };
 };
@@ -359,7 +360,9 @@ const TableOfContentsItemInner = ({
         onClick={showSkeleton ? undefined : item.action.onClick}
         active={item.action.isActive}
         intent={item.action.isActive ? 'primary' : undefined}
-        className="ml-2"
+        className={cn('ml-2', {
+          invisible: item.action.hidden,
+        })}
         minimal
         small
       />
