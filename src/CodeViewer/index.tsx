@@ -1,10 +1,9 @@
-import 'prismjs';
-
 import * as cn from 'classnames';
 import * as React from 'react';
 
 import { Classes } from '../classes';
-import { highlightCode } from '../CodeEditor/utils/highlightCode';
+import { astToReact } from './utils/astToReact';
+import { parseCode } from './utils/parseCode';
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',
@@ -13,7 +12,7 @@ const languageMaps: { [from: string]: string } = {
 /**
  * CODE VIEWER
  */
-interface ICodeViewerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ICodeViewerProps extends React.HTMLAttributes<HTMLPreElement> {
   value: string;
   language?: string;
   showLineNumbers?: boolean;
@@ -28,9 +27,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   className,
   ...rest
 }) => {
-  const lang = (language && languageMaps[language]) || language || '';
-
-  const code = React.useMemo(() => highlightCode(value, lang, showLineNumbers), [value, lang, showLineNumbers]);
+  const lang = (language && languageMaps[language]) || language;
 
   if (inline) {
     return (
@@ -40,10 +37,13 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
           [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
         })}
         {...rest}
-        dangerouslySetInnerHTML={{ __html: code }}
-      />
+      >
+        {value}
+      </code>
     );
   }
+
+  const markup = parseCode(value, lang, showLineNumbers);
 
   return (
     <pre
@@ -51,9 +51,10 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
         [`${Classes.CODE_EDITOR}--inline`]: inline,
         [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
       })}
-      {...(rest as React.HTMLAttributes<HTMLPreElement>)}
-      dangerouslySetInnerHTML={{ __html: code }}
-    />
+      {...rest}
+    >
+      {markup ? markup.map(astToReact()) : value}
+    </pre>
   );
 };
 

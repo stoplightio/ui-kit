@@ -1,0 +1,66 @@
+[
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "function"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": "fn"
+      }
+    ]
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "punctuation"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": "("
+      }
+    ]
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "punctuation"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": ")"
+      }
+    ]
+  },
+  {
+    "type": "element",
+    "tagName": "span",
+    "properties": {
+      "className": [
+        "token",
+        "punctuation"
+      ]
+    },
+    "children": [
+      {
+        "type": "text",
+        "value": ";"
+      }
+    ]
+  }
+]
