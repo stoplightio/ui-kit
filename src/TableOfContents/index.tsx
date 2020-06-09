@@ -1,6 +1,6 @@
 import { Button, Drawer, InputGroup } from '@blueprintjs/core';
 import cn from 'classnames';
-import { flatMap } from 'lodash';
+import { flatMap, range } from 'lodash';
 import * as React from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
@@ -36,24 +36,22 @@ export type ITableOfContentsLink = TableOfContentsItem & {
   isExternalLink?: boolean;
 };
 
-export type RowRendererType<T extends TableOfContentsItem> = (props: {
+export type RowComponentProps<T extends TableOfContentsItem> = {
   item: T;
-  key: number | string;
-  getProps: (
-    node: ITableOfContentsNode,
-  ) => {
-    onClick: ((e: React.MouseEvent<any, MouseEvent>) => void) | undefined;
-    style: React.CSSProperties;
-    className: string;
-  };
-  DefaultRow: React.FC<ITableOfContentsNode<T>>;
-}) => React.ReactElement | undefined;
+  index: number;
+  isExpanded: boolean;
+  toggleExpanded: () => void;
+};
+
+export type RowComponentType<T extends TableOfContentsItem> = React.ComponentType<RowComponentProps<T>>;
 
 export interface ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem> {
   contents: T[];
 
-  // Caller should return undefined if they don't want to provide custom elem
-  rowRenderer?: RowRendererType<T>;
+  /**
+   * Optionally customize how a row is rendered. Defaults to `DefaultRow`.
+   */
+  rowComponent?: RowComponentType<T>;
 
   // Padding that will be used for (default: 10)
   padding?: string;
@@ -63,10 +61,6 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
    * HTML data-test attribute to be set on the container div.
    */
   'data-test'?: string;
-
-  // force items to render with active or selected if either is true.
-  // for example if forceStateStyle=active, then if an item isSelected or isActive is true, will render with active styling
-  forceStateStyle?: 'active' | 'selected';
 
   // Title of project
   title?: string;
@@ -100,10 +94,19 @@ const useRenderWithScroll = () => {
 function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsItem>({
   className,
   contents,
-  rowRenderer,
-  forceStateStyle,
-}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowRenderer' | 'forceStateStyle'>) {
+  rowComponent: RowComponent = DefaultRow,
+}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowComponent'>) {
   const [expanded, setExpanded] = React.useState({});
+
+  // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
+  const toggleExpandedFunctions = React.useMemo(() => {
+    return range(contents.length).map(i => () =>
+      setExpanded(current => ({
+        ...current,
+        [i]: !current[i],
+      })),
+    );
+  }, [contents.length]);
 
   // expand ancestors of active items by default
   React.useEffect(() => {
@@ -130,62 +133,17 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
           }
         }
 
-        const isGroup = item.type === 'group';
-        const isDivider = item.type === 'divider';
         const isExpanded = expanded[index];
-        const onClick = (e: React.MouseEvent) => {
-          if (item.isDisabled) {
-            e.preventDefault();
-            return;
-          }
-          if (item.onClick) {
-            item.onClick();
-          }
 
-          if (isDivider) {
-            e.preventDefault();
-            return;
-          }
-
-          if (!isGroup) return;
-
-          e.preventDefault();
-          setExpanded({ ...expanded, [String(index)]: !isExpanded });
-        };
-
-        let elem;
-        if (rowRenderer) {
-          elem = rowRenderer({
-            item,
-            key: index,
-            getProps: computeTableOfContentsItemProps,
-            DefaultRow: props => (
-              <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
-                <TableOfContentsItemInner
-                  {...props}
-                  forceStateStyle={forceStateStyle}
-                  isExpanded={isExpanded}
-                  onClick={onClick}
-                />
-              </div>
-            ),
-          });
-        }
-
-        if (!elem) {
-          elem = (
-            <div key={index} {...computeTableOfContentsItemProps({ item, onClick })}>
-              <TableOfContentsItemInner
-                key={index}
-                item={item}
-                forceStateStyle={forceStateStyle}
-                isExpanded={isExpanded}
-              />
-            </div>
-          );
-        }
-
-        return elem;
+        return (
+          <RowComponent
+            key={index}
+            item={item}
+            index={index}
+            isExpanded={isExpanded}
+            toggleExpanded={toggleExpandedFunctions[index]}
+          />
+        );
       })}
     </div>
   );
@@ -249,148 +207,120 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   return comp;
 }
 
-interface ITableOfContentsNode<T extends TableOfContentsItem = TableOfContentsItem> {
-  item: T;
-  isSelected?: boolean;
-  isActive?: boolean;
-  forceStateStyle?: 'active' | 'selected';
-  isExpanded?: boolean;
-  isDisabled?: boolean;
-  onClick?: (e: React.MouseEvent<any, MouseEvent>) => void;
-}
-
-const computeTableOfContentsItemProps = <T extends TableOfContentsItem>({
-  item,
-  isSelected: _isSelected,
-  isActive: _isActive,
-  onClick,
-}: ITableOfContentsNode<T>) => {
-  const depth = item.depth || 0;
-  const isChild = item.type !== 'group' && depth > 0;
+function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggleExpanded }: RowComponentProps<T>) {
   const isGroup = item.type === 'group';
+  const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
-  const isSelected = !showSkeleton && (_isSelected || item.isSelected);
-  const isActive = !showSkeleton && (_isActive || item.isActive);
-
-  return {
-    onClick: showSkeleton ? undefined : onClick,
-    className: cn('TableOfContentsItem border-transparent', item.className, {
-      'border-l': !isGroup,
-      'TableOfContentsItem--selected': isActive,
-      'TableOfContentsItem--active': isSelected,
-      'TableOfContentsItem--group': isGroup,
-      'TableOfContentsItem--divider': isDivider,
-      'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
-    }),
-    style: {
-      marginLeft: depth * 24,
-    },
-  };
-};
-
-const TableOfContentsItemInner = ({
-  item,
-  onClick,
-  isSelected: _isSelected,
-  isActive: _isActive,
-  isDisabled: _isDisabled,
-  forceStateStyle,
-  isExpanded,
-}: ITableOfContentsNode) => {
-  const isGroup = item.type === 'group';
-  const isDivider = item.type === 'divider';
-  const showSkeleton = item.showSkeleton;
-  let isSelected = _isSelected || item.isSelected;
-  let isActive = _isActive || item.isActive;
-  const isDisabled = _isDisabled || item.isDisabled;
+  const isSelected = item.isSelected && !showSkeleton;
+  const isActive = item.isActive && !showSkeleton;
+  const isDisabled = item.isDisabled;
 
   let icon = item.icon;
-  if (isActive || isSelected) {
-    if (item.activeIcon) {
-      icon = item.activeIcon;
-    }
-
-    if (forceStateStyle === 'active') {
-      isActive = true;
-      isSelected = false;
-    } else if (forceStateStyle === 'selected') {
-      isActive = false;
-      isSelected = true;
-    }
+  if (item.activeIcon && (isActive || isSelected)) {
+    icon = item.activeIcon;
   }
 
-  if (showSkeleton) {
-    isActive = false;
-    isSelected = false;
-  }
+  const onClick = showSkeleton
+    ? undefined
+    : (e: React.MouseEvent) => {
+        if (item.isDisabled) {
+          e.preventDefault();
+          return;
+        }
+        if (item.onClick) {
+          item.onClick();
+        }
 
-  const className = cn(
+        if (isDivider) {
+          e.preventDefault();
+          return;
+        }
+
+        if (!isGroup) return;
+
+        e.preventDefault();
+        toggleExpanded();
+      };
+
+  const outerClassName = cn('TableOfContentsItem border-transparent', item.className, {
+    'border-l': !isGroup,
+    'TableOfContentsItem--selected': isActive,
+    'TableOfContentsItem--active': isSelected,
+    'TableOfContentsItem--group': isGroup,
+    'TableOfContentsItem--divider': isDivider,
+    'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
+  });
+
+  const innerClassName = cn(
     'TableOfContentsItem__inner relative flex flex-col justify-center border-transparent border-l-4',
     {
-      'cursor-pointer': (item.onClick || onClick) && !showSkeleton && !isDisabled,
+      'cursor-pointer': onClick && !isDisabled,
       'cursor-not-allowed': isDisabled,
       'dark-hover:bg-lighten-2 hover:bg-darken-2':
         !isDisabled && !isDivider && !isSelected && !isActive && !showSkeleton,
       'dark:text-white bg-darken-2 dark:bg-lighten-2': isSelected || isActive,
       'text-gray-7 dark:text-white': isActive,
       'border-primary text-blue-6': isSelected,
-
       'text-gray-6 dark:text-gray-6 font-semibold h-10': isDivider,
       'text-gray-5 dark:text-gray-5 hover:text-gray-6': !isDivider && !isSelected && !isActive,
     },
   );
 
-  let loadingElem;
-  if (item.isLoading) {
-    loadingElem = <FAIcon icon={['far', 'spinner-third']} className="fa-spin text-gray-7 ml-2" />;
-  }
+  const loadingElem = item.isLoading ? (
+    <FAIcon icon={['far', 'spinner-third']} className="fa-spin text-gray-7 ml-2" />
+  ) : null;
 
-  let actionElem;
-  if (item.action) {
-    actionElem = (
-      <Button
-        icon={
-          item.action.icon ? (
-            <FAIcon icon={item.action.icon} className={cn({ 'text-gray-5': !item.action.isActive })} />
-          ) : undefined
-        }
-        text={item.action.name}
-        onClick={showSkeleton ? undefined : item.action.onClick}
-        active={item.action.isActive}
-        intent={item.action.isActive ? 'primary' : undefined}
-        className="ml-2"
-        minimal
-        small
-      />
-    );
-  }
+  const actionElem = item.action ? (
+    <Button
+      icon={
+        item.action.icon ? (
+          <FAIcon icon={item.action.icon} className={cn({ 'text-gray-5': !item.action.isActive })} />
+        ) : undefined
+      }
+      text={item.action.name}
+      onClick={showSkeleton ? undefined : item.action.onClick}
+      active={item.action.isActive}
+      intent={item.action.isActive ? 'primary' : undefined}
+      className="ml-2"
+      minimal
+      small
+    />
+  ) : null;
 
   return (
-    <div className={cn('-ml-px', className, { 'opacity-75': isDisabled })}>
-      <div className="flex flex-row items-center">
-        {icon && (
-          <FAIcon
-            className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
-            icon={icon}
-          />
-        )}
+    <div onClick={onClick} className={outerClassName} style={{ marginLeft: (item.depth ?? 0) * 24 }}>
+      <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
+        <div className="flex flex-row items-center">
+          {icon && (
+            <FAIcon
+              className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
+              icon={icon}
+            />
+          )}
 
-        <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
-          {item.name}
-        </span>
+          <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
+            {item.name}
+          </span>
 
-        {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
-        {loadingElem}
-        {actionElem}
-        {isGroup && (
-          <FAIcon className="TableOfContentsItem__icon" icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']} />
-        )}
+          {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
+          {loadingElem}
+          {actionElem}
+          {isGroup && (
+            <FAIcon
+              className="TableOfContentsItem__icon"
+              icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']}
+            />
+          )}
+        </div>
+        {item.footer}
       </div>
-      {item.footer}
     </div>
   );
-};
+}
+DefaultRowImpl.displayName = 'DefaultRow';
+
+export const DefaultRow = React.memo(DefaultRowImpl);
 
 /**
  * Traverses contents backwards to find the first index with a lower depth

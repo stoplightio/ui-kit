@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { studioContents } from '../../__fixtures__/table-of-contents/studio';
-import { TableOfContents } from '../../TableOfContents';
+import { DefaultRow, ITableOfContentsLink, RowComponentType, TableOfContents } from '../../TableOfContents';
 
 const styles = {
   height: '100vh',
@@ -16,24 +16,14 @@ const styles = {
 
 storiesOf('TableOfContents', module)
   .addDecorator(withKnobs)
-  .add('studio', () => {
+  .add('studio /w custom RowComponent', () => {
     return (
       <div style={styles}>
-        <TableOfContents
-          className="h-full"
-          contents={studioContents}
-          rowRenderer={({ item, DefaultRow }) => {
-            return (
-              <a href={item.to}>
-                <DefaultRow item={item} />
-              </a>
-            );
-          }}
-        />
+        <TableOfContents className="h-full" contents={studioContents} rowComponent={RowComponent} />
       </div>
     );
   })
-  .add('studio without rowRenderer', () => {
+  .add('studio without rowComponent', () => {
     return (
       <div style={styles}>
         <TableOfContents className="h-full" contents={studioContents} />
@@ -56,14 +46,14 @@ const MobileStory = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         enableDrawer={1000}
-        rowRenderer={({ item, DefaultRow }) => {
-          return (
-            <a href={item.to}>
-              <DefaultRow item={item} />
-            </a>
-          );
-        }}
+        rowComponent={RowComponent}
       />
     </div>
   );
 };
+
+const RowComponent: RowComponentType<ITableOfContentsLink> = props => (
+  <a href={props.item.to}>
+    <DefaultRow {...props} />
+  </a>
+);
