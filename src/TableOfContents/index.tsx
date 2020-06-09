@@ -11,14 +11,12 @@ export type TableOfContentsItem = {
   className?: string;
   onClick?: () => void;
   depth?: number;
-  isSelected?: boolean;
   isActive?: boolean;
   meta?: React.ReactNode;
   footer?: React.ReactNode;
   type?: 'divider' | 'group' | 'item';
   icon?: FAIconProp;
   activeIcon?: FAIconProp;
-  iconColor?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
   showSkeleton?: boolean;
@@ -212,12 +210,11 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
   const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
-  const isSelected = item.isSelected && !showSkeleton;
   const isActive = item.isActive && !showSkeleton;
   const isDisabled = item.isDisabled;
 
   let icon = item.icon;
-  if (item.activeIcon && (isActive || isSelected)) {
+  if (item.activeIcon && isActive) {
     icon = item.activeIcon;
   }
 
@@ -245,8 +242,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
 
   const outerClassName = cn('TableOfContentsItem border-transparent', item.className, {
     'border-l': !isGroup,
-    'TableOfContentsItem--selected': isActive,
-    'TableOfContentsItem--active': isSelected,
+    'TableOfContentsItem--active': isActive,
     'TableOfContentsItem--group': isGroup,
     'TableOfContentsItem--divider': isDivider,
     'TableOfContentsItem--child border-gray-3 dark:border-lighten-3': isChild,
@@ -257,13 +253,11 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     {
       'cursor-pointer': onClick && !isDisabled,
       'cursor-not-allowed': isDisabled,
-      'dark-hover:bg-lighten-2 hover:bg-darken-2':
-        !isDisabled && !isDivider && !isSelected && !isActive && !showSkeleton,
-      'dark:text-white bg-darken-2 dark:bg-lighten-2': isSelected || isActive,
+      'dark-hover:bg-lighten-2 hover:bg-darken-2': !isDisabled && !isDivider && !isActive && !showSkeleton,
+      'dark:text-white bg-darken-2 dark:bg-lighten-2': isActive,
       'text-gray-7 dark:text-white': isActive,
-      'border-primary text-blue-6': isSelected,
       'text-gray-6 dark:text-gray-6 font-semibold h-10': isDivider,
-      'text-gray-5 dark:text-gray-5 hover:text-gray-6': !isDivider && !isSelected && !isActive,
+      'text-gray-5 dark:text-gray-5 hover:text-gray-6': !isDivider && !isActive,
     },
   );
 
@@ -292,12 +286,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     <div onClick={onClick} className={outerClassName} style={{ marginLeft: (item.depth ?? 0) * 24 }}>
       <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
         <div className="flex flex-row items-center">
-          {icon && (
-            <FAIcon
-              className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
-              icon={icon}
-            />
-          )}
+          {icon && <FAIcon className={cn('mr-3 fa-fw', { 'bp3-skeleton': item.showSkeleton })} icon={icon} />}
 
           <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
             {item.name}
