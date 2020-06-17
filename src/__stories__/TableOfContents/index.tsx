@@ -17,11 +17,7 @@ const styles = {
 storiesOf('TableOfContents', module)
   .addDecorator(withKnobs)
   .add('studio /w custom RowComponent', () => {
-    return (
-      <div style={styles}>
-        <TableOfContents className="h-full" contents={studioContents} rowComponent={RowComponent} />
-      </div>
-    );
+    return <CustomComponentStory />;
   })
   .add('studio without rowComponent', () => {
     return (
@@ -52,8 +48,42 @@ const MobileStory = () => {
   );
 };
 
-const RowComponent: RowComponentType<ITableOfContentsLink> = props => (
-  <a href={props.item.to}>
-    <DefaultRow {...props} />
-  </a>
-);
+const NavigationContext = React.createContext({ path: '', setPath: (_: string) => {} });
+
+const CustomComponentStory = () => {
+  const [path, setPath] = React.useState('');
+
+  const contextValue = React.useMemo(() => ({ path, setPath }), [path, setPath]);
+
+  const contentsWithDynamicIsActive = React.useMemo(() => {
+    return studioContents.map(c => ({ ...c, isActive: c.to === path }));
+  }, [path]);
+
+  return (
+    <NavigationContext.Provider value={contextValue}>
+      <div style={styles}>
+        <TableOfContents className="h-full" contents={contentsWithDynamicIsActive} rowComponent={RowComponent} />
+      </div>
+    </NavigationContext.Provider>
+  );
+};
+
+const RowComponent: RowComponentType<ITableOfContentsLink> = props => {
+  const { setPath } = React.useContext(NavigationContext);
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      if (props.item.to) {
+        setPath(props.item.to);
+      }
+      e.preventDefault();
+    },
+    [props.item.to, setPath],
+  );
+
+  return (
+    <a href={props.item.to} onClick={handleClick}>
+      <DefaultRow {...props} />
+    </a>
+  );
+};
