@@ -51,7 +51,7 @@ const MobileStory = () => {
 const NavigationContext = React.createContext({ path: '', setPath: (_: string) => {} });
 
 const CustomComponentStory = () => {
-  const [path, setPath] = React.useState('');
+  const [path, setPath] = React.useState('/reference/petstore/openapi.v1.yaml/paths/~1pets~1{petId}/get');
 
   const contextValue = React.useMemo(() => ({ path, setPath }), [path, setPath]);
 
