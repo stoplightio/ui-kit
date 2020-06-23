@@ -216,6 +216,14 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
   const isActive = item.isActive && !showSkeleton;
   const isDisabled = item.isDisabled;
 
+  const holderCallbackRef = React.useCallback((e: HTMLDivElement) => {
+    if (e && isActive) {
+      e.scrollIntoView({ block: 'center' });
+    }
+    // we only want this on initial render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   let icon = item.icon;
   if (item.activeIcon && (isActive || isSelected)) {
     icon = item.activeIcon;
@@ -289,7 +297,12 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
   ) : null;
 
   return (
-    <div onClick={onClick} className={outerClassName} style={{ marginLeft: (item.depth ?? 0) * 24 }}>
+    <div
+      onClick={onClick}
+      className={outerClassName}
+      style={{ marginLeft: (item.depth ?? 0) * 24 }}
+      ref={holderCallbackRef}
+    >
       <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
         <div className="flex flex-row items-center">
           {icon && (
