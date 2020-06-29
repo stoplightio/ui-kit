@@ -5,6 +5,7 @@ module.exports = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '\\.(css)$': '<rootDir>/__mocks__/styleMock.js',
+    'worker-loader!(.+)': '$1',
   },
   testPathIgnorePatterns: ['/node_modules/'],
 };

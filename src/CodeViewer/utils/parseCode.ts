@@ -55,15 +55,11 @@ function safeParse(code: string, language?: string): refractor.RefractorNode[] {
   return parsePlainText(code);
 }
 
-export function parseCode(code: string, language?: string, addLineNumbers?: boolean) {
-  try {
-    const ast = safeParse(code, language);
-    if (addLineNumbers) {
-      return lineNumberify(ast);
-    }
-
-    return ast;
-  } catch (ex) {
-    return null;
+export function parseCode(code: string, language?: string, addLineNumbers?: boolean): refractor.RefractorNode[] {
+  const ast = safeParse(code, language);
+  if (addLineNumbers) {
+    return lineNumberify(ast);
   }
+
+  return ast;
 }
