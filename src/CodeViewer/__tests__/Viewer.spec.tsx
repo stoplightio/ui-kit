@@ -2,10 +2,10 @@ import 'jest-enzyme';
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import CodeWorker from 'worker-loader!../worker/index.ts';
 
 import { CodeViewer } from '../index';
 import { astToReact } from '../utils/astToReact';
+import CodeWorker from '../worker';
 
 jest.mock('../utils/astToReact');
 jest.mock('../worker/', () => {

@@ -23,7 +23,7 @@
 
       &::before {
         counter-increment: line;
-        content: attr(data-line);
+        content: counter(line);
         display: inline-block;
         position: absolute;
         left: 5px;

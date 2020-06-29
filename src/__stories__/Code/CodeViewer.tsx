@@ -39,10 +39,10 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
 
 storiesOf('Code:Viewer', module)
   .addDecorator(withKnobs({ escapeHTML: false }))
-  .addDecorator(storyFn => <div style={{ height: '100vh' }}>{storyFn()}</div>)
+  .addDecorator(storyFn => <div className="h-screen">{storyFn()}</div>)
   .add('with defaults', () => <CodeViewer {...codeViewerKnobs()} />)
   .add('dark', () => (
-    <div className="bp3-dark">
+    <div className="bp3-dark h-full">
       <CodeViewer {...codeViewerKnobs()} />
     </div>
   ))
