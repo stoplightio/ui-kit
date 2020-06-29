@@ -1,18 +1,15 @@
 import { createElement, ReactNode } from 'react';
 import { RefractorNode } from 'refractor/core';
 
-import { Dictionary } from '../../types';
-
 // based on https://github.com/rexxars/react-lowlight/blob/master/src/mapChildren.js
-export function mapChild(child: RefractorNode, i: number, depth: number, attrs?: Dictionary<unknown>): ReactNode {
+function mapChild(child: RefractorNode, i: number, depth: number): ReactNode {
   if ('tagName' in child) {
     return createElement(
       child.tagName,
       {
         key: `cv-${depth}-${i}`,
         ...child.properties,
-        ...(child.properties?.className && { className: child.properties.className.join(' ') }),
-        ...attrs,
+        className: child.properties && (child.properties.className || []).join(' '),
       },
       child.children && child.children.map(astToReact(depth + 1)),
     );

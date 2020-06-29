@@ -37,7 +37,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
     if (currentWorker === null) return;
 
     currentWorker.onmessage = e => {
-      if (isParseCodeResponseMessage(e)) {
+      if (isParseCodeResponseMessage(e) && e.data.nodes !== null) {
         setMarkup(e.data.nodes);
       }
     };
@@ -79,22 +79,15 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
     );
   }
 
-  const actualClassName = cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
-    [`${Classes.CODE_EDITOR}--inline`]: inline,
-    [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
-  });
-
-  if (markup === null) {
-    return (
-      <pre className={actualClassName} {...rest}>
-        {value}
-      </pre>
-    );
-  }
-
   return (
-    <pre className={actualClassName} {...rest}>
-      {markup.map(astToReact())}
+    <pre
+      className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
+        [`${Classes.CODE_EDITOR}--inline`]: inline,
+        [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
+      })}
+      {...rest}
+    >
+      {markup === null ? value : markup.map(astToReact())}
     </pre>
   );
 };
