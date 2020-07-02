@@ -33,17 +33,19 @@
   }
 
   .line-number {
+    padding-left: 45px;
     position: relative;
-    width: 35px;
-    display: inline-block;
-    left: 5px;
-    opacity: 0.4;
-    user-select: none;
+    width: calc(100% - 45px);
+    display: block;
 
     &::before {
-      content: '';
       counter-increment: line;
       content: counter(line);
+      display: inline-block;
+      position: absolute;
+      left: 5px;
+      opacity: 0.4;
+      user-select: none;
     }
   }
 
