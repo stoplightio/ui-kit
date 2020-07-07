@@ -300,7 +300,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     <div
       onClick={onClick}
       className={outerClassName}
-      style={{ marginLeft: (item.depth ?? 0) * 24 }}
+      style={{ marginLeft: (item.depth ?? 0) * 20 }}
       ref={holderCallbackRef}
     >
       <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
