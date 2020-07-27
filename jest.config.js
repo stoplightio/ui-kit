@@ -4,8 +4,7 @@ module.exports = {
   setupFilesAfterEnv: ['./setupTests.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
-    '\\.(css)$': '<rootDir>/__mocks__/styleMock.js',
-    'worker-loader(?:\\?inline=true)?!(.+)': '$1',
+    '\\.(css)$': '<rootDir>/__mocks__/styleMock.js'
   },
   testPathIgnorePatterns: ['/node_modules/'],
 };

@@ -22,10 +22,8 @@
     "**/*"
   ],
   "scripts": {
-    "build": "sl-scripts build --sourcemap && yarn build.styles && yarn build.worker",
+    "build": "sl-scripts build --sourcemap && yarn build.styles",
     "build.styles": "yarn build.tw && copyfiles -u 1 \"./src/styles/**/*\" ./dist",
-    "build.worker": "webpack -p",
-    "postbuild.worker": "./scripts/copy-workers.sh",
     "build.tw": "postcss ./scripts/build-tailwind/tailwind.css -o ./src/styles/tailwind/_base.scss -c ./sripts/tailwind-build/postcss.config.js",
     "commit": "git-cz",
     "lint": "yarn prettier.check && eslint --ext .js,.jsx,.ts,.tsx .",
@@ -123,13 +121,10 @@
     "sass-inline-svg": "^1.2.3",
     "sass-loader": "^8.0.2",
     "tailwindcss": "~1.3.0",
-    "terser-webpack-plugin": "^3.0.6",
     "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
     "typescript": "3.8.3",
-    "webpack": "~4.42.1",
-    "webpack-cli": "^3.3.12",
-    "worker-loader": "^2.0.0"
+    "webpack": "~4.42.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
