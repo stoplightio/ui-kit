@@ -211,7 +211,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
             itemRenderer={renderSelect}
             filterable={false}
             activeItem={getActiveItem()}
-            className={`m-${padding}`}
+            className={cn(`m-${padding}`, { 'mr-0': hasFilter })}
           >
             <Button
               text={getActiveItem()?.name ?? selectFilter.initialContent ?? 'Fetching...'}
