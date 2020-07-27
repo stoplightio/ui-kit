@@ -1,10 +1,11 @@
-import { Button, Drawer, InputGroup } from '@blueprintjs/core';
+import { Button, Drawer, InputGroup, MenuItem } from '@blueprintjs/core';
 import cn from 'classnames';
 import { flatMap, range } from 'lodash';
 import * as React from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
 import { ScrollContainer } from '../ScrollContainer';
+import { ItemRenderer, Select } from '../Select';
 
 export type TableOfContentsItem = {
   name: React.ReactNode;
@@ -28,6 +29,12 @@ export type TableOfContentsItem = {
     isActive?: boolean;
     onClick: any;
   };
+};
+
+export type SelectItem = {
+  name: React.ReactNode;
+  value: string;
+  label?: string;
 };
 
 export type ITableOfContentsLink = TableOfContentsItem & {
@@ -77,6 +84,14 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
   // provide filter and onChangeFilter to enable filtering. this will render a filter input at the top of the TOC.
   filter?: string;
   onChangeFilter?: (filter: string) => void;
+
+  // provide filter and onChangeFilter to enable filtering.
+  selectFilter?: {
+    items: SelectItem[];
+    onSelect: (value: SelectItem) => void;
+    activeItem?: SelectItem;
+    initialContent?: string;
+  };
 }
 
 // This is to avoid "mismatch" when rendering during SSR, since we render without scroll container in SSR
@@ -159,6 +174,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   withScroller,
   filter,
   onChangeFilter,
+  selectFilter,
   ...innerProps
 }: ITableOfContents<T>) {
   useRenderWithScroll();
@@ -167,22 +183,54 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
 
   const hasFilter = filter !== undefined && onChangeFilter;
 
+  const SelectGroup = Select.ofType<SelectItem>();
+
   const toc = <TableOfContentsInner className={cn(hasFilter ? `pb-${padding}` : `py-${padding}`)} {...innerProps} />;
+
+  const renderSelect: ItemRenderer<SelectItem> = (item, { handleClick, modifiers }) => {
+    if (!modifiers.matchesPredicate) {
+      return null;
+    }
+    return (
+      <MenuItem key={item.value} text={item.name} label={item.label} active={modifiers.active} onClick={handleClick} />
+    );
+  };
+
+  function getActiveItem() {
+    return selectFilter?.activeItem;
+  }
 
   const containerClassName = cn('TableOfContents', className);
   const comp = (
     <>
-      {hasFilter && (
-        <InputGroup
-          leftIcon="filter"
-          placeholder="Filter..."
-          className={`m-${padding}`}
-          value={filter}
-          autoFocus
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeFilter?.(event.currentTarget.value)}
-        />
-      )}
-
+      <div className="flex flex-row">
+        {selectFilter != undefined && (
+          <SelectGroup
+            items={selectFilter.items}
+            onItemSelect={selectFilter.onSelect}
+            itemRenderer={renderSelect}
+            filterable={false}
+            activeItem={getActiveItem()}
+            className={`m-${padding}`}
+          >
+            <Button
+              text={getActiveItem()?.name ?? selectFilter.initialContent ?? 'Fetching...'}
+              alignText="left"
+              rightIcon="caret-down"
+            />
+          </SelectGroup>
+        )}
+        {hasFilter && (
+          <InputGroup
+            leftIcon="search"
+            placeholder="Search..."
+            className={`m-${padding} w-full`}
+            value={filter}
+            autoFocus
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeFilter?.(event.currentTarget.value)}
+          />
+        )}
+      </div>
       <div className={containerClassName} data-test={dataTest}>
         {renderWithScroll && withScroller ? <ScrollContainer>{toc}</ScrollContainer> : toc}
       </div>
@@ -198,7 +246,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
               {title}
             </Button>
           </div>
-          <div className="h-full flex justify-end">{comp}</div>
+          <div className="h-full flex flex-col justify-end">{comp}</div>
         </div>
       </Drawer>
     );
