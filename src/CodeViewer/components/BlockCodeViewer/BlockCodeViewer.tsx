@@ -40,10 +40,12 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   });
 
   function calculateHeight(height: number) {
-    return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE);
+    return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + SINGLE_LINE_SIZE * 5;
   }
 
   function highlightRelevantParts(target: EventTarget) {
+    if (slicedBlocks === null || maxBlocks === null) return;
+
     const value =
       (target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) / (SINGLE_LINE_SIZE * maxBlocks);
     const blockNo = Math.round(value);
@@ -51,9 +53,9 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     observerRef.current.add(blockNo);
 
     if (value > blockNo) {
-      observerRef.current.add((slicedBlocks?.length, blockNo + 1));
+      observerRef.current.add(Math.min(slicedBlocks.length, blockNo + 1));
     } else {
-      observerRef.current.add(Math.min(0, blockNo - 1));
+      observerRef.current.add(Math.max(0, blockNo - 1));
     }
   }
 
