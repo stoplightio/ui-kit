@@ -1,20 +1,39 @@
 import * as React from 'react';
 
-import { FAIcon } from '../FAIcon';
-import type { ICodeViewerProps } from './CodeViewer';
+import { BlockCodeViewer } from './components/BlockCodeViewer';
+import { InlineCodeViewer } from './components/InlineCodeViewer';
 
-const CodeViewerComponent = React.lazy(() => import('./CodeViewer'));
+const languageMaps: { [from: string]: string } = {
+  md: 'markdown',
+};
 
-export const CodeViewer: React.FC<ICodeViewerProps> = props => (
-  <React.Suspense fallback={<CodeViewerLoading />}>
-    <CodeViewerComponent {...props} />
-  </React.Suspense>
-);
+/**
+ * CODE VIEWER
+ */
+interface ICodeViewerProps extends React.HTMLAttributes<HTMLElement> {
+  value: string;
+  language?: string;
+  showLineNumbers?: boolean;
+  inline?: boolean;
+}
 
-const CodeViewerLoading = () => (
-  <div>
-    Preparing... <FAIcon icon={['fas', 'code']} size="lg" />
-  </div>
-);
+const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
+  language,
+  value,
+  showLineNumbers = false,
+  inline = false,
+  ...rest
+}) => {
+  if (inline) {
+    return <InlineCodeViewer value={value} {...rest} />;
+  }
 
-export { ICodeViewerProps };
+  const lang = (language && languageMaps[language]) || language;
+  return <BlockCodeViewer showLineNumbers={showLineNumbers} language={lang} value={value} {...rest} />;
+};
+
+/**
+ * EXPORTS
+ */
+
+export { CodeViewer, ICodeViewerProps };
