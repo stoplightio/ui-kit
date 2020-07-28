@@ -203,7 +203,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   const containerClassName = cn('TableOfContents', className);
   const comp = (
     <>
-      <div className="flex flex-row">
+      <div className="flex">
         {selectFilter != undefined && (
           <SelectGroup
             items={selectFilter.items}
@@ -246,7 +246,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
               {title}
             </Button>
           </div>
-          <div className="h-full flex flex-col justify-end">{comp}</div>
+          <div className="h-full flex justify-end">{comp}</div>
         </div>
       </Drawer>
     );
