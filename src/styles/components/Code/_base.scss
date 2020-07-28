@@ -22,8 +22,7 @@
       display: block;
 
       &::before {
-        counter-increment: line;
-        content: counter(line);
+        content: attr(data-node-index);
         display: inline-block;
         position: absolute;
         left: 5px;

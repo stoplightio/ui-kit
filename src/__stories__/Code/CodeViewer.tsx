@@ -23,7 +23,7 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
   function tick() {
     setDate(new Date());
   }
-
+  
   return (
     <div>
       <h2>It is {date.toLocaleTimeString()}.</h2>
@@ -39,10 +39,9 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
 
 storiesOf('Code:Viewer', module)
   .addDecorator(withKnobs({ escapeHTML: false }))
-  .addDecorator(storyFn => <div className="h-screen">{storyFn()}</div>)
   .add('with defaults', () => <CodeViewer {...codeViewerKnobs()} />)
   .add('dark', () => (
-    <div className="bp3-dark h-full">
+    <div className="bp3-dark">
       <CodeViewer {...codeViewerKnobs()} />
     </div>
   ))

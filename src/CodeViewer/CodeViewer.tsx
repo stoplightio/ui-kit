@@ -21,28 +21,28 @@ interface ICodeViewerProps extends React.HTMLAttributes<HTMLPreElement> {
   inline?: boolean;
 }
 
-class Observer extends Set<number> {
-  handlers = new Map<number, Function>();
+class ObservableSet extends Set<number> {
+  private readonly listeners = new Map<number, Function>();
 
-  addHandler(item: number, cb: Function) {
-    this.handlers.set(item, cb);
+  addListener(item: number, cb: Function) {
+    this.listeners.set(item, cb);
 
     return () => {
-      this.handlers.delete(item);
+      this.listeners.delete(item);
     };
   }
 
-  addItem(item: number) {
-    if (super.has(item)) return;
+  add(item: number) {
+    if (super.has(item)) return this;
 
     super.add(item);
-    this.handlers.get(item)?.();
+    this.listeners.get(item)?.();
+    return this;
   }
 }
 
 const SINGLE_BLOCK_SIZE = 24;
 
-// todo: showLineNumbers does not work as it uses css counter, I guess we shall stick to array indices
 const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   language,
   value,
@@ -53,25 +53,25 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
 }) => {
   const lang = (language && languageMaps[language]) || language;
 
-  // todo: window resize handler?
+  // todo: window resize handler? use container size?
   const maxBlocks = React.useRef(Math.floor(window.innerHeight / SINGLE_BLOCK_SIZE) + 10);
-  const observerRef = React.useRef(new Observer());
+  const observerRef = React.useRef(new ObservableSet());
 
   React.useEffect(() => {
     const handler: EventListener = debounce(() => {
       const value = window.pageYOffset / (SINGLE_BLOCK_SIZE * maxBlocks.current);
       const blockNo = Math.round(value);
 
-      observerRef.current.addItem(blockNo);
+      observerRef.current.add(blockNo);
 
       if (value > blockNo) {
-        observerRef.current.addItem(blockNo + 1);
+        observerRef.current.add(blockNo + 1);
       } else {
-        observerRef.current.addItem(blockNo - 1);
+        observerRef.current.add(blockNo - 1);
       }
     }, 50);
 
-    observerRef.current.addItem(0);
+    observerRef.current.add(0);
 
     // todo: won't work overflow on root
     window.addEventListener('scroll', handler, { passive: true });
@@ -80,6 +80,10 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
       window.removeEventListener('scroll', handler);
     };
   }, [observerRef]);
+
+  const handleScroll = () => {
+    // console.log('scroll');
+  };
 
   const blocks = React.useMemo<string[] | null>(() => {
     if (inline) {
@@ -124,6 +128,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
         [`${Classes.CODE_EDITOR}--inline`]: inline,
         [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
       })}
+      onScroll={handleScroll}
       {...rest}
     >
       {blocks?.map((value, index) => (
@@ -133,6 +138,7 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
           language={language}
           showLineNumbers={showLineNumbers}
           index={index}
+          lineNumber={index * maxBlocks.current + 1}
           observer={observerRef.current}
         />
       ))}
@@ -144,25 +150,26 @@ interface IBlockProps {
   value: string;
   language: string | undefined;
   showLineNumbers: boolean;
+  lineNumber: number;
   index: number;
-  observer: Observer;
+  observer: ObservableSet;
 }
 
-const Block: React.FC<IBlockProps> = ({ value, language, showLineNumbers, index, observer }) => {
+const Block: React.FC<IBlockProps> = ({ value, language, showLineNumbers, index, lineNumber, observer }) => {
   const [markup, setMarkup] = React.useState<ReactNode[]>();
   const [isVisible, setIsVisible] = React.useState(index === 0); // the assumption is that we always start with scrollTop = 0
 
   React.useEffect(() => {
-    return observer.addHandler(index, () => {
+    return observer.addListener(index, () => {
       setIsVisible(true);
     });
   }, [observer, index, setIsVisible]);
 
   React.useEffect(() => {
     if (isVisible) {
-      setMarkup(parseCode(value, language, showLineNumbers).map(astToReact()));
+      setMarkup(parseCode(value, language, showLineNumbers).map(astToReact(lineNumber)));
     }
-  }, [isVisible, value, language, showLineNumbers]);
+  }, [isVisible, lineNumber, value, language, showLineNumbers]);
 
   if (markup !== void 0) {
     return markup as any;
