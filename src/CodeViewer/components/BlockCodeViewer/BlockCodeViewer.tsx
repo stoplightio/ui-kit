@@ -26,6 +26,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
       setMaxBlocks(calculateHeight(nodeRef.current.offsetHeight));
       highlightRelevantParts(nodeRef.current);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nodeRef]);
 
   useResizeObserver({
@@ -62,7 +63,9 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     if (root === null || maxBlocks === null) return;
 
     const handler: EventListener = debounce(e => {
-      highlightRelevantParts(e.target);
+      if (e.target !== null) {
+        highlightRelevantParts(e.target);
+      }
     }, 50);
 
     window.addEventListener('scroll', handler, { passive: true });
@@ -72,6 +75,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
       root.removeEventListener('scroll', handler);
       window.removeEventListener('scroll', handler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observerRef, nodeRef, maxBlocks]);
 
   return (

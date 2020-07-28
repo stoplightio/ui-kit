@@ -1,4 +1,3 @@
-
 export class ObservableSet extends Set<number> {
   private readonly listeners = new Map<number, Function>();
 

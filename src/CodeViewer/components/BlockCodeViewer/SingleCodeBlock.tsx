@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import type { ObservableSet } from './ObservableSet';
-import { parseCode } from '../../utils/parseCode';
+
 import { astToReact } from '../../utils/astToReact';
+import { parseCode } from '../../utils/parseCode';
+import type { ObservableSet } from './ObservableSet';
 
 interface IBlockProps {
   value: string;
@@ -13,7 +14,14 @@ interface IBlockProps {
   observer: ObservableSet;
 }
 
-export const SingleCodeBlock: React.FC<IBlockProps> = ({ value, language, showLineNumbers, index, lineNumber, observer }) => {
+export const SingleCodeBlock: React.FC<IBlockProps> = ({
+  value,
+  language,
+  showLineNumbers,
+  index,
+  lineNumber,
+  observer,
+}) => {
   const [markup, setMarkup] = React.useState<ReactNode[]>();
   const [isVisible, setIsVisible] = React.useState(index === 0); // the assumption is that we always start with scrollTop = 0
 
@@ -34,4 +42,4 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({ value, language, showLi
   }
 
   return value;
-}
+};
