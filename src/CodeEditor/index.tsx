@@ -1,3 +1,4 @@
+import { Intent } from '@blueprintjs/core';
 import cn from 'classnames';
 import * as React from 'react';
 import ReactSimpleCodeEditor from 'react-simple-code-editor';
@@ -15,6 +16,7 @@ interface ICodeEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
   language?: string;
   autoFocus?: boolean;
   showLineNumbers?: boolean;
+  intent?: Intent;
 }
 
 const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((props, ref) => {
@@ -28,6 +30,7 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
     padding,
     style,
     showLineNumbers,
+    intent,
     ...rest
   } = props;
 
@@ -44,6 +47,7 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
       ref={ref}
       className={cn(Classes.CODE_EDITOR, className, {
         [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
+        [`${Classes.CODE_EDITOR}--${intent}`]: intent !== void 0,
       })}
       style={style}
       placeholder={placeholder}
