@@ -1,5 +1,6 @@
 @import 'theme-light';
 @import 'theme-dark';
+@import '../../blueprint/colors.scss';
 
 .CodeEditor {
   @include lightCodeTheme;
@@ -14,6 +15,14 @@
       // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
       margin-left: 35px !important;
     }
+  }
+
+  &--error {
+    outline: 1px solid $pt-intent-danger;
+  }
+
+  &--warning {
+    outline: 1px solid $pt-intent-warning;
   }
 
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
