@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export const useSlicedBlocks = (value: string, maxBlocks: number | null) => {
+export const useSlicedBlocks = (value: string, maxLines: number | null) => {
   return React.useMemo<string[] | null>(() => {
-    if (maxBlocks === null) {
+    if (maxLines === null) {
       return null;
     }
 
@@ -15,12 +15,12 @@ export const useSlicedBlocks = (value: string, maxBlocks: number | null) => {
       if (char === '\n') {
         n++;
 
-        if (n % maxBlocks === 0 && i + 1 !== value.length) {
+        if (n % maxLines === 0 && i + 1 !== value.length) {
           blocks.push('');
         }
       }
     }
 
     return blocks;
-  }, [value, maxBlocks]);
+  }, [value, maxLines]);
 };

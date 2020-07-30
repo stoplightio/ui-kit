@@ -34,7 +34,22 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   React.useEffect(() => {
     if (isVisible) {
       try {
-        setMarkup(parseCode(value, language, showLineNumbers).map(astToReact(lineNumber)));
+        const tree = parseCode(value, language, showLineNumbers);
+
+        if (tree.length > 0) {
+          const lastTreeNode = tree[tree.length - 1];
+          if (
+            'children' in lastTreeNode &&
+            lastTreeNode.children.length === 1 &&
+            'value' in lastTreeNode.children[0] &&
+            lastTreeNode.children[0].value === '\n'
+          ) {
+            // this is to get rid of trailing new lines
+            tree.pop();
+          }
+        }
+
+        setMarkup(tree.map(astToReact(lineNumber)));
       } catch {
         // parsing failed for some reason, let's display regular text
       }
