@@ -33,7 +33,11 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
 
   React.useEffect(() => {
     if (isVisible) {
-      setMarkup(parseCode(value, language, showLineNumbers).map(astToReact(lineNumber)));
+      try {
+        setMarkup(parseCode(value, language, showLineNumbers).map(astToReact(lineNumber)));
+      } catch {
+        // parsing failed for some reason, let's display regular text
+      }
     }
   }, [isVisible, lineNumber, value, language, showLineNumbers]);
 

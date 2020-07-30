@@ -1,107 +1,64 @@
 import 'jest-enzyme';
 
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { act } from 'react-dom/test-utils';
 
-import CodeViewer from '../CodeViewer';
+import { CodeViewer } from '..';
 import { astToReact } from '../utils/astToReact';
-import CodeWorker from '../worker';
+import { parseCode } from '../utils/parseCode';
 
 jest.mock('../utils/astToReact');
-jest.mock('../worker/', () => {
-  const W = new (class implements Worker {
-    postMessage = jest.fn();
-    terminate = jest.fn();
+jest.mock('../utils/parseCode');
 
-    addEventListener = jest.fn();
-    removeEventListener = jest.fn();
-    dispatchEvent = jest.fn();
+jest.mock('../components/BlockCodeViewer', () => ({
+  BlockCodeViewer: jest.requireActual('../components/BlockCodeViewer/BlockCodeViewer').default,
+}));
 
-    onmessage = null;
-    onerror = null;
-  })();
-
-  return {
-    default: class {
-      constructor() {
-        return W;
-      }
-    },
-  };
-});
+jest.mock('use-resize-observer', () => ({
+  default: jest.fn(),
+}));
 
 describe('Code Viewer component', () => {
-  let codeWorker: Worker;
-
-  beforeEach(() => {
-    codeWorker = new CodeWorker();
-  });
-
   afterEach(() => {
-    jest.resetAllMocks();
+    (parseCode as jest.Mock).mockReset();
+    (astToReact as jest.Mock).mockReset();
   });
 
   it('renders code element with raw value for inline view', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = mount(<CodeViewer language={language} value={code} inline />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} inline />).dive();
     expect(wrapper).toHaveText(code);
-    expect(wrapper.getDOMNode()).toHaveProperty('tagName', 'CODE');
+    expect(wrapper).toHaveDisplayName('code');
 
-    expect(codeWorker.postMessage).not.toHaveBeenCalled();
-
-    wrapper.unmount();
+    expect(parseCode).not.toHaveBeenCalled();
   });
 
   it('renders pre element for block view', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = mount(<CodeViewer language={language} value={code} />);
-    expect(wrapper.getDOMNode()).toHaveProperty('tagName', 'PRE');
-
-    wrapper.unmount();
+    const wrapper = shallow(<CodeViewer language={language} value={code} />).dive();
+    expect(wrapper).toHaveDisplayName('pre');
   });
 
   it('renders code as is if parsing fails', () => {
     const code = '{}';
     const language = 'json';
+    (parseCode as jest.Mock).mockReturnValue(null);
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
-    expect(codeWorker.postMessage).toHaveBeenCalledWith({
-      code,
-      language,
-      showLineNumbers: true,
-    });
-
-    act(() => {
-      codeWorker.onmessage!({
-        data: {
-          error: 'error',
-          nodes: null,
-        },
-      } as any);
-    });
-
-    wrapper.unmount();
-  });
-
-  it('does not try to map ast nodes to react nodes if parsing failed', () => {
-    const wrapper = mount(<CodeViewer language="javascript" value="foo()" />);
-
-    expect(astToReact).not.toHaveBeenCalled();
-
+    expect(parseCode).toHaveBeenCalledWith(code, language, false);
     wrapper.unmount();
   });
 
   it('renders parsed markup if possible', () => {
     const code = 'function';
     const language = 'javascript';
-    const nodes = [
+    const ast = [
       {
         type: 'element',
         tagName: 'span',
@@ -113,27 +70,13 @@ describe('Code Viewer component', () => {
     ];
     const markup = <span className="token function">function</span>;
 
-    const wrapper = mount(<CodeViewer language={language} value={code} />);
-
+    (parseCode as jest.Mock).mockReturnValue(ast);
     (astToReact as jest.Mock).mockReturnValue(() => markup);
 
-    act(() => {
-      codeWorker.onmessage!({
-        data: {
-          error: null,
-          nodes,
-        },
-      } as any);
-    });
-
-    expect(codeWorker.postMessage).toHaveBeenCalledWith({
-      code,
-      language,
-      showLineNumbers: true,
-    });
-
+    const wrapper = mount(<CodeViewer language={language} value={code} />);
+    expect(wrapper).toContainReact(markup);
+    expect(parseCode).toHaveBeenCalledWith(code, language, false);
     expect(astToReact).toHaveBeenCalled();
-
     wrapper.unmount();
   });
 });

@@ -5,18 +5,21 @@ exports[`astToReact util fixture clike 1`] = `
   int 
   <span
     className="token function"
+    data-node-index={1}
     key="cv-0-1"
   >
     main
   </span>
   <span
     className="token punctuation"
+    data-node-index={2}
     key="cv-0-2"
   >
     (
   </span>
   <span
     className="token punctuation"
+    data-node-index={3}
     key="cv-0-3"
   >
     )
@@ -24,6 +27,7 @@ exports[`astToReact util fixture clike 1`] = `
    
   <span
     className="token punctuation"
+    data-node-index={5}
     key="cv-0-5"
   >
     {
@@ -32,6 +36,7 @@ exports[`astToReact util fixture clike 1`] = `
   
   <span
     className="token comment"
+    data-node-index={7}
     key="cv-0-7"
   >
     // some dumb code
@@ -40,6 +45,7 @@ exports[`astToReact util fixture clike 1`] = `
   
   <span
     className="token keyword"
+    data-node-index={9}
     key="cv-0-9"
   >
     return
@@ -47,12 +53,14 @@ exports[`astToReact util fixture clike 1`] = `
    
   <span
     className="token number"
+    data-node-index={11}
     key="cv-0-11"
   >
     0
   </span>
   <span
     className="token punctuation"
+    data-node-index={12}
     key="cv-0-12"
   >
     ;
@@ -61,6 +69,7 @@ exports[`astToReact util fixture clike 1`] = `
 
   <span
     className="token punctuation"
+    data-node-index={14}
     key="cv-0-14"
   >
     }
@@ -72,6 +81,7 @@ exports[`astToReact util fixture javascript 1`] = `
 <pre>
   <span
     className="token keyword"
+    data-node-index={0}
     key="cv-0-0"
   >
     const
@@ -79,6 +89,7 @@ exports[`astToReact util fixture javascript 1`] = `
    defaultValue 
   <span
     className="token operator"
+    data-node-index={2}
     key="cv-0-2"
   >
     =
@@ -86,30 +97,35 @@ exports[`astToReact util fixture javascript 1`] = `
    stoplight
   <span
     className="token punctuation"
+    data-node-index={4}
     key="cv-0-4"
   >
     .
   </span>
   <span
     className="token function"
+    data-node-index={5}
     key="cv-0-5"
   >
     io
   </span>
   <span
     className="token punctuation"
+    data-node-index={6}
     key="cv-0-6"
   >
     (
   </span>
   <span
     className="token punctuation"
+    data-node-index={7}
     key="cv-0-7"
   >
     )
   </span>
   <span
     className="token punctuation"
+    data-node-index={8}
     key="cv-0-8"
   >
     ;
