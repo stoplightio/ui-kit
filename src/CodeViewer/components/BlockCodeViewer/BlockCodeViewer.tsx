@@ -4,7 +4,7 @@ import * as React from 'react';
 import useResizeObserver from 'use-resize-observer';
 
 import { Classes } from '../../../classes';
-import { SINGLE_LINE_SIZE } from './consts';
+import { LINES_OVER_SCAN, SINGLE_LINE_SIZE } from './consts';
 import { useSlicedBlocks } from './hooks/useSlicedBlocks';
 import { ObservableSet } from './ObservableSet';
 import { SingleCodeBlock } from './SingleCodeBlock';
@@ -13,6 +13,12 @@ export interface IBlockCodeViewerProps extends React.HTMLAttributes<HTMLPreEleme
   value: string;
   language: string | undefined;
   showLineNumbers: boolean;
+}
+
+const OVER_SCAN_HEIGHT = SINGLE_LINE_SIZE * LINES_OVER_SCAN;
+
+function calculateMaxLines(height: number) {
+  return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1 + OVER_SCAN_HEIGHT;
 }
 
 const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
@@ -26,7 +32,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
 
   React.useLayoutEffect(() => {
     if (nodeRef.current !== null) {
-      setMaxLines(calculateHeight(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
+      setMaxLines(calculateMaxLines(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
       highlightRelevantParts(nodeRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,7 +40,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
 
   useResizeObserver({
     onResize: debounce(({ height }) => {
-      const newMaxLines = calculateHeight(height);
+      const newMaxLines = calculateMaxLines(height);
       if (newMaxLines !== maxLines) {
         setMaxLines(newMaxLines);
       }
@@ -42,15 +48,11 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     ref: nodeRef,
   });
 
-  function calculateHeight(height: number) {
-    return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
-  }
-
   function highlightRelevantParts(target: EventTarget) {
     if (slicedBlocks === null || maxLines === null) return;
 
     const value =
-      (target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) /
+      ((target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) - OVER_SCAN_HEIGHT / 2) /
       (SINGLE_LINE_SIZE * maxLines - SINGLE_LINE_SIZE);
     const blockNo = Math.round(value);
 
@@ -77,6 +79,8 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
         highlightRelevantParts(e.target);
       }
     }, 32);
+
+    highlightRelevantParts(root.offsetHeight > window.innerHeight ? window : root);
 
     window.addEventListener('scroll', handler, { passive: true });
     root.addEventListener('scroll', handler, { passive: true });
