@@ -1,14 +1,22 @@
 import 'jest-enzyme';
 
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CodeViewer } from '../index';
+import { CodeViewer } from '..';
 import { astToReact } from '../utils/astToReact';
 import { parseCode } from '../utils/parseCode';
 
 jest.mock('../utils/astToReact');
 jest.mock('../utils/parseCode');
+
+jest.mock('../components/BlockCodeViewer', () => ({
+  BlockCodeViewer: jest.requireActual('../components/BlockCodeViewer/BlockCodeViewer').default,
+}));
+
+jest.mock('use-resize-observer', () => ({
+  default: jest.fn(),
+}));
 
 describe('Code Viewer component', () => {
   afterEach(() => {
@@ -20,7 +28,7 @@ describe('Code Viewer component', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = shallow(<CodeViewer language={language} value={code} inline />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} inline />).dive();
     expect(wrapper).toHaveText(code);
     expect(wrapper).toHaveDisplayName('code');
 
@@ -31,7 +39,7 @@ describe('Code Viewer component', () => {
     const code = '{}';
     const language = 'json';
 
-    const wrapper = shallow(<CodeViewer language={language} value={code} />);
+    const wrapper = shallow(<CodeViewer language={language} value={code} />).dive();
     expect(wrapper).toHaveDisplayName('pre');
   });
 
@@ -40,17 +48,11 @@ describe('Code Viewer component', () => {
     const language = 'json';
     (parseCode as jest.Mock).mockReturnValue(null);
 
-    const wrapper = shallow(<CodeViewer language={language} value={code} />);
+    const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
     expect(parseCode).toHaveBeenCalledWith(code, language, false);
-  });
-
-  it('does not try to map ast nodes to react nodes if parsing failed', () => {
-    (parseCode as jest.Mock).mockReturnValue(null);
-    shallow(<CodeViewer language="javascript" value="foo()" />);
-
-    expect(astToReact).not.toHaveBeenCalled();
+    wrapper.unmount();
   });
 
   it('renders parsed markup if possible', () => {
@@ -71,9 +73,10 @@ describe('Code Viewer component', () => {
     (parseCode as jest.Mock).mockReturnValue(ast);
     (astToReact as jest.Mock).mockReturnValue(() => markup);
 
-    const wrapper = shallow(<CodeViewer language={language} value={code} />);
+    const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toContainReact(markup);
     expect(parseCode).toHaveBeenCalledWith(code, language, false);
     expect(astToReact).toHaveBeenCalled();
+    wrapper.unmount();
   });
 });

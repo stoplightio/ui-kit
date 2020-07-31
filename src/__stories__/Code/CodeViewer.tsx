@@ -2,6 +2,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
+import * as ember from '../../__fixtures__/CodeViewer/ember.json';
 import { CodeViewer, ICodeViewerProps } from '../../CodeViewer';
 
 export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
@@ -23,7 +24,7 @@ export const codeViewerKnobs = (tabName = 'Code Viewer'): ICodeViewerProps => ({
   function tick() {
     setDate(new Date());
   }
-
+  
   return (
     <div>
       <h2>It is {date.toLocaleTimeString()}.</h2>
@@ -45,4 +46,7 @@ storiesOf('Code:Viewer', module)
       <CodeViewer {...codeViewerKnobs()} />
     </div>
   ))
-  .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />);
+  .add('inline', () => <CodeViewer {...codeViewerKnobs()} inline />)
+  .add('lots of text', () => (
+    <CodeViewer language="json" value={JSON.stringify(ember, null, 2)} showLineNumbers={true} />
+  ));

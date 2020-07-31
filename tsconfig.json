@@ -1,5 +1,9 @@
 {
   "extends": "@stoplight/scripts",
   // target all ts files
-  "include": ["src"]
+  "include": ["src"],
+  "compilerOptions": {
+    "lib": ["dom", "ES2020"],
+    "target": "es2017"
+  }
 }

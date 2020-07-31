@@ -1,9 +1,7 @@
-import * as cn from 'classnames';
 import * as React from 'react';
 
-import { Classes } from '../classes';
-import { astToReact } from './utils/astToReact';
-import { parseCode } from './utils/parseCode';
+import { BlockCodeViewer } from './components/BlockCodeViewer';
+import { InlineCodeViewer } from './components/InlineCodeViewer';
 
 const languageMaps: { [from: string]: string } = {
   md: 'markdown',
@@ -12,7 +10,7 @@ const languageMaps: { [from: string]: string } = {
 /**
  * CODE VIEWER
  */
-interface ICodeViewerProps extends React.HTMLAttributes<HTMLPreElement> {
+interface ICodeViewerProps extends React.HTMLAttributes<HTMLElement> {
   value: string;
   language?: string;
   showLineNumbers?: boolean;
@@ -24,38 +22,14 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
   value,
   showLineNumbers = false,
   inline = false,
-  className,
   ...rest
 }) => {
-  const lang = (language && languageMaps[language]) || language;
-
   if (inline) {
-    return (
-      <code
-        className={cn(Classes.CODE_EDITOR, className, {
-          [`${Classes.CODE_EDITOR}--inline`]: inline,
-          [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
-        })}
-        {...rest}
-      >
-        {value}
-      </code>
-    );
+    return <InlineCodeViewer value={value} {...rest} />;
   }
 
-  const markup = parseCode(value, lang, showLineNumbers);
-
-  return (
-    <pre
-      className={cn(Classes.CODE_EDITOR, className, `language-${lang || 'unknown'}`, {
-        [`${Classes.CODE_EDITOR}--inline`]: inline,
-        [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
-      })}
-      {...rest}
-    >
-      {markup ? markup.map(astToReact()) : value}
-    </pre>
-  );
+  const lang = (language && languageMaps[language]) || language;
+  return <BlockCodeViewer showLineNumbers={showLineNumbers} language={lang} value={value} {...rest} />;
 };
 
 /**
