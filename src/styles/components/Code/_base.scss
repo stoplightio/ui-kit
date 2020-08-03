@@ -11,18 +11,29 @@
   }
 
   &--line-numbers {
-    $line-sidebar-width: 45px;
-
-    padding-left: $line-sidebar-width;
+    $line-sidebar-width: 15px;
 
     textarea {
       // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
       margin-left: 35px !important;
     }
 
+    @for $i from 1 through 6 {
+      &--#{$i} {
+        padding-left: $line-sidebar-width * $i;
+
+        .line-number {
+          margin-left: -$line-sidebar-width * $i;
+          padding-left: $line-sidebar-width * $i;
+
+          &::before {
+            width: $line-sidebar-width * $i;
+          }
+        }
+      }
+    }
+
     .line-number {
-      margin-left: -$line-sidebar-width;
-      padding-left: $line-sidebar-width;
       position: relative;
       display: block;
 
@@ -30,9 +41,11 @@
         content: attr(data-node-index);
         display: inline-block;
         position: absolute;
-        left: 5px;
+        left: 0;
+        padding-right: $line-sidebar-width;
         opacity: 0.4;
         user-select: none;
+        text-align: right;
       }
     }
   }

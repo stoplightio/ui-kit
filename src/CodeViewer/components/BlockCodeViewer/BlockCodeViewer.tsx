@@ -20,6 +20,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   const [maxLines, setMaxLines] = React.useState<number | null>(null);
   const observerRef = React.useRef(new ObservableSet());
   const slicedBlocks = useSlicedBlocks(value, maxLines === null ? null : Math.max(0, maxLines - 1));
+  const linesNo = String(slicedBlocks !== null && maxLines !== null ? slicedBlocks.length * maxLines : 0).length;
 
   React.useLayoutEffect(() => {
     if (nodeRef.current !== null) {
@@ -89,7 +90,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     <pre
       ref={nodeRef}
       className={cn(Classes.CODE_EDITOR, className, `language-${language || 'unknown'}`, {
-        [`${Classes.CODE_EDITOR}--line-numbers`]: showLineNumbers,
+        [`${Classes.CODE_EDITOR}--line-numbers ${Classes.CODE_EDITOR}--line-numbers--${linesNo}`]: showLineNumbers,
       })}
       {...rest}
     >
