@@ -24,7 +24,6 @@
       margin-left: -$line-sidebar-width;
       padding-left: $line-sidebar-width;
       position: relative;
-      width: calc(100% - #{line-sidebar-width});
       display: block;
 
       &::before {
