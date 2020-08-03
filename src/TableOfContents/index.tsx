@@ -214,7 +214,8 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
             className={cn(`m-${padding}`, { 'mr-0': hasFilter })}
           >
             <Button
-              className="w-48 truncate"
+              className="truncate"
+              style={{ maxWidth: '12rem' }}
               text={getActiveItem()?.name ?? selectFilter.initialContent ?? 'Fetching...'}
               alignText="left"
               rightIcon="caret-down"
