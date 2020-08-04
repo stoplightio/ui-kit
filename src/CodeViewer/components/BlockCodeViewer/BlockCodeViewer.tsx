@@ -15,6 +15,10 @@ export interface IBlockCodeViewerProps extends React.HTMLAttributes<HTMLPreEleme
   showLineNumbers: boolean;
 }
 
+function calculateMaxLines(height: number) {
+  return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
+}
+
 const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
   const nodeRef = React.useRef<HTMLPreElement | null>(null);
   const [maxLines, setMaxLines] = React.useState<number | null>(null);
@@ -26,7 +30,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
 
   React.useLayoutEffect(() => {
     if (nodeRef.current !== null) {
-      setMaxLines(calculateHeight(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
+      setMaxLines(calculateMaxLines(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
       highlightRelevantParts(nodeRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,17 +38,13 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
 
   useResizeObserver({
     onResize: debounce(({ height }) => {
-      const newMaxLines = calculateHeight(height);
+      const newMaxLines = calculateMaxLines(height);
       if (newMaxLines !== maxLines) {
         setMaxLines(newMaxLines);
       }
     }, 250),
     ref: nodeRef,
   });
-
-  function calculateHeight(height: number) {
-    return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
-  }
 
   function highlightRelevantParts(target: EventTarget) {
     if (slicedBlocks === null || maxLines === null) return;
@@ -54,12 +54,15 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
       (SINGLE_LINE_SIZE * maxLines - SINGLE_LINE_SIZE);
     const blockNo = Math.round(value);
 
+    // see https://github.com/stoplightio/ui-kit/pull/180 for the reasoning
     observerRef.current.add(blockNo);
+    observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 1));
+    observerRef.current.add(Math.max(0, blockNo - 1));
 
-    if (value > blockNo && blockNo + 1 !== slicedBlocks.length) {
-      observerRef.current.add(blockNo + 1);
+    if (value > blockNo) {
+      observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 2));
     } else {
-      observerRef.current.add(Math.max(0, blockNo - 1));
+      observerRef.current.add(Math.max(0, blockNo - 2));
     }
   }
 
@@ -77,6 +80,8 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
         highlightRelevantParts(e.target);
       }
     }, 32);
+
+    highlightRelevantParts(root.offsetHeight > window.innerHeight ? window : root);
 
     window.addEventListener('scroll', handler, { passive: true });
     root.addEventListener('scroll', handler, { passive: true });

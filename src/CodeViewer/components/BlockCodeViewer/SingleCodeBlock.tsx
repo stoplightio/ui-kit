@@ -23,7 +23,7 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   observer,
 }) => {
   const [markup, setMarkup] = React.useState<ReactNode[]>();
-  const [isVisible, setIsVisible] = React.useState(index === 0); // the assumption is that we always start with scrollTop = 0
+  const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
     return observer.addListener(index, () => {
