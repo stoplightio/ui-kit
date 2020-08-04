@@ -11,7 +11,7 @@
   }
 
   &--line-numbers {
-    $line-sidebar-width: 15px;
+    $line-number-char-width: 15px;
 
     textarea {
       // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
@@ -20,14 +20,14 @@
 
     @for $i from 1 through 6 {
       &--#{$i} {
-        padding-left: $line-sidebar-width * $i;
+        padding-left: ($line-number-char-width * $i) + 15px;
 
         .line-number {
-          margin-left: -$line-sidebar-width * $i;
-          padding-left: $line-sidebar-width * $i;
+          margin-left: -$line-number-char-width * $i;
+          padding-left: $line-number-char-width * $i;
 
           &::before {
-            width: $line-sidebar-width * $i;
+            width: $line-number-char-width * $i;
           }
         }
       }
@@ -42,7 +42,7 @@
         display: inline-block;
         position: absolute;
         left: 0;
-        padding-right: $line-sidebar-width;
+        padding-right: $line-number-char-width;
         opacity: 0.4;
         user-select: none;
         text-align: right;
