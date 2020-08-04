@@ -4,7 +4,7 @@ import * as React from 'react';
 import useResizeObserver from 'use-resize-observer';
 
 import { Classes } from '../../../classes';
-import { LINES_OVER_SCAN, SINGLE_LINE_SIZE } from './consts';
+import { SINGLE_LINE_SIZE } from './consts';
 import { useSlicedBlocks } from './hooks/useSlicedBlocks';
 import { ObservableSet } from './ObservableSet';
 import { SingleCodeBlock } from './SingleCodeBlock';
@@ -15,10 +15,8 @@ export interface IBlockCodeViewerProps extends React.HTMLAttributes<HTMLPreEleme
   showLineNumbers: boolean;
 }
 
-const OVER_SCAN_HEIGHT = SINGLE_LINE_SIZE * LINES_OVER_SCAN;
-
 function calculateMaxLines(height: number) {
-  return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1 + OVER_SCAN_HEIGHT;
+  return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
 }
 
 const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
@@ -52,16 +50,19 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     if (slicedBlocks === null || maxLines === null) return;
 
     const value =
-      ((target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) - OVER_SCAN_HEIGHT / 2) /
+      (target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) /
       (SINGLE_LINE_SIZE * maxLines - SINGLE_LINE_SIZE);
     const blockNo = Math.round(value);
 
+    // see https://github.com/stoplightio/ui-kit/pull/180 for the reasoning
     observerRef.current.add(blockNo);
+    observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 1));
+    observerRef.current.add(Math.max(0, blockNo - 1));
 
-    if (value > blockNo && blockNo + 1 !== slicedBlocks.length) {
-      observerRef.current.add(blockNo + 1);
+    if (value > blockNo) {
+      observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 2));
     } else {
-      observerRef.current.add(Math.max(0, blockNo - 1));
+      observerRef.current.add(Math.max(0, blockNo - 2));
     }
   }
 
