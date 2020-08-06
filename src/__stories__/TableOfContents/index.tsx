@@ -17,7 +17,10 @@ const styles = {
 storiesOf('TableOfContents', module)
   .addDecorator(withKnobs)
   .add('studio /w custom RowComponent', () => {
-    return <CustomComponentStory />;
+    return <SimpleCustomComponentStory />;
+  })
+  .add('studio /w custom RowComponent and extra props', () => {
+    return <CustomComponentWithExtraPropsStory />;
   })
   .add('studio without rowComponent', () => {
     return (
@@ -42,7 +45,8 @@ const MobileStory = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         enableDrawer={1000}
-        rowComponent={RowComponent}
+        rowComponent={RowComponentWithExtraProps}
+        rowComponentExtraProps={{ helloString: 'a' }}
       />
     </div>
   );
@@ -50,7 +54,7 @@ const MobileStory = () => {
 
 const NavigationContext = React.createContext({ path: '', setPath: (_: string) => {} });
 
-const CustomComponentStory = () => {
+const SimpleCustomComponentStory = () => {
   const [path, setPath] = React.useState('/reference/petstore/openapi.v1.yaml/paths/~1pets~1{petId}/get');
 
   const contextValue = React.useMemo(() => ({ path, setPath }), [path, setPath]);
@@ -62,28 +66,78 @@ const CustomComponentStory = () => {
   return (
     <NavigationContext.Provider value={contextValue}>
       <div style={styles}>
-        <TableOfContents className="h-full" contents={contentsWithDynamicIsActive} rowComponent={RowComponent} />
+        <TableOfContents className="h-full" contents={contentsWithDynamicIsActive} rowComponent={SimpleRowComponent} />
       </div>
     </NavigationContext.Provider>
   );
 };
 
-const RowComponent: RowComponentType<ITableOfContentsLink> = props => {
+const CustomComponentWithExtraPropsStory = () => {
+  const [path, setPath] = React.useState('/reference/petstore/openapi.v1.yaml/paths/~1pets~1{petId}/get');
+
+  const contextValue = React.useMemo(() => ({ path, setPath }), [path, setPath]);
+
+  const contentsWithDynamicIsActive = React.useMemo(() => {
+    return studioContents.map(c => ({ ...c, isActive: c.to === path }));
+  }, [path]);
+
+  return (
+    <NavigationContext.Provider value={contextValue}>
+      <div style={styles}>
+        <TableOfContents
+          className="h-full"
+          contents={contentsWithDynamicIsActive}
+          rowComponent={RowComponentWithExtraProps}
+          rowComponentExtraProps={{ helloString: 'Hello' }}
+        />
+      </div>
+    </NavigationContext.Provider>
+  );
+};
+
+const SimpleRowComponent: RowComponentType<ITableOfContentsLink> = ({ item, ...rest }) => {
   const { setPath } = React.useContext(NavigationContext);
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent) => {
-      if (props.item.to) {
-        setPath(props.item.to);
+      if (item.to) {
+        setPath(item.to);
       }
       e.preventDefault();
     },
-    [props.item.to, setPath],
+    [item.to, setPath],
   );
 
   return (
-    <a href={props.item.to} onClick={handleClick}>
-      <DefaultRow {...props} />
+    <a href={item.to} onClick={handleClick}>
+      <DefaultRow item={item} {...rest} />
     </a>
+  );
+};
+
+type ExtraProps = {
+  helloString: string;
+};
+
+const RowComponentWithExtraProps: RowComponentType<ITableOfContentsLink, ExtraProps> = ({
+  item,
+  extra: { helloString },
+}) => {
+  const { setPath } = React.useContext(NavigationContext);
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      if (item.to) {
+        setPath(item.to);
+      }
+      e.preventDefault();
+    },
+    [item.to, setPath],
+  );
+
+  return (
+    <Button onClick={handleClick} className="block mb-2 mt-2">
+      <em>{helloString}</em> {item.name}
+    </Button>
   );
 };
