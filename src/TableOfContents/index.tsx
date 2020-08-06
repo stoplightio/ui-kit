@@ -43,26 +43,26 @@ export type ITableOfContentsLink = TableOfContentsItem & {
   isExternalLink?: boolean;
 };
 
-export type RowComponentProps<T extends TableOfContentsItem> = {
+export type RowComponentProps<T extends TableOfContentsItem, E = {}> = {
   item: T;
   index: number;
   isExpanded: boolean;
   toggleExpanded: () => void;
-};
+} & ({} extends E ? {} : { extra: E });
 
-export type RowComponentType<T extends TableOfContentsItem> = React.ComponentType<RowComponentProps<T>>;
+export type RowComponentType<T extends TableOfContentsItem, E = {}> = React.ComponentType<RowComponentProps<T, E>>;
 
-export interface ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem> {
+export type ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem, E = {}> = {
   contents: T[];
-
-  /**
-   * Optionally customize how a row is rendered. Defaults to `DefaultRow`.
-   */
-  rowComponent?: RowComponentType<T>;
 
   // Padding that will be used for (default: 10)
   padding?: string;
   className?: string;
+
+  /**
+   * Optionally customize how a row is rendered. Defaults to `DefaultRow`.
+   */
+  rowComponent?: RowComponentType<T, E>;
 
   /**
    * HTML data-test attribute to be set on the container div.
@@ -92,7 +92,7 @@ export interface ITableOfContents<T extends TableOfContentsItem = TableOfContent
     activeItem?: SelectItem;
     initialContent?: string;
   };
-}
+} & ({} extends E ? { rowComponentExtraProps?: undefined } : { rowComponentExtraProps: E });
 
 // This is to avoid "mismatch" when rendering during SSR, since we render without scroll container in SSR
 let renderWithScroll = false;
@@ -106,11 +106,12 @@ const useRenderWithScroll = () => {
   }, []);
 };
 
-function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsItem>({
+function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsItem, E = {}>({
   className,
   contents,
   rowComponent: RowComponent = DefaultRow,
-}: Pick<ITableOfContents<T>, 'className' | 'contents' | 'rowComponent'>) {
+  rowComponentExtraProps,
+}: Pick<ITableOfContents<T, E>, 'className' | 'contents' | 'rowComponent' | 'rowComponentExtraProps'>) {
   const [expanded, setExpanded] = React.useState({});
 
   // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
@@ -151,12 +152,14 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
         const isExpanded = expanded[index];
 
         return (
+          // @ts-ignore
           <RowComponent
             key={index}
             item={item}
             index={index}
             isExpanded={isExpanded}
             toggleExpanded={toggleExpandedFunctions[index]}
+            extra={rowComponentExtraProps}
           />
         );
       })}
@@ -164,7 +167,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
   );
 }
 
-export function TableOfContents<T extends TableOfContentsItem = TableOfContentsItem>({
+export function TableOfContents<T extends TableOfContentsItem = TableOfContentsItem, E = {}>({
   className,
   'data-test': dataTest,
   padding = '4',
@@ -176,7 +179,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
   onChangeFilter,
   selectFilter,
   ...innerProps
-}: ITableOfContents<T>) {
+}: ITableOfContents<T, E>) {
   useRenderWithScroll();
 
   const isMobile = false; // useIsMobile(enableDrawer);
