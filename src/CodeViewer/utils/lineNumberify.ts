@@ -20,6 +20,7 @@ function createLineElement({
     tagName: 'span',
     properties: {
       className: lineNumber === void 0 ? className : ['line-number'],
+      ...(lineNumber !== void 0 && { 'data-node-index': lineNumber }),
     },
     children,
   };
@@ -44,7 +45,7 @@ function flattenCodeTree(tree: RefractorNode[], className: string[] = []): AST.E
   return newTree;
 }
 
-export function lineNumberify(codeTree: RefractorNode[]): RefractorNode[] {
+export function lineNumberify(codeTree: RefractorNode[], initialLineNumber: number): RefractorNode[] {
   const tree = flattenCodeTree(codeTree);
   const newTree = [];
   let lastLineBreakIndex = -1;
@@ -58,7 +59,7 @@ export function lineNumberify(codeTree: RefractorNode[]): RefractorNode[] {
     if (newLines) {
       const splitValue = value.split('\n');
       splitValue.forEach((text, i) => {
-        const lineNumber = newTree.length + 1;
+        const lineNumber = initialLineNumber + newTree.length + 1;
         const newChild: AST.Text = { type: 'text', value: `${text}\n` };
 
         if (i === 0) {
@@ -109,7 +110,7 @@ export function lineNumberify(codeTree: RefractorNode[]): RefractorNode[] {
       newTree.push(
         createLineElement({
           children,
-          lineNumber: newTree.length + 1,
+          lineNumber: initialLineNumber + newTree.length + 1,
         }),
       );
     }
