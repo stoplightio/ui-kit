@@ -8,7 +8,114 @@ Array [
         "children": Array [
           Object {
             "type": "text",
-            "value": "fn",
+            "value": "fn
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "line-number",
+      ],
+      "data-node-index": 1,
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "type": "text",
+        "value": "
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "line-number",
+      ],
+      "data-node-index": 2,
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "type": "text",
+        "value": "
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "line-number",
+      ],
+      "data-node-index": 3,
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "type": "text",
+        "value": "
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "line-number",
+      ],
+      "data-node-index": 4,
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "type": "text",
+        "value": "abc
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "line-number",
+      ],
+      "data-node-index": 5,
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "type": "text",
+            "value": "",
+          },
+        ],
+        "properties": Object {
+          "className": Array [],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "type": "text",
+            "value": "t",
           },
         ],
         "properties": Object {
@@ -52,27 +159,12 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
-            "type": "text",
-            "value": ";",
-          },
-        ],
-        "properties": Object {
-          "className": Array [
-            "token",
-            "punctuation",
-          ],
-        },
-        "tagName": "span",
-        "type": "element",
-      },
     ],
     "properties": Object {
       "className": Array [
         "line-number",
       ],
+      "data-node-index": 6,
     },
     "tagName": "span",
     "type": "element",
@@ -153,6 +245,7 @@ Array [
       "className": Array [
         "line-number",
       ],
+      "data-node-index": 1,
     },
     "tagName": "span",
     "type": "element",
