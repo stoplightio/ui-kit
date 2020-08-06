@@ -51,7 +51,7 @@ describe('Code Viewer component', () => {
     const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toHaveText(code);
 
-    expect(parseCode).toHaveBeenCalledWith(code, language, false);
+    expect(parseCode).toHaveBeenCalledWith(code, language);
     wrapper.unmount();
   });
 
@@ -75,7 +75,7 @@ describe('Code Viewer component', () => {
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
     expect(wrapper).toContainReact(markup);
-    expect(parseCode).toHaveBeenCalledWith(code, language, false);
+    expect(parseCode).toHaveBeenCalledWith(code, language);
     expect(astToReact).toHaveBeenCalled();
     wrapper.unmount();
   });

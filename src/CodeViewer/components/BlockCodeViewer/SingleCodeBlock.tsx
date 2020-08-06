@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
 
 import { astToReact } from '../../utils/astToReact';
+import { lineNumberify } from '../../utils/lineNumberify';
 import { parseCode } from '../../utils/parseCode';
 import type { ObservableSet } from './ObservableSet';
 
@@ -22,7 +22,7 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   lineNumber,
   observer,
 }) => {
-  const [markup, setMarkup] = React.useState<ReactNode[]>();
+  const [markup, setMarkup] = React.useState<React.ReactNode[]>();
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
@@ -34,7 +34,8 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   React.useEffect(() => {
     if (isVisible) {
       try {
-        const tree = parseCode(value, language, showLineNumbers);
+        const tree = parseCode(value, language);
+        const processedTree = showLineNumbers ? lineNumberify(tree, lineNumber - 1) : tree;
 
         if (tree.length > 0) {
           const lastTreeNode = tree[tree.length - 1];
@@ -45,11 +46,11 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
             lastTreeNode.children[0].value === '\n'
           ) {
             // this is to get rid of trailing new lines
-            tree.pop();
+            processedTree.pop();
           }
         }
 
-        setMarkup(tree.map(astToReact(lineNumber)));
+        setMarkup(processedTree.map(astToReact(0)));
       } catch {
         // parsing failed for some reason, let's display regular text
       }

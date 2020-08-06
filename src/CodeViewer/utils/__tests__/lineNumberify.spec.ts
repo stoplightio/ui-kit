@@ -5,11 +5,11 @@ import { lineNumberify } from '../lineNumberify';
 describe('lineNumberify util', () => {
   it('handles one-liners', () => {
     const ast = require(path.join(__dirname, '/fixtures/one-liner.json'));
-    expect(lineNumberify(JSON.parse(JSON.stringify(ast)))).toMatchSnapshot();
+    expect(lineNumberify(JSON.parse(JSON.stringify(ast)), 0)).toMatchSnapshot();
   });
 
   it('handles multiple lines', () => {
-    const ast = require(path.join(__dirname, '/fixtures/one-liner.json'));
-    expect(lineNumberify(JSON.parse(JSON.stringify(ast)))).toMatchSnapshot();
+    const ast = require(path.join(__dirname, '/fixtures/multiple-lines.json'));
+    expect(lineNumberify(JSON.parse(JSON.stringify(ast)), 0)).toMatchSnapshot();
   });
 });

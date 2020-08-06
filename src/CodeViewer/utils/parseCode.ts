@@ -1,7 +1,5 @@
 import * as refractor from 'refractor/core';
 
-import { lineNumberify } from './lineNumberify';
-
 refractor.register(require('refractor/lang/bash'));
 refractor.register(require('refractor/lang/c'));
 refractor.register(require('refractor/lang/csharp'));
@@ -55,11 +53,6 @@ function safeParse(code: string, language?: string): refractor.RefractorNode[] {
   return parsePlainText(code);
 }
 
-export function parseCode(code: string, language?: string, addLineNumbers?: boolean): refractor.RefractorNode[] {
-  const ast = safeParse(code, language);
-  if (addLineNumbers) {
-    return lineNumberify(ast);
-  }
-
-  return ast;
+export function parseCode(code: string, language?: string): refractor.RefractorNode[] {
+  return safeParse(code, language);
 }
