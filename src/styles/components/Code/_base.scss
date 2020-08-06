@@ -219,7 +219,7 @@ $line-padding-left: 10px;
   &--line-numbers {
     @for $i from 1 through 6 {
       &--#{$i} {
-        padding-left: $line-number-char-width * $i + $line-number-char-width + $line-padding-left;
+        padding-left: $line-number-char-width * $i + $line-number-char-width + $line-padding-left !important;
 
         .line-number {
           margin-left: -$line-number-char-width * $i - $line-number-char-width;
