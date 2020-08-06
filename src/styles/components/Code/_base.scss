@@ -2,61 +2,9 @@
 @import 'theme-dark';
 @import '../../blueprint/colors.scss';
 
-.CodeEditor {
+.CodeEditor,
+.CodeViewer {
   @include lightCodeTheme;
-
-  &--inline {
-    margin: 0 2px;
-    border-radius: 2px;
-  }
-
-  &--line-numbers {
-    $line-number-char-width: 15px;
-
-    textarea {
-      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
-      margin-left: 35px !important;
-    }
-
-    @for $i from 1 through 6 {
-      &--#{$i} {
-        padding-left: ($line-number-char-width * $i) + 15px;
-
-        .line-number {
-          margin-left: -$line-number-char-width * $i;
-          padding-left: $line-number-char-width * $i;
-
-          &::before {
-            width: $line-number-char-width * $i;
-          }
-        }
-      }
-    }
-
-    .line-number {
-      position: relative;
-      display: block;
-
-      &::before {
-        content: attr(data-node-index);
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        padding-right: $line-number-char-width;
-        opacity: 0.4;
-        user-select: none;
-        text-align: right;
-      }
-    }
-  }
-
-  &--error {
-    outline: 1px solid $pt-intent-danger;
-  }
-
-  &--warning {
-    outline: 1px solid $pt-intent-warning;
-  }
 
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
   background: var(--code-bg);
@@ -77,8 +25,41 @@
     background: var(--code-selection-bg);
   }
 
-  // Tokens
+  &--inline {
+    margin: 0 2px;
+    border-radius: 2px;
+  }
 
+  &--line-numbers {
+    textarea {
+      // Need to use margin here since CodeEditor supports padding: https://github.com/stoplightio/ui-kit/blob/fd1334753a22d527b803b8554bc51761c348d319/src/CodeEditor/index.tsx#L13
+      margin-left: 45px !important;
+      outline: none;
+    }
+
+    .line-number {
+      position: relative;
+
+      &::before {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        opacity: 0.4;
+        user-select: none;
+        text-align: right;
+      }
+    }
+  }
+
+  &--error {
+    outline: 1px solid $pt-intent-danger;
+  }
+
+  &--warning {
+    outline: 1px solid $pt-intent-warning;
+  }
+
+  // Tokens
   .token {
     &.important,
     &.bold {
@@ -196,6 +177,51 @@
 
     &.boolean {
       color: var(--code-boolean);
+    }
+  }
+}
+
+.CodeEditor {
+  .line-number {
+    padding-left: 45px;
+    width: calc(100% - 45px);
+
+    &::before {
+      counter-increment: line;
+      content: counter(line);
+      width: 100%;
+      padding-right: 10px;
+    }
+  }
+}
+
+.CodeViewer {
+  $line-number-char-width: 15px;
+
+  &--line-numbers {
+    @for $i from 1 through 6 {
+      &--#{$i} {
+        padding-left: ($line-number-char-width * $i) + 15px;
+
+        .line-number {
+          margin-left: -$line-number-char-width * $i;
+          padding-left: $line-number-char-width * $i;
+
+          &::before {
+            width: $line-number-char-width * $i;
+          }
+        }
+      }
+    }
+
+    .line-number {
+      display: block;
+
+      &::before {
+        content: attr(data-node-index);
+        display: inline-block;
+        padding-right: $line-number-char-width;
+      }
     }
   }
 }

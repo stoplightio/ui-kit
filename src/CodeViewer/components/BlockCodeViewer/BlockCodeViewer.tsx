@@ -96,8 +96,8 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   return (
     <pre
       ref={nodeRef}
-      className={cn(Classes.CODE_EDITOR, className, `language-${language || 'unknown'}`, {
-        [`${Classes.CODE_EDITOR}--line-numbers ${Classes.CODE_EDITOR}--line-numbers--${lineNumberCharacterCount}`]: showLineNumbers,
+      className={cn(Classes.CODE_VIEWER, className, `language-${language || 'unknown'}`, {
+        [`${Classes.CODE_VIEWER}--line-numbers ${Classes.CODE_VIEWER}--line-numbers--${lineNumberCharacterCount}`]: showLineNumbers,
       })}
       {...rest}
     >
