@@ -108,7 +108,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
           language={language}
           showLineNumbers={showLineNumbers}
           index={index}
-          lineNumber={maxLines === null ? 0 : index * maxLines + 1}
+          lineNumber={maxLines === null ? 0 : (slicedBlocks.linesMap.get(index - 1) ?? 0) + 1}
           observer={observerRef.current}
         />
       ))}
