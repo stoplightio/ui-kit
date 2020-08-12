@@ -140,7 +140,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
         return (
           <RowComponent
             key={index}
-            item={item}
+            item={isExternalLink(item) ? { ...item, isExternalLink: true } : item}
             index={index}
             isExpanded={isExpanded}
             toggleExpanded={toggleExpandedFunctions[index]}
@@ -345,4 +345,12 @@ function findAncestorIndices(currentDepth: number, precedingContents: TableOfCon
     ...findAncestorIndices(precedingContents[parentIndex].depth ?? 0, precedingContents.slice(0, parentIndex)),
     parentIndex,
   ];
+}
+
+function isExternalLink(item: TableOfContentsItem): boolean {
+  return isTableOfContentsLink(item) && item.to !== void 0 && /^(http|#|mailto)/.test(item.to);
+}
+
+function isTableOfContentsLink(item: TableOfContentsItem): item is ITableOfContentsLink {
+  return 'to' in item;
 }
