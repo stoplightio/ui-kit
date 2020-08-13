@@ -1,7 +1,7 @@
 import { Button, HTMLInputProps, IInputGroupProps, InputGroup, Tooltip } from '@blueprintjs/core';
 import * as React from 'react';
 
-type SecretInputProps = {
+export type SecretInputProps = {
   selectOnFocus?: boolean;
 } & IInputGroupProps &
   HTMLInputProps;
