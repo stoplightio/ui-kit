@@ -84,13 +84,13 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
       })}
       {...rest}
     >
-      {slicedBlocks?.map((value, index) => (
+      {slicedBlocks?.map(({ id, value }, index, blocks) => (
         <SingleCodeBlock
-          key={index}
+          key={id}
           value={value}
           language={language}
           showLineNumbers={showLineNumbers}
-          lineNumber={maxLines === null ? 0 : (slicedBlocks.linesMap.get(index - 1) ?? 0) + 1}
+          lineNumber={(index > 0 ? blocks[index - 1].lineCount : 0) + 1}
           observer={observer}
           events={eventsRef.current}
         />
