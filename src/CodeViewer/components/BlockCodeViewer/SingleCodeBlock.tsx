@@ -12,7 +12,7 @@ interface IBlockProps {
   showLineNumbers: boolean;
   lineNumber: number;
   observer: IntersectionObserver | undefined;
-  events: ObservableSet;
+  viewport: ObservableSet;
 }
 
 const WHITESPACE_REGEX = /^[\s\n]+$/;
@@ -39,7 +39,7 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   showLineNumbers,
   lineNumber,
   observer,
-  events,
+  viewport,
 }) => {
   const [markup, setMarkup] = React.useState<React.ReactNode[]>();
   const [isVisible, setIsVisible] = React.useState(false);
@@ -54,15 +54,16 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
 
     observer.observe(node);
 
-    const removeListener = events.addListener(node, () => {
+    const removeListener = viewport.addListener(node, () => {
       setIsVisible(true);
+      observer.unobserve(node);
     });
 
     return () => {
       observer.unobserve(node);
       removeListener();
     };
-  }, [events, observer, nodeRef]);
+  }, [viewport, observer, nodeRef]);
 
   React.useEffect(() => {
     if (isVisible) {

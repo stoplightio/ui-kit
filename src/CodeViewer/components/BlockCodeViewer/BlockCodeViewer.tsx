@@ -23,7 +23,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   const nodeRef = React.useRef<HTMLPreElement | null>(null);
   const [maxLines, setMaxLines] = React.useState<number | null>(null);
   const [observer, setObserver] = React.useState<IntersectionObserver>();
-  const eventsRef = React.useRef(new ObservableSet());
+  const viewportSet = React.useRef(new ObservableSet());
   const slicedBlocks = useSlicedBlocks(value, maxLines === null ? null : Math.max(0, maxLines - 1));
   const lineNumberCharacterCount = String(
     slicedBlocks !== null && maxLines !== null ? slicedBlocks.length * maxLines : 0,
@@ -36,6 +36,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   }, [nodeRef]);
 
   React.useEffect(() => {
+    const { current: viewport } = viewportSet;
     if (nodeRef.current === null || maxLines === null) {
       return;
     }
@@ -43,8 +44,18 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     const observer = new IntersectionObserver(
       entries => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            eventsRef.current.add(entry.target);
+          if (!entry.isIntersecting) continue;
+
+          viewport.add(entry.target);
+          const { previousElementSibling, nextElementSibling } = entry.target;
+
+          // highlight siblings to reduce flickering while scrolling using page up/down
+          if (previousElementSibling?.tagName === 'DIV') {
+            viewport.add(previousElementSibling);
+          }
+
+          if (nextElementSibling?.tagName === 'DIV') {
+            viewport.add(nextElementSibling);
           }
         }
       },
@@ -92,7 +103,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
           showLineNumbers={showLineNumbers}
           lineNumber={(index > 0 ? blocks[index - 1].lineCount : 0) + 1}
           observer={observer}
-          events={eventsRef.current}
+          viewport={viewportSet.current}
         />
       ))}
     </pre>
