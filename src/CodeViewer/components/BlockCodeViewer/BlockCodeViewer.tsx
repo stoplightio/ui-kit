@@ -63,12 +63,16 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   }, [nodeRef, maxLines]);
 
   useResizeObserver({
-    onResize: debounce(({ height }) => {
-      const newMaxLines = calculateMaxLines(height);
-      if (newMaxLines !== maxLines) {
-        setMaxLines(newMaxLines);
-      }
-    }, 250),
+    onResize: debounce(
+      ({ height }) => {
+        const newMaxLines = calculateMaxLines(height);
+        if (newMaxLines !== maxLines) {
+          setMaxLines(newMaxLines);
+        }
+      },
+      250,
+      { leading: true },
+    ),
     ref: nodeRef,
   });
 
