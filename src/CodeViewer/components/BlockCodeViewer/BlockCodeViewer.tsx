@@ -22,7 +22,8 @@ function calculateMaxLines(height: number) {
 const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
   const nodeRef = React.useRef<HTMLPreElement | null>(null);
   const [maxLines, setMaxLines] = React.useState<number | null>(null);
-  const observerRef = React.useRef(new ObservableSet());
+  const [observer, setObserver] = React.useState<IntersectionObserver>();
+  const eventsRef = React.useRef(new ObservableSet());
   const slicedBlocks = useSlicedBlocks(value, maxLines === null ? null : Math.max(0, maxLines - 1));
   const lineNumberCharacterCount = String(
     slicedBlocks !== null && maxLines !== null ? slicedBlocks.length * maxLines : 0,
@@ -31,10 +32,35 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
   React.useLayoutEffect(() => {
     if (nodeRef.current !== null) {
       setMaxLines(calculateMaxLines(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
-      highlightRelevantParts(nodeRef.current);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nodeRef]);
+
+  React.useEffect(() => {
+    if (nodeRef.current === null || maxLines === null) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            eventsRef.current.add(entry.target);
+          }
+        }
+      },
+      {
+        root: null,
+        threshold: 0,
+      },
+    );
+
+    setObserver(observer);
+
+    return () => {
+      setObserver(void 0);
+      observer.disconnect();
+    };
+  }, [nodeRef, maxLines]);
 
   useResizeObserver({
     onResize: debounce(({ height }) => {
@@ -45,53 +71,6 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     }, 250),
     ref: nodeRef,
   });
-
-  function highlightRelevantParts(target: EventTarget) {
-    if (slicedBlocks === null || maxLines === null) return;
-
-    const value =
-      (target === nodeRef.current ? nodeRef.current.scrollTop : window.pageYOffset) /
-      (SINGLE_LINE_SIZE * maxLines - SINGLE_LINE_SIZE);
-    const blockNo = Math.round(value);
-
-    // see https://github.com/stoplightio/ui-kit/pull/180 for the reasoning
-    observerRef.current.add(blockNo);
-    observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 1));
-    observerRef.current.add(Math.max(0, blockNo - 1));
-
-    if (value > blockNo) {
-      observerRef.current.add(Math.min(slicedBlocks.length - 1, blockNo + 2));
-    } else {
-      observerRef.current.add(Math.max(0, blockNo - 2));
-    }
-  }
-
-  React.useEffect(() => {
-    observerRef.current.clear();
-  }, [maxLines]);
-
-  React.useEffect(() => {
-    const { current: root } = nodeRef;
-
-    if (root === null || maxLines === null) return;
-
-    const handler: EventListener = debounce(e => {
-      if (e.target !== null) {
-        highlightRelevantParts(e.target);
-      }
-    }, 32);
-
-    highlightRelevantParts(root.offsetHeight > window.innerHeight ? window : root);
-
-    window.addEventListener('scroll', handler, { passive: true });
-    root.addEventListener('scroll', handler, { passive: true });
-
-    return () => {
-      root.removeEventListener('scroll', handler);
-      window.removeEventListener('scroll', handler);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observerRef, nodeRef, maxLines]);
 
   return (
     <pre
@@ -107,9 +86,9 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
           value={value}
           language={language}
           showLineNumbers={showLineNumbers}
-          index={index}
           lineNumber={maxLines === null ? 0 : (slicedBlocks.linesMap.get(index - 1) ?? 0) + 1}
-          observer={observerRef.current}
+          observer={observer}
+          events={eventsRef.current}
         />
       ))}
     </pre>

@@ -11,8 +11,8 @@ interface IBlockProps {
   language: string | undefined;
   showLineNumbers: boolean;
   lineNumber: number;
-  index: number;
-  observer: ObservableSet;
+  observer: IntersectionObserver | undefined;
+  events: ObservableSet;
 }
 
 const WHITESPACE_REGEX = /^[\s\n]+$/;
@@ -37,18 +37,32 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   value,
   language,
   showLineNumbers,
-  index,
   lineNumber,
   observer,
+  events,
 }) => {
   const [markup, setMarkup] = React.useState<React.ReactNode[]>();
   const [isVisible, setIsVisible] = React.useState(false);
+  const nodeRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    return observer.addListener(index, () => {
+    const { current: node } = nodeRef;
+
+    if (node === null || observer === void 0) {
+      return;
+    }
+
+    observer.observe(node);
+
+    const removeListener = events.addListener(node, () => {
       setIsVisible(true);
     });
-  }, [observer, index, setIsVisible]);
+
+    return () => {
+      observer.unobserve(node);
+      removeListener();
+    };
+  }, [events, observer, nodeRef]);
 
   React.useEffect(() => {
     if (isVisible) {
@@ -72,5 +86,5 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
     return markup as any;
   }
 
-  return value;
+  return <div ref={nodeRef}>{value}</div>;
 };
