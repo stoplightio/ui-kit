@@ -1,7 +1,7 @@
-export class ObservableSet extends Set<number> {
-  private readonly listeners = new Map<number, Function>();
+export class ObservableSet extends WeakSet<Element> {
+  private readonly listeners = new WeakMap<Element, Function>();
 
-  addListener(item: number, cb: Function) {
+  addListener(item: Element, cb: Function) {
     this.listeners.set(item, cb);
 
     return () => {
@@ -9,7 +9,7 @@ export class ObservableSet extends Set<number> {
     };
   }
 
-  add(item: number) {
+  add(item: Element) {
     if (super.has(item)) return this;
 
     super.add(item);
