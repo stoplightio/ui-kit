@@ -50,9 +50,10 @@ export type RowComponentProps<T extends TableOfContentsItem, E = {}> = {
   toggleExpanded: () => void;
 } & ({} extends E ? {} : { extra: E });
 
+// This is the call signature from `React.FunctionComponent`
+// Unfortunately `React.ComponentType` does not play well with generics due to `propTypes`.
 export type RowComponentType<T extends TableOfContentsItem, E = {}> = (
   props: PropsWithChildren<RowComponentProps<T, E>>,
-  context?: any,
 ) => ReactElement<any, any> | null;
 
 export type ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem, E = {}> = {
