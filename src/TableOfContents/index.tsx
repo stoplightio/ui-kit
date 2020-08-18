@@ -2,6 +2,7 @@ import { Button, Drawer } from '@blueprintjs/core';
 import cn from 'classnames';
 import { flatMap, range } from 'lodash';
 import * as React from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
 import { ScrollContainer } from '../ScrollContainer';
@@ -49,7 +50,10 @@ export type RowComponentProps<T extends TableOfContentsItem, E = {}> = {
   toggleExpanded: () => void;
 } & ({} extends E ? {} : { extra: E });
 
-export type RowComponentType<T extends TableOfContentsItem, E = {}> = React.ComponentType<RowComponentProps<T, E>>;
+export type RowComponentType<T extends TableOfContentsItem, E = {}> = (
+  props: PropsWithChildren<RowComponentProps<T, E>>,
+  context?: any,
+) => ReactElement<any, any> | null;
 
 export type ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem, E = {}> = {
   contents: T[];
