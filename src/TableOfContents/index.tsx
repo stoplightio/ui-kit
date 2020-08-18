@@ -2,7 +2,6 @@ import { Button, Drawer } from '@blueprintjs/core';
 import cn from 'classnames';
 import { flatMap, range } from 'lodash';
 import * as React from 'react';
-import { PropsWithChildren, ReactElement } from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
 import { ScrollContainer } from '../ScrollContainer';
@@ -53,8 +52,8 @@ export type RowComponentProps<T extends TableOfContentsItem, E = {}> = {
 // This is the call signature from `React.FunctionComponent`
 // Unfortunately `React.ComponentType` does not play well with generics due to `propTypes`.
 export type RowComponentType<T extends TableOfContentsItem, E = {}> = (
-  props: PropsWithChildren<RowComponentProps<T, E>>,
-) => ReactElement<any, any> | null;
+  props: React.PropsWithChildren<RowComponentProps<T, E>>,
+) => React.ReactElement<any, any> | null;
 
 export type ITableOfContents<T extends TableOfContentsItem = TableOfContentsItem, E = {}> = {
   contents: T[];
