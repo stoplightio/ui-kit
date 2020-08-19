@@ -19,13 +19,7 @@ function calculateMaxLines(height: number) {
   return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
 }
 
-export const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({
-  className,
-  language,
-  value,
-  showLineNumbers,
-  ...rest
-}) => {
+const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
   const nodeRef = React.useRef<HTMLPreElement | null>(null);
   const [maxLines, setMaxLines] = React.useState<number | null>(null);
   const [observer, setObserver] = React.useState<IntersectionObserver>();
@@ -115,3 +109,5 @@ export const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({
     </pre>
   );
 };
+
+export { BlockCodeViewer as default };
