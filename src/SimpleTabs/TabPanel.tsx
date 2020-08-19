@@ -1,4 +1,4 @@
-import * as cn from 'classnames';
+import cn from 'classnames';
 import * as React from 'react';
 import { TabPanel, TabPanelProps as ISimpleTabPanelProps } from 'react-tabs';
 
