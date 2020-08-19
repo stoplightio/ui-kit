@@ -10,10 +10,6 @@ import { parseCode } from '../utils/parseCode';
 jest.mock('../utils/astToReact');
 jest.mock('../utils/parseCode');
 
-jest.mock('../components/BlockCodeViewer', () => ({
-  BlockCodeViewer: jest.requireActual('../components/BlockCodeViewer/BlockCodeViewer').default,
-}));
-
 jest.mock('../components/BlockCodeViewer/ObservableSet', () => ({
   ObservableSet: class extends Set {
     public readonly addListener = jest.fn().mockImplementation((node, listener) => {
