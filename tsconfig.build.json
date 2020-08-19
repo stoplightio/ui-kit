@@ -10,7 +10,6 @@
 
   "compilerOptions": {
     "outDir": "dist",
-    "module": "commonjs",
-    "esModuleInterop": true
+    "module": "commonjs"
   }
 }
