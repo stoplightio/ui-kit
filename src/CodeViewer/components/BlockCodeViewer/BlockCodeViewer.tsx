@@ -29,7 +29,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
     slicedBlocks !== null && maxLines !== null ? slicedBlocks.length * maxLines : 0,
   ).length;
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (nodeRef.current !== null) {
       setMaxLines(calculateMaxLines(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
     }
