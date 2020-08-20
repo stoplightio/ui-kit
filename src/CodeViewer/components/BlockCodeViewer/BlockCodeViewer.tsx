@@ -1,10 +1,7 @@
 import cn from 'classnames';
-import { debounce } from 'lodash';
 import * as React from 'react';
-import useResizeObserver from 'use-resize-observer';
 
 import { Classes } from '../../../classes';
-import { SINGLE_LINE_SIZE } from './consts';
 import { useSlicedBlocks } from './hooks/useSlicedBlocks';
 import { ObservableSet } from './ObservableSet';
 import { SingleCodeBlock } from './SingleCodeBlock';
@@ -15,29 +12,17 @@ export interface IBlockCodeViewerProps extends React.HTMLAttributes<HTMLPreEleme
   showLineNumbers: boolean;
 }
 
-function calculateMaxLines(height: number) {
-  return Math.floor(Math.min(window.innerHeight, height) / SINGLE_LINE_SIZE) + 1;
-}
-
 const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language, value, showLineNumbers, ...rest }) => {
   const nodeRef = React.useRef<HTMLPreElement | null>(null);
-  const [maxLines, setMaxLines] = React.useState<number | null>(null);
+  const maxLines = 100;
   const [observer, setObserver] = React.useState<IntersectionObserver>();
   const viewportSet = React.useRef(new ObservableSet());
-  const slicedBlocks = useSlicedBlocks(value, maxLines === null ? null : Math.max(0, maxLines - 1));
-  const lineNumberCharacterCount = String(
-    slicedBlocks !== null && maxLines !== null ? slicedBlocks.length * maxLines : 0,
-  ).length;
-
-  React.useEffect(() => {
-    if (nodeRef.current !== null) {
-      setMaxLines(calculateMaxLines(window.innerHeight)); // we have to use window here, as element may not ave any height at this time
-    }
-  }, [nodeRef]);
+  const slicedBlocks = useSlicedBlocks(value ?? '', maxLines - 1);
+  const lineNumberCharacterCount = String(slicedBlocks.length * maxLines).length;
 
   React.useEffect(() => {
     const { current: viewport } = viewportSet;
-    if (nodeRef.current === null || maxLines === null) {
+    if (nodeRef.current === null) {
       return;
     }
 
@@ -71,21 +56,7 @@ const BlockCodeViewer: React.FC<IBlockCodeViewerProps> = ({ className, language,
       setObserver(void 0);
       observer.disconnect();
     };
-  }, [nodeRef, maxLines]);
-
-  useResizeObserver({
-    onResize: debounce(
-      ({ height }) => {
-        const newMaxLines = calculateMaxLines(height);
-        if (newMaxLines !== maxLines) {
-          setMaxLines(newMaxLines);
-        }
-      },
-      250,
-      { leading: true },
-    ),
-    ref: nodeRef,
-  });
+  }, [nodeRef]);
 
   return (
     <pre
