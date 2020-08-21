@@ -14,12 +14,8 @@ function createSlicedBlock(): SlicedBlock {
   };
 }
 
-export const useSlicedBlocks = (value: string, maxLines: number | null) => {
-  return React.useMemo<SlicedBlock[] | null>(() => {
-    if (maxLines === null) {
-      return null;
-    }
-
+export const useSlicedBlocks = (value: string, maxLines: number) => {
+  return React.useMemo<SlicedBlock[]>(() => {
     const blocks: SlicedBlock[] = [createSlicedBlock()];
 
     for (let i = 0, n = 0; i < value.length; i++) {

@@ -19,8 +19,6 @@ jest.mock('../components/BlockCodeViewer/ObservableSet', () => ({
   },
 }));
 
-jest.mock('use-resize-observer');
-
 describe('Code Viewer component', () => {
   afterEach(() => {
     (parseCode as jest.Mock).mockReset();

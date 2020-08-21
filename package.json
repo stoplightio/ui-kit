@@ -58,7 +58,6 @@
     "refractor": "^3.0.0",
     "tslib": "^1.12.0",
     "use-debounce": "^3.4.3",
-    "use-resize-observer": "^6.1.0",
     "yup": "^0.28.3"
   },
   "devDependencies": {
