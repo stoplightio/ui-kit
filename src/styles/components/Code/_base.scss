@@ -5,6 +5,13 @@
 $line-number-char-width: 10px;
 $line-padding-left: 10px;
 
+@keyframes set-color {
+  0% {
+    color: inherit;
+  }
+}
+
+
 .CodeEditor,
 .CodeViewer {
   @include lightCodeTheme;
@@ -59,6 +66,8 @@ $line-padding-left: 10px;
 
   // Tokens
   .token {
+    animation: set-color 0.3s ease-out;
+
     &.important,
     &.bold {
       font-weight: bold;
