@@ -84,7 +84,7 @@ export const SingleCodeBlock: React.FC<IBlockProps> = ({
   }, [isVisible, lineNumber, value, language, showLineNumbers]);
 
   if (markup !== void 0) {
-    return markup as any;
+    return <>{markup}</>;
   }
 
   return <div ref={nodeRef}>{value}</div>;
