@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { studioContents } from '../../__fixtures__/table-of-contents/studio';
+import { tree } from '../../__fixtures__/table-of-contents/tree';
 import { DefaultRow, ITableOfContentsLink, RowComponentType, TableOfContents } from '../../TableOfContents';
 
 const styles = {
@@ -26,6 +27,13 @@ storiesOf('TableOfContents', module)
     return (
       <div style={styles}>
         <TableOfContents className="h-full" contents={studioContents} />
+      </div>
+    );
+  })
+  .add('nested tree', () => {
+    return (
+      <div style={styles}>
+        <TableOfContents className="h-full" contents={tree} />
       </div>
     );
   })
