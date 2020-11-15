@@ -19,6 +19,8 @@ export type TableOfContentsItem = {
   icon?: FAIconProp;
   activeIcon?: FAIconProp;
   iconColor?: string;
+  iconPosition?: 'left' | 'right';
+  textIcon?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
   showSkeleton?: boolean;
@@ -203,6 +205,7 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
 
 function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggleExpanded }: RowComponentProps<T>) {
   const isGroup = item.type === 'group';
+  const isGroupItem = isGroup && isTableOfContentsLink(item);
   const isChild = item.type !== 'group' && (item.depth ?? 0) > 0;
   const isDivider = item.type === 'divider';
   const showSkeleton = item.showSkeleton;
@@ -239,7 +242,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
           return;
         }
 
-        if (!isGroup) return;
+        if (!isGroup || isGroupItem) return;
 
         e.preventDefault();
         toggleExpanded();
@@ -290,6 +293,26 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     />
   ) : null;
 
+  const iconElem = icon ? (
+    <FAIcon
+      className={cn('fa-fw', {
+        'mr-3': item.iconPosition !== 'right',
+        'text-blue-6': isSelected,
+        [`text-${item.iconColor}`]: item.iconColor,
+        'bp3-skeleton': item.showSkeleton,
+      })}
+      icon={icon}
+    />
+  ) : item.textIcon ? (
+    <div
+      className={cn('text-right rounded px-1 text-xs uppercase', {
+        [`text-${item.iconColor}`]: item.iconColor,
+      })}
+    >
+      {item.textIcon}
+    </div>
+  ) : null;
+
   return (
     <div
       onClick={onClick}
@@ -299,12 +322,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     >
       <div className={cn('-ml-px', innerClassName, { 'opacity-75': isDisabled })}>
         <div className="flex flex-row items-center">
-          {icon && (
-            <FAIcon
-              className={cn('mr-3 fa-fw', { 'text-blue-6': isSelected, 'bp3-skeleton': item.showSkeleton })}
-              icon={icon}
-            />
-          )}
+          {item.iconPosition !== 'right' && iconElem}
 
           <span className={cn('TableOfContentsItem__name flex-1 truncate', { 'bp3-skeleton': item.showSkeleton })}>
             {item.name}
@@ -313,11 +331,11 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
           {item.meta && <span className="text-sm text-left text-gray font-medium">{item.meta}</span>}
           {loadingElem}
           {actionElem}
+          {item.iconPosition === 'right' && iconElem}
           {isGroup && (
-            <FAIcon
-              className="TableOfContentsItem__icon"
-              icon={['far', isExpanded ? 'chevron-down' : 'chevron-right']}
-            />
+            <div onClick={() => isGroupItem && toggleExpanded()} className="px-2">
+              <FAIcon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />
+            </div>
           )}
         </div>
         {item.footer}
