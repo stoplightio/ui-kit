@@ -310,6 +310,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
     <FAIcon
       className={cn('fa-fw', {
         'mr-3': item.iconPosition !== 'right',
+        'mx-1': item.iconPosition === 'right',
         'text-blue-6': isSelected,
         [`text-${item.iconColor}`]: item.iconColor,
         'bp3-skeleton': item.showSkeleton,
