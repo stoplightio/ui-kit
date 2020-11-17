@@ -24,6 +24,7 @@ export type TableOfContentsItem = {
   isLoading?: boolean;
   isDisabled?: boolean;
   showSkeleton?: boolean;
+  startExpanded?: boolean;
   action?: {
     icon?: FAIconProp;
     name?: string;
@@ -127,6 +128,21 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contents, contents.length]);
+
+  // expand items marked as initially expanded and its children
+  React.useEffect(() => {
+    const itemsToExpand = contents.filter(item => item.startExpanded);
+    const childrenToExpand = flatMap(itemsToExpand, item =>
+      findDescendantIndices(item.depth ?? 0, contents.indexOf(item), contents.slice(contents.indexOf(item) + 1)),
+    );
+
+    setExpanded(current => ({
+      ...current,
+      ...Object.fromEntries(itemsToExpand.map(index => [index, true])),
+      ...Object.fromEntries(childrenToExpand.map(index => [index, true])),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // expand ancestors of active items by default
   React.useEffect(() => {

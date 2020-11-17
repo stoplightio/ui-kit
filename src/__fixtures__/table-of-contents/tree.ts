@@ -12,6 +12,7 @@ export const tree: ITableOfContentsLink[] = [
     type: 'group',
     to: '/path',
     icon: 'cloud',
+    startExpanded: true,
   },
   {
     name: 'Nested Item with text icon',
