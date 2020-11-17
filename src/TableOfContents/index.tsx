@@ -110,16 +110,14 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
   // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
   const toggleExpandedFunctions = React.useMemo(() => {
     return range(contents.length).map(i => () => {
-      let childrenToCollapse = {};
-      if (expanded[i]) {
-        const item = contents[i];
-        const children = findDescendantIndices(item.depth ?? 0, i, contents.slice(i + 1));
-        childrenToCollapse = children.reduce((obj, index) => {
-          obj[index] = false;
-          return obj;
-        }, {});
-      }
       setExpanded(current => {
+        let childrenToCollapse = {};
+        if (current[i]) {
+          const item = contents[i];
+          const children = findDescendantIndices(item.depth ?? 0, i, contents.slice(i + 1));
+          childrenToCollapse = Object.fromEntries(children.map(i => [i, false]));
+        }
+
         return {
           ...current,
           [i]: !current[i],
@@ -128,7 +126,7 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contents, contents.length, expanded]);
+  }, [contents, contents.length]);
 
   // expand ancestors of active items by default
   React.useEffect(() => {
@@ -347,7 +345,7 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
           {actionElem}
           {item.iconPosition === 'right' && iconElem}
           {isGroup && (
-            <div onClick={() => isGroupItem && toggleExpanded()} className="px-2">
+            <div onClick={isGroupItem ? toggleExpanded : undefined} className="px-2">
               <FAIcon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />
             </div>
           )}
