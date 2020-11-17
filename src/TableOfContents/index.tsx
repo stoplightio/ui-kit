@@ -24,6 +24,7 @@ export type TableOfContentsItem = {
   isLoading?: boolean;
   isDisabled?: boolean;
   showSkeleton?: boolean;
+  startExpanded?: boolean;
   action?: {
     icon?: FAIconProp;
     name?: string;
@@ -105,7 +106,10 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
   rowComponent: RowComponent = DefaultRow,
   rowComponentExtraProps,
 }: Pick<ITableOfContents<T, E>, 'className' | 'contents' | 'rowComponent' | 'rowComponentExtraProps'>) {
-  const [expanded, setExpanded] = React.useState({});
+  const [expanded, setExpanded] = React.useState(() => {
+    const itemsToExpand = contents.filter(item => item.startExpanded);
+    return Object.fromEntries(itemsToExpand.map(item => [contents.indexOf(item), true]));
+  });
 
   // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
   const toggleExpandedFunctions = React.useMemo(() => {
