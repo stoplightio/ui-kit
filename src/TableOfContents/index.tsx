@@ -1,4 +1,6 @@
 import { Button, Drawer } from '@blueprintjs/core';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { flatMap, range } from 'lodash';
 import * as React from 'react';
@@ -350,7 +352,10 @@ function DefaultRowImpl<T extends TableOfContentsItem>({ item, isExpanded, toggl
           {item.iconPosition === 'right' && iconElem}
           {isGroup && (
             <div onClick={isGroupItem ? toggleExpanded : undefined} className="px-2">
-              <FAIcon className="TableOfContentsItem__icon" icon={isExpanded ? 'chevron-down' : 'chevron-right'} />
+              <FontAwesomeIcon
+                className="TableOfContentsItem__icon"
+                icon={isExpanded ? faChevronDown : faChevronRight}
+              />
             </div>
           )}
         </div>

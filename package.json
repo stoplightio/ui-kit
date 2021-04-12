@@ -47,6 +47,8 @@
     "@blueprintjs/icons": "^3.19.0",
     "@blueprintjs/select": "^3.13.4",
     "@fortawesome/fontawesome-common-types": "^0.2.31",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "classnames": "^2.2.6",
     "prismjs": "^1.20.0",
     "react-input-autosize": "^2.2.2",
