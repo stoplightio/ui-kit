@@ -4,13 +4,13 @@
 
 @import 'blueprint/variables';
 
-@import './src/typography';
-@import './src/accessibility/focus-states';
+@import './blueprint/src/typography';
+@import './blueprint/src/accessibility/focus-states';
 
-@import './src/components/index';
+@import './blueprint/src/components/index';
 
 /**
   * BLUEPRINT SELECT
   */
 
-@import './select/blueprint-select.scss';
+@import './blueprint/select/blueprint-select.scss';
