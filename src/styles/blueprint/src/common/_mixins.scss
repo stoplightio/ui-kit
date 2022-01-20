@@ -1,6 +1,8 @@
 // Copyright 2015 Palantir Technologies, Inc. All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
+@use "sass:math";
+
 @import "colors";
 @import "flex";
 
@@ -84,14 +86,14 @@ $pt-dark-intent-text-colors: (
 // returns the padding necessary to center text in a container of the given height.
 // default line-height is that of base typography, 18px assuming 14px font-size.
 @function centered-text($height, $line-height: floor($pt-font-size * $pt-line-height)) {
-  @return floor(($height - $line-height) / 2);
+  @return floor(($height - $line-height) * 0.5);
 }
 
 // Removes the unit from a Sass numeric value (if present): `strip-unit(12px) => 12`
 // @see https://css-tricks.com/snippets/sass/strip-unit-function/
 @function strip-unit($number) {
   @if type-of($number) == "number" and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return math.div($number, $number * 0 + 1);
   }
 
   @return $number;

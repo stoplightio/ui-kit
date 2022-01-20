@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "colors";
 
 @import '~@blueprintjs/core/src/common/_mixins.scss';
@@ -25,7 +27,7 @@ $pt-font-size-large: get-font-size(lg);
 $pt-font-size-small: get-font-size(sm);
 
 // a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
-$pt-line-height: ($pt-grid-size * 1.8) / $pt-font-size + 0.0001 !default;
+$pt-line-height: math.div($pt-grid-size * 1.8, $pt-font-size) + 0.0001 !default;
 
 // Icon variables
 

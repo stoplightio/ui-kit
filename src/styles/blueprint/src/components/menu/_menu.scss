@@ -61,7 +61,7 @@ Styleguide menu
   &::before,
   > .#{$ns}-icon {
     color: $pt-icon-color;
-    margin-top: ($menu-item-line-height - $pt-icon-size-standard) / 2;
+    margin-top: ($menu-item-line-height - $pt-icon-size-standard) * 0.5;
   }
 
   .#{$ns}-menu-item-label {
@@ -99,13 +99,13 @@ Styleguide menu
 
     .#{$ns}-icon {
       // SVG icons remain standard size when menu is large
-      margin-top: ($menu-item-line-height-large - $pt-icon-size-standard) / 2;
+      margin-top: ($menu-item-line-height-large - $pt-icon-size-standard) * 0.5;
     }
 
     &::before {
       @include pt-icon($pt-icon-size-large);
       margin-right: $menu-item-padding-large;
-      margin-top: ($menu-item-line-height-large - $pt-icon-size-large) / 2;
+      margin-top: ($menu-item-line-height-large - $pt-icon-size-large) * 0.5;
     }
   }
 }
@@ -193,5 +193,5 @@ Styleguide menu-header
 
 // #402 support menu inside label
 .#{$ns}-label .#{$ns}-menu {
-  margin-top: $pt-grid-size / 2;
+  margin-top: $pt-grid-size * 0.5;
 }
