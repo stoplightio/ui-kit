@@ -53,7 +53,13 @@ const CodeViewer: React.FunctionComponent<ICodeViewerProps> = ({
       })}
       {...rest}
     >
-      {markup ? markup.map(astToReact()) : value}
+      {markup
+        ? markup.map((token, index) => {
+            const element = astToReact()(token, index);
+
+            return React.isValidElement(element) ? React.cloneElement(element, { key: index }) : element;
+          })
+        : value}
     </pre>
   );
 };
