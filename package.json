@@ -138,7 +138,7 @@
     "ejs": ">=3.1.7",
     "merge-deep": ">=3.0.3",
     "property-expr": ">=2.0.3",
-    "simple-git": "3.16.0"
+    "simple-git": "3.32.3"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
