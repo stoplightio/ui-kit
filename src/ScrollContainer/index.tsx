@@ -125,9 +125,11 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
           },
         }}
         thumbXProps={{
+          // @ts-ignore - renderer signature is compatible at runtime but mismatched in types
           renderer: thumbRenderer,
         }}
         thumbYProps={{
+          // @ts-ignore - renderer signature is compatible at runtime but mismatched in types
           renderer: thumbRenderer,
         }}
         ref={scrollbarCallback}
