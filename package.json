@@ -1,11 +1,13 @@
 {
   "name": "@stoplight/ui-kit",
   "version": "0.0.0",
-  "description": "Foundational React components for the Stoplight ecosystem.",
+  "description": "Foundational React components for the Stoplight ecosystem. Stable version with all critical security vulnerabilities patched.",
   "keywords": [
     "react",
     "ui",
-    "ui-components"
+    "ui-components",
+    "secure",
+    "stable"
   ],
   "main": "index.js",
   "types": "index.d.ts",
@@ -125,6 +127,29 @@
     "ts-loader": "^6.2.2",
     "typescript": "3.8.3",
     "webpack": "~4.42.1"
+  },
+  "resolutions": {
+    "shell-quote": "1.7.3",
+    "form-data": "2.5.4",
+    "cross-spawn": "6.0.6",
+    "qs": "6.5.3",
+    "semver": "5.7.2",
+    "js-yaml": "3.14.2",
+    "minimist": "1.2.8",
+    "tough-cookie": "4.1.3",
+    "property-expr": "2.0.6",
+    "merge-deep": "3.0.3",
+    "handlebars": "4.7.9",
+    "url-parse": "1.5.10",
+    "pbkdf2": "3.1.3",
+    "sha.js": "2.4.12",
+    "cipher-base": "1.0.5",
+    "elliptic": "6.6.1",
+    "eventsource": "1.1.1",
+    "ejs": "3.1.7",
+    "json-schema": "0.4.0",
+    "loader-utils": "1.4.1",
+    "@babel/traverse": "7.23.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

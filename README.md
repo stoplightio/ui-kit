@@ -3,6 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
+> ⚠️ **Stable Release (v3.0.0)**: This is the stable version with critical security vulnerability fixes. All critical vulnerabilities have been patched. It is recommended to upgrade to this version for production use.
+
 Stoplight UI-Kit is a shared component library that contains basic components built using
 [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and
 [SCSS](https://sass-lang.com/guide) All custom components should support overridable theming from a theme object, and
@@ -144,3 +146,23 @@ $sl-config: (
 
 @import '~@stoplight/ui-kit/src/styles/ui-kit';
 ```
+
+## 🔒 Security
+
+**Version 3.0.0 includes critical security vulnerability fixes:**
+
+This stable release addresses **all critical vulnerabilities** identified in the dependency tree, including:
+
+- ✅ Command injection vulnerabilities (shell-quote, minimist)
+- ✅ Prototype pollution attacks (qs, js-yaml, merge-deep, handlebars, etc.)
+- ✅ Regular expression denial of service (semver, cross-spawn)
+- ✅ Cryptographic vulnerabilities (pbkdf2, sha.js, cipher-base, elliptic)
+- ✅ Authorization bypass (url-parse)
+- ✅ Template injection (ejs)
+- ✅ AST type confusion (handlebars, @babel/traverse)
+
+All transitive dependencies have been patched to their latest secure versions while maintaining backward compatibility with the package API.
+
+**Recommendation**: Upgrade to this version for production deployments to ensure all critical security patches are applied.
+
+For more details, see the [Security Release Notes](https://github.com/stoplightio/ui-kit/releases/tag/v3.0.0).
