@@ -3,7 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-> ⚠️ **Stable Release (v3.0.0)**: This is the stable version with critical security vulnerability fixes. All critical vulnerabilities have been patched. It is recommended to upgrade to this version for production use.
+> **Stable Release (v3.0.0)**: This is the stable version with critical security vulnerability fixes. All critical
+> vulnerabilities have been patched. It is recommended to upgrade to this version for production use.
 
 Stoplight UI-Kit is a shared component library that contains basic components built using
 [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and
@@ -161,8 +162,10 @@ This stable release addresses **all critical vulnerabilities** identified in the
 - ✅ Template injection (ejs)
 - ✅ AST type confusion (handlebars, @babel/traverse)
 
-All transitive dependencies have been patched to their latest secure versions while maintaining backward compatibility with the package API.
+All transitive dependencies have been patched to their latest secure versions while maintaining backward compatibility
+with the package API.
 
-**Recommendation**: Upgrade to this version for production deployments to ensure all critical security patches are applied.
+**Recommendation**: Upgrade to this version for production deployments to ensure all critical security patches are
+applied.
 
 For more details, see the [Security Release Notes](https://github.com/stoplightio/ui-kit/releases/tag/v3.0.0).
