@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-> **Stable Release (v3.0.2)**: This is the stable version with critical security vulnerability fixes. All critical
+> **Stable Release (v3.0.3)**: This is the stable version with critical security vulnerability fixes. All critical
 > vulnerabilities have been patched. It is recommended to upgrade to this version for production use. Resolved pritter
 > and lint issue and tested yarn test and yarn test.prod
 
