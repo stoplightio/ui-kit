@@ -4,8 +4,8 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
 > **Stable Release (v3.0.2)**: This is the stable version with critical security vulnerability fixes. All critical
-> vulnerabilities have been patched. It is recommended to upgrade to this version for production use.
-> Resolved pritter and lint issue and tested yarn test and yarn test.prod
+> vulnerabilities have been patched. It is recommended to upgrade to this version for production use. Resolved pritter
+> and lint issue and tested yarn test and yarn test.prod
 
 Stoplight UI-Kit is a shared component library that contains basic components built using
 [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and
