@@ -24,6 +24,7 @@
     "**/*"
   ],
   "scripts": {
+    "preinstall": "yarn install --ignore-scripts --ignore-engines || true",
     "build": "sl-scripts build --sourcemap && yarn build.styles",
     "build.styles": "yarn build.tw && copyfiles -u 1 \"./src/styles/**/*\" ./dist",
     "build.tw": "postcss ./scripts/build-tailwind/tailwind.css -o ./src/styles/tailwind/_base.scss -c ./sripts/tailwind-build/postcss.config.js",
@@ -112,7 +113,7 @@
     "eslint-plugin-simple-import-sort": "^5.0.2",
     "jest": "^25.3.0",
     "jest-enzyme": "^7.1.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.18.0",
     "node-sass": "^4.13.1",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
@@ -154,7 +155,7 @@
     "@babel/traverse": "7.23.2",
     "axios": "1.15.0",
     "acorn": "7.4.0",
-    "markdown-to-jsx": "^6.11.4",
+    "markdown-to-jsx": "^7.4.0",
     "prismjs": "1.27.0",
     "y18n": "3.2.2",
     "ws": "5.2.4",
@@ -190,7 +191,7 @@
     "path-to-regexp": "0.1.13",
     "ansi-html": "0.0.8",
     "cookie": "^0.7.0",
-    "serialize-javascript": "7.0.3",
+    "serialize-javascript": "7.0.5",
     "rollup": "2.80.0",
     "dot-prop": "^4.2.1",
     "@storybook/addon-actions/highlight.js": "10.4.1",
@@ -198,8 +199,14 @@
     "json5": "2.2.2",
     "flatted": "3.4.2",
     "normalize-url": "5.3.1",
-    "browserify-sign": "4.2.2"
-
+    "browserify-sign": "4.2.2",
+    "lodash-es": "^4.18.0",
+    "lodash": "^4.18.0",
+    "moment": "2.29.4",
+    "picomatch": "2.3.2",
+    "lodash.template": "4.18.0",
+    "ip": "1.1.9",
+    "scss-tokenizer": "0.4.3"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
