@@ -1,6 +1,6 @@
 {
   "name": "@stoplight/ui-kit",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Foundational React components for the Stoplight ecosystem. Stable version with all critical security vulnerabilities patched.",
   "keywords": [
     "react",
