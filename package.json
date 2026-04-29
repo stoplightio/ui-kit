@@ -130,7 +130,7 @@
     "webpack": "~4.42.1"
   },
   "resolutions": {
-    "qs": "6.14.1",
+    "qs": "6.14.2",
     "telejson": "6.0.0",
     "tmp": "0.2.4",
     "elliptic": "6.6.1",
@@ -149,14 +149,14 @@
     "sha.js": "2.4.12",
     "cipher-base": "1.0.5",
     "eventsource": "1.1.1",
-    "ejs": "3.1.7",
+    "ejs": "3.1.10",
     "json-schema": "0.4.0",
     "loader-utils": "1.4.2",
     "@babel/traverse": "7.23.2",
     "axios": "1.15.0",
     "acorn": "7.4.0",
     "markdown-to-jsx": "^7.4.0",
-    "prismjs": "1.27.0",
+    "prismjs": "1.30.0",
     "y18n": "3.2.2",
     "ws": "5.2.4",
     "follow-redirects": "1.14.7",
@@ -206,7 +206,8 @@
     "picomatch": "2.3.2",
     "lodash.template": "4.18.0",
     "ip": "1.1.9",
-    "scss-tokenizer": "0.4.3"
+    "scss-tokenizer": "0.4.3",
+    "browserslist": "4.23.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
