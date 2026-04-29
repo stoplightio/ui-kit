@@ -207,7 +207,9 @@
     "lodash.template": "4.18.0",
     "ip": "1.1.9",
     "scss-tokenizer": "0.4.3",
-    "browserslist": "4.23.0"
+    "browserslist": "4.23.0",
+    "hosted-git-info": "2.8.9",
+    "mem": "4.0.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
