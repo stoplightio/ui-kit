@@ -159,7 +159,7 @@
     "prismjs": "1.30.0",
     "y18n": "3.2.2",
     "ws": "5.2.4",
-    "follow-redirects": "1.14.7",
+    "follow-redirects": "^1.16.0",
     "@storybook/addon-actions/axios": "0.30.3",
     "tar": "7.5.11",
     "terser": "4.8.1",

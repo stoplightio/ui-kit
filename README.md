@@ -3,11 +3,10 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/maintainability)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f0df5b38120a6471be33/test_coverage)](https://codeclimate.com/repos/5bdb489c9a98842d0a00d211/test_coverage)
 
-> **Stable Release (v3.0.4)**: This is the stable version with critical security vulnerability fixes. All critical and Major
-> vulnerabilities have been patched. It is recommended to upgrade to this version for production use. 
-> Resolved pritter and lint issue and verified using yarn test and yarn test.prod along with yarn build
-> Upgarde node version from node 12.22.12 to node 14.14.0
-> used ignore script and ignore engines while installing packages on node 14.
+> **Stable Release (v3.0.4)**: This is the stable version with critical security vulnerability fixes. All critical and
+> Major vulnerabilities have been patched. It is recommended to upgrade to this version for production use. Resolved
+> pritter and lint issue and verified using yarn test and yarn test.prod along with yarn build Upgarde node version from
+> node 12.22.12 to node 14.14.0 used ignore script and ignore engines while installing packages on node 14.
 
 Stoplight UI-Kit is a shared component library that contains basic components built using
 [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and
