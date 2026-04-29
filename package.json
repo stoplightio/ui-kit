@@ -162,8 +162,8 @@
     "follow-redirects": "^1.16.0",
     "@storybook/addon-actions/axios": "0.30.3",
     "tar": "7.5.11",
+    "semver-regex": "^3.1.4",
     "terser": "4.8.1",
-    "semver-regex": "3.1.3",
     "ssri": "6.0.2",
     "decode-uri-component": "0.2.1",
     "ansi-regex": "^5.0.1",
@@ -209,7 +209,10 @@
     "scss-tokenizer": "0.4.3",
     "browserslist": "4.23.0",
     "hosted-git-info": "2.8.9",
-    "mem": "4.0.0"
+    "mem": "4.0.0",
+    "node-notifier": ">=8.0.1",
+    "yargs-parser": ">=13.1.2",
+    "debug": ">=3.2.7"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
