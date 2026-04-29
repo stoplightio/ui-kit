@@ -210,9 +210,9 @@
     "browserslist": "4.23.0",
     "hosted-git-info": "2.8.9",
     "mem": "4.0.0",
-    "node-notifier": ">=8.0.1",
-    "yargs-parser": ">=13.1.2",
-    "debug": ">=3.2.7"
+    "node-notifier": "^8.0.1",
+    "yargs-parser": "^13.1.2",
+    "debug": "^3.2.7"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
