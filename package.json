@@ -152,7 +152,7 @@
     "json-schema": "0.4.0",
     "loader-utils": "1.4.2",
     "@babel/traverse": "7.23.2",
-    "axios": "1.15.0",
+    "axios": "1.16.0",
     "acorn": "7.4.0",
     "markdown-to-jsx": "^7.4.0",
     "prismjs": "1.30.0",
