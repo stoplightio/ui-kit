@@ -5,6 +5,8 @@ import * as ReactWindow from 'react-window';
 import { AutoSizer } from '../AutoSizer';
 import { ScrollContainer } from '../ScrollContainer';
 
+type ListItemKeySelector = NonNullable<ReactWindow.FixedSizeListProps['itemKey']>;
+
 /**
  * HELPERS
  */
@@ -124,9 +126,9 @@ VariableSizeList.displayName = 'VariableSizeList';
 export {
   areEqual,
   shouldComponentUpdate,
-  ListItemKeySelector,
   FixedSizeList as IFixedSizeList,
   VariableSizeList as IVariableSizeList,
 } from 'react-window';
 
 export { IFixedSizeListProps, FixedSizeList, IVariableSizeListProps, VariableSizeList };
+export type { ListItemKeySelector };

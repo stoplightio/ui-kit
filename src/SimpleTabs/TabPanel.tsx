@@ -1,8 +1,10 @@
 import cn from 'classnames';
 import * as React from 'react';
-import { TabPanel, TabPanelProps as ISimpleTabPanelProps } from 'react-tabs';
+import { TabPanel } from 'react-tabs';
 
 import { Classes } from '../classes';
+
+type ISimpleTabPanelProps = React.ComponentProps<typeof TabPanel>;
 
 /**
  * TAB PANEL

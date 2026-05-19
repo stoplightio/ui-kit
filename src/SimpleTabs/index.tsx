@@ -1,6 +1,10 @@
-import { Tabs as SimpleTabs, TabsProps as ISimpleTabsProps } from 'react-tabs';
+import * as React from 'react';
+import { Tabs as SimpleTabs } from 'react-tabs';
+
+type ISimpleTabsProps = React.ComponentProps<typeof SimpleTabs>;
 
 export * from './Tab';
 export * from './TabList';
 export * from './TabPanel';
-export { SimpleTabs, ISimpleTabsProps };
+export { SimpleTabs };
+export type { ISimpleTabsProps };

@@ -1,8 +1,10 @@
 import cn from 'classnames';
 import * as React from 'react';
-import { TabList as ReactTabList, TabListProps as ISimpleTabListProps } from 'react-tabs';
+import { TabList as ReactTabList } from 'react-tabs';
 
 import { Classes } from '../classes';
+
+type ISimpleTabListProps = React.ComponentProps<typeof ReactTabList>;
 
 /**
  * TAB LIST

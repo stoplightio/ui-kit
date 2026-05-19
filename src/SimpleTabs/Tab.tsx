@@ -1,8 +1,10 @@
 import cn from 'classnames';
 import * as React from 'react';
-import { Tab, TabProps as ISimpleTabProps } from 'react-tabs';
+import { Tab } from 'react-tabs';
 
 import { Classes } from '../classes';
+
+type ISimpleTabProps = React.ComponentProps<typeof Tab>;
 
 const SimpleTab: React.FunctionComponent<ISimpleTabProps> & { tabsRole: string } = props => {
   const { children, ref, className, selectedClassName, disabledClassName, ...rest } = props;
