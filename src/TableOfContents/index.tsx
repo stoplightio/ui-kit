@@ -1,6 +1,7 @@
 import { Button, Drawer } from '@blueprintjs/core';
 import cn from 'classnames';
-import { flatMap, range } from 'lodash';
+import flatMap from 'lodash/flatMap';
+import range from 'lodash/range';
 import * as React from 'react';
 
 import { FAIcon, FAIconProp } from '../FAIcon';
@@ -113,13 +114,13 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
 
   // an array of functions. Invoking the N-th function toggles the expanded flag on the N-th content item
   const toggleExpandedFunctions = React.useMemo(() => {
-    return range(contents.length).map(i => () => {
+    return range(contents.length).map((i: number) => () => {
       setExpanded(current => {
         let childrenToCollapse = {};
         if (current[i]) {
           const item = contents[i];
           const children = findDescendantIndices(item.depth ?? 0, i, contents.slice(i + 1));
-          childrenToCollapse = Object.fromEntries(children.map(i => [i, false]));
+          childrenToCollapse = Object.fromEntries(children.map((i: number) => [i, false]));
         }
 
         return {
@@ -133,16 +134,20 @@ function TableOfContentsInner<T extends TableOfContentsItem = TableOfContentsIte
   }, [contents, contents.length]);
 
   // expand ancestors of active items by default
-  React.useEffect(() => {
-    const activeItems = contents.filter(item => item.isActive);
-    const itemsToExpand = flatMap(activeItems, item =>
-      findAncestorIndices(item.depth ?? 0, contents.slice(0, contents.indexOf(item))),
-    );
-    setExpanded(current => ({
-      ...current,
-      ...Object.fromEntries(itemsToExpand.map(index => [index, true])),
-    }));
-  }, [contents]);
+  React.useEffect(
+    () => {
+      const activeItems = contents.filter(item => item.isActive);
+      const itemsToExpand = flatMap(activeItems, (item: T) =>
+        findAncestorIndices(item.depth ?? 0, contents.slice(0, contents.indexOf(item))),
+      );
+      setExpanded(current => ({
+        ...current,
+        ...Object.fromEntries(itemsToExpand.map((index: number) => [index, true])),
+      }));
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [contents],
+  );
 
   return (
     <div className={className}>
@@ -189,7 +194,8 @@ export function TableOfContents<T extends TableOfContentsItem = TableOfContentsI
 
   const isMobile = false; // useIsMobile(enableDrawer);
 
-  const toc = <TableOfContentsInner className={cn(`py-${padding}`)} {...innerProps} />;
+  const paddingClassName = `py-${padding}`;
+  const toc = <TableOfContentsInner<T, E> {...(innerProps as any)} className={paddingClassName} />;
 
   const containerClassName = cn('TableOfContents', className);
   const comp = (

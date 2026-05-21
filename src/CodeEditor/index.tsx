@@ -43,9 +43,9 @@ const CodeEditor = React.forwardRef<ReactSimpleCodeEditor, ICodeEditorProps>((pr
   const lineNumberCharacterCount = showLineNumbers ? String(Array.from(value.matchAll(/\n/g)).length + 1).length : 0;
 
   return (
+    // @ts-ignore - react-simple-code-editor has complex type signature that conflicts with HTML event handlers
     <ReactSimpleCodeEditor
       {...rest}
-      // @ts-ignore FIXME type error
       ref={ref}
       className={cn(Classes.CODE_EDITOR, className, {
         [`${Classes.CODE_EDITOR}--line-numbers ${Classes.CODE_EDITOR}--line-numbers--${lineNumberCharacterCount}`]: showLineNumbers,

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import * as React from 'react';
 import { Scrollbar, ScrollbarProps } from 'react-scrollbars-custom';
 import { ScrollbarThumbProps } from 'react-scrollbars-custom/dist/types/ScrollbarThumb';
@@ -124,9 +124,11 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
           },
         }}
         thumbXProps={{
+          // @ts-ignore - react-scrollbars-custom type definitions conflict with React event handlers
           renderer: thumbRenderer,
         }}
         thumbYProps={{
+          // @ts-ignore - react-scrollbars-custom type definitions conflict with React event handlers
           renderer: thumbRenderer,
         }}
         ref={scrollbarCallback}
@@ -142,7 +144,7 @@ const ScrollContainer = React.forwardRef<ScrollbarRefInstance, IScrollContainer>
     if (autosize) {
       return (
         <AutoSizer className="relative">
-          {({ height, width }) => (
+          {({ height, width }: { height: number; width: number }) => (
             <div style={{ height: height - 1, width: width - 1 }} className="overflow-hidden">
               {ScrollElem}
             </div>

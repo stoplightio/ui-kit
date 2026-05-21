@@ -6,5 +6,8 @@
     "lib": ["dom", "ES2020"],
     "target": "es2017",
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [],
+    "ignoreDeprecations": "5.0"
   }
 }
