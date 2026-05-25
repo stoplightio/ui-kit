@@ -138,7 +138,7 @@
     "@types/react": "~16.9.34",
     "undici": "5.28.4",
     "undici-types": "5.26.5",
-    "qs": "6.14.2",
+    "qs": "6.15.2",
     "telejson": "6.0.0",
     "tmp": "0.2.4",
     "elliptic": "6.6.1",
@@ -206,7 +206,7 @@
     "serialize-javascript": "7.0.5",
     "rollup": "2.80.0",
     "dot-prop": "^4.2.1",
-    "webpack-dev-middleware": "3.7.3",
+    "webpack-dev-middleware": "5.3.4",
     "json5": "2.2.2",
     "flatted": "3.4.2",
     "normalize-url": "5.3.1",
@@ -234,7 +234,8 @@
     "parse5-parser-stream": "^7.0.0",
     "parse5-htmlparser2-tree-adapter": "^7.0.0",
     "cheerio": "1.0.0-rc.3",
-    "enzyme": "3.11.0"
+    "enzyme": "3.11.0",
+    "uuid": "11.1.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
