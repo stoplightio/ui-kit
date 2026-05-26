@@ -1,4 +1,5 @@
-import { map, range } from 'lodash';
+import _map from 'lodash/map';
+import _range from 'lodash/range';
 import * as React from 'react';
 
 import { HTMLTable } from '../../';
@@ -9,7 +10,7 @@ const ColorRows = ({ color }: { color: string }) => (
     <td>
       <div className={`w-5 h-5 bg-${color} m-auto rounded-full shadow`} />
     </td>
-    {map(range(1, 10), num => (
+    {_map(_range(1, 10), (num: number) => (
       <td>
         <div className={`w-5 h-5 bg-${color}-${num} m-auto rounded-full shadow`} />
       </td>
@@ -37,7 +38,7 @@ export default () => (
           <tr>
             <th>Colors</th>
             <th>Default</th>
-            {map(range(1, 10), num => (
+            {_map(_range(1, 10), (num: number) => (
               <th>{num}</th>
             ))}
           </tr>

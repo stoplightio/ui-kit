@@ -5,5 +5,5 @@
  * If they ever fix that issue, we might be able to remove this mock.
  */
 
-const React = require.requireActual('react');
+const React = jest.requireActual('react');
 module.exports = { ...React, useEffect: React.useLayoutEffect, memo: jest.fn(fn => fn) };

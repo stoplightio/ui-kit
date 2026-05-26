@@ -6,5 +6,8 @@
     "lib": ["dom", "ES2020"],
     "target": "es2017",
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["jest", "node"],
+    "ignoreDeprecations": "5.0"
   }
 }

@@ -1,4 +1,4 @@
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 import * as React from 'react';
 import * as ReactWindow from 'react-window';
 
@@ -71,7 +71,9 @@ const FixedSizeList: React.FunctionComponent<IFixedSizeListProps> = React.forwar
   };
 
   if (autoSize) {
-    return <AutoSizer>{renderList}</AutoSizer>;
+    return (
+      <AutoSizer>{({ height, width }: { height: number; width: number }) => renderList({ height, width })}</AutoSizer>
+    );
   }
 
   return renderList();

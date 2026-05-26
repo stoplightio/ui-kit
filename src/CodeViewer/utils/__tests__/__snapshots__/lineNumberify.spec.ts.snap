@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`lineNumberify util handles multiple lines 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
             "type": "text",
             "value": "fn
 ",
           },
         ],
-        "properties": Object {
-          "className": Array [],
+        "properties": {
+          "className": [],
         },
         "tagName": "span",
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 1,
@@ -28,16 +28,16 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "type": "text",
         "value": "
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 2,
@@ -45,16 +45,16 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "type": "text",
         "value": "
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 3,
@@ -62,16 +62,16 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "type": "text",
         "value": "
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 4,
@@ -79,16 +79,16 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "type": "text",
         "value": "abc
 ",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 5,
@@ -96,30 +96,30 @@ Array [
     "tagName": "span",
     "type": "element",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
             "type": "text",
             "value": "",
           },
         ],
-        "properties": Object {
-          "className": Array [],
+        "properties": {
+          "className": [],
         },
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": "t",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "function",
           ],
@@ -127,15 +127,15 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": "(",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -143,15 +143,15 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": ")",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -160,8 +160,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 6,
@@ -173,18 +173,18 @@ Array [
 `;
 
 exports[`lineNumberify util handles one-liners 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
             "type": "text",
             "value": "fn",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "function",
           ],
@@ -192,15 +192,15 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": "(",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -208,15 +208,15 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": ")",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -224,15 +224,15 @@ Array [
         "tagName": "span",
         "type": "element",
       },
-      Object {
-        "children": Array [
-          Object {
+      {
+        "children": [
+          {
             "type": "text",
             "value": ";",
           },
         ],
-        "properties": Object {
-          "className": Array [
+        "properties": {
+          "className": [
             "token",
             "punctuation",
           ],
@@ -241,8 +241,8 @@ Array [
         "type": "element",
       },
     ],
-    "properties": Object {
-      "className": Array [
+    "properties": {
+      "className": [
         "line-number",
       ],
       "data-node-index": 1,

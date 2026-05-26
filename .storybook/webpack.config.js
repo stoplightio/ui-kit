@@ -10,6 +10,11 @@ module.exports = (baseConfig, env, config) => {
 
   config.watchOptions = { ignored: ['dist', /node_modules\/(?!@stoplight)/] };
 
+  // Remove deprecated noInfo option from devServer if it exists
+  if (config.devServer && config.devServer.noInfo !== undefined) {
+    delete config.devServer.noInfo;
+  }
+
   // we need to override the 'svg-icon' configuration unfortunately
   last(last(config.module.rules).use).options.sassOptions.functions['svg-icon'] = inliner(
     path.resolve(cwd, 'src', 'styles', 'icons'),
