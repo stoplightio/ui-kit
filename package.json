@@ -142,7 +142,7 @@
     "telejson": "6.0.0",
     "tmp": "0.2.6",
     "elliptic": "6.6.1",
-    "shell-quote": "1.7.3",
+    "shell-quote": "1.8.4",
     "form-data": "2.5.4",
     "cross-spawn": "6.0.6",
     "semver": "5.7.2",
