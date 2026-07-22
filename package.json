@@ -110,6 +110,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "eslint-plugin-simple-import-sort": "^5.0.2",
+    "husky": "^9.1.7",
     "jest": "29",
     "jest-environment-jsdom": "^30.4.1",
     "jest-enzyme": "^7.1.2",
@@ -212,7 +213,7 @@
     "picomatch": "2.3.2",
     "lodash.template": "4.18.0",
     "ip": "1.1.9",
-    "fast-uri": "3.1.2",
+    "fast-uri": "^3.1.4",
     "scss-tokenizer": "0.4.3",
     "browserslist": "4.23.0",
     "hosted-git-info": "2.8.9",
@@ -230,7 +231,7 @@
     "cheerio": "1.0.0-rc.3",
     "enzyme": "3.11.0",
     "uuid": "11.1.1",
-    "**/axios": "0.32.0",
+    "**/axios": "^0.33.0",
     "yargs": "^17.7.2",
     "highlight.js": "10.4.1",
     "**/highlight.js": "10.4.1",
@@ -248,7 +249,8 @@
     "@stoplight/storybook-config/**/recursive-readdir/minimatch": "3.1.4",
     "@stoplight/storybook-config/**/globule/minimatch": "3.1.4",
     "**/recursive-readdir/minimatch": "3.1.4",
-    "**/globule/minimatch": "3.1.4"
+    "**/globule/minimatch": "3.1.4",
+    "svgo": "^2.8.3"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
