@@ -6,7 +6,8 @@
 > **Stable Release (v3.0.7)**: This is the stable version with all security vulnerability fixes. All critical, high, and
 > Major vulnerabilities have been patched. It is recommended to upgrade to this version for production use. Resolved
 > pritter and lint issue and verified using yarn test and yarn test.prod along with yarn build Upgarde node version from
-> node upgrade from 14.14.0 to node 24.15.0 , clean installation of packages using yarn install.
+> node upgrade from 14.14.0 to node 24.15.0 , clean installation of packages using yarn install. Upgrade packagge and
+> resolved package vulnerabilities.
 
 Stoplight UI-Kit is a shared component library that contains basic components built using
 [Blueprint](https://blueprintjs.com/docs/), [Tailwind](https://next.tailwindcss.com/), and
