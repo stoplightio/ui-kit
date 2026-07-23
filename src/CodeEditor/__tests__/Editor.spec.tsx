@@ -1,4 +1,4 @@
-import 'jest-enzyme';
+import '@testing-library/jest-dom';
 
 import { mount } from 'enzyme';
 import * as React from 'react';
@@ -24,7 +24,7 @@ describe('Code Editor component', () => {
 
     wrapper.setProps({ value: newCode });
 
-    expect(wrapper.find(CodeEditor)).toHaveProp('value', newCode);
+    expect(wrapper.find(CodeEditor).prop('value')).toBe(newCode);
     wrapper.unmount();
   });
 });
