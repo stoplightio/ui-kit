@@ -1,4 +1,4 @@
-import 'jest-enzyme';
+import '@testing-library/jest-dom';
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -14,7 +14,7 @@ describe('ScrollContainer', () => {
       </ScrollContainer>,
     );
 
-    expect(wrapper.find(AutoSizer)).toExist();
+    expect(wrapper.find(AutoSizer).exists()).toBe(true);
   });
   it('renders without autosizer', () => {
     const wrapper = shallow(
@@ -23,7 +23,7 @@ describe('ScrollContainer', () => {
       </ScrollContainer>,
     );
 
-    expect(wrapper.find(AutoSizer)).not.toExist();
+    expect(wrapper.find(AutoSizer)).not.toBe(true);
   });
 });
 

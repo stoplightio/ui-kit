@@ -1,4 +1,4 @@
-import 'jest-enzyme';
+import '@testing-library/jest-dom';
 
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
@@ -30,8 +30,9 @@ describe('Code Viewer component', () => {
     const language = 'json';
 
     const wrapper = shallow(<CodeViewer language={language} value={code} inline />).dive();
-    expect(wrapper).toHaveText(code);
-    expect(wrapper).toHaveDisplayName('code');
+
+    expect(wrapper.text()).toContain(code);
+    expect(wrapper.is('code')).toBe(true);
 
     expect(parseCode).not.toHaveBeenCalled();
   });
@@ -41,7 +42,8 @@ describe('Code Viewer component', () => {
     const language = 'json';
 
     const wrapper = shallow(<CodeViewer language={language} value={code} />).dive();
-    expect(wrapper).toHaveDisplayName('pre');
+
+    expect(wrapper.is('pre')).toBe(true);
   });
 
   it('renders code as is if parsing fails', () => {
@@ -50,8 +52,8 @@ describe('Code Viewer component', () => {
     (parseCode as jest.Mock).mockReturnValue(null);
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
-    expect(wrapper).toHaveText(code);
 
+    expect(wrapper.text()).toContain(code);
     expect(parseCode).toHaveBeenCalledWith(code, language);
     wrapper.unmount();
   });
@@ -75,7 +77,8 @@ describe('Code Viewer component', () => {
     (astToReact as jest.Mock).mockReturnValue(() => markup);
 
     const wrapper = mount(<CodeViewer language={language} value={code} />);
-    expect(wrapper).toContainReact(markup);
+    expect(wrapper.find('span.token.function').exists()).toBe(true);
+    expect(wrapper.find('span.token.function').text()).toBe('function');
     expect(parseCode).toHaveBeenCalledWith(code, language);
     expect(astToReact).toHaveBeenCalled();
     wrapper.unmount();
