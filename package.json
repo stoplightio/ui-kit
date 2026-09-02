@@ -135,6 +135,7 @@
     "@types/node": "12.12.62",
     "@types/lodash": "4.14.149",
     "postcss": "^8.5.23",
+    "nanoid": "^3.3.18",
     "@types/babel__traverse": "^7.17.0",
     "@types/react": "~16.9.34",
     "undici": "^6.28.0",
