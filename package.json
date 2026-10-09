@@ -138,7 +138,7 @@
     "nanoid": "^3.3.18",
     "@types/babel__traverse": "^7.17.0",
     "@types/react": "~16.9.34",
-    "undici": "^6.28.0",
+    "undici": "^6.28.1",
     "undici-types": "5.26.5",
     "qs": "6.15.2",
     "telejson": "6.0.0",
@@ -233,7 +233,7 @@
     "cheerio": "1.0.0-rc.3",
     "enzyme": "3.11.0",
     "uuid": "11.1.1",
-    "**/axios": "^0.33.0",
+    "**/axios": "^0.34.0",
     "yargs": "^17.7.2",
     "highlight.js": "10.4.1",
     "**/highlight.js": "10.4.1",
@@ -253,7 +253,7 @@
     "**/recursive-readdir/minimatch": "3.1.4",
     "**/globule/minimatch": "3.1.4",
     "svgo": "^2.8.4",
-    "ip-address": "10.3.1"
+    "ip-address": "10.5.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
